@@ -85,7 +85,8 @@ export function LabelsOnMe({
 
 // LabelsOnMeRevised can be removed if we don't put an appeal button there
 // ProfileHeaderAlerts does exactly what we want otherwise
-// makes things simmpler and less code doing the same stuff
+// makes things simmpler and less code doing the same stuff - Sunstar
+// (Wrong? Remove this comment later - Future Sunstar)
 export function LabelsOnMeRevised({
   type,
   labels,

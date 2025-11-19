@@ -252,23 +252,6 @@ module.exports = function (_config) {
               compileSdkVersion: 35,
               targetSdkVersion: 35,
               buildToolsVersion: '35.0.0',
-
-              // ▼ ADD THIS ▼
-              signingConfigs: {
-                release: {
-                  storeFile: process.env.ANDROID_KEYSTORE_PATH,
-                  storePassword: process.env.ANDROID_STORE_PASSWORD,
-                  keyAlias: process.env.ANDROID_KEY_ALIAS,
-                  keyPassword: process.env.ANDROID_KEY_PASSWORD,
-                },
-              },
-              buildTypes: {
-                release: {
-                  signingConfig: 'release',
-                },
-              },
-              // ▲ ADD THIS ▲
-
             },
           },
         ],

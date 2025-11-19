@@ -14,13 +14,12 @@ import {
   useDisableFollowbackBIN,
   useSetDisableFollowbackBIN,
  } from '#/state/preferences/disable-followback-BIN'
- import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
-export function MiscellaneousSettingsScreen({}: Props) {
+export function ProfileTabVisibilitySettingsScreen({}: Props) {
   const {_} = useLingui()
 
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
@@ -34,7 +33,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
         <Layout.Header.BackButton />
         <Layout.Header.Content>
           <Layout.Header.TitleText>
-            <Trans>Miscellaneous</Trans>
+            <Trans>Tabs Visibility (Profiles)</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -42,14 +41,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
 
-          <SettingsList.LinkItem
-            to="/settings/tabs-visibility"
-            label={_(msg`Tabs Visibility (Profiles)`)}>
-            <SettingsList.ItemIcon icon={HashtagIcon} />
-            <SettingsList.ItemText>
-              <Trans>Tabs Visibility (Profiles)</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
 
           <SettingsList.Divider />
 

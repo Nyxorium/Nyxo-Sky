@@ -96,6 +96,7 @@ export async function shareImageModal({uri}: {uri: string}) {
 }
 
 const ALBUM_NAME = 'Bluesky'
+// Image Album, do the thing - Sunstar
 
 export async function saveImageToMediaLibrary({uri}: {uri: string}) {
   // download the file to cache

@@ -220,6 +220,7 @@ function ProfileScreenLoaded({
   const listCount = (profile.associated?.lists || 0) - starterPackCount
   const showListsTab = hasSession && (isMe || listCount > 0)
 
+  // Make these tabs optional in the same manner as metics - Sunstar
   const sectionTitles = [
     showFiltersTab ? _(msg`Labels`) : undefined,
     showListsTab && hasLabeler ? _(msg`Lists`) : undefined,

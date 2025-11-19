@@ -147,7 +147,11 @@ export const defaults: Schema = {
   },
   languagePrefs: {
     primaryLanguage: deviceLanguageCodes[0] || 'en',
-    contentLanguages: deviceLanguageCodes || [],
+    // contentLanguages: deviceLanguageCodes || [],
+    // Removed, having a default seems to not be great
+    // Especially in the early days
+    // Maybe make an onboarding step later - Sunstar
+    contentLanguages: [],
     postLanguage: deviceLanguageCodes[0] || 'en',
     postLanguageHistory: (deviceLanguageCodes || [])
       .concat(['en', 'ja', 'pt', 'de'])

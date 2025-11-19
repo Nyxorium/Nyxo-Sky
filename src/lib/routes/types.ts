@@ -89,6 +89,7 @@ export type CommonNavigatorParams = {
   Bookmarks: undefined
 
   MiscellaneousSettings: undefined
+  ProfileTabVisibilitySettings: undefined
 }
 
 export type BottomTabNavigatorParams = CommonNavigatorParams & {

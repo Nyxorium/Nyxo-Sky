@@ -13,6 +13,7 @@ import {
   STATUS_PAGE_URL,  
   TERMS_OF_SERVICE_URL,
   PRIVACY_POLICY_URL,
+  HELP_DESK_URL,
 } from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {isAndroid, isIOS, isNative} from '#/platform/detection'
@@ -22,6 +23,7 @@ import {Atom_Stroke2_Corner0_Rounded as AtomIcon} from '#/components/icons/Atom'
 import {BroomSparkle_Stroke2_Corner2_Rounded as BroomSparkleIcon} from '#/components/icons/BroomSparkle'
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
 import {Globe_Stroke2_Corner0_Rounded as GlobeIcon} from '#/components/icons/Globe'
+import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/components/icons/CircleQuestion'
 import {Newspaper_Stroke2_Corner2_Rounded as NewspaperIcon} from '#/components/icons/Newspaper'
 import {Wrench_Stroke2_Corner2_Rounded as WrenchIcon} from '#/components/icons/Wrench'
 import * as Layout from '#/components/Layout'
@@ -83,6 +85,14 @@ export function AboutSettingsScreen({}: Props) {
       </Layout.Header.Outer>
       <Layout.Content>
         <SettingsList.Container>
+          <SettingsList.LinkItem
+            to={HELP_DESK_URL}
+            label={_(msg`Help`)}>
+            <SettingsList.ItemIcon icon={CircleQuestionIcon} />
+            <SettingsList.ItemText>
+              <Trans>Help</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
           <SettingsList.LinkItem
             to={TERMS_OF_SERVICE_URL}
             label={_(msg`Terms of Service`)}>

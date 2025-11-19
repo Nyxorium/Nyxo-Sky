@@ -18,21 +18,15 @@
 
 
 # APK Signing (initial gen)
-`keytool -genkey -v -keystore nyxo-release.keystore -alias nyxo -keyalg RSA -keysize 2048 -validity 10000`
-(Change nyxo-release & nyxo)
+`keytool -genkey -v -keystore file-name.keystore -alias alias-name -keyalg RSA -keysize 2048 -validity 10000`
+(Change file-name & alias-name)
 
 
 # Copying
 rsync -av --progress \
   --exclude 'node_modules' \
   --exclude '.git' \
-  --exclude 'android' \
-  --exclude 'android.bak' \
-  --exclude '.expo' \
   --exclude 'code-signing' \
-  --exclude '/nyxo-release.keystore' \
-  --exclude '/google-services.json' \
-  --exclude '/.env' \
   /Nyxo-Sky/versions/1.110.0/ /Nyxo-Sky/Nyxorium/
 
 (This is because github is annoying and I don't want to learn it...)

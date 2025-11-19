@@ -285,6 +285,7 @@ function HomeScreenReady({
           const isFocused = maybeSelectedFeed === feed
           const isAdjacent = Math.abs(selectedIndex - index) === 1
           const hidden = Platform.OS === 'android' && !isFocused
+          // This should be optional and needs improvements
           if (feed === 'following') {
             return (
               <View
