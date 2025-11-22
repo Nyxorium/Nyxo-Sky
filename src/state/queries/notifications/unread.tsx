@@ -162,8 +162,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
           })
           const unreadCount = countUnread(page)
           const unreadCountStr =
-            unreadCount >= 30
-              ? '30+'
+            // Previously 30 & 30+ - Sunstar
+            unreadCount >= 99
+              ? '99+'
               : unreadCount === 0
                 ? ''
                 : String(unreadCount)

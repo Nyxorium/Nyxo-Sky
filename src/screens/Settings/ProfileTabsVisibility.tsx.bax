@@ -4,6 +4,7 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
+import {useDialogControl} from '#/components/Dialog'
 import * as Toggle from '#/components/forms/Toggle'
 import { 
   useAltLabelDisplayProfile,
@@ -13,17 +14,15 @@ import {
   useDisableFollowbackBIN,
   useSetDisableFollowbackBIN,
  } from '#/state/preferences/disable-followback-BIN'
- import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
 
-
-import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
 import {Heart2_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
-import {atoms as a, platform, useTheme} from '#/alf'
-import {View} from 'react-native'
-import {useMemo} from 'react'
+import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
+import {PreferenceControls} from './components/TabsPreferenceControls'
 
+import {useNotificationSettingsQuery} from '#/state/queries/notifications/settings' // remove
+import {atoms as a} from '#/alf'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
@@ -35,15 +34,7 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
   const disableFollowbackBIN = useDisableFollowbackBIN()
   const setDisableFollowbackBIN = useSetDisableFollowbackBIN()
 
-  const t = useTheme()
-
-  const channels = useMemo(() => {
-    const arr = []
-    if (preference.list) arr.push('list')
-    if (preference.push) arr.push('push')
-    return arr
-  }, [preference])
-
+  const {data: preferences, isError} = useNotificationSettingsQuery()
 
   return (
     <Layout.Screen>
@@ -51,7 +42,7 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
         <Layout.Header.BackButton />
         <Layout.Header.Content>
           <Layout.Header.TitleText>
-            <Trans>Miscellaneous</Trans>
+            <Trans>Tabs Visibility (Profiles)</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -60,13 +51,14 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
         <SettingsList.Container>
 
 
+          <SettingsList.Divider />
 
 
 
 
 
 
-
+        <SettingsList.Container>
           <SettingsList.Item style={[a.align_start]}>
             <SettingsList.ItemIcon icon={HeartIcon} />
             <ItemTextWithSubtitle
@@ -76,63 +68,58 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
                 <Trans>Get notifications when people like your posts.</Trans>
               }
             />
-          </SettingsList.Item>
+          </SettingsList.Item> 
+            (<PreferenceControls name="like" preference={preferences?.like} />)
+        </SettingsList.Container>
 
-          <View style={[a.px_xl, a.pt_md, a.gap_sm]}>
 
-            <Toggle.Group
-              type="checkbox"
-              label={_(msg`Select your preferred notification channels`)}
-              values={channels}
-              onChange={onChangeChannels}>
-              <View style={[a.gap_sm]}>
-                <Toggle.Item
-                  label={_(msg`Receive push notifications`)}
-                  name="push"
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Push notifications</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-                {(
-                  <Toggle.Item
-                    label={_(msg`Receive in-app notifications`)}
-                    name="list"
-                    style={[
-                      a.py_xs,
-                      platform({
-                        native: [a.justify_between],
-                        web: [a.flex_row_reverse, a.gap_sm],
-                      }),
-                    ]}>
-                    <Toggle.LabelText
-                      style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                      <Trans>In-app notifications</Trans>
-                    </Toggle.LabelText>
-                    <Toggle.Platform />
-                  </Toggle.Item>
-                )}
-              </View>
-            </Toggle.Group>
-              
-            <SettingsList.Divider />
-              
-          </View>
+        <SettingsList.Container>
+          <SettingsList.Item style={[a.align_start]}>
+            <SettingsList.ItemIcon icon={HeartIcon} />
+            <ItemTextWithSubtitle
+              bold
+              titleText={<Trans>Likes</Trans>}
+              subtitleText={
+                <Trans>Get notifications when people like your posts.</Trans>
+              }
+            />
+          </SettingsList.Item> 
+
+          <Toggle.Item
+            name="alt_label_display_profile"
+            label={_(msg`Use Alternate Label Display for Profiles`)}
+            value={altLabelDisplayProfile}
+            onChange={value => setAltLabelDisplayProfile(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PhoneIcon} />
+              <SettingsList.ItemText>
+                <Trans>Use Alternate Label Display for Profiles</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_followback_bin"
+            label={_(msg`Disable Followback Button in Notifications`)}
+            value={disableFollowbackBIN}
+            onChange={value => setDisableFollowbackBIN(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PhoneIcon} />
+              <SettingsList.ItemText>
+                <Trans>Disable Followback Button in Notifications</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+
+        </SettingsList.Container>
 
 
 
 
 
-
-          <SettingsList.Divider />
 
           <Toggle.Item
             name="alt_label_display_profile"

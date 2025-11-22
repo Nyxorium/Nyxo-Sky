@@ -4,7 +4,6 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
-import {useDialogControl} from '#/components/Dialog'
 import * as Toggle from '#/components/forms/Toggle'
 import { 
   useAltLabelDisplayProfile,
@@ -42,16 +41,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
 
-          <SettingsList.LinkItem
-            to="/settings/tabs-visibility"
-            label={_(msg`Tabs Visibility (Profiles)`)}>
-            <SettingsList.ItemIcon icon={HashtagIcon} />
-            <SettingsList.ItemText>
-              <Trans>Tabs Visibility (Profiles)</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
 
-          <SettingsList.Divider />
 
           <Toggle.Item
             name="alt_label_display_profile"

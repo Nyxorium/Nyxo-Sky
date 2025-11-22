@@ -32,7 +32,6 @@ import {
   type PagerRef,
   type RenderTabBarFnProps,
 } from '#/view/com/pager/Pager'
-import { View, Platform } from 'react-native'
 import {CustomFeedEmptyState} from '#/view/com/posts/CustomFeedEmptyState'
 import {FollowingEmptyState} from '#/view/com/posts/FollowingEmptyState'
 import {FollowingEndOfFeed} from '#/view/com/posts/FollowingEndOfFeed'
@@ -270,6 +269,9 @@ function HomeScreenReady({
     )
   }
 
+  // On Andoid, this shows content between current and destination feeds
+  // Unlike iOS that does not do this... fix it? - Sunstar
+
   return hasSession ? (
     <Pager
       key={allFeeds.join(',')}
@@ -282,47 +284,33 @@ function HomeScreenReady({
       {pinnedFeedInfos.length ? (
         pinnedFeedInfos.map((feedInfo, index) => {
           const feed = feedInfo.feedDescriptor
-          const isFocused = maybeSelectedFeed === feed
-          const isAdjacent = Math.abs(selectedIndex - index) === 1
-          const hidden = Platform.OS === 'android' && !isFocused
-          // This should be optional and needs improvements
           if (feed === 'following') {
             return (
-              <View
+              <FeedPage
                 key={feed}
-                style={[{ flex: 1 }, hidden && { opacity: 0 }]} // hide visually on Android
-              >
-                <FeedPage
-                  key={feed}
-                  testID="followingFeedPage"
-                  isPageFocused={maybeSelectedFeed === feed}
-                  isPageAdjacent={isAdjacent} // Math.abs(selectedIndex - index) === 1
-                  feed={feed}
-                  feedParams={homeFeedParams}
-                  renderEmptyState={renderFollowingEmptyState}
-                  renderEndOfFeed={FollowingEndOfFeed}
-                  feedInfo={feedInfo}
-                />
-              </View>
+                testID="followingFeedPage"
+                isPageFocused={maybeSelectedFeed === feed}
+                isPageAdjacent={Math.abs(selectedIndex - index) === 1}
+                feed={feed}
+                feedParams={homeFeedParams}
+                renderEmptyState={renderFollowingEmptyState}
+                renderEndOfFeed={FollowingEndOfFeed}
+                feedInfo={feedInfo}
+              />
             )
           }
           const savedFeedConfig = feedInfo.savedFeed
           return (
-            <View
+            <FeedPage
               key={feed}
-              style={[{ flex: 1 }, hidden && { opacity: 0 }]} // same logic
-            >
-              <FeedPage
-                key={feed}
-                testID="customFeedPage"
-                isPageFocused={maybeSelectedFeed === feed}
-                isPageAdjacent={isAdjacent}
-                feed={feed}
-                renderEmptyState={renderCustomFeedEmptyState}
-                savedFeedConfig={savedFeedConfig}
-                feedInfo={feedInfo}
-              />
-            </View>
+              testID="customFeedPage"
+              isPageFocused={maybeSelectedFeed === feed}
+              isPageAdjacent={Math.abs(selectedIndex - index) === 1}
+              feed={feed}
+              renderEmptyState={renderCustomFeedEmptyState}
+              savedFeedConfig={savedFeedConfig}
+              feedInfo={feedInfo}
+            />
           )
         })
       ) : (
