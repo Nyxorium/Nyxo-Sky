@@ -42,12 +42,3 @@ than copy everything to a new directiory tied to the repo I'm pushing too when I
 <Trans>Value name here</Trans>
 {' - '}
 {ValueVariableHere ? "Enabled" : "Disabled"}
-
-
-
-
-
-# Random thing I like
-
-`// ▼ ADD THIS ▼`
-`// ▲ ADD THIS ▲`

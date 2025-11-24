@@ -316,12 +316,10 @@ module.exports = function (_config) {
             android: {
               backgroundColor: '#0c7cff',
               image: './assets/splash-android-icon.png',
-              // BlueSky Logo - Sunstar
               imageWidth: 150,
               dark: {
                 backgroundColor: '#0c2a49',
                 image: './assets/splash-android-icon-dark.png',
-                // BlueSky Logo - Sunstar
                 imageWidth: 150,
               },
             },

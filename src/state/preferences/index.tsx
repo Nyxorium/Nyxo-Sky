@@ -9,6 +9,8 @@ import {Provider as InAppBrowserProvider} from './in-app-browser'
 import {Provider as LimitComposePostButton} from './limit-compose-post-button'
 import {Provider as AltLabelDisplayProfile} from './alternate-label-display-profile'
 import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
+import {Provider as DisableShareViaDms} from './disable-share-via-dms'
+import {Provider as ToggleShareViaDID} from './enable-share-by-DID'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -53,7 +55,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                             <LimitComposePostButton>
                               <AltLabelDisplayProfile>
                                 <DisableFollowbackBIN>
-                                  <KawaiiProvider>{children}</KawaiiProvider>
+                                  <DisableShareViaDms>
+                                    <ToggleShareViaDID>
+                                      <KawaiiProvider>{children}</KawaiiProvider>
+                                    </ToggleShareViaDID>
+                                  </DisableShareViaDms>
                                 </DisableFollowbackBIN>
                               </AltLabelDisplayProfile>
                             </LimitComposePostButton>

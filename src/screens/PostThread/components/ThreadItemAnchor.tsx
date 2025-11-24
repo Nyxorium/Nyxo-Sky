@@ -61,6 +61,7 @@ import {Text} from '#/components/Typography'
 import {VerificationCheckButton} from '#/components/verification/VerificationCheckButton'
 import {WhoCanReply} from '#/components/WhoCanReply'
 import * as bsky from '#/types/bsky'
+import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 
 export function ThreadItemAnchor({
   item,
@@ -364,6 +365,12 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                   ]}
                   numberOfLines={1}>
                   {sanitizeHandle(post.author.handle, '@')}
+                  {post.author.pronouns
+                    ? NON_BREAKING_SPACE +
+                      '\u00B7' +
+                      NON_BREAKING_SPACE +
+                      post.author.pronouns
+                    : null}
                 </Text>
               </ProfileHoverCard>
             </View>

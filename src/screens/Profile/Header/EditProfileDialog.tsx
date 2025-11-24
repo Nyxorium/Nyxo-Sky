@@ -26,7 +26,7 @@ import {Text} from '#/components/Typography'
 import {useSimpleVerificationState} from '#/components/verification'
 
 const DISPLAY_NAME_MAX_GRAPHEMES = 64
-const PRONOUNS_MAX_GRAPHEMES = 200
+const PRONOUNS_MAX_GRAPHEMES = 20
 const DESCRIPTION_MAX_GRAPHEMES = 256
 // Check constants.ts, it exports the same values but are unused - Sunstar
 
@@ -136,6 +136,8 @@ function DialogInner({
   const dirty =
     displayName !== initialDisplayName ||
     description !== initialDescription ||
+    pronouns !== initialPronouns ||
+    website !== initialWebsite ||
     userAvatar !== profile.avatar ||
     userBanner !== profile.banner
 
@@ -187,6 +189,8 @@ function DialogInner({
         updates: {
           displayName: displayName.trimEnd(),
           description: description.trimEnd(),
+          pronouns: pronouns.trimEnd(),
+          website: website.trimEnd(),
         },
         newUserAvatar,
         newUserBanner,
@@ -203,6 +207,8 @@ function DialogInner({
     control,
     displayName,
     description,
+    pronouns,
+    website,
     newUserAvatar,
     newUserBanner,
     setImageError,
@@ -249,7 +255,8 @@ function DialogInner({
           !dirty ||
           isUpdatingProfile ||
           displayNameTooLong ||
-          descriptionTooLong
+          descriptionTooLong ||
+          pronounsTooLong
         }
         size="small"
         color="primary"
@@ -270,6 +277,7 @@ function DialogInner({
       isUpdatingProfile,
       displayNameTooLong,
       descriptionTooLong,
+      pronounsTooLong,
     ],
   )
 
@@ -436,7 +444,7 @@ function DialogInner({
               defaultValue={website}
               onChangeText={setWebsite}
               label={_(msg`Website`)}
-              placeholder={_(msg`e.g. bsky.app`)}
+              placeholder={_(msg`e.g. https://bsky.app`)}
               testID="editWebsiteInput"
             />
           </TextField.Root>

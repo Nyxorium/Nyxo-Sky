@@ -13,9 +13,22 @@ import {
   useDisableFollowbackBIN,
   useSetDisableFollowbackBIN,
  } from '#/state/preferences/disable-followback-BIN'
- import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
+import { 
+  useDisableShareViaDms,
+  useSetDisableShareViaDms,
+ } from '#/state/preferences/disable-share-via-dms'
+import { 
+  useEnableShareViaDID,
+  useSetEnableShareViaDID,
+ } from '#/state/preferences/enable-share-by-DID'
+import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
+import {PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon} from '#/components/icons/Person'
+import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
+import {isNative} from '#/platform/detection'
+
+import {IS_INTERNAL} from '#/env'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
@@ -26,6 +39,10 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setAltLabelDisplayProfile = useSetAltLabelDisplayProfile()
   const disableFollowbackBIN = useDisableFollowbackBIN()
   const setDisableFollowbackBIN = useSetDisableFollowbackBIN()
+  const disableShareViaDms = useDisableShareViaDms()
+  const setDisableShareViaDms = useSetDisableShareViaDms()
+  const enableShareViaDID = useEnableShareViaDID()
+  const setEnableShareViaDID = useSetEnableShareViaDID()
 
   return (
     <Layout.Screen>
@@ -41,7 +58,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
 
+          {IS_INTERNAL && ( /* Internal until design is finished */
+            <> 
+              <SettingsList.LinkItem
+                to="/settings/tabs-visibility"
+                label={_(msg`Tabs Visibility (Profiles)`)}>
+                <SettingsList.ItemIcon icon={HashtagIcon} />
+                <SettingsList.ItemText>
+                  <Trans>Tabs Visibility (Profiles)</Trans>
+                </SettingsList.ItemText>
+              </SettingsList.LinkItem>
 
+              <SettingsList.Divider />
+            </>
+          )}
 
           <Toggle.Item
             name="alt_label_display_profile"
@@ -63,13 +93,46 @@ export function MiscellaneousSettingsScreen({}: Props) {
             value={disableFollowbackBIN}
             onChange={value => setDisableFollowbackBIN(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PhoneIcon} />
+              <SettingsList.ItemIcon icon={PersonPlusIcon} />
               <SettingsList.ItemText>
-                <Trans>Disable Followback Button in Notifications</Trans>
+                <Trans>Disable 'Follow Back' Button in Notifications</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
+
+          {IS_INTERNAL && /* Internal until ShareMenuItems.tsx works with .did */
+          <Toggle.Item
+            name="enable_share_via_did"
+            label={_(msg`Enable Sharing by DID`)}
+            value={enableShareViaDID}
+            onChange={value => setEnableShareViaDID(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={ChainLinkIcon} />
+              <SettingsList.ItemText>
+                <Trans>Enable Sharing by DID</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>}
+
+          {isNative && <SettingsList.Divider />}
+
+          {isNative && (
+            <Toggle.Item
+              name="disable_share-via-dms"
+              label={_(msg`Disable 'Share Via DMS' in Share Menu`)}
+              value={disableShareViaDms}
+              onChange={value => setDisableShareViaDms(value)}>
+              <SettingsList.Item>
+                <SettingsList.ItemIcon icon={PhoneIcon} />
+                <SettingsList.ItemText>
+                  <Trans>Disable 'Share Via DMS' in Share Menu</Trans>
+                </SettingsList.ItemText>
+                <Toggle.Platform />
+              </SettingsList.Item>
+            </Toggle.Item>
+          )}
 
         </SettingsList.Container>
       </Layout.Content>

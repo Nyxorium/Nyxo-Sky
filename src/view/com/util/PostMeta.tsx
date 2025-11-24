@@ -42,6 +42,7 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
   const author = useProfileShadow(opts.author)
   const displayName = author.displayName || author.handle
   const handle = author.handle
+  const pronouns = author.pronouns || null
   const profileLink = makeProfileLink(author)
   const queryClient = useQueryClient()
   const onOpenAuthor = opts.onOpenAuthor
@@ -96,7 +97,7 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
                 t.atoms.text,
                 a.leading_tight,
                 a.flex_shrink_0,
-                {maxWidth: '70%'},
+                {maxWidth: '70%'}, // 50% used with pronouns below - Sunstar
               ]}>
               {forceLTR(
                 sanitizeDisplayName(
@@ -134,6 +135,8 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
                 a.leading_tight,
                 {flexShrink: 10},
               ]}>
+              {/* pronouns ? NON_BREAKING_SPACE + pronouns : null */}
+              {/* This doesn't look that good, temprarily commented out */}
               {NON_BREAKING_SPACE + sanitizeHandle(handle, '@')}
             </WebOnlyInlineLinkText>
           </View>
