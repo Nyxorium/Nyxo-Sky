@@ -11,6 +11,7 @@ import {Provider as AltLabelDisplayProfile} from './alternate-label-display-prof
 import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
 import {Provider as DisableShareViaDms} from './disable-share-via-dms'
 import {Provider as ToggleShareViaDID} from './enable-share-by-DID'
+import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -57,7 +58,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                 <DisableFollowbackBIN>
                                   <DisableShareViaDms>
                                     <ToggleShareViaDID>
-                                      <KawaiiProvider>{children}</KawaiiProvider>
+                                      <DisableFeedPromoTab>
+                                        <KawaiiProvider>{children}</KawaiiProvider>
+                                      </DisableFeedPromoTab>
                                     </ToggleShareViaDID>
                                   </DisableShareViaDms>
                                 </DisableFollowbackBIN>

@@ -7,6 +7,7 @@ import {useSession} from '#/state/session'
 import {type RenderTabBarFnProps} from '#/view/com/pager/Pager'
 import {TabBar} from '../pager/TabBar'
 import {HomeHeaderLayout} from './HomeHeaderLayout'
+import {useDisableFeedPromoTab} from '#/state/preferences/disable-feed-promo-tab'
 
 export function HomeHeader(
   props: RenderTabBarFnProps & {
@@ -18,6 +19,7 @@ export function HomeHeader(
   const {feeds, onSelect: onSelectProp} = props
   const {hasSession} = useSession()
   const navigation = useNavigation<NavigationProp>()
+  const disableFeedPromoTab = useDisableFeedPromoTab()
 
   const hasPinnedCustom = React.useMemo<boolean>(() => {
     if (!hasSession) return false
@@ -29,7 +31,7 @@ export function HomeHeader(
 
   const items = React.useMemo(() => {
     const pinnedNames = feeds.map(f => f.displayName)
-    if (!hasPinnedCustom) {
+    if (!hasPinnedCustom && !disableFeedPromoTab) {
       return pinnedNames.concat('Feeds ✨')
     }
     return pinnedNames

@@ -21,6 +21,10 @@ import {
   useEnableShareViaDID,
   useSetEnableShareViaDID,
  } from '#/state/preferences/enable-share-by-DID'
+import { 
+  useDisableFeedPromoTab,
+  useSetDisableFeedPromoTab,
+ } from '#/state/preferences/disable-feed-promo-tab'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
@@ -43,6 +47,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setDisableShareViaDms = useSetDisableShareViaDms()
   const enableShareViaDID = useEnableShareViaDID()
   const setEnableShareViaDID = useSetEnableShareViaDID()
+  const disableFeedPromoTab = useDisableFeedPromoTab()
+  const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
 
   return (
     <Layout.Screen>
@@ -87,19 +93,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.Item>
           </Toggle.Item>
 
-          <Toggle.Item
-            name="disable_followback_bin"
-            label={_(msg`Disable Followback Button in Notifications`)}
-            value={disableFollowbackBIN}
-            onChange={value => setDisableFollowbackBIN(value)}>
-            <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonPlusIcon} />
-              <SettingsList.ItemText>
-                <Trans>Disable 'Follow Back' Button in Notifications</Trans>
-              </SettingsList.ItemText>
-              <Toggle.Platform />
-            </SettingsList.Item>
-          </Toggle.Item>
 
           {IS_INTERNAL && /* Internal until ShareMenuItems.tsx works with .did */
           <Toggle.Item
@@ -115,6 +108,36 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>}
+
+          <SettingsList.Divider />
+
+          <Toggle.Item
+            name="disable_followback_bin"
+            label={_(msg`Disable Followback Button in Notifications`)}
+            value={disableFollowbackBIN}
+            onChange={value => setDisableFollowbackBIN(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PersonPlusIcon} />
+              <SettingsList.ItemText>
+                <Trans>Disable 'Follow Back' Button in Notifications</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_feed_promo_tab"
+            label={_(msg`Disable 'Feeds ✨'`)}
+            value={disableFeedPromoTab}
+            onChange={value => setDisableFeedPromoTab(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={HashtagIcon} />
+              <SettingsList.ItemText>
+                <Trans>Disable 'Feeds ✨'</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
 
           {isNative && <SettingsList.Divider />}
 
