@@ -3,129 +3,385 @@ import React from 'react'
 import * as persisted from '#/state/persisted'
 
 type StateContext = {
-  likeMetrics: persisted.Schema['disableLikeMetrics']
-  repostMetrics: persisted.Schema['disableRepostMetrics']
-  quoteMetrics: persisted.Schema['disableQuoteMetrics']
-  bookmarkMetrics: persisted.Schema['disableBookmarkMetrics']
-  listsTab: persisted.Schema['disableListsTab']
+  postsProfileTab: persisted.Schema['disablePostsProfileTab']
+  repliesProfileTab: persisted.Schema['disableRepliesProfileTab']
+  mediaProfileTab: persisted.Schema['disableMediaProfileTab']
+  videosProfileTab: persisted.Schema['disableVideosProfileTab']
+  feedsProfileTab: persisted.Schema['disableFeedsProfileTab']
+  starterPacksProfileTab: persisted.Schema['disableStarterPacksProfileTab']
+  listsProfileTab: persisted.Schema['disableListsProfileTab']
+
+  postsProfileTab_self: persisted.Schema['disablePostsProfileTab_self']
+  repliesProfileTab_self: persisted.Schema['disableRepliesProfileTab_self']
+  mediaProfileTab_self: persisted.Schema['disableMediaProfileTab_self']
+  videosProfileTab_self: persisted.Schema['disableVideosProfileTab_self']
+  likesProfileTab_self: persisted.Schema['disableLikesProfileTab_self']
+  feedsProfileTab_self: persisted.Schema['disableFeedsProfileTab_self']
+  starterPacksProfileTab_self: persisted.Schema['disableStarterPacksProfileTab_self']
+  listsProfileTab_self: persisted.Schema['disableListsProfileTab_self']
 }
 type SetContext = {
-  setLikeMetrics: (v: persisted.Schema['disableLikeMetrics']) => void
-  setRepostMetrics: (v: persisted.Schema['disableRepostMetrics']) => void
-  setQuoteMetrics: (v: persisted.Schema['disableQuoteMetrics']) => void
-  setBookmarkMetrics: (v: persisted.Schema['disableBookmarkMetrics']) => void
-  setListsTab: (v: persisted.Schema['disableListsTab']) => void
+  setPostsProfileTab: (v: persisted.Schema['disablePostsProfileTab']) => void
+  setRepliesProfileTab: (v: persisted.Schema['disableRepliesProfileTab']) => void
+  setMediaProfileTab: (v: persisted.Schema['disableMediaProfileTab']) => void
+  setVideosProfileTab: (v: persisted.Schema['disableVideosProfileTab']) => void
+  setFeedsProfileTab: (v: persisted.Schema['disableFeedsProfileTab']) => void
+  setStarterPacksProfileTab: (v: persisted.Schema['disableStarterPacksProfileTab']) => void
+  setListsProfileTab: (v: persisted.Schema['disableListsProfileTab']) => void
+
+  setPostsProfileTab_self: (v: persisted.Schema['disablePostsProfileTab_self']) => void
+  setRepliesProfileTab_self: (v: persisted.Schema['disableRepliesProfileTab_self']) => void
+  setMediaProfileTab_self: (v: persisted.Schema['disableMediaProfileTab_self']) => void
+  setVideosProfileTab_self: (v: persisted.Schema['disableVideosProfileTab_self']) => void
+  setLikesProfileTab_self: (v: persisted.Schema['disableLikesProfileTab_self']) => void
+  setFeedsProfileTab_self: (v: persisted.Schema['disableFeedsProfileTab_self']) => void
+  setStarterPacksProfileTab_self: (v: persisted.Schema['disableStarterPacksProfileTab_self']) => void
+  setListsProfileTab_self: (v: persisted.Schema['disableListsProfileTab_self']) => void
+
 }
 
 const stateContext = React.createContext<StateContext>({
-  likeMetrics: 'show',
-  repostMetrics: 'show',
-  quoteMetrics: 'show',
-  bookmarkMetrics: 'show',
-  listsTab: 'show',
+  postsProfileTab: true,
+  repliesProfileTab: true,
+  mediaProfileTab: true,
+  videosProfileTab: true,
+  feedsProfileTab: true,
+  starterPacksProfileTab: true,
+  listsProfileTab: true,
+
+  postsProfileTab_self: true,
+  repliesProfileTab_self: true,
+  mediaProfileTab_self: true,
+  videosProfileTab_self: true,
+  likesProfileTab_self: true,
+  feedsProfileTab_self: true,
+  starterPacksProfileTab_self: true,
+  listsProfileTab_self: true,
+
 })
 stateContext.displayName = 'MetricStateContext'
 const setContext = React.createContext<SetContext>({} as SetContext)
 setContext.displayName = 'MetricSetContext'
 
 export function Provider({children}: React.PropsWithChildren<{}>) {
-  const [likeMetrics, setLikeMetrics] = React.useState(
-    persisted.get('disableLikeMetrics'),
+  const [postsProfileTab, setPostsProfileTab] = React.useState(
+    persisted.get('disablePostsProfileTab'),
   )
-  const [repostMetrics, setRepostMetrics] = React.useState(
-    persisted.get('disableRepostMetrics'),
+  const [repliesProfileTab, setRepliesProfileTab] = React.useState(
+    persisted.get('disableRepliesProfileTab'),
   )
-  const [quoteMetrics, setQuoteMetrics] = React.useState(
-    persisted.get('disableQuoteMetrics'),
+  const [mediaProfileTab, setMediaProfileTab] = React.useState(
+    persisted.get('disableMediaProfileTab'),
   )
-  const [bookmarkMetrics, setBookmarkMetrics] = React.useState(
-    persisted.get('disableBookmarkMetrics'),
+  const [videosProfileTab, setVideosProfileTab] = React.useState(
+    persisted.get('disableVideosProfileTab'),
   )
-  const [listsTab, setListsTab] = React.useState(
-    persisted.get('disableListsTab'),
+  const [feedsProfileTab, setFeedsProfileTab] = React.useState(
+    persisted.get('disableFeedsProfileTab'),
+  )
+  const [starterPacksProfileTab, setStarterPacksProfileTab] = React.useState(
+    persisted.get('disableStarterPacksProfileTab'),
+  )
+  const [listsProfileTab, setListsProfileTab] = React.useState(
+    persisted.get('disableListsProfileTab'),
+  )
+
+  const [postsProfileTab_self, setPostsProfileTab_self] = React.useState(
+    persisted.get('disablePostsProfileTab_self'),
+  )
+  const [repliesProfileTab_self, setRepliesProfileTab_self] = React.useState(
+    persisted.get('disableRepliesProfileTab_self'),
+  )
+  const [mediaProfileTab_self, setMediaProfileTab_self] = React.useState(
+    persisted.get('disableMediaProfileTab_self'),
+  )
+  const [videosProfileTab_self, setVideosProfileTab_self] = React.useState(
+    persisted.get('disableVideosProfileTab_self'),
+  )
+  const [likesProfileTab_self, setLikesProfileTab_self] = React.useState(
+    persisted.get('disableLikesProfileTab_self'),
+  )
+  const [feedsProfileTab_self, setFeedsProfileTab_self] = React.useState(
+    persisted.get('disableFeedsProfileTab_self'),
+  )
+  const [starterPacksProfileTab_self, setStarterPacksProfileTab_self] = React.useState(
+    persisted.get('disableStarterPacksProfileTab_self'),
+  )
+  const [listsProfileTab_self, setListsProfileTab_self] = React.useState(
+    persisted.get('disableListsProfileTab_self'),
   )
 
   const stateContextValue = React.useMemo(
     () => ({
-      likeMetrics,
-      repostMetrics,
-      quoteMetrics,
-      bookmarkMetrics,
-      listsTab,
+      postsProfileTab,
+      repliesProfileTab,
+      mediaProfileTab,
+      videosProfileTab,
+      feedsProfileTab,
+      starterPacksProfileTab,
+      listsProfileTab,
+      postsProfileTab_self,
+      repliesProfileTab_self,
+      mediaProfileTab_self,
+      videosProfileTab_self,
+      likesProfileTab_self,
+      feedsProfileTab_self,
+      starterPacksProfileTab_self,
+      listsProfileTab_self,
     }),
-    [likeMetrics, repostMetrics, quoteMetrics, bookmarkMetrics, listsTab],
+    [
+      postsProfileTab, 
+      repliesProfileTab, 
+      mediaProfileTab, 
+      videosProfileTab, 
+      feedsProfileTab, 
+      starterPacksProfileTab, 
+      listsProfileTab,
+
+      postsProfileTab_self, 
+      repliesProfileTab_self, 
+      mediaProfileTab_self, 
+      videosProfileTab_self, 
+      likesProfileTab_self, 
+      feedsProfileTab_self, 
+      starterPacksProfileTab_self, 
+      listsProfileTab_self
+    ],
   )
 
   const setContextValue = React.useMemo(
     () => ({
-      setLikeMetrics: (
-        _likeMetrics: persisted.Schema['disableLikeMetrics'],
+      setPostsProfileTab: (
+        _postsProfileTab: persisted.Schema['disablePostsProfileTab'],
       ) => {
-        setLikeMetrics(_likeMetrics)
-        persisted.write('disableLikeMetrics', _likeMetrics)
+        setPostsProfileTab(_postsProfileTab)
+        persisted.write('disablePostsProfileTab', _postsProfileTab)
       },
-      setRepostMetrics: (
-        _repostMetrics: persisted.Schema['disableRepostMetrics'],
+
+      setRepliesProfileTab: (
+        _repliesProfileTab: persisted.Schema['disableRepliesProfileTab'],
       ) => {
-        setRepostMetrics(_repostMetrics)
-        persisted.write('disableRepostMetrics', _repostMetrics)
+        setRepliesProfileTab(_repliesProfileTab)
+        persisted.write('disableRepliesProfileTab', _repliesProfileTab)
       },
-      setQuoteMetrics: (
-        _quoteMetrics: persisted.Schema['disableQuoteMetrics'],
+
+      setMediaProfileTab: (
+        _mediaProfileTab: persisted.Schema['disableMediaProfileTab'],
       ) => {
-        setQuoteMetrics(_quoteMetrics)
-        persisted.write('disableQuoteMetrics', _quoteMetrics)
+        setMediaProfileTab(_mediaProfileTab)
+        persisted.write('disableMediaProfileTab', _mediaProfileTab)
       },
-      setBookmarkMetrics: (
-        _bookmarkMetrics: persisted.Schema['disableBookmarkMetrics'],
+
+      setVideosProfileTab: (
+        _videosProfileTab: persisted.Schema['disableVideosProfileTab'],
       ) => {
-        setBookmarkMetrics(_bookmarkMetrics)
-        persisted.write('disableBookmarkMetrics', _bookmarkMetrics)
+        setVideosProfileTab(_videosProfileTab)
+        persisted.write('disableVideosProfileTab', _videosProfileTab)
       },
-      setReplyMetrics: (
-        _replyMetrics: persisted.Schema['disableReplyMetrics'],
+
+      setFeedsProfileTab: (
+        _feedsProfileTab: persisted.Schema['disableFeedsProfileTab'],
       ) => {
-        setReplyMetrics(_replyMetrics)
-        persisted.write('disableReplyMetrics', _replyMetrics)
+        setFeedsProfileTab(_feedsProfileTab)
+        persisted.write('disableFeedsProfileTab', _feedsProfileTab)
       },
+
+      setStarterPacksProfileTab: (
+        _starterPacksProfileTab: persisted.Schema['disableStarterPacksProfileTab'],
+      ) => {
+        setStarterPacksProfileTab(_starterPacksProfileTab)
+        persisted.write('disableStarterPacksProfileTab', _starterPacksProfileTab)
+      },
+
+      setListsProfileTab: (
+        _listsProfileTab: persisted.Schema['disableListsProfileTab'],
+      ) => {
+        setListsProfileTab(_listsProfileTab)
+        persisted.write('disableListsProfileTab', _listsProfileTab)
+      },
+
+      setPostsProfileTab_self: (
+        _postsProfileTab_self: persisted.Schema['disablePostsProfileTab_self'],
+      ) => {
+        setPostsProfileTab_self(_postsProfileTab_self)
+        persisted.write('disablePostsProfileTab_self', _postsProfileTab_self)
+      },
+
+      setRepliesProfileTab_self: (
+        _repliesProfileTab_self: persisted.Schema['disableRepliesProfileTab_self'],
+      ) => {
+        setRepliesProfileTab_self(_repliesProfileTab_self)
+        persisted.write('disableRepliesProfileTab_self', _repliesProfileTab_self)
+      },
+
+      setMediaProfileTab_self: (
+        _mediaProfileTab_self: persisted.Schema['disableMediaProfileTab_self'],
+      ) => {
+        setMediaProfileTab_self(_mediaProfileTab_self)
+        persisted.write('disableMediaProfileTab_self', _mediaProfileTab_self)
+      },
+
+      setVideosProfileTab_self: (
+        _videosProfileTab_self: persisted.Schema['disableVideosProfileTab_self'],
+      ) => {
+        setVideosProfileTab_self(_videosProfileTab_self)
+        persisted.write('disableVideosProfileTab_self', _videosProfileTab_self)
+      },
+
+      setLikesProfileTab_self: (
+        _likesProfileTab_self: persisted.Schema['disableLikesProfileTab_self'],
+      ) => {
+        setLikesProfileTab_self(_likesProfileTab_self)
+        persisted.write('disableLikesProfileTab_self', _likesProfileTab_self)
+      },
+
+      setFeedsProfileTab_self: (
+        _feedsProfileTab_self: persisted.Schema['disableFeedsProfileTab_self'],
+      ) => {
+        setFeedsProfileTab_self(_feedsProfileTab_self)
+        persisted.write('disableFeedsProfileTab_self', _feedsProfileTab_self)
+      },
+
+      setStarterPacksProfileTab_self: (
+        _starterPacksProfileTab_self: persisted.Schema['disableStarterPacksProfileTab_self'],
+      ) => {
+        setStarterPacksProfileTab_self(_starterPacksProfileTab_self)
+        persisted.write('disableStarterPacksProfileTab_self', _starterPacksProfileTab_self)
+      },
+
+      setListsProfileTab_self: (
+        _listsProfileTab_self: persisted.Schema['disableListsProfileTab_self'],
+      ) => {
+        setListsProfileTab_self(_listsProfileTab_self)
+        persisted.write('disableListsProfileTab_self', _listsProfileTab_self)
+      },
+
     }),
     [],
   )
 
   React.useEffect(() => {
-    const unsub1 = persisted.onUpdate('disableLikeMetrics', nextLikeMetrics => {
-      setLikeMetrics(nextLikeMetrics)
-    })
+    const unsub1 = persisted.onUpdate(
+      'disablePostsProfileTab', 
+      nextPostsProfileTab => {
+        setPostsProfileTab(nextPostsProfileTab)
+      },
+    )
+
     const unsub2 = persisted.onUpdate(
-      'disableRepostMetrics',
-      nextRepostMetrics => {
-        setRepostMetrics(nextRepostMetrics)
+      'disableRepliesProfileTab',
+      nextRepliesProfileTab => {
+        setRepliesProfileTab(nextRepliesProfileTab)
       },
     )
+
     const unsub3 = persisted.onUpdate(
-      'disableQuoteMetrics',
-      nextQuoteMetrics => {
-        setQuoteMetrics(nextQuoteMetrics)
+      'disableMediaProfileTab',
+      nextMediaProfileTab => {
+        setMediaProfileTab(nextMediaProfileTab)
       },
     )
+
     const unsub4 = persisted.onUpdate(
-      'disableBookmarkMetrics',
-      nextBookmarkMetrics => {
-        setBookmarkMetrics(nextBookmarkMetrics)
+      'disableVideosProfileTab',
+      nextVideosProfileTab => {
+        setVideosProfileTab(nextVideosProfileTab)
       },
     )
+
     const unsub5 = persisted.onUpdate(
-      'disableReplyMetrics',
-      nextReplyMetrics => {
-        setReplyMetrics(nextReplyMetrics)
+      'disableFeedsProfileTab',
+      nextFeedsProfileTab => {
+        setFeedsProfileTab(nextFeedsProfileTab)
       },
     )
+
+    const unsub6 = persisted.onUpdate(
+      'disableStarterPacksProfileTab',
+      nextStarterPacksProfileTab => {
+        setStarterPacksProfileTab(nextStarterPacksProfileTab)
+      },
+    )
+
+    const unsub7 = persisted.onUpdate(
+      'disableListsProfileTab',
+      nextListsProfileTab => {
+        setListsProfileTab(nextListsProfileTab)
+      },
+    )
+
+    const unsub8 = persisted.onUpdate(
+      'disablePostsProfileTab_self', 
+      nextPostsProfileTab_self => {
+        setPostsProfileTab_self(nextPostsProfileTab_self)
+      },
+    )
+
+    const unsub9 = persisted.onUpdate(
+      'disableRepliesProfileTab_self',
+      nextRepliesProfileTab_self => {
+        setRepliesProfileTab_self(nextRepliesProfileTab_self)
+      },
+    )
+
+    const unsub10 = persisted.onUpdate(
+      'disableMediaProfileTab_self',
+      nextMediaProfileTab_self => {
+        setMediaProfileTab_self(nextMediaProfileTab_self)
+      },
+    )
+
+    const unsub11 = persisted.onUpdate(
+      'disableVideosProfileTab_self',
+      nextVideosProfileTab_self => {
+        setVideosProfileTab_self(nextVideosProfileTab_self)
+      },
+    )
+
+    const unsub12 = persisted.onUpdate(
+      'disableLikesProfileTab_self',
+      nextLikesProfileTab_self => {
+        setLikesProfileTab_self(nextLikesProfileTab_self)
+      },
+    )
+
+    const unsub13 = persisted.onUpdate(
+      'disableFeedsProfileTab_self',
+      nextFeedsProfileTab_self => {
+        setFeedsProfileTab_self(nextFeedsProfileTab_self)
+      },
+    )
+
+    const unsub14 = persisted.onUpdate(
+      'disableStarterPacksProfileTab_self',
+      nextStarterPacksProfileTab_self => {
+        setStarterPacksProfileTab_self(nextStarterPacksProfileTab_self)
+      },
+    )
+
+    const unsub15 = persisted.onUpdate(
+      'disableListsProfileTab_self',
+      nextListsProfileTab_self => {
+        setListsProfileTab_self(nextListsProfileTab_self)
+      },
+    )
+
     return () => {
       unsub1()
       unsub2()
       unsub3()
       unsub4()
       unsub5()
+      unsub6()
+      unsub7()
+      unsub8()
+      unsub9()
+      unsub10()
+      unsub11()
+      unsub12()
+      unsub13()
+      unsub14()
+      unsub15()
     }
   }, [])
 
@@ -138,10 +394,10 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   )
 }
 
-export function useMerticDisabledPref() {
+export function useProfileTabVisibilityPref() {
   return React.useContext(stateContext)
 }
 
-export function useSetMetricDisabledPref() {
+export function useSetProfileTabVisibilityPref() {
   return React.useContext(setContext)
 }

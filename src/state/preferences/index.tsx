@@ -12,6 +12,7 @@ import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
 import {Provider as DisableShareViaDms} from './disable-share-via-dms'
 import {Provider as ToggleShareViaDID} from './enable-share-by-DID'
 import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
+import {Provider as ProfileTabVisibilityPrefs} from './tabs-visibility-profiles'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -59,7 +60,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                   <DisableShareViaDms>
                                     <ToggleShareViaDID>
                                       <DisableFeedPromoTab>
-                                        <KawaiiProvider>{children}</KawaiiProvider>
+                                        <ProfileTabVisibilityPrefs>
+                                          <KawaiiProvider>{children}</KawaiiProvider>
+                                        </ProfileTabVisibilityPrefs>
                                       </DisableFeedPromoTab>
                                     </ToggleShareViaDID>
                                   </DisableShareViaDms>

@@ -136,6 +136,24 @@ const schema = z.object({
   mutedThreads: z.array(z.string()),
   trendingDisabled: z.boolean().optional(),
   trendingVideoDisabled: z.boolean().optional(),
+
+  disablePostsProfileTab: z.boolean().optional(),
+  disableRepliesProfileTab: z.boolean().optional(),
+  disableMediaProfileTab: z.boolean().optional(),
+  disableVideosProfileTab: z.boolean().optional(),
+  disableFeedsProfileTab: z.boolean().optional(),
+  disableStarterPacksProfileTab: z.boolean().optional(),
+  disableListsProfileTab: z.boolean().optional(),
+  // This looks like a bad solution, find an alternative - Sunstar
+  disablePostsProfileTab_self: z.boolean().optional(),
+  disableRepliesProfileTab_self: z.boolean().optional(),
+  disableMediaProfileTab_self: z.boolean().optional(),
+  disableVideosProfileTab_self: z.boolean().optional(),
+  disableLikesProfileTab_self: z.boolean().optional(),
+  disableFeedsProfileTab_self: z.boolean().optional(),
+  disableStarterPacksProfileTab_self: z.boolean().optional(),
+  disableListsProfileTab_self: z.boolean().optional(),
+
 })
 export type Schema = z.infer<typeof schema>
 
@@ -196,6 +214,24 @@ export const defaults: Schema = {
   subtitlesEnabled: true,
   trendingDisabled: false,
   trendingVideoDisabled: false,
+
+  disablePostsProfileTab: false,
+  disableRepliesProfileTab: false,
+  disableMediaProfileTab: false,
+  disableVideosProfileTab: false,
+  disableFeedsProfileTab: false,
+  disableStarterPacksProfileTab: false,
+  disableListsProfileTab: false,
+
+  disablePostsProfileTab_self: false,
+  disableRepliesProfileTab_self: false,
+  disableMediaProfileTab_self: false,
+  disableVideosProfileTab_self: false,
+  disableLikesProfileTab_self: false,
+  disableFeedsProfileTab_self: false,
+  disableStarterPacksProfileTab_self: false,
+  disableListsProfileTab_self: false,
+
 }
 
 export function tryParse(rawData: string): Schema | undefined {

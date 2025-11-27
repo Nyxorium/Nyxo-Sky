@@ -64,20 +64,16 @@ export function MiscellaneousSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
 
-          {IS_INTERNAL && ( /* Internal until design is finished */
-            <> 
-              <SettingsList.LinkItem
-                to="/settings/tabs-visibility"
-                label={_(msg`Tabs Visibility (Profiles)`)}>
-                <SettingsList.ItemIcon icon={HashtagIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Tabs Visibility (Profiles)</Trans>
-                </SettingsList.ItemText>
-              </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/tabs-visibility"
+            label={_(msg`Tabs Visibility`)}>
+            <SettingsList.ItemIcon icon={HashtagIcon} />
+            <SettingsList.ItemText>
+              <Trans>Tabs Visibility</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
 
-              <SettingsList.Divider />
-            </>
-          )}
+          <SettingsList.Divider />
 
           <Toggle.Item
             name="alt_label_display_profile"
