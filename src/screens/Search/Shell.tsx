@@ -101,7 +101,7 @@ export function SearchScreenShell({
       const newSearchHistory = [
         item,
         ...termHistory.filter(search => search !== item),
-      ].slice(0, 20) // previously 0, 6, handles total saved recent searches
+      ].slice(0, 20) // previously 0, 6, handles total saved recent searches - Sunstar
       setTermHistory(newSearchHistory)
     },
     [termHistory, setTermHistory],

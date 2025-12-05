@@ -25,10 +25,17 @@ import {
   useDisableFeedPromoTab,
   useSetDisableFeedPromoTab,
  } from '#/state/preferences/disable-feed-promo-tab'
+import {
+  useEnableSquareAvatars,
+  useSetEnableSquareAvatars,
+} from '#/state/preferences/enable-square-avatars'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
-import {PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon} from '#/components/icons/Person'
+import {
+  PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon,
+  Person_Stroke2_Corner2_Rounded as PersonIcon,
+} from '#/components/icons/Person'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {isNative} from '#/platform/detection'
 
@@ -49,6 +56,10 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setEnableShareViaDID = useSetEnableShareViaDID()
   const disableFeedPromoTab = useDisableFeedPromoTab()
   const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
+  const enableSquareAvatars = useEnableSquareAvatars()
+  const setEnableSquareAvatars = useSetEnableSquareAvatars()
+
+  // Keep disable and enable options seperate? - Sunstar
 
   return (
     <Layout.Screen>
@@ -89,7 +100,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.Item>
           </Toggle.Item>
 
-
           {IS_INTERNAL && /* Internal until ShareMenuItems.tsx works with .did */
           <Toggle.Item
             name="enable_share_via_did"
@@ -104,6 +114,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>}
+
+          <Toggle.Item
+            name="enable_square_avatars"
+            label={_(msg`Enable square avatars`)}
+            value={enableSquareAvatars}
+            onChange={value => setEnableSquareAvatars(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PersonIcon} />
+              <SettingsList.ItemText>
+                <Trans>Enable square avatars</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
 
           <SettingsList.Divider />
 

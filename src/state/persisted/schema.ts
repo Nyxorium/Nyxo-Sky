@@ -122,13 +122,6 @@ const schema = z.object({
   disableHaptics: z.boolean().optional(),
   disableVideoAutoplay: z.boolean().optional(),
   disableGifAutoplay: z.boolean().optional(),
-  disableSimilarAccounts: z.boolean().optional(),
-  limitComposePostButton: z.boolean().optional(),
-  altLabelDisplayProfile: z.boolean().optional(),
-  disableFollowbackBIN: z.boolean().optional(),
-  disableShareViaDms: z.boolean().optional(),
-  enableShareViaDID: z.boolean().optional(),
-  disableFeedPromoTab: z.boolean().optional(),
   kawaii: z.boolean().optional(),
   hasCheckedForStarterPack: z.boolean().optional(),
   subtitlesEnabled: z.boolean().optional(),
@@ -136,6 +129,20 @@ const schema = z.object({
   mutedThreads: z.array(z.string()),
   trendingDisabled: z.boolean().optional(),
   trendingVideoDisabled: z.boolean().optional(),
+
+  // Additional Settings in Nyxo Sky
+  limitComposePostButton: z.boolean().optional(),
+  altLabelDisplayProfile: z.boolean().optional(),
+
+  // Enable X settings in Nyxo Sky
+  enableShareViaDID: z.boolean().optional(),
+  enableSquareAvatars: z.boolean().optional(),
+
+  // Disable X settings in Nyxo Sky
+  disableSimilarAccounts: z.boolean().optional(),
+  disableFollowbackBIN: z.boolean().optional(),
+  disableShareViaDms: z.boolean().optional(),
+  disableFeedPromoTab: z.boolean().optional(),
 
   disablePostsProfileTab: z.boolean().optional(),
   disableRepliesProfileTab: z.boolean().optional(),
@@ -202,18 +209,25 @@ export const defaults: Schema = {
   disableHaptics: false, // Consider: default to true? (Test android behavior) - Sunstar
   disableGifAutoplay: PlatformInfo.getIsReducedMotionEnabled(),
   disableVideoAutoplay: PlatformInfo.getIsReducedMotionEnabled(),
-  disableSimilarAccounts: false,
-  limitComposePostButton: true,
-  altLabelDisplayProfile: false,
-  disableFollowbackBIN: true,
-  disableShareViaDms: false,
-  enableShareViaDID: false,
-  disableFeedPromoTab: false,
   kawaii: false,
   hasCheckedForStarterPack: false,
   subtitlesEnabled: true,
   trendingDisabled: false,
   trendingVideoDisabled: false,
+
+  // Additional setting defaults in Nyxo Sky
+  limitComposePostButton: true,
+  altLabelDisplayProfile: false,
+
+  // Enable X setting defaults in Nyxo Sky
+  enableSquareAvatars: false,
+
+  // Disable X setting defaults in Nyxo Sky
+  disableSimilarAccounts: false,
+  disableFollowbackBIN: true,
+  disableShareViaDms: false,
+  enableShareViaDID: false,
+  disableFeedPromoTab: false,
 
   disablePostsProfileTab: false,
   disableRepliesProfileTab: false,
