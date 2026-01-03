@@ -37,7 +37,7 @@ import {DotGrid_Stroke2_Corner0_Rounded as Ellipsis} from '#/components/icons/Do
 import {Flag_Stroke2_Corner0_Rounded as Flag} from '#/components/icons/Flag'
 import {ListSparkle_Stroke2_Corner0_Rounded as List} from '#/components/icons/ListSparkle'
 import {Live_Stroke2_Corner0_Rounded as LiveIcon} from '#/components/icons/Live'
-import {MagnifyingGlass2_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass2'
+import {MagnifyingGlass_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass'
 import {Mute_Stroke2_Corner0_Rounded as Mute} from '#/components/icons/Mute'
 import {PeopleRemove2_Stroke2_Corner0_Rounded as UserMinus} from '#/components/icons/PeopleRemove2'
 import {
@@ -86,6 +86,8 @@ let ProfileMenu = ({
   const [devModeEnabled] = useDevMode()
   const verification = useFullVerificationState({profile})
   const canGoLive = useCanGoLive(currentAccount?.did)
+
+  const labels = profile.labels ?? []
 
   const [queueMute, queueUnmute] = useProfileMuteMutationQueue(profile)
   const [queueBlock, queueUnblock] = useProfileBlockMutationQueue(profile)
@@ -464,7 +466,8 @@ let ProfileMenu = ({
             </>
           ) : null}
           {isSelf &&
-          useAltLabelDisplay ? (
+          useAltLabelDisplay && 
+          labels.length > 0 ? (
             <>
               <Menu.Divider />
               <Menu.Item

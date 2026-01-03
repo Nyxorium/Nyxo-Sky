@@ -18,7 +18,9 @@ import {
 } from '@react-navigation/native'
 
 import {timeout} from '#/lib/async/timeout'
+import {useAccountSwitcher} from '#/lib/hooks/useAccountSwitcher'
 import {useColorSchemeStyle} from '#/lib/hooks/useColorSchemeStyle'
+import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {
   getNotificationPayload,
   type NotificationPayload,
@@ -45,10 +47,12 @@ import {logger} from '#/logger'
 import {isNative, isWeb} from '#/platform/detection'
 import {useUnreadNotifications} from '#/state/queries/notifications/unread'
 import {useSession} from '#/state/session'
+import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {
   shouldRequestEmailConfirmation,
   snoozeEmailConfirmationPrompt,
 } from '#/state/shell/reminders'
+import {useCloseAllActiveElements} from '#/state/util'
 import {CommunityGuidelinesScreen} from '#/view/screens/CommunityGuidelines'
 import {CopyrightPolicyScreen} from '#/view/screens/CopyrightPolicy'
 import {DebugModScreen} from '#/view/screens/DebugMod'
@@ -71,6 +75,7 @@ import {BottomBar} from '#/view/shell/bottom-bar/BottomBar'
 import {createNativeStackNavigatorWithAuth} from '#/view/shell/createNativeStackNavigatorWithAuth'
 import {BookmarksScreen} from '#/screens/Bookmarks'
 import {SharedPreferencesTesterScreen} from '#/screens/E2E/SharedPreferencesTesterScreen'
+import {FindContactsFlowScreen} from '#/screens/FindContactsFlowScreen'
 import HashtagScreen from '#/screens/Hashtag'
 import {LogScreen} from '#/screens/Log'
 import {MessagesScreen} from '#/screens/Messages/ChatList'
@@ -104,6 +109,7 @@ import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaS
 import {MiscellaneousSettingsScreen} from './screens/Settings/MiscellaneousSettings'
 import {ProfileTabVisibilitySettingsScreen} from './screens/Settings/ProfileTabsVisibility'
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
+import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
 import {InterestsSettingsScreen} from '#/screens/Settings/InterestsSettings'
 import {LanguageSettingsScreen} from '#/screens/Settings/LanguageSettings'
@@ -136,10 +142,6 @@ import {
 } from '#/components/dialogs/EmailDialog'
 import {router} from '#/routes'
 import {Referrer} from '../modules/expo-bluesky-swiss-army'
-import {useAccountSwitcher} from './lib/hooks/useAccountSwitcher'
-import {useNonReactiveCallback} from './lib/hooks/useNonReactiveCallback'
-import {useLoggedOutViewControls} from './state/shell/logged-out'
-import {useCloseAllActiveElements} from './state/util'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
 
@@ -435,6 +437,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         }}
       />
       <Stack.Screen
+        name="FindContactsSettings"
+        getComponent={() => FindContactsSettingsScreen}
+        options={{
+          title: title(msg`Find Contacts`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
         name="NotificationSettings"
         getComponent={() => NotificationSettingsScreen}
         options={{title: title(msg`Notification settings`), requireAuth: true}}
@@ -627,6 +637,15 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
           requireAuth: true,
         }}
       />
+      <Stack.Screen
+        name="FindContactsFlow"
+        getComponent={() => FindContactsFlowScreen}
+        options={{
+          title: title(msg`Find Contacts`),
+          requireAuth: true,
+          gestureEnabled: false,
+        }}
+      />
     </>
   )
 }
@@ -635,7 +654,11 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
  * The TabsNavigator is used by native mobile to represent the routes
  * in 3 distinct tab-stacks with a different root screen on each.
  */
-function TabsNavigator() {
+function TabsNavigator({
+  layout,
+}: {
+  layout: React.ComponentProps<typeof Tab.Navigator>['layout']
+}) {
   const tabBar = useCallback(
     (props: JSX.IntrinsicAttributes & BottomTabBarProps) => (
       <BottomBar {...props} />
@@ -648,7 +671,8 @@ function TabsNavigator() {
       initialRouteName="HomeTab"
       backBehavior="initialRoute"
       screenOptions={{headerShown: false, lazy: true}}
-      tabBar={tabBar}>
+      tabBar={tabBar}
+      layout={layout}>
       <Tab.Screen name="HomeTab" getComponent={() => HomeTabNavigator} />
       <Tab.Screen name="SearchTab" getComponent={() => SearchTabNavigator} />
       <Tab.Screen
@@ -756,7 +780,11 @@ function MessagesTabNavigator() {
  * The FlatNavigator is used by Web to represent the routes
  * in a single ("flat") stack.
  */
-const FlatNavigator = () => {
+const FlatNavigator = ({
+  layout,
+}: {
+  layout: React.ComponentProps<typeof Flat.Navigator>['layout']
+}) => {
   const t = useTheme()
   const numUnread = useUnreadNotifications()
   const screenListeners = useWebScrollRestoration()
@@ -764,6 +792,7 @@ const FlatNavigator = () => {
 
   return (
     <Flat.Navigator
+      layout={layout}
       screenListeners={screenListeners}
       screenOptions={screenOptions(t)}>
       <Flat.Screen
