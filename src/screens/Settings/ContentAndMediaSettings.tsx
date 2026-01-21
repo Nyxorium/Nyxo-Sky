@@ -4,7 +4,6 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {logEvent} from '#/lib/statsig/statsig'
-import {isNative} from '#/platform/detection'
 import {
   useAutoplayDisabledPref,
   useSetAutoplayDisabledPref,
@@ -38,6 +37,8 @@ import {Play_Stroke2_Corner2_Rounded as PlayIcon} from '#/components/icons/Play'
 import {Trending2_Stroke2_Corner2_Rounded as Graph} from '#/components/icons/Trending'
 import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import * as Layout from '#/components/Layout'
+import {IS_NATIVE} from '#/env'
+import {LiveEventFeedsSettingsToggle} from '#/features/liveEvents/components/LiveEventFeedsSettingsToggle'
 
 type Props = NativeStackScreenProps<
   CommonNavigatorParams,
@@ -113,7 +114,7 @@ export function ContentAndMediaSettingsScreen({}: Props) {
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.Divider />
-          {isNative && (
+          {IS_NATIVE && (
             <Toggle.Item
               name="use_in_app_browser"
               label={_(msg`Use in-app browser to open links`)}
@@ -154,7 +155,7 @@ export function ContentAndMediaSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
-          {trendingEnabled && (
+          {trendingEnabled ? (
             <>
               <SettingsList.Divider />
               <Toggle.Item
@@ -178,6 +179,7 @@ export function ContentAndMediaSettingsScreen({}: Props) {
                   <Toggle.Platform />
                 </SettingsList.Item>
               </Toggle.Item>
+              <LiveEventFeedsSettingsToggle />
               <Toggle.Item
                 name="show_trending_videos"
                 label={_(msg`Enable trending videos in your Discover feed`)}
@@ -200,6 +202,11 @@ export function ContentAndMediaSettingsScreen({}: Props) {
                 </SettingsList.Item>
               </Toggle.Item>
             </>
+          ) : (
+            <>
+              <SettingsList.Divider />
+              <LiveEventFeedsSettingsToggle />
+            </>
           )}
           <SettingsList.Divider />
           <Toggle.Item
@@ -215,7 +222,7 @@ export function ContentAndMediaSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
-          {isNative && (
+          {IS_NATIVE && (
             <Toggle.Item
               name="hide_new_post_button"
               label={_(msg`Hide New Post button`)}

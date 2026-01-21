@@ -117,6 +117,7 @@ const schema = z.object({
   hiddenPosts: z.array(z.string()).optional(), // should move to server
   disabledLikes: z.array(z.string()).optional(), // Could be better named - Sunstar
   useInAppBrowser: z.boolean().optional(),
+  /** @deprecated */
   lastSelectedHomeFeed: z.string().optional(),
   pdsAddressHistory: z.array(z.string()).optional(),
   disableHaptics: z.boolean().optional(),

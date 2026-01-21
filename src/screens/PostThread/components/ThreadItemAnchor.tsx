@@ -282,6 +282,12 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
   ])
 
   const onOpenAuthor = () => {
+    logger.metric('post:clickthroughAuthor', {
+      uri: post.uri,
+      authorDid: post.author.did,
+      logContext: 'PostThreadItem',
+      feedDescriptor: feedFeedback.feedDescriptor,
+    })
     if (postSource) {
       feedFeedback.sendInteraction({
         item: post.uri,
@@ -293,6 +299,12 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
   }
 
   const onOpenEmbed = () => {
+    logger.metric('post:clickthroughEmbed', {
+      uri: post.uri,
+      authorDid: post.author.did,
+      logContext: 'PostThreadItem',
+      feedDescriptor: feedFeedback.feedDescriptor,
+    })
     if (postSource) {
       feedFeedback.sendInteraction({
         item: post.uri,
@@ -376,7 +388,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
             </View>
           </Link>
           {showFollowButton && (
-            <View collapsable={false}>
+            <View collapsable={false} style={[a.self_center]}>
               <ThreadItemAnchorFollowButton did={post.author.did} />
             </View>
           )}

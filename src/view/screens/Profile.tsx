@@ -260,6 +260,20 @@ function ProfileScreenLoaded({
   const listCount = (profile.associated?.lists || 0) - starterPackCount
   const showListsTab = hasSession && (isMe || listCount > 0) && (prefLists !== true)
 
+  // const showFiltersTab = hasLabeler
+  // const showPostsTab = true
+  // const showRepliesTab = hasSession
+  // const showMediaTab = !hasLabeler
+  // const showVideosTab = !hasLabeler
+  // const showLikesTab = isMe
+  // const feedGenCount = profile.associated?.feedgens || 0
+  // const showFeedsTab = isMe || feedGenCount > 0
+  // const starterPackCount = profile.associated?.starterPacks || 0
+  // const showStarterPacksTab = isMe || starterPackCount > 0
+  // // subtract starterpack count from list count, since starterpacks are a type of list
+  // const listCount = (profile.associated?.lists || 0) - starterPackCount
+  // const showListsTab = hasSession && (isMe || listCount > 0)
+
   // Make these tabs optional in the same manner as metics - Sunstar
   const sectionTitles = [
     showFiltersTab ? _(msg`Labels`) : undefined,

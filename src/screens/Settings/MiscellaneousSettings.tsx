@@ -37,7 +37,8 @@ import {
   Person_Stroke2_Corner2_Rounded as PersonIcon,
 } from '#/components/icons/Person'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
-import {isNative} from '#/platform/detection'
+import {IS_NATIVE} from '#/env'
+
 
 import {IS_INTERNAL} from '#/env'
 
@@ -159,9 +160,9 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.Item>
           </Toggle.Item>
 
-          {isNative && <SettingsList.Divider />}
+          {IS_NATIVE && <SettingsList.Divider />}
 
-          {isNative && (
+          {IS_NATIVE && (
             <Toggle.Item
               name="disable_share-via-dms"
               label={_(msg`Disable 'Share Via DMS' in Share Menu`)}
