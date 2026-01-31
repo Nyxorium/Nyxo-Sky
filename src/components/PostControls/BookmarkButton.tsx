@@ -1,7 +1,7 @@
 import {memo} from 'react'
 import {type Insets} from 'react-native'
 import {type AppBskyFeedDefs} from '@atproto/api'
-import {msg, Trans} from '@lingui/macro'
+import {msg, plural, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import type React from 'react'
 
@@ -15,15 +15,18 @@ import {Bookmark, BookmarkFilled} from '#/components/icons/Bookmark'
 import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import * as toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
-import {PostControlButton, PostControlButtonIcon} from './PostControlButton'
+import {useFormatPostStatCount} from '#/components/PostControls/util'
+import {PostControlButton, PostControlButtonIcon, PostControlButtonText} from './PostControlButton'
 
 export const BookmarkButton = memo(function BookmarkButton({
   post,
+  bookmarkCount,
   big,
   logContext,
   hitSlop,
 }: {
   post: Shadow<AppBskyFeedDefs.PostView>
+  bookmarkCount?: number
   big?: boolean
   logContext: 'FeedItem' | 'PostThreadItem' | 'Post' | 'ImmersiveVideo'
   hitSlop?: Insets
@@ -35,6 +38,7 @@ export const BookmarkButton = memo(function BookmarkButton({
   const cleanError = useCleanError()
   const requireAuth = useRequireAuth()
   const {feedDescriptor} = useFeedFeedbackContext()
+  const formatPostStatCount = useFormatPostStatCount()
 
   const {viewer} = post
   const isBookmarked = !!viewer?.bookmarked
@@ -138,8 +142,26 @@ export const BookmarkButton = memo(function BookmarkButton({
       big={big}
       label={
         isBookmarked
-          ? _(msg`Remove from saved posts`)
-          : _(msg`Add to saved posts`)
+          ? _(
+              msg({
+                message: `Remove from saved posts (${plural(bookmarkCount || 0, {
+                  one: '# save',
+                  other: '# saves',
+                })})`,
+                comment:
+                  'Accessibility label for the save button when the post has been saved, verb followed by number of saves and noun',
+              }),
+            )
+          : _(
+              msg({
+                message: `Add to saved posts (${plural(bookmarkCount || 0, {
+                  one: '# save',
+                  other: '# saves',
+                })})`,
+                comment:
+                  'Accessibility label for the save button when the post has not been saved, verb form followed by number of saves and noun form',
+              }),
+            )
       }
       onPress={onHandlePress}
       hitSlop={hitSlop}>
@@ -147,6 +169,11 @@ export const BookmarkButton = memo(function BookmarkButton({
         fill={isBookmarked ? t.palette.primary_500 : undefined}
         icon={isBookmarked ? BookmarkFilled : Bookmark}
       />
+      {typeof bookmarkCount !== 'undefined' && bookmarkCount > 0 && (
+        <PostControlButtonText testID="bookmarkCount">
+          {formatPostStatCount(bookmarkCount)}
+        </PostControlButtonText>
+      )}
     </PostControlButton>
   )
 })
