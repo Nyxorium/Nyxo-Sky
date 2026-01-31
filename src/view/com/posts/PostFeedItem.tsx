@@ -18,7 +18,6 @@ import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {makeProfileLink} from '#/lib/routes/links'
 import {countLines} from '#/lib/strings/helpers'
-import {logger} from '#/logger'
 import {
   POST_TOMBSTONE,
   type Shadow,
@@ -48,6 +47,7 @@ import {PostControls} from '#/components/PostControls'
 import {DiscoverDebug} from '#/components/PostControls/DiscoverDebug'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
+import {useAnalytics} from '#/analytics'
 import * as bsky from '#/types/bsky'
 import {PostFeedReason} from './PostFeedReason'
 
@@ -158,6 +158,7 @@ let FeedItemInner = ({
   rootPost: AppBskyFeedDefs.PostView
   onShowLess?: (interaction: AppBskyFeedDefs.Interaction) => void
 }): React.ReactNode => {
+  const ax = useAnalytics()
   const queryClient = useQueryClient()
   const {openComposer} = useOpenComposer()
   const pal = usePalette('default')
@@ -188,6 +189,7 @@ let FeedItemInner = ({
         moderation,
         langs: record.langs,
       },
+      logContext: 'PostReply',
     })
   }
 
@@ -198,7 +200,7 @@ let FeedItemInner = ({
       feedContext,
       reqId,
     })
-    logger.metric('post:clickthroughAuthor', {
+    ax.metric('post:clickthroughAuthor', {
       uri: post.uri,
       authorDid: post.author.did,
       logContext: 'FeedItem',
@@ -222,7 +224,7 @@ let FeedItemInner = ({
       feedContext,
       reqId,
     })
-    logger.metric('post:clickthroughEmbed', {
+    ax.metric('post:clickthroughEmbed', {
       uri: post.uri,
       authorDid: post.author.did,
       logContext: 'FeedItem',
@@ -237,7 +239,7 @@ let FeedItemInner = ({
       feedContext,
       reqId,
     })
-    logger.metric('post:clickthroughItem', {
+    ax.metric('post:clickthroughItem', {
       uri: post.uri,
       authorDid: post.author.did,
       logContext: 'FeedItem',
@@ -464,7 +466,7 @@ let PostContent = ({
         additionalCauses={additionalPostAlerts}
       />
       {richText.text ? (
-        <>
+        <View style={[a.mb_2xs]}>
           <RichText
             enableTags
             testID="postText"
@@ -477,7 +479,7 @@ let PostContent = ({
           {limitLines && (
             <ShowMoreTextButton style={[a.text_md]} onPress={onPressShowMore} />
           )}
-        </>
+        </View>
       ) : undefined}
       {postEmbed ? (
         <View style={[a.pb_xs]}>

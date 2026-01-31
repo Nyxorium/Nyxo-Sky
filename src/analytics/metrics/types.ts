@@ -1,12 +1,21 @@
+/*
+ * Do not import runtime code into this file
+ */
+
 import {type NotificationReason} from '#/lib/hooks/useNotificationHandler'
 import {type FeedDescriptor} from '#/state/queries/post-feed'
 import {type LiveEventFeedMetricContext} from '#/features/liveEvents/types'
 
-export type MetricEvents = {
+export type Events = {
   // App events
   init: {
     initMs: number
   }
+  'experiment:viewed': {
+    experimentId: string
+    variationId: string
+  }
+
   'account:loggedIn': {
     logContext:
       | 'LoginForm'
@@ -139,6 +148,7 @@ export type MetricEvents = {
     feedUrl: string
     feedType: string
     index: number
+    reason?: string
   }
   'feed:endReached': {
     feedUrl: string
@@ -222,6 +232,53 @@ export type MetricEvents = {
     quotesEnabled: boolean
     persist: boolean
     hasChanged: boolean
+  }
+  'composer:open': {
+    logContext:
+      | 'Fab'
+      | 'PostReply'
+      | 'QuotePost'
+      | 'ProfileFeed'
+      | 'Deeplink'
+      | 'Other'
+    isReply: boolean
+    hasQuote: boolean
+    hasDraft: boolean
+  }
+  'draft:save': {
+    isNewDraft: boolean
+    hasText: boolean
+    hasImages: boolean
+    hasVideo: boolean
+    hasGif: boolean
+    hasQuote: boolean
+    hasLink: boolean
+    postCount: number
+    textLength: number
+  }
+  'draft:load': {
+    draftAgeMs: number
+    hasText: boolean
+    hasImages: boolean
+    hasVideo: boolean
+    hasGif: boolean
+    postCount: number
+  }
+  'draft:delete': {
+    logContext: 'DraftsList'
+    draftAgeMs: number
+  }
+  'draft:listOpen': {
+    draftCount: number
+  }
+  'draft:post': {
+    draftAgeMs: number
+    wasEdited: boolean
+  }
+  'draft:discard': {
+    logContext: 'ComposerClose' | 'BeforeDraftsList'
+    hadContent: boolean
+    textLength: number
   }
 
   // Data events
@@ -374,7 +431,6 @@ export type MetricEvents = {
       | 'AvatarButton'
       | 'StarterPackProfilesList'
       | 'FeedInterstitial'
-      | 'ProfileHeaderSuggestedFollows'
       | 'PostOnboardingFindFollows'
       | 'ImmersiveVideo'
       | 'ExploreSuggestedAccounts'
@@ -468,7 +524,6 @@ export type MetricEvents = {
       | 'AvatarButton'
       | 'StarterPackProfilesList'
       | 'FeedInterstitial'
-      | 'ProfileHeaderSuggestedFollows'
       | 'PostOnboardingFindFollows'
       | 'ImmersiveVideo'
       | 'ExploreSuggestedAccounts'
