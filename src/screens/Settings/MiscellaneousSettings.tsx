@@ -29,6 +29,10 @@ import {
   useEnableSquareAvatars,
   useSetEnableSquareAvatars,
 } from '#/state/preferences/enable-square-avatars'
+import {
+  useComposerPromptDisabled,
+  useSetComposerPromptDisabled,
+} from '#/state/preferences/disable-composer-prompt-in-feeds'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
@@ -37,6 +41,7 @@ import {
   Person_Stroke2_Corner2_Rounded as PersonIcon,
 } from '#/components/icons/Person'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
+import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import {IS_NATIVE} from '#/env'
 
 
@@ -59,6 +64,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
   const enableSquareAvatars = useEnableSquareAvatars()
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
+  const disableComposerPromptInFeeds = useComposerPromptDisabled()
+  const setDisableComposerPromptInFeeds = useSetComposerPromptDisabled()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -155,6 +162,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={HashtagIcon} />
               <SettingsList.ItemText>
                 <Trans>Disable 'Feeds ✨'</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_composer_prompt_in_feeds"
+            label={_(msg`Disable Composer Prompt`)}
+            value={disableComposerPromptInFeeds}
+            onChange={value => setDisableComposerPromptInFeeds(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={WindowIcon} />
+              <SettingsList.ItemText>
+                <Trans>Disable Composer Prompt</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>

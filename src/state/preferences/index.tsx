@@ -12,6 +12,7 @@ import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
 import {Provider as DisableShareViaDms} from './disable-share-via-dms'
 import {Provider as ToggleShareViaDID} from './enable-share-by-DID'
 import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
+import {Provider as DisableComposerPromptInFeeds} from './disable-composer-prompt-in-feeds'
 import {Provider as ProfileTabVisibilityPrefs} from './tabs-visibility-profiles'
 import {Provider as EnableSquareAvatars} from './enable-square-avatars'
 import {Provider as KawaiiProvider} from './kawaii'
@@ -63,7 +64,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                       <DisableFeedPromoTab>
                                         <ProfileTabVisibilityPrefs>
                                           <EnableSquareAvatars>
-                                            <KawaiiProvider>{children}</KawaiiProvider>
+                                            <DisableComposerPromptInFeeds>
+                                              <KawaiiProvider>{children}</KawaiiProvider>
+                                            </DisableComposerPromptInFeeds>
                                           </EnableSquareAvatars>
                                         </ProfileTabVisibilityPrefs>
                                       </DisableFeedPromoTab>

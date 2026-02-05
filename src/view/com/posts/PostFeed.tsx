@@ -79,6 +79,8 @@ import {PostFeedItem} from './PostFeedItem'
 import {ShowLessFollowup} from './ShowLessFollowup'
 import {ViewFullThread} from './ViewFullThread'
 
+import {useComposerPromptDisabled} from '#/state/preferences/disable-composer-prompt-in-feeds'
+
 type FeedRow =
   | {
       type: 'loading'
@@ -244,6 +246,8 @@ let PostFeed = ({
   const {gtMobile} = useBreakpoints()
   const {rightNavVisible} = useLayoutBreakpoints()
   const areVideoFeedsEnabled = IS_NATIVE
+
+  const disableComposerPromptInFeeds = useComposerPromptDisabled()
 
   const [hasPressedShowLessUris, setHasPressedShowLessUris] = useState(
     () => new Set<string>(),
@@ -521,6 +525,7 @@ let PostFeed = ({
                     // Show composer prompt for Discover and Following feeds
                     if (
                       hasSession &&
+                      !disableComposerPromptInFeeds &&
                       (feedUriOrActorDid === DISCOVER_FEED_URI ||
                         feed === 'following')
                     ) {
@@ -545,7 +550,7 @@ let PostFeed = ({
                 } else if (feedKind === 'following') {
                   if (sliceIndex === 0) {
                     // Show composer prompt for Following feed
-                    if (hasSession) {
+                    if (hasSession && !disableComposerPromptInFeeds) {
                       arr.push({
                         type: 'composerPrompt',
                         key: 'composerPrompt-' + sliceIndex,
