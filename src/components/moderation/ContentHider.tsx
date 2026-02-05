@@ -1,5 +1,10 @@
-import React from 'react'
-import {type StyleProp, View, type ViewStyle} from 'react-native'
+import {useMemo, useState} from 'react'
+import {
+  LayoutAnimation,
+  type StyleProp,
+  View,
+  type ViewStyle,
+} from 'react-native'
 import {type ModerationUI} from '@atproto/api'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
@@ -64,22 +69,23 @@ function ContentHiderActive({
   style,
   childContainerStyle,
   children,
-}: React.PropsWithChildren<{
+}: {
   testID?: string
   modui: ModerationUI
   style?: StyleProp<ViewStyle>
   childContainerStyle?: StyleProp<ViewStyle>
-}>) {
+  children?: React.ReactNode
+}) {
   const t = useTheme()
   const {_} = useLingui()
   const {gtMobile} = useBreakpoints()
-  const [override, setOverride] = React.useState(false)
+  const [override, setOverride] = useState(false)
   const control = useModerationDetailsDialogControl()
   const {labelDefs} = useLabelDefinitions()
   const globalLabelStrings = useGlobalLabelStrings()
   const {i18n} = useLingui()
 
-  const blur = React.useMemo(() => {
+  const blur = useMemo(() => {
     const blurs = modui.blurs!
     const primary = blurs[0]
 
@@ -101,7 +107,7 @@ function ContentHiderActive({
 
   const desc = useModerationCauseDescription(blur)
 
-  const labelName = React.useMemo(() => {
+  const labelName = useMemo(() => {
     if (!modui?.blurs || !blur) {
       return undefined
     }
@@ -173,6 +179,7 @@ function ContentHiderActive({
           e.preventDefault()
           e.stopPropagation()
           if (!modui.noOverride) {
+            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
             setOverride(v => !v)
           } else {
             control.open()
