@@ -32,14 +32,25 @@ export function LabelsBtn({
   const hasLabel = labels.length > 0
 
   const updateAdultLabels = (newLabels: AdultSelfLabel[]) => {
-    const newLabel = newLabels[newLabels.length - 1]
     const filtered = labels.filter(
       l => !ADULT_CONTENT_LABELS.includes(l as AdultSelfLabel),
     )
-    onChange([
-      ...new Set([...filtered, newLabel].filter(Boolean) as SelfLabel[]),
-    ])
+    if (newLabels.length > 0) {
+      onChange([...filtered, ...newLabels])
+    } else {
+      onChange(filtered)
+    }
   }
+
+  // const updateAdultLabels = (newLabels: AdultSelfLabel[]) => {
+  //   const newLabel = newLabels[newLabels.length - 1]
+  //   const filtered = labels.filter(
+  //     l => !ADULT_CONTENT_LABELS.includes(l as AdultSelfLabel),
+  //   )
+  //   onChange([
+  //     ...new Set([...filtered, newLabel].filter(Boolean) as SelfLabel[]),
+  //   ])
+  // }
 
   const updateOtherLabels = (newLabels: OtherSelfLabel[]) => {
     const newLabel = newLabels[newLabels.length - 1]
