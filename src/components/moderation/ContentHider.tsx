@@ -88,22 +88,47 @@ function ContentHiderActive({
   const blur = useMemo(() => {
     const blurs = modui.blurs!
     const primary = blurs[0]
-
+  
     if (primary.type === 'label' && primary.source.type !== 'user') {
+      const ADULT_SELF_LABEL_FAMILY = ['sexual', 'nudity', 'porn']
+    
       const userEquivalent = blurs.find(
         b =>
           b.type === 'label' &&
           b.source.type === 'user' &&
-          b.label.val === primary.label.val,
+          (b.label.val === primary.label.val ||
+            (ADULT_SELF_LABEL_FAMILY.includes(b.label.val) &&
+              ADULT_SELF_LABEL_FAMILY.includes(primary.label.val))),
       )
-
+    
       if (userEquivalent) {
         return userEquivalent
       }
     }
-
+  
     return primary
   }, [modui.blurs])
+
+  //  const blur = useMemo(() => {
+  //    const blurs = modui.blurs!
+  //    const primary = blurs[0]
+  //  
+  //    if (primary.type === 'label' && primary.source.type !== 'user') {
+  //      const userEquivalent = blurs.find(
+  //        b =>
+  //          b.type === 'label' &&
+  //          b.source.type === 'user' &&
+  //          b.label.val === primary.label.val,
+  //      )
+  //  
+  //      if (userEquivalent) {
+  //        return userEquivalent
+  //      }
+  //    }
+  //  
+  //    return primary
+  //  }, [modui.blurs])
+
 
   const desc = useModerationCauseDescription(blur)
 
