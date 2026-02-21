@@ -42,6 +42,8 @@ export function LabelsBtn({
     }
   }
 
+  // If BlueSky moderation can apply multiple labels, than so should users - Sunstar ._.
+
   // const updateAdultLabels = (newLabels: AdultSelfLabel[]) => {
   //   const newLabel = newLabels[newLabels.length - 1]
   //   const filtered = labels.filter(
