@@ -1,8 +1,10 @@
 import {memo} from 'react'
 import {type Insets} from 'react-native'
 import {type AppBskyFeedDefs} from '@atproto/api'
-import {msg, plural, Trans} from '@lingui/macro'
+import {msg, plural} from '@lingui/core/macro'
+// import {plural} from '@lingui/macro' - Sunstar
 import {useLingui} from '@lingui/react'
+import {Trans} from '@lingui/react/macro'
 import type React from 'react'
 
 import {useCleanError} from '#/lib/hooks/useCleanError'

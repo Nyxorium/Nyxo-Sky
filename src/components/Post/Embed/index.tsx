@@ -8,7 +8,7 @@ import {
   moderatePost,
   RichText as RichTextAPI,
 } from '@atproto/api'
-import {Trans} from '@lingui/macro'
+import {Trans} from '@lingui/react/macro'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {makeProfileLink} from '#/lib/routes/links'
@@ -285,15 +285,14 @@ export function QuoteEmbed({
 
   const contents = (
     <>
-      <View pointerEvents="none">
-        <PostMeta
-          author={quote.author}
-          moderation={moderation}
-          showAvatar
-          postHref={itemHref}
-          timestamp={quote.indexedAt}
-        />
-      </View>
+      <PostMeta
+        author={quote.author}
+        moderation={moderation}
+        showAvatar
+        postHref={itemHref}
+        timestamp={quote.indexedAt}
+        linkDisabled
+      />
       {moderation ? (
         <PostAlerts modui={moderation.ui('contentView')} style={[a.py_xs]} />
       ) : null}
