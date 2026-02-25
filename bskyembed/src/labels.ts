@@ -9,8 +9,9 @@ export function labelsToInfo(
 
   switch (label?.val) {
     case 'porn':
-    case 'sexual':
       return 'Adult Content'
+    case 'sexual':
+      return 'Sexually Suggestive'
     case 'nudity':
       return 'Non-sexual Nudity'
     case 'gore':
