@@ -688,6 +688,12 @@ let PostFeed = ({
     blockedOrMutedAuthors,
   ])
 
+  useEffect(() => {
+    if (enabled === false) {
+      setIsPTRing(false)
+    }
+  }, [enabled])
+
   // events
   // =
 
