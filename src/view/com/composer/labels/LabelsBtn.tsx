@@ -207,12 +207,14 @@ function DialogInner({
                 onChange={values => {
                   updateOtherLabels(values as OtherSelfLabel[])
                 }}>
-                <Toggle.Item name="graphic-media" label={_(msg`Graphic Media`)}>
-                  <Toggle.Checkbox />
-                  <Toggle.LabelText>
-                    <Trans>Graphic Media</Trans>
-                  </Toggle.LabelText>
-                </Toggle.Item>
+                <View style={[a.gap_sm]}>
+                  <Toggle.Item name="graphic-media" label={_(msg`Graphic Media`)}>
+                    <Toggle.Checkbox />
+                    <Toggle.LabelText>
+                      <Trans>Graphic Media</Trans>
+                    </Toggle.LabelText>
+                  </Toggle.Item>
+                </View>
               </Toggle.Group>
               {labels.includes('graphic-media') ? (
                 <Text style={[a.mt_sm, t.atoms.text_contrast_medium]}>
