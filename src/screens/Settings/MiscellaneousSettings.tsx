@@ -6,6 +6,8 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import * as Toggle from '#/components/forms/Toggle'
+import {Admonition} from '#/components/Admonition'
+import {atoms as a} from '#/alf'
 import { 
   useAltLabelDisplayProfile,
   useSetAltLabelDisplayProfile,
@@ -34,6 +36,10 @@ import {
   useComposerPromptDisabled,
   useSetComposerPromptDisabled,
 } from '#/state/preferences/disable-composer-prompt-in-feeds'
+import {
+  useNoAppLabelers,
+  useSetNoAppLabelers,
+} from '#/state/preferences/no-app-labelers'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
@@ -43,6 +49,7 @@ import {
 } from '#/components/icons/Person'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
+import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
 import {IS_NATIVE} from '#/env'
 
 
@@ -67,6 +74,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
   const disableComposerPromptInFeeds = useComposerPromptDisabled()
   const setDisableComposerPromptInFeeds = useSetComposerPromptDisabled()
+  const noAppLabelers = useNoAppLabelers()
+  const setNoAppLabelers = useSetNoAppLabelers()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -199,6 +208,34 @@ export function MiscellaneousSettingsScreen({}: Props) {
               </SettingsList.Item>
             </Toggle.Item>
           )}
+
+          <SettingsList.Divider />
+
+          <SettingsList.Group contentContainerStyle={[a.gap_sm]}>
+            <SettingsList.ItemIcon icon={RaisingHandIcon} />
+            <SettingsList.ItemText>
+              <Trans>Labelers</Trans>
+            </SettingsList.ItemText>
+            <Toggle.Item
+              name="no_app_labelers"
+              label={_(msg`Do not declare any app labelers`)}
+              value={noAppLabelers}
+              onChange={value => setNoAppLabelers(value)}
+              style={[a.w_full]}>
+              <Toggle.LabelText style={[a.flex_1]}>
+                <Trans>Do not declare any default app labelers</Trans>
+              </Toggle.LabelText>
+              <Toggle.Platform />
+            </Toggle.Item>
+            <Admonition type="warning" style={[a.flex_1]}>
+              <Trans>Restart app after changing this setting.</Trans>
+            </Admonition>
+            <Admonition type="info" style={[a.flex_1]}>
+              <Trans>
+                Credit to deer.social, this is entirely theirs! 
+              </Trans>
+            </Admonition>
+          </SettingsList.Group>
 
         </SettingsList.Container>
       </Layout.Content>

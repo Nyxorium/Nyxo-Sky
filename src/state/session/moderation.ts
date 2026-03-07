@@ -1,6 +1,7 @@
 import {BSKY_LABELER_DID, BskyAgent} from '@atproto/api'
 
 import {IS_TEST_USER} from '#/lib/constants'
+import {getNoAppLabelers} from '../preferences/no-app-labelers'
 import {configureAdditionalModerationAuthorities} from './additional-moderation-authorities'
 import {readLabelers} from './agent-config'
 import {type SessionAccount} from './types'
@@ -38,7 +39,9 @@ export async function configureModerationForAccount(
 }
 
 function switchToBskyAppLabeler() {
-  BskyAgent.configure({appLabelers: [BSKY_LABELER_DID]})
+  BskyAgent.configure({
+    appLabelers: getNoAppLabelers() ? [] : [BSKY_LABELER_DID],
+  })
 }
 
 async function trySwitchToTestAppLabeler(agent: BskyAgent) {

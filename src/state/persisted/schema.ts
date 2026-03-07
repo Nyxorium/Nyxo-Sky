@@ -135,6 +135,7 @@ const schema = z.object({
   // Additional Settings in Nyxo Sky
   limitComposePostButton: z.boolean().optional(),
   altLabelDisplayProfile: z.boolean().optional(),
+  noAppLabelers: z.boolean().optional(), // Credit: deer.social
 
   // Enable X settings in Nyxo Sky
   enableShareViaDID: z.boolean().optional(),
@@ -221,6 +222,7 @@ export const defaults: Schema = {
   // Additional setting defaults in Nyxo Sky
   limitComposePostButton: true,
   altLabelDisplayProfile: false,
+  noAppLabelers: false, // Credit: deer.social
 
   // Enable X setting defaults in Nyxo Sky
   enableSquareAvatars: false,
