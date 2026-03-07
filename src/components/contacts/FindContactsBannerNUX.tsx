@@ -15,7 +15,7 @@ import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {IS_WEB} from '#/env'
 import {Link} from '../Link'
-import {useIsFindContactsFeatureEnabledBasedOnGeolocation} from './country-allowlist'
+// import {useIsFindContactsFeatureEnabledBasedOnGeolocation} from './country-allowlist'
 
 export function FindContactsBannerNUX() {
   const t = useTheme()

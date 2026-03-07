@@ -89,8 +89,6 @@ export function LabelsOnMe({
 // makes things simmpler and less code doing the same stuff - Sunstar
 // (Wrong? Remove this comment later - Future Sunstar)
 export function LabelsOnMeRevised({
-  type,
-  labels,
   moderation,
   style,
 }: {

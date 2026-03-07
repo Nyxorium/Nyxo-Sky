@@ -43,7 +43,7 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
   const author = useProfileShadow(opts.author)
   const displayName = author.displayName || author.handle
   const handle = author.handle
-  const pronouns = author.pronouns || null
+   // const pronouns = author.pronouns || null
   const profileLink = makeProfileLink(author)
   const queryClient = useQueryClient()
   const onOpenAuthor = opts.onOpenAuthor

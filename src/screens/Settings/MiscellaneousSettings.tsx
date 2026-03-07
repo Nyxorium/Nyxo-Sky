@@ -242,13 +242,3 @@ export function MiscellaneousSettingsScreen({}: Props) {
     </Layout.Screen>
   )
 }
-
-const styles = {
-  textInput: {
-    borderWidth: 1,
-    borderRadius: 6,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    fontSize: 16,
-  },
-}

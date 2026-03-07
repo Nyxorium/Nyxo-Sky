@@ -29,7 +29,7 @@ import {useDevMode} from '#/storage/hooks/dev-mode'
 import {RecentChats} from './RecentChats'
 import {type ShareMenuItemsProps} from './ShareMenuItems.types'
 import {useDisableShareViaDms} from '#/state/preferences/disable-share-via-dms'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+// import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
 
 let ShareMenuItems = ({
   post,
@@ -43,12 +43,12 @@ let ShareMenuItems = ({
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
   const disableShareViaDms = useDisableShareViaDms()
-  const enableShareViaDID = useEnableShareViaDID()
+  // const enableShareViaDID = useEnableShareViaDID()
 
   const postUri = post.uri
   const postAuthor = useProfileShadow(post.author)
   // const postAuthor = (enableShareViaDID ? useProfileShadow(post.author) : useProfileShadow(post.author))
-  // Get post.author.did to work
+  // Get post.author.did to work - Sunstar
 
   const href = useMemo(() => {
     const urip = new AtUri(postUri)
