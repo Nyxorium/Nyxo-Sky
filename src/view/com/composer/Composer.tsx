@@ -1794,6 +1794,9 @@ function ComposerPills({
             style={bottomBarAnimatedStyle}
           />
         )}
+        {
+        // Controls Labels button visibility in composer - Sunstar
+        }
         {hasMedia || hasLink ? (
           <LabelsBtn
             labels={post.labels}
