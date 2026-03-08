@@ -143,9 +143,16 @@ function ContentHiderActive({
     ) {
       if (desc.isSubjectAccount) {
         return _(msg`${desc.name} (Account)`)
-      } else {
-        return desc.name
       }
+      if (
+        override &&
+        blur.type === 'label' &&
+        blur.source.type === 'labeler' &&
+        blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac'
+      ) {
+        return `${desc.name} (${_(msg`Bluesky`)})`
+      }
+      return desc.name
     }
 
     let hasAdultContentLabel = false
@@ -184,7 +191,24 @@ function ContentHiderActive({
     if (selfBlurNames.length === 0) {
       return desc.name
     }
-    return [...new Set(selfBlurNames)].join(', ')
+
+    const baseName = [...new Set(selfBlurNames)].join(', ')
+
+    if (override) {
+      if (blur.type === 'label') {
+        if (blur.source.type === 'user') {
+          return `${baseName} (${_(msg`Self`)})`
+        }
+        if (
+          blur.source.type === 'labeler' &&
+          blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac' // Bluesky's labeler DID
+        ) {
+          return `${baseName} (${_(msg`Bluesky`)})`
+        }
+      }
+    }
+
+    return baseName
   }, [
     _,
     modui?.blurs,
@@ -194,6 +218,7 @@ function ContentHiderActive({
     labelDefs,
     i18n.locale,
     globalLabelStrings,
+    override,
   ])
 
   return (
