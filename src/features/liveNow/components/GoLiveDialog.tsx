@@ -41,6 +41,7 @@ export function GoLiveDialog({
     <Dialog.Outer
       control={control}
       nativeOptions={{
+        preventExpansion: true,
         preventDismiss: dirty,
       }}>
       <Dialog.Handle />
