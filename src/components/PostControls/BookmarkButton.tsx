@@ -65,24 +65,24 @@ export const BookmarkButton = memo(function BookmarkButton({
         feedDescriptor,
       })
 
-      toast.show(
-        <toast.Outer>
-          <toast.Icon />
-          <toast.Text>
-            <Trans>Post saved</Trans>
-          </toast.Text>
-          {!disableUndo && (
-            <toast.Action
-              label={undoLabel}
-              onPress={() => remove({disableUndo: true})}>
-              {undoLabel}
-            </toast.Action>
-          )}
-        </toast.Outer>,
-        {
-          type: 'success',
-        },
-      )
+      // toast.show(
+      //   <toast.Outer>
+      //     <toast.Icon />
+      //     <toast.Text>
+      //       <Trans>Post saved</Trans>
+      //     </toast.Text>
+      //     {!disableUndo && (
+      //       <toast.Action
+      //         label={undoLabel}
+      //         onPress={() => remove({disableUndo: true})}>
+      //         {undoLabel}
+      //       </toast.Action>
+      //     )}
+      //   </toast.Outer>,
+      //   {
+      //     type: 'success',
+      //   },
+      // )
     } catch (e: any) {
       const {raw, clean} = cleanError(e)
       toast.show(clean || raw || e, {
