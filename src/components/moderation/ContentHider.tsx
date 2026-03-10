@@ -145,7 +145,6 @@ function ContentHiderActive({
         return _(msg`${desc.name} (Account)`)
       }
       if (
-        override &&
         blur.type === 'label' &&
         blur.source.type === 'labeler' &&
         blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac'
@@ -194,19 +193,19 @@ function ContentHiderActive({
 
     const baseName = [...new Set(selfBlurNames)].join(', ')
 
-    if (override) {
-      if (blur.type === 'label') {
-        if (blur.source.type === 'user') {
-          return `${baseName} (${_(msg`Self`)})`
-        }
-        if (
-          blur.source.type === 'labeler' &&
-          blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac' // Bluesky's labeler DID
-        ) {
-          return `${baseName} (${_(msg`Bluesky`)})`
-        }
+
+    if (blur.type === 'label') {
+      if (blur.source.type === 'user') {
+        return `${baseName} (${_(msg`Self`)})`
+      }
+      if (
+        blur.source.type === 'labeler' &&
+        blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac' // Bluesky's labeler DID
+      ) {
+        return `${baseName} (${_(msg`Bluesky`)})`
       }
     }
+
 
     return baseName
   }, [
