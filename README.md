@@ -4,7 +4,7 @@ Welcome friends! This is the codebase for the NyxoSky Social app.
 
 Get the app itself:
 
-- **Web: None, would love to get routing working properly with cloudflare pages/workers but not sure how 🫠**
+- **Web: [nyxo-sky.pages.dev](https://nyxo-sky.pages.dev/)**
 - **iOS: None**
 - **Android: TBD, Check the latest [Release](https://github.com/Nyxorium/Nyxo-Sky/releases) for the APK**
 
