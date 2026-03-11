@@ -47,7 +47,9 @@ module.exports = async function (env, argv) {
     }
   } else {
     // Support static CDN for chunks
-    config.output.publicPath = 'auto'
+    config.output.publicPath = '/'
+    // Previously 'auto' but needs to be / for deep-links to work on Cloudfalre
+    // It's possible there's another way but this is the only one I could get working ._. - Sunstar
   }
 
   if (GENERATE_STATS || OPEN_ANALYZER) {
