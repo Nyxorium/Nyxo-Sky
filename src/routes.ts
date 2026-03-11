@@ -52,6 +52,7 @@ export const router = new Router<AllNavigatableRoutes>({
   ProfileTabVisibilitySettings: '/settings/tabs-visibility',
   SavedFeeds: '/settings/saved-feeds',
   AccountSettings: '/settings/account',
+  AutomationLabelSettings: '/settings/automation-label',
   PrivacyAndSecuritySettings: '/settings/privacy-and-security',
   ActivityPrivacySettings: '/settings/privacy-and-security/activity',
   ContentAndMediaSettings: '/settings/content-and-media',

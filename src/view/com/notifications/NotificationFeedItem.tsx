@@ -63,12 +63,11 @@ import {StarterPack} from '#/components/icons/StarterPack'
 import {VerifiedCheck} from '#/components/icons/VerifiedCheck'
 import {InlineLinkText, Link} from '#/components/Link'
 import * as MediaPreview from '#/components/MediaPreview'
+import {ProfileBadges} from '#/components/ProfileBadges'
 import {ProfileHoverCard} from '#/components/ProfileHoverCard'
 import {Notification as StarterPackCard} from '#/components/StarterPack/StarterPackCard'
 import {SubtleHover} from '#/components/SubtleHover'
 import {Text} from '#/components/Typography'
-import {useSimpleVerificationState} from '#/components/verification'
-import {VerificationCheck} from '#/components/verification/VerificationCheck'
 import * as bsky from '#/types/bsky'
 import {useDisableFollowbackBIN} from '#/state/preferences/disable-followback-BIN'
 
@@ -175,9 +174,6 @@ let NotificationFeedItem = ({
 
   const niceTimestamp = niceDate(i18n, item.notification.indexedAt)
   const firstAuthor = authors[0]
-  const firstAuthorVerification = useSimpleVerificationState({
-    profile: firstAuthor.profile,
-  })
   const firstAuthorName = sanitizeDisplayName(
     firstAuthor.profile.displayName || firstAuthor.profile.handle,
   )
@@ -248,24 +244,21 @@ let NotificationFeedItem = ({
         emoji
         label={_(msg`Go to ${firstAuthorName}'s profile`)}>
         {forceLTR(firstAuthorName)}
-        {firstAuthorVerification.showBadge && (
-          <View
-            style={[
-              a.relative,
-              {
-                paddingTop: platform({android: 2}),
-                marginBottom: platform({ios: -7}),
-                top: platform({web: 1}),
-                paddingLeft: 3,
-                paddingRight: 2,
-              },
-            ]}>
-            <VerificationCheck
-              width={14}
-              verifier={firstAuthorVerification.role === 'verifier'}
-            />
-          </View>
-        )}
+        <ProfileBadges
+          profile={firstAuthor.profile}
+          size="md"
+          style={[
+            a.relative,
+            {
+              // weird stuff here
+              paddingTop: platform({android: 2}),
+              marginBottom: platform({ios: -6}),
+              top: platform({web: 2}),
+              paddingLeft: 3,
+              paddingRight: 2,
+            },
+          ]}
+        />
       </InlineLinkText>
     </ProfileHoverCard>
   )
@@ -1019,9 +1012,6 @@ function ExpandedAuthorsList({
 function ExpandedAuthorCard({author}: {author: Author}) {
   const t = useTheme()
   const {_} = useLingui()
-  const verification = useSimpleVerificationState({
-    profile: author.profile,
-  })
   return (
     <Link
       key={author.profile.did}
@@ -1057,14 +1047,11 @@ function ExpandedAuthorCard({author}: {author: Author}) {
               author.profile.displayName || author.profile.handle,
             )}
           </Text>
-          {verification.showBadge && (
-            <View style={[a.pl_xs, a.self_center]}>
-              <VerificationCheck
-                width={14}
-                verifier={verification.role === 'verifier'}
-              />
-            </View>
-          )}
+          <ProfileBadges
+            profile={author.profile}
+            size="md"
+            style={[a.pl_2xs, a.self_center]}
+          />
           <Text
             numberOfLines={1}
             style={[
