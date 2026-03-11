@@ -169,7 +169,7 @@ const schema = z.object({
 export type Schema = z.infer<typeof schema>
 
 export const defaults: Schema = {
-  colorMode: 'system',
+  colorMode: 'dark',
   darkTheme: 'dim',
   session: {
     accounts: [],
