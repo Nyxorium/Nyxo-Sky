@@ -160,11 +160,13 @@ export function ThreadgateBtn({
             <ButtonIcon icon={TinyChevronIcon} size="2xs" />
           </Button>
         </Tooltip.Target>
+        { /*
         <Tooltip.TextBubble>
           <Text>
             <Trans>Psst! You can edit who can interact with this post.</Trans>
           </Text>
         </Tooltip.TextBubble>
+        */ }
       </Tooltip.Outer>
 
       <PostInteractionSettingsControlledDialog
