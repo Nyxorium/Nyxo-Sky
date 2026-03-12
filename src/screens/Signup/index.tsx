@@ -229,6 +229,7 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                         t.atoms.text_contrast_medium,
                         !gtMobile && a.text_md,
                       ]}>
+                      { /*
                       <Trans>Having trouble?</Trans>{' '}
                       <InlineLinkText
                         label={_(msg`Contact support`)}
@@ -236,6 +237,7 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                         style={[!gtMobile && a.text_md]}>
                         <Trans>Contact support</Trans>
                       </InlineLinkText>
+                      */ }
                     </Text>
                   </View>
                 </View>
