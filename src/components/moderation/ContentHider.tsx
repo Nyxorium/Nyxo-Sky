@@ -5,7 +5,7 @@ import {
   View,
   type ViewStyle,
 } from 'react-native'
-import {type ModerationUI} from '@atproto/api'
+import {BSKY_LABELER_DID, type ModerationUI} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
@@ -147,7 +147,7 @@ function ContentHiderActive({
       if (
         blur.type === 'label' &&
         blur.source.type === 'labeler' &&
-        blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac'
+        blur.source.did === BSKY_LABELER_DID
       ) {
         return `${desc.name} (${_(msg`Bluesky`)})`
       }
@@ -200,7 +200,7 @@ function ContentHiderActive({
       }
       if (
         blur.source.type === 'labeler' &&
-        blur.source.did === 'did:plc:ar7c4by46qjdydhdevvrndac' // Bluesky's labeler DID
+        blur.source.did === BSKY_LABELER_DID
       ) {
         return `${baseName} (${_(msg`Bluesky`)})`
       }
