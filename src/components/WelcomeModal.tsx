@@ -115,9 +115,10 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                       a.user_select_none,
                       {color: '#354358', letterSpacing: -0.5},
                     ]}>
-                    Bluesky
+                    The AT Protocol, BlueSky, and more!
                   </Text>
                 </View>
+                {/* Previously just BlueSky - Sunstar */}
               </View>
               <View
                 style={[
