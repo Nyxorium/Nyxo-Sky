@@ -14,7 +14,7 @@ export const DEFAULT_SERVICE = BSKY_SERVICE
 export const HELP_DESK_URL = `https://github.com/Nyxorium/Nyxo-Sky/discussions`
 export const FEEDBACK_FORM_URL = `https://github.com/Nyxorium/Nyxo-Sky/issues/new/choose`
 export const TERMS_OF_SERVICE_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Terms.html'
-export const PRIVACY_POLICY_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Terms.html'
+export const PRIVACY_POLICY_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Privacy.html'
 
 export const EMBED_SERVICE = 'https://embed.bsky.app'
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
