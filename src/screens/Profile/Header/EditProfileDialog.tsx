@@ -25,11 +25,7 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useSimpleVerificationState} from '#/components/verification'
-
-const DISPLAY_NAME_MAX_GRAPHEMES = 64
-const PRONOUNS_MAX_GRAPHEMES = 20
-const DESCRIPTION_MAX_GRAPHEMES = 256
-// Check constants.ts, it exports the same values but are unused - Sunstar
+import {MAX_DISPLAY_NAME, MAX_DESCRIPTION, MAX_PRONOUNS} from '#/lib/constants'
 
 export function EditProfileDialog({
   profile,
@@ -217,15 +213,15 @@ function DialogInner({
 
   const displayNameTooLong = isOverMaxGraphemeCount({
     text: displayName,
-    maxCount: DISPLAY_NAME_MAX_GRAPHEMES,
+    maxCount: MAX_DISPLAY_NAME,
   })
   const pronounsTooLong = isOverMaxGraphemeCount({
     text: pronouns,
-    maxCount: PRONOUNS_MAX_GRAPHEMES,
+    maxCount: MAX_PRONOUNS,
   })
   const descriptionTooLong = isOverMaxGraphemeCount({
     text: description,
-    maxCount: DESCRIPTION_MAX_GRAPHEMES,
+    maxCount: MAX_DESCRIPTION,
   })
 
   const cancelButton = useCallback(
@@ -348,7 +344,7 @@ function DialogInner({
                 {color: t.palette.negative_400},
               ]}>
               <Plural
-                value={DISPLAY_NAME_MAX_GRAPHEMES}
+                value={MAX_DISPLAY_NAME}
                 other="Display name is too long. The maximum number of characters is #."
               />
             </Text>
@@ -398,7 +394,7 @@ function DialogInner({
                 {color: t.palette.negative_400},
               ]}>
               <Plural
-                value={PRONOUNS_MAX_GRAPHEMES}
+                value={MAX_PRONOUNS}
                 other="Max length exceeded. The maximum number of characters is #."
               />
             </Text>
@@ -428,7 +424,7 @@ function DialogInner({
                 {color: t.palette.negative_400},
               ]}>
               <Plural
-                value={DESCRIPTION_MAX_GRAPHEMES}
+                value={MAX_DESCRIPTION}
                 other="Description is too long. The maximum number of characters is #."
               />
             </Text>
