@@ -13,6 +13,7 @@ import {
   TERMS_OF_SERVICE_URL,
   PRIVACY_POLICY_URL,
   HELP_DESK_URL,
+  SOURCE_CODE_URL,
 } from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -90,6 +91,14 @@ export function AboutSettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={CircleQuestionIcon} />
             <SettingsList.ItemText>
               <Trans>Help</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to={SOURCE_CODE_URL}
+            label={_(msg`Source Code`)}>
+            <SettingsList.ItemIcon icon={CircleQuestionIcon} />
+            <SettingsList.ItemText>
+              <Trans>Source Code</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem
