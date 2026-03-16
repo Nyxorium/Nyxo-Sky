@@ -132,6 +132,9 @@ const schema = z.object({
   trendingDisabled: z.boolean().optional(),
   trendingVideoDisabled: z.boolean().optional(),
 
+  // Theme preset selector
+  themePreset: z.string().optional(),
+
   // Additional Settings in Nyxo Sky
   limitComposePostButton: z.boolean().optional(),
   altLabelDisplayProfile: z.boolean().optional(),
@@ -220,6 +223,7 @@ export const defaults: Schema = {
   trendingVideoDisabled: false,
 
   // Additional setting defaults in Nyxo Sky
+  themePreset: 'nyxoSky',
   limitComposePostButton: true,
   altLabelDisplayProfile: false,
   noAppLabelers: false, // Credit: deer.social

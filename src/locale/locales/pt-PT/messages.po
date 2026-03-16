@@ -265,14 +265,6 @@ msgstr "{0}seg"
 msgid "{count, plural, one {# unread item} other {# unread items}}"
 msgstr "{count, plural, one {# item não lido} other {# itens não lidos}}"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:430
-msgid "{DESCRIPTION_MAX_GRAPHEMES, plural, other {Description is too long. The maximum number of characters is #.}}"
-msgstr "{DESCRIPTION_MAX_GRAPHEMES, plural, other {A descrição é demasiado longa. O número máximo de caracteres é #.}}"
-
-#: src/screens/Profile/Header/EditProfileDialog.tsx:350
-msgid "{DISPLAY_NAME_MAX_GRAPHEMES, plural, other {Display name is too long. The maximum number of characters is #.}}"
-msgstr "{DISPLAY_NAME_MAX_GRAPHEMES, plural, other {O nome de exibição é demasiado longo. O número máximo de caracteres é #.}}"
-
 #: src/lib/generate-starterpack.ts:104
 #: src/screens/StarterPack/Wizard/index.tsx:200
 msgid "{displayName}'s Starter Pack"
@@ -463,9 +455,21 @@ msgstr "{joinedAllTimeCount, plural, other {# utilizadores aderiram}}!"
 msgid "{MAX_ALT_TEXT, plural, other {Alt text must be less than # characters.}}"
 msgstr "{MAX_ALT_TEXT, plural, one {}other {Texto alternativo deve ter menos que # caracteres.}}"
 
+#: src/screens/Profile/Header/EditProfileDialog.tsx:426
+msgid "{MAX_DESCRIPTION, plural, other {Description is too long. The maximum number of characters is #.}}"
+msgstr ""
+
+#: src/screens/Profile/Header/EditProfileDialog.tsx:346
+msgid "{MAX_DISPLAY_NAME, plural, other {Display name is too long. The maximum number of characters is #.}}"
+msgstr ""
+
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:406
 msgid "{MAX_HIDDEN_REPLIES, plural, other {You can hide a maximum of # replies.}}"
 msgstr "{MAX_HIDDEN_REPLIES, plural, one {}other {Você pode esconder um máximo de # respostas.}}"
+
+#: src/screens/Profile/Header/EditProfileDialog.tsx:396
+msgid "{MAX_PRONOUNS, plural, other {Max length exceeded. The maximum number of characters is #.}}"
+msgstr ""
 
 #: src/screens/Signup/StepInfo/index.tsx:316
 msgid "{MIN_ACCESS_AGE, plural, other {You must be # years of age or older to create an account.}}"
@@ -498,10 +502,6 @@ msgstr "{profileName} aderiu ao Bluesky há {timeAgoString}"
 #: src/components/NewskieDialog.tsx:111
 msgid "{profileName} joined Bluesky using a starter pack {timeAgoString} ago"
 msgstr "{profileName} aderiu ao Bluesky utilizando um pacote de iniciante há {timeAgoString}"
-
-#: src/screens/Profile/Header/EditProfileDialog.tsx:400
-msgid "{PRONOUNS_MAX_GRAPHEMES, plural, other {Max length exceeded. The maximum number of characters is #.}}"
-msgstr ""
 
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:101
@@ -691,7 +691,7 @@ msgid "A screenshot of the post composer with a new button next to the post butt
 msgstr "Uma captura de ecrã do compositor de publicações com um novo botão ao lado do botão post que diz \"Rascunhos\", com um efeito de fogo de artifício de arco-íris. Abaixo, o texto no compositor diz \"Oi, ouviu a notícia? O Bluesky agora tem rascunhos!!!\"."
 
 #: src/Navigation.tsx:562
-#: src/screens/Settings/AboutSettings.tsx:80
+#: src/screens/Settings/AboutSettings.tsx:81
 #: src/screens/Settings/Settings.tsx:253
 #: src/screens/Settings/Settings.tsx:256
 msgid "About"
@@ -1398,6 +1398,10 @@ msgstr "Palavras-passe da Aplicação"
 msgid "App Passwords"
 msgstr "Palavras-passe da Aplicação"
 
+#: src/screens/Settings/AppearanceSettings.tsx:94
+msgid "App theme"
+msgstr ""
+
 #: src/components/moderation/LabelsOnMeDialog.tsx:155
 #: src/components/moderation/LabelsOnMeDialog.tsx:158
 msgid "Appeal"
@@ -1441,7 +1445,7 @@ msgid "Appeal this decision"
 msgstr "Recorrer desta decisão"
 
 #: src/Navigation.tsx:413
-#: src/screens/Settings/AppearanceSettings.tsx:73
+#: src/screens/Settings/AppearanceSettings.tsx:84
 #: src/screens/Settings/Settings.tsx:225
 #: src/screens/Settings/Settings.tsx:228
 msgid "Appearance"
@@ -1485,7 +1489,7 @@ msgid "Are you sure you want to delete this starter pack?"
 msgstr "Tem a certeza que deseja eliminar este pacote de iniciante?"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:99
-#: src/screens/Profile/Header/EditProfileDialog.tsx:82
+#: src/screens/Profile/Header/EditProfileDialog.tsx:78
 msgid "Are you sure you want to discard your changes?"
 msgstr "Tem a certeza que deseja descartar as suas alterações?"
 
@@ -1960,8 +1964,8 @@ msgstr "Câmara"
 #: src/features/liveNow/components/GoLiveDialog.tsx:275
 #: src/lib/media/picker.tsx:38
 #: src/screens/Deactivated.tsx:150
-#: src/screens/Profile/Header/EditProfileDialog.tsx:234
-#: src/screens/Profile/Header/EditProfileDialog.tsx:242
+#: src/screens/Profile/Header/EditProfileDialog.tsx:230
+#: src/screens/Profile/Header/EditProfileDialog.tsx:238
 #: src/screens/Search/Shell.tsx:396
 #: src/screens/Settings/AppIconSettings/index.tsx:42
 #: src/screens/Settings/AppIconSettings/index.tsx:228
@@ -2222,8 +2226,8 @@ msgstr "Limpar todos os dados armazenados"
 msgid "Clear all storage data (restart after this)"
 msgstr "Limpar todos os dados armazenados (e reiniciar)"
 
-#: src/screens/Settings/AboutSettings.tsx:129
-#: src/screens/Settings/AboutSettings.tsx:133
+#: src/screens/Settings/AboutSettings.tsx:138
+#: src/screens/Settings/AboutSettings.tsx:142
 msgid "Clear image cache"
 msgstr "Limpar cache de imagem"
 
@@ -2408,7 +2412,7 @@ msgid "Collapses list of users for a given notification"
 msgstr "Colapsa lista de utilizadores para uma notificação"
 
 #: src/components/dialogs/Embed.tsx:155
-#: src/screens/Settings/AppearanceSettings.tsx:81
+#: src/screens/Settings/AppearanceSettings.tsx:104
 msgid "Color mode"
 msgstr "Modo de cor"
 
@@ -2634,7 +2638,7 @@ msgctxt "toast"
 msgid "Conversation deleted"
 msgstr "Conversa eliminada"
 
-#: src/screens/Settings/AboutSettings.tsx:164
+#: src/screens/Settings/AboutSettings.tsx:173
 msgid "Copied build version to clipboard"
 msgstr "Versão de compilação copiada para a área de transferência"
 
@@ -2652,7 +2656,7 @@ msgstr "Copiado para a área de transferência"
 msgid "Copied!"
 msgstr "Copiado!"
 
-#: src/screens/Settings/AboutSettings.tsx:140
+#: src/screens/Settings/AboutSettings.tsx:149
 msgid "Copies build version to clipboard"
 msgstr "Copia a versão de compilação para a área de transferência"
 
@@ -2969,8 +2973,8 @@ msgstr "Substâncias perigosas ou abuso de drogas"
 
 #: src/components/dialogs/Embed.tsx:169
 #: src/components/dialogs/Embed.tsx:171
-#: src/screens/Settings/AppearanceSettings.tsx:93
-#: src/screens/Settings/AppearanceSettings.tsx:114
+#: src/screens/Settings/AppearanceSettings.tsx:116
+#: src/screens/Settings/AppearanceSettings.tsx:137
 msgid "Dark"
 msgstr "Escuro"
 
@@ -2979,7 +2983,7 @@ msgctxt "Name of app icon variant"
 msgid "Dark"
 msgstr "Escuro"
 
-#: src/screens/Settings/AppearanceSettings.tsx:106
+#: src/screens/Settings/AppearanceSettings.tsx:129
 msgid "Dark theme"
 msgstr "Tema escuro"
 
@@ -3005,7 +3009,7 @@ msgstr "Painel de debug"
 msgid "Deepfake adult content"
 msgstr "Conteúdo adulto Deepfake"
 
-#: src/screens/Settings/AppearanceSettings.tsx:156
+#: src/screens/Settings/AppearanceSettings.tsx:179
 msgid "Default"
 msgstr "Padrão"
 
@@ -3131,8 +3135,8 @@ msgid "Deleted list"
 msgstr "Lista eliminada"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:453
-#: src/screens/Profile/Header/EditProfileDialog.tsx:410
-#: src/screens/Profile/Header/EditProfileDialog.tsx:417
+#: src/screens/Profile/Header/EditProfileDialog.tsx:406
+#: src/screens/Profile/Header/EditProfileDialog.tsx:413
 msgid "Description"
 msgstr "Descrição"
 
@@ -3150,12 +3154,12 @@ msgstr "Desvincular citação"
 msgid "Detach quote post?"
 msgstr "Desvincular citação?"
 
-#: src/screens/Settings/AboutSettings.tsx:153
+#: src/screens/Settings/AboutSettings.tsx:162
 msgctxt "toast"
 msgid "Developer mode disabled"
 msgstr "Modo programador desabilitado"
 
-#: src/screens/Settings/AboutSettings.tsx:147
+#: src/screens/Settings/AboutSettings.tsx:156
 msgctxt "toast"
 msgid "Developer mode enabled"
 msgstr "Modo programador habilitado"
@@ -3173,7 +3177,7 @@ msgstr ""
 msgid "Dialog: adjust who can interact with this post"
 msgstr "Janela de diálogo: ajustar quem pode interagir com esta publicação"
 
-#: src/screens/Settings/AppearanceSettings.tsx:110
+#: src/screens/Settings/AppearanceSettings.tsx:133
 msgid "Dim"
 msgstr "Escuro"
 
@@ -3240,7 +3244,7 @@ msgid "Disabled"
 msgstr "Desativado"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:101
-#: src/screens/Profile/Header/EditProfileDialog.tsx:84
+#: src/screens/Profile/Header/EditProfileDialog.tsx:80
 #: src/view/com/composer/Composer.tsx:1217
 #: src/view/com/composer/Composer.tsx:1265
 #: src/view/com/composer/Composer.tsx:1465
@@ -3250,7 +3254,7 @@ msgid "Discard"
 msgstr "Descartar"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:98
-#: src/screens/Profile/Header/EditProfileDialog.tsx:81
+#: src/screens/Profile/Header/EditProfileDialog.tsx:77
 msgid "Discard changes?"
 msgstr "Descartar alterações?"
 
@@ -3326,8 +3330,8 @@ msgstr "Ignorar esta sugestão"
 msgid "Display larger alt text badges"
 msgstr "Exibir insígnias de texto alternativo maiores"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:331
-#: src/screens/Profile/Header/EditProfileDialog.tsx:337
+#: src/screens/Profile/Header/EditProfileDialog.tsx:327
+#: src/screens/Profile/Header/EditProfileDialog.tsx:333
 msgid "Display name"
 msgstr "Nome de exibição"
 
@@ -3469,7 +3473,7 @@ msgstr "Duração:"
 msgid "e.g. alice"
 msgstr "p. ex. Alice"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:338
+#: src/screens/Profile/Header/EditProfileDialog.tsx:334
 msgid "e.g. Alice Lastname"
 msgstr "p. ex. Alice **Apelido**"
 
@@ -3485,7 +3489,7 @@ msgstr "p. ex. nudez artística."
 msgid "e.g. Great Posters"
 msgstr "p. ex. Grandes Autores"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:447
+#: src/screens/Profile/Header/EditProfileDialog.tsx:443
 msgid "e.g. https://bsky.app"
 msgstr ""
 
@@ -3497,7 +3501,7 @@ msgstr "p. ex. Spammers"
 msgid "e.g. The posters who never miss."
 msgstr "p. ex. Os autores que nunca falham."
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:388
+#: src/screens/Profile/Header/EditProfileDialog.tsx:384
 msgid "e.g. They/Them"
 msgstr ""
 
@@ -3581,8 +3585,8 @@ msgstr "Editar Pessoas"
 msgid "Edit post interaction settings"
 msgstr "Editar definições de interação da publicação"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:286
-#: src/screens/Profile/Header/EditProfileDialog.tsx:292
+#: src/screens/Profile/Header/EditProfileDialog.tsx:282
+#: src/screens/Profile/Header/EditProfileDialog.tsx:288
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:296
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:345
 msgid "Edit profile"
@@ -4603,11 +4607,11 @@ msgstr "Segue-te"
 msgid "Follows You"
 msgstr "Segue-te"
 
-#: src/screens/Settings/AppearanceSettings.tsx:128
+#: src/screens/Settings/AppearanceSettings.tsx:151
 msgid "Font"
 msgstr "Tipo de letra"
 
-#: src/screens/Settings/AppearanceSettings.tsx:148
+#: src/screens/Settings/AppearanceSettings.tsx:171
 msgid "Font size"
 msgstr "Tamanho de letra"
 
@@ -4627,7 +4631,7 @@ msgstr "Por motivos de segurança, precisamos de enviar um código de confirmaç
 msgid "For security reasons, you won't be able to view this again. If you lose this app password, you'll need to generate a new one."
 msgstr "Por motivos de segurança, não poderá ver isto novamente. Se você perder esta palavra-passe da aplicação, precisará de gerar uma nova."
 
-#: src/screens/Settings/AppearanceSettings.tsx:130
+#: src/screens/Settings/AppearanceSettings.tsx:153
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Para a melhor experiência, recomendamos o uso do tipo de letra do tema."
 
@@ -4981,8 +4985,8 @@ msgstr "A sua localização está errada? <0>Toque aqui para confirmar a sua loc
 msgid "Held by Bluesky for 7 days to prevent abuse, then deleted"
 msgstr "Retido pelo Bluesky por 7 dias para evitar abusos, e depois eliminado"
 
-#: src/screens/Settings/AboutSettings.tsx:89
-#: src/screens/Settings/AboutSettings.tsx:92
+#: src/screens/Settings/AboutSettings.tsx:90
+#: src/screens/Settings/AboutSettings.tsx:93
 #: src/view/shell/desktop/RightNav.tsx:131
 #: src/view/shell/desktop/RightNav.tsx:134
 #: src/view/shell/Drawer.tsx:371
@@ -5300,13 +5304,13 @@ msgstr "Imagem"
 msgid "Image {0} of {1}"
 msgstr "Imagem {0} de {1}"
 
-#: src/screens/Settings/AboutSettings.tsx:69
+#: src/screens/Settings/AboutSettings.tsx:70
 msgid "Image cache cleared"
 msgstr "Cache de imagem limpa"
 
 #. Android-only toast message which includes amount of space freed using localized number formatting
 #. placeholder {0}: i18n.number( Math.abs(sizeDiffBytes / 1024 / 1024), { notation: 'compact', style: 'unit', unit: 'megabyte', }, )
-#: src/screens/Settings/AboutSettings.tsx:55
+#: src/screens/Settings/AboutSettings.tsx:56
 msgid "Image cache cleared, freed {0}"
 msgstr "Cache de imagem limpa, {0} libertado"
 
@@ -5601,7 +5605,7 @@ msgstr "Definições de Idioma"
 msgid "Languages"
 msgstr "Idiomas"
 
-#: src/screens/Settings/AppearanceSettings.tsx:160
+#: src/screens/Settings/AppearanceSettings.tsx:183
 msgid "Larger"
 msgstr "Maior"
 
@@ -5624,7 +5628,7 @@ msgstr "Mais recentes"
 #: src/components/verification/VerificationsDialog.tsx:168
 #: src/components/verification/VerifierDialog.tsx:135
 #: src/screens/Moderation/VerificationSettings.tsx:50
-#: src/screens/Profile/Header/EditProfileDialog.tsx:367
+#: src/screens/Profile/Header/EditProfileDialog.tsx:363
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:215
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:279
 msgctxt "english-only-resource"
@@ -5745,7 +5749,7 @@ msgstr "Vamos lá!"
 
 #: src/components/dialogs/Embed.tsx:164
 #: src/components/dialogs/Embed.tsx:166
-#: src/screens/Settings/AppearanceSettings.tsx:89
+#: src/screens/Settings/AppearanceSettings.tsx:112
 msgid "Light"
 msgstr "Claro"
 
@@ -7820,8 +7824,8 @@ msgstr "Definições de privacidade e segurança"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:37
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:104
 #: src/Navigation.tsx:337
-#: src/screens/Settings/AboutSettings.tsx:105
-#: src/screens/Settings/AboutSettings.tsx:108
+#: src/screens/Settings/AboutSettings.tsx:114
+#: src/screens/Settings/AboutSettings.tsx:117
 #: src/view/screens/PrivacyPolicy.tsx:36
 #: src/view/shell/Drawer.tsx:694
 #: src/view/shell/Drawer.tsx:695
@@ -7864,7 +7868,7 @@ msgstr ""
 msgid "Profile not found"
 msgstr "Perfil não encontrado"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:199
+#: src/screens/Profile/Header/EditProfileDialog.tsx:195
 msgctxt "toast"
 msgid "Profile updated"
 msgstr "Perfil atualizado"
@@ -7873,8 +7877,8 @@ msgstr "Perfil atualizado"
 msgid "Promoting or selling prohibited items or services"
 msgstr "Promoção ou venda de items ou artigos proibidos"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:381
-#: src/screens/Profile/Header/EditProfileDialog.tsx:387
+#: src/screens/Profile/Header/EditProfileDialog.tsx:377
+#: src/screens/Profile/Header/EditProfileDialog.tsx:383
 msgid "Pronouns"
 msgstr ""
 
@@ -8668,8 +8672,8 @@ msgstr "Regressa ao passo anterior"
 #: src/components/StarterPack/QrCodeDialog.tsx:207
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Profile/Header/EditProfileDialog.tsx:252
-#: src/screens/Profile/Header/EditProfileDialog.tsx:267
+#: src/screens/Profile/Header/EditProfileDialog.tsx:248
+#: src/screens/Profile/Header/EditProfileDialog.tsx:263
 #: src/screens/SavedFeeds.tsx:132
 #: src/screens/SavedFeeds.tsx:330
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:269
@@ -9609,7 +9613,7 @@ msgstr "Saltar introdução e começar a usar a sua conta"
 msgid "Skip to next step"
 msgstr "Saltar para o próximo passo"
 
-#: src/screens/Settings/AppearanceSettings.tsx:152
+#: src/screens/Settings/AppearanceSettings.tsx:175
 msgid "Smaller"
 msgstr "Menor"
 
@@ -9697,8 +9701,8 @@ msgstr "Aconteceu algo de errado? Informe-nos."
 msgid "Sorry, we're unable to load account suggestions at this time."
 msgstr "Lamentamos, mas de momento não conseguimos carregar as sugestões de contas. "
 
-#: src/App.native.tsx:142
-#: src/App.web.tsx:118
+#: src/App.native.tsx:144
+#: src/App.web.tsx:120
 msgid "Sorry! Your session expired. Please sign in again."
 msgstr "Desculpe! A sua sessão expirou. Por favor, inicie sessão novamente."
 
@@ -9713,6 +9717,11 @@ msgstr "Ordenar respostas por"
 #: src/screens/Settings/ThreadPreferences.tsx:49
 msgid "Sort replies to the same post by:"
 msgstr "Ordenar respostas à mesma publicação por:"
+
+#: src/screens/Settings/AboutSettings.tsx:98
+#: src/screens/Settings/AboutSettings.tsx:101
+msgid "Source Code"
+msgstr ""
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:183
 #: src/components/moderation/ModerationDetailsDialog.tsx:189
@@ -9799,8 +9808,8 @@ msgstr "Pacotes de iniciante permitem-lhe partilhar os seus feeds e pessoas favo
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr "Pacotes de Iniciante permitem-lhe partilhar os seus feeds e utilizadores preferidos com os seus amigos."
 
-#: src/screens/Settings/AboutSettings.tsx:113
-#: src/screens/Settings/AboutSettings.tsx:116
+#: src/screens/Settings/AboutSettings.tsx:122
+#: src/screens/Settings/AboutSettings.tsx:125
 msgid "Status Page"
 msgstr "Página de estado"
 
@@ -9949,14 +9958,14 @@ msgstr "Trocar para {0}"
 
 #: src/components/dialogs/Embed.tsx:159
 #: src/components/dialogs/Embed.tsx:161
-#: src/screens/Settings/AppearanceSettings.tsx:85
-#: src/screens/Settings/AppearanceSettings.tsx:135
+#: src/screens/Settings/AppearanceSettings.tsx:108
+#: src/screens/Settings/AppearanceSettings.tsx:158
 msgid "System"
 msgstr "Sistema"
 
 #: src/screens/Log.tsx:57
-#: src/screens/Settings/AboutSettings.tsx:120
-#: src/screens/Settings/AboutSettings.tsx:123
+#: src/screens/Settings/AboutSettings.tsx:129
+#: src/screens/Settings/AboutSettings.tsx:132
 #: src/screens/Settings/Settings.tsx:447
 msgid "System log"
 msgstr "Registo do sistema"
@@ -10040,7 +10049,7 @@ msgstr "Tecnologia"
 msgid "Tell a joke!"
 msgstr "Conte uma piada!"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:418
+#: src/screens/Profile/Header/EditProfileDialog.tsx:414
 msgid "Tell us a bit about yourself"
 msgstr "Conte-nos um pouco sobre si"
 
@@ -10057,8 +10066,8 @@ msgstr "Termos"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:31
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:99
 #: src/Navigation.tsx:342
-#: src/screens/Settings/AboutSettings.tsx:97
-#: src/screens/Settings/AboutSettings.tsx:100
+#: src/screens/Settings/AboutSettings.tsx:106
+#: src/screens/Settings/AboutSettings.tsx:109
 #: src/view/screens/TermsOfService.tsx:35
 #: src/view/shell/Drawer.tsx:687
 #: src/view/shell/Drawer.tsx:689
@@ -10225,7 +10234,7 @@ msgstr "O código de verificação que forneceu é inválido. Certifique-se de q
 msgid "The verification provider was unable to send a code to your phone number. Please check your phone number and try again."
 msgstr "O fornecedor de verificação não conseguiu enviar um código para o seu número de telefone. Por favor, verifique o seu número de telefone e tente novamente."
 
-#: src/screens/Settings/AppearanceSettings.tsx:139
+#: src/screens/Settings/AppearanceSettings.tsx:162
 msgid "Theme"
 msgstr "Tema"
 
@@ -11391,8 +11400,8 @@ msgid "Verifying..."
 msgstr "A verificar..."
 
 #. placeholder {0}: env.APP_VERSION
-#: src/screens/Settings/AboutSettings.tsx:139
-#: src/screens/Settings/AboutSettings.tsx:168
+#: src/screens/Settings/AboutSettings.tsx:148
+#: src/screens/Settings/AboutSettings.tsx:177
 msgid "Version {0}"
 msgstr "Versão {0}"
 
@@ -11831,8 +11840,8 @@ msgstr "Estamos a atualizar os nossos Termos de Serviço, Política de Privacida
 msgid "We've confirmed your age assurance status. You can now close this dialog."
 msgstr "Confirmámos o seu estado de verificação de idade. Pode agora fechar esta caixa de diálogo."
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:440
-#: src/screens/Profile/Header/EditProfileDialog.tsx:446
+#: src/screens/Profile/Header/EditProfileDialog.tsx:436
+#: src/screens/Profile/Header/EditProfileDialog.tsx:442
 msgid "Website"
 msgstr ""
 
@@ -12050,7 +12059,7 @@ msgstr "Está agora em direto!"
 msgid "You are verified"
 msgstr "É verificado"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:362
+#: src/screens/Profile/Header/EditProfileDialog.tsx:358
 msgid "You are verified. You will lose your verification status if you change your display name. <0>Learn more.</0>"
 msgstr "É verificado. Irá perder a sua verificação se alterar o seu nome de exibição. <0>Saiba mais.</0>"
 

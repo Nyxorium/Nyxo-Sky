@@ -1,3 +1,9 @@
+/**
+ * NOTE: This file now re-exports from the default (Bluesky) preset.
+ * At runtime the ThemeProvider in index.tsx uses the user's chosen preset —
+ * these named exports are only used by legacy code paths and the deprecated
+ * palette exports below.
+ */
 import {
   createThemes,
   DEFAULT_PALETTE,

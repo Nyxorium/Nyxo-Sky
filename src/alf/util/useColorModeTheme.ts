@@ -2,16 +2,22 @@ import {useLayoutEffect} from 'react'
 import {type ColorSchemeName, useColorScheme} from 'react-native'
 import {type ThemeName} from '@bsky.app/alf'
 
+import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import {useThemePrefs} from '#/state/shell'
-import {dark, dim, light} from '#/alf/themes'
 import {IS_WEB} from '#/env'
 
 export function useColorModeTheme(): ThemeName {
   const theme = useThemeName()
+  const {themePreset} = useThemePrefs()
 
   useLayoutEffect(() => {
-    updateDocument(theme)
-  }, [theme])
+    // Resolve the background colour directly from the preset registry —
+    // no need to be inside the ALF context tree.
+    const preset = THEME_PRESETS[(themePreset ?? 'nyxoSky') as ThemePresetName]
+      ?? THEME_PRESETS.nyxoSky
+    const bgColor = preset.themes[theme].atoms.bg.backgroundColor
+    updateDocument(theme, bgColor)
+  }, [theme, themePreset])
 
   return theme
 }
@@ -19,7 +25,6 @@ export function useColorModeTheme(): ThemeName {
 export function useThemeName(): ThemeName {
   const colorScheme = useColorScheme()
   const {colorMode, darkTheme} = useThemePrefs()
-
   return getThemeName(colorScheme, colorMode, darkTheme)
 }
 
@@ -38,30 +43,36 @@ function getThemeName(
   }
 }
 
-function updateDocument(theme: ThemeName) {
+function updateDocument(theme: ThemeName, bgColor: string) {
   // @ts-ignore web only
   if (IS_WEB && typeof window !== 'undefined') {
     // @ts-ignore web only
     const html = window.document.documentElement
     // @ts-ignore web only
+    const body = window.document.body
+    // @ts-ignore web only
     const meta = window.document.querySelector('meta[name="theme-color"]')
 
-    // remove any other color mode classes
+    // Remove any other color mode classes
     html.className = html.className.replace(/(theme)--\w+/g, '')
     html.classList.add(`theme--${theme}`)
-    // set color to 'theme-color' meta tag
-    meta?.setAttribute('content', getBackgroundColor(theme))
+
+    // Set the actual palette background on html/body directly so the
+    // browser overscroll area and page background match the active preset.
+    html.style.backgroundColor = bgColor
+    body.style.backgroundColor = bgColor
+
+    meta?.setAttribute('content', bgColor)
     window.localStorage.setItem('ALF_THEME', theme)
+    window.localStorage.setItem('ALF_BG', bgColor)
   }
 }
 
 export function getBackgroundColor(theme: ThemeName): string {
+  // Fallback for static usage (e.g. splash) — uses Bluesky defaults
   switch (theme) {
-    case 'light':
-      return light.atoms.bg.backgroundColor
-    case 'dark':
-      return dark.atoms.bg.backgroundColor
-    case 'dim':
-      return dim.atoms.bg.backgroundColor
+    case 'light': return '#FFFFFF'
+    case 'dark':  return '#000000'
+    case 'dim':   return '#151D28'
   }
 }

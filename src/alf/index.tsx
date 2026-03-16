@@ -8,7 +8,8 @@ import {
   setFontFamily as persistFontFamily,
   setFontScale as persistFontScale,
 } from '#/alf/fonts'
-import {themes} from '#/alf/themes'
+import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
+import {themes as defaultThemes} from '#/alf/themes'
 import {type Device} from '#/storage'
 
 export {
@@ -29,7 +30,7 @@ export * from '#/alf/util/useGutters'
 export type Alf = {
   themeName: ThemeName
   theme: Theme
-  themes: typeof themes
+  themes: typeof defaultThemes
   fonts: {
     scale: Exclude<Device['fontScale'], undefined>
     scaleMultiplier: number
@@ -48,8 +49,8 @@ export type Alf = {
  */
 export const Context = createContext<Alf>({
   themeName: 'light',
-  theme: themes.light,
-  themes,
+  theme: defaultThemes.light,
+  themes: defaultThemes,
   fonts: {
     scale: getFontScale(),
     scaleMultiplier: computeFontScaleMultiplier(getFontScale()),
@@ -64,7 +65,8 @@ Context.displayName = 'AlfContext'
 export function ThemeProvider({
   children,
   theme: themeName,
-}: React.PropsWithChildren<{theme: ThemeName}>) {
+  themePreset = 'nyxoSky',
+}: React.PropsWithChildren<{theme: ThemeName; themePreset?: ThemePresetName}>) {
   const [fontScale, setFontScale] = useState<Alf['fonts']['scale']>(() =>
     getFontScale(),
   )
@@ -90,11 +92,25 @@ export function ThemeProvider({
     [setFontFamily],
   )
 
+  // Resolve the active theme set from the chosen preset.
+  // Falls back to the default Bluesky themes if something unexpected is stored.
+  const activeThemes = useMemo(() => {
+    const preset = THEME_PRESETS[themePreset] ?? THEME_PRESETS.bluesky
+    return {
+      lightPalette: preset.themes.light.palette,
+      darkPalette: preset.themes.dark.palette,
+      dimPalette: preset.themes.dim.palette,
+      light: preset.themes.light,
+      dark: preset.themes.dark,
+      dim: preset.themes.dim,
+    }
+  }, [themePreset])
+
   const value = useMemo<Alf>(
     () => ({
-      themes,
+      themes: activeThemes,
       themeName: themeName,
-      theme: themes[themeName],
+      theme: activeThemes[themeName],
       fonts: {
         scale: fontScale,
         scaleMultiplier: fontScaleMultiplier,
@@ -105,6 +121,7 @@ export function ThemeProvider({
       flags: {},
     }),
     [
+      activeThemes,
       themeName,
       fontScale,
       setFontScaleAndPersist,

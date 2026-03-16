@@ -265,14 +265,6 @@ msgstr "{0} másodperce"
 msgid "{count, plural, one {# unread item} other {# unread items}}"
 msgstr "{count, plural, one {# olvasatlan} other {# olvasatlan}}"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:430
-msgid "{DESCRIPTION_MAX_GRAPHEMES, plural, other {Description is too long. The maximum number of characters is #.}}"
-msgstr "{DESCRIPTION_MAX_GRAPHEMES, plural, other {A leírás túl hosszú. A korlát # karakter.}}"
-
-#: src/screens/Profile/Header/EditProfileDialog.tsx:350
-msgid "{DISPLAY_NAME_MAX_GRAPHEMES, plural, other {Display name is too long. The maximum number of characters is #.}}"
-msgstr "{DISPLAY_NAME_MAX_GRAPHEMES, plural, other {A megjelenítendő név túl hosszú. A korlát # karakter.}}"
-
 #: src/lib/generate-starterpack.ts:104
 #: src/screens/StarterPack/Wizard/index.tsx:200
 msgid "{displayName}'s Starter Pack"
@@ -463,9 +455,21 @@ msgstr "{joinedAllTimeCount, plural, other {#}} felhasználó csatlakozott ezzel
 msgid "{MAX_ALT_TEXT, plural, other {Alt text must be less than # characters.}}"
 msgstr "{MAX_ALT_TEXT, plural, other {A helyettesítő szövegnek rövidebbnek kell lennie # karakternél.}}"
 
+#: src/screens/Profile/Header/EditProfileDialog.tsx:426
+msgid "{MAX_DESCRIPTION, plural, other {Description is too long. The maximum number of characters is #.}}"
+msgstr ""
+
+#: src/screens/Profile/Header/EditProfileDialog.tsx:346
+msgid "{MAX_DISPLAY_NAME, plural, other {Display name is too long. The maximum number of characters is #.}}"
+msgstr ""
+
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:406
 msgid "{MAX_HIDDEN_REPLIES, plural, other {You can hide a maximum of # replies.}}"
 msgstr "{MAX_HIDDEN_REPLIES, plural, other {Legfeljebb # választ lehet elrejteni.}}"
+
+#: src/screens/Profile/Header/EditProfileDialog.tsx:396
+msgid "{MAX_PRONOUNS, plural, other {Max length exceeded. The maximum number of characters is #.}}"
+msgstr ""
 
 #: src/screens/Signup/StepInfo/index.tsx:316
 msgid "{MIN_ACCESS_AGE, plural, other {You must be # years of age or older to create an account.}}"
@@ -498,10 +502,6 @@ msgstr "{profileName} {timeAgoString} csatlakozott a Blueskyhoz"
 #: src/components/NewskieDialog.tsx:111
 msgid "{profileName} joined Bluesky using a starter pack {timeAgoString} ago"
 msgstr "{profileName} {timeAgoString} csatlakozott a Blueskyhoz egy kezdőcsomag igénybevételével"
-
-#: src/screens/Profile/Header/EditProfileDialog.tsx:400
-msgid "{PRONOUNS_MAX_GRAPHEMES, plural, other {Max length exceeded. The maximum number of characters is #.}}"
-msgstr ""
 
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:101
@@ -691,7 +691,7 @@ msgid "A screenshot of the post composer with a new button next to the post butt
 msgstr "A bejegyzésíró felületet ábrázoló képernyőkép, amelyen egy új, „Piszkozatok” feliratú gomb található, szivárványos tűzijátékok mellett. A szövegmezőben – magyarra fordítva – a következő szöveg olvasható: „Hallottátok már? A Blueskyon mostantól piszkozatokat is lehet menteni!!!”."
 
 #: src/Navigation.tsx:562
-#: src/screens/Settings/AboutSettings.tsx:80
+#: src/screens/Settings/AboutSettings.tsx:81
 #: src/screens/Settings/Settings.tsx:253
 #: src/screens/Settings/Settings.tsx:256
 msgid "About"
@@ -1398,6 +1398,10 @@ msgstr "Alkalmazásjelszók"
 msgid "App Passwords"
 msgstr "Alkalmazásjelszók"
 
+#: src/screens/Settings/AppearanceSettings.tsx:94
+msgid "App theme"
+msgstr ""
+
 #: src/components/moderation/LabelsOnMeDialog.tsx:155
 #: src/components/moderation/LabelsOnMeDialog.tsx:158
 msgid "Appeal"
@@ -1441,7 +1445,7 @@ msgid "Appeal this decision"
 msgstr "Döntés fellebbezése"
 
 #: src/Navigation.tsx:413
-#: src/screens/Settings/AppearanceSettings.tsx:73
+#: src/screens/Settings/AppearanceSettings.tsx:84
 #: src/screens/Settings/Settings.tsx:225
 #: src/screens/Settings/Settings.tsx:228
 msgid "Appearance"
@@ -1485,7 +1489,7 @@ msgid "Are you sure you want to delete this starter pack?"
 msgstr "Biztosan törölni akarod ezt a kezdőcsomagot?"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:99
-#: src/screens/Profile/Header/EditProfileDialog.tsx:82
+#: src/screens/Profile/Header/EditProfileDialog.tsx:78
 msgid "Are you sure you want to discard your changes?"
 msgstr "Biztosan el akarod vetni a változtatásokat?"
 
@@ -1960,8 +1964,8 @@ msgstr "Kamera"
 #: src/features/liveNow/components/GoLiveDialog.tsx:275
 #: src/lib/media/picker.tsx:38
 #: src/screens/Deactivated.tsx:150
-#: src/screens/Profile/Header/EditProfileDialog.tsx:234
-#: src/screens/Profile/Header/EditProfileDialog.tsx:242
+#: src/screens/Profile/Header/EditProfileDialog.tsx:230
+#: src/screens/Profile/Header/EditProfileDialog.tsx:238
 #: src/screens/Search/Shell.tsx:396
 #: src/screens/Settings/AppIconSettings/index.tsx:42
 #: src/screens/Settings/AppIconSettings/index.tsx:228
@@ -2222,8 +2226,8 @@ msgstr "Összes adat törlése"
 msgid "Clear all storage data (restart after this)"
 msgstr "Összes adat törlése (A program újra fog indulni)"
 
-#: src/screens/Settings/AboutSettings.tsx:129
-#: src/screens/Settings/AboutSettings.tsx:133
+#: src/screens/Settings/AboutSettings.tsx:138
+#: src/screens/Settings/AboutSettings.tsx:142
 msgid "Clear image cache"
 msgstr "Képgyorsítótár ürítése"
 
@@ -2408,7 +2412,7 @@ msgid "Collapses list of users for a given notification"
 msgstr "Egy értesítés felhasználólistájának összecsukása"
 
 #: src/components/dialogs/Embed.tsx:155
-#: src/screens/Settings/AppearanceSettings.tsx:81
+#: src/screens/Settings/AppearanceSettings.tsx:104
 msgid "Color mode"
 msgstr "Színmód"
 
@@ -2634,7 +2638,7 @@ msgctxt "toast"
 msgid "Conversation deleted"
 msgstr "Beszélgetés törölve"
 
-#: src/screens/Settings/AboutSettings.tsx:164
+#: src/screens/Settings/AboutSettings.tsx:173
 msgid "Copied build version to clipboard"
 msgstr "Buildszám a vágólapra helyezve"
 
@@ -2652,7 +2656,7 @@ msgstr "Vágólapra helyezve"
 msgid "Copied!"
 msgstr "Vágólapra helyezve."
 
-#: src/screens/Settings/AboutSettings.tsx:140
+#: src/screens/Settings/AboutSettings.tsx:149
 msgid "Copies build version to clipboard"
 msgstr "Buildszám másolása a vágólapra"
 
@@ -2969,8 +2973,8 @@ msgstr "Káros szer- vagy droghasználat"
 
 #: src/components/dialogs/Embed.tsx:169
 #: src/components/dialogs/Embed.tsx:171
-#: src/screens/Settings/AppearanceSettings.tsx:93
-#: src/screens/Settings/AppearanceSettings.tsx:114
+#: src/screens/Settings/AppearanceSettings.tsx:116
+#: src/screens/Settings/AppearanceSettings.tsx:137
 msgid "Dark"
 msgstr "Lekapcsolt"
 
@@ -2979,7 +2983,7 @@ msgctxt "Name of app icon variant"
 msgid "Dark"
 msgstr "Lekapcsolt"
 
-#: src/screens/Settings/AppearanceSettings.tsx:106
+#: src/screens/Settings/AppearanceSettings.tsx:129
 msgid "Dark theme"
 msgstr "Sötét téma"
 
@@ -3005,7 +3009,7 @@ msgstr "Hibakeresési panel"
 msgid "Deepfake adult content"
 msgstr "Hamisított felnőtt tartalom („deepfake”)"
 
-#: src/screens/Settings/AppearanceSettings.tsx:156
+#: src/screens/Settings/AppearanceSettings.tsx:179
 msgid "Default"
 msgstr "Alapértelmezett"
 
@@ -3131,8 +3135,8 @@ msgid "Deleted list"
 msgstr "Törölt lista"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:453
-#: src/screens/Profile/Header/EditProfileDialog.tsx:410
-#: src/screens/Profile/Header/EditProfileDialog.tsx:417
+#: src/screens/Profile/Header/EditProfileDialog.tsx:406
+#: src/screens/Profile/Header/EditProfileDialog.tsx:413
 msgid "Description"
 msgstr "Leírás"
 
@@ -3150,12 +3154,12 @@ msgstr "Idézet leválasztása"
 msgid "Detach quote post?"
 msgstr "Idézet leválasztása"
 
-#: src/screens/Settings/AboutSettings.tsx:153
+#: src/screens/Settings/AboutSettings.tsx:162
 msgctxt "toast"
 msgid "Developer mode disabled"
 msgstr "Kikapcsoltad a fejlesztői módot"
 
-#: src/screens/Settings/AboutSettings.tsx:147
+#: src/screens/Settings/AboutSettings.tsx:156
 msgctxt "toast"
 msgid "Developer mode enabled"
 msgstr "Bekapcsoltad a fejlesztői módot"
@@ -3173,7 +3177,7 @@ msgstr "Az eszköz nem tudta lefordítani a szöveget :("
 msgid "Dialog: adjust who can interact with this post"
 msgstr "Párbeszédablak: A bejegyzés kapcsolatbalépési jogosultságainak testreszabása"
 
-#: src/screens/Settings/AppearanceSettings.tsx:110
+#: src/screens/Settings/AppearanceSettings.tsx:133
 msgid "Dim"
 msgstr "Félhomályos"
 
@@ -3240,7 +3244,7 @@ msgid "Disabled"
 msgstr "Letiltva"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:101
-#: src/screens/Profile/Header/EditProfileDialog.tsx:84
+#: src/screens/Profile/Header/EditProfileDialog.tsx:80
 #: src/view/com/composer/Composer.tsx:1217
 #: src/view/com/composer/Composer.tsx:1265
 #: src/view/com/composer/Composer.tsx:1465
@@ -3250,7 +3254,7 @@ msgid "Discard"
 msgstr "Elvetés"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:98
-#: src/screens/Profile/Header/EditProfileDialog.tsx:81
+#: src/screens/Profile/Header/EditProfileDialog.tsx:77
 msgid "Discard changes?"
 msgstr "Változtatások elvetése"
 
@@ -3326,8 +3330,8 @@ msgstr "Javaslat mellőzése"
 msgid "Display larger alt text badges"
 msgstr "A helyettesítő szövegek jelvényeinek megnagyobbítása"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:331
-#: src/screens/Profile/Header/EditProfileDialog.tsx:337
+#: src/screens/Profile/Header/EditProfileDialog.tsx:327
+#: src/screens/Profile/Header/EditProfileDialog.tsx:333
 msgid "Display name"
 msgstr "Megjelenítendő név"
 
@@ -3469,7 +3473,7 @@ msgstr "Időtartam:"
 msgid "e.g. alice"
 msgstr "pl.: janos"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:338
+#: src/screens/Profile/Header/EditProfileDialog.tsx:334
 msgid "e.g. Alice Lastname"
 msgstr "pl.: Minta Janos"
 
@@ -3485,7 +3489,7 @@ msgstr "Pl.: művészi meztelen képek."
 msgid "e.g. Great Posters"
 msgstr "pl.: Nagyszerű emberek"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:447
+#: src/screens/Profile/Header/EditProfileDialog.tsx:443
 msgid "e.g. https://bsky.app"
 msgstr ""
 
@@ -3497,7 +3501,7 @@ msgstr "pl.: Kéretlen tartalmat gyártók"
 msgid "e.g. The posters who never miss."
 msgstr "pl.: Akik sosem tévednek."
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:388
+#: src/screens/Profile/Header/EditProfileDialog.tsx:384
 msgid "e.g. They/Them"
 msgstr ""
 
@@ -3581,8 +3585,8 @@ msgstr "Személyek szerkesztése"
 msgid "Edit post interaction settings"
 msgstr "A bejegyzés kapcsolatbalépési beállításainak szerkesztése"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:286
-#: src/screens/Profile/Header/EditProfileDialog.tsx:292
+#: src/screens/Profile/Header/EditProfileDialog.tsx:282
+#: src/screens/Profile/Header/EditProfileDialog.tsx:288
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:296
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:345
 msgid "Edit profile"
@@ -4603,11 +4607,11 @@ msgstr "Követ Téged"
 msgid "Follows You"
 msgstr "Követ Téged"
 
-#: src/screens/Settings/AppearanceSettings.tsx:128
+#: src/screens/Settings/AppearanceSettings.tsx:151
 msgid "Font"
 msgstr "Betűtípus"
 
-#: src/screens/Settings/AppearanceSettings.tsx:148
+#: src/screens/Settings/AppearanceSettings.tsx:171
 msgid "Font size"
 msgstr "Betűméret"
 
@@ -4627,7 +4631,7 @@ msgstr "Biztonsági okokból egy ellenőrzőkódot fogunk küldeni a(z) <0>{curr
 msgid "For security reasons, you won't be able to view this again. If you lose this app password, you'll need to generate a new one."
 msgstr "Biztonsági okokból ezt többé nem tekintheted meg. Ha elveszted ezt a jelszót, akkor újat kell létrehoznod."
 
-#: src/screens/Settings/AppearanceSettings.tsx:130
+#: src/screens/Settings/AppearanceSettings.tsx:153
 msgid "For the best experience, we recommend using the theme font."
 msgstr "A legjobb élmény érdekében a témabetűtípus használatát javasoljuk."
 
@@ -4981,8 +4985,8 @@ msgstr "Tévesen állapítottuk meg a tartózkodási helyedet? <0>Koppints ide a
 msgid "Held by Bluesky for 7 days to prevent abuse, then deleted"
 msgstr "A visszaélések elkerülése érdekében a Bluesky 7 napig megtartja, majd törli ezeket az adatokat"
 
-#: src/screens/Settings/AboutSettings.tsx:89
-#: src/screens/Settings/AboutSettings.tsx:92
+#: src/screens/Settings/AboutSettings.tsx:90
+#: src/screens/Settings/AboutSettings.tsx:93
 #: src/view/shell/desktop/RightNav.tsx:131
 #: src/view/shell/desktop/RightNav.tsx:134
 #: src/view/shell/Drawer.tsx:371
@@ -5300,13 +5304,13 @@ msgstr "Kép"
 msgid "Image {0} of {1}"
 msgstr "{1}/{0}. kép"
 
-#: src/screens/Settings/AboutSettings.tsx:69
+#: src/screens/Settings/AboutSettings.tsx:70
 msgid "Image cache cleared"
 msgstr "Képgyorsítótár kiürítve"
 
 #. Android-only toast message which includes amount of space freed using localized number formatting
 #. placeholder {0}: i18n.number( Math.abs(sizeDiffBytes / 1024 / 1024), { notation: 'compact', style: 'unit', unit: 'megabyte', }, )
-#: src/screens/Settings/AboutSettings.tsx:55
+#: src/screens/Settings/AboutSettings.tsx:56
 msgid "Image cache cleared, freed {0}"
 msgstr "Képgyorsítótár kiürítve. {0} hely felszabadult."
 
@@ -5601,7 +5605,7 @@ msgstr "Nyelvi beállítások"
 msgid "Languages"
 msgstr "Nyelvek"
 
-#: src/screens/Settings/AppearanceSettings.tsx:160
+#: src/screens/Settings/AppearanceSettings.tsx:183
 msgid "Larger"
 msgstr "Nagyobb"
 
@@ -5624,7 +5628,7 @@ msgstr "Legújabb"
 #: src/components/verification/VerificationsDialog.tsx:168
 #: src/components/verification/VerifierDialog.tsx:135
 #: src/screens/Moderation/VerificationSettings.tsx:50
-#: src/screens/Profile/Header/EditProfileDialog.tsx:367
+#: src/screens/Profile/Header/EditProfileDialog.tsx:363
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:215
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:279
 msgctxt "english-only-resource"
@@ -5745,7 +5749,7 @@ msgstr "Gyerünk!"
 
 #: src/components/dialogs/Embed.tsx:164
 #: src/components/dialogs/Embed.tsx:166
-#: src/screens/Settings/AppearanceSettings.tsx:89
+#: src/screens/Settings/AppearanceSettings.tsx:112
 msgid "Light"
 msgstr "Világos"
 
@@ -7820,8 +7824,8 @@ msgstr "Adatvédelmi- és biztonsági beállítások"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:37
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:104
 #: src/Navigation.tsx:337
-#: src/screens/Settings/AboutSettings.tsx:105
-#: src/screens/Settings/AboutSettings.tsx:108
+#: src/screens/Settings/AboutSettings.tsx:114
+#: src/screens/Settings/AboutSettings.tsx:117
 #: src/view/screens/PrivacyPolicy.tsx:36
 #: src/view/shell/Drawer.tsx:694
 #: src/view/shell/Drawer.tsx:695
@@ -7864,7 +7868,7 @@ msgstr "Borítókép helyőrzője"
 msgid "Profile not found"
 msgstr "A fiók nem található"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:199
+#: src/screens/Profile/Header/EditProfileDialog.tsx:195
 msgctxt "toast"
 msgid "Profile updated"
 msgstr "Profil frissítve"
@@ -7873,8 +7877,8 @@ msgstr "Profil frissítve"
 msgid "Promoting or selling prohibited items or services"
 msgstr "Tiltott eszközök vagy szolgáltatások árusítása"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:381
-#: src/screens/Profile/Header/EditProfileDialog.tsx:387
+#: src/screens/Profile/Header/EditProfileDialog.tsx:377
+#: src/screens/Profile/Header/EditProfileDialog.tsx:383
 msgid "Pronouns"
 msgstr ""
 
@@ -8668,8 +8672,8 @@ msgstr "Vissza az előző lépéshez"
 #: src/components/StarterPack/QrCodeDialog.tsx:207
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Profile/Header/EditProfileDialog.tsx:252
-#: src/screens/Profile/Header/EditProfileDialog.tsx:267
+#: src/screens/Profile/Header/EditProfileDialog.tsx:248
+#: src/screens/Profile/Header/EditProfileDialog.tsx:263
 #: src/screens/SavedFeeds.tsx:132
 #: src/screens/SavedFeeds.tsx:330
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:269
@@ -9609,7 +9613,7 @@ msgstr "Bevezető kihagyása és fiók használatának megkezdése"
 msgid "Skip to next step"
 msgstr "Lépés kihagyása"
 
-#: src/screens/Settings/AppearanceSettings.tsx:152
+#: src/screens/Settings/AppearanceSettings.tsx:175
 msgid "Smaller"
 msgstr "Kisebb"
 
@@ -9697,8 +9701,8 @@ msgstr "Valami nem stimmel? Vedd fel velünk a kapcsolatot!"
 msgid "Sorry, we're unable to load account suggestions at this time."
 msgstr "Sajnáljuk, de a javasolt fiókok betöltése meghiúsult."
 
-#: src/App.native.tsx:142
-#: src/App.web.tsx:118
+#: src/App.native.tsx:144
+#: src/App.web.tsx:120
 msgid "Sorry! Your session expired. Please sign in again."
 msgstr "Sajnáljuk, de lejárt a munkameneted. Jelentkezz be újra."
 
@@ -9713,6 +9717,11 @@ msgstr "Rendezés módja:"
 #: src/screens/Settings/ThreadPreferences.tsx:49
 msgid "Sort replies to the same post by:"
 msgstr "Egy bejegyzés alatti válaszok rendezése:"
+
+#: src/screens/Settings/AboutSettings.tsx:98
+#: src/screens/Settings/AboutSettings.tsx:101
+msgid "Source Code"
+msgstr ""
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:183
 #: src/components/moderation/ModerationDetailsDialog.tsx:189
@@ -9799,8 +9808,8 @@ msgstr "Egy kezdőcsomag segítségével megoszthatod a kedvenc hírfolyamaidat 
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr "Egy kezdőcsomag segítségével megoszthatod a kedvenc hírfolyamaidat és személyeidet."
 
-#: src/screens/Settings/AboutSettings.tsx:113
-#: src/screens/Settings/AboutSettings.tsx:116
+#: src/screens/Settings/AboutSettings.tsx:122
+#: src/screens/Settings/AboutSettings.tsx:125
 msgid "Status Page"
 msgstr "Állapot"
 
@@ -9949,14 +9958,14 @@ msgstr "Váltás rá: {0}"
 
 #: src/components/dialogs/Embed.tsx:159
 #: src/components/dialogs/Embed.tsx:161
-#: src/screens/Settings/AppearanceSettings.tsx:85
-#: src/screens/Settings/AppearanceSettings.tsx:135
+#: src/screens/Settings/AppearanceSettings.tsx:108
+#: src/screens/Settings/AppearanceSettings.tsx:158
 msgid "System"
 msgstr "Rendszer"
 
 #: src/screens/Log.tsx:57
-#: src/screens/Settings/AboutSettings.tsx:120
-#: src/screens/Settings/AboutSettings.tsx:123
+#: src/screens/Settings/AboutSettings.tsx:129
+#: src/screens/Settings/AboutSettings.tsx:132
 #: src/screens/Settings/Settings.tsx:447
 msgid "System log"
 msgstr "Rendszernapló"
@@ -10042,7 +10051,7 @@ msgstr "Technológia"
 msgid "Tell a joke!"
 msgstr "Mondj el egy viccet!"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:418
+#: src/screens/Profile/Header/EditProfileDialog.tsx:414
 msgid "Tell us a bit about yourself"
 msgstr "Mesélj magadról!"
 
@@ -10059,8 +10068,8 @@ msgstr "Feltételek"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:31
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:99
 #: src/Navigation.tsx:342
-#: src/screens/Settings/AboutSettings.tsx:97
-#: src/screens/Settings/AboutSettings.tsx:100
+#: src/screens/Settings/AboutSettings.tsx:106
+#: src/screens/Settings/AboutSettings.tsx:109
 #: src/view/screens/TermsOfService.tsx:35
 #: src/view/shell/Drawer.tsx:687
 #: src/view/shell/Drawer.tsx:689
@@ -10227,7 +10236,7 @@ msgstr "A megadott ellenőrzőkód érvénytelen. Nézd meg, hogy helyes kódot 
 msgid "The verification provider was unable to send a code to your phone number. Please check your phone number and try again."
 msgstr "A hitelesítési szolgáltató képtelen volt kódot küldeni a telefonszámodra. Ellenőrizd a megadott telefonszámot, majd próbáld újra."
 
-#: src/screens/Settings/AppearanceSettings.tsx:139
+#: src/screens/Settings/AppearanceSettings.tsx:162
 msgid "Theme"
 msgstr "Téma"
 
@@ -11393,8 +11402,8 @@ msgid "Verifying..."
 msgstr "Hitelesítés folyamatban…"
 
 #. placeholder {0}: env.APP_VERSION
-#: src/screens/Settings/AboutSettings.tsx:139
-#: src/screens/Settings/AboutSettings.tsx:168
+#: src/screens/Settings/AboutSettings.tsx:148
+#: src/screens/Settings/AboutSettings.tsx:177
 msgid "Version {0}"
 msgstr "Verziószám: {0}"
 
@@ -11833,8 +11842,8 @@ msgstr "Frissítettük a felhasználási feltételeket, adatvédelmi irányelvek
 msgid "We've confirmed your age assurance status. You can now close this dialog."
 msgstr "Az ellenőrzés sikeresen befejeződött. Bezárhatod ezt a párbeszédablakot."
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:440
-#: src/screens/Profile/Header/EditProfileDialog.tsx:446
+#: src/screens/Profile/Header/EditProfileDialog.tsx:436
+#: src/screens/Profile/Header/EditProfileDialog.tsx:442
 msgid "Website"
 msgstr ""
 
@@ -12052,7 +12061,7 @@ msgstr "Elkezdődött az élő adás!"
 msgid "You are verified"
 msgstr "Hitelesítve vagy"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:362
+#: src/screens/Profile/Header/EditProfileDialog.tsx:358
 msgid "You are verified. You will lose your verification status if you change your display name. <0>Learn more.</0>"
 msgstr "Jelenleg hitelesítve vagy. Ha megváltoztatod a megjelenítendő nevedet, azzal elveszik a hitelesítésed. <0>További információ</0>."
 

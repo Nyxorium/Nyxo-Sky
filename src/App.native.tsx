@@ -61,6 +61,7 @@ import {TestCtrls} from '#/view/com/testing/TestCtrls'
 import {Shell} from '#/view/shell'
 import {ThemeProvider as Alf} from '#/alf'
 import {useColorModeTheme} from '#/alf/util/useColorModeTheme'
+import {useThemePrefs} from '#/state/shell'
 import {Provider as ContextMenuProvider} from '#/components/ContextMenu'
 import {useStarterPackEntry} from '#/components/hooks/useStarterPackEntry'
 import {Provider as IntentDialogProvider} from '#/components/intents/IntentDialogs'
@@ -115,6 +116,7 @@ function InnerApp() {
   const {currentAccount} = useSession()
   const {resumeSession} = useSessionApi()
   const theme = useColorModeTheme()
+  const {themePreset} = useThemePrefs()
   const {_} = useLingui()
   const hasCheckedReferrer = useStarterPackEntry()
 
@@ -146,7 +148,7 @@ function InnerApp() {
   }, [_])
 
   return (
-    <Alf theme={theme}>
+    <Alf theme={theme} themePreset={themePreset}>
       <ThemeProvider theme={theme}>
         <ContextMenuProvider>
           <Splash isReady={isReady && hasCheckedReferrer}>
