@@ -5,7 +5,12 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Plural, Trans} from '@lingui/react/macro'
 
-import {urls} from '#/lib/constants'
+import {
+  MAX_DESCRIPTION,
+  MAX_DISPLAY_NAME,
+  MAX_PRONOUNS,
+  urls,
+} from '#/lib/constants'
 import {cleanError} from '#/lib/strings/errors'
 import {isOverMaxGraphemeCount} from '#/lib/strings/helpers'
 import {logger} from '#/logger'
@@ -25,7 +30,6 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useSimpleVerificationState} from '#/components/verification'
-import {MAX_DISPLAY_NAME, MAX_DESCRIPTION, MAX_PRONOUNS} from '#/lib/constants'
 
 export function EditProfileDialog({
   profile,
@@ -292,7 +296,7 @@ function DialogInner({
         </Dialog.Header>
       }>
       {/* add a.overflow_hidden here if avatar bleeds - Sunstar */}
-      <View style={[a.relative]}> 
+      <View style={[a.relative]}>
         <UserBanner banner={userBanner} onSelectNewBanner={onSelectNewBanner} />
         <View
           style={[
@@ -448,7 +452,6 @@ function DialogInner({
             />
           </TextField.Root>
         </View>
-
       </View>
     </Dialog.ScrollableInner>
   )

@@ -176,8 +176,8 @@ export function useProfileUpdateMutation() {
         if (typeof updates === 'function') {
           next = updates(next)
         } else {
-          next.displayName = updates.displayName
-          next.description = updates.description
+          next.displayName = updates.displayName || undefined
+          next.description = updates.description || undefined
           next.pronouns = updates.pronouns || undefined
           next.website = updates.website || undefined
           if ('pinnedPost' in updates) {
