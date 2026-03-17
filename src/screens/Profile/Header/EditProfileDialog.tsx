@@ -280,7 +280,9 @@ function DialogInner({
   return (
     <Dialog.ScrollableInner
       label={_(msg`Edit profile`)}
-      style={[a.overflow_hidden]}
+      // style={[a.overflow_hidden]}
+      // Note: do NOT add overflow_hidden here - it prevents the ScrollView
+      // from scrolling when the keyboard is open - Sunstar
       contentContainerStyle={[a.px_0, a.pt_0]}
       header={
         <Dialog.Header renderLeft={cancelButton} renderRight={saveButton}>
@@ -289,7 +291,8 @@ function DialogInner({
           </Dialog.HeaderText>
         </Dialog.Header>
       }>
-      <View style={[a.relative]}>
+      {/* add a.overflow_hidden here if avatar bleeds - Sunstar */}
+      <View style={[a.relative]}> 
         <UserBanner banner={userBanner} onSelectNewBanner={onSelectNewBanner} />
         <View
           style={[
