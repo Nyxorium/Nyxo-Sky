@@ -179,6 +179,7 @@ function Footer() {
         to="https://bsky.social/about/blog">
         <Trans>Blog</Trans>
       </InlineLinkText>
+      {/*
       <InlineLinkText
         label={_(msg`See jobs at Bluesky`)}
         to="https://bsky.social/about/join">
@@ -186,6 +187,7 @@ function Footer() {
           Jobs
         </Trans>
       </InlineLinkText>
+      */}
 
       <View style={a.flex_1} />
 
