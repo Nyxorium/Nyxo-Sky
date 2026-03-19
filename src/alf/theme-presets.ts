@@ -1021,6 +1021,84 @@ const FOREST_SUBDUED_PALETTE: Palette = {
 }
 
 // ---------------------------------------------------------------------------
+// DARK CARNIVAL
+// True black base with red-warm surfaces, crimson accent, gold like button.
+// ---------------------------------------------------------------------------
+const DARKCARNIVAL_DEFAULT_PALETTE: Palette = {
+  white: 'hsl(0, 0%, 100%)',
+  black: 'hsl(0, 20%, 4%)',
+  pink:  PINK,
+  yellow: YELLOW,
+  like:  '#CC8800',  // ✨ gold
+
+  contrast_0:    'hsl(0, 0%, 100%)',
+  contrast_25:   'hsl(0, 10%, 95%)',
+  contrast_50:   'hsl(0, 10%, 88%)',
+  contrast_100:  'hsl(0, 10%, 78%)',
+  contrast_200:  'hsl(0, 10%, 66%)',
+  contrast_300:  'hsl(0, 10%, 54%)',
+  contrast_400:  'hsl(0, 10%, 43%)',
+  contrast_500:  'hsl(0, 12%, 33%)',
+  contrast_600:  'hsl(0, 14%, 25%)',
+  contrast_700:  'hsl(0, 16%, 18%)',
+  contrast_800:  'hsl(0, 18%, 13%)',
+  contrast_900:  'hsl(0, 20%, 9%)',
+  contrast_950:  'hsl(0, 20%, 7%)',
+  contrast_975:  'hsl(0, 20%, 5%)',
+  contrast_1000: 'hsl(0, 20%, 4%)',
+
+  primary_25:  'hsl(0, 80%, 98%)',
+  primary_50:  'hsl(0, 80%, 95%)',
+  primary_100: 'hsl(0, 80%, 88%)',
+  primary_200: 'hsl(0, 78%, 78%)',
+  primary_300: 'hsl(0, 76%, 66%)',
+  primary_400: 'hsl(0, 74%, 55%)',
+  primary_500: 'hsl(0, 72%, 44%)',
+  primary_600: 'hsl(0, 72%, 36%)',
+  primary_700: 'hsl(0, 70%, 28%)',
+  primary_800: 'hsl(0, 68%, 20%)',
+  primary_900: 'hsl(0, 66%, 14%)',
+  primary_950: 'hsl(0, 64%, 9%)',
+  primary_975: 'hsl(0, 62%, 6%)',
+
+  positive_25:  '#ECFEF5',
+  positive_50:  '#D3FDE8',
+  positive_100: '#A3FACF',
+  positive_200: '#6AF6B0',
+  positive_300: '#2CF28F',
+  positive_400: '#0DD370',
+  positive_500: '#09B35E',
+  positive_600: '#04904A',
+  positive_700: '#036D38',
+  positive_800: '#04522B',
+  positive_900: '#033F21',
+  positive_950: '#032A17',
+  positive_975: '#021D0F',
+
+  negative_25:  '#FFF5F7',
+  negative_50:  '#FEE7EC',
+  negative_100: '#FDD3DD',
+  negative_200: '#FBBBCA',
+  negative_300: '#F891A9',
+  negative_400: '#F65A7F',
+  negative_500: '#E91646',
+  negative_600: '#CA123D',
+  negative_700: '#A71134',
+  negative_800: '#7F0B26',
+  negative_900: '#5F071C',
+  negative_950: '#430413',
+  negative_975: '#30030D',
+}
+
+const DARKCARNIVAL_SUBDUED_PALETTE: Palette = {
+  ...DARKCARNIVAL_DEFAULT_PALETTE,
+  black: 'hsl(0, 18%, 8%)',
+  contrast_950:  'hsl(0, 18%, 11%)',
+  contrast_975:  'hsl(0, 18%, 9%)',
+  contrast_1000: 'hsl(0, 18%, 8%)',
+}
+
+// ---------------------------------------------------------------------------
 // Preset registry
 // ---------------------------------------------------------------------------
 export const THEME_PRESETS = {
@@ -1092,6 +1170,13 @@ export const THEME_PRESETS = {
     themes: createThemes({
       defaultPalette: EVERGARDEN_DEFAULT_PALETTE,
       subduedPalette: EVERGARDEN_SUBDUED_PALETTE,
+    }),
+  },
+  darkCarnival: {
+    label: 'Dark Carnival',
+    themes: createThemes({
+      defaultPalette: DARKCARNIVAL_DEFAULT_PALETTE,
+      subduedPalette: DARKCARNIVAL_SUBDUED_PALETTE,
     }),
   },
 } as const satisfies Record<
