@@ -4,7 +4,7 @@ import {useColorSchemeStyle} from '#/lib/hooks/useColorSchemeStyle'
 import {useIsKeyboardVisible} from '#/lib/hooks/useIsKeyboardVisible'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
-import {atoms as a} from '#/alf'
+import {atoms as a, useTheme} from '#/alf'
 import {IS_WEB} from '#/env'
 import {Text} from '../text/Text'
 
@@ -22,6 +22,7 @@ export const LoggedOutLayout = ({
 }>) => {
   const {isMobile, isTabletOrMobile} = useWebMediaQueries()
   const pal = usePalette('default')
+  const t = useTheme()
   const sideBg = useColorSchemeStyle(pal.viewLight, pal.view)
   const contentBg = useColorSchemeStyle(pal.view, {
     backgroundColor: pal.colors.background,
@@ -35,7 +36,7 @@ export const LoggedOutLayout = ({
     if (scrollable) {
       return (
         <ScrollView
-          style={a.flex_1}
+          style={[a.flex_1, t.atoms.bg]}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="none"
           contentContainerStyle={[
@@ -45,15 +46,15 @@ export const LoggedOutLayout = ({
         </ScrollView>
       )
     } else {
-      return <View style={a.pt_lg}>{children}</View>
+      return <View style={[a.pt_lg, t.atoms.bg]}>{children}</View>
     }
   }
   return (
     <View style={styles.container}>
-      <View style={[styles.side, sideBg]}>
+      <View style={[styles.side, t.atoms.bg_contrast_25]}>
         <Text
           style={[
-            pal.textLight,
+            t.atoms.text_contrast_medium,
             styles.leadinText,
             isTabletOrMobile && styles.leadinTextSmall,
           ]}>
@@ -61,7 +62,7 @@ export const LoggedOutLayout = ({
         </Text>
         <Text
           style={[
-            pal.link,
+            {color: t.palette.primary_500},
             styles.titleText,
             isTabletOrMobile && styles.titleTextSmall,
           ]}>
@@ -72,7 +73,7 @@ export const LoggedOutLayout = ({
         </Text>
       </View>
       {scrollable ? (
-        <View style={[styles.scrollableContent, contentBg]}>
+        <View style={[styles.scrollableContent, t.atoms.bg, {borderLeftWidth: 1, borderColor: t.palette.contrast_200}]}>
           <ScrollView
             style={a.flex_1}
             contentContainerStyle={styles.scrollViewContentContainer}
@@ -84,7 +85,7 @@ export const LoggedOutLayout = ({
           </ScrollView>
         </View>
       ) : (
-        <View style={[styles.content, contentBg]}>
+        <View style={[styles.content, t.atoms.bg, {borderLeftWidth: 1, borderColor: t.palette.contrast_200}]}>
           <View style={styles.contentWrapper}>{children}</View>
         </View>
       )}

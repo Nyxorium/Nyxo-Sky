@@ -8,6 +8,7 @@ import {useModalControls, useModals} from '#/state/modals'
 import {FullWindowOverlay} from '#/components/FullWindowOverlay'
 import {createCustomBackdrop} from '../util/BottomSheetCustomBackdrop'
 import * as UserAddRemoveListsModal from './UserAddRemoveLists'
+import {useTheme} from '#/alf'
 
 const DEFAULT_SNAPPOINTS = ['90%']
 const HANDLE_HEIGHT = 24
@@ -17,6 +18,7 @@ export function ModalsContainer() {
   const {closeModal} = useModalControls()
   const bottomSheetRef = useRef<BottomSheet>(null)
   const pal = usePalette('default')
+  const t = useTheme()
   const activeModal = activeModals[activeModals.length - 1]
 
   const onBottomSheetChange = async (snapPoint: number) => {
@@ -49,7 +51,7 @@ export function ModalsContainer() {
 
   if (snapPoints[0] === 'fullscreen') {
     return (
-      <SafeAreaView style={[styles.fullscreenContainer, pal.view]}>
+      <SafeAreaView style={[styles.fullscreenContainer, t.atoms.bg]}>
         {element}
       </SafeAreaView>
     )
@@ -70,9 +72,9 @@ export function ModalsContainer() {
         backdropComponent={
           isModalActive ? createCustomBackdrop(onClose) : undefined
         }
-        handleIndicatorStyle={{backgroundColor: pal.text.color}}
-        handleStyle={[styles.handle, pal.view]}
-        backgroundStyle={pal.view}
+        handleIndicatorStyle={{backgroundColor: String(t.atoms.text.color)}}
+        handleStyle={[styles.handle, t.atoms.bg]}
+        backgroundStyle={t.atoms.bg}
         onChange={onBottomSheetChange}>
         {element}
       </BottomSheet>

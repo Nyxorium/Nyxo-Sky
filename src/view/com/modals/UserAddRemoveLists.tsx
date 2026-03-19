@@ -26,7 +26,7 @@ import {
 import {useSession} from '#/state/session'
 import {IS_ANDROID, IS_WEB, IS_WEB_MOBILE} from '#/env'
 import {MyLists} from '../lists/MyLists'
-import {Button} from '../util/forms/Button'
+import {Button, ButtonText} from '#/components/Button'
 import {Text} from '../util/text/Text'
 import * as Toast from '../util/Toast'
 import {UserAvatar} from '../util/UserAvatar'
@@ -108,14 +108,15 @@ export function Component({
       <View style={[styles.btns, pal.border]}>
         <Button
           testID="doneBtn"
-          type="default"
           onPress={onPressDone}
-          style={styles.footerBtn}
           accessibilityLabel={_(msg({message: `Done`, context: 'action'}))}
           accessibilityHint=""
           onAccessibilityEscape={onPressDone}
           label={_(msg({message: `Done`, context: 'action'}))}
-        />
+          size="small"
+          color="secondary">
+          <ButtonText><Trans>Done</Trans></ButtonText>
+        </Button>
       </View>
     </View>
   )
@@ -232,10 +233,12 @@ function ListItem({
         ) : (
           <Button
             testID={`user-${handle}-addBtn`}
-            type="default"
             label={membership === false ? _(msg`Add`) : _(msg`Remove`)}
             onPress={onToggleMembership}
-          />
+            size="small"
+            color={membership === false ? 'primary' : 'secondary'}>
+            <ButtonText>{membership === false ? <Trans>Add</Trans> : <Trans>Remove</Trans>}</ButtonText>
+          </Button>
         )}
       </View>
     </View>

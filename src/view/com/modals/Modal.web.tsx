@@ -7,6 +7,7 @@ import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {type Modal as ModalIface} from '#/state/modals'
 import {useModalControls, useModals} from '#/state/modals'
 import * as UserAddRemoveLists from './UserAddRemoveLists'
+import {useTheme} from '#/alf'
 
 export function ModalsContainer() {
   const {isModalActive, activeModals} = useModals()
@@ -29,6 +30,7 @@ function Modal({modal}: {modal: ModalIface}) {
   const {isModalActive} = useModals()
   const {closeModal} = useModalControls()
   const pal = usePalette('default')
+  const t = useTheme()
   const {isMobile} = useWebMediaQueries()
 
   if (!isModalActive) {
@@ -63,8 +65,8 @@ function Modal({modal}: {modal: ModalIface}) {
             style={[
               styles.container,
               isMobile && styles.containerMobile,
-              pal.view,
-              pal.border,
+              t.atoms.bg,
+              {borderColor: t.palette.contrast_200},
             ]}>
             {element}
           </View>
