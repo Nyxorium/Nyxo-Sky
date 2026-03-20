@@ -2,7 +2,6 @@ import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated'
 import {RemoveScrollBar} from 'react-remove-scroll-bar'
 
-import {usePalette} from '#/lib/hooks/usePalette'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {type Modal as ModalIface} from '#/state/modals'
 import {useModalControls, useModals} from '#/state/modals'
@@ -29,7 +28,6 @@ export function ModalsContainer() {
 function Modal({modal}: {modal: ModalIface}) {
   const {isModalActive} = useModals()
   const {closeModal} = useModalControls()
-  const pal = usePalette('default')
   const t = useTheme()
   const {isMobile} = useWebMediaQueries()
 

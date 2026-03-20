@@ -1,6 +1,5 @@
 import {ScrollView, StyleSheet, View} from 'react-native'
 
-import {useColorSchemeStyle} from '#/lib/hooks/useColorSchemeStyle'
 import {useIsKeyboardVisible} from '#/lib/hooks/useIsKeyboardVisible'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
@@ -23,12 +22,6 @@ export const LoggedOutLayout = ({
   const {isMobile, isTabletOrMobile} = useWebMediaQueries()
   const pal = usePalette('default')
   const t = useTheme()
-  const sideBg = useColorSchemeStyle(pal.viewLight, pal.view)
-  const contentBg = useColorSchemeStyle(pal.view, {
-    backgroundColor: pal.colors.background,
-    borderColor: pal.colors.border,
-    borderLeftWidth: 1,
-  })
 
   const [isKeyboardVisible] = useIsKeyboardVisible()
 
