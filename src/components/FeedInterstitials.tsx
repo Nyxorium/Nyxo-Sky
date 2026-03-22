@@ -216,13 +216,14 @@ export function SuggestedFollows({feed}: {feed: FeedDescriptor}) {
 }
 
 export function SuggestedFollowsProfile({did}: {did: string}) {
-  const {profiles, onDismiss, isLoading, error} =
+  const {profiles, recId, onDismiss, isLoading, error} =
     useSuggestedFollowsByActorWithDismiss({did})
 
   return (
     <ProfileGrid
       isSuggestionsLoading={isLoading}
       profiles={profiles}
+      recId={recId}
       error={error}
       viewContext="profile"
       onDismiss={onDismiss}
@@ -276,6 +277,7 @@ export function ProfileGrid({
   isSuggestionsLoading,
   error,
   profiles,
+  recId,
   totalProfileCount,
   viewContext = 'feed',
   onDismiss,
@@ -284,6 +286,7 @@ export function ProfileGrid({
 }: {
   isSuggestionsLoading: boolean
   profiles: {actor: bsky.profile.AnyProfileView; recId?: string}[]
+  recId?: string
   totalProfileCount?: number
   error: Error | null
   viewContext: 'profile' | 'profileHeader' | 'feed'
@@ -578,6 +581,7 @@ export function ProfileGrid({
               followDialogControl.open()
               ax.metric('suggestedUser:seeMore', {
                 logContext: isFeedContext ? 'Explore' : 'Profile',
+                recId,
               })
             }}>
             {({hovered}) => (

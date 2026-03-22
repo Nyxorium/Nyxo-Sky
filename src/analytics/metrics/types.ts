@@ -230,6 +230,9 @@ export type Events = {
 
   'composer:gif:open': {}
   'composer:gif:select': {}
+  'composer:image:edit': {
+    platform: Platform['OS']
+  }
   'composerPrompt:press': {}
   'composerPrompt:camera:press': {}
   'composerPrompt:gallery:press': {}
@@ -518,6 +521,7 @@ export type Events = {
       | 'InterstitialProfile'
       | 'Profile'
       | 'Onboarding'
+    recId?: number | string
   }
   'suggestedUser:dismiss': {
     logContext: 'InterstitialDiscover' | 'InterstitialProfile'
