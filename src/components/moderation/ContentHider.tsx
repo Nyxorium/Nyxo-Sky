@@ -101,7 +101,16 @@ function ContentHiderActive({
             (ADULT_SELF_LABEL_FAMILY.includes(b.label.val) &&
               ADULT_SELF_LABEL_FAMILY.includes(primary.label.val))),
       )
-    
+
+      if (primary.type === 'label' && primary.label.val === 'sexual-figurative') {
+        const alternative = blurs.find(
+          b => b.type === 'label' && b.label.val !== 'sexual-figurative',
+        )
+        if (alternative) {
+          return alternative
+        }
+      }
+
       if (userEquivalent) {
         return userEquivalent
       }
