@@ -34,6 +34,8 @@ import {useAnalytics} from '#/analytics'
 import {GCP_PROJECT_ID, IS_ANDROID} from '#/env'
 import * as bsky from '#/types/bsky'
 
+import {StepSelectProvider} from '#/screens/Signup/StepSelectProvider'
+
 export function Signup({onPressBack}: {onPressBack: () => void}) {
   const ax = useAnalytics()
   const {_} = useLingui()
@@ -176,18 +178,22 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                     !gtMobile && {paddingBottom: 100},
                   ]}>
                   <View style={[a.gap_sm, a.pb_3xl]}>
-                    <Text
-                      style={[a.font_semi_bold, t.atoms.text_contrast_medium]}>
-                      <Trans>
-                        Step {state.activeStep + 1} of{' '}
-                        {state.serviceDescription &&
-                        !state.serviceDescription.phoneVerificationRequired
-                          ? '2'
-                          : '3'}
-                      </Trans>
-                    </Text>
+
+                    {state.activeStep !== SignupStep.SELECT_PROVIDER && (
+                      <Text style={[a.font_semi_bold, t.atoms.text_contrast_medium]}>
+                        <Trans>
+                          Step {state.activeStep} of{' '}
+                          {state.serviceDescription &&
+                          !state.serviceDescription.phoneVerificationRequired
+                            ? '2'
+                            : '3'}
+                        </Trans>
+                      </Text>
+                    )}
                     <Text style={[a.text_3xl, a.font_semi_bold]}>
-                      {state.activeStep === SignupStep.INFO ? (
+                      {state.activeStep === SignupStep.SELECT_PROVIDER ? (
+                        <Trans>Select a provider</Trans>
+                      ) : state.activeStep === SignupStep.INFO ? (
                         <Trans>Your account</Trans>
                       ) : state.activeStep === SignupStep.HANDLE ? (
                         <Trans>Choose your username</Trans>
@@ -197,9 +203,11 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                     </Text>
                   </View>
 
-                  {state.activeStep === SignupStep.INFO ? (
+                  {state.activeStep === SignupStep.SELECT_PROVIDER ? (
+                    <StepSelectProvider onPressBack={onPressBack} />
+                  ) : state.activeStep === SignupStep.INFO ? (
                     <StepInfo
-                      onPressBack={onPressBack}
+                      onPressBack={() => dispatch({type: 'prev'})}
                       isLoadingStarterPack={
                         isFetchingStarterPack && !isErrorStarterPack
                       }

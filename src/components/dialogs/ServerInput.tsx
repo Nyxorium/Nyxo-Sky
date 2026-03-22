@@ -23,17 +23,27 @@ type SegmentedControlOptions = typeof BSKY_SERVICE | 'custom'
 export function ServerInputDialog({
   control,
   onSelect,
+  initialServiceUrl,
 }: {
   control: Dialog.DialogOuterProps['control']
   onSelect: (url: string) => void
+  initialServiceUrl?: string
 }) {
   const ax = useAnalytics()
   const formRef = useRef<DialogInnerRef>(null)
 
   // persist these options between dialog open/close
   const [fixedOption, setFixedOption] =
-    useState<SegmentedControlOptions>(BSKY_SERVICE)
-  const [previousCustomAddress, setPreviousCustomAddress] = useState('')
+    useState<SegmentedControlOptions>(
+      initialServiceUrl && initialServiceUrl !== BSKY_SERVICE
+        ? 'custom'
+        : BSKY_SERVICE,
+    )
+  const [previousCustomAddress, setPreviousCustomAddress] = useState(
+    initialServiceUrl && initialServiceUrl !== BSKY_SERVICE
+      ? initialServiceUrl
+      : '',
+  )
 
   const onClose = useCallback(() => {
     const result = formRef.current?.getFormState()

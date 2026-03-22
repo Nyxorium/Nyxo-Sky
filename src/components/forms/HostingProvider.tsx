@@ -39,6 +39,7 @@ export function HostingProvider({
       <ServerInputDialog
         control={serverInputControl}
         onSelect={onSelectServiceUrl}
+        initialServiceUrl={serviceUrl}
       />
       {minimal ? (
         <View style={[a.flex_row, a.align_center, a.flex_wrap, a.gap_xs]}>

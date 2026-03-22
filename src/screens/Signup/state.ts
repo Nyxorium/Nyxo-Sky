@@ -21,6 +21,7 @@ export type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 const DEFAULT_DATE = new Date(Date.now() - 60e3 * 60 * 24 * 365 * 20) // default to 20 years ago
 
 export enum SignupStep {
+  SELECT_PROVIDER,
   INFO,
   HANDLE,
   CAPTCHA,
@@ -89,7 +90,7 @@ export const initialState: SignupState = {
   analytics: undefined,
 
   hasPrev: false,
-  activeStep: SignupStep.INFO,
+  activeStep: SignupStep.SELECT_PROVIDER,
   screenTransitionDirection: 'Forward',
 
   serviceUrl: DEFAULT_SERVICE,
@@ -136,7 +137,7 @@ export function reducer(s: SignupState, a: SignupAction): SignupState {
       break
     }
     case 'prev': {
-      if (s.activeStep !== SignupStep.INFO) {
+      if (s.activeStep !== SignupStep.SELECT_PROVIDER) {
         next.screenTransitionDirection = 'Backward'
         next.activeStep--
         next.error = ''
@@ -233,7 +234,7 @@ export function reducer(s: SignupState, a: SignupAction): SignupState {
     }
   }
 
-  next.hasPrev = next.activeStep !== SignupStep.INFO
+  next.hasPrev = next.activeStep !== SignupStep.SELECT_PROVIDER
 
   s.analytics?.logger.debug('signup', next)
 
