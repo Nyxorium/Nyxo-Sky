@@ -41,6 +41,7 @@ import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
+import {ProfileHeaderMetaRow} from './MetaRow'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -138,6 +139,11 @@ let ProfileHeaderLabeler = ({
                 />
               </View>
             ) : undefined}
+            {(profile.website || profile.createdAt) && (
+              <View style={[a.pt_sm]}>
+                <ProfileHeaderMetaRow profile={profile} />
+              </View>
+            )}
             {!isAppLabeler(profile.did) && (
               <View style={[a.flex_row, a.gap_xs, a.align_center, a.pt_lg]}>
                 <Button

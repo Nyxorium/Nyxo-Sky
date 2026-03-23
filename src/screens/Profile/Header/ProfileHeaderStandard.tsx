@@ -46,6 +46,7 @@ import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
 import {ProfileHeaderSuggestedFollows} from './SuggestedFollows'
+import {ProfileHeaderMetaRow} from './MetaRow'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -173,6 +174,8 @@ let ProfileHeaderStandard = ({
                   />
                 </View>
               ) : undefined}
+
+              <ProfileHeaderMetaRow profile={profile} />
 
               {profile.associated?.germ && (
                 <GermButton germ={profile.associated.germ} profile={profile} />
