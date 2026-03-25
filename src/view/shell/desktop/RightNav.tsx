@@ -99,7 +99,7 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
       )}
 
       {showExploreScreenDuplicatedContent && <SidebarLiveEventFeedsBanner />}
-      {showExploreScreenDuplicatedContent && <SidebarTrendingTopics />}
+      {showExploreScreenDuplicatedContent && hasSession && <SidebarTrendingTopics />}
 
       <Text style={[a.leading_snug, t.atoms.text_contrast_low]}>
         {hasSession && (
