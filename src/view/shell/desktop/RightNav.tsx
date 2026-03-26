@@ -6,8 +6,7 @@ import {Trans} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/core'
 
 import {
-  FEEDBACK_FORM_URL, 
-  HELP_DESK_URL,
+  FEEDBACK_FORM_URL,
   TERMS_OF_SERVICE_URL,
   PRIVACY_POLICY_URL,
 } from '#/lib/constants'
@@ -125,13 +124,6 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
           style={[t.atoms.text_contrast_medium]}
           label={_(msg`Terms`)}>
           {_(msg`Terms`)}
-        </InlineLinkText>
-        <Text style={[t.atoms.text_contrast_low]}>{' ∙ '}</Text>
-        <InlineLinkText
-          label={_(msg`Help`)}
-          to={HELP_DESK_URL}
-          style={[t.atoms.text_contrast_medium]}>
-          {_(msg`Help`)}
         </InlineLinkText>
       </Text>
 

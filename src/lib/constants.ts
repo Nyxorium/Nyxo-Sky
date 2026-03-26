@@ -16,6 +16,7 @@ export const FEEDBACK_FORM_URL = `https://github.com/Nyxorium/Nyxo-Sky/issues/ne
 export const TERMS_OF_SERVICE_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Terms.html'
 export const PRIVACY_POLICY_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Privacy.html'
 export const SOURCE_CODE_URL = 'https://github.com/Nyxorium/Nyxo-Sky'
+export const FUNDING_URL = 'https://ko-fi.com/retrosunstar'
 
 export const EMBED_SERVICE = 'https://embed.bsky.app'
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`

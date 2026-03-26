@@ -14,6 +14,7 @@ import {
   PRIVACY_POLICY_URL,
   HELP_DESK_URL,
   SOURCE_CODE_URL,
+  FUNDING_URL,
 } from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -22,6 +23,7 @@ import {BroomSparkle_Stroke2_Corner2_Rounded as BroomSparkleIcon} from '#/compon
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
 import {Globe_Stroke2_Corner0_Rounded as GlobeIcon} from '#/components/icons/Globe'
 import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/components/icons/CircleQuestion'
+import {Heart2_Stroke2_Corner0_Rounded as Heart2Icon} from '#/components/icons/Heart2'
 import {Newspaper_Stroke2_Corner2_Rounded as NewspaperIcon} from '#/components/icons/Newspaper'
 import {Wrench_Stroke2_Corner2_Rounded as WrenchIcon} from '#/components/icons/Wrench'
 import * as Layout from '#/components/Layout'
@@ -86,19 +88,19 @@ export function AboutSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
           <SettingsList.LinkItem
-            to={HELP_DESK_URL}
-            label={_(msg`Help`)}>
-            <SettingsList.ItemIcon icon={CircleQuestionIcon} />
+            to={SOURCE_CODE_URL}
+            label={_(msg`Source Code`)}>
+            <SettingsList.ItemIcon icon={CodeLinesIcon} />
             <SettingsList.ItemText>
-              <Trans>Help</Trans>
+              <Trans>Source Code</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem
-            to={SOURCE_CODE_URL}
-            label={_(msg`Source Code`)}>
-            <SettingsList.ItemIcon icon={CircleQuestionIcon} />
+            to={FUNDING_URL}
+            label={_(msg`Buy us a coffee`)}>
+            <SettingsList.ItemIcon icon={Heart2Icon} />
             <SettingsList.ItemText>
-              <Trans>Source Code</Trans>
+              <Trans>Buy us a coffee</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem
