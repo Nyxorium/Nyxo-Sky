@@ -40,6 +40,10 @@ import {
   useNoAppLabelers,
   useSetNoAppLabelers,
 } from '#/state/preferences/no-app-labelers'
+import { 
+  useLimitComposePostButton,
+  useSetLimitComposePostButton,
+ } from '#/state/preferences/limit-compose-post-button'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
@@ -74,6 +78,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
   const disableComposerPromptInFeeds = useComposerPromptDisabled()
   const setDisableComposerPromptInFeeds = useSetComposerPromptDisabled()
+  const limitComposePostButton = useLimitComposePostButton()
+  const setLimitComposePostButton = useSetLimitComposePostButton()
   const noAppLabelers = useNoAppLabelers()
   const setNoAppLabelers = useSetNoAppLabelers()
 
@@ -203,6 +209,22 @@ export function MiscellaneousSettingsScreen({}: Props) {
                 <SettingsList.ItemIcon icon={PhoneIcon} />
                 <SettingsList.ItemText>
                   <Trans>Disable 'Share Via DMS' in Share Menu</Trans>
+                </SettingsList.ItemText>
+                <Toggle.Platform />
+              </SettingsList.Item>
+            </Toggle.Item>
+          )}
+
+          {IS_NATIVE && (
+            <Toggle.Item
+              name="hide_new_post_button"
+              label={_(msg`Hide New Post button`)}
+              value={limitComposePostButton}
+              onChange={value => setLimitComposePostButton(value)}>
+              <SettingsList.Item>
+                <SettingsList.ItemIcon icon={WindowIcon} />
+                <SettingsList.ItemText>
+                  <Trans>Hide New Post button</Trans>
                 </SettingsList.ItemText>
                 <Toggle.Platform />
               </SettingsList.Item>

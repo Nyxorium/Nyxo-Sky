@@ -12,10 +12,6 @@ import {
   useInAppBrowser,
   useSetInAppBrowser,
 } from '#/state/preferences/in-app-browser'
-import { 
-  useLimitComposePostButton,
-  useSetLimitComposePostButton,
- } from '#/state/preferences/limit-compose-post-button'
 import {
   useSetSimilarAccountsDisabled,
   useSimilarAccountsDisabled,
@@ -54,8 +50,6 @@ export function ContentAndMediaSettingsScreen({}: Props) {
   const setSimilarAccountsDisabledPref = useSetSimilarAccountsDisabled()
   const inAppBrowserPref = useInAppBrowser()
   const setUseInAppBrowser = useSetInAppBrowser()
-  const limitComposePostButton = useLimitComposePostButton()
-  const setLimitComposePostButton = useSetLimitComposePostButton()
   const {enabled: trendingEnabled} = useTrendingConfig()
   const {trendingDisabled, trendingVideoDisabled} = useTrendingSettings()
   const {setTrendingDisabled, setTrendingVideoDisabled} =
@@ -217,21 +211,6 @@ export function ContentAndMediaSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
-          {IS_NATIVE && (
-            <Toggle.Item
-              name="hide_new_post_button"
-              label={_(msg`Hide New Post button`)}
-              value={limitComposePostButton}
-              onChange={value => setLimitComposePostButton(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={WindowIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Hide New Post button</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>
