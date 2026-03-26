@@ -9,8 +9,8 @@ import {type Shadow} from '#/state/cache/types'
 import {atoms as a, useTheme, web} from '#/alf'
 import {NewskieDialog} from '#/components/NewskieDialog'
 import {Text} from '#/components/Typography'
-import {IS_IOS, IS_NATIVE} from '#/env'
-import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
+import {IS_IOS, IS_NATIVE, IS_WEB} from '#/env'
+import {ProfileHeaderPronounsInline} from './Pronouns'
 
 export function ProfileHeaderHandle({
   profile,
@@ -63,12 +63,7 @@ export function ProfileHeaderHandle({
               // forceLTR handled by CSS above on web
               IS_NATIVE,
             )}
-        {profile.pronouns
-          ? NON_BREAKING_SPACE +
-            '\u00B7' +
-            NON_BREAKING_SPACE +
-            profile.pronouns
-          : null}
+        {IS_WEB && <ProfileHeaderPronounsInline profile={profile} />}
       </Text>
     </View>
   )

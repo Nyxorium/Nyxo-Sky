@@ -38,7 +38,7 @@ import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
-import {IS_IOS} from '#/env'
+import {IS_IOS, IS_NATIVE} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {GermButton} from '../components/GermButton'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -47,6 +47,7 @@ import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
 import {ProfileHeaderSuggestedFollows} from './SuggestedFollows'
 import {ProfileHeaderMetaRow} from './MetaRow'
+import {ProfileHeaderPronouns} from './Pronouns'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -156,6 +157,7 @@ let ProfileHeaderStandard = ({
                 </View>
               </Text>
             </View>
+            {IS_NATIVE && <ProfileHeaderPronouns profile={profile} />}
             <ProfileHeaderHandle profile={profile} />
           </View>
           {!isPlaceholderProfile && !isBlockedUser && (
