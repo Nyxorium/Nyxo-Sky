@@ -31,7 +31,7 @@ export function ProfileHeaderMetaRow({
           <InlineLinkText
             label={profile.website}
             to={profile.website}
-            style={[a.text_sm, {lineHeight: 20}]}>
+            style={[a.text_sm]}>
             {displayUrl}
           </InlineLinkText>
         </View>
