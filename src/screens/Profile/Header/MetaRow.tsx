@@ -27,7 +27,7 @@ export function ProfileHeaderMetaRow({
     <View style={[a.flex_row, a.align_center, a.gap_lg, a.flex_wrap]}>
       {profile.website && (
         <View style={[a.flex_row, a.align_center, a.gap_xs]}>
-          <Globe size="xs" style={t.atoms.text_contrast_medium} />
+          <Globe size="sm" style={t.atoms.text_contrast_medium} />
           <InlineLinkText
             label={profile.website}
             to={profile.website}
@@ -38,7 +38,7 @@ export function ProfileHeaderMetaRow({
       )}
       {profile.createdAt && (
         <View style={[a.flex_row, a.align_center, a.gap_xs]}>
-          <Calendar size="xs" style={t.atoms.text_contrast_medium} />
+          <Calendar size="sm" style={t.atoms.text_contrast_medium} />
           <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
             <Trans>
               Joined{' '}
