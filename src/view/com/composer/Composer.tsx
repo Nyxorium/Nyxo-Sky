@@ -175,6 +175,8 @@ import {type TextInputRef} from './text-input/TextInput.types'
 import {getVideoMetadata} from './videos/pickVideo'
 import {clearThumbnailCache} from './videos/VideoTranscodeBackdrop'
 
+import {TagsBtn} from '#/view/com/composer/tags/TagsBtn'
+
 type CancelRef = {
   onPressCancel: () => void
 }
@@ -1823,6 +1825,16 @@ function ComposerPills({
             }}
           />
         ) : null}
+        <TagsBtn
+          tags={post.tags ?? []}
+          onChange={nextTags => {
+            dispatch({
+              type: 'update_post',
+              postId: post.id,
+              postAction: {type: 'update_tags', tags: nextTags},
+            })
+          }}
+        />
       </ScrollView>
     </Animated.View>
   )

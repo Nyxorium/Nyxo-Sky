@@ -106,6 +106,8 @@ export async function post(
       }
     }
 
+    const tags = draft.tags.length > 0 ? draft.tags : undefined
+
     // The sorting behavior for multiple posts sharing the same createdAt time is
     // undefined, so what we'll do here is increment the time by 1 for every post
     now.setMilliseconds(now.getMilliseconds() + 1)
@@ -128,6 +130,7 @@ export async function post(
       embed,
       langs,
       labels,
+      tags,
     }
     writes.push({
       $type: 'com.atproto.repo.applyWrites#create',

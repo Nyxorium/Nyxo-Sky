@@ -68,6 +68,7 @@ export type PostDraft = {
   id: string
   richtext: RichText
   labels: SelfLabel[]
+  tags: string[]
   embed: EmbedDraft
   shortenedGraphemeLength: number
 }
@@ -75,6 +76,7 @@ export type PostDraft = {
 export type PostAction =
   | {type: 'update_richtext'; richtext: RichText}
   | {type: 'update_labels'; labels: SelfLabel[]}
+  | {type: 'update_tags'; tags: string[]} 
   | {type: 'embed_add_images'; images: ComposerImage[]}
   | {type: 'embed_update_image'; image: ComposerImage}
   | {type: 'embed_remove_image'; image: ComposerImage}
@@ -210,6 +212,7 @@ export function composerReducer(
         richtext: new RichText({text: ''}),
         shortenedGraphemeLength: 0,
         labels: [],
+        tags: [],
         embed: {
           quote: undefined,
           media: undefined,
@@ -329,6 +332,12 @@ function postReducer(state: PostDraft, action: PostAction): PostDraft {
       return {
         ...state,
         labels: action.labels,
+      }
+    }
+    case 'update_tags': {
+      return {
+        ...state,
+        tags: action.tags,
       }
     }
     case 'embed_add_images': {
@@ -686,6 +695,7 @@ export function createComposerState({
           richtext: initRichText,
           shortenedGraphemeLength: getShortenedLength(initRichText),
           labels: [],
+          tags: [],
           embed: {
             quote,
             media,
