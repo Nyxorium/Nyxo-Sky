@@ -9,7 +9,7 @@ import {
 import {useLingui} from '@lingui/react/macro'
 import {StackActions, useNavigation} from '@react-navigation/native'
 
-import {usePalette} from '#/lib/hooks/usePalette'
+import {useTheme} from '#/alf'
 import {type NavigationProp} from '#/lib/routes/types'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useActorAutocompleteQuery} from '#/state/queries/actor-autocomplete'
@@ -30,12 +30,12 @@ let SearchLinkCard = ({
   onPress?: () => void
   style?: ViewStyle
 }): React.ReactNode => {
-  const pal = usePalette('default')
+  const t = useTheme()
 
   const inner = (
     <View
-      style={[pal.border, {paddingVertical: 16, paddingHorizontal: 12}, style]}>
-      <Text type="md" style={[pal.text]}>
+      style={[t.atoms.border_contrast_low, {paddingVertical: 16, paddingHorizontal: 12}, style]}>
+      <Text type="md" style={[t.atoms.text]}>
         {label}
       </Text>
     </View>
@@ -56,11 +56,11 @@ let SearchLinkCard = ({
     <Link href={to} asAnchor anchorNoUnderline>
       <View
         style={[
-          pal.border,
+          t.atoms.border_contrast_low,
           {paddingVertical: 16, paddingHorizontal: 12},
           style,
         ]}>
-        <Text type="md" style={[pal.text]}>
+        <Text type="md" style={[t.atoms.text]}>
           {label}
         </Text>
       </View>
@@ -72,7 +72,7 @@ export {SearchLinkCard}
 
 export function DesktopSearch() {
   const {t: l} = useLingui()
-  const pal = usePalette('default')
+  const t = useTheme()
   const navigation = useNavigation<NavigationProp>()
   const [isActive, setIsActive] = useState<boolean>(false)
   const [query, setQuery] = useState<string>('')
@@ -105,7 +105,7 @@ export function DesktopSearch() {
   }, [])
 
   return (
-    <View style={[styles.container, pal.view]}>
+    <View style={[styles.container, t.atoms.bg]}>
       <SearchInput
         value={query}
         onChangeText={onChangeText}
@@ -115,8 +115,8 @@ export function DesktopSearch() {
       {query !== '' && isActive && moderationOpts && (
         <View
           style={[
-            pal.view,
-            pal.borderDark,
+            t.atoms.bg,
+            t.atoms.border_contrast_high,
             styles.resultsContainer,
             a.overflow_hidden,
           ]}>
