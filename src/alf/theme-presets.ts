@@ -7,6 +7,7 @@ import {
 
 const PINK = '#EC4899'
 const YELLOW = '#FFC404'
+const SAKURA_LIKE = '#FF85C2'
 
 // ---------------------------------------------------------------------------
 // NYXO SKY
@@ -1099,6 +1100,86 @@ const DARKCARNIVAL_SUBDUED_PALETTE: Palette = {
 }
 
 // ---------------------------------------------------------------------------
+// SAKURA
+// Warm rose-pink (hue 330) contrast ramp, hot-pink primary accent.
+// ---------------------------------------------------------------------------
+const SAKURA_DEFAULT_PALETTE: Palette = {
+  white: 'hsl(330, 60%, 94%)',
+  black: 'hsl(330, 30%, 8%)',
+  pink:  PINK,
+  yellow: YELLOW,
+  like:  SAKURA_LIKE,
+
+  contrast_0:    'hsl(330, 60%, 94%)',
+  contrast_25:   'hsl(330, 55%, 90%)',
+  contrast_50:   'hsl(330, 50%, 86%)',
+  contrast_100:  'hsl(330, 40%, 80%)',
+  contrast_200:  'hsl(330, 24%, 78%)',
+  contrast_300:  'hsl(330, 22%, 67%)',
+  contrast_400:  'hsl(330, 20%, 56%)',
+  contrast_500:  'hsl(330, 20%, 46%)',
+  contrast_600:  'hsl(330, 22%, 37%)',
+  contrast_700:  'hsl(330, 24%, 28%)',
+  contrast_800:  'hsl(330, 28%, 20%)',
+  contrast_900:  'hsl(330, 30%, 15%)',
+  contrast_950:  'hsl(330, 30%, 11%)',
+  contrast_975:  'hsl(330, 30%, 9%)',
+  contrast_1000: 'hsl(330, 30%, 8%)',
+
+  primary_25:  'hsl(330, 90%, 98%)',
+  primary_50:  'hsl(330, 88%, 95%)',
+  primary_100: 'hsl(330, 85%, 90%)',
+  primary_200: 'hsl(330, 82%, 82%)',
+  primary_300: 'hsl(330, 80%, 72%)',
+  primary_400: 'hsl(330, 78%, 62%)',
+  primary_500: 'hsl(330, 75%, 54%)',
+  primary_600: 'hsl(330, 72%, 44%)',
+  primary_700: 'hsl(330, 70%, 35%)',
+  primary_800: 'hsl(330, 68%, 26%)',
+  primary_900: 'hsl(330, 66%, 18%)',
+  primary_950: 'hsl(330, 64%, 11%)',
+  primary_975: 'hsl(330, 62%, 7%)',
+
+  positive_25:  '#ECFEF5',
+  positive_50:  '#D3FDE8',
+  positive_100: '#A3FACF',
+  positive_200: '#6AF6B0',
+  positive_300: '#2CF28F',
+  positive_400: '#0DD370',
+  positive_500: '#09B35E',
+  positive_600: '#04904A',
+  positive_700: '#036D38',
+  positive_800: '#04522B',
+  positive_900: '#033F21',
+  positive_950: '#032A17',
+  positive_975: '#021D0F',
+
+  negative_25:  '#FFF5F7',
+  negative_50:  '#FEE7EC',
+  negative_100: '#FDD3DD',
+  negative_200: '#FBBBCA',
+  negative_300: '#F891A9',
+  negative_400: '#F65A7F',
+  negative_500: '#E91646',
+  negative_600: '#CA123D',
+  negative_700: '#A71134',
+  negative_800: '#7F0B26',
+  negative_900: '#5F071C',
+  negative_950: '#430413',
+  negative_975: '#30030D',
+}
+
+const SAKURA_SUBDUED_PALETTE: Palette = {
+  ...SAKURA_DEFAULT_PALETTE,
+  black: 'hsl(330, 26%, 11%)',
+  contrast_800:  'hsl(330, 26%, 22%)',
+  contrast_900:  'hsl(330, 28%, 18%)',
+  contrast_950:  'hsl(330, 28%, 14%)',
+  contrast_975:  'hsl(330, 28%, 12%)',
+  contrast_1000: 'hsl(330, 26%, 11%)',
+}
+
+// ---------------------------------------------------------------------------
 // Preset registry
 // ---------------------------------------------------------------------------
 export const THEME_PRESETS = {
@@ -1177,6 +1258,13 @@ export const THEME_PRESETS = {
     themes: createThemes({
       defaultPalette: DARKCARNIVAL_DEFAULT_PALETTE,
       subduedPalette: DARKCARNIVAL_SUBDUED_PALETTE,
+    }),
+  },
+  sakura: {
+    label: 'Sakura',
+    themes: createThemes({
+      defaultPalette: SAKURA_DEFAULT_PALETTE,
+      subduedPalette: SAKURA_SUBDUED_PALETTE,
     }),
   },
 } as const satisfies Record<
