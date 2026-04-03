@@ -1,19 +1,19 @@
 import {type JSX} from 'react'
 import {View} from 'react-native'
-// import {msg} from '@lingui/core/macro'
+import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
-// import {HITSLOP_10} from '#/lib/constants'
+import {HITSLOP_10} from '#/lib/constants'
 import {useKawaiiMode} from '#/state/preferences/kawaii'
 import {useSession} from '#/state/session'
 import {useShellLayout} from '#/state/shell/shell-layout'
 import {HomeHeaderLayoutMobile} from '#/view/com/home/HomeHeaderLayoutMobile'
-// import {Logo} from '#/view/icons/Logo'
+import {Logo} from '#/view/icons/Logo'
 import {atoms as a, useBreakpoints, useGutters, useTheme} from '#/alf'
-// import {ButtonIcon} from '#/components/Button'
-// import {Hashtag_Stroke2_Corner0_Rounded as FeedsIcon} from '#/components/icons/Hashtag'
+import {ButtonIcon} from '#/components/Button'
+import {Hashtag_Stroke2_Corner0_Rounded as FeedsIcon} from '#/components/icons/Hashtag'
 import * as Layout from '#/components/Layout'
-// import {Link} from '#/components/Link'
+import {Link} from '#/components/Link'
 
 export function HomeHeaderLayout(props: {
   children: React.ReactNode
@@ -37,13 +37,13 @@ function HomeHeaderLayoutDesktopAndTablet({
   const t = useTheme()
   const {headerHeight} = useShellLayout()
   const {hasSession} = useSession()
-  // const {_} = useLingui()
-  // const kawaii = useKawaiiMode()
+  const {_} = useLingui()
+  const kawaii = useKawaiiMode()
   const gutters = useGutters([0, 'base'])
 
   return (
     <>
-      {/* hasSession && (
+      {hasSession && kawaii && (
         <Layout.Center>
           <View
             style={[a.flex_row, a.align_center, gutters, a.pt_md, t.atoms.bg]}>
@@ -64,8 +64,8 @@ function HomeHeaderLayoutDesktopAndTablet({
             </Link>
           </View>
         </Layout.Center>
-      ) */}
-      {hasSession && (
+      )}
+      {hasSession && !kawaii && (
         <Layout.Center>
           <View
             style={[a.flex_row, a.align_center, gutters, a.pt_md, t.atoms.bg]}>
