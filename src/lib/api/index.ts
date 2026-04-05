@@ -106,7 +106,7 @@ export async function post(
       }
     }
 
-    const tags = draft.tags.length > 0 ? draft.tags : undefined
+    const tags = draft.tags?.length ? draft.tags : undefined
 
     // The sorting behavior for multiple posts sharing the same createdAt time is
     // undefined, so what we'll do here is increment the time by 1 for every post
