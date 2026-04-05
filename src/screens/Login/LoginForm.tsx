@@ -1,4 +1,4 @@
-import {useCallback, useRef, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {Keyboard, type TextInput, View} from 'react-native'
 import {
   ComAtprotoServerCreateSession,
@@ -11,9 +11,11 @@ import {Trans} from '@lingui/react/macro'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {cleanError, isNetworkError} from '#/lib/strings/errors'
 import {createFullHandle} from '#/lib/strings/handles'
+import {isValidDomain} from '#/lib/strings/url-helpers'
 import {logger} from '#/logger'
 import {useSetHasCheckedForStarterPack} from '#/state/preferences/used-starter-packs'
-import {useSessionApi} from '#/state/session'
+import {resolvePdsServiceUrl} from '#/state/queries/resolve-identity'
+import {useSessionApi, useAgent} from '#/state/session'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {atoms as a, ios, useTheme, web} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
@@ -69,12 +71,62 @@ export const LoginForm = ({
   const hasFocusedOnce = useRef<boolean>(false)
   const {_} = useLingui()
   const {login} = useSessionApi()
+  const agent = useAgent()
   const requestNotificationsPermission = useRequestNotificationsPermission()
   const {setShowLoggedOut} = useLoggedOutViewControls()
   const setHasCheckedForStarterPack = useSetHasCheckedForStarterPack()
 
   const onPressSelectService = useCallback(() => {
     Keyboard.dismiss()
+  }, [])
+
+  // PDS auto-resolution
+  const resolveDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const lastResolvedRef = useRef<string>('')
+
+  const maybeResolveHandle = useCallback(
+    (identifier: string) => {
+      if (resolveDebounceRef.current) {
+        clearTimeout(resolveDebounceRef.current)
+      }
+      const trimmed = identifier.trim().replace(/^@/, '')
+      if (
+        !trimmed ||
+        trimmed.includes('@') ||
+        (!trimmed.startsWith('did:') && !isValidDomain(trimmed))
+      ) {
+        return
+      }
+      resolveDebounceRef.current = setTimeout(async () => {
+        if (trimmed === lastResolvedRef.current) return
+        lastResolvedRef.current = trimmed
+        try {
+          const did = trimmed.startsWith('did:')
+            ? trimmed
+            : (await agent.resolveHandle({handle: trimmed})).data.did
+          const pdsUrl = await resolvePdsServiceUrl(did as `did:${string}`)
+          const normalized = pdsUrl.endsWith('.bsky.network')
+            ? 'https://bsky.social'
+            : pdsUrl
+          if (normalized !== serviceUrl) {
+            setServiceUrl(normalized)
+          }
+        } catch (e) {
+          logger.error(
+            `PDS auto-resolution failed: ${e instanceof Error ? e.message : String(e)}`,
+          )
+        }
+      }, 400)
+    },
+    [agent, serviceUrl, setServiceUrl],
+  )
+
+  useEffect(() => {
+    return () => {
+      if (resolveDebounceRef.current) {
+        clearTimeout(resolveDebounceRef.current)
+      }
+    }
   }, [])
 
   const onPressNext = async () => {
@@ -208,6 +260,7 @@ export const LoginForm = ({
               onChangeText={v => {
                 identifierValueRef.current = v
                 if (errorField) setErrorField('none')
+                maybeResolveHandle(v)
               }}
               onSubmitEditing={() => {
                 passwordRef.current?.focus()

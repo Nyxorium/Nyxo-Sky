@@ -19,7 +19,7 @@ export function HostingProvider({
   onOpenDialog,
   minimal,
 }: {
-  serviceUrl: string
+  serviceUrl: string | undefined
   onSelectServiceUrl: (provider: string) => void
   onOpenDialog?: () => void
   minimal?: boolean
@@ -47,7 +47,7 @@ export function HostingProvider({
             <Trans>You are creating an account on</Trans>
           </Text>
           <Button
-            label={toNiceDomain(serviceUrl)}
+            label={toNiceDomain(serviceUrl ?? '')}
             accessibilityHint={_(msg`Changes hosting provider`)}
             onPress={onPressSelectService}
             variant="ghost"
@@ -59,7 +59,7 @@ export function HostingProvider({
               {paddingVertical: 0},
             ]}>
             <ButtonText style={[a.text_sm]}>
-              {toNiceDomain(serviceUrl)}
+              {toNiceDomain(serviceUrl ?? '')}
             </ButtonText>
             <ButtonIcon icon={PencilIcon} />
           </Button>
@@ -67,7 +67,7 @@ export function HostingProvider({
       ) : (
         <Button
           testID="selectServiceButton"
-          label={toNiceDomain(serviceUrl)}
+          label={toNiceDomain(serviceUrl ?? '')}
           accessibilityHint={_(msg`Changes hosting provider`)}
           variant="solid"
           color="secondary"
@@ -96,7 +96,7 @@ export function HostingProvider({
                     }
                   />
                 </View>
-                <Text style={[a.text_md]}>{toNiceDomain(serviceUrl)}</Text>
+                <Text style={[a.text_md]}>{toNiceDomain(serviceUrl ?? '')}</Text>
                 <View
                   style={[
                     a.rounded_sm,

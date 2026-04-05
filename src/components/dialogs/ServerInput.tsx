@@ -1,4 +1,10 @@
-import {useCallback, useImperativeHandle, useRef, useState} from 'react'
+import {
+  useCallback, 
+  useImperativeHandle, 
+  useRef, 
+  useState, 
+  useEffect
+} from 'react'
 import {View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -44,6 +50,16 @@ export function ServerInputDialog({
       ? initialServiceUrl
       : '',
   )
+
+  useEffect(() => {
+    if (initialServiceUrl && initialServiceUrl !== BSKY_SERVICE) {
+      setFixedOption('custom')
+      setPreviousCustomAddress(initialServiceUrl)
+    } else {
+      setFixedOption(BSKY_SERVICE)
+      setPreviousCustomAddress('')
+    }
+  }, [initialServiceUrl])
 
   const onClose = useCallback(() => {
     const result = formRef.current?.getFormState()
