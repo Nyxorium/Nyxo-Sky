@@ -11,8 +11,7 @@ import {
 import * as ScreenOrientation from 'expo-screen-orientation'
 import * as SplashScreen from 'expo-splash-screen'
 import * as SystemUI from 'expo-system-ui'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
+import {useLingui} from '@lingui/react/macro'
 import * as Sentry from '@sentry/react-native'
 
 import {Provider as HideBottomBarBorderProvider} from '#/lib/hooks/useHideBottomBarBorder'
@@ -90,9 +89,9 @@ import {Splash} from '#/Splash'
 import {BottomSheetProvider} from '../modules/bottom-sheet'
 import {BackgroundNotificationPreferencesProvider} from '../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 
-SplashScreen.preventAutoHideAsync()
+void SplashScreen.preventAutoHideAsync()
 if (IS_IOS) {
-  SystemUI.setBackgroundColorAsync('black')
+  void SystemUI.setBackgroundColorAsync('black')
 }
 if (IS_ANDROID) {
   // iOS is handled by the config plugin -sfn
@@ -106,10 +105,10 @@ if (IS_ANDROID) {
 /**
  * Begin geolocation ASAP
  */
-Geo.resolve()
-prefetchAgeAssuranceConfig()
-prefetchLiveEvents()
-prefetchAppConfig()
+void Geo.resolve()
+void prefetchAgeAssuranceConfig()
+void prefetchLiveEvents()
+void prefetchAppConfig()
 
 function InnerApp() {
   const [isReady, setIsReady] = useState(false)
@@ -117,7 +116,7 @@ function InnerApp() {
   const {resumeSession} = useSessionApi()
   const theme = useColorModeTheme()
   const {themePreset} = useThemePrefs()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const hasCheckedReferrer = useStarterPackEntry()
 
   // init
@@ -136,16 +135,16 @@ function InnerApp() {
       }
     }
     const account = readLastActiveAccount()
-    onLaunch(account)
+    void onLaunch(account)
   }, [resumeSession])
 
   useEffect(() => {
     return listenSessionDropped(() => {
-      Toast.show(_(msg`Sorry! Your session expired. Please sign in again.`), {
+      Toast.show(l`Sorry! Your session expired. Please sign in again.`, {
         type: 'info',
       })
     })
-  }, [_])
+  }, [l])
 
   return (
     <Alf theme={theme} themePreset={themePreset}>
@@ -222,8 +221,8 @@ function App() {
   const [isReady, setReady] = useState(false)
 
   useEffect(() => {
-    Promise.all([initPersistedState(), Geo.resolve(), setupDeviceId]).then(() =>
-      setReady(true),
+    void Promise.all([initPersistedState(), Geo.resolve(), setupDeviceId]).then(
+      () => setReady(true),
     )
   }, [])
 

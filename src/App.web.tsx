@@ -5,10 +5,10 @@ import './style.css'
 import {Fragment, useEffect, useState} from 'react'
 import {KeyboardProvider as KeyboardControllerProvider} from 'react-native-keyboard-controller'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
+import {useLingui} from '@lingui/react/macro'
 import * as Sentry from '@sentry/react-native'
 
+import {Provider as HotkeysProvider} from '#/lib/hotkeys'
 import {QueryProvider} from '#/lib/react-query'
 import {ThemeProvider} from '#/lib/ThemeContext'
 import {Provider as TranslateOnDeviceProvider} from '#/lib/translation'
@@ -83,10 +83,10 @@ import {Provider as HideBottomBarBorderProvider} from './lib/hooks/useHideBottom
 /**
  * Begin geolocation ASAP
  */
-Geo.resolve()
-prefetchAgeAssuranceConfig()
-prefetchLiveEvents()
-prefetchAppConfig()
+void Geo.resolve()
+void prefetchAgeAssuranceConfig()
+void prefetchLiveEvents()
+void prefetchAppConfig()
 
 function InnerApp() {
   const [isReady, setIsReady] = useState(false)
@@ -94,7 +94,7 @@ function InnerApp() {
   const {resumeSession} = useSessionApi()
   const theme = useColorModeTheme()
   const {themePreset} = useThemePrefs()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const hasCheckedReferrer = useStarterPackEntry()
 
   // init
@@ -107,22 +107,22 @@ function InnerApp() {
           await features.init
         }
       } catch (e) {
-        logger.error(`session: resumeSession failed`, {message: e})
+        logger.error('session: resumeSession failed', {message: e})
       } finally {
         setIsReady(true)
       }
     }
     const account = readLastActiveAccount()
-    onLaunch(account)
+    void onLaunch(account)
   }, [resumeSession])
 
   useEffect(() => {
     return listenSessionDropped(() => {
-      Toast.show(_(msg`Sorry! Your session expired. Please sign in again.`), {
+      Toast.show(l`Sorry! Your session expired. Please sign in again.`, {
         type: 'info',
       })
     })
-  }, [_])
+  }, [l])
 
   return (
     <Alf theme={theme} themePreset={themePreset}>
@@ -158,8 +158,10 @@ function InnerApp() {
                                                           <HideBottomBarBorderProvider>
                                                             <IntentDialogProvider>
                                                               <TranslateOnDeviceProvider>
-                                                                <Shell />
-                                                                <ToastOutlet />
+                                                                <HotkeysProvider>
+                                                                  <Shell />
+                                                                  <ToastOutlet />
+                                                                </HotkeysProvider>
                                                               </TranslateOnDeviceProvider>
                                                             </IntentDialogProvider>
                                                           </HideBottomBarBorderProvider>
@@ -197,8 +199,8 @@ function App() {
   const [isReady, setReady] = useState(false)
 
   useEffect(() => {
-    Promise.all([initPersistedState(), Geo.resolve(), setupDeviceId]).then(() =>
-      setReady(true),
+    void Promise.all([initPersistedState(), Geo.resolve(), setupDeviceId]).then(
+      () => setReady(true),
     )
   }, [])
 
