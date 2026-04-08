@@ -140,6 +140,8 @@ export const BookmarkButton = memo(function BookmarkButton({
     <PostControlButton
       testID="postBookmarkBtn"
       big={big}
+      active={isBookmarked}
+      activeColor={t.palette.primary_500}
       label={
         isBookmarked
           ? _(
@@ -165,10 +167,7 @@ export const BookmarkButton = memo(function BookmarkButton({
       }
       onPress={onHandlePress}
       hitSlop={hitSlop}>
-      <PostControlButtonIcon
-        fill={isBookmarked ? t.palette.primary_500 : undefined}
-        icon={isBookmarked ? BookmarkFilled : Bookmark}
-      />
+      <PostControlButtonIcon icon={isBookmarked ? BookmarkFilled : Bookmark} />
       {typeof bookmarkCount !== 'undefined' && bookmarkCount > 0 && (
         <PostControlButtonText testID="bookmarkCount">
           {formatPostStatCount(bookmarkCount)}
