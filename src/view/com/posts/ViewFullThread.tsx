@@ -6,6 +6,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
 import {usePalette} from '#/lib/hooks/usePalette'
+import {useTheme} from '#/alf'
 import {makeProfileLink} from '#/lib/routes/links'
 import {useInteractionState} from '#/components/hooks/useInteractionState'
 import {SubtleHover} from '#/components/SubtleHover'
@@ -19,6 +20,7 @@ export function ViewFullThread({uri}: {uri: string}) {
     onOut: onHoverOut,
   } = useInteractionState()
   const pal = usePalette('default')
+  const t = useTheme()
   const itemHref = useMemo(() => {
     const urip = new AtUri(uri)
     return makeProfileLink({did: urip.hostname, handle: ''}, 'post', urip.rkey)
@@ -54,7 +56,7 @@ export function ViewFullThread({uri}: {uri: string}) {
         </Svg>
       </View>
 
-      <Text type="md" style={[pal.link, {paddingTop: 18, paddingBottom: 4}]}>
+      <Text type="md" style={[{color: t.palette.primary_500}, {paddingTop: 18, paddingBottom: 4}]}>
         {/* HACKFIX: Trans isn't working after SDK 53 upgrade -sfn */}
         {_(msg`View full thread`)}
       </Text>
