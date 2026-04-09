@@ -640,7 +640,7 @@ const KITTY_SUBDUED_PALETTE: Palette = {
 const REDDWARF_DEFAULT_PALETTE: Palette = {
   white: '#FEFBFB',
   black: '#000000',
-  pink:  PINK,
+  pink:  '#FF6B6B', // formerly PINK
   yellow: YELLOW,
   like:  '#FF6B6B',
   contrast_0:    '#fff7f5',
@@ -1034,9 +1034,9 @@ const FOREST_SUBDUED_PALETTE: Palette = {
 const DARKCARNIVAL_DEFAULT_PALETTE: Palette = {
   white: 'hsl(0, 0%, 100%)',
   black: 'hsl(0, 20%, 4%)',
-  pink:  '#CC8800', // formerly PINK
+  pink:  YELLOW, // formerly PINK, '#CC8800'
   yellow: YELLOW,
-  like:  '#CC8800',  // ✨ gold
+  like:  YELLOW,  // ✨ gold
 
   contrast_0:    'hsl(0, 0%, 100%)',
   contrast_25:   'hsl(0, 10%, 95%)',

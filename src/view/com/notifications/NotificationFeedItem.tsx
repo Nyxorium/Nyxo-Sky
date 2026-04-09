@@ -274,7 +274,7 @@ let NotificationFeedItem = ({
     <HeartIconFilled
       size="xl"
       style={[
-        {color: t.palette.like}, // s.likeColor,
+        {color: t.palette.pink},
         // {position: 'relative', top: -4}
       ]}
     />
@@ -579,8 +579,8 @@ let NotificationFeedItem = ({
         item.notification.isRead
           ? undefined
           : {
-              backgroundColor: pal.colors.unreadNotifBg,
-              borderColor: pal.colors.unreadNotifBorder,
+              backgroundColor: t.palette.primary_25, // pal.colors.unreadNotifBg
+              borderColor: pal.colors.unreadNotifBorder, // pal.colors.unreadNotifBorder
             },
         !hideTopBorder && a.border_t,
         a.overflow_hidden,
