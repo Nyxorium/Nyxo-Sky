@@ -9,6 +9,12 @@ const PINK = '#EC4899'
 const YELLOW = '#FFC404'
 const SAKURA_LIKE = '#FF85C2'
 
+// pink and like values should always be matching due to 
+// deprecation of the like value by BlueSky in palettes
+// node_modules/@bsky.app/alf/src/palette.ts
+// Unless otherwise needed 🐙
+
+
 // ---------------------------------------------------------------------------
 // NYXO SKY
 // Deep indigo-navy contrast ramp, violet-blue accent.
@@ -96,7 +102,7 @@ const NYXOSKY_SUBDUED_PALETTE: Palette = {
 const WITCHSKY_DEFAULT_PALETTE: Palette = {
   white: '#FEFBFB',
   black: '#000000',
-  pink:  PINK,
+  pink:  '#dd5e8f', // formerly PINK
   yellow: YELLOW,
   like:  '#dd5e8f',
 
@@ -1028,7 +1034,7 @@ const FOREST_SUBDUED_PALETTE: Palette = {
 const DARKCARNIVAL_DEFAULT_PALETTE: Palette = {
   white: 'hsl(0, 0%, 100%)',
   black: 'hsl(0, 20%, 4%)',
-  pink:  PINK,
+  pink:  '#CC8800', // formerly PINK
   yellow: YELLOW,
   like:  '#CC8800',  // ✨ gold
 
@@ -1106,7 +1112,7 @@ const DARKCARNIVAL_SUBDUED_PALETTE: Palette = {
 const SAKURA_DEFAULT_PALETTE: Palette = {
   white: 'hsl(330, 60%, 94%)',
   black: 'hsl(330, 30%, 8%)',
-  pink:  PINK,
+  pink:  SAKURA_LIKE,
   yellow: YELLOW,
   like:  SAKURA_LIKE,
 
