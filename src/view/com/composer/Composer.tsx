@@ -840,6 +840,9 @@ export const ComposePost = ({
             highResolutionImages: ax.features.enabled(
               ax.features.ImageUploadsHighResolution,
             ),
+            increasedBlobSizeLimit: ax.features.enabled(
+              ax.features.ImageUploadsBlobSize2mbEnabled,
+            ),
           },
         )
       ).uris[0]
