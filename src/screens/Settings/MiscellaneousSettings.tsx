@@ -252,11 +252,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
             <Admonition type="warning" style={[a.flex_1]}>
               <Trans>Restart app after changing this setting.</Trans>
             </Admonition>
-            <Admonition type="info" style={[a.flex_1]}>
-              <Trans>
-                Credit to deer.social, this is entirely theirs! 
-              </Trans>
-            </Admonition>
           </SettingsList.Group>
 
         </SettingsList.Container>

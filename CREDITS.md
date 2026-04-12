@@ -12,3 +12,4 @@ Nyxo Sky is a fork of [Bluesky social-app](https://github.com/bluesky-social/).
   - Disable 'Feeds ✨' toggle ([source](https://github.com/kittibyte/deer-social/commit/8fc4409a81b4c562c5203ee5175e3b3ec4ea891a))
 - [Witchsky](https://witchsky.app)
   - Source code link button concept
+  - App Theme colour values for: Witchsky, Deer Social, Zeppelin, Kitty, Red Dwarf, Catppuccin, & Evergarden
