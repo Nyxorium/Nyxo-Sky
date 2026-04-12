@@ -19,6 +19,7 @@ import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/i
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {CodeBrackets_Stroke2_Corner0_Rounded as CodeBracketsIcon} from '#/components/icons/CodeBrackets'
 import {PaperPlane_Stroke2_Corner0_Rounded as Send} from '#/components/icons/PaperPlane'
+import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import * as Menu from '#/components/Menu'
 import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
@@ -46,9 +47,12 @@ let ShareMenuItems = ({
   const postCid = post.cid
   const postAuthor = useProfileShadow(post.author)
 
-  const href = useMemo(() => {
+  const {href, bskyUrl} = useMemo(() => {
     const urip = new AtUri(postUri)
-    return makeProfileLink(postAuthor, 'post', urip.rkey)
+    return {
+      href: makeProfileLink(postAuthor, 'post', urip.rkey),
+      bskyUrl: `https://bsky.app/profile/${postAuthor.handle}/post/${urip.rkey}`,
+    }
   }, [postUri, postAuthor])
 
   const hideInPWI = useMemo(() => {
@@ -94,10 +98,27 @@ let ShareMenuItems = ({
     </Menu.Item>
   )
 
+  const openInBlueSkyItem = (
+    <Menu.Item
+      testID="postDropdownOpenInBskyBtn"
+      label={_(msg`Open in Bluesky`)}
+      onPress={() => {
+        window.open(bskyUrl, '_blank', 'noopener')
+        onShareProp()
+      }}>
+      <Menu.ItemText>
+        <Trans>Open in Bluesky</Trans>
+      </Menu.ItemText>
+      <Menu.ItemIcon icon={BlueskyIcon} position="right" />
+    </Menu.Item>
+  )
+
   return (
     <>
       <Menu.Outer>
         {!hideInPWI && copyLinkItem}
+
+        {!hideInPWI && openInBlueSkyItem}
 
         {hasSession && aa.state.access === aa.Access.Full && (
           <Menu.Item
@@ -131,6 +152,7 @@ let ShareMenuItems = ({
           <>
             {hasSession && <Menu.Divider />}
             {copyLinkItem}
+            {openInBlueSkyItem}
             <Menu.LabelText style={{maxWidth: 220}}>
               <Trans>Note: This post is only visible to logged-in users.</Trans>
             </Menu.LabelText>

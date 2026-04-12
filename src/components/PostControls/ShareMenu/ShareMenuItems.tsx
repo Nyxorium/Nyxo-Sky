@@ -1,4 +1,5 @@
 import {memo, useMemo} from 'react'
+import {Linking} from 'react-native'
 import * as ExpoClipboard from 'expo-clipboard'
 import {AtUri} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
@@ -22,6 +23,7 @@ import {ArrowOutOfBoxModified_Stroke2_Corner2_Rounded as ArrowOutOfBoxIcon} from
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {PaperPlane_Stroke2_Corner0_Rounded as PaperPlaneIcon} from '#/components/icons/PaperPlane'
+import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import * as Menu from '#/components/Menu'
 import * as Toast from '#/components/Toast'
 import {useAgeAssurance} from '#/ageAssurance'
@@ -53,9 +55,12 @@ let ShareMenuItems = ({
   // const postAuthor = (enableShareViaDID ? useProfileShadow(post.author) : useProfileShadow(post.author))
   // Get post.author.did to work - Sunstar
 
-  const href = useMemo(() => {
+  const {href, bskyUrl} = useMemo(() => {
     const urip = new AtUri(postUri)
-    return makeProfileLink(postAuthor, 'post', urip.rkey)
+    return {
+      href: makeProfileLink(postAuthor, 'post', urip.rkey),
+      bskyUrl: `https://bsky.app/profile/${postAuthor.handle}/post/${urip.rkey}`,
+    }
   }, [postUri, postAuthor])
 
   const hideInPWI = useMemo(() => {
@@ -153,6 +158,19 @@ let ShareMenuItems = ({
             <Menu.ItemIcon icon={ChainLinkIcon} position="right" />
           </Menu.Item>
         </Menu.Group>
+
+        <Menu.Item
+          testID="postDropdownOpenInBskyBtn"
+          label={_(msg`Open in Bluesky`)}
+          onPress={() => {
+            Linking.openURL(bskyUrl)
+            onShareProp()
+          }}>
+          <Menu.ItemText>
+            <Trans>Open in Bluesky</Trans>
+          </Menu.ItemText>
+          <Menu.ItemIcon icon={BlueskyIcon} position="right" />
+        </Menu.Item>
 
         {hideInPWI && (
           <Menu.Group>
