@@ -1,10 +1,7 @@
 import {memo, useCallback, useEffect, useMemo} from 'react'
 import {Pressable, View} from 'react-native'
 import Animated, {
-  measure,
-  type MeasuredDimensions,
-  runOnJS,
-  runOnUI,
+  type AnimatedRef,
   useAnimatedRef,
 } from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
@@ -80,7 +77,7 @@ let ProfileHeaderShell = ({
   const _openLightbox = useCallback(
     (
       uri: string,
-      thumbRect: MeasuredDimensions | null,
+      thumbRef: AnimatedRef<any>,
       type: 'circle-avi' | 'rect-avi' | 'image' = 'circle-avi',
     ) => {
       openLightbox({
@@ -88,7 +85,8 @@ let ProfileHeaderShell = ({
           {
             uri,
             thumbUri: uri,
-            thumbRect,
+            thumbRect: null,
+            thumbRef,
             dimensions:
               type === 'circle-avi' && enableSquareAvatars === false || type === 'rect-avi'
                 ? {
@@ -134,11 +132,7 @@ let ProfileHeaderShell = ({
       const avatar = profile.avatar
       const type = profile.associated?.labeler ? 'rect-avi' : 'circle-avi'
       if (avatar && !(modui.blur && modui.noOverride)) {
-        runOnUI(() => {
-          'worklet'
-          const rect = measure(aviRef)
-          runOnJS(_openLightbox)(avatar, rect, type)
-        })()
+        _openLightbox(avatar, aviRef, type)
       }
     }
   }, [
@@ -156,11 +150,7 @@ let ProfileHeaderShell = ({
     const modui = moderation.ui('banner')
     const banner = profile.banner
     if (banner && !(modui.blur && modui.noOverride)) {
-      runOnUI(() => {
-        'worklet'
-        const rect = measure(bannerRef)
-        runOnJS(_openLightbox)(banner, rect, 'image')
-      })()
+      _openLightbox(banner, bannerRef, 'image')
     }
   }, [profile.banner, moderation, _openLightbox, bannerRef])
 
