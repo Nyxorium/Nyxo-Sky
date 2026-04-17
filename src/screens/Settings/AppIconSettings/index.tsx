@@ -84,34 +84,56 @@ export function AppIconSettingsScreen({}: Props) {
           ))}
         </Group>
 
-        {IS_INTERNAL && (
-          <>
-            <Text
-              style={[
-                a.text_md,
-                a.mt_xl,
-                a.mb_sm,
-                a.font_semi_bold,
-                t.atoms.text_contrast_medium,
-              ]}>
-              <Trans>Bluesky+</Trans>
-            </Text>
-            <Group
-              label={_(msg`Bluesky+ icons`)}
-              value={currentAppIcon}
-              onChange={onSetAppIcon}>
-              {sets.core.map((icon, i) => (
-                <Row
-                  key={icon.id}
-                  icon={icon}
-                  isEnd={i === sets.core.length - 1}>
-                  <AppIcon icon={icon} key={icon.id} size={40} />
-                  <RowText>{icon.name}</RowText>
-                </Row>
-              ))}
-            </Group>
-          </>
-        )}
+        <Text
+          style={[
+            a.text_md,
+            a.mt_xl,
+            a.mb_sm,
+            a.font_semi_bold,
+            t.atoms.text_contrast_medium,
+          ]}>
+          <Trans>Bluesky Icons</Trans>
+        </Text>
+        <Group
+          label={_(msg`Bluesky icons`)}
+          value={currentAppIcon}
+          onChange={onSetAppIcon}>
+          {sets.bluesky.map((icon, i) => (
+            <Row
+              key={icon.id}
+              icon={icon}
+              isEnd={i === sets.bluesky.length - 1}>
+              <AppIcon icon={icon} key={icon.id} size={40} />
+              <RowText>{icon.name}</RowText>
+            </Row>
+          ))}
+        </Group>
+
+        <Text
+          style={[
+            a.text_md,
+            a.mt_xl,
+            a.mb_sm,
+            a.font_semi_bold,
+            t.atoms.text_contrast_medium,
+          ]}>
+          <Trans>Bluesky+</Trans>
+        </Text>
+        <Group
+          label={_(msg`Bluesky+ icons`)}
+          value={currentAppIcon}
+          onChange={onSetAppIcon}>
+          {sets.core.map((icon, i) => (
+            <Row
+              key={icon.id}
+              icon={icon}
+              isEnd={i === sets.core.length - 1}>
+              <AppIcon icon={icon} key={icon.id} size={40} />
+              <RowText>{icon.name}</RowText>
+            </Row>
+          ))}
+        </Group>
+
       </Layout.Content>
     </Layout.Screen>
   )
