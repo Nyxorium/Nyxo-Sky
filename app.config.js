@@ -186,19 +186,18 @@ module.exports = function (_config) {
       },
       android: {
         // icon: './assets/app-icons/android_icon_default_next.png',
-        icon: './assets/app-icons/nyxo-icon.png',
         // adaptiveIcon: {
         //   foregroundImage: './assets/icon-android-foreground.png',
         //   monochromeImage: './assets/icon-android-monochrome.png',
         //   backgroundColor: '#006AFF',
         // },
+        icon: './assets/app-icons/nasa_PIA09412_icon.png',
         adaptiveIcon: {
-          foregroundImage: './assets/app-icons/nyxo-icon.png',
+          foregroundImage: './assets/app-icons/nasa_PIA09412_icon.png',
           backgroundColor: '#006AFF',
         },
         googleServicesFile: './google-services.json',
         package: 'com.nyxo.app',
-        // versionCode: 1,
         intentFilters: [
           {
             action: 'VIEW',
@@ -300,6 +299,7 @@ module.exports = function (_config) {
         './plugins/starterPackAppClipExtension/withStarterPackAppClip.js',
         './plugins/withGradleJVMHeapSizeIncrease.js',
         './plugins/withAndroidManifestLargeHeapPlugin.js',
+        './plugins/withAndroidRestore',
         './plugins/withAndroidManifestFCMIconPlugin.js',
         './plugins/withAndroidManifestIntentQueriesPlugin.js',
         './plugins/withAndroidStylesAccentColorPlugin.js',
@@ -359,14 +359,27 @@ module.exports = function (_config) {
              */
             default_light: {
               ios: './assets/app-icons/ios_icon_legacy_light.png',
-              // android: './assets/app-icons/android_icon_legacy_light.png',
-              android: './assets/app-icons/nyxo-icon.png',
+              android: './assets/app-icons/nasa_PIA09412_icon.png',
               prerendered: true,
             },
             default_dark: {
               ios: './assets/app-icons/ios_icon_legacy_dark.png',
-              // android: './assets/app-icons/android_icon_legacy_dark.png',
-              android: './assets/app-icons/nyxo-icon.png',
+              android: './assets/app-icons/nasa_PIA09412_icon.png',
+              prerendered: true,
+            },
+
+            /**
+             * Bluesky Logos
+             */
+
+            bluesky_light: {
+              ios: './assets/app-icons/ios_icon_legacy_light.png',
+              android: './assets/app-icons/android_icon_legacy_light.png',
+              prerendered: true,
+            },
+            bluesky_dark: {
+              ios: './assets/app-icons/ios_icon_legacy_dark.png',
+              android: './assets/app-icons/android_icon_legacy_dark.png',
               prerendered: true,
             },
 
