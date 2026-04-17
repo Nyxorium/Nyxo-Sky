@@ -149,6 +149,19 @@ let ShareMenuItems = ({
           </Menu.Item>
 
           <Menu.Item
+            testID="postDropdownOpenInBskyBtn"
+            label={_(msg`Open in Bluesky`)}
+            onPress={() => {
+              Linking.openURL(bskyUrl)
+              onShareProp()
+            }}>
+            <Menu.ItemText>
+              <Trans>Open in Bluesky</Trans>
+            </Menu.ItemText>
+            <Menu.ItemIcon icon={BlueskyIcon} position="right" />
+          </Menu.Item>
+
+          <Menu.Item
             testID="postDropdownShareBtn"
             label={_(msg`Copy link to post`)}
             onPress={onCopyLink}>
@@ -158,19 +171,6 @@ let ShareMenuItems = ({
             <Menu.ItemIcon icon={ChainLinkIcon} position="right" />
           </Menu.Item>
         </Menu.Group>
-
-        <Menu.Item
-          testID="postDropdownOpenInBskyBtn"
-          label={_(msg`Open in Bluesky`)}
-          onPress={() => {
-            Linking.openURL(bskyUrl)
-            onShareProp()
-          }}>
-          <Menu.ItemText>
-            <Trans>Open in Bluesky</Trans>
-          </Menu.ItemText>
-          <Menu.ItemIcon icon={BlueskyIcon} position="right" />
-        </Menu.Item>
 
         {hideInPWI && (
           <Menu.Group>
