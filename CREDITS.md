@@ -2,6 +2,8 @@
 
 Nyxo Sky is a fork of [Bluesky social-app](https://github.com/bluesky-social/).
 
+App Icon: [NASA/JPL-Caltech – PIA09412: Young Stars Emerge from Orion Head](https://images.nasa.gov/details/PIA09412)
+
 ## Acknowledgements
 
 - [Deer Social](https://github.com/a-viv-a/deer-social)
