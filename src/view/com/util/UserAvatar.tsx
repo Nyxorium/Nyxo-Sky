@@ -59,6 +59,7 @@ import {LiveStatusDialog} from '#/features/liveNow/components/LiveStatusDialog'
 import type * as bsky from '#/types/bsky'
 
 import {useEnableSquareAvatars} from '#/state/preferences/enable-square-avatars'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 
 export type UserAvatarType = 'user' | 'algo' | 'list' | 'labeler'
 
@@ -231,6 +232,7 @@ let UserAvatar = ({
   const enableSquareAvatars = useEnableSquareAvatars()
   const prefSquareAvatars = enableSquareAvatars ? 'square' : 'circle'
   const finalShape = overrideShape ?? (type === 'user' ? prefSquareAvatars : 'square')
+  const [devModeEnabled] = useDevMode()
 
   const aviStyle = useMemo(() => {
     let borderRadius
@@ -293,7 +295,7 @@ let UserAvatar = ({
   }, [size, style])
 
   return avatar &&
-    !((moderation?.blur && IS_ANDROID) /* android crashes with blur */) ? (
+    !((moderation?.blur && IS_ANDROID && !devModeEnabled) /* android crashes with blur */) ? (
     <View style={containerStyle}>
       {usePlainRNImage ? (
         <RNImage
