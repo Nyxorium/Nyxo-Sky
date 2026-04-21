@@ -209,6 +209,8 @@ export const ComposePost = ({
   const setLangPrefs = useLanguagePrefsApi()
   const textInputRef = useRef<TextInputRef>(null)
   const discardPromptControl = Prompt.usePromptControl()
+  const emptyPostsPromptControl = Prompt.usePromptControl()
+  const skipEmptyConfirmedRef = useRef(false)
   const {mutateAsync: saveDraft, isPending: _isSavingDraft} =
     useSaveDraftMutation()
   const {mutate: cleanupPublishedDraft} = useCleanupPublishedDraftMutation()
@@ -785,15 +787,46 @@ export const ComposePost = ({
 
   const canPost =
     !missingAltError &&
+    thread.posts.some(post => !isEmptyPost(post)) &&
     thread.posts.every(
       post =>
-        post.shortenedGraphemeLength <= MAX_GRAPHEME_LENGTH &&
-        !isEmptyPost(post) &&
-        !(
-          post.embed.media?.type === 'video' &&
-          post.embed.media.video.status === 'error'
-        ),
+        isEmptyPost(post) ||
+        (post.shortenedGraphemeLength <= MAX_GRAPHEME_LENGTH &&
+          !(
+            post.embed.media?.type === 'video' &&
+            post.embed.media.video.status === 'error'
+          )),
     )
+
+  const getFilteredThread = (): {
+    type: 'none' | 'trailing-only' | 'non-trailing'
+    filteredThread: ThreadDraft
+  } => {
+    const nonEmptyPosts = thread.posts.filter(post => !isEmptyPost(post))
+
+    if (nonEmptyPosts.length === thread.posts.length) {
+      return {type: 'none', filteredThread: thread}
+    }
+
+    let lastNonEmptyIndex = -1
+    for (let i = thread.posts.length - 1; i >= 0; i--) {
+      if (!isEmptyPost(thread.posts[i])) {
+        lastNonEmptyIndex = i
+        break
+      }
+    }
+
+    const hasNonTrailingEmpty = thread.posts.some(
+      (post, i) => i < lastNonEmptyIndex && isEmptyPost(post),
+    )
+
+    const filteredThread: ThreadDraft = {...thread, posts: nonEmptyPosts}
+
+    return {
+      type: hasNonTrailingEmpty ? 'non-trailing' : 'trailing-only',
+      filteredThread,
+    }
+  }
 
   const onPressPublish = useCallback(async () => {
     if (isPublishing) {
@@ -804,8 +837,15 @@ export const ComposePost = ({
       return
     }
 
+    const {type: emptyType, filteredThread} = getFilteredThread()
+
+    if (emptyType === 'non-trailing' && !skipEmptyConfirmedRef.current) {
+      emptyPostsPromptControl.open()
+      return
+    }
+
     if (
-      thread.posts.some(
+      filteredThread.posts.some(
         post =>
           post.embed.media?.type === 'video' &&
           post.embed.media.video.asset &&
@@ -816,6 +856,7 @@ export const ComposePost = ({
       return
     }
 
+    skipEmptyConfirmedRef.current = false
     setError('')
     setIsPublishing(true)
 
@@ -828,7 +869,7 @@ export const ComposePost = ({
           agent,
           queryClient,
           {
-            thread,
+            thread: filteredThread,
             replyTo: replyTo?.uri,
             onStateChange: setPublishingStage,
             langs: currentLanguages,
@@ -859,10 +900,10 @@ export const ComposePost = ({
               const res = await agent.app.bsky.unspecced.getPostThreadV2({
                 anchor: postUri!,
                 above: false,
-                below: thread.posts.length - 1,
+                below: filteredThread.posts.length - 1,
                 branchingFactor: 1,
               })
-              if (res.data.thread.length !== thread.posts.length) {
+              if (res.data.thread.length !== filteredThread.posts.length) {
                 throw new Error(`composer: app view is not ready`)
               }
               if (
@@ -889,7 +930,9 @@ export const ComposePost = ({
     } catch (e: any) {
       logger.error(e, {
         message: `Composer: create post failed`,
-        hasImages: thread.posts.some(p => p.embed.media?.type === 'images'),
+        hasImages: filteredThread.posts.some(
+          p => p.embed.media?.type === 'images',
+        ),
       })
 
       let err = cleanError(e.message)
@@ -904,14 +947,14 @@ export const ComposePost = ({
     } finally {
       if (postUri) {
         let index = 0
-        for (let post of thread.posts) {
+        for (let post of filteredThread.posts) {
           ax.metric('post:create', {
             imageCount:
               post.embed.media?.type === 'images'
                 ? post.embed.media.images.length
                 : 0,
             isReply: index > 0 || !!replyTo,
-            isPartOfThread: thread.posts.length > 1,
+            isPartOfThread: filteredThread.posts.length > 1,
             hasLink: !!post.embed.link,
             hasQuote: !!post.embed.quote,
             langs: fromPostLanguages(currentLanguages),
@@ -920,9 +963,9 @@ export const ComposePost = ({
           index++
         }
       }
-      if (thread.posts.length > 1) {
+      if (filteredThread.posts.length > 1) {
         ax.metric('thread:create', {
-          postCount: thread.posts.length,
+          postCount: filteredThread.posts.length,
           isReply: !!replyTo,
         })
       }
@@ -975,7 +1018,7 @@ export const ComposePost = ({
         <Toast.Outer>
           <Toast.Icon />
           <Toast.Text>
-            {thread.posts.length > 1
+            {filteredThread.posts.length > 1
               ? l`Your posts were sent`
               : replyTo
                 ? l`Your reply was sent`
@@ -1018,7 +1061,13 @@ export const ComposePost = ({
     composerState.isDirty,
     cleanupPublishedDraft,
     loadedDraftCreatedAt,
+    emptyPostsPromptControl,
   ])
+
+  const handleConfirmSkipEmpty = () => {
+    skipEmptyConfirmedRef.current = true
+    void onPressPublish()
+  }
 
   // Preserves the referential identity passed to each post item.
   // Avoids re-rendering all posts on each keystroke.
@@ -1031,6 +1080,7 @@ export const ComposePost = ({
       let erroredVideos = 0
       let uploadingVideos = 0
       for (let post of thread.posts) {
+        if (isEmptyPost(post)) continue
         if (post.embed.media?.type === 'video') {
           const video = post.embed.media.video
           if (video.status === 'error') {
@@ -1270,6 +1320,15 @@ export const ComposePost = ({
             </Prompt.Actions>
           </Prompt.Outer>
         )}
+
+        <Prompt.Basic
+          control={emptyPostsPromptControl}
+          title={l`Skip empty posts?`}
+          description={l`Your thread has empty posts that will be skipped. The remaining posts will be published as a thread.`}
+          confirmButtonCta={l`Post anyway`}
+          cancelButtonCta={l`Keep editing`}
+          onConfirm={handleConfirmSkipEmpty}
+        />
       </KeyboardAvoidingView>
     </BottomSheetPortalProvider>
   )
