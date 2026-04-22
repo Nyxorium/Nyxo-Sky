@@ -14,6 +14,8 @@ This is a [React Native](https://reactnative.dev/) application, written in the T
 
 There is a small amount of Go language source code (in `./bskyweb/`), for a web service that returns the React Native Web application.
 
+However, `./bskyweb/` is not used in the deployment of Nyxo Sky, as it’s hosted on Cloudflare. To get deep links working in this configuration, `config.output.publicPath` in `webpack.config.js` was changed from `auto` to `/` (there may be another way, but this was the easiest I could find! So if something fishy happens, this may be it).
+
 The [Build Instructions](./docs/build.md) are a good place to get started with the app itself.
 
 The Authenticated Transfer Protocol ("AT Protocol" or "atproto") is a decentralized social media protocol. You don't *need* to understand AT Protocol to work with this application, but it can help. Learn more at:
