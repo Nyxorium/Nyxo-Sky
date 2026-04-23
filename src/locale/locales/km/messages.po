@@ -8,7 +8,7 @@ msgstr ""
 "Language: km\n"
 "Project-Id-Version: 49a8cb746fbc2ae5707392ee41ddec4c\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-08 18:50\n"
+"PO-Revision-Date: 2026-04-22 15:38\n"
 "Last-Translator: \n"
 "Language-Team: Khmer\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,9 +22,7 @@ msgstr ""
 msgid " to create your account, then sign in here."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:931
-#: src/screens/Messages/ConversationSettings.tsx:941
-#: src/screens/Messages/ConversationSettings.tsx:1018
+#: src/screens/Messages/ConversationSettings.tsx:966
 msgid "…"
 msgstr ""
 
@@ -33,7 +31,7 @@ msgstr ""
 msgid "\"{interestsDisplayName}\" category (active)"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:284
+#: src/components/dms/getMessageInfo.ts:66
 msgid "(contains embedded content)"
 msgstr ""
 
@@ -47,12 +45,12 @@ msgid "{0, plural, one {# day} other {# days}}"
 msgstr ""
 
 #. placeholder {0}: profile.followersCount ?? 0
-#: src/screens/Profile/ProfileFollowers.tsx:43
+#: src/screens/Profile/ProfileFollowers.tsx:33
 msgid "{0, plural, one {# follower} other {# followers}}"
 msgstr ""
 
 #. placeholder {0}: profile.followsCount ?? 0
-#: src/screens/Profile/ProfileFollows.tsx:43
+#: src/screens/Profile/ProfileFollows.tsx:33
 msgid "{0, plural, one {# following} other {# following}}"
 msgstr ""
 
@@ -77,7 +75,7 @@ msgid "{0, plural, one {# label has} other {# labels have}} been placed on this 
 msgstr ""
 
 #. placeholder {0}: likeCount ?? 0
-#: src/screens/Post/PostLikedBy.tsx:44
+#: src/screens/Post/PostLikedBy.tsx:34
 msgid "{0, plural, one {# like} other {# likes}}"
 msgstr ""
 
@@ -98,17 +96,17 @@ msgstr ""
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:293
+#: src/components/dms/MessageItem.tsx:289
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
 #. placeholder {0}: quoteCount ?? 0
-#: src/screens/Post/PostQuotes.tsx:44
+#: src/screens/Post/PostQuotes.tsx:34
 msgid "{0, plural, one {# quote} other {# quotes}}"
 msgstr ""
 
 #. placeholder {0}: quoteCount ?? 0
-#: src/screens/Post/PostRepostedBy.tsx:44
+#: src/screens/Post/PostRepostedBy.tsx:34
 msgid "{0, plural, one {# repost} other {# reposts}}"
 msgstr ""
 
@@ -222,20 +220,10 @@ msgstr ""
 msgid "{0} is not supported by your device."
 msgstr ""
 
-#. placeholder {0}: createSanitizedDisplayName(data.member)
-#: src/components/dms/systemMessage.ts:40
-msgid "{0} joined the group"
-msgstr ""
-
 #. placeholder {0}: formatCount(i18n, JOINED_THIS_WEEK)
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:232
 msgid "{0} joined this week"
 msgstr "{0} បានចូលរួមសប្តាហ៍នេះ"
-
-#. placeholder {0}: createSanitizedDisplayName(data.member)
-#: src/components/dms/systemMessage.ts:45
-msgid "{0} left the group"
-msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -249,27 +237,10 @@ msgstr ""
 msgid "{0} out of 50"
 msgstr ""
 
-#. placeholder {0}: sanitizeDisplayName( sender.displayName || sender.handle, )
+#. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0} reacted {1}"
-msgstr ""
-
-#. placeholder {0}: sanitizeDisplayName( sender.displayName || sender.handle, )
-#. placeholder {1}: convo.lastReaction.reaction.value
-#. placeholder {2}: lastMessageText ? `"${convo.lastReaction.message.text}"` : fallbackMessage
-#: src/screens/Messages/components/ChatListItem.tsx:352
-msgid "{0} reacted {1} to {2}"
-msgstr ""
-
-#. placeholder {0}: createSanitizedDisplayName(data.member)
-#: src/components/dms/systemMessage.ts:30
-msgid "{0} was added to the group"
-msgstr ""
-
-#. placeholder {0}: createSanitizedDisplayName(data.member)
-#: src/components/dms/systemMessage.ts:35
-msgid "{0} was removed from the group"
 msgstr ""
 
 #. placeholder {0}: feed.displayName
@@ -292,8 +263,8 @@ msgstr ""
 msgid "{0}'s avatar"
 msgstr ""
 
-#. placeholder {0}: sanitizeDisplayName( profile.displayName || sanitizeHandle(profile.handle), )
-#: src/components/dms/MessageItem.tsx:224
+#. placeholder {0}: createSanitizedDisplayName(profile)
+#: src/components/dms/MessageItem.tsx:222
 msgid "{0}’s avatar"
 msgstr ""
 
@@ -330,7 +301,7 @@ msgid "{date} at {time}"
 msgstr ""
 
 #: src/lib/generate-starterpack.ts:104
-#: src/screens/StarterPack/Wizard/index.tsx:200
+#: src/screens/StarterPack/Wizard/index.tsx:189
 msgid "{displayName}'s Starter Pack"
 msgstr ""
 
@@ -541,7 +512,8 @@ msgstr ""
 msgid "{MAX_PRONOUNS, plural, other {Max length exceeded. The maximum number of characters is #.}}"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:252
+#. The number of group chat members out of the total number of permitted users.
+#: src/screens/Messages/ConversationSettings.tsx:264
 msgid "{memberCount}/{MEMBER_LIMIT}"
 msgstr ""
 
@@ -551,6 +523,32 @@ msgstr ""
 
 #: src/features/liveNow/utils.ts:10
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:57
+msgid "{name} joined the group"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:64
+msgid "{name} left the group"
+msgstr ""
+
+#. placeholder {0}: reaction.value
+#: src/components/dms/getReactionInfo.ts:45
+msgid "{name} reacted {0} to {target}"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:41
+msgid "{name} was added to the group"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:49
+msgid "{name} was removed from the group"
+msgstr ""
+
+#. When the last message in a group chat came from someone other than you.
+#: src/components/dms/getMessageInfo.ts:50
+msgid "{name}: {message}"
 msgstr ""
 
 #: src/screens/StarterPack/Wizard/StepDetails.tsx:76
@@ -582,8 +580,14 @@ msgstr ""
 msgid "{rank}."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:259
+#. The number of requests to join a group chat.
+#: src/screens/Messages/ConversationSettings.tsx:282
 msgid "{requestCount, plural, one {# request} other {# requests}}"
+msgstr ""
+
+#. Displayed when there are more than 50 requests to join a group chat
+#: src/screens/Messages/ConversationSettings.tsx:277
+msgid "{requestCount}+ requests"
 msgstr ""
 
 #. trending topic time spent trending. should be as short as possible to fit in a pill
@@ -612,7 +616,7 @@ msgstr ""
 #. placeholder {0}: getName(items[0])
 #. placeholder {1}: getName(items[1])
 #. placeholder {2}: items.length - 2
-#: src/screens/StarterPack/Wizard/index.tsx:580
+#: src/screens/StarterPack/Wizard/index.tsx:569
 msgctxt "feeds"
 msgid "<0>{0}, </0><1>{1}, </1>and {2, plural, one {# other} other {# others}} are included in your starter pack"
 msgstr ""
@@ -620,7 +624,7 @@ msgstr ""
 #. placeholder {0}: getName(items[1] /* [0] is self, skip it */)
 #. placeholder {1}: getName(items[2])
 #. placeholder {2}: items.length - 2
-#: src/screens/StarterPack/Wizard/index.tsx:527
+#: src/screens/StarterPack/Wizard/index.tsx:516
 msgctxt "profiles"
 msgid "<0>{0}, </0><1>{1}, </1>and {2, plural, one {# other} other {# others}} are included in your starter pack"
 msgstr ""
@@ -668,13 +672,13 @@ msgstr ""
 #. placeholder {0}: getName(items[0])
 #. placeholder {1}: getName(items[1] /* [0] is self, skip it */)
 #. placeholder {1}: getName(items[1])
-#: src/screens/StarterPack/Wizard/index.tsx:514
-#: src/screens/StarterPack/Wizard/index.tsx:568
+#: src/screens/StarterPack/Wizard/index.tsx:503
+#: src/screens/StarterPack/Wizard/index.tsx:557
 msgid "<0>{0}</0> and<1> </1><2>{1} </2>are included in your starter pack"
 msgstr "\"<0>{0}</0> និង<1> </1><2>{1}</2> ត្រូវបានរួមបញ្ចូលនៅក្នុងកញ្ចប់ចាប់ផ្តើមរបស់អ្នក"
 
 #. placeholder {0}: getName(items[0])
-#: src/screens/StarterPack/Wizard/index.tsx:561
+#: src/screens/StarterPack/Wizard/index.tsx:550
 msgid "<0>{0}</0> is included in your starter pack"
 msgstr "<0>{0}</0> ត្រូវបានរួមបញ្ចូលនៅក្នុងកញ្ចប់ចាប់ផ្តើមរបស់អ្នក"
 
@@ -683,13 +687,13 @@ msgstr "<0>{0}</0> ត្រូវបានរួមបញ្ចូលនៅក�
 msgid "<0>{0}</0> members"
 msgstr "សមាជិក <0>{0}</0>"
 
-#: src/screens/Hashtag.tsx:239
+#: src/screens/Hashtag.tsx:226
 #: src/screens/Search/SearchResults.tsx:315
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr ""
 
 #. placeholder {0}: getName(items[1] /* [0] is self, skip it */)
-#: src/screens/StarterPack/Wizard/index.tsx:505
+#: src/screens/StarterPack/Wizard/index.tsx:494
 msgid "<0>You</0> and<1> </1><2>{0} </2>are included in your starter pack"
 msgstr "<0>អ្នក</0> និង<1> </1><2>{0}</2> ត្រូវបានរួមបញ្ចូលនៅក្នុងកញ្ចប់ចាប់ផ្តើមរបស់អ្នក"
 
@@ -724,7 +728,7 @@ msgid "A collection of popular feeds you can find on Bluesky, including News, Bo
 msgstr ""
 
 #. If last message does not contain text, fall back to "{user} reacted to {a message}"
-#: src/screens/Messages/components/ChatListItem.tsx:335
+#: src/components/dms/getReactionInfo.ts:33
 msgid "a message"
 msgstr ""
 
@@ -789,7 +793,7 @@ msgstr ""
 msgid "Accept Request"
 msgstr ""
 
-#: src/view/com/composer/select-language/SuggestedLanguage.tsx:180
+#: src/view/com/composer/select-language/SuggestedLanguage.tsx:470
 msgid "Accept this language suggestion"
 msgstr ""
 
@@ -813,7 +817,7 @@ msgstr "គណនី"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:426
 #: src/screens/Messages/components/RequestButtons.tsx:101
-#: src/screens/Messages/ConversationSettings.tsx:575
+#: src/screens/Messages/ConversationSettings.tsx:601
 #: src/view/com/profile/ProfileMenu.tsx:199
 msgctxt "toast"
 msgid "Account blocked"
@@ -859,7 +863,7 @@ msgstr ""
 msgid "Account removed from quick access"
 msgstr "គណនីត្រូវបានដកចេញពីការចូលប្រើរហ័ស"
 
-#: src/screens/Messages/ConversationSettings.tsx:562
+#: src/screens/Messages/ConversationSettings.tsx:588
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:90
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:315
 #: src/view/com/profile/ProfileMenu.tsx:187
@@ -903,7 +907,7 @@ msgid "Add"
 msgstr "បន្ថែម"
 
 #. placeholder {0}: 8 - items.length
-#: src/screens/StarterPack/Wizard/index.tsx:616
+#: src/screens/StarterPack/Wizard/index.tsx:605
 msgid "Add {0} more to continue"
 msgstr "បន្ថែម {0} បន្ថែមទៀតដើម្បីបន្ត"
 
@@ -951,11 +955,11 @@ msgstr "បន្ថែមអត្ថបទជំនួស (ជាជម្រ�
 msgid "Add another account"
 msgstr "បន្ថែមគណនីផ្សេងទៀត"
 
-#: src/view/com/composer/Composer.tsx:1378
+#: src/view/com/composer/Composer.tsx:1394
 msgid "Add another post"
 msgstr "បន្ថែមប្រកាសមួយទៀត"
 
-#: src/view/com/composer/Composer.tsx:2055
+#: src/view/com/composer/Composer.tsx:2073
 msgid "Add another post to thread"
 msgstr ""
 
@@ -990,8 +994,8 @@ msgstr ""
 msgid "Add media to post"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:330
-#: src/screens/Messages/ConversationSettings.tsx:347
+#: src/screens/Messages/ConversationSettings.tsx:356
+#: src/screens/Messages/ConversationSettings.tsx:373
 msgid "Add members"
 msgstr ""
 
@@ -1000,8 +1004,8 @@ msgstr ""
 msgid "Add more details (optional)"
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:201
-#: src/screens/Settings/LanguageSettings.tsx:206
+#: src/screens/Settings/LanguageSettings.tsx:218
+#: src/screens/Settings/LanguageSettings.tsx:223
 msgid "Add more languages…"
 msgstr ""
 
@@ -1032,7 +1036,7 @@ msgstr ""
 msgid "Add recommended feeds"
 msgstr "បន្ថែមមតិព័ត៌មានដែលបានណែនាំ"
 
-#: src/screens/StarterPack/Wizard/index.tsx:549
+#: src/screens/StarterPack/Wizard/index.tsx:538
 msgid "Add some feeds to your starter pack!"
 msgstr "បន្ថែមមតិព័ត៌មានមួយចំនួនទៅកញ្ចប់ចាប់ផ្តើមរបស់អ្នក"
 
@@ -1101,8 +1105,8 @@ msgstr ""
 msgid "Additional details (limit 300 characters)"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:393
-#: src/screens/Messages/ConversationSettings.tsx:613
+#: src/screens/Messages/ConversationSettings.tsx:419
+#: src/screens/Messages/ConversationSettings.tsx:639
 msgid "Admin"
 msgstr ""
 
@@ -1121,7 +1125,7 @@ msgstr ""
 msgid "Adult Content"
 msgstr "មាតិកាសម្រាប់មនុស្សពេញវ័យ"
 
-#: src/screens/Moderation/index.tsx:421
+#: src/screens/Moderation/index.tsx:412
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "មាតិកាសម្រាប់មនុស្សពេញវ័យអាចត្រូវបានបើកតាមរយៈគេហទំព័រនៅ <0>bsky.app</0> ប៉ុណ្ណោះ។"
 
@@ -1138,7 +1142,7 @@ msgstr "ស្លាកមាតិកាសម្រាប់មនុស្ស
 msgid "Adult sexual abuse content"
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:466
+#: src/screens/Moderation/index.tsx:457
 msgid "Advanced"
 msgstr "កម្រិតខ្ពស់"
 
@@ -1166,8 +1170,8 @@ msgstr ""
 
 #. the default tab in the interests tab bar
 #: src/components/dms/ReactionsDialog.tsx:289
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:199
-#: src/view/screens/Notifications.tsx:89
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:201
+#: src/view/screens/Notifications.tsx:88
 msgid "All"
 msgstr ""
 
@@ -1187,11 +1191,11 @@ msgstr ""
 msgid "All languages"
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:172
+#: src/screens/Settings/LanguageSettings.tsx:189
 msgid "All languages will be shown in your feeds."
 msgstr ""
 
-#: src/view/screens/Feeds.tsx:712
+#: src/view/screens/Feeds.tsx:703
 msgid "All the feeds you've saved, right in one place."
 msgstr "មតិព័ត៌មានទាំងអស់ដែលអ្នកបានរក្សាទុក នៅកន្លែងតែមួយ"
 
@@ -1311,7 +1315,7 @@ msgstr "កំហុសមួយបានកើតឡើង"
 msgid "An error occurred while compressing the video."
 msgstr "កំហុសមួយបានកើតឡើងខណៈពេលកំពុងបង្ហាប់វីដេអូ"
 
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:221
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:223
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:69
 msgid "An error occurred while fetching suggested accounts."
 msgstr ""
@@ -1381,7 +1385,7 @@ msgstr ""
 msgid "An illustration showing that Bluesky selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1087
+#: src/screens/Messages/ConversationSettings.tsx:1112
 msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time. Your name, avatar, and the name of the group chat will be visible to everyone."
 msgstr ""
 
@@ -1472,8 +1476,8 @@ msgstr ""
 msgid "App Icon"
 msgstr "រូបតំណាងកម្មវិធី"
 
-#: src/screens/Settings/LanguageSettings.tsx:90
-#: src/screens/Settings/LanguageSettings.tsx:106
+#: src/screens/Settings/LanguageSettings.tsx:107
+#: src/screens/Settings/LanguageSettings.tsx:123
 msgid "App language"
 msgstr ""
 
@@ -1603,7 +1607,7 @@ msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់ល
 msgid "Are you sure you want to discard your changes?"
 msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់បោះបង់ការផ្លាស់ប្ដូររបស់អ្នក"
 
-#: src/screens/Messages/ConversationSettings.tsx:1130
+#: src/screens/Messages/ConversationSettings.tsx:1155
 msgid "Are you sure you want to leave {groupName}?"
 msgstr ""
 
@@ -1619,7 +1623,7 @@ msgstr "តើអ្នកប្រាកដថាចង់ចាកចេញព
 msgid "Are you sure you want to remove this from your feeds?"
 msgstr "តើអ្នកប្រាកដថាចង់លុបវាចេញពីមតិព័ត៌មានរបស់អ្នកមែនទេ"
 
-#: src/view/com/composer/Composer.tsx:1518
+#: src/view/com/composer/Composer.tsx:1534
 msgid "Are you sure you'd like to discard this post?"
 msgstr "តើអ្នកប្រាកដថាចង់បោះបង់ការបង្ហោះនេះទេ?"
 
@@ -1627,7 +1631,7 @@ msgstr "តើអ្នកប្រាកដថាចង់បោះបង់ក
 msgid "Are you sure?"
 msgstr "តើអ្នកប្រាកដទេ?"
 
-#: src/view/com/composer/select-language/SuggestedLanguage.tsx:101
+#: src/view/com/composer/select-language/SuggestedLanguage.tsx:359
 msgid "Are you writing in <0>{suggestedLanguageName}</0>?"
 msgstr ""
 
@@ -1711,7 +1715,7 @@ msgstr ""
 #: src/screens/Signup/BackNextButtons.tsx:42
 #: src/screens/Signup/StepSelectProvider/index.tsx:232
 #: src/screens/Signup/StepSelectProvider/index.tsx:236
-#: src/screens/StarterPack/Wizard/index.tsx:326
+#: src/screens/StarterPack/Wizard/index.tsx:315
 #: src/view/com/composer/drafts/DraftsListDialog.tsx:87
 #: src/view/com/composer/drafts/DraftsListDialog.tsx:93
 msgid "Back"
@@ -1729,8 +1733,8 @@ msgstr ""
 msgid "Banned user returning"
 msgstr ""
 
-#: src/view/screens/Lists.tsx:43
-#: src/view/screens/ModerationModlists.tsx:43
+#: src/view/screens/Lists.tsx:35
+#: src/view/screens/ModerationModlists.tsx:35
 msgid "Before creating a list, you must first verify your email."
 msgstr "មុននឹងបង្កើតបញ្ជី អ្នកត្រូវតែផ្ទៀងផ្ទាត់អ៊ីមែលរបស់អ្នកជាមុនសិន"
 
@@ -1741,7 +1745,7 @@ msgstr ""
 #: src/components/dialogs/StarterPackDialog.tsx:72
 #: src/components/StarterPack/ProfileStarterPacks.tsx:264
 #: src/components/StarterPack/ProfileStarterPacks.tsx:274
-#: src/view/screens/Profile.tsx:399
+#: src/view/screens/Profile.tsx:396
 msgid "Before creating a starter pack, you must first verify your email."
 msgstr "មុននឹងបង្កើតកញ្ចប់ចាប់ផ្តើម អ្នកត្រូវតែផ្ទៀងផ្ទាត់អ៊ីមែលរបស់អ្នកជាមុនសិន"
 
@@ -1756,8 +1760,8 @@ msgstr ""
 #: src/components/dms/dialogs/NewChatDialog.tsx:94
 #: src/components/dms/MessageProfileButton.tsx:60
 #: src/screens/Messages/ChatList.tsx:380
-#: src/screens/Messages/Conversation.tsx:236
-#: src/screens/Messages/ConversationSettings.tsx:552
+#: src/screens/Messages/Conversation.tsx:235
+#: src/screens/Messages/ConversationSettings.tsx:578
 msgid "Before you can message another user, you must first verify your email."
 msgstr ""
 
@@ -1786,14 +1790,14 @@ msgid "Birthday"
 msgstr "ថ្ងៃកំណើត"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:853
-#: src/screens/Messages/ConversationSettings.tsx:674
-#: src/screens/Messages/ConversationSettings.tsx:1155
+#: src/screens/Messages/ConversationSettings.tsx:700
+#: src/screens/Messages/ConversationSettings.tsx:1180
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:212
 #: src/view/com/profile/ProfileMenu.tsx:598
 msgid "Block"
 msgstr "ទប់ស្កាត់"
 
-#: src/screens/Messages/ConversationSettings.tsx:670
+#: src/screens/Messages/ConversationSettings.tsx:696
 msgid "Block {displayName}"
 msgstr ""
 
@@ -1808,7 +1812,7 @@ msgstr ""
 msgid "Block account"
 msgstr "បិទគណនី"
 
-#: src/screens/Messages/ConversationSettings.tsx:1152
+#: src/screens/Messages/ConversationSettings.tsx:1177
 msgid "Block account?"
 msgstr ""
 
@@ -1855,22 +1859,22 @@ msgstr ""
 msgid "Blocked"
 msgstr "រារាំង"
 
-#: src/screens/Moderation/index.tsx:338
+#: src/screens/Moderation/index.tsx:329
 msgid "Blocked accounts"
 msgstr "គណនី​ដែល​បាន​ទប់ស្កាត់"
 
 #: src/Navigation.tsx:199
-#: src/view/screens/ModerationBlockedAccounts.tsx:104
+#: src/view/screens/ModerationBlockedAccounts.tsx:95
 msgid "Blocked Accounts"
 msgstr "គណនី​ដែល​បាន​ទប់ស្កាត់"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:851
-#: src/screens/Messages/ConversationSettings.tsx:1153
+#: src/screens/Messages/ConversationSettings.tsx:1178
 #: src/view/com/profile/ProfileMenu.tsx:593
 msgid "Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
 msgstr "គណនី​ដែល​បាន​ទប់ស្កាត់​មិន​អាច​ឆ្លើយ​តប​ក្នុង​ខ្សែ​ស្រឡាយ​របស់​អ្នក លើក​ឡើង​ពី​អ្នក ឬ​ធ្វើ​អន្តរកម្ម​ជាមួយ​អ្នក"
 
-#: src/view/screens/ModerationBlockedAccounts.tsx:190
+#: src/view/screens/ModerationBlockedAccounts.tsx:181
 msgid "Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you. You will not see their content and they will be prevented from seeing yours."
 msgstr "គណនី​ដែល​បាន​ទប់ស្កាត់​មិន​អាច​ឆ្លើយ​តប​ក្នុង​ខ្សែ​ស្រឡាយ​របស់​អ្នក លើក​ឡើង​ពី​អ្នក ឬ​ធ្វើ​អន្តរកម្ម​ជាមួយ​អ្នក។ អ្នកនឹងមិនឃើញខ្លឹមសាររបស់ពួកគេទេ ហើយពួកគេនឹងត្រូវបានរារាំងមិនឱ្យឃើញរបស់អ្នក"
 
@@ -1995,20 +1999,20 @@ msgstr ""
 msgid "Browse custom feeds"
 msgstr ""
 
-#: src/components/FeedInterstitials.tsx:540
+#: src/components/FeedInterstitials.tsx:541
 msgid "Browse more accounts"
 msgstr ""
 
-#: src/components/FeedInterstitials.tsx:670
+#: src/components/FeedInterstitials.tsx:671
 msgid "Browse more feeds on the Explore page"
 msgstr "រកមើលព័ត៌មានបន្ថែមនៅលើទំព័ររុករក"
 
-#: src/components/FeedInterstitials.tsx:651
-#: src/components/FeedInterstitials.tsx:654
+#: src/components/FeedInterstitials.tsx:652
+#: src/components/FeedInterstitials.tsx:655
 msgid "Browse more suggestions"
 msgstr "រកមើលការណែនាំបន្ថែម"
 
-#: src/components/FeedInterstitials.tsx:679
+#: src/components/FeedInterstitials.tsx:680
 msgid "Browse more suggestions on the Explore page"
 msgstr "រកមើលការណែនាំបន្ថែមនៅលើទំព័ររុករក"
 
@@ -2042,7 +2046,7 @@ msgstr ""
 msgid "Business"
 msgstr "អាជីវកម្ម"
 
-#: src/screens/Bookmarks/index.tsx:305
+#: src/screens/Bookmarks/index.tsx:302
 msgid "Button to go back to the home timeline"
 msgstr ""
 
@@ -2057,7 +2061,7 @@ msgstr ""
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:853
 #: src/screens/Search/components/StarterPackCard.tsx:107
-#: src/screens/Search/Explore.tsx:970
+#: src/screens/Search/Explore.tsx:971
 msgid "By {0}"
 msgstr "ដោយ {0}"
 
@@ -2119,12 +2123,12 @@ msgstr "កាមេរ៉ា"
 #: src/features/liveNow/components/GoLiveDialog.tsx:275
 #: src/lib/media/picker.tsx:38
 #: src/screens/Deactivated.tsx:150
-#: src/screens/Messages/ConversationSettings.tsx:1089
-#: src/screens/Messages/ConversationSettings.tsx:1110
-#: src/screens/Messages/ConversationSettings.tsx:1134
+#: src/screens/Messages/ConversationSettings.tsx:1114
+#: src/screens/Messages/ConversationSettings.tsx:1135
+#: src/screens/Messages/ConversationSettings.tsx:1159
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
-#: src/screens/Search/Shell.tsx:399
+#: src/screens/Search/Shell.tsx:396
 #: src/screens/Settings/AppIconSettings/index.tsx:42
 #: src/screens/Settings/AppIconSettings/index.tsx:250
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:80
@@ -2134,8 +2138,8 @@ msgstr "កាមេរ៉ា"
 #: src/screens/Settings/Settings.tsx:296
 #: src/screens/Takendown.tsx:102
 #: src/screens/Takendown.tsx:105
-#: src/view/com/composer/Composer.tsx:1596
-#: src/view/com/composer/Composer.tsx:1606
+#: src/view/com/composer/Composer.tsx:1612
+#: src/view/com/composer/Composer.tsx:1622
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:44
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:53
 #: src/view/shell/desktop/LeftNav.tsx:215
@@ -2150,7 +2154,7 @@ msgstr "បោះបង់ការប្រកាសសម្រង់"
 msgid "Cancel reactivation and sign out"
 msgstr "បោះបង់ការបើកដំណើរការឡើងវិញ ហើយចេញ"
 
-#: src/screens/Search/Shell.tsx:390
+#: src/screens/Search/Shell.tsx:387
 msgid "Cancel search"
 msgstr "បោះបង់ការស្វែងរក"
 
@@ -2263,11 +2267,11 @@ msgctxt "toast"
 msgid "Chat deleted"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:48
+#: src/components/dms/getSystemMessageInfo.ts:67
 msgid "Chat locked"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:52
+#: src/components/dms/getSystemMessageInfo.ts:71
 msgid "Chat locked permanently"
 msgstr ""
 
@@ -2308,12 +2312,16 @@ msgstr "ការកំណត់ការជជែក"
 msgid "Chat Settings"
 msgstr "ការកំណត់ការជជែក"
 
-#. placeholder {0}: data.newName ?? ''
-#: src/components/dms/systemMessage.ts:56
+#: src/components/dms/getSystemMessageInfo.ts:77
+msgid "Chat title changed"
+msgstr ""
+
+#. placeholder {0}: data.newName
+#: src/components/dms/getSystemMessageInfo.ts:76
 msgid "Chat title changed to {0}"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:50
+#: src/components/dms/getSystemMessageInfo.ts:69
 msgid "Chat unlocked"
 msgstr ""
 
@@ -2353,7 +2361,7 @@ msgstr ""
 msgid "Choose domain verification method"
 msgstr "ជ្រើសរើសវិធីសាស្ត្រផ្ទៀងផ្ទាត់ដែន"
 
-#: src/screens/StarterPack/Wizard/index.tsx:216
+#: src/screens/StarterPack/Wizard/index.tsx:205
 msgid "Choose Feeds"
 msgstr "ជ្រើសរើសមតិព័ត៌មាន"
 
@@ -2365,12 +2373,12 @@ msgstr "ជ្រើសរើសសម្រាប់ខ្ញុំ"
 msgid "Choose languages"
 msgstr ""
 
-#: src/screens/StarterPack/Wizard/index.tsx:212
+#: src/screens/StarterPack/Wizard/index.tsx:201
 msgid "Choose People"
 msgstr "ជ្រើសរើសមនុស្ស"
 
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:57
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:114
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:75
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:136
 msgid "Choose post languages"
 msgstr ""
 
@@ -2386,7 +2394,7 @@ msgstr ""
 msgid "Choose your account provider"
 msgstr ""
 
-#: src/view/screens/Feeds.tsx:738
+#: src/view/screens/Feeds.tsx:729
 msgid "Choose your own timeline! Feeds built by the community help you find content you love."
 msgstr ""
 
@@ -2419,7 +2427,7 @@ msgstr "ជម្រះសំណួរស្វែងរក"
 msgid "Click for information"
 msgstr ""
 
-#: src/view/screens/Support.tsx:45
+#: src/view/screens/Support.tsx:35
 msgid "click here"
 msgstr "ចុចទីនេះ"
 
@@ -2466,7 +2474,7 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:560
+#: src/components/dms/MessageItem.tsx:553
 msgid "Click to retry failed message"
 msgstr "ចុចដើម្បីព្យាយាមសារដែលបរាជ័យម្តងទៀត"
 
@@ -2509,7 +2517,7 @@ msgstr ""
 #: src/components/NewskieDialog.tsx:169
 #: src/components/NewskieDialog.tsx:175
 #: src/components/Post/Embed/VideoEmbed/GifPresentationControls.tsx:107
-#: src/components/ProgressGuide/FollowDialog.tsx:460
+#: src/components/ProgressGuide/FollowDialog.tsx:462
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:122
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:128
 #: src/components/verification/VerificationsDialog.tsx:146
@@ -2584,7 +2592,7 @@ msgstr ""
 msgid "Closes password update alert"
 msgstr "បិទការជូនដំណឹងអំពីការអាប់ដេតពាក្យសម្ងាត់"
 
-#: src/view/com/composer/Composer.tsx:1604
+#: src/view/com/composer/Composer.tsx:1620
 msgid "Closes post composer and discards post draft"
 msgstr ""
 
@@ -2619,7 +2627,7 @@ msgstr "រឿងកំប្លែង"
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:47
 #: src/Navigation.tsx:348
-#: src/view/screens/CommunityGuidelines.tsx:38
+#: src/view/screens/CommunityGuidelines.tsx:28
 msgid "Community Guidelines"
 msgstr "គោលការណ៍ណែនាំសហគមន៍"
 
@@ -2638,7 +2646,7 @@ msgid "Compose new post"
 msgstr "សរសេរអត្ថបទថ្មី"
 
 #. placeholder {0}: MAX_GRAPHEME_LENGTH || 0
-#: src/view/com/composer/Composer.tsx:1480
+#: src/view/com/composer/Composer.tsx:1496
 msgid "Compose posts up to {0, plural, other {# characters}} in length"
 msgstr ""
 
@@ -2646,11 +2654,11 @@ msgstr ""
 msgid "Compose reply"
 msgstr "សរសេរការឆ្លើយតប"
 
-#: src/view/com/composer/Composer.tsx:2451
+#: src/view/com/composer/Composer.tsx:2470
 msgid "Compressing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2453
+#: src/view/com/composer/Composer.tsx:2472
 msgid "Compressing video..."
 msgstr "កំពុង​បង្ហាប់​វីដេអូ..."
 
@@ -2748,7 +2756,7 @@ msgstr "ខ្លឹមសារ និងប្រព័ន្ធផ្សព�
 msgid "Content Blocked"
 msgstr "មាតិកាត្រូវបានរារាំង"
 
-#: src/screens/Moderation/index.tsx:371
+#: src/screens/Moderation/index.tsx:362
 msgid "Content filters"
 msgstr "តម្រងមាតិកា"
 
@@ -2756,7 +2764,7 @@ msgstr "តម្រងមាតិកា"
 msgid "Content from across the network we think you might like."
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:160
+#: src/screens/Settings/LanguageSettings.tsx:177
 msgid "Content languages"
 msgstr ""
 
@@ -2788,7 +2796,7 @@ msgstr "ផ្ទាំងខាងក្រោយម៉ឺនុយបរិប
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:172
 #: src/screens/Onboarding/StepInterests/index.tsx:93
 #: src/screens/Onboarding/StepProfile/index.tsx:303
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:302
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:305
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:117
 msgid "Continue"
 msgstr "បន្ត"
@@ -2813,7 +2821,7 @@ msgstr ""
 
 #: src/screens/Onboarding/StepInterests/index.tsx:90
 #: src/screens/Onboarding/StepProfile/index.tsx:300
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:299
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:302
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:114
 #: src/screens/Signup/BackNextButtons.tsx:61
 msgid "Continue to next step"
@@ -2823,7 +2831,7 @@ msgstr "បន្តទៅជំហានបន្ទាប់"
 msgid "Conversation"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:321
+#: src/screens/Messages/components/ChatListItem.tsx:264
 msgid "Conversation deleted"
 msgstr "ការសន្ទនាត្រូវបានលុប"
 
@@ -2944,7 +2952,7 @@ msgstr "ចម្លងតម្លៃកំណត់ត្រា TXT"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:42
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:109
 #: src/Navigation.tsx:353
-#: src/view/screens/CopyrightPolicy.tsx:35
+#: src/view/screens/CopyrightPolicy.tsx:25
 msgid "Copyright Policy"
 msgstr "គោលការណ៍រក្សាសិទ្ធិ"
 
@@ -2981,8 +2989,8 @@ msgid "Could not load feed"
 msgstr "មិនអាចផ្ទុកព័ត៌មានបានទេ"
 
 #: src/screens/ProfileList/components/ErrorScreen.tsx:27
-#: src/screens/ProfileList/index.tsx:81
-#: src/screens/ProfileList/index.tsx:103
+#: src/screens/ProfileList/index.tsx:80
+#: src/screens/ProfileList/index.tsx:102
 msgid "Could not load list"
 msgstr "មិនអាចផ្ទុកបញ្ជីបានទេ"
 
@@ -3044,8 +3052,8 @@ msgstr "បង្កើតលេខកូដ QR សម្រាប់កញ្�
 msgid "Create a starter pack"
 msgstr "បង្កើតកញ្ចប់ចាប់ផ្តើម"
 
-#: src/view/screens/Profile.tsx:613
-#: src/view/screens/Profile.tsx:614
+#: src/view/screens/Profile.tsx:610
+#: src/view/screens/Profile.tsx:611
 msgid "Create a Starter Pack"
 msgstr ""
 
@@ -3069,7 +3077,7 @@ msgstr "ចុះឈ្មោះ"
 
 #: src/components/dialogs/Signin.tsx:87
 #: src/components/dialogs/Signin.tsx:89
-#: src/screens/Hashtag.tsx:248
+#: src/screens/Hashtag.tsx:235
 #: src/screens/Search/SearchResults.tsx:321
 msgid "Create an account"
 msgstr "បង្កើតគណនី"
@@ -3083,7 +3091,7 @@ msgstr ""
 msgid "Create an avatar instead"
 msgstr "បង្កើតរូបតំណាងជំនួសវិញ"
 
-#: src/screens/Messages/ConversationSettings.tsx:865
+#: src/screens/Messages/ConversationSettings.tsx:891
 msgid "Create an invite link for this group chat"
 msgstr ""
 
@@ -3203,6 +3211,10 @@ msgstr "ការសម្របសម្រួលបំបាត់កំហុ
 msgid "Debug panel"
 msgstr ""
 
+#: src/view/com/composer/select-language/SuggestedLanguage.tsx:479
+msgid "Decline this language suggestion"
+msgstr ""
+
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:84
 msgid "Deepfake adult content"
 msgstr ""
@@ -3291,7 +3303,7 @@ msgstr "លុបសារពីខ្ញុំ"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:787
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:789
-#: src/view/com/composer/Composer.tsx:1492
+#: src/view/com/composer/Composer.tsx:1508
 msgid "Delete post"
 msgstr "លុប post"
 
@@ -3317,9 +3329,9 @@ msgid "Deleted"
 msgstr "បានលុប់"
 
 #: src/components/dms/MessagesListHeader.tsx:105
-#: src/screens/Messages/components/ChatListItem.tsx:128
-#: src/screens/Messages/ConversationSettings.tsx:383
-#: src/screens/Messages/ConversationSettings.tsx:599
+#: src/screens/Messages/components/ChatListItem.tsx:118
+#: src/screens/Messages/ConversationSettings.tsx:409
+#: src/screens/Messages/ConversationSettings.tsx:625
 msgid "Deleted Account"
 msgstr "គណនីបានលុប"
 
@@ -3439,15 +3451,15 @@ msgstr ""
 #: src/lib/moderation/useLabelBehaviorDescription.ts:71
 #: src/screens/Messages/Settings.tsx:160
 #: src/screens/Messages/Settings.tsx:163
-#: src/screens/Moderation/index.tsx:411
+#: src/screens/Moderation/index.tsx:402
 msgid "Disabled"
 msgstr "បានបិទ"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:101
 #: src/screens/Profile/Header/EditProfileDialog.tsx:84
-#: src/view/com/composer/Composer.tsx:1271
-#: src/view/com/composer/Composer.tsx:1315
-#: src/view/com/composer/Composer.tsx:1525
+#: src/view/com/composer/Composer.tsx:1287
+#: src/view/com/composer/Composer.tsx:1331
+#: src/view/com/composer/Composer.tsx:1541
 #: src/view/com/composer/drafts/DraftItem.tsx:242
 #: src/view/com/composer/drafts/DraftsButton.tsx:131
 msgid "Discard"
@@ -3458,14 +3470,14 @@ msgstr "បោះបង់"
 msgid "Discard changes?"
 msgstr "បោះបង់ "
 
-#: src/view/com/composer/Composer.tsx:1269
+#: src/view/com/composer/Composer.tsx:1285
 #: src/view/com/composer/drafts/DraftItem.tsx:239
 #: src/view/com/composer/drafts/DraftsButton.tsx:98
 msgid "Discard draft?"
 msgstr "បោះបង់ការផ្លាស់ប្តូរ?"
 
-#: src/view/com/composer/Composer.tsx:1286
-#: src/view/com/composer/Composer.tsx:1517
+#: src/view/com/composer/Composer.tsx:1302
+#: src/view/com/composer/Composer.tsx:1533
 msgid "Discard post?"
 msgstr "បោះបង់ការបង្ហោះ?"
 
@@ -3484,11 +3496,11 @@ msgstr "រារាំងកម្មវិធីមិនឱ្យបង្ហ
 msgid "Discover new custom feeds"
 msgstr "ស្វែងរកព័ត៌មានផ្ទាល់ខ្លួនថ្មី"
 
-#: src/screens/Search/Explore.tsx:452
+#: src/screens/Search/Explore.tsx:453
 msgid "Discover new feeds"
 msgstr ""
 
-#: src/view/screens/Feeds.tsx:735
+#: src/view/screens/Feeds.tsx:726
 msgid "Discover New Feeds"
 msgstr "ស្វែងរកមតិព័ត៌មានថ្មី"
 
@@ -3500,7 +3512,7 @@ msgstr "ច្រានចោល"
 msgid "Dismiss banner"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2372
+#: src/view/com/composer/Composer.tsx:2391
 msgid "Dismiss error"
 msgstr "ច្រានចោលកំហុស"
 
@@ -3521,7 +3533,7 @@ msgstr ""
 msgid "Dismiss this section"
 msgstr ""
 
-#: src/components/FeedInterstitials.tsx:350
+#: src/components/FeedInterstitials.tsx:351
 msgid "Dismiss this suggestion"
 msgstr ""
 
@@ -3618,7 +3630,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "រួចរាល់"
 
-#: src/components/dms/MessageItem.tsx:451
+#: src/components/dms/MessageItem.tsx:448
 msgid "Double tap or long press the message to add a reaction"
 msgstr ""
 
@@ -3626,7 +3638,7 @@ msgstr ""
 msgid "Double tap to close the dialog"
 msgstr "ចុចពីរដងដើម្បីបិទប្រអប់"
 
-#: src/screens/VideoFeed/index.tsx:1111
+#: src/screens/VideoFeed/index.tsx:1107
 msgid "Double tap to like"
 msgstr ""
 
@@ -3723,8 +3735,8 @@ msgstr ""
 #: src/screens/Settings/AccountSettings.tsx:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:255
 #: src/screens/StarterPack/StarterPackScreen.tsx:606
-#: src/screens/StarterPack/Wizard/index.tsx:342
-#: src/screens/StarterPack/Wizard/index.tsx:347
+#: src/screens/StarterPack/Wizard/index.tsx:331
+#: src/screens/StarterPack/Wizard/index.tsx:336
 msgid "Edit"
 msgstr "កែសម្រួល"
 
@@ -3743,8 +3755,8 @@ msgstr "កែសម្រួលរូបតំណាង"
 msgid "Edit Feeds"
 msgstr "កែសម្រួលមតិព័ត៌មាន"
 
-#: src/screens/Messages/ConversationSettings.tsx:1042
-#: src/screens/Messages/ConversationSettings.tsx:1047
+#: src/screens/Messages/ConversationSettings.tsx:1067
+#: src/screens/Messages/ConversationSettings.tsx:1072
 msgid "Edit group name"
 msgstr ""
 
@@ -3779,11 +3791,11 @@ msgid "Edit moderation list"
 msgstr ""
 
 #: src/Navigation.tsx:363
-#: src/view/screens/Feeds.tsx:522
+#: src/view/screens/Feeds.tsx:513
 msgid "Edit My Feeds"
 msgstr "កែសម្រួលមតិព័ត៌មានរបស់ខ្ញុំ"
 
-#: src/screens/Messages/ConversationSettings.tsx:859
+#: src/screens/Messages/ConversationSettings.tsx:885
 msgid "Edit name"
 msgstr ""
 
@@ -3817,7 +3829,7 @@ msgstr "កែប្រវត្តិរូប"
 msgid "Edit starter pack"
 msgstr "កែសម្រួលកញ្ចប់ចាប់ផ្តើម"
 
-#: src/screens/Messages/ConversationSettings.tsx:858
+#: src/screens/Messages/ConversationSettings.tsx:884
 msgid "Edit this group chat’s name"
 msgstr ""
 
@@ -3909,7 +3921,7 @@ msgstr "បើក"
 msgid "Enable {0} only"
 msgstr "បើកដំណើរការតែ {0} ប៉ុណ្ណោះ"
 
-#: src/screens/Moderation/index.tsx:398
+#: src/screens/Moderation/index.tsx:389
 msgid "Enable adult content"
 msgstr "បើកមាតិកាសម្រាប់មនុស្សពេញវ័យ"
 
@@ -3970,7 +3982,7 @@ msgstr ""
 
 #: src/screens/Messages/Settings.tsx:151
 #: src/screens/Messages/Settings.tsx:154
-#: src/screens/Moderation/index.tsx:409
+#: src/screens/Moderation/index.tsx:400
 msgid "Enabled"
 msgstr "បានបើក"
 
@@ -4047,7 +4059,7 @@ msgstr ""
 msgid "Entertainment"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2471
+#: src/view/com/composer/Composer.tsx:2490
 #: src/view/com/util/error/ErrorScreen.tsx:43
 msgid "Error"
 msgstr "កំហុស"
@@ -4129,7 +4141,7 @@ msgstr "ពង្រីក ឬបង្រួមការបង្ហោះព�
 msgid "Expand post text"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:987
+#: src/screens/VideoFeed/index.tsx:983
 msgid "Expands or collapses post text"
 msgstr ""
 
@@ -4173,7 +4185,7 @@ msgid "Explicit sexual images."
 msgstr "រូបភាពផ្លូវភេទច្បាស់លាស់"
 
 #: src/Navigation.tsx:842
-#: src/screens/Search/Shell.tsx:356
+#: src/screens/Search/Shell.tsx:353
 #: src/view/shell/desktop/LeftNav.tsx:691
 #: src/view/shell/Drawer.tsx:404
 msgid "Explore"
@@ -4240,12 +4252,12 @@ msgid "Failed to create app password. Please try again."
 msgstr "បរាជ័យក្នុងការបង្កើតពាក្យសម្ងាត់កម្មវិធី។ សូមព្យាយាមម្តងទៀត"
 
 #: src/components/dms/MessageProfileButton.tsx:38
-#: src/screens/Messages/ConversationSettings.tsx:529
+#: src/screens/Messages/ConversationSettings.tsx:555
 msgid "Failed to create conversation"
 msgstr ""
 
-#: src/screens/StarterPack/Wizard/index.tsx:261
-#: src/screens/StarterPack/Wizard/index.tsx:271
+#: src/screens/StarterPack/Wizard/index.tsx:250
+#: src/screens/StarterPack/Wizard/index.tsx:260
 msgid "Failed to create starter pack"
 msgstr "បរាជ័យក្នុងការបង្កើតកញ្ចប់ចាប់ផ្តើម"
 
@@ -4272,11 +4284,11 @@ msgstr "បរាជ័យក្នុងការលុបកញ្ចប់ច
 msgid "Failed to disconnect Germ DM. Error: {0}"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:731
+#: src/screens/Messages/ConversationSettings.tsx:757
 msgid "Failed to edit group chat name"
 msgstr ""
 
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:142
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:143
 msgid "Failed to follow all suggested accounts, please try again"
 msgstr ""
 
@@ -4292,7 +4304,7 @@ msgstr ""
 msgid "Failed to launch SMS app"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:759
+#: src/screens/Messages/ConversationSettings.tsx:785
 msgctxt "toast"
 msgid "Failed to leave group chat"
 msgstr ""
@@ -4302,16 +4314,16 @@ msgstr ""
 msgid "Failed to load conversations"
 msgstr ""
 
-#: src/screens/Search/Explore.tsx:529
-#: src/screens/Search/Explore.tsx:574
-#: src/screens/Search/Explore.tsx:620
+#: src/screens/Search/Explore.tsx:530
+#: src/screens/Search/Explore.tsx:575
+#: src/screens/Search/Explore.tsx:621
 msgid "Failed to load feeds"
 msgstr ""
 
-#: src/screens/Search/Explore.tsx:488
-#: src/screens/Search/Explore.tsx:543
-#: src/screens/Search/Explore.tsx:588
-#: src/screens/Search/Explore.tsx:634
+#: src/screens/Search/Explore.tsx:489
+#: src/screens/Search/Explore.tsx:544
+#: src/screens/Search/Explore.tsx:589
+#: src/screens/Search/Explore.tsx:635
 msgid "Failed to load feeds preferences"
 msgstr "បានបរាជ័យក្នុងការផ្ទុកចំណូលចិត្តមតិព័ត៌មាន"
 
@@ -4345,10 +4357,10 @@ msgstr ""
 msgid "Failed to load profiles"
 msgstr ""
 
-#: src/screens/Search/Explore.tsx:481
-#: src/screens/Search/Explore.tsx:536
-#: src/screens/Search/Explore.tsx:581
-#: src/screens/Search/Explore.tsx:627
+#: src/screens/Search/Explore.tsx:482
+#: src/screens/Search/Explore.tsx:537
+#: src/screens/Search/Explore.tsx:582
+#: src/screens/Search/Explore.tsx:628
 msgid "Failed to load suggested feeds"
 msgstr "បានបរាជ័យក្នុងការផ្ទុកព័ត៌មានដែលបានណែនាំ"
 
@@ -4361,7 +4373,7 @@ msgstr "បានបរាជ័យក្នុងការផ្ទុកដែ
 msgid "Failed to mark all requests as read"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:747
+#: src/screens/Messages/ConversationSettings.tsx:773
 msgid "Failed to mute group chat"
 msgstr ""
 
@@ -4401,7 +4413,7 @@ msgstr ""
 msgid "Failed to resolve location. Please try again."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:566
+#: src/view/com/composer/Composer.tsx:580
 msgid "Failed to save draft"
 msgstr ""
 
@@ -4533,29 +4545,29 @@ msgid "Feedback sent to feed operator"
 msgstr ""
 
 #: src/Navigation.tsx:618
-#: src/screens/SavedFeeds.tsx:120
-#: src/screens/SavedFeeds.tsx:318
+#: src/screens/SavedFeeds.tsx:112
+#: src/screens/SavedFeeds.tsx:303
 #: src/screens/Search/SearchResults.tsx:80
 #: src/screens/Settings/ProfileTabsVisibility.tsx:187
 #: src/screens/Settings/ProfileTabsVisibility.tsx:200
 #: src/screens/Settings/ProfileTabsVisibility.tsx:338
 #: src/screens/Settings/ProfileTabsVisibility.tsx:351
 #: src/screens/StarterPack/StarterPackScreen.tsx:196
-#: src/view/screens/Feeds.tsx:515
-#: src/view/screens/Profile.tsx:287
+#: src/view/screens/Feeds.tsx:506
+#: src/view/screens/Profile.tsx:285
 #: src/view/shell/desktop/LeftNav.tsx:729
 #: src/view/shell/Drawer.tsx:520
 msgid "Feeds"
 msgstr "ព័ត៌មាន"
 
-#: src/screens/SavedFeeds.tsx:235
-#: src/screens/SavedFeeds.tsx:413
+#: src/screens/SavedFeeds.tsx:227
+#: src/screens/SavedFeeds.tsx:398
 msgid "Feeds are custom algorithms that users build with a little coding expertise. <0>See this guide</0> for more information."
 msgstr ""
 
 #: src/components/FeedCard.tsx:313
-#: src/screens/SavedFeeds.tsx:100
-#: src/screens/SavedFeeds.tsx:286
+#: src/screens/SavedFeeds.tsx:92
+#: src/screens/SavedFeeds.tsx:271
 msgctxt "toast"
 msgid "Feeds updated!"
 msgstr "បានធ្វើបច្ចុប្បន្នភាពព័ត៌មាន!"
@@ -4637,12 +4649,12 @@ msgstr ""
 #. Starter packs suggested to the user for them to follow
 #: src/components/ProgressGuide/FollowDialog.tsx:72
 #: src/components/ProgressGuide/FollowDialog.tsx:80
-#: src/components/ProgressGuide/FollowDialog.tsx:446
+#: src/components/ProgressGuide/FollowDialog.tsx:448
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:43
 msgid "Find people to follow"
 msgstr ""
 
-#: src/screens/Search/Shell.tsx:532
+#: src/screens/Search/Shell.tsx:524
 msgid "Find posts, users, and feeds on Bluesky"
 msgstr ""
 
@@ -4663,7 +4675,7 @@ msgstr ""
 msgid "Finding friends..."
 msgstr ""
 
-#: src/screens/StarterPack/Wizard/index.tsx:217
+#: src/screens/StarterPack/Wizard/index.tsx:206
 msgid "Finish"
 msgstr "បញ្ចប់"
 
@@ -4696,7 +4708,7 @@ msgstr ""
 #: src/components/ProfileHoverCard/index.web.tsx:506
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:407
-#: src/screens/VideoFeed/index.tsx:870
+#: src/screens/VideoFeed/index.tsx:866
 #: src/view/com/notifications/NotificationFeedItem.tsx:838
 #: src/view/com/notifications/NotificationFeedItem.tsx:845
 msgid "Follow"
@@ -4708,7 +4720,7 @@ msgstr "តាម"
 msgid "Follow {0}"
 msgstr "តាម {0}"
 
-#: src/screens/VideoFeed/index.tsx:849
+#: src/screens/VideoFeed/index.tsx:845
 msgid "Follow {handle}"
 msgstr ""
 
@@ -4731,7 +4743,7 @@ msgstr "តាមដានគណនី"
 
 #: src/components/contacts/screens/ViewMatches.tsx:276
 #: src/components/contacts/screens/ViewMatches.tsx:291
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:291
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:294
 #: src/screens/Onboarding/StepSuggestedStarterpacks/StarterPackCard.tsx:162
 #: src/screens/Onboarding/StepSuggestedStarterpacks/StarterPackCard.tsx:169
 #: src/screens/Settings/FindContactsSettings.tsx:444
@@ -4741,7 +4753,7 @@ msgstr "តាមដានគណនី"
 msgid "Follow all"
 msgstr "តាមដានទាំងអស់គ្នា"
 
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:288
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:291
 msgid "Follow all accounts"
 msgstr ""
 
@@ -4754,7 +4766,7 @@ msgstr ""
 msgid "Follow back"
 msgstr "តាមដានត្រឡប់វិញ"
 
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:131
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:132
 msgid "Followed all accounts!"
 msgstr ""
 
@@ -4791,8 +4803,8 @@ msgstr ""
 msgid "Followers of @{0} that you know"
 msgstr "អ្នកតាមដាន @{0} ដែលអ្នកស្គាល់"
 
-#: src/screens/Profile/KnownFollowers.tsx:107
-#: src/screens/Profile/KnownFollowers.tsx:124
+#: src/screens/Profile/KnownFollowers.tsx:98
+#: src/screens/Profile/KnownFollowers.tsx:115
 msgid "Followers you know"
 msgstr "អ្នកតាមដែលអ្នកស្គាល់"
 
@@ -4803,14 +4815,14 @@ msgstr "អ្នកតាមដែលអ្នកស្គាល់"
 #: src/components/ProfileHoverCard/index.web.tsx:505
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:403
-#: src/screens/VideoFeed/index.tsx:868
+#: src/screens/VideoFeed/index.tsx:864
 #: src/view/com/notifications/NotificationFeedItem.tsx:816
 #: src/view/com/notifications/NotificationFeedItem.tsx:833
 msgid "Following"
 msgstr "កំពុងតាម"
 
-#: src/screens/SavedFeeds.tsx:633
-#: src/view/screens/Feeds.tsx:608
+#: src/screens/SavedFeeds.tsx:618
+#: src/view/screens/Feeds.tsx:599
 msgctxt "feed-name"
 msgid "Following"
 msgstr "កំពុងតាម"
@@ -4824,7 +4836,7 @@ msgstr "កំពុងតាម"
 msgid "Following {0}"
 msgstr "កំពុងតាម {0}"
 
-#: src/screens/VideoFeed/index.tsx:848
+#: src/screens/VideoFeed/index.tsx:844
 msgid "Following {handle}"
 msgstr ""
 
@@ -4875,7 +4887,7 @@ msgid "For the best experience, we recommend using the theme font."
 msgstr "សម្រាប់បទពិសោធន៍ដ៏ល្អបំផុត យើងសូមណែនាំឱ្យប្រើពុម្ពអក្សរស្បែក"
 
 #: src/components/ProgressGuide/FollowDialog.tsx:131
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:346
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:349
 #: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:88
 msgid "For You"
 msgstr ""
@@ -4911,7 +4923,7 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: src/screens/Hashtag.tsx:137
+#: src/screens/Hashtag.tsx:124
 msgid "From @{sanitizedAuthor}"
 msgstr "ពី @{sanitizedAuthor}"
 
@@ -5004,7 +5016,7 @@ msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:77
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:87
-#: src/screens/Messages/ConversationSettings.tsx:1088
+#: src/screens/Messages/ConversationSettings.tsx:1113
 msgid "Get started"
 msgstr ""
 
@@ -5013,7 +5025,7 @@ msgstr ""
 msgid "GIF"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2476
+#: src/view/com/composer/Composer.tsx:2495
 msgid "GIF uploaded"
 msgstr ""
 
@@ -5035,22 +5047,22 @@ msgstr ""
 #: src/screens/ProfileList/components/ErrorScreen.tsx:35
 #: src/screens/ProfileList/components/ErrorScreen.tsx:41
 #: src/screens/VideoFeed/components/Header.tsx:163
+#: src/screens/VideoFeed/index.tsx:1168
 #: src/screens/VideoFeed/index.tsx:1172
-#: src/screens/VideoFeed/index.tsx:1176
-#: src/view/com/auth/LoggedOut.tsx:93
+#: src/view/com/auth/LoggedOut.tsx:89
 #: src/view/com/profile/ProfileFollowers.tsx:178
 #: src/view/com/profile/ProfileFollowers.tsx:179
-#: src/view/screens/NotFound.tsx:58
+#: src/view/screens/NotFound.tsx:46
 msgid "Go back"
 msgstr "ត្រឡប់ទៅវិញ"
 
 #: src/components/Error.tsx:77
 #: src/screens/List/ListHiddenScreen.tsx:228
-#: src/screens/Messages/Conversation.tsx:361
+#: src/screens/Messages/Conversation.tsx:360
 #: src/screens/Profile/ErrorState.tsx:63
 #: src/screens/Profile/ErrorState.tsx:67
 #: src/screens/StarterPack/StarterPackScreen.tsx:809
-#: src/view/screens/NotFound.tsx:57
+#: src/view/screens/NotFound.tsx:45
 msgid "Go Back"
 msgstr "ត្រឡប់ទៅវិញ"
 
@@ -5060,8 +5072,8 @@ msgstr "ត្រឡប់ទៅវិញ"
 msgid "Go back to previous step"
 msgstr "ត្រលប់ទៅជំហានមុន"
 
-#: src/screens/Bookmarks/index.tsx:306
-#: src/view/screens/NotFound.tsx:58
+#: src/screens/Bookmarks/index.tsx:303
+#: src/view/screens/NotFound.tsx:46
 msgid "Go home"
 msgstr "ទៅទំពណ៌ដើម"
 
@@ -5071,7 +5083,7 @@ msgctxt "Button to go back to the home timeline"
 msgid "Go home"
 msgstr "ទៅទំពណ៌ដើម"
 
-#: src/view/screens/NotFound.tsx:57
+#: src/view/screens/NotFound.tsx:45
 msgid "Go Home"
 msgstr "ទៅទំពណ៌ដើម"
 
@@ -5103,12 +5115,12 @@ msgstr ""
 #: src/components/ageAssurance/AgeAssuranceAdmonition.tsx:93
 #: src/components/ageAssurance/AgeRestrictedScreen.tsx:73
 #: src/components/ageAssurance/AgeRestrictedScreen.tsx:82
-#: src/screens/Moderation/index.tsx:246
+#: src/screens/Moderation/index.tsx:237
 msgid "Go to account settings"
 msgstr ""
 
 #. placeholder {0}: profile.handle
-#: src/screens/Messages/components/ChatListItem.tsx:149
+#: src/screens/Messages/components/ChatListItem.tsx:139
 msgid "Go to conversation with {0}"
 msgstr "ចូលទៅកាន់ការសន្ទនាជាមួយ {0}"
 
@@ -5121,13 +5133,13 @@ msgid "Go to next"
 msgstr "ទៅបន្ទាប់"
 
 #: src/components/dms/ConvoMenu.tsx:255
-#: src/screens/Messages/ConversationSettings.tsx:650
+#: src/screens/Messages/ConversationSettings.tsx:676
 #: src/view/shell/desktop/LeftNav.tsx:319
 #: src/view/shell/desktop/LeftNav.tsx:325
 msgid "Go to profile"
 msgstr "ចូលទៅកាន់ប្រវត្តិរូប"
 
-#: src/screens/Messages/components/ChatListItem.tsx:194
+#: src/screens/Messages/components/ChatListItem.tsx:184
 msgid "Go to the group chat named \"{chatName}\""
 msgstr ""
 
@@ -5159,26 +5171,26 @@ msgstr ""
 msgid "Grooming or predatory behavior"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:740
+#: src/screens/Messages/ConversationSettings.tsx:766
 msgctxt "toast"
 msgid "Group chat muted"
 msgstr ""
 
 #: src/Navigation.tsx:593
-#: src/screens/Messages/ConversationSettings.tsx:106
+#: src/screens/Messages/ConversationSettings.tsx:107
 msgid "Group chat settings"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:742
+#: src/screens/Messages/ConversationSettings.tsx:768
 msgctxt "toast"
 msgid "Group chat unmuted"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:346
+#: src/screens/Messages/Conversation.tsx:345
 msgid "Group chats are not yet available"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:344
+#: src/screens/Messages/Conversation.tsx:343
 msgid "Group chats are now available"
 msgstr ""
 
@@ -5188,7 +5200,7 @@ msgstr ""
 
 #: src/components/dms/InitiateChatFlow.tsx:231
 #: src/components/dms/InitiateChatFlow.tsx:549
-#: src/screens/Messages/ConversationSettings.tsx:1048
+#: src/screens/Messages/ConversationSettings.tsx:1073
 msgid "Group name"
 msgstr ""
 
@@ -5295,7 +5307,7 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:647
+#: src/screens/VideoFeed/index.tsx:643
 msgid "Hidden by your moderation settings."
 msgstr ""
 
@@ -5431,7 +5443,7 @@ msgstr "ហ៊ឺ ម៉ាស៊ីនមេចំណីបានផ្តល�
 msgid "Hmm, we're having trouble finding this feed. It may have been deleted."
 msgstr "ហ៊ឺ យើងមានបញ្ហាក្នុងការស្វែងរកព័ត៌មាននេះ។ វាប្រហែលជាត្រូវបានលុប"
 
-#: src/screens/Moderation/index.tsx:63
+#: src/screens/Moderation/index.tsx:61
 msgid "Hmmmm, it seems we're having trouble loading this data. See below for more details. If this issue persists, please contact us."
 msgstr "ហឺម វាហាក់ដូចជាយើងមានបញ្ហាក្នុងការផ្ទុកទិន្នន័យនេះ។ សូមមើលខាងក្រោមសម្រាប់ព័ត៌មានលម្អិតបន្ថែម។ ប្រសិនបើបញ្ហានេះនៅតែបន្តកើតមាន សូមទាក់ទងមកយើងខ្ញុំ"
 
@@ -5509,7 +5521,7 @@ msgstr ""
 msgid "If alt text is long, toggles alt text expanded state"
 msgstr "ប្រសិនបើអត្ថបទ alt វែង បិទ/បើកស្ថានភាពពង្រីកអត្ថបទ"
 
-#: src/screens/Settings/LanguageSettings.tsx:218
+#: src/screens/Settings/LanguageSettings.tsx:235
 msgid "If none are selected, all languages will be shown in your feeds."
 msgstr ""
 
@@ -5717,7 +5729,7 @@ msgstr "បញ្ចូលលេខកូដដែលបានផ្ញើទៅ
 msgid "Interaction limited"
 msgstr "អន្តរកម្មមានកំណត់"
 
-#: src/screens/Moderation/index.tsx:278
+#: src/screens/Moderation/index.tsx:269
 msgid "Interaction settings"
 msgstr ""
 
@@ -5790,24 +5802,24 @@ msgid "Invite friends <0/>"
 msgstr ""
 
 #: src/screens/Messages/components/MessagesListInfoPanel.tsx:113
-#: src/screens/Messages/ConversationSettings.tsx:866
-#: src/screens/Messages/ConversationSettings.tsx:1086
+#: src/screens/Messages/ConversationSettings.tsx:892
+#: src/screens/Messages/ConversationSettings.tsx:1111
 msgid "Invite link"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:59
+#: src/components/dms/getSystemMessageInfo.ts:80
 msgid "Invite link created"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:65
+#: src/components/dms/getSystemMessageInfo.ts:86
 msgid "Invite link disabled"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:61
+#: src/components/dms/getSystemMessageInfo.ts:82
 msgid "Invite link edited"
 msgstr ""
 
-#: src/components/dms/systemMessage.ts:63
+#: src/components/dms/getSystemMessageInfo.ts:84
 msgid "Invite link enabled"
 msgstr ""
 
@@ -5823,7 +5835,7 @@ msgstr "អញ្ជើញមនុស្សឱ្យចូលរួមក្ន
 msgid "Invite your friends to follow your favorite feeds and people"
 msgstr "អញ្ជើញមិត្តភ័ក្តិរបស់អ្នកឱ្យតាមដានព័ត៌មាន និងមនុស្សដែលអ្នកចូលចិត្ត"
 
-#: src/screens/Messages/ConversationSettings.tsx:613
+#: src/screens/Messages/ConversationSettings.tsx:639
 msgid "Invited"
 msgstr ""
 
@@ -5845,16 +5857,16 @@ msgid "It's correct"
 msgstr "វាត្រឹមត្រូវ"
 
 #. placeholder {0}: getName(items[0])
-#: src/screens/StarterPack/Wizard/index.tsx:494
+#: src/screens/StarterPack/Wizard/index.tsx:483
 msgid "It's just <0>{0} </0>right now! Add more people to your starter pack by searching above."
 msgstr ""
 
-#: src/screens/StarterPack/Wizard/index.tsx:489
+#: src/screens/StarterPack/Wizard/index.tsx:478
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "មានតែអ្នកទេឥឡូវនេះ! បន្ថែមមនុស្សបន្ថែមទៀតទៅក្នុងកញ្ចប់ចាប់ផ្តើមរបស់អ្នកដោយស្វែងរកខាងលើ"
 
 #. placeholder {0}: videoState.jobId
-#: src/view/com/composer/Composer.tsx:2391
+#: src/view/com/composer/Composer.tsx:2410
 msgid "Job ID: {0}"
 msgstr ""
 
@@ -5879,8 +5891,8 @@ msgstr ""
 msgid "Journalism"
 msgstr "សារព័ត៌មាន"
 
-#: src/view/com/composer/Composer.tsx:1319
-#: src/view/com/composer/Composer.tsx:1329
+#: src/view/com/composer/Composer.tsx:1335
+#: src/view/com/composer/Composer.tsx:1345
 #: src/view/com/composer/drafts/DraftsButton.tsx:135
 msgid "Keep editing"
 msgstr ""
@@ -5907,7 +5919,7 @@ msgid "Labelers"
 msgstr ""
 
 #: src/view/com/composer/labels/LabelsBtn.tsx:83
-#: src/view/screens/Profile.tsx:280
+#: src/view/screens/Profile.tsx:278
 msgid "Labels"
 msgstr "ស្លាក"
 
@@ -5931,7 +5943,7 @@ msgstr "ស្លាកនៅលើមាតិការបស់អ្នក"
 msgid "Language Settings"
 msgstr "ការកំណត់ភាសា"
 
-#: src/screens/Settings/LanguageSettings.tsx:81
+#: src/screens/Settings/LanguageSettings.tsx:98
 #: src/screens/Settings/Settings.tsx:245
 #: src/screens/Settings/Settings.tsx:248
 msgid "Languages"
@@ -5951,9 +5963,9 @@ msgstr ""
 msgid "Last initiated just now"
 msgstr ""
 
-#: src/screens/Hashtag.tsx:112
+#: src/screens/Hashtag.tsx:99
 #: src/screens/Search/SearchResults.tsx:64
-#: src/screens/Topic.tsx:78
+#: src/screens/Topic.tsx:65
 msgid "Latest"
 msgstr "ចុងក្រោយ"
 
@@ -6037,7 +6049,7 @@ msgid "Learn more."
 msgstr "ស្វែងយល់បន្ថែម"
 
 #: src/components/dms/LeaveConvoPrompt.tsx:52
-#: src/screens/Messages/ConversationSettings.tsx:894
+#: src/screens/Messages/ConversationSettings.tsx:920
 msgid "Leave"
 msgstr "ចាកចេញ"
 
@@ -6054,11 +6066,11 @@ msgstr "ចាកចេញពីការជជែក"
 msgid "Leave conversation"
 msgstr "ចាកចេញពីការសន្ទនា"
 
-#: src/screens/Messages/ConversationSettings.tsx:1132
+#: src/screens/Messages/ConversationSettings.tsx:1157
 msgid "Leave group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:893
+#: src/screens/Messages/ConversationSettings.tsx:919
 msgid "Leave this group chat"
 msgstr ""
 
@@ -6132,9 +6144,9 @@ msgstr ""
 msgid "Liked by"
 msgstr "ចូលចិត្ត"
 
-#: src/screens/Post/PostLikedBy.tsx:41
-#: src/screens/Profile/ProfileLabelerLikedBy.tsx:32
-#: src/view/screens/ProfileFeedLikedBy.tsx:32
+#: src/screens/Post/PostLikedBy.tsx:31
+#: src/screens/Profile/ProfileLabelerLikedBy.tsx:22
+#: src/view/screens/ProfileFeedLikedBy.tsx:22
 msgid "Liked By"
 msgstr "ចូលចិត្ត"
 
@@ -6157,7 +6169,7 @@ msgstr ""
 #: src/screens/Settings/NotificationSettings/LikeNotificationSettings.tsx:41
 #: src/screens/Settings/ProfileTabsVisibility.tsx:168
 #: src/screens/Settings/ProfileTabsVisibility.tsx:181
-#: src/view/screens/Profile.tsx:286
+#: src/view/screens/Profile.tsx:284
 msgid "Likes"
 msgstr "ចូលចិត្ត"
 
@@ -6233,7 +6245,7 @@ msgstr ""
 msgid "List has been hidden"
 msgstr "បញ្ជីត្រូវបានលាក់"
 
-#: src/screens/ProfileList/index.tsx:177
+#: src/screens/ProfileList/index.tsx:175
 msgid "List Hidden"
 msgstr "បញ្ជីដែលលាក់"
 
@@ -6271,9 +6283,9 @@ msgstr "បាន​បិទ​បញ្ជី"
 #: src/screens/Settings/ProfileTabsVisibility.tsx:238
 #: src/screens/Settings/ProfileTabsVisibility.tsx:376
 #: src/screens/Settings/ProfileTabsVisibility.tsx:389
-#: src/view/screens/Lists.tsx:68
-#: src/view/screens/Profile.tsx:281
-#: src/view/screens/Profile.tsx:289
+#: src/view/screens/Lists.tsx:60
+#: src/view/screens/Profile.tsx:279
+#: src/view/screens/Profile.tsx:287
 #: src/view/shell/desktop/LeftNav.tsx:747
 #: src/view/shell/Drawer.tsx:535
 msgid "Lists"
@@ -6331,19 +6343,19 @@ msgstr ""
 msgid "Load more"
 msgstr "ផ្ទុកច្រើនទៀត"
 
-#: src/screens/Search/Explore.tsx:518
-#: src/screens/Search/Explore.tsx:609
+#: src/screens/Search/Explore.tsx:519
+#: src/screens/Search/Explore.tsx:610
 msgid "Load more suggested feeds"
 msgstr "ផ្ទុកព័ត៌មានដែលបានណែនាំបន្ថែមទៀត"
 
-#: src/view/screens/Notifications.tsx:283
+#: src/view/screens/Notifications.tsx:279
 msgid "Load new notifications"
 msgstr "ផ្ទុកការជូនដំណឹងថ្មីៗ"
 
 #: src/screens/Profile/ProfileFeed/index.tsx:204
 #: src/screens/Profile/Sections/Feed.tsx:117
 #: src/screens/ProfileList/FeedSection.tsx:113
-#: src/view/com/feeds/FeedPage.tsx:174
+#: src/view/com/feeds/FeedPage.tsx:171
 msgid "Load new posts"
 msgstr "ផ្ទុកប្រកាសថ្មីៗ"
 
@@ -6359,27 +6371,27 @@ msgstr ""
 msgid "Loading..."
 msgstr "កំពុងផ្ទុក..."
 
-#: src/screens/Messages/ConversationSettings.tsx:1006
+#: src/screens/Messages/ConversationSettings.tsx:1031
 msgid "Loading…"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:876
+#: src/screens/Messages/ConversationSettings.tsx:902
 msgid "Lock"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1109
+#: src/screens/Messages/ConversationSettings.tsx:1134
 msgid "Lock group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1107
+#: src/screens/Messages/ConversationSettings.tsx:1132
 msgid "Lock group chat?"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:874
+#: src/screens/Messages/ConversationSettings.tsx:900
 msgid "Lock this group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:876
+#: src/screens/Messages/ConversationSettings.tsx:902
 msgid "Locked"
 msgstr ""
 
@@ -6442,7 +6454,7 @@ msgstr "ត្រូវប្រាកដថានេះជាកន្លែង
 msgid "Manage saved feeds"
 msgstr "គ្រប់គ្រងព័ត៌មានដែលបានរក្សាទុក"
 
-#: src/screens/Moderation/index.tsx:348
+#: src/screens/Moderation/index.tsx:339
 msgid "Manage verification settings"
 msgstr ""
 
@@ -6479,7 +6491,7 @@ msgstr ""
 #: src/screens/Settings/ProfileTabsVisibility.tsx:143
 #: src/screens/Settings/ProfileTabsVisibility.tsx:300
 #: src/screens/Settings/ProfileTabsVisibility.tsx:313
-#: src/view/screens/Profile.tsx:284
+#: src/view/screens/Profile.tsx:282
 msgid "Media"
 msgstr "ប្រព័ន្ធផ្សព្វផ្សាយ"
 
@@ -6497,11 +6509,11 @@ msgstr ""
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "ប្រព័ន្ធផ្សព្វផ្សាយដែលអាចរំខាន ឬមិនសមរម្យសម្រាប់ទស្សនិកជនមួយចំនួន"
 
-#: src/screens/Messages/ConversationSettings.tsx:245
+#: src/screens/Messages/ConversationSettings.tsx:260
 msgid "Members"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1108
+#: src/screens/Messages/ConversationSettings.tsx:1133
 msgid "Members can still read chat history but can’t send new messages."
 msgstr ""
 
@@ -6516,7 +6528,7 @@ msgstr "អ្នកប្រើប្រាស់ដែលបានលើកឡ
 #: src/lib/hooks/useNotificationHandler.ts:150
 #: src/screens/Settings/NotificationSettings/index.tsx:160
 #: src/screens/Settings/NotificationSettings/MentionNotificationSettings.tsx:41
-#: src/view/screens/Notifications.tsx:102
+#: src/view/screens/Notifications.tsx:101
 msgid "Mentions"
 msgstr ""
 
@@ -6524,13 +6536,13 @@ msgstr ""
 msgid "Menu"
 msgstr "ម៉ឺនុយ"
 
-#: src/screens/Messages/components/MessageComposer.tsx:168
+#: src/screens/Messages/components/MessageComposer.tsx:208
 #: src/screens/Messages/components/MessageInput.tsx:171
 #: src/screens/Messages/components/MessageInput.web.tsx:195
 msgid "Message"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:658
+#: src/screens/Messages/ConversationSettings.tsx:684
 msgctxt "action"
 msgid "Message"
 msgstr ""
@@ -6540,11 +6552,11 @@ msgstr ""
 msgid "Message {0}"
 msgstr "សារ {0}"
 
-#: src/screens/Messages/ConversationSettings.tsx:655
+#: src/screens/Messages/ConversationSettings.tsx:681
 msgid "Message {displayName}"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:322
+#: src/screens/Messages/components/ChatListItem.tsx:265
 msgid "Message deleted"
 msgstr "សារត្រូវបានលុប"
 
@@ -6553,7 +6565,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "សារត្រូវបានលុប"
 
-#: src/components/dms/MessageItem.tsx:554
+#: src/components/dms/MessageItem.tsx:547
 msgid "Message failed to send."
 msgstr ""
 
@@ -6568,7 +6580,7 @@ msgstr ""
 msgid "Message from server: {0}"
 msgstr ""
 
-#: src/screens/Messages/components/MessageComposer.tsx:167
+#: src/screens/Messages/components/MessageComposer.tsx:207
 #: src/screens/Messages/components/MessageInput.tsx:169
 msgid "Message input field"
 msgstr "វាលបញ្ចូលសារ"
@@ -6578,7 +6590,7 @@ msgstr "វាលបញ្ចូលសារ"
 msgid "Message is too long"
 msgstr "សារវែងពេក"
 
-#: src/screens/Messages/components/MessageComposer.tsx:85
+#: src/screens/Messages/components/MessageComposer.tsx:86
 msgid "Message is too long ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgstr ""
 
@@ -6622,7 +6634,7 @@ msgid "Missing media"
 msgstr ""
 
 #: src/Navigation.tsx:184
-#: src/screens/Moderation/index.tsx:102
+#: src/screens/Moderation/index.tsx:100
 msgid "Moderation"
 msgstr "ការសម្របសម្រួល"
 
@@ -6661,12 +6673,12 @@ msgctxt "toast"
 msgid "Moderation list updated"
 msgstr "បានធ្វើបច្ចុប្បន្នភាពបញ្ជីសម្របសម្រួល"
 
-#: src/screens/Moderation/index.tsx:308
+#: src/screens/Moderation/index.tsx:299
 msgid "Moderation lists"
 msgstr "បញ្ជីសម្របសម្រួល"
 
 #: src/Navigation.tsx:189
-#: src/view/screens/ModerationModlists.tsx:68
+#: src/view/screens/ModerationModlists.tsx:60
 msgid "Moderation Lists"
 msgstr "បញ្ជីការសម្របសម្រួល"
 
@@ -6678,7 +6690,7 @@ msgstr "ការកំណត់កម្រិតមធ្យម"
 msgid "Moderation states"
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:262
+#: src/screens/Moderation/index.tsx:253
 msgid "Moderation tools"
 msgstr "ឧបករណ៍សំរបសំរួល"
 
@@ -6692,8 +6704,8 @@ msgstr "អ្នកសម្របសម្រួលបានជ្រើសរ
 msgid "More feeds"
 msgstr "ព័ត៌មានច្រើនទៀត"
 
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:103
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:106
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:125
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:128
 msgid "More languages..."
 msgstr ""
 
@@ -6704,11 +6716,11 @@ msgstr ""
 msgid "More options"
 msgstr "ជម្រើសច្រើនទៀត"
 
-#: src/screens/SavedFeeds.tsx:503
+#: src/screens/SavedFeeds.tsx:488
 msgid "Move feed down"
 msgstr ""
 
-#: src/screens/SavedFeeds.tsx:493
+#: src/screens/SavedFeeds.tsx:478
 msgid "Move feed up"
 msgstr ""
 
@@ -6720,9 +6732,9 @@ msgstr "ភាពយន្ត"
 msgid "Music"
 msgstr "តន្ត្រី"
 
-#: src/screens/Messages/ConversationSettings.tsx:852
+#: src/screens/Messages/ConversationSettings.tsx:878
 msgid "Mute"
-msgstr ""
+msgstr "បិទ"
 
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:171
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:97
@@ -6765,7 +6777,7 @@ msgstr "បិទបញ្ជី"
 msgid "Mute these accounts?"
 msgstr "បិទសំឡេងគណនីទាំងនេះ?"
 
-#: src/screens/Messages/ConversationSettings.tsx:850
+#: src/screens/Messages/ConversationSettings.tsx:876
 msgid "Mute this group chat"
 msgstr ""
 
@@ -6803,20 +6815,20 @@ msgstr "បិទ thread"
 msgid "Mute words & tags"
 msgstr "បិទពាក្យ & ស្លាក"
 
-#: src/screens/Messages/ConversationSettings.tsx:852
+#: src/screens/Messages/ConversationSettings.tsx:878
 msgid "Muted"
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:323
+#: src/screens/Moderation/index.tsx:314
 msgid "Muted accounts"
 msgstr "គណនីបិទ"
 
 #: src/Navigation.tsx:194
-#: src/view/screens/ModerationMutedAccounts.tsx:116
+#: src/view/screens/ModerationMutedAccounts.tsx:107
 msgid "Muted Accounts"
 msgstr "គណនីបិទ"
 
-#: src/view/screens/ModerationMutedAccounts.tsx:202
+#: src/view/screens/ModerationMutedAccounts.tsx:193
 msgid "Muted accounts have their posts removed from your feed and from your notifications. Mutes are completely private."
 msgstr "គណនីដែលបានបិទសំឡេងបានលុបការបង្ហោះរបស់ពួកគេចេញពីព័ត៌មានរបស់អ្នក និងពីការជូនដំណឹងរបស់អ្នក។ ការបិទសំឡេងមានលក្ខណៈឯកជនទាំងស្រុង"
 
@@ -6825,7 +6837,7 @@ msgstr "គណនីដែលបានបិទសំឡេងបានលុប
 msgid "Muted by \"{0}\""
 msgstr "បានបិទសំឡេងដោយ \"{0}\""
 
-#: src/screens/Moderation/index.tsx:293
+#: src/screens/Moderation/index.tsx:284
 msgid "Muted words & tags"
 msgstr "ពាក្យ និងស្លាកដែលបានបិទ"
 
@@ -6842,7 +6854,7 @@ msgstr ""
 msgid "My favorite feeds and people - join me!"
 msgstr ""
 
-#: src/view/screens/Feeds.tsx:709
+#: src/view/screens/Feeds.tsx:700
 msgid "My Feeds"
 msgstr "មតិព័ត៌មានរបស់ខ្ញុំ"
 
@@ -6893,8 +6905,8 @@ msgstr "មិនអីទេ បង្កើត handle សម្រាប់ខ
 msgid "New"
 msgstr "ថ្មី"
 
-#: src/view/screens/Lists.tsx:79
-#: src/view/screens/ModerationModlists.tsx:80
+#: src/view/screens/Lists.tsx:71
+#: src/view/screens/ModerationModlists.tsx:72
 msgctxt "action"
 msgid "New"
 msgstr "ថ្មី"
@@ -6971,8 +6983,8 @@ msgstr ""
 msgid "New handle"
 msgstr "ថ្មី handle"
 
-#: src/view/screens/Lists.tsx:72
-#: src/view/screens/ModerationModlists.tsx:72
+#: src/view/screens/Lists.tsx:64
+#: src/view/screens/ModerationModlists.tsx:64
 msgid "New list"
 msgstr ""
 
@@ -6987,15 +6999,15 @@ msgid "New password"
 msgstr "ពាក្យសម្ងាត់ថ្មី"
 
 #: src/screens/Profile/ProfileFeed/index.tsx:221
-#: src/screens/ProfileList/index.tsx:251
-#: src/screens/ProfileList/index.tsx:300
-#: src/view/screens/Feeds.tsx:557
-#: src/view/screens/Notifications.tsx:171
-#: src/view/screens/Profile.tsx:644
+#: src/screens/ProfileList/index.tsx:243
+#: src/screens/ProfileList/index.tsx:292
+#: src/view/screens/Feeds.tsx:548
+#: src/view/screens/Notifications.tsx:170
+#: src/view/screens/Profile.tsx:641
 msgid "New post"
 msgstr "post ថ្មី"
 
-#: src/view/com/feeds/FeedPage.tsx:186
+#: src/view/com/feeds/FeedPage.tsx:183
 #: src/view/shell/desktop/LeftNav.tsx:583
 msgctxt "action"
 msgid "New post"
@@ -7044,10 +7056,10 @@ msgstr "ព័ត៌មាន"
 #: src/screens/Signup/BackNextButtons.tsx:68
 #: src/screens/Signup/StepSelectProvider/index.tsx:243
 #: src/screens/Signup/StepSelectProvider/index.tsx:247
-#: src/screens/StarterPack/Wizard/index.tsx:209
-#: src/screens/StarterPack/Wizard/index.tsx:213
-#: src/screens/StarterPack/Wizard/index.tsx:395
-#: src/screens/StarterPack/Wizard/index.tsx:402
+#: src/screens/StarterPack/Wizard/index.tsx:198
+#: src/screens/StarterPack/Wizard/index.tsx:202
+#: src/screens/StarterPack/Wizard/index.tsx:384
+#: src/screens/StarterPack/Wizard/index.tsx:391
 msgid "Next"
 msgstr "បន្ទាប់"
 
@@ -7110,7 +7122,7 @@ msgstr ""
 
 #: src/components/LikedByList.tsx:84
 #: src/view/com/post-thread/PostLikedBy.tsx:84
-#: src/view/screens/Profile.tsx:576
+#: src/view/screens/Profile.tsx:573
 msgid "No likes yet"
 msgstr "មិនទាន់មានអ្នកចូលចិត្តទេ"
 
@@ -7127,11 +7139,11 @@ msgstr ""
 msgid "No longer following {0}"
 msgstr "លែង​តាម {0}"
 
-#: src/view/screens/Profile.tsx:522
+#: src/view/screens/Profile.tsx:519
 msgid "No media yet"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:263
+#: src/screens/Messages/components/ChatListItem.tsx:253
 msgid "No messages yet"
 msgstr "មិនមានសារនៅឡើយទេ"
 
@@ -7169,7 +7181,7 @@ msgid "No posts here"
 msgstr ""
 
 #: src/screens/Profile/Sections/Feed.tsx:81
-#: src/view/screens/Profile.tsx:481
+#: src/view/screens/Profile.tsx:478
 msgid "No posts yet"
 msgstr ""
 
@@ -7177,7 +7189,7 @@ msgstr ""
 msgid "No quotes yet"
 msgstr "មិនទាន់មានសម្រង់ទេ"
 
-#: src/view/screens/Profile.tsx:507
+#: src/view/screens/Profile.tsx:504
 msgid "No replies yet"
 msgstr ""
 
@@ -7198,7 +7210,7 @@ msgid "No results"
 msgstr "គ្មានលទ្ធផល"
 
 #. placeholder {0}: interestsDisplayNames[selectedInterest]
-#: src/screens/Search/Explore.tsx:827
+#: src/screens/Search/Explore.tsx:828
 msgid "No results for \"{0}\"."
 msgstr ""
 
@@ -7207,7 +7219,7 @@ msgstr ""
 msgid "No results found"
 msgstr "រកមិនឃើញលទ្ធផលទេ"
 
-#: src/view/screens/Feeds.tsx:475
+#: src/view/screens/Feeds.tsx:466
 msgid "No results found for \"{query}\""
 msgstr "រកមិនឃើញលទ្ធផលសម្រាប់ \"{query}\""
 
@@ -7215,7 +7227,7 @@ msgstr "រកមិនឃើញលទ្ធផលសម្រាប់ \"{query
 msgid "No results found for “<0>{query}</0>”."
 msgstr ""
 
-#: src/screens/Search/Explore.tsx:831
+#: src/screens/Search/Explore.tsx:832
 msgid "No results."
 msgstr ""
 
@@ -7223,7 +7235,7 @@ msgstr ""
 msgid "No search results found for \"{search}\"."
 msgstr "រកមិនឃើញលទ្ធផលស្វែងរកសម្រាប់ \"{search}\" ទេ"
 
-#: src/view/screens/Profile.tsx:608
+#: src/view/screens/Profile.tsx:605
 msgid "No Starter Packs yet"
 msgstr ""
 
@@ -7236,7 +7248,7 @@ msgstr "ទេ អរគុណ"
 msgid "No translation received from your device."
 msgstr ""
 
-#: src/view/screens/Profile.tsx:549
+#: src/view/screens/Profile.tsx:546
 msgid "No video posts yet"
 msgstr ""
 
@@ -7273,7 +7285,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/screens/FindContactsFlowScreen.tsx:67
+#: src/screens/FindContactsFlowScreen.tsx:62
 #: src/screens/Settings/FindContactsSettings.tsx:104
 msgid "Not available on this platform."
 msgstr ""
@@ -7283,7 +7295,7 @@ msgid "Not followed by anyone you're following"
 msgstr ""
 
 #: src/Navigation.tsx:174
-#: src/view/screens/Profile.tsx:136
+#: src/view/screens/Profile.tsx:135
 msgid "Not Found"
 msgstr "រកមិនឃើញ"
 
@@ -7308,13 +7320,13 @@ msgid "Nothing here"
 msgstr "គ្មានអ្វីនៅទីនេះទេ"
 
 #: src/screens/Bookmarks/components/EmptyState.tsx:36
-#: src/screens/Bookmarks/index.tsx:302
+#: src/screens/Bookmarks/index.tsx:299
 msgid "Nothing saved yet"
 msgstr ""
 
 #: src/Navigation.tsx:461
 #: src/Navigation.tsx:613
-#: src/view/screens/Notifications.tsx:139
+#: src/view/screens/Notifications.tsx:138
 msgid "Notification settings"
 msgstr "ការកំណត់ការជូនដំណឹង"
 
@@ -7342,7 +7354,7 @@ msgstr "សំឡេងជូនដំណឹង"
 #: src/screens/Settings/NotificationSettings/RepostsOnRepostsNotificationSettings.tsx:30
 #: src/screens/Settings/Settings.tsx:197
 #: src/screens/Settings/Settings.tsx:200
-#: src/view/screens/Notifications.tsx:133
+#: src/view/screens/Notifications.tsx:132
 #: src/view/shell/bottom-bar/BottomBar.tsx:255
 #: src/view/shell/desktop/LeftNav.tsx:710
 #: src/view/shell/Drawer.tsx:483
@@ -7413,11 +7425,11 @@ msgstr ""
 msgid "Onboarding reset"
 msgstr "កំណត់ការចូលដំណើរការឡើងវិញ"
 
-#: src/view/com/composer/Composer.tsx:775
+#: src/view/com/composer/Composer.tsx:789
 msgid "One or more GIFs is missing alt text."
 msgstr "GIFs មួយ ឬ​ច្រើន​បាត់​អត្ថបទ​ជំនួស"
 
-#: src/view/com/composer/Composer.tsx:772
+#: src/view/com/composer/Composer.tsx:786
 msgid "One or more images is missing alt text."
 msgstr "រូបភាពមួយ ឬច្រើនបាត់អត្ថបទជំនួស"
 
@@ -7429,11 +7441,11 @@ msgstr ""
 msgid "One or more of your selected files are too large. Maximum size is 100 MB."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:577
+#: src/view/com/composer/Composer.tsx:591
 msgid "One or more posts are too long to save as a draft. {MAX_DRAFT_GRAPHEME_LENGTH, plural, one {The maximum number of characters is # character.} other {The maximum number of characters is # characters.}}"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:782
+#: src/view/com/composer/Composer.tsx:796
 msgid "One or more videos is missing alt text."
 msgstr "វីដេអូមួយ ឬច្រើនបាត់អត្ថបទជំនួស"
 
@@ -7465,7 +7477,7 @@ msgstr "ឯកសារ WebVTT (.vtt) ងាយស្រួលគាំទ្រ
 #: src/components/StarterPack/ProfileStarterPacks.tsx:372
 #: src/screens/Settings/AppPasswords.tsx:59
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:108
-#: src/view/screens/Profile.tsx:136
+#: src/view/screens/Profile.tsx:135
 msgid "Oops!"
 msgstr ""
 
@@ -7477,12 +7489,12 @@ msgstr "បើកអ្នកបង្កើតរូបតំណាង"
 msgid "Open camera"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:608
+#: src/screens/Messages/ConversationSettings.tsx:634
 msgid "Open chat member options for {displayName}"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:490
-#: src/screens/Messages/components/ChatListItem.tsx:494
+#: src/screens/Messages/components/ChatListItem.tsx:410
+#: src/screens/Messages/components/ChatListItem.tsx:414
 msgid "Open conversation options"
 msgstr "បើកជម្រើសការសន្ទនា"
 
@@ -7494,9 +7506,9 @@ msgstr ""
 msgid "Open drawer menu"
 msgstr ""
 
-#: src/screens/Messages/components/MessageComposer.tsx:129
+#: src/screens/Messages/components/MessageComposer.tsx:169
 #: src/screens/Messages/components/MessageInput.web.tsx:145
-#: src/view/com/composer/Composer.tsx:2032
+#: src/view/com/composer/Composer.tsx:2050
 msgid "Open emoji picker"
 msgstr "បើកកម្មវិធីជ្រើសរើសរូបអារម្មណ៍"
 
@@ -7540,7 +7552,7 @@ msgstr "បើកជម្រើសសារ"
 msgid "Open moderation debug page"
 msgstr "បើកទំព័របំបាត់កំហុសការសម្របសម្រួល"
 
-#: src/screens/Moderation/index.tsx:289
+#: src/screens/Moderation/index.tsx:280
 msgid "Open muted words and tags settings"
 msgstr "បើកការកំណត់ពាក្យ និងស្លាកដែលបានបិទ"
 
@@ -7596,7 +7608,7 @@ msgstr ""
 msgid "Opens a dialog to choose who can interact with this post"
 msgstr ""
 
-#: src/screens/Log.tsx:82
+#: src/screens/Log.tsx:74
 msgid "Opens additional details for a debug entry"
 msgstr "បើកព័ត៌មានលម្អិតបន្ថែមសម្រាប់ធាតុបំបាត់កំហុស"
 
@@ -7664,7 +7676,7 @@ msgstr ""
 msgid "Opens password reset form"
 msgstr "បើកទម្រង់កំណត់ពាក្យសម្ងាត់ឡើងវិញ"
 
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:148
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:200
 msgid "Opens post language settings"
 msgstr ""
 
@@ -7676,7 +7688,7 @@ msgstr ""
 msgid "Opens this draft in the composer"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:227
+#: src/components/dms/MessageItem.tsx:223
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:606
 msgid "Opens this profile"
@@ -7767,11 +7779,11 @@ msgstr ""
 
 #: src/components/Lists.tsx:205
 #: src/components/Lists.tsx:220
-#: src/view/screens/NotFound.tsx:48
+#: src/view/screens/NotFound.tsx:36
 msgid "Page not found"
 msgstr "រកមិនឃើញទំព័រ"
 
-#: src/view/screens/NotFound.tsx:45
+#: src/view/screens/NotFound.tsx:33
 msgid "Page Not Found"
 msgstr "រកមិនឃើញទំព័រ"
 
@@ -7812,7 +7824,7 @@ msgstr ""
 msgid "Pause video"
 msgstr "ផ្អាក video"
 
-#: src/screens/ProfileList/index.tsx:169
+#: src/screens/ProfileList/index.tsx:167
 #: src/screens/Search/SearchResults.tsx:74
 #: src/screens/StarterPack/StarterPackScreen.tsx:195
 msgid "People"
@@ -7877,7 +7889,7 @@ msgstr "រូបភាពមានន័យសម្រាប់មនុស្
 #: src/components/FeedCard.tsx:364
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:528
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:534
-#: src/screens/SavedFeeds.tsx:574
+#: src/screens/SavedFeeds.tsx:559
 msgid "Pin feed"
 msgstr ""
 
@@ -7905,8 +7917,8 @@ msgstr ""
 msgid "Pinned {0} to Home"
 msgstr ""
 
-#: src/screens/SavedFeeds.tsx:154
-#: src/screens/SavedFeeds.tsx:352
+#: src/screens/SavedFeeds.tsx:146
+#: src/screens/SavedFeeds.tsx:337
 msgid "Pinned Feeds"
 msgstr ""
 
@@ -8096,7 +8108,7 @@ msgstr "សូមចូលគណនីជា @{0}"
 msgid "Please use the native app to import your contacts."
 msgstr ""
 
-#: src/screens/FindContactsFlowScreen.tsx:68
+#: src/screens/FindContactsFlowScreen.tsx:63
 msgid "Please use the native app to sync your contacts."
 msgstr ""
 
@@ -8117,7 +8129,7 @@ msgstr "នយោបាយ"
 msgid "Porn"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1670
+#: src/view/com/composer/Composer.tsx:1686
 msgctxt "action"
 msgid "Post"
 msgstr "ការបង្ហោះ"
@@ -8127,22 +8139,22 @@ msgctxt "description"
 msgid "Post"
 msgstr "ការបង្ហោះ"
 
-#: src/view/screens/Profile.tsx:526
-#: src/view/screens/Profile.tsx:527
+#: src/view/screens/Profile.tsx:523
+#: src/view/screens/Profile.tsx:524
 msgid "Post a photo"
 msgstr ""
 
-#: src/view/screens/Profile.tsx:553
-#: src/view/screens/Profile.tsx:554
+#: src/view/screens/Profile.tsx:550
+#: src/view/screens/Profile.tsx:551
 msgid "Post a video"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1668
+#: src/view/com/composer/Composer.tsx:1684
 msgctxt "action"
 msgid "Post All"
 msgstr "Post ទាំងអស់"
 
-#: src/view/com/composer/Composer.tsx:1328
+#: src/view/com/composer/Composer.tsx:1344
 msgid "Post anyway"
 msgstr ""
 
@@ -8170,7 +8182,7 @@ msgstr "មិនអាចបង្ហោះសារបង្ហោះបាន
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:133
 #: src/screens/PostThread/components/ThreadItemPost.tsx:117
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:110
-#: src/screens/VideoFeed/index.tsx:551
+#: src/screens/VideoFeed/index.tsx:547
 msgid "Post has been deleted"
 msgstr ""
 
@@ -8194,7 +8206,7 @@ msgid "Post Interaction Settings"
 msgstr ""
 
 #. Accessibility label for button that opens dialog to choose post language settings
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:143
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:195
 msgid "Post language selection"
 msgstr ""
 
@@ -8215,14 +8227,14 @@ msgstr ""
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:257
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:269
-#: src/screens/ProfileList/index.tsx:169
+#: src/screens/ProfileList/index.tsx:167
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:219
 #: src/screens/Settings/ProfileTabsVisibility.tsx:92
 #: src/screens/Settings/ProfileTabsVisibility.tsx:105
 #: src/screens/Settings/ProfileTabsVisibility.tsx:262
 #: src/screens/Settings/ProfileTabsVisibility.tsx:275
 #: src/screens/StarterPack/StarterPackScreen.tsx:197
-#: src/view/screens/Profile.tsx:282
+#: src/view/screens/Profile.tsx:280
 msgid "Posts"
 msgstr "ការបង្ហោះ"
 
@@ -8273,8 +8285,8 @@ msgstr ""
 msgid "Previous image"
 msgstr "រូបភាពពីមុន"
 
-#: src/screens/Settings/LanguageSettings.tsx:124
-#: src/screens/Settings/LanguageSettings.tsx:140
+#: src/screens/Settings/LanguageSettings.tsx:141
+#: src/screens/Settings/LanguageSettings.tsx:157
 msgid "Primary language"
 msgstr ""
 
@@ -8305,7 +8317,7 @@ msgstr ""
 #: src/Navigation.tsx:338
 #: src/screens/Settings/AboutSettings.tsx:116
 #: src/screens/Settings/AboutSettings.tsx:119
-#: src/view/screens/PrivacyPolicy.tsx:36
+#: src/view/screens/PrivacyPolicy.tsx:26
 #: src/view/shell/Drawer.tsx:694
 #: src/view/shell/Drawer.tsx:695
 msgid "Privacy Policy"
@@ -8315,11 +8327,11 @@ msgstr "គោលការណ៍ឯកជនភាព"
 msgid "Privacy violation of a minor"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2465
+#: src/view/com/composer/Composer.tsx:2484
 msgid "Processing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2467
+#: src/view/com/composer/Composer.tsx:2486
 msgid "Processing video..."
 msgstr "ដំណើរការវីដេអូ..."
 
@@ -8328,7 +8340,7 @@ msgid "Processing..."
 msgstr "កំពុងដំណើរការ..."
 
 #: src/view/screens/DebugMod.tsx:938
-#: src/view/screens/Profile.tsx:434
+#: src/view/screens/Profile.tsx:431
 msgid "profile"
 msgstr "ប្រវត្តិរូប"
 
@@ -8366,22 +8378,22 @@ msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr ""
 
 #. Accessibility label for button to publish a single post
-#: src/view/com/composer/Composer.tsx:1654
+#: src/view/com/composer/Composer.tsx:1670
 msgid "Publish post"
 msgstr ""
 
 #. Accessibility label for button to publish multiple posts in a thread
-#: src/view/com/composer/Composer.tsx:1649
+#: src/view/com/composer/Composer.tsx:1665
 msgid "Publish posts"
 msgstr ""
 
 #. Accessibility label for button to publish multiple replies in a thread
-#: src/view/com/composer/Composer.tsx:1638
+#: src/view/com/composer/Composer.tsx:1654
 msgid "Publish replies"
 msgstr ""
 
 #. Accessibility label for button to publish a single reply
-#: src/view/com/composer/Composer.tsx:1643
+#: src/view/com/composer/Composer.tsx:1659
 msgid "Publish reply"
 msgstr ""
 
@@ -8441,7 +8453,7 @@ msgid "Quote posts disabled"
 msgstr "Quote posts ត្រូវបានបិទ"
 
 #: src/lib/hooks/useNotificationHandler.ts:157
-#: src/screens/Post/PostQuotes.tsx:41
+#: src/screens/Post/PostQuotes.tsx:31
 #: src/screens/Settings/NotificationSettings/index.tsx:171
 #: src/screens/Settings/NotificationSettings/QuoteNotificationSettings.tsx:41
 msgid "Quotes"
@@ -8492,11 +8504,11 @@ msgstr ""
 msgid "Read blog post"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:988
+#: src/screens/VideoFeed/index.tsx:984
 msgid "Read less"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:988
+#: src/screens/VideoFeed/index.tsx:984
 msgid "Read more"
 msgstr ""
 
@@ -8581,8 +8593,8 @@ msgstr "ផ្ទុកការសន្ទនាឡើងវិញ"
 #: src/components/FeedCard.tsx:376
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:106
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:113
-#: src/screens/Bookmarks/index.tsx:268
-#: src/screens/Moderation/index.tsx:486
+#: src/screens/Bookmarks/index.tsx:265
+#: src/screens/Moderation/index.tsx:477
 #: src/screens/Settings/Settings.tsx:669
 #: src/view/com/modals/UserAddRemoveLists.tsx:236
 #: src/view/com/modals/UserAddRemoveLists.tsx:240
@@ -8598,7 +8610,7 @@ msgstr ""
 msgid "Remove {displayName} from starter pack"
 msgstr "លុប {displayName} ចេញពីកញ្ចប់ចាប់ផ្តើម"
 
-#: src/screens/Messages/ConversationSettings.tsx:681
+#: src/screens/Messages/ConversationSettings.tsx:707
 msgid "Remove {displayName} from this group chat"
 msgstr ""
 
@@ -8652,7 +8664,7 @@ msgstr "លុប​មតិព័ត៌មាន"
 msgid "Remove feed?"
 msgstr "លុប​មតិព័ត៌មាន?"
 
-#: src/screens/Messages/ConversationSettings.tsx:684
+#: src/screens/Messages/ConversationSettings.tsx:710
 msgid "Remove from chat"
 msgstr ""
 
@@ -8660,7 +8672,7 @@ msgstr ""
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:332
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:176
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:179
-#: src/screens/SavedFeeds.tsx:564
+#: src/screens/SavedFeeds.tsx:549
 msgid "Remove from my feeds"
 msgstr "លុបចេញពីមតិព័ត៌មានរបស់ខ្ញុំ"
 
@@ -8673,7 +8685,7 @@ msgstr "ដកចេញពីការចូលប្រើរហ័ស?"
 msgid "Remove from saved feeds"
 msgstr "យកចេញពីព័ត៌មានដែលបានរក្សាទុក"
 
-#: src/screens/Bookmarks/index.tsx:262
+#: src/screens/Bookmarks/index.tsx:259
 msgid "Remove from saved posts"
 msgstr ""
 
@@ -8718,7 +8730,7 @@ msgstr ""
 msgid "Remove this feed from your saved feeds"
 msgstr "លុបព័ត៌មាននេះចេញពីព័ត៌មានដែលអ្នកបានរក្សាទុក"
 
-#: src/screens/Moderation/index.tsx:482
+#: src/screens/Moderation/index.tsx:473
 msgid "Remove unavailable moderation services"
 msgstr ""
 
@@ -8755,7 +8767,7 @@ msgid "Removed from saved feeds"
 msgstr "បានលុបចេញពីព័ត៌មានដែលបានរក្សាទុក"
 
 #: src/components/PostControls/BookmarkButton.tsx:111
-#: src/screens/Bookmarks/index.tsx:220
+#: src/screens/Bookmarks/index.tsx:217
 msgid "Removed from saved posts"
 msgstr ""
 
@@ -8769,7 +8781,7 @@ msgstr ""
 msgid "Removed from your feeds"
 msgstr "បានលុបចេញពីមតិព័ត៌មានរបស់អ្នក"
 
-#: src/screens/Moderation/index.tsx:190
+#: src/screens/Moderation/index.tsx:187
 msgid "Removed unavailable services"
 msgstr ""
 
@@ -8824,7 +8836,7 @@ msgstr ""
 #: src/screens/Settings/ProfileTabsVisibility.tsx:124
 #: src/screens/Settings/ProfileTabsVisibility.tsx:281
 #: src/screens/Settings/ProfileTabsVisibility.tsx:294
-#: src/view/screens/Profile.tsx:283
+#: src/view/screens/Profile.tsx:281
 msgid "Replies"
 msgstr "ការឆ្លើយតប"
 
@@ -8836,7 +8848,7 @@ msgstr "ការឆ្លើយតបត្រូវបានបិទ"
 msgid "Replies to this post are disabled."
 msgstr "ការឆ្លើយតបទៅនឹងការបង្ហោះនេះត្រូវបានបិទ"
 
-#: src/view/com/composer/Composer.tsx:1666
+#: src/view/com/composer/Composer.tsx:1682
 msgctxt "action"
 msgid "Reply"
 msgstr "ឆ្លើយតប"
@@ -8882,7 +8894,7 @@ msgstr "ការឆ្លើយតបត្រូវបានលាក់ដោ
 #: src/components/dms/MessagesListBlockedFooter.tsx:86
 #: src/components/dms/MessagesListBlockedFooter.tsx:93
 #: src/features/liveNow/components/LiveStatusDialog.tsx:266
-#: src/screens/Messages/ConversationSettings.tsx:885
+#: src/screens/Messages/ConversationSettings.tsx:911
 msgid "Report"
 msgstr "រាយការណ៍"
 
@@ -8941,7 +8953,7 @@ msgstr ""
 msgid "Report this feed"
 msgstr "រាយការណ៍ព័ត៌មាននេះ"
 
-#: src/screens/Messages/ConversationSettings.tsx:884
+#: src/screens/Messages/ConversationSettings.tsx:910
 msgid "Report this group chat"
 msgstr ""
 
@@ -8995,7 +9007,7 @@ msgstr ""
 msgid "Repost or quote post"
 msgstr "បង្ហោះឡើងវិញ ឬ quote post"
 
-#: src/screens/Post/PostRepostedBy.tsx:41
+#: src/screens/Post/PostRepostedBy.tsx:31
 msgid "Reposted By"
 msgstr "បង្ហោះឡើងវិញដោយ"
 
@@ -9129,8 +9141,8 @@ msgstr "ព្យាយាមម្តងទៀតនូវសកម្មភា
 #: src/screens/Messages/ChatList.tsx:301
 #: src/screens/Messages/components/MessageListError.tsx:24
 #: src/screens/Messages/Inbox.tsx:220
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:265
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:268
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:271
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:92
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:95
 #: src/screens/PostThread/components/ThreadError.tsx:81
@@ -9153,18 +9165,18 @@ msgstr ""
 msgid "Return to previous page"
 msgstr "ត្រឡប់ទៅទំព័រមុន"
 
-#: src/view/screens/NotFound.tsx:62
+#: src/view/screens/NotFound.tsx:50
 msgid "Returns to home page"
 msgstr "ត្រឡប់ទៅទំព័រដើមវិញ"
 
 #: src/screens/ProfileList/components/ErrorScreen.tsx:36
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:577
-#: src/screens/VideoFeed/index.tsx:1173
-#: src/view/screens/NotFound.tsx:61
+#: src/screens/VideoFeed/index.tsx:1169
+#: src/view/screens/NotFound.tsx:49
 msgid "Returns to previous page"
 msgstr "ត្រឡប់ទៅទំព័រមុនវិញ"
 
-#: src/screens/StarterPack/Wizard/index.tsx:327
+#: src/screens/StarterPack/Wizard/index.tsx:316
 msgid "Returns to the previous step"
 msgstr ""
 
@@ -9176,11 +9188,11 @@ msgstr ""
 #: src/components/StarterPack/QrCodeDialog.tsx:207
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Messages/ConversationSettings.tsx:1063
+#: src/screens/Messages/ConversationSettings.tsx:1088
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Profile/Header/EditProfileDialog.tsx:267
-#: src/screens/SavedFeeds.tsx:132
-#: src/screens/SavedFeeds.tsx:330
+#: src/screens/SavedFeeds.tsx:124
+#: src/screens/SavedFeeds.tsx:315
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:269
 #: src/view/com/composer/GifAltText.tsx:199
 #: src/view/com/composer/GifAltText.tsx:208
@@ -9202,26 +9214,26 @@ msgstr ""
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:198
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:207
-#: src/screens/SavedFeeds.tsx:128
-#: src/screens/SavedFeeds.tsx:132
-#: src/screens/SavedFeeds.tsx:326
-#: src/screens/SavedFeeds.tsx:330
-#: src/view/com/composer/Composer.tsx:1309
+#: src/screens/SavedFeeds.tsx:120
+#: src/screens/SavedFeeds.tsx:124
+#: src/screens/SavedFeeds.tsx:311
+#: src/screens/SavedFeeds.tsx:315
+#: src/view/com/composer/Composer.tsx:1325
 #: src/view/com/composer/drafts/DraftsButton.tsx:125
 msgid "Save changes"
 msgstr "រក្សាទុកការផ្លាស់ប្តូរ"
 
-#: src/view/com/composer/Composer.tsx:1281
+#: src/view/com/composer/Composer.tsx:1297
 #: src/view/com/composer/drafts/DraftsButton.tsx:93
 msgid "Save changes?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1309
+#: src/view/com/composer/Composer.tsx:1325
 #: src/view/com/composer/drafts/DraftsButton.tsx:125
 msgid "Save draft"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1283
+#: src/view/com/composer/Composer.tsx:1299
 #: src/view/com/composer/drafts/DraftsButton.tsx:95
 msgid "Save draft?"
 msgstr ""
@@ -9255,14 +9267,14 @@ msgctxt "link to bookmarks screen"
 msgid "Saved"
 msgstr ""
 
-#: src/screens/SavedFeeds.tsx:206
-#: src/screens/SavedFeeds.tsx:390
+#: src/screens/SavedFeeds.tsx:198
+#: src/screens/SavedFeeds.tsx:375
 msgid "Saved Feeds"
 msgstr "មតិព័ត៌មានដែលបានរក្សាទុក"
 
 #: src/components/dialogs/nuxs/BookmarksAnnouncement.tsx:144
 #: src/Navigation.tsx:652
-#: src/screens/Bookmarks/index.tsx:62
+#: src/screens/Bookmarks/index.tsx:59
 msgid "Saved Posts"
 msgstr ""
 
@@ -9301,8 +9313,8 @@ msgstr "រំកិលទៅកំពូល"
 #: src/components/dialogs/SearchablePeopleList.tsx:666
 #: src/components/forms/SearchInput.tsx:51
 #: src/components/forms/SearchInput.tsx:53
-#: src/screens/Search/Shell.tsx:356
-#: src/screens/Search/Shell.tsx:520
+#: src/screens/Search/Shell.tsx:353
+#: src/screens/Search/Shell.tsx:512
 #: src/view/shell/bottom-bar/BottomBar.tsx:199
 msgid "Search"
 msgstr "ស្វែងរក"
@@ -9314,7 +9326,7 @@ msgstr "ស្វែងរក"
 msgid "Search @{0}'s posts"
 msgstr ""
 
-#: src/components/ProgressGuide/FollowDialog.tsx:700
+#: src/components/ProgressGuide/FollowDialog.tsx:708
 msgid "Search by name or interest"
 msgstr ""
 
@@ -9322,17 +9334,17 @@ msgstr ""
 msgid "Search contacts"
 msgstr ""
 
-#: src/view/screens/Feeds.tsx:446
+#: src/view/screens/Feeds.tsx:437
 msgid "Search feeds"
 msgstr ""
 
 #. Accessibility label for a tab that searches for accounts in a category (e.g. Art, Video Games, Sports, etc.) that are suggested for the user to follow. The tab is not currently active and can be selected.
-#: src/components/ProgressGuide/FollowDialog.tsx:503
+#: src/components/ProgressGuide/FollowDialog.tsx:505
 msgid "Search for \"{interestsDisplayName}\""
 msgstr ""
 
 #. Accessibility label for a tab that searches for accounts in a category (e.g. Art, Video Games, Sports, etc.) that are suggested for the user to follow. The tab is currently selected.
-#: src/components/ProgressGuide/FollowDialog.tsx:498
+#: src/components/ProgressGuide/FollowDialog.tsx:500
 msgid "Search for \"{interestsDisplayName}\" (active)"
 msgstr ""
 
@@ -9340,7 +9352,7 @@ msgstr ""
 msgid "Search for \"{searchText}\""
 msgstr "ស្វែងរក \"{searchText}\""
 
-#: src/screens/StarterPack/Wizard/index.tsx:552
+#: src/screens/StarterPack/Wizard/index.tsx:541
 msgid "Search for feeds that you want to suggest to others."
 msgstr "ស្វែងរកព័ត៌មានដែលអ្នកចង់ណែនាំដល់អ្នកដទៃ"
 
@@ -9348,7 +9360,7 @@ msgstr "ស្វែងរកព័ត៌មានដែលអ្នកចង់
 msgid "Search for more accounts"
 msgstr ""
 
-#: src/screens/Search/Explore.tsx:455
+#: src/screens/Search/Explore.tsx:456
 msgid "Search for more feeds"
 msgstr ""
 
@@ -9356,7 +9368,7 @@ msgstr ""
 msgid "Search for people"
 msgstr ""
 
-#: src/screens/Search/Shell.tsx:382
+#: src/screens/Search/Shell.tsx:379
 msgid "Search for posts, users, or feeds"
 msgstr ""
 
@@ -9364,7 +9376,7 @@ msgstr ""
 msgid "Search GIFs"
 msgstr "ស្វែងរក GIFs"
 
-#: src/screens/Hashtag.tsx:237
+#: src/screens/Hashtag.tsx:224
 #: src/screens/Search/SearchResults.tsx:313
 msgid "Search is currently unavailable when logged out"
 msgstr ""
@@ -9389,7 +9401,7 @@ msgstr ""
 
 #: src/components/dialogs/SearchablePeopleList.tsx:686
 #: src/components/dms/components/UserSearchInput.tsx:63
-#: src/components/ProgressGuide/FollowDialog.tsx:719
+#: src/components/ProgressGuide/FollowDialog.tsx:727
 msgid "Search profiles"
 msgstr "ស្វែងរកប្រវត្តិរូប"
 
@@ -9403,7 +9415,7 @@ msgstr ""
 
 #: src/components/dialogs/SearchablePeopleList.tsx:687
 #: src/components/dms/components/UserSearchInput.tsx:64
-#: src/components/ProgressGuide/FollowDialog.tsx:720
+#: src/components/ProgressGuide/FollowDialog.tsx:728
 msgid "Searches for profiles"
 msgstr ""
 
@@ -9437,12 +9449,12 @@ msgstr ""
 msgid "See #{tag} posts by user"
 msgstr ""
 
-#: src/components/FeedInterstitials.tsx:496
-#: src/components/FeedInterstitials.tsx:554
+#: src/components/FeedInterstitials.tsx:497
+#: src/components/FeedInterstitials.tsx:555
 msgid "See more"
 msgstr ""
 
-#: src/components/FeedInterstitials.tsx:477
+#: src/components/FeedInterstitials.tsx:478
 msgid "See more suggested profiles"
 msgstr ""
 
@@ -9451,8 +9463,8 @@ msgstr ""
 msgid "See suggested accounts"
 msgstr ""
 
-#: src/screens/SavedFeeds.tsx:240
-#: src/screens/SavedFeeds.tsx:418
+#: src/screens/SavedFeeds.tsx:232
+#: src/screens/SavedFeeds.tsx:403
 msgid "See this guide"
 msgstr "សូមមើលការណែនាំនេះ"
 
@@ -9471,7 +9483,7 @@ msgstr ""
 msgid "Select {0}"
 msgstr ""
 
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:88
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:110
 msgid "Select {langName}"
 msgstr ""
 
@@ -9507,7 +9519,7 @@ msgstr "ជ្រើសរើសរូបអារម្មណ៍"
 msgid "Select an option"
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:101
+#: src/screens/Settings/LanguageSettings.tsx:118
 msgid "Select app language"
 msgstr ""
 
@@ -9520,8 +9532,8 @@ msgstr ""
 msgid "Select chat \"{name}\""
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:178
-#: src/screens/Settings/LanguageSettings.tsx:216
+#: src/screens/Settings/LanguageSettings.tsx:195
+#: src/screens/Settings/LanguageSettings.tsx:233
 msgid "Select content languages"
 msgstr "ជ្រើសរើសភាសាមាតិកា"
 
@@ -9576,11 +9588,11 @@ msgstr "ជ្រើសរើសភាសា"
 msgid "Select moderation service"
 msgstr ""
 
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:73
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:91
 msgid "Select post language"
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:135
+#: src/screens/Settings/LanguageSettings.tsx:152
 msgid "Select primary language"
 msgstr ""
 
@@ -9596,8 +9608,8 @@ msgstr "ជ្រើសរើសរូបអារម្មណ៍ {emojiName} �
 msgid "Select the source language"
 msgstr ""
 
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:59
-#: src/view/com/composer/select-language/PostLanguageSelect.tsx:115
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:77
+#: src/view/com/composer/select-language/PostLanguageSelect.tsx:137
 msgid "Select up to 3 languages used in this post"
 msgstr ""
 
@@ -9605,11 +9617,11 @@ msgstr ""
 msgid "Select what content this mute word should apply to."
 msgstr "ជ្រើសរើសខ្លឹមសារអ្វីដែលពាក្យដែលបិទនេះគួរអនុវត្តចំពោះ"
 
-#: src/screens/Settings/LanguageSettings.tsx:94
+#: src/screens/Settings/LanguageSettings.tsx:111
 msgid "Select which language to use for the app's user interface."
 msgstr ""
 
-#: src/screens/Settings/LanguageSettings.tsx:164
+#: src/screens/Settings/LanguageSettings.tsx:181
 msgid "Select which languages you want your subscribed feeds to include. If none are selected, all languages will be shown."
 msgstr "ជ្រើសរើសភាសាណាមួយដែលអ្នកចង់បញ្ចូលព័ត៌មានដែលបានជាវរបស់អ្នក។ ប្រសិនបើ​មិន​ត្រូវ​បាន​ជ្រើសរើស​ទេ ភាសា​ទាំងអស់​នឹង​ត្រូវ​បាន​បង្ហាញ"
 
@@ -9622,7 +9634,7 @@ msgstr "ជ្រើសរើសថ្ងៃខែឆ្នាំកំណើត
 msgid "Select your interests from the options below"
 msgstr "ជ្រើសរើសចំណាប់អារម្មណ៍របស់អ្នកពីជម្រើសខាងក្រោម"
 
-#: src/screens/Settings/LanguageSettings.tsx:128
+#: src/screens/Settings/LanguageSettings.tsx:145
 msgid "Select your preferred language for translations in your feed."
 msgstr "ជ្រើសរើសភាសាដែលអ្នកពេញចិត្តសម្រាប់ការបកប្រែនៅក្នុងព័ត៌មានរបស់អ្នក"
 
@@ -9662,7 +9674,7 @@ msgstr "ផ្ញើអ៊ីមែល"
 msgid "Send feedback"
 msgstr "ផ្ញើមតិកែលម្អ"
 
-#: src/screens/Messages/components/MessageComposer.tsx:226
+#: src/screens/Messages/components/MessageComposer.tsx:266
 #: src/screens/Messages/components/MessageInput.tsx:225
 #: src/screens/Messages/components/MessageInput.web.tsx:216
 msgid "Send message"
@@ -9802,9 +9814,9 @@ msgid "Sexually Suggestive"
 msgstr "ចំណង់ផ្លូវភេទ"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:195
-#: src/screens/Hashtag.tsx:143
+#: src/screens/Hashtag.tsx:130
 #: src/screens/StarterPack/StarterPackScreen.tsx:447
-#: src/screens/Topic.tsx:103
+#: src/screens/Topic.tsx:90
 msgid "Share"
 msgstr "ចែករំលែក"
 
@@ -9901,8 +9913,8 @@ msgstr "បង្ហាញអត្ថបទជំនួស"
 #: src/features/liveNow/components/LiveStatusDialog.tsx:317
 #: src/features/liveNow/components/LiveStatusDialog.tsx:321
 #: src/screens/List/ListHiddenScreen.tsx:194
-#: src/screens/VideoFeed/index.tsx:650
-#: src/screens/VideoFeed/index.tsx:656
+#: src/screens/VideoFeed/index.tsx:646
+#: src/screens/VideoFeed/index.tsx:652
 msgid "Show anyway"
 msgstr "បង្ហាញ"
 
@@ -10018,7 +10030,7 @@ msgstr ""
 #: src/components/dialogs/Signin.tsx:100
 #: src/components/WelcomeModal.tsx:198
 #: src/components/WelcomeModal.tsx:210
-#: src/screens/Hashtag.tsx:241
+#: src/screens/Hashtag.tsx:228
 #: src/screens/Login/index.tsx:140
 #: src/screens/Login/index.tsx:161
 #: src/screens/Login/LoginForm.tsx:231
@@ -10115,9 +10127,9 @@ msgstr ""
 #: src/screens/Onboarding/StepFindContactsIntro/index.tsx:90
 #: src/screens/Onboarding/StepFinished/index.tsx:295
 #: src/screens/Onboarding/StepFinished/index.tsx:317
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:278
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:281
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:105
-#: src/screens/StarterPack/Wizard/index.tsx:217
+#: src/screens/StarterPack/Wizard/index.tsx:206
 msgid "Skip"
 msgstr "រំលង"
 
@@ -10126,7 +10138,7 @@ msgstr "រំលង"
 msgid "Skip contact sharing and continue to the app"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1326
+#: src/view/com/composer/Composer.tsx:1342
 msgid "Skip empty posts?"
 msgstr ""
 
@@ -10135,7 +10147,7 @@ msgstr ""
 msgid "Skip introduction and start using your account"
 msgstr ""
 
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:275
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:278
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:102
 msgid "Skip to next step"
 msgstr ""
@@ -10164,7 +10176,7 @@ msgstr ""
 msgid "Software Dev"
 msgstr "កម្មវិធី Dev"
 
-#: src/screens/Moderation/index.tsx:475
+#: src/screens/Moderation/index.tsx:466
 msgid "Some moderation services in your list are no longer available."
 msgstr ""
 
@@ -10172,7 +10184,7 @@ msgstr ""
 msgid "Some of your verifications are invalid."
 msgstr ""
 
-#: src/components/FeedInterstitials.tsx:633
+#: src/components/FeedInterstitials.tsx:634
 msgid "Some other feeds you might like"
 msgstr "មតិព័ត៌មានផ្សេងទៀតដែលអ្នកប្រហែលជាចូលចិត្ត"
 
@@ -10180,23 +10192,38 @@ msgstr "មតិព័ត៌មានផ្សេងទៀតដែលអ្ន
 msgid "Some people can reply"
 msgstr "មនុស្សមួយចំនួនអាចឆ្លើយតបបាន"
 
+#: src/components/dms/getSystemMessageInfo.ts:58
+msgid "Someone joined the group"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:64
+msgid "Someone left the group"
+msgstr ""
+
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:290
+#: src/components/dms/MessageItem.tsx:286
 msgid "Someone reacted {0}"
 msgstr ""
 
-#. placeholder {0}: convo.lastReaction.reaction.value
-#. placeholder {1}: lastMessageText ? `"${convo.lastReaction.message.text}"` : fallbackMessage
-#: src/screens/Messages/components/ChatListItem.tsx:360
-msgid "Someone reacted {0} to {1}"
+#. placeholder {0}: reaction.value
+#: src/components/dms/getReactionInfo.ts:47
+msgid "Someone reacted {0} to {target}"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:42
+msgid "Someone was added to the group"
+msgstr ""
+
+#: src/components/dms/getSystemMessageInfo.ts:50
+msgid "Someone was removed from the group"
 msgstr ""
 
 #: src/components/moderation/ReportDialog/index.tsx:103
 msgid "Something wasn't quite right with the data you're trying to report. Please contact support."
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:145
-#: src/screens/Messages/ConversationSettings.tsx:198
+#: src/screens/Messages/Conversation.tsx:144
+#: src/screens/Messages/ConversationSettings.tsx:211
 msgid "Something went wrong"
 msgstr "មានអ្វីមួយខុសប្រក្រតី"
 
@@ -10208,7 +10235,7 @@ msgstr "មានអ្វីមួយខុសប្រក្រតី"
 msgid "Something went wrong, please try again"
 msgstr "មានអ្វីមួយខុសប្រក្រតី សូមព្យាយាមម្តងទៀត"
 
-#: src/screens/Moderation/index.tsx:114
+#: src/screens/Moderation/index.tsx:112
 #: src/screens/Profile/Sections/Labels.tsx:184
 msgid "Something went wrong, please try again."
 msgstr "មានអ្វីមួយខុសប្រក្រតី សូមព្យាយាមម្តងទៀត"
@@ -10229,7 +10256,7 @@ msgstr ""
 msgid "Something wrong? Let us know."
 msgstr ""
 
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:229
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:231
 msgid "Sorry, we're unable to load account suggestions at this time."
 msgstr ""
 
@@ -10302,7 +10329,7 @@ msgstr "ចាប់ផ្តើមជជែកជាមួយ {displayName}"
 
 #: src/Navigation.tsx:623
 #: src/Navigation.tsx:628
-#: src/screens/StarterPack/Wizard/index.tsx:208
+#: src/screens/StarterPack/Wizard/index.tsx:197
 msgid "Starter Pack"
 msgstr "កញ្ចប់ចាប់ផ្តើម"
 
@@ -10324,12 +10351,12 @@ msgstr "កញ្ចប់ចាប់ផ្តើមដោយអ្នក"
 msgid "Starter pack is invalid"
 msgstr "កញ្ចប់ចាប់ផ្តើមមិនត្រឹមត្រូវទេ"
 
-#: src/screens/Search/Explore.tsx:664
+#: src/screens/Search/Explore.tsx:665
 #: src/screens/Settings/ProfileTabsVisibility.tsx:206
 #: src/screens/Settings/ProfileTabsVisibility.tsx:219
 #: src/screens/Settings/ProfileTabsVisibility.tsx:357
 #: src/screens/Settings/ProfileTabsVisibility.tsx:370
-#: src/view/screens/Profile.tsx:288
+#: src/view/screens/Profile.tsx:286
 msgid "Starter Packs"
 msgstr "កញ្ចប់ចាប់ផ្តើម"
 
@@ -10341,7 +10368,7 @@ msgstr "កញ្ចប់ចាប់ផ្តើមអនុញ្ញាតឱ
 msgid "Starter packs let you share your favorite feeds and people with your friends."
 msgstr ""
 
-#: src/view/screens/Profile.tsx:606
+#: src/view/screens/Profile.tsx:603
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr ""
 
@@ -10450,8 +10477,8 @@ msgid "Suggested accounts"
 msgstr ""
 
 #. Accounts suggested to the user for them to follow
-#: src/components/FeedInterstitials.tsx:474
-#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:180
+#: src/components/FeedInterstitials.tsx:475
+#: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:182
 msgid "Suggested for you"
 msgstr "បានណែនាំសម្រាប់អ្នក"
 
@@ -10471,8 +10498,8 @@ msgid "Sunset"
 msgstr ""
 
 #: src/Navigation.tsx:333
-#: src/view/screens/Support.tsx:35
-#: src/view/screens/Support.tsx:38
+#: src/view/screens/Support.tsx:25
+#: src/view/screens/Support.tsx:28
 msgid "Support"
 msgstr "គាំទ្រ"
 
@@ -10505,7 +10532,7 @@ msgstr ""
 msgid "System"
 msgstr "ប្រព័ន្ធ"
 
-#: src/screens/Log.tsx:57
+#: src/screens/Log.tsx:49
 #: src/screens/Settings/AboutSettings.tsx:131
 #: src/screens/Settings/AboutSettings.tsx:134
 #: src/screens/Settings/Settings.tsx:445
@@ -10588,7 +10615,7 @@ msgstr ""
 msgid "Tap to remove your {0} reaction"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:564
+#: src/components/dms/MessageItem.tsx:557
 msgid "Tap to retry"
 msgstr ""
 
@@ -10601,7 +10628,7 @@ msgstr ""
 msgid "Tap to show all reactions"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:313
+#: src/components/dms/MessageItem.tsx:309
 msgid "Tap to view reactions"
 msgstr ""
 
@@ -10652,7 +10679,7 @@ msgstr "លក្ខខណ្ឌ"
 #: src/Navigation.tsx:343
 #: src/screens/Settings/AboutSettings.tsx:108
 #: src/screens/Settings/AboutSettings.tsx:111
-#: src/view/screens/TermsOfService.tsx:35
+#: src/view/screens/TermsOfService.tsx:25
 #: src/view/shell/Drawer.tsx:687
 #: src/view/shell/Drawer.tsx:689
 msgid "Terms of Service"
@@ -10689,8 +10716,8 @@ msgstr "ដែល​មាន​ដូច​ខាង​ក្រោម៖"
 #: src/screens/StarterPack/StarterPackScreen.tsx:116
 #: src/screens/StarterPack/StarterPackScreen.tsx:160
 #: src/screens/StarterPack/StarterPackScreen.tsx:161
-#: src/screens/StarterPack/Wizard/index.tsx:117
-#: src/screens/StarterPack/Wizard/index.tsx:127
+#: src/screens/StarterPack/Wizard/index.tsx:116
+#: src/screens/StarterPack/Wizard/index.tsx:126
 msgid "That starter pack could not be found."
 msgstr "កញ្ចប់ចាប់ផ្តើមនោះមិនត្រូវបានរកឃើញទេ"
 
@@ -10702,7 +10729,7 @@ msgstr ""
 msgid "That's all, folks!"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:1145
+#: src/screens/VideoFeed/index.tsx:1141
 msgid "That's everything!"
 msgstr ""
 
@@ -10726,15 +10753,15 @@ msgstr "អ្នកនិពន្ធនៃអត្ថបទនេះបាន
 msgid "The birthdate you've entered means you are under 18 years old. Certain content and features may be unavailable to you."
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:424
+#: src/screens/Moderation/index.tsx:415
 msgid "The Bluesky web application"
 msgstr "កម្មវិធីបណ្តាញ Bluesky"
 
-#: src/view/screens/CommunityGuidelines.tsx:42
+#: src/view/screens/CommunityGuidelines.tsx:32
 msgid "The Community Guidelines have been moved to <0/>"
 msgstr "គោលការណ៍ណែនាំសហគមន៍ត្រូវបានផ្លាស់ទីទៅ <0/>"
 
-#: src/view/screens/CopyrightPolicy.tsx:39
+#: src/view/screens/CopyrightPolicy.tsx:29
 msgid "The Copyright Policy has been moved to <0/>"
 msgstr "គោលការណ៍រក្សាសិទ្ធិត្រូវបានផ្លាស់ទីទៅ <0/>"
 
@@ -10774,11 +10801,11 @@ msgstr ""
 msgid "The laws in your region require you to verify you're an adult to access certain features. Tap to learn more."
 msgstr ""
 
-#: src/view/com/composer/select-language/SuggestedLanguage.tsx:121
-msgid "The post you're replying to was marked as being written in {suggestedLanguageName} by its author. Would you like to reply in <0>{suggestedLanguageName}</0>?"
+#: src/view/com/composer/select-language/SuggestedLanguage.tsx:410
+msgid "The post you’re replying to was marked as being written in {suggestedLanguageName} by its author. Would you like to reply in <0>{suggestedLanguageName}</0>?"
 msgstr ""
 
-#: src/view/screens/PrivacyPolicy.tsx:40
+#: src/view/screens/PrivacyPolicy.tsx:30
 msgid "The Privacy Policy has been moved to <0/>"
 msgstr "គោលការណ៍ឯកជនភាពត្រូវបានផ្លាស់ទីទៅ <0/>"
 
@@ -10800,11 +10827,11 @@ msgstr "កញ្ចប់ចាប់ផ្តើមដែលអ្នកកំ
 msgid "The subject of the context menu"
 msgstr ""
 
-#: src/view/screens/Support.tsx:41
+#: src/view/screens/Support.tsx:31
 msgid "The support form has been moved. If you need help, please <0/> or visit {HELP_DESK_URL} to get in touch with us."
 msgstr "ទម្រង់គាំទ្រត្រូវបានផ្លាស់ប្តូរ។ ប្រសិនបើអ្នកត្រូវការជំនួយ សូម <0/> ឬចូលទៅកាន់ {HELP_DESK_URL} ដើម្បីទាក់ទងមកយើងខ្ញុំ"
 
-#: src/view/screens/TermsOfService.tsx:39
+#: src/view/screens/TermsOfService.tsx:29
 msgid "The Terms of Service have been moved to"
 msgstr "លក្ខខណ្ឌនៃសេវាកម្មត្រូវបានផ្លាស់ទីទៅ"
 
@@ -10845,8 +10872,8 @@ msgstr "មានបញ្ហាក្នុងការភ្ជាប់ទៅ
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:182
 #: src/screens/ProfileList/components/Header.tsx:91
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:79
-#: src/screens/SavedFeeds.tsx:107
-#: src/screens/SavedFeeds.tsx:293
+#: src/screens/SavedFeeds.tsx:99
+#: src/screens/SavedFeeds.tsx:278
 msgid "There was an issue contacting the server"
 msgstr "មានបញ្ហាក្នុងការទាក់ទងម៉ាស៊ីនមេ"
 
@@ -10859,7 +10886,7 @@ msgstr "មានបញ្ហាក្នុងការទាក់ទងម៉
 msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "មានបញ្ហាក្នុងការទាញយកការជូនដំណឹង។ ចុចទីនេះដើម្បីព្យាយាមម្តងទៀត"
 
-#: src/screens/Search/Explore.tsx:1026
+#: src/screens/Search/Explore.tsx:1027
 #: src/view/com/posts/PostFeed.tsx:778
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "មានបញ្ហាក្នុងការទាញយកសារបង្ហោះ។ ចុចទីនេះដើម្បីព្យាយាមម្តងទៀត"
@@ -10895,8 +10922,8 @@ msgstr "មានបញ្ហាក្នុងការធ្វើបច្ច
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:431
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:454
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:474
-#: src/screens/Messages/ConversationSettings.tsx:567
-#: src/screens/Messages/ConversationSettings.tsx:580
+#: src/screens/Messages/ConversationSettings.tsx:593
+#: src/screens/Messages/ConversationSettings.tsx:606
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:95
@@ -11023,7 +11050,7 @@ msgstr "ខ្លឹមសារនេះមិនមានទេ ដោយស�
 msgid "This content is not viewable without a Bluesky account."
 msgstr "ខ្លឹមសារនេះមិនអាចមើលបានដោយគ្មានគណនី Bluesky ទេ"
 
-#: src/screens/Messages/components/ChatListItem.tsx:150
+#: src/screens/Messages/components/ChatListItem.tsx:140
 msgid "This conversation is with a deleted or a deactivated account. Press for options"
 msgstr ""
 
@@ -11051,7 +11078,7 @@ msgstr ""
 msgid "This feature is not available while using an App Password. Please sign in with your main password."
 msgstr "មុខងារនេះមិនមានពេលប្រើពាក្យសម្ងាត់កម្មវិធីទេ។ សូមចូលដោយប្រើពាក្យសម្ងាត់ចម្បងរបស់អ្នក"
 
-#: src/screens/Messages/Conversation.tsx:353
+#: src/screens/Messages/Conversation.tsx:352
 msgid "This feature isn't available to you yet. Please check back later."
 msgstr ""
 
@@ -11145,7 +11172,7 @@ msgstr ""
 msgid "This post is only visible to logged-in users."
 msgstr ""
 
-#: src/screens/Bookmarks/index.tsx:258
+#: src/screens/Bookmarks/index.tsx:255
 msgid "This post was deleted by its author"
 msgstr ""
 
@@ -11153,7 +11180,7 @@ msgstr ""
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr "ប្រកាសនេះនឹងត្រូវបានលាក់ពីមតិព័ត៌មាន និងខ្សែស្រលាយ។ នេះមិនអាចត្រឡប់វិញបានទេ"
 
-#: src/view/com/composer/Composer.tsx:942
+#: src/view/com/composer/Composer.tsx:956
 msgid "This post's author has disabled quote posts."
 msgstr "អ្នកនិពន្ធនៃប្រកាសនេះបានបិទការបង្ហោះសម្រង់"
 
@@ -11304,7 +11331,7 @@ msgstr ""
 msgid "Toggle the visibility of various tabs found on your profile"
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:401
+#: src/screens/Moderation/index.tsx:392
 msgid "Toggle to enable or disable adult content"
 msgstr "បិទ/បើក ដើម្បីបើក ឬបិទមាតិកាសម្រាប់មនុស្សពេញវ័យ"
 
@@ -11324,9 +11351,9 @@ msgstr ""
 msgid "Too many contacts - you've exceeded the number of contacts you can import to find your friends"
 msgstr ""
 
-#: src/screens/Hashtag.tsx:101
+#: src/screens/Hashtag.tsx:88
 #: src/screens/Search/SearchResults.tsx:54
-#: src/screens/Topic.tsx:72
+#: src/screens/Topic.tsx:59
 msgid "Top"
 msgstr "កំពូល"
 
@@ -11491,7 +11518,7 @@ msgctxt "action"
 msgid "Unblock"
 msgstr "ឈប់ទប់ស្កាត់"
 
-#: src/screens/Messages/ConversationSettings.tsx:669
+#: src/screens/Messages/ConversationSettings.tsx:695
 msgid "Unblock {displayName}"
 msgstr ""
 
@@ -11550,7 +11577,7 @@ msgstr "ឈប់តាម {0}"
 msgid "Unfollow account"
 msgstr "ឈប់តាមដានគណនី"
 
-#: src/screens/VideoFeed/index.tsx:852
+#: src/screens/VideoFeed/index.tsx:848
 msgid "Unfollows the user"
 msgstr ""
 
@@ -11566,11 +11593,11 @@ msgstr ""
 msgid "Unfortunately, your declared age indicates that you are not old enough to access Bluesky in your region."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:694
+#: src/screens/Messages/ConversationSettings.tsx:720
 msgid "Uninvite"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:691
+#: src/screens/Messages/ConversationSettings.tsx:717
 msgid "Uninvite {displayName} from this group chat"
 msgstr ""
 
@@ -11596,7 +11623,7 @@ msgstr ""
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:874
+#: src/screens/Messages/ConversationSettings.tsx:900
 msgid "Unlock this group chat"
 msgstr ""
 
@@ -11633,7 +11660,7 @@ msgstr "បើកការសន្ទនា"
 msgid "Unmute list"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:849
+#: src/screens/Messages/ConversationSettings.tsx:875
 msgid "Unmute this group chat"
 msgstr ""
 
@@ -11654,7 +11681,7 @@ msgstr ""
 #: src/components/FeedCard.tsx:355
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:528
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:534
-#: src/screens/SavedFeeds.tsx:482
+#: src/screens/SavedFeeds.tsx:467
 msgid "Unpin feed"
 msgstr ""
 
@@ -11712,7 +11739,7 @@ msgstr "ឈប់ជាវពីបញ្ជី"
 msgid "Unsupported clipboard content"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1419
+#: src/view/com/composer/Composer.tsx:1435
 msgid "Unsupported video type: {mimeType}"
 msgstr ""
 
@@ -11737,7 +11764,7 @@ msgstr ""
 msgid "Update to {domain}"
 msgstr "ធ្វើបច្ចុប្បន្នភាពទៅ {domain}"
 
-#: src/screens/Messages/Conversation.tsx:351
+#: src/screens/Messages/Conversation.tsx:350
 msgid "Update your app to the latest version to join in!"
 msgstr ""
 
@@ -11782,7 +11809,7 @@ msgstr "បង្ហោះពីឯកសារ"
 msgid "Upload from Library"
 msgstr "បង្ហោះពីបណ្ណាល័យ"
 
-#: src/view/com/composer/Composer.tsx:2458
+#: src/view/com/composer/Composer.tsx:2477
 msgid "Uploading GIF..."
 msgstr ""
 
@@ -11795,7 +11822,7 @@ msgstr "កំពុងបង្ហោះរូបភាព..."
 msgid "Uploading link thumbnail..."
 msgstr "កំពុងបង្ហោះរូបភាពតូចនៃតំណ..."
 
-#: src/view/com/composer/Composer.tsx:2460
+#: src/view/com/composer/Composer.tsx:2479
 msgid "Uploading video..."
 msgstr "កំពុងបង្ហោះវីដេអូ..."
 
@@ -11933,7 +11960,7 @@ msgstr "តម្លៃ៖"
 msgid "Verification failed, please try again."
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:353
+#: src/screens/Moderation/index.tsx:344
 msgid "Verification settings"
 msgstr ""
 
@@ -12054,7 +12081,7 @@ msgid "Video from {0}: {text}"
 msgstr ""
 
 #. placeholder {0}: sanitizeHandle( post.author.handle, '@', )
-#: src/screens/VideoFeed/index.tsx:1107
+#: src/screens/VideoFeed/index.tsx:1103
 msgid "Video from {0}. Tap to play or pause the video"
 msgstr ""
 
@@ -12063,11 +12090,11 @@ msgstr ""
 msgid "Video Games"
 msgstr "វីដេអូហ្គេម"
 
-#: src/screens/VideoFeed/index.tsx:1106
+#: src/screens/VideoFeed/index.tsx:1102
 msgid "Video is paused"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:1106
+#: src/screens/VideoFeed/index.tsx:1102
 msgid "Video is playing"
 msgstr ""
 
@@ -12079,7 +12106,7 @@ msgstr "រកមិនឃើញវីដេអូ"
 msgid "Video settings"
 msgstr "ការកំណត់វីដេអូ"
 
-#: src/view/com/composer/Composer.tsx:2478
+#: src/view/com/composer/Composer.tsx:2497
 msgid "Video uploaded"
 msgstr "បង្ហោះវីដេអូ"
 
@@ -12092,7 +12119,7 @@ msgstr "វីដេអូ៖ {0}"
 #: src/screens/Settings/ProfileTabsVisibility.tsx:162
 #: src/screens/Settings/ProfileTabsVisibility.tsx:319
 #: src/screens/Settings/ProfileTabsVisibility.tsx:332
-#: src/view/screens/Profile.tsx:285
+#: src/view/screens/Profile.tsx:283
 msgid "Videos"
 msgstr ""
 
@@ -12100,7 +12127,7 @@ msgstr ""
 msgid "Videos must be less than 3 minutes long."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1034
+#: src/view/com/composer/Composer.tsx:1048
 msgctxt "Action to view the post the user just created"
 msgid "View"
 msgstr ""
@@ -12115,7 +12142,7 @@ msgstr "មើលរូបតំណាងរបស់ {0}"
 #. placeholder {0}: profile.handle
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:465
 #: src/screens/Search/components/SearchProfileCard.tsx:36
-#: src/screens/VideoFeed/index.tsx:813
+#: src/screens/VideoFeed/index.tsx:809
 #: src/view/com/notifications/NotificationFeedItem.tsx:602
 msgid "View {0}'s profile"
 msgstr "មើលប្រវត្តិរូបរបស់ {0}"
@@ -12126,7 +12153,7 @@ msgid "View {0}’s profile"
 msgstr ""
 
 #: src/components/dms/MessagesListHeader.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:645
+#: src/screens/Messages/ConversationSettings.tsx:671
 msgid "View {displayName}’s profile"
 msgstr ""
 
@@ -12138,12 +12165,12 @@ msgstr "មើលប្រវត្តិរូបរបស់អ្នកប្
 msgid "View blogpost for more details"
 msgstr "មើលប្លុកសម្រាប់ព័ត៌មានលម្អិតបន្ថែម"
 
-#: src/screens/Log.tsx:80
+#: src/screens/Log.tsx:72
 msgid "View debug entry"
 msgstr "មើលធាតុបំបាត់កំហុស"
 
-#: src/screens/VideoFeed/index.tsx:678
-#: src/screens/VideoFeed/index.tsx:696
+#: src/screens/VideoFeed/index.tsx:674
+#: src/screens/VideoFeed/index.tsx:692
 msgid "View details"
 msgstr "មើលព័ត៌មានលម្អិត"
 
@@ -12152,7 +12179,7 @@ msgstr "មើលព័ត៌មានលម្អិត"
 msgid "View full thread"
 msgstr "មើល thread ពេញ"
 
-#: src/screens/Messages/ConversationSettings.tsx:256
+#: src/screens/Messages/ConversationSettings.tsx:273
 msgid "View incoming group chat requests"
 msgstr ""
 
@@ -12171,7 +12198,7 @@ msgstr ""
 msgid "View more trending videos"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1029
+#: src/view/com/composer/Composer.tsx:1043
 msgid "View post"
 msgstr ""
 
@@ -12209,11 +12236,11 @@ msgstr "មើលអ្នកប្រើប្រាស់ដែលចូលច
 msgid "View video"
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:333
+#: src/screens/Moderation/index.tsx:324
 msgid "View your blocked accounts"
 msgstr "មើលគណនីដែលអ្នកបានទប់ស្កាត់"
 
-#: src/screens/Moderation/index.tsx:273
+#: src/screens/Moderation/index.tsx:264
 msgid "View your default post interaction settings"
 msgstr ""
 
@@ -12222,11 +12249,11 @@ msgstr ""
 msgid "View your feeds and explore more"
 msgstr "មើលព័ត៌មានរបស់អ្នក និងស្វែងយល់បន្ថែម"
 
-#: src/screens/Moderation/index.tsx:303
+#: src/screens/Moderation/index.tsx:294
 msgid "View your moderation lists"
 msgstr "មើលបញ្ជីសម្របសម្រួលរបស់អ្នក"
 
-#: src/screens/Moderation/index.tsx:318
+#: src/screens/Moderation/index.tsx:309
 msgid "View your muted accounts"
 msgstr "មើលគណនីដែលបានបិទរបស់អ្នក"
 
@@ -12256,7 +12283,7 @@ msgstr ""
 msgid "Visit site"
 msgstr ""
 
-#: src/view/screens/Notifications.tsx:308
+#: src/view/screens/Notifications.tsx:304
 msgid "Visit your notification settings"
 msgstr ""
 
@@ -12295,19 +12322,19 @@ msgstr ""
 msgid "We could not find this list. It was probably deleted."
 msgstr ""
 
-#: src/screens/Hashtag.tsx:272
+#: src/screens/Hashtag.tsx:259
 msgid "We couldn't find any results for that tag."
 msgstr ""
 
-#: src/screens/Topic.tsx:180
+#: src/screens/Topic.tsx:167
 msgid "We couldn't find any results for that topic."
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:146
+#: src/screens/Messages/Conversation.tsx:145
 msgid "We couldn't load this conversation"
 msgstr "យើងមិនអាចផ្ទុកការសន្ទនានេះបានទេ"
 
-#: src/screens/Messages/ConversationSettings.tsx:199
+#: src/screens/Messages/ConversationSettings.tsx:212
 msgid "We couldn’t load this conversation’s settings"
 msgstr ""
 
@@ -12369,7 +12396,7 @@ msgstr ""
 msgid "We were unable to load your birthdate preferences. Please try again."
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:501
+#: src/screens/Moderation/index.tsx:492
 msgid "We were unable to load your configured labelers at this time."
 msgstr "យើងមិនអាចផ្ទុកស្លាកសញ្ញាដែលបានកំណត់រចនាសម្ព័ន្ធរបស់អ្នកបានទេនៅពេលនេះ"
 
@@ -12435,7 +12462,7 @@ msgstr ""
 msgid "We're sorry, but based on your device's location, you are currently located in a region that requires age assurance."
 msgstr ""
 
-#: src/screens/ProfileList/index.tsx:89
+#: src/screens/ProfileList/index.tsx:88
 msgid "We're sorry, but we were unable to resolve this list. If this persists, please contact the list creator, @{handleOrDid}."
 msgstr "យើងសុំទោស ប៉ុន្តែយើងមិនអាចដោះស្រាយបញ្ជីនេះបានទេ។ ប្រសិនបើវានៅតែបន្តកើតមាន សូមទាក់ទងអ្នកបង្កើតបញ្ជី @{handleOrDid}"
 
@@ -12452,12 +12479,12 @@ msgstr ""
 msgid "We're sorry, you cannot access this screen at this time."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:940
+#: src/view/com/composer/Composer.tsx:954
 msgid "We're sorry! The post you are replying to has been deleted."
 msgstr "យើងសុំទោស! ប្រកាសដែលអ្នកកំពុងឆ្លើយតបត្រូវបានលុប"
 
 #: src/components/Lists.tsx:224
-#: src/view/screens/NotFound.tsx:51
+#: src/view/screens/NotFound.tsx:39
 msgid "We're sorry! We can't find the page you were looking for."
 msgstr "យើងសុំទោស! យើងមិនអាចស្វែងរកទំព័រដែលអ្នកកំពុងស្វែងរកបានទេ"
 
@@ -12508,7 +12535,7 @@ msgid "What do you want to call your starter pack?"
 msgstr "តើអ្នកចង់ហៅកញ្ចប់ចាប់ផ្តើមរបស់អ្នកថាម៉េច?"
 
 #: src/view/com/auth/SplashScreen.web.tsx:104
-#: src/view/com/composer/Composer.tsx:1379
+#: src/view/com/composer/Composer.tsx:1395
 #: src/view/com/feeds/ComposerPrompt.tsx:193
 msgid "What's up?"
 msgstr "មានរឿងអី?"
@@ -12585,21 +12612,21 @@ msgstr ""
 msgid "Would you like to save this as a draft before viewing your drafts?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1297
+#: src/view/com/composer/Composer.tsx:1313
 msgid "Would you like to save this as a draft to edit later?"
 msgstr ""
 
-#: src/view/screens/Profile.tsx:485
-#: src/view/screens/Profile.tsx:486
+#: src/view/screens/Profile.tsx:482
+#: src/view/screens/Profile.tsx:483
 msgid "Write a post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1479
+#: src/view/com/composer/Composer.tsx:1495
 msgid "Write post"
 msgstr "សរសេរសារបង្ហោះ"
 
 #: src/screens/PostThread/components/ThreadComposePrompt.tsx:91
-#: src/view/com/composer/Composer.tsx:1377
+#: src/view/com/composer/Composer.tsx:1393
 msgid "Write your reply"
 msgstr "សរសេរការឆ្លើយតបរបស់អ្នក"
 
@@ -12616,10 +12643,6 @@ msgstr "ខុស DID ត្រឡប់ពីម៉ាស៊ីនមេ។ ប
 #: src/features/liveNow/components/GoLiveDialog.tsx:157
 msgid "www.mylivestream.tv"
 msgstr ""
-
-#: src/view/com/composer/select-language/SuggestedLanguage.tsx:182
-msgid "Yes"
-msgstr "បាទ"
 
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:105
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:107
@@ -12746,7 +12769,7 @@ msgstr ""
 msgid "You can now sign in with your new password."
 msgstr "ឥឡូវនេះ អ្នកអាចចូលដោយប្រើពាក្យសម្ងាត់ថ្មីរបស់អ្នក"
 
-#: src/view/com/composer/Composer.tsx:1302
+#: src/view/com/composer/Composer.tsx:1318
 msgid "You can only save drafts up to 1000 characters."
 msgstr ""
 
@@ -12782,7 +12805,7 @@ msgstr ""
 msgid "You cannot update your birthdate while using an app password. Please sign in with your main password to update your birthdate."
 msgstr ""
 
-#: src/screens/Profile/KnownFollowers.tsx:112
+#: src/screens/Profile/KnownFollowers.tsx:103
 msgid "You don't follow any users who follow @{name}."
 msgstr "អ្នកមិនធ្វើតាមអ្នកប្រើប្រាស់ណាដែលតាមដានទេ"
 
@@ -12794,13 +12817,13 @@ msgstr ""
 msgid "You don't have any lists yet."
 msgstr ""
 
-#: src/screens/SavedFeeds.tsx:161
-#: src/screens/SavedFeeds.tsx:358
+#: src/screens/SavedFeeds.tsx:153
+#: src/screens/SavedFeeds.tsx:343
 msgid "You don't have any pinned feeds."
 msgstr "អ្នកមិនមានព័ត៌មានដែលបានខ្ទាស់ណាមួយទេ"
 
-#: src/screens/SavedFeeds.tsx:213
-#: src/screens/SavedFeeds.tsx:396
+#: src/screens/SavedFeeds.tsx:205
+#: src/screens/SavedFeeds.tsx:381
 msgid "You don't have any saved feeds."
 msgstr "អ្នកមិនមានព័ត៌មានដែលបានរក្សាទុកទេ"
 
@@ -12822,7 +12845,7 @@ msgstr "អ្នកបានរារាំងអ្នកប្រើប្រ
 msgid "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Bluesky must remain restricted until you're able to verify you're an adult."
 msgstr ""
 
-#: src/view/screens/Notifications.tsx:303
+#: src/view/screens/Notifications.tsx:299
 msgid "You have completely disabled reply, quote, and mention notifications, so this tab will no longer update. To adjust this, visit your <0>notification settings</0>."
 msgstr ""
 
@@ -12865,11 +12888,11 @@ msgstr "អ្នកមិនមានបញ្ជីទេ"
 msgid "You have no starter packs."
 msgstr ""
 
-#: src/view/screens/ModerationBlockedAccounts.tsx:164
+#: src/view/screens/ModerationBlockedAccounts.tsx:155
 msgid "You have not blocked any accounts yet. To block an account, go to their profile and select \"Block account\" from the menu on their account."
 msgstr "អ្នកមិនទាន់បានបិទគណនីណាមួយនៅឡើយទេ។ ដើម្បីទប់ស្កាត់គណនី សូមចូលទៅកាន់កម្រងព័ត៌មានរបស់ពួកគេ ហើយជ្រើសរើស \"រារាំងគណនី\" ពីម៉ឺនុយនៅលើគណនីរបស់ពួកគេ"
 
-#: src/view/screens/ModerationMutedAccounts.tsx:177
+#: src/view/screens/ModerationMutedAccounts.tsx:168
 msgid "You have not muted any accounts yet. To mute an account, go to their profile and select \"Mute account\" from the menu on their account."
 msgstr "អ្នកមិនទាន់បានបិទគណនីណាមួយនៅឡើយទេ។ ដើម្បីបិទគណនី សូមចូលទៅកាន់កម្រងព័ត៌មានរបស់ពួកគេ ហើយជ្រើសរើស \"បិទគណនី\" ពីម៉ឺនុយនៅលើគណនីរបស់ពួកគេ"
 
@@ -12885,7 +12908,7 @@ msgstr ""
 msgid "You have temporarily reached the limit for video uploads. Please try again later."
 msgstr "អ្នកបានឈានដល់ដែនកំណត់បណ្តោះអាសន្នសម្រាប់ការបង្ហោះវីដេអូ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ"
 
-#: src/view/com/composer/Composer.tsx:1292
+#: src/view/com/composer/Composer.tsx:1308
 msgid "You have unsaved changes to this draft, would you like to save them?"
 msgstr ""
 
@@ -12973,14 +12996,13 @@ msgid "You probably want to restart the app now."
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:281
+#: src/components/dms/MessageItem.tsx:277
 msgid "You reacted {0}"
 msgstr ""
 
-#. placeholder {0}: convo.lastReaction.reaction.value
-#. placeholder {1}: lastMessageText ? `"${convo.lastReaction.message.text}"` : fallbackMessage
-#: src/screens/Messages/components/ChatListItem.tsx:341
-msgid "You reacted {0} to {1}"
+#. placeholder {0}: reaction.value
+#: src/components/dms/getReactionInfo.ts:43
+msgid "You reacted {0} to {target}"
 msgstr ""
 
 #: src/components/dialogs/BirthDateSettings.tsx:87
@@ -13010,22 +13032,14 @@ msgstr "ឥឡូវនេះ អ្នកនឹងទទួលបានកា�
 msgid "You will receive an email with a \"reset code.\" Enter that code here, then enter your new password."
 msgstr "អ្នកនឹងទទួលបានអ៊ីមែលដែលមាន \"កំណត់កូដឡើងវិញ\" បញ្ចូលលេខកូដនោះនៅទីនេះ បន្ទាប់មកបញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នក។"
 
-#: src/screens/Messages/ConversationSettings.tsx:1131
+#: src/screens/Messages/ConversationSettings.tsx:1156
 msgid "You won’t be able to rejoin unless you’re invited."
 msgstr ""
 
-#. placeholder {0}: convo.lastMessage.text
-#: src/screens/Messages/components/ChatListItem.tsx:279
-msgid "You: {0}"
-msgstr "អ្នក៖ {0}"
-
-#: src/screens/Messages/components/ChatListItem.tsx:306
-msgid "You: {defaultEmbeddedContentMessage}"
-msgstr "អ្នក៖ {defaultEmbeddedContentMessage}"
-
-#: src/screens/Messages/components/ChatListItem.tsx:299
-msgid "You: {short}"
-msgstr "អ្នក៖ {short}"
+#. When the last message in a chat was made by you.
+#: src/components/dms/getMessageInfo.ts:43
+msgid "You: {message}"
+msgstr ""
 
 #: src/screens/Signup/index.tsx:154
 msgid "You'll follow the suggested users and feeds once you finish creating your account!"
@@ -13091,7 +13105,7 @@ msgstr ""
 msgid "You've reached the end of your feed! Find some more accounts to follow."
 msgstr "អ្នក​បាន​ដល់​ចុង​បញ្ចប់​នៃ​ព័ត៌មាន​របស់​អ្នក​ហើយ! ស្វែងរកគណនីមួយចំនួនទៀតដើម្បីតាមដាន"
 
-#: src/view/com/composer/Composer.tsx:564
+#: src/view/com/composer/Composer.tsx:578
 msgid "You've reached the maximum number of drafts"
 msgstr ""
 
@@ -13111,7 +13125,7 @@ msgstr "អ្នកបានឈានដល់ដែនកំណត់ប្រ
 msgid "You've reached your daily limit for video uploads (too many videos)"
 msgstr "អ្នកបានឈានដល់ដែនកំណត់ប្រចាំថ្ងៃរបស់អ្នកសម្រាប់ការបង្ហោះវីដេអូ (វីដេអូច្រើនពេក)"
 
-#: src/screens/VideoFeed/index.tsx:1154
+#: src/screens/VideoFeed/index.tsx:1150
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr ""
 
@@ -13180,7 +13194,7 @@ msgstr ""
 msgid "Your current handle <0>{0}</0> will automatically remain reserved for you. You can switch back to it at any time from this account."
 msgstr ""
 
-#: src/screens/Moderation/index.tsx:240
+#: src/screens/Moderation/index.tsx:231
 msgid "Your declared age is under 18. Some settings below may be disabled. If this was a mistake, you may edit your birthdate in your <0>account settings</0>."
 msgstr ""
 
@@ -13255,11 +13269,11 @@ msgstr ""
 msgid "Your password must be at least 8 characters long."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1025
+#: src/view/com/composer/Composer.tsx:1039
 msgid "Your post was sent"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1022
+#: src/view/com/composer/Composer.tsx:1036
 msgid "Your posts were sent"
 msgstr ""
 
@@ -13280,7 +13294,7 @@ msgstr ""
 msgid "Your profile, posts, feeds, and lists will no longer be visible to other Bluesky users. You can reactivate your account at any time by logging in."
 msgstr "ប្រវត្តិរូប ការបង្ហោះ មតិព័ត៌មាន និងបញ្ជីរបស់អ្នកនឹងលែងអាចមើលឃើញដោយអ្នកប្រើប្រាស់ Bluesky ផ្សេងទៀត។ អ្នកអាចដំណើរការគណនីរបស់អ្នកឡើងវិញបានគ្រប់ពេលដោយការចូល"
 
-#: src/view/com/composer/Composer.tsx:1024
+#: src/view/com/composer/Composer.tsx:1038
 msgid "Your reply was sent"
 msgstr ""
 
@@ -13293,7 +13307,7 @@ msgstr ""
 msgid "Your selected interests help us serve you content you care about."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1327
+#: src/view/com/composer/Composer.tsx:1343
 msgid "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 msgstr ""
 
