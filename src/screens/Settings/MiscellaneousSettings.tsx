@@ -124,7 +124,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.Item>
           </Toggle.Item>
 
-          {IS_INTERNAL && /* Internal until ShareMenuItems.tsx works with .did */
           <Toggle.Item
             name="enable_share_via_did"
             label={_(msg`Enable Sharing by DID`)}
@@ -137,7 +136,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
-          </Toggle.Item>}
+          </Toggle.Item>
 
           <Toggle.Item
             name="enable_square_avatars"

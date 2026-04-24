@@ -33,7 +33,7 @@ import {useDevMode} from '#/storage/hooks/dev-mode'
 import {RecentChats} from './RecentChats'
 import {type ShareMenuItemsProps} from './ShareMenuItems.types'
 import {useDisableShareViaDms} from '#/state/preferences/disable-share-via-dms'
-// import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
 
 let ShareMenuItems = ({
   post,
@@ -48,20 +48,21 @@ let ShareMenuItems = ({
   const aa = useAgeAssurance()
   const queryClient = useQueryClient()
   const disableShareViaDms = useDisableShareViaDms()
-  // const enableShareViaDID = useEnableShareViaDID()
+  const enableShareViaDID = useEnableShareViaDID()
 
   const postUri = post.uri
   const postAuthor = useProfileShadow(post.author)
-  // const postAuthor = (enableShareViaDID ? useProfileShadow(post.author) : useProfileShadow(post.author))
-  // Get post.author.did to work - Sunstar
 
-  const {href, bskyUrl} = useMemo(() => {
+  const {href, bskyUrl, hrefDID} = useMemo(() => {
     const urip = new AtUri(postUri)
     return {
       href: makeProfileLink(postAuthor, 'post', urip.rkey),
       bskyUrl: `https://bsky.app/profile/${postAuthor.handle}/post/${urip.rkey}`,
+      hrefDID: `/profile/${postAuthor.did}/post/${urip.rkey}`,
     }
   }, [postUri, postAuthor])
+
+  const activeHref = enableShareViaDID ? hrefDID : href
 
   const hideInPWI = useMemo(() => {
     return !!postAuthor.labels?.find(
@@ -71,14 +72,14 @@ let ShareMenuItems = ({
 
   const onSharePost = () => {
     ax.metric('share:press:nativeShare', {})
-    const url = toShareUrl(href)
+    const url = toShareUrl(activeHref)
     shareUrl(url)
     onShareProp()
   }
 
   const onCopyLink = async () => {
     ax.metric('share:press:copyLink', {})
-    const url = toShareUrl(href)
+    const url = toShareUrl(activeHref)
     if (IS_IOS) {
       // iOS only
       await ExpoClipboard.setUrlAsync(url)

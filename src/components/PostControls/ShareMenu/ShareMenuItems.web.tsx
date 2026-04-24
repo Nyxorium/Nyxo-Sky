@@ -26,6 +26,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_WEB} from '#/env'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 import {type ShareMenuItemsProps} from './ShareMenuItems.types'
+import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
 
 let ShareMenuItems = ({
   post,
@@ -42,18 +43,22 @@ let ShareMenuItems = ({
   const sendViaChatControl = useDialogControl()
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
+  const enableShareViaDID = useEnableShareViaDID()
 
   const postUri = post.uri
   const postCid = post.cid
   const postAuthor = useProfileShadow(post.author)
 
-  const {href, bskyUrl} = useMemo(() => {
+  const {href, bskyUrl, hrefDID} = useMemo(() => {
     const urip = new AtUri(postUri)
     return {
       href: makeProfileLink(postAuthor, 'post', urip.rkey),
       bskyUrl: `https://bsky.app/profile/${postAuthor.handle}/post/${urip.rkey}`,
+      hrefDID: `/profile/${postAuthor.did}/post/${urip.rkey}`,
     }
   }, [postUri, postAuthor])
+
+  const activeHref = enableShareViaDID ? hrefDID : href
 
   const hideInPWI = useMemo(() => {
     return !!postAuthor.labels?.find(
@@ -63,7 +68,7 @@ let ShareMenuItems = ({
 
   const onCopyLink = () => {
     ax.metric('share:press:copyLink', {})
-    const url = toShareUrl(href)
+    const url = toShareUrl(activeHref)
     shareUrl(url)
     onShareProp()
   }

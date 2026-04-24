@@ -71,6 +71,7 @@ import {
 } from '#/components/moderation/LabelsOnMeDialog'
 
 import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
+import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
 
 let ProfileMenu = ({
   profile,
@@ -118,6 +119,12 @@ let ProfileMenu = ({
   const addToStarterPacksDialogControl = useDialogControl()
   const control = useLabelsOnMeDialogControl()
   const useAltLabelDisplay = useAltLabelDisplayProfile()
+  const enableShareViaDID = useEnableShareViaDID()
+
+  const profileHref = useMemo(() =>
+    enableShareViaDID ? `/profile/${profile.did}` : makeProfileLink(profile),
+    [enableShareViaDID, profile]
+  )
 
   const showLoggedOutWarning = useMemo(() => {
     return (
@@ -138,8 +145,8 @@ let ProfileMenu = ({
   }, [addToStarterPacksDialogControl])
 
   const onPressShare = useCallback(() => {
-    shareUrl(toShareUrl(makeProfileLink(profile)))
-  }, [profile])
+    shareUrl(toShareUrl(profileHref))
+  }, [profileHref])
 
   const onPressAddRemoveLists = useCallback(() => {
     openModal({
