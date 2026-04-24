@@ -34,6 +34,8 @@ import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Tra
 import * as Menu from '#/components/Menu'
 import {IS_ANDROID, IS_NATIVE} from '#/env'
 
+import {useDevMode} from '#/storage/hooks/dev-mode'
+
 export function UserBanner({
   type,
   banner,
@@ -52,6 +54,7 @@ export function UserBanner({
   const sheetWrapper = useSheetWrapper()
   const [rawImage, setRawImage] = useState<ComposerImage | undefined>()
   const editImageDialogControl = useDialogControl()
+  const [devModeEnabled] = useDevMode()
 
   const onOpenCamera = useCallback(async () => {
     if (!(await requestCameraAccessIfNeeded())) {
@@ -208,7 +211,7 @@ export function UserBanner({
       />
     </>
   ) : banner &&
-    !((moderation?.blur && IS_ANDROID) /* android crashes with blur */) ? (
+    !((moderation?.blur && IS_ANDROID && !devModeEnabled) /* android crashes with blur */) ? (
     <Image
       style={[styles.bannerImage, t.atoms.bg_contrast_25]}
       contentFit="cover"
