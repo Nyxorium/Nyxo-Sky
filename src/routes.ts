@@ -50,6 +50,7 @@ export const router = new Router<AllNavigatableRoutes>({
   AppearanceSettings: '/settings/appearance',
   MiscellaneousSettings: '/settings/miscellaneous',
   ProfileTabVisibilitySettings: '/settings/tabs-visibility',
+  FeatureGatesSettings: '/settings/feature-gates',
   SavedFeeds: '/settings/saved-feeds',
   AccountSettings: '/settings/account',
   AutomationLabelSettings: '/settings/automation-label',

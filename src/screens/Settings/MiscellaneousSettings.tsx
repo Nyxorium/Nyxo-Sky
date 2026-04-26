@@ -54,6 +54,7 @@ import {
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
+import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {IS_NATIVE} from '#/env'
 
 
@@ -105,6 +106,15 @@ export function MiscellaneousSettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={HashtagIcon} />
             <SettingsList.ItemText>
               <Trans>Tabs Visibility</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+
+          <SettingsList.LinkItem
+            to="/settings/feature-gates"
+            label={_(msg`Feature Gates`)}>
+            <SettingsList.ItemIcon icon={BeakerIcon} />
+            <SettingsList.ItemText>
+              <Trans>Feature Gates</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
 

@@ -108,6 +108,7 @@ import {AutomationLabelSettingsScreen} from '#/screens/Settings/AutomationLabelS
 import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaSettings'
 import {MiscellaneousSettingsScreen} from './screens/Settings/MiscellaneousSettings'
 import {ProfileTabVisibilitySettingsScreen} from './screens/Settings/ProfileTabsVisibility'
+import {FeatureGatesSettingsScreen} from './screens/Settings/FeatureGates'
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
 import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
@@ -404,6 +405,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ProfileTabVisibilitySettingsScreen}
         options={{
           title: title(msg`Tab Visibility Settings`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="FeatureGatesSettings"
+        getComponent={() => FeatureGatesSettingsScreen}
+        options={{
+          title: title(msg`Feature Gate Settings`),
           requireAuth: true,
         }}
       />

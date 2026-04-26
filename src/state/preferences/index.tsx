@@ -14,6 +14,7 @@ import {Provider as DisableComposerPromptInFeeds} from './disable-composer-promp
 import {Provider as ProfileTabVisibilityPrefs} from './tabs-visibility-profiles'
 import {Provider as EnableSquareAvatars} from './enable-square-avatars'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
+import {Provider as GateOverridesProvider} from './gateOverrides'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -65,7 +66,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                           <EnableSquareAvatars>
                                             <DisableComposerPromptInFeeds>
                                               <NoAppLabelersProvider>
-                                                <KawaiiProvider>{children}</KawaiiProvider>
+                                                <GateOverridesProvider>
+                                                  <KawaiiProvider>{children}</KawaiiProvider>
+                                                </GateOverridesProvider>
                                               </NoAppLabelersProvider>
                                             </DisableComposerPromptInFeeds>
                                           </EnableSquareAvatars>
