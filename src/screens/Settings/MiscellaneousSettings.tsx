@@ -57,9 +57,6 @@ import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/c
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {IS_NATIVE} from '#/env'
 
-
-import {IS_INTERNAL} from '#/env'
-
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
