@@ -95,6 +95,7 @@ export type CommonNavigatorParams = {
   MiscellaneousSettings: undefined
   ProfileTabVisibilitySettings: undefined
   FeatureGatesSettings: undefined
+  MetricVisibilitySettings: undefined
 }
 
 export type BottomTabNavigatorParams = CommonNavigatorParams & {

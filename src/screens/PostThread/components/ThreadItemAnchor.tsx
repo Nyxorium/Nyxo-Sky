@@ -60,6 +60,7 @@ import {useAnalytics} from '#/analytics'
 import {useActorStatus} from '#/features/liveNow'
 import * as bsky from '#/types/bsky'
 import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
+import {useIsMetricHidden} from '#/state/preferences/metric-visibility'
 
 export function ThreadItemAnchor({
   item,
@@ -200,6 +201,13 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
   const threadRootUri = record.reply?.root?.uri || post.uri
   const authorHref = makeProfileLink(post.author)
   const isThreadAuthor = getThreadAuthor(post, record) === currentAccount?.did
+
+  const isOwnPost = post.author.did === currentAccount?.did
+
+  const hideLikes   = useIsMetricHidden('likes',   isOwnPost)
+  const hideReposts = useIsMetricHidden('reposts', isOwnPost)
+  const hideQuotes  = useIsMetricHidden('quotes',  isOwnPost)
+  const hideBookmarks = useIsMetricHidden('bookmarks', isOwnPost)
 
   const likesHref = useMemo(() => {
     const urip = new AtUri(post.uri)
@@ -429,10 +437,11 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               post={item.value.post}
               isThreadAuthor={isThreadAuthor}
             />
-            {post.repostCount !== 0 ||
+            {(post.repostCount !== 0 ||
             post.likeCount !== 0 ||
             post.quoteCount !== 0 ||
-            post.bookmarkCount !== 0 ? (
+            post.bookmarkCount !== 0) &&
+            (!hideLikes || !hideReposts || post.quoteCount !== 0 || !hideBookmarks) ? (
               // Show this section unless we're *sure* it has no engagement.
               <View
                 style={[
@@ -449,7 +458,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                   a.py_md,
                   t.atoms.border_contrast_low,
                 ]}>
-                {post.repostCount != null && post.repostCount !== 0 ? (
+                {!hideReposts && post.repostCount != null && post.repostCount !== 0 ? (
                   <Link to={repostsHref} label={l`Reposts of this post`}>
                     <Text
                       testID="repostCount-expanded"
@@ -476,20 +485,28 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                       testID="quoteCount-expanded"
                       style={[a.text_md, t.atoms.text_contrast_medium]}>
                       <Trans comment="Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)">
-                        <Text
-                          style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
-                          {formatPostStatCount(post.quoteCount)}
-                        </Text>{' '}
-                        <Plural
-                          value={post.quoteCount}
-                          one="quote"
-                          other="quotes"
-                        />
+                        {!hideQuotes ? (
+                          <>
+                            <Text
+                              style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
+                              {formatPostStatCount(post.quoteCount)}
+                            </Text>{' '}
+                            <Plural
+                              value={post.quoteCount}
+                              one="quote"
+                              other="quotes"
+                            />
+                          </>
+                        ) : (
+                         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
+                           {post.quoteCount === 1 ? 'View quote' : 'View quotes'}
+                         </Text>
+                        )}
                       </Trans>
                     </Text>
                   </Link>
                 ) : null}
-                {post.likeCount != null && post.likeCount !== 0 ? (
+                {!hideLikes && post.likeCount != null && post.likeCount !== 0 ? (
                   <Link to={likesHref} label={l`Likes on this post`}>
                     <Text
                       testID="likeCount-expanded"
@@ -508,7 +525,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                     </Text>
                   </Link>
                 ) : null}
-                {post.bookmarkCount != null && post.bookmarkCount !== 0 ? (
+                {!hideBookmarks && post.bookmarkCount != null && post.bookmarkCount !== 0 ? (
                   <Text
                     testID="bookmarkCount-expanded"
                     style={[a.text_md, t.atoms.text_contrast_medium]}>

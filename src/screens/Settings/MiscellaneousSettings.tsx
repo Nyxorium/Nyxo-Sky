@@ -55,6 +55,7 @@ import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/i
 import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
+import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/icons/EyeSlash'
 import {IS_NATIVE} from '#/env'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
@@ -103,6 +104,15 @@ export function MiscellaneousSettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={HashtagIcon} />
             <SettingsList.ItemText>
               <Trans>Tabs Visibility</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+
+          <SettingsList.LinkItem
+            to="/settings/metric-visibility"
+            label={_(msg`Impression Visibility`)}>
+            <SettingsList.ItemIcon icon={EyeSlashIcon} />
+            <SettingsList.ItemText>
+              <Trans>Impression Visibility</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
 

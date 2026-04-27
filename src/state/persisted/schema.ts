@@ -170,6 +170,13 @@ const schema = z.object({
   disableStarterPacksProfileTab_self: z.boolean().optional(),
   disableListsProfileTab_self: z.boolean().optional(),
 
+  metricVisibility: z.object({
+    likes:   z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
+    reposts: z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
+    replies: z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
+    quotes:  z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
+  }).optional(),
+
 })
 export type Schema = z.infer<typeof schema>
 
@@ -258,6 +265,8 @@ export const defaults: Schema = {
   disableFeedsProfileTab_self: false,
   disableStarterPacksProfileTab_self: false,
   disableListsProfileTab_self: false,
+
+  metricVisibility: {},
 
 }
 

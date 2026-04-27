@@ -39,6 +39,8 @@ import {
 import {PostMenuButton} from './PostMenu'
 import {RepostButton} from './RepostButton'
 import {ShareMenuButton} from './ShareMenu'
+import {useSession} from '#/state/session'
+import {useIsMetricHidden} from '#/state/preferences/metric-visibility'
 
 let PostControls = ({
   big,
@@ -102,6 +104,16 @@ let PostControls = ({
   const replyDisabled = post.viewer?.replyDisabled
   const {gtPhone} = useBreakpoints()
   const formatPostStatCount = useFormatPostStatCount()
+
+
+  const {currentAccount} = useSession()
+  const isOwnPost = post.author.did === currentAccount?.did
+
+  const hideLikes   = useIsMetricHidden('likes',   isOwnPost)
+  const hideReposts = useIsMetricHidden('reposts', isOwnPost)
+  const hideReplies = useIsMetricHidden('replies', isOwnPost)
+  const hideQuotes  = useIsMetricHidden('quotes',  isOwnPost)
+  const hideBookmarks = useIsMetricHidden('bookmarks', isOwnPost)
 
   const [hasLikeIconBeenToggled, setHasLikeIconBeenToggled] = useState(false)
 
@@ -252,7 +264,7 @@ let PostControls = ({
             <PostControlButtonIcon icon={Bubble} />
             {typeof post.replyCount !== 'undefined' && post.replyCount > 0 && (
               <PostControlButtonText>
-                {formatPostStatCount(post.replyCount)}
+                {!hideReplies ? formatPostStatCount(post.replyCount) : post.replyCount >1 ? '1+' : '1'}
               </PostControlButtonText>
             )}
           </PostControlButton>
@@ -260,7 +272,7 @@ let PostControls = ({
         <View style={[a.flex_1, a.align_start]}>
           <RepostButton
             isReposted={!!post.viewer?.repost}
-            repostCount={(post.repostCount ?? 0) + (post.quoteCount ?? 0)}
+            repostCount={(!hideReposts ? (post.repostCount ?? 0) : 0) + (!hideQuotes ? (post.quoteCount ?? 0) : 0)}
             onRepost={() => void onRepost()}
             onQuote={onQuote}
             big={big}
@@ -299,7 +311,7 @@ let PostControls = ({
               hasBeenToggled={hasLikeIconBeenToggled}
             />
             <CountWheel
-              count={post.likeCount ?? 0}
+              count={!hideLikes ? (post.likeCount ?? 0) : 0}
               isToggled={Boolean(post.viewer?.like)}
               hasBeenToggled={hasLikeIconBeenToggled}
               renderCount={({count}) => (
@@ -316,7 +328,7 @@ let PostControls = ({
       <View style={[a.flex_row, a.justify_end, secondaryControlSpacingStyles]}>
         <BookmarkButton
           post={post}
-          bookmarkCount={post.bookmarkCount ?? 0}
+          bookmarkCount={!hideBookmarks ? (post.bookmarkCount ?? 0) : 0}
           big={big}
           logContext={logContext}
           hitSlop={{
