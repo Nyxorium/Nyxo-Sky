@@ -22,10 +22,6 @@ msgstr ""
 msgid " to create your account, then sign in here."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:966
-msgid "…"
-msgstr ""
-
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:330
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -96,7 +92,7 @@ msgstr "{0, plural, one {# kuukausi} other {# kuukautta}}"
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:289
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
@@ -244,7 +240,7 @@ msgstr ""
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:284
+#: src/components/dms/MessageItem.tsx:279
 msgid "{0} reacted {1}"
 msgstr ""
 
@@ -269,7 +265,7 @@ msgid "{0}'s avatar"
 msgstr "Käyttäjän {0} profiilikuva"
 
 #. placeholder {0}: createSanitizedDisplayName(profile)
-#: src/components/dms/MessageItem.tsx:222
+#: src/components/dms/MessageItem.tsx:219
 msgid "{0}’s avatar"
 msgstr ""
 
@@ -298,7 +294,7 @@ msgid "{0}s"
 msgstr "{0} s"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
-#. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
+#. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:487
 msgid "{1}"
 msgstr ""
@@ -524,7 +520,7 @@ msgid "{MAX_PRONOUNS, plural, other {Max length exceeded. The maximum number of 
 msgstr ""
 
 #. The number of group chat members out of the total number of permitted users.
-#: src/screens/Messages/ConversationSettings.tsx:264
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:34
 msgid "{memberCount}/{MEMBER_LIMIT}"
 msgstr ""
 
@@ -592,12 +588,12 @@ msgid "{rank}."
 msgstr ""
 
 #. The number of requests to join a group chat.
-#: src/screens/Messages/ConversationSettings.tsx:282
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:54
 msgid "{requestCount, plural, one {# request} other {# requests}}"
 msgstr ""
 
 #. Displayed when there are more than 50 requests to join a group chat
-#: src/screens/Messages/ConversationSettings.tsx:277
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:49
 msgid "{requestCount}+ requests"
 msgstr ""
 
@@ -821,7 +817,7 @@ msgstr "Tili"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:426
 #: src/screens/Messages/components/RequestButtons.tsx:101
-#: src/screens/Messages/ConversationSettings.tsx:601
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:116
 #: src/view/com/profile/ProfileMenu.tsx:206
 msgctxt "toast"
 msgid "Account blocked"
@@ -867,7 +863,7 @@ msgstr ""
 msgid "Account removed from quick access"
 msgstr "Tili poistettu pikakäytöstä"
 
-#: src/screens/Messages/ConversationSettings.tsx:588
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:103
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:90
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:315
 #: src/view/com/profile/ProfileMenu.tsx:194
@@ -890,7 +886,7 @@ msgstr "Tilin mykistys poistettu"
 msgid "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by Bluesky."
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:185
+#: src/lib/hooks/useNotificationHandler.ts:192
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:105
 #: src/screens/Settings/NotificationSettings/index.tsx:193
 msgid "Activity from others"
@@ -904,7 +900,7 @@ msgstr ""
 #: src/components/dialogs/MutedWords.tsx:337
 #: src/components/dialogs/StarterPackDialog.tsx:376
 #: src/components/dialogs/StarterPackDialog.tsx:388
-#: src/components/dms/AddMembersFlow.tsx:341
+#: src/components/dms/AddMembersFlow.tsx:350
 #: src/view/com/modals/UserAddRemoveLists.tsx:236
 #: src/view/com/modals/UserAddRemoveLists.tsx:240
 msgid "Add"
@@ -985,7 +981,7 @@ msgstr ""
 msgid "Add emoji reaction"
 msgstr ""
 
-#: src/components/dms/AddMembersFlow.tsx:422
+#: src/components/dms/AddMembersFlow.tsx:431
 msgid "Add group chat members"
 msgstr ""
 
@@ -998,8 +994,9 @@ msgstr ""
 msgid "Add media to post"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:356
-#: src/screens/Messages/ConversationSettings.tsx:373
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:47
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:81
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:100
 msgid "Add members"
 msgstr ""
 
@@ -1021,8 +1018,8 @@ msgstr ""
 msgid "Add muted words and tags"
 msgstr "Lisää mykistettyjä sanoja ja tunnisteita"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:101
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:126
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:119
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:154
 #: src/screens/ProfileList/AboutSection.tsx:72
 #: src/screens/ProfileList/AboutSection.tsx:90
 msgid "Add people"
@@ -1087,6 +1084,11 @@ msgstr ""
 msgid "Add your birthdate"
 msgstr ""
 
+#. placeholder {0}: createSanitizedDisplayName( profile.kind.addedBy, true, moderateProfile(profile.kind.addedBy, moderationOpts).ui('displayName'), )
+#: src/screens/Messages/ConversationSettings/Member.tsx:70
+msgid "Added by {0}"
+msgstr ""
+
 #: src/components/dialogs/lists/ListAddRemoveUsersDialog.tsx:113
 #: src/view/com/modals/UserAddRemoveLists.tsx:164
 msgid "Added to list"
@@ -1109,8 +1111,8 @@ msgstr ""
 msgid "Additional details (limit 300 characters)"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:419
-#: src/screens/Messages/ConversationSettings.tsx:639
+#: src/screens/Messages/ConversationSettings/Member.tsx:55
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:151
 msgid "Admin"
 msgstr ""
 
@@ -1389,8 +1391,8 @@ msgstr ""
 msgid "An illustration showing that Bluesky selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1112
-msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time. Your name, avatar, and the name of the group chat will be visible to everyone."
+#: src/screens/Messages/components/InviteLinkDialog.tsx:158
+msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time."
 msgstr ""
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:239
@@ -1465,6 +1467,16 @@ msgstr ""
 
 #: src/view/com/composer/threadgate/ThreadgateBtn.tsx:137
 msgid "Anyone can interact"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:129
+#: src/screens/Messages/components/InviteLinkDialog.tsx:130
+msgid "Anyone can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:134
+#: src/screens/Messages/components/InviteLinkDialog.tsx:135
+msgid "Anyone can request to join"
 msgstr ""
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:112
@@ -1598,7 +1610,7 @@ msgstr ""
 msgid "Are you sure you want to delete the app password \"{0}\"?"
 msgstr "Haluatko varmasti poistaa sovellussalasanan ”{0}”?"
 
-#: src/components/dms/MessageContextMenu.tsx:207
+#: src/components/dms/MessageContextMenu.tsx:208
 msgid "Are you sure you want to delete this message? The message will be deleted for you, but not for the other participants."
 msgstr ""
 
@@ -1611,7 +1623,7 @@ msgstr "Haluatko varmasti poistaa tämän aloituspaketin?"
 msgid "Are you sure you want to discard your changes?"
 msgstr "Haluatko varmasti hylätä tekemäsi muutokset?"
 
-#: src/screens/Messages/ConversationSettings.tsx:1155
+#: src/screens/Messages/ConversationSettings/prompts.tsx:90
 msgid "Are you sure you want to leave {groupName}?"
 msgstr ""
 
@@ -1702,9 +1714,9 @@ msgstr ""
 msgid "Available"
 msgstr ""
 
-#: src/components/dms/AddMembersFlow.tsx:290
-#: src/components/dms/AddMembersFlow.tsx:445
-#: src/components/dms/AddMembersFlow.tsx:452
+#: src/components/dms/AddMembersFlow.tsx:299
+#: src/components/dms/AddMembersFlow.tsx:454
+#: src/components/dms/AddMembersFlow.tsx:461
 #: src/components/dms/InitiateChatFlow.tsx:489
 #: src/components/dms/InitiateChatFlow.tsx:674
 #: src/components/dms/InitiateChatFlow.tsx:681
@@ -1772,7 +1784,7 @@ msgstr ""
 #: src/components/dms/MessageProfileButton.tsx:60
 #: src/screens/Messages/ChatList.tsx:380
 #: src/screens/Messages/Conversation.tsx:235
-#: src/screens/Messages/ConversationSettings.tsx:578
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:93
 msgid "Before you can message another user, you must first verify your email."
 msgstr ""
 
@@ -1801,14 +1813,14 @@ msgid "Birthday"
 msgstr "Syntymäpäivä"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:853
-#: src/screens/Messages/ConversationSettings.tsx:700
-#: src/screens/Messages/ConversationSettings.tsx:1180
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:217
+#: src/screens/Messages/ConversationSettings/prompts.tsx:115
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:212
 #: src/view/com/profile/ProfileMenu.tsx:605
 msgid "Block"
 msgstr "Estä"
 
-#: src/screens/Messages/ConversationSettings.tsx:696
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:209
 msgid "Block {displayName}"
 msgstr ""
 
@@ -1823,7 +1835,7 @@ msgstr ""
 msgid "Block account"
 msgstr "Estä tili"
 
-#: src/screens/Messages/ConversationSettings.tsx:1177
+#: src/screens/Messages/ConversationSettings/prompts.tsx:112
 msgid "Block account?"
 msgstr ""
 
@@ -1845,7 +1857,7 @@ msgstr ""
 msgid "Block list"
 msgstr "Estä lista"
 
-#: src/screens/Messages/components/ChatStatusInfo.tsx:46
+#: src/screens/Messages/components/ChatStatusInfo.tsx:44
 msgid "Block or report"
 msgstr ""
 
@@ -1880,7 +1892,7 @@ msgid "Blocked Accounts"
 msgstr "Estetyt tilit"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:851
-#: src/screens/Messages/ConversationSettings.tsx:1178
+#: src/screens/Messages/ConversationSettings/prompts.tsx:113
 #: src/view/com/profile/ProfileMenu.tsx:600
 msgid "Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
 msgstr "Estetyt tilit eivät voi vastata ketjuihisi, mainita sinua tai olla muuten vuorovaikutuksessa kanssasi."
@@ -2126,17 +2138,16 @@ msgstr "Kamera"
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:299
 #: src/components/Menu/index.tsx:355
 #: src/components/PostControls/RepostButton.tsx:210
-#: src/components/Prompt.tsx:136
-#: src/components/Prompt.tsx:138
+#: src/components/Prompt.tsx:153
+#: src/components/Prompt.tsx:155
 #: src/features/liveEvents/components/LiveEventFeedOptionsMenu.tsx:152
 #: src/features/liveEvents/components/LiveEventFeedOptionsMenu.tsx:157
 #: src/features/liveNow/components/GoLiveDialog.tsx:269
 #: src/features/liveNow/components/GoLiveDialog.tsx:275
 #: src/lib/media/picker.tsx:38
 #: src/screens/Deactivated.tsx:150
-#: src/screens/Messages/ConversationSettings.tsx:1114
-#: src/screens/Messages/ConversationSettings.tsx:1135
-#: src/screens/Messages/ConversationSettings.tsx:1159
+#: src/screens/Messages/ConversationSettings/prompts.tsx:70
+#: src/screens/Messages/ConversationSettings/prompts.tsx:94
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
 #: src/screens/Search/Shell.tsx:396
@@ -2264,7 +2275,7 @@ msgstr ""
 msgid "Changes to the starter pack will not be reflected in the list after creation. The list will be an independent copy."
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:102
+#: src/lib/hooks/useNotificationHandler.ts:109
 #: src/Navigation.tsx:606
 #: src/view/shell/bottom-bar/BottomBar.tsx:224
 #: src/view/shell/desktop/LeftNav.tsx:611
@@ -2286,11 +2297,11 @@ msgstr ""
 msgid "Chat locked permanently"
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:117
+#: src/lib/hooks/useNotificationHandler.ts:124
 msgid "Chat messages - silent"
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:108
+#: src/lib/hooks/useNotificationHandler.ts:115
 msgid "Chat messages - sound"
 msgstr ""
 
@@ -2397,6 +2408,10 @@ msgstr ""
 msgid "Choose this color as your avatar"
 msgstr "Valitse tämä väri profiilikuvaksesi"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:194
+msgid "Choose who can join this group chat and how."
+msgstr ""
+
 #: src/components/contacts/components/InviteInfo.tsx:57
 msgid "Choose who to invite"
 msgstr ""
@@ -2442,12 +2457,16 @@ msgstr ""
 msgid "click here"
 msgstr "napsauta tästä"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:97
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:115
 msgid "Click here to add people to this group chat"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:129
 msgid "Click here to contact our support team"
+msgstr ""
+
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:129
+msgid "Click here to create or manage an invite link for this group chat"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:263
@@ -2476,8 +2495,8 @@ msgstr ""
 msgid "Click here to update your email"
 msgstr ""
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:109
-msgid "Click here to view or create an invite link for this group chat"
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:130
+msgid "Click here to view the invite link for this group chat"
 msgstr ""
 
 #. placeholder {0}: isCashtag ? tag : `#${tag}`
@@ -2485,11 +2504,11 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:553
+#: src/components/dms/MessageItem.tsx:557
 msgid "Click to retry failed message"
 msgstr "Napsauta tästä yrittääksesi uudelleen epäonnistunutta viestin lähetystä"
 
-#: src/components/dms/ActionsWrapper.web.tsx:142
+#: src/components/dms/ActionsWrapper.web.tsx:145
 msgid "Click to view the date and time"
 msgstr ""
 
@@ -2518,7 +2537,7 @@ msgstr "Kopoti 🐴 kopoti 🐴"
 #: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:199
 #: src/components/dialogs/SearchablePeopleList.tsx:339
 #: src/components/dialogs/StarterPackDialog.tsx:187
-#: src/components/dms/AddMembersFlow.tsx:315
+#: src/components/dms/AddMembersFlow.tsx:324
 #: src/components/dms/AfterReportDialog.tsx:93
 #: src/components/dms/AfterReportDialog.tsx:98
 #: src/components/dms/AfterReportDialog.tsx:212
@@ -2537,6 +2556,8 @@ msgstr "Kopoti 🐴 kopoti 🐴"
 #: src/components/WhoCanReply.tsx:243
 #: src/features/liveNow/components/EditLiveDialog.tsx:217
 #: src/features/liveNow/components/EditLiveDialog.tsx:223
+#: src/screens/Messages/components/InviteLinkDialog.tsx:405
+#: src/screens/Messages/components/InviteLinkDialog.tsx:410
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:288
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:293
 #: src/view/com/feeds/MissingFeed.tsx:211
@@ -2685,8 +2706,8 @@ msgstr ""
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Määritetään <0>moderointiasetuksissa</0>."
 
-#: src/components/Prompt.tsx:195
-#: src/components/Prompt.tsx:198
+#: src/components/Prompt.tsx:212
+#: src/components/Prompt.tsx:215
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:186
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:189
 msgid "Confirm"
@@ -2825,7 +2846,7 @@ msgstr ""
 msgid "Continue thread..."
 msgstr "Jatka ketjua…"
 
-#: src/components/dms/AddMembersFlow.tsx:255
+#: src/components/dms/AddMembersFlow.tsx:264
 #: src/components/dms/InitiateChatFlow.tsx:441
 msgid "Continue to group name"
 msgstr ""
@@ -2860,7 +2881,7 @@ msgstr "Keskustelu poistettu"
 msgid "Copied build version to clipboard"
 msgstr "Ohjelmiston versio kopioitu leikepöydälle"
 
-#: src/components/dms/MessageContextMenu.tsx:64
+#: src/components/dms/MessageContextMenu.tsx:67
 #: src/components/PostControls/DiscoverDebug.tsx:36
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:272
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:89
@@ -2870,6 +2891,7 @@ msgid "Copied to clipboard"
 msgstr "Kopioitu leikepöydälle"
 
 #: src/components/dialogs/Embed.tsx:197
+#: src/screens/Messages/components/CopyTextButton.tsx:71
 #: src/screens/Settings/components/CopyButton.tsx:66
 msgid "Copied!"
 msgstr "Kopioitu!"
@@ -2941,8 +2963,8 @@ msgstr ""
 msgid "Copy link to starter pack"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:154
-#: src/components/dms/MessageContextMenu.tsx:157
+#: src/components/dms/MessageContextMenu.tsx:155
+#: src/components/dms/MessageContextMenu.tsx:158
 msgid "Copy message text"
 msgstr "Kopioi viestin teksti"
 
@@ -3106,10 +3128,6 @@ msgstr ""
 msgid "Create an avatar instead"
 msgstr "Luo sen sijaan profiilikuva"
 
-#: src/screens/Messages/ConversationSettings.tsx:891
-msgid "Create an invite link for this group chat"
-msgstr ""
-
 #: src/components/StarterPack/ProfileStarterPacks.tsx:214
 msgid "Create another"
 msgstr "Luo toinen"
@@ -3141,6 +3159,10 @@ msgstr ""
 msgid "Create new account"
 msgstr "Luo uusi tili"
 
+#: src/screens/Messages/ConversationSettings/index.tsx:464
+msgid "Create or modify an invite link for this group chat"
+msgstr ""
+
 #. Accessibility label for button to create a moderation report for the selected option
 #. placeholder {0}: option.title
 #: src/components/moderation/ReportDialog/index.tsx:713
@@ -3157,10 +3179,18 @@ msgstr ""
 msgid "Create user list"
 msgstr ""
 
+#. placeholder {0}: dateFormatter.format(createdAt)
 #. placeholder {0}: i18n.date(appPassword.createdAt, { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', })
+#: src/screens/Messages/ConversationSettings/index.tsx:429
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "Luotu {0}"
+
+#. placeholder {0}: timeFormatter.format(createdAt)
+#. placeholder {1}: dateFormatter.format(createdAt)
+#: src/screens/Messages/components/InviteLinkDialog.tsx:289
+msgid "Created {0} {1}"
+msgstr ""
 
 #: src/screens/List/ListHiddenScreen.tsx:131
 msgid "Creator has been blocked"
@@ -3242,9 +3272,9 @@ msgstr "Oletus"
 msgid "Default icons"
 msgstr "Oletuskuvakkeet"
 
-#: src/components/dms/MessageContextMenu.tsx:208
+#: src/components/dms/MessageContextMenu.tsx:209
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:803
-#: src/screens/Messages/components/ChatStatusInfo.tsx:55
+#: src/screens/Messages/components/ChatStatusInfo.tsx:53
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:275
 #: src/screens/Settings/AppPasswords.tsx:213
 #: src/screens/StarterPack/StarterPackScreen.tsx:617
@@ -3295,7 +3325,7 @@ msgstr ""
 msgid "Delete Conversation"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:168
+#: src/components/dms/MessageContextMenu.tsx:169
 msgid "Delete for me"
 msgstr "Poista itseltäni"
 
@@ -3304,11 +3334,11 @@ msgstr "Poista itseltäni"
 msgid "Delete list"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:206
+#: src/components/dms/MessageContextMenu.tsx:207
 msgid "Delete message"
 msgstr "Poista viesti"
 
-#: src/components/dms/MessageContextMenu.tsx:166
+#: src/components/dms/MessageContextMenu.tsx:167
 msgid "Delete message for me"
 msgstr "Poista viesti itseltäni"
 
@@ -3345,8 +3375,7 @@ msgstr "Poistettu"
 
 #: src/components/dms/MessagesListHeader.tsx:105
 #: src/screens/Messages/components/ChatListItem.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:409
-#: src/screens/Messages/ConversationSettings.tsx:625
+#: src/screens/Messages/ConversationSettings/Member.tsx:48
 msgid "Deleted Account"
 msgstr "Poistettu tili"
 
@@ -3407,6 +3436,11 @@ msgstr "Valintaikkuna: säädä, kuka voi olla vuorovaikutuksessa tämän julkai
 #: src/screens/Settings/AppearanceSettings.tsx:133
 msgid "Dim"
 msgstr "Himmeä"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:323
+#: src/screens/Messages/components/InviteLinkDialog.tsx:331
+msgid "Disable"
+msgstr ""
 
 #: src/screens/Settings/MiscellaneousSettings.tsx:190
 #: src/screens/Settings/MiscellaneousSettings.tsx:196
@@ -3645,7 +3679,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Valmis"
 
-#: src/components/dms/MessageItem.tsx:448
+#: src/components/dms/MessageItem.tsx:452
 msgid "Double tap or long press the message to add a reaction"
 msgstr ""
 
@@ -3747,6 +3781,7 @@ msgstr "esim. Käyttäjät, jotka vastaavat toistuvasti mainoksilla."
 msgid "Eating disorders"
 msgstr ""
 
+#: src/screens/Messages/components/EditTextButton.tsx:51
 #: src/screens/Settings/AccountSettings.tsx:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:255
 #: src/screens/StarterPack/StarterPackScreen.tsx:606
@@ -3770,8 +3805,8 @@ msgstr "Muokkaa profiilikuvaa"
 msgid "Edit Feeds"
 msgstr "Muokkaa syötteitä"
 
-#: src/screens/Messages/ConversationSettings.tsx:1067
-#: src/screens/Messages/ConversationSettings.tsx:1072
+#: src/screens/Messages/ConversationSettings/prompts.tsx:27
+#: src/screens/Messages/ConversationSettings/prompts.tsx:32
 msgid "Edit group name"
 msgstr ""
 
@@ -3789,6 +3824,10 @@ msgstr "Muokkaa vuorovaikutusasetuksia"
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:99
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:106
 msgid "Edit interests"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:300
+msgid "Edit link settings"
 msgstr ""
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:191
@@ -3810,7 +3849,7 @@ msgstr ""
 msgid "Edit My Feeds"
 msgstr "Muokkaa syötteitäni"
 
-#: src/screens/Messages/ConversationSettings.tsx:885
+#: src/screens/Messages/ConversationSettings/index.tsx:455
 msgid "Edit name"
 msgstr ""
 
@@ -3844,7 +3883,7 @@ msgstr "Muokkaa profiilia"
 msgid "Edit starter pack"
 msgstr "Muokkaa aloituspakettia"
 
-#: src/screens/Messages/ConversationSettings.tsx:884
+#: src/screens/Messages/ConversationSettings/index.tsx:454
 msgid "Edit this group chat’s name"
 msgstr ""
 
@@ -4249,9 +4288,14 @@ msgctxt "toast"
 msgid "Failed to accept chat"
 msgstr ""
 
-#: src/components/dms/ActionsWrapper.web.tsx:67
-#: src/components/dms/MessageContextMenu.tsx:104
+#: src/components/dms/ActionsWrapper.web.tsx:70
+#: src/components/dms/MessageContextMenu.tsx:107
 msgid "Failed to add emoji reaction"
+msgstr ""
+
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:39
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:38
+msgid "Failed to add members"
 msgstr ""
 
 #: src/components/dialogs/StarterPackDialog.tsx:280
@@ -4267,8 +4311,12 @@ msgid "Failed to create app password. Please try again."
 msgstr "Sovellussalasanan luominen epäonnistui. Yritä uudelleen."
 
 #: src/components/dms/MessageProfileButton.tsx:38
-#: src/screens/Messages/ConversationSettings.tsx:555
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:63
 msgid "Failed to create conversation"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:85
+msgid "Failed to create invite link"
 msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:250
@@ -4282,7 +4330,7 @@ msgctxt "toast"
 msgid "Failed to delete chat"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:86
+#: src/components/dms/MessageContextMenu.tsx:89
 msgid "Failed to delete message"
 msgstr "Viestin poistaminen epäonnistui"
 
@@ -4294,13 +4342,25 @@ msgstr "Julkaisun poistaminen epäonnistui, yritä uudelleen"
 msgid "Failed to delete starter pack"
 msgstr "Aloituspaketin poistaminen epäonnistui"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:108
+msgid "Failed to disable invite link"
+msgstr ""
+
 #. placeholder {0}: error?.message
 #: src/screens/Profile/components/GermButton.tsx:195
 msgid "Failed to disconnect Germ DM. Error: {0}"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:757
+#: src/screens/Messages/ConversationSettings/index.tsx:317
 msgid "Failed to edit group chat name"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:98
+msgid "Failed to edit invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:118
+msgid "Failed to enable invite link"
 msgstr ""
 
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:143
@@ -4319,7 +4379,7 @@ msgstr ""
 msgid "Failed to launch SMS app"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:785
+#: src/screens/Messages/ConversationSettings/index.tsx:342
 msgctxt "toast"
 msgid "Failed to leave group chat"
 msgstr ""
@@ -4383,12 +4443,16 @@ msgstr "Ehdotettujen syötteiden lataaminen epäonnistui"
 msgid "Failed to load suggested follows"
 msgstr "Ehdotettujen seurattavien lataaminen epäonnistui"
 
+#: src/screens/Messages/ConversationSettings/index.tsx:360
+msgid "Failed to lock group chat"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:321
 #: src/screens/Messages/Inbox.tsx:348
 msgid "Failed to mark all requests as read"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:773
+#: src/screens/Messages/ConversationSettings/index.tsx:331
 msgid "Failed to mute group chat"
 msgstr ""
 
@@ -4410,14 +4474,18 @@ msgstr ""
 msgid "Failed to remove data. {0}"
 msgstr ""
 
-#: src/components/dms/ActionsWrapper.web.tsx:63
-#: src/components/dms/MessageContextMenu.tsx:100
+#: src/components/dms/ActionsWrapper.web.tsx:66
+#: src/components/dms/MessageContextMenu.tsx:103
 #: src/components/dms/ReactionsDialog.tsx:174
 msgid "Failed to remove emoji reaction"
 msgstr ""
 
 #: src/components/dialogs/StarterPackDialog.tsx:293
 msgid "Failed to remove from starter pack"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:70
+msgid "Failed to remove group chat member"
 msgstr ""
 
 #: src/components/verification/VerificationRemovePrompt.tsx:34
@@ -4465,6 +4533,10 @@ msgstr "Valituksen lähettäminen epäonnistui. Yritä uudelleen."
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:251
 msgid "Failed to toggle thread mute, please try again"
 msgstr "Ketjun mykistäminen tai mykistyksen poistaminen epäonnistui, yritä uudelleen"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:363
+msgid "Failed to unlock group chat"
+msgstr ""
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:107
 msgid "Failed to unpin list"
@@ -4961,6 +5033,20 @@ msgstr "Syötteestä <0/>"
 msgid "Generate a starter pack"
 msgstr "Generoi aloituspaketti"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:189
+#: src/screens/Messages/components/InviteLinkDialog.tsx:224
+#: src/screens/Messages/components/InviteLinkDialog.tsx:247
+msgid "Generate invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:378
+msgid "Generate new invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:383
+msgid "Generate new link"
+msgstr ""
+
 #: src/screens/Profile/components/GermButton.tsx:86
 #: src/screens/Profile/components/GermButton.tsx:224
 msgid "Germ DM"
@@ -5041,7 +5127,8 @@ msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:77
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:87
-#: src/screens/Messages/ConversationSettings.tsx:1113
+#: src/screens/Messages/components/InviteLinkDialog.tsx:173
+#: src/screens/Messages/components/InviteLinkDialog.tsx:180
 msgid "Get started"
 msgstr ""
 
@@ -5083,7 +5170,7 @@ msgstr "Palaa takaisin"
 
 #: src/components/Error.tsx:77
 #: src/screens/List/ListHiddenScreen.tsx:228
-#: src/screens/Messages/Conversation.tsx:360
+#: src/screens/Messages/Conversation.tsx:366
 #: src/screens/Profile/ErrorState.tsx:63
 #: src/screens/Profile/ErrorState.tsx:67
 #: src/screens/StarterPack/StarterPackScreen.tsx:809
@@ -5158,7 +5245,7 @@ msgid "Go to next"
 msgstr "Siirry seuraavaan"
 
 #: src/components/dms/ConvoMenu.tsx:255
-#: src/screens/Messages/ConversationSettings.tsx:676
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:189
 #: src/view/shell/desktop/LeftNav.tsx:319
 #: src/view/shell/desktop/LeftNav.tsx:325
 msgid "Go to profile"
@@ -5196,26 +5283,40 @@ msgstr ""
 msgid "Grooming or predatory behavior"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:766
+#: src/screens/Messages/components/InviteLinkDialog.tsx:437
+msgid "Group chat invite link dialog"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:352
+msgctxt "toast"
+msgid "Group chat locked"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:324
 msgctxt "toast"
 msgid "Group chat muted"
 msgstr ""
 
 #: src/Navigation.tsx:611
-#: src/screens/Messages/ConversationSettings.tsx:107
+#: src/screens/Messages/ConversationSettings/index.tsx:92
 msgid "Group chat settings"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:768
+#: src/screens/Messages/ConversationSettings/index.tsx:354
+msgctxt "toast"
+msgid "Group chat unlocked"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:326
 msgctxt "toast"
 msgid "Group chat unmuted"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:345
+#: src/screens/Messages/Conversation.tsx:350
 msgid "Group chats are not yet available"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:343
+#: src/screens/Messages/Conversation.tsx:348
 msgid "Group chats are now available"
 msgstr ""
 
@@ -5225,7 +5326,7 @@ msgstr ""
 
 #: src/components/dms/InitiateChatFlow.tsx:231
 #: src/components/dms/InitiateChatFlow.tsx:549
-#: src/screens/Messages/ConversationSettings.tsx:1073
+#: src/screens/Messages/ConversationSettings/prompts.tsx:33
 msgid "Group name"
 msgstr ""
 
@@ -5479,6 +5580,10 @@ msgstr "Hmm, emme pystyneet lataamaan tätä moderointipalvelua."
 #: src/view/com/composer/state/video.ts:414
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr "Odottakaa! Annamme vähitellen pääsyn videoon, ja olet yhä odotusjonossa. Tarkista tilanne pian uudelleen!"
+
+#: src/screens/Messages/Conversation.tsx:357
+msgid "Hold your horses! This feature isn't available to you yet. Please check back later."
+msgstr ""
 
 #: src/Navigation.tsx:855
 #: src/Navigation.tsx:875
@@ -5833,9 +5938,12 @@ msgstr ""
 msgid "Invite friends <0/>"
 msgstr ""
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:113
-#: src/screens/Messages/ConversationSettings.tsx:892
-#: src/screens/Messages/ConversationSettings.tsx:1111
+#: src/screens/Messages/components/InviteLinkDialog.tsx:153
+#: src/screens/Messages/components/InviteLinkDialog.tsx:267
+#: src/screens/Messages/components/InviteLinkDialog.tsx:273
+#: src/screens/Messages/components/InviteLinkDialog.tsx:395
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:135
+#: src/screens/Messages/ConversationSettings/index.tsx:467
 msgid "Invite link"
 msgstr ""
 
@@ -5844,6 +5952,7 @@ msgid "Invite link created"
 msgstr ""
 
 #: src/components/dms/getSystemMessageInfo.ts:86
+#: src/screens/Messages/components/InviteLinkDialog.tsx:267
 msgid "Invite link disabled"
 msgstr ""
 
@@ -5867,7 +5976,7 @@ msgstr "Kutsu käyttäjiä tähän aloituspakettiin!"
 msgid "Invite your friends to follow your favorite feeds and people"
 msgstr "Kutsu kavereitasi seuraamaan suosikkisyötteitäsi ja -käyttäjiäsi"
 
-#: src/screens/Messages/ConversationSettings.tsx:639
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:151
 msgid "Invited"
 msgstr ""
 
@@ -6081,7 +6190,7 @@ msgid "Learn more."
 msgstr "Lue lisää."
 
 #: src/components/dms/LeaveConvoPrompt.tsx:52
-#: src/screens/Messages/ConversationSettings.tsx:920
+#: src/screens/Messages/ConversationSettings/index.tsx:500
 msgid "Leave"
 msgstr "Poistu"
 
@@ -6098,11 +6207,11 @@ msgstr "Poistu chatista"
 msgid "Leave conversation"
 msgstr "Poistu keskustelusta"
 
-#: src/screens/Messages/ConversationSettings.tsx:1157
+#: src/screens/Messages/ConversationSettings/prompts.tsx:92
 msgid "Leave group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:919
+#: src/screens/Messages/ConversationSettings/index.tsx:499
 msgid "Leave this group chat"
 msgstr ""
 
@@ -6196,7 +6305,7 @@ msgstr "Tykännyt {0, plural, one {# käyttäjä} other {# käyttäjää}}"
 msgid "Liked by {likeCount, plural, one {# user} other {# users}}"
 msgstr "Tykännyt {likeCount, plural, one {# käyttäjä} other {# käyttäjää}}"
 
-#: src/lib/hooks/useNotificationHandler.ts:129
+#: src/lib/hooks/useNotificationHandler.ts:136
 #: src/screens/Settings/NotificationSettings/index.tsx:127
 #: src/screens/Settings/NotificationSettings/LikeNotificationSettings.tsx:41
 #: src/screens/Settings/ProfileTabsVisibility.tsx:168
@@ -6205,7 +6314,7 @@ msgstr "Tykännyt {likeCount, plural, one {# käyttäjä} other {# käyttäjää
 msgid "Likes"
 msgstr "Tykkäykset"
 
-#: src/lib/hooks/useNotificationHandler.ts:171
+#: src/lib/hooks/useNotificationHandler.ts:178
 #: src/screens/Settings/NotificationSettings/index.tsx:208
 #: src/screens/Settings/NotificationSettings/LikesOnRepostsNotificationSettings.tsx:41
 msgid "Likes of your reposts"
@@ -6403,27 +6512,27 @@ msgstr ""
 msgid "Loading..."
 msgstr "Ladataan…"
 
-#: src/screens/Messages/ConversationSettings.tsx:1031
+#: src/screens/Messages/ConversationSettings/index.tsx:621
 msgid "Loading…"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:902
+#: src/screens/Messages/ConversationSettings/index.tsx:480
 msgid "Lock"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1134
+#: src/screens/Messages/ConversationSettings/prompts.tsx:69
 msgid "Lock group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1132
+#: src/screens/Messages/ConversationSettings/prompts.tsx:67
 msgid "Lock group chat?"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:900
+#: src/screens/Messages/ConversationSettings/index.tsx:478
 msgid "Lock this group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:902
+#: src/screens/Messages/ConversationSettings/index.tsx:480
 msgid "Locked"
 msgstr ""
 
@@ -6541,11 +6650,11 @@ msgstr ""
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Media, joka voi olla häiritsevää tai sopimatonta joillekin yleisöille."
 
-#: src/screens/Messages/ConversationSettings.tsx:260
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:28
 msgid "Members"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1133
+#: src/screens/Messages/ConversationSettings/prompts.tsx:68
 msgid "Members can still read chat history but can’t send new messages."
 msgstr ""
 
@@ -6557,7 +6666,7 @@ msgstr ""
 msgid "mentioned users"
 msgstr "mainitut käyttäjät"
 
-#: src/lib/hooks/useNotificationHandler.ts:150
+#: src/lib/hooks/useNotificationHandler.ts:157
 #: src/screens/Settings/NotificationSettings/index.tsx:160
 #: src/screens/Settings/NotificationSettings/MentionNotificationSettings.tsx:41
 #: src/view/screens/Notifications.tsx:101
@@ -6569,12 +6678,12 @@ msgid "Menu"
 msgstr "Valikko"
 
 #: src/screens/Messages/components/MessageComposer.tsx:208
-#: src/screens/Messages/components/MessageInput.tsx:171
+#: src/screens/Messages/components/MessageInput.tsx:172
 #: src/screens/Messages/components/MessageInput.web.tsx:195
 msgid "Message"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:684
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:197
 msgctxt "action"
 msgid "Message"
 msgstr ""
@@ -6584,7 +6693,7 @@ msgstr ""
 msgid "Message {0}"
 msgstr "Lähetä viesti käyttäjälle {0}"
 
-#: src/screens/Messages/ConversationSettings.tsx:681
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:194
 msgid "Message {displayName}"
 msgstr ""
 
@@ -6592,18 +6701,18 @@ msgstr ""
 msgid "Message deleted"
 msgstr "Viesti poistettu"
 
-#: src/components/dms/MessageContextMenu.tsx:85
+#: src/components/dms/MessageContextMenu.tsx:88
 msgctxt "toast"
 msgid "Message deleted"
 msgstr "Viesti poistettu"
 
-#: src/components/dms/MessageItem.tsx:547
+#: src/components/dms/MessageItem.tsx:551
 msgid "Message failed to send."
 msgstr ""
 
 #. placeholder {0}: sender?.handle ?? 'unknown'
 #. placeholder {1}: message.text
-#: src/components/dms/MessageContextMenu.tsx:133
+#: src/components/dms/MessageContextMenu.tsx:134
 msgid "Message from @{0}: {1}"
 msgstr ""
 
@@ -6613,7 +6722,7 @@ msgid "Message from server: {0}"
 msgstr "Viesti palvelimelta: {0}"
 
 #: src/screens/Messages/components/MessageComposer.tsx:207
-#: src/screens/Messages/components/MessageInput.tsx:169
+#: src/screens/Messages/components/MessageInput.tsx:170
 msgid "Message input field"
 msgstr "Viestin syöttökenttä"
 
@@ -6626,7 +6735,7 @@ msgstr "Viesti on liian pitkä"
 msgid "Message is too long ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:133
 msgid "Message options"
 msgstr ""
 
@@ -6764,7 +6873,7 @@ msgstr "Elokuvat"
 msgid "Music"
 msgstr "Musiikki"
 
-#: src/screens/Messages/ConversationSettings.tsx:878
+#: src/screens/Messages/ConversationSettings/index.tsx:448
 msgid "Mute"
 msgstr "Mykistä"
 
@@ -6809,7 +6918,7 @@ msgstr "Mykistä lista"
 msgid "Mute these accounts?"
 msgstr "Mykistetäänkö nämä tilit?"
 
-#: src/screens/Messages/ConversationSettings.tsx:876
+#: src/screens/Messages/ConversationSettings/index.tsx:446
 msgid "Mute this group chat"
 msgstr ""
 
@@ -6847,7 +6956,7 @@ msgstr "Mykistä ketju"
 msgid "Mute words & tags"
 msgstr "Mykistä sanoja ja tunnisteita"
 
-#: src/screens/Messages/ConversationSettings.tsx:878
+#: src/screens/Messages/ConversationSettings/index.tsx:448
 msgid "Muted"
 msgstr ""
 
@@ -6959,23 +7068,20 @@ msgid "New chat"
 msgstr "Uusi chatti"
 
 #. placeholder {0}: members[0].displayName
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:38
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:57
 msgid "New chat with {0}"
 msgstr ""
 
 #. placeholder {0}: members[0].displayName
 #. placeholder {1}: members[1].displayName
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:42
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:60
 msgid "New chat with {0} and {1}"
 msgstr ""
 
 #. placeholder {0}: members[0].displayName
 #. placeholder {1}: members[1].displayName
-#. placeholder {2}: members.length - 2
-#. placeholder {3}: members.length - 2
-#. placeholder {4}: members.length - 2
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:49
-msgid "New chat with {0}, {1}, and {2, plural, one {{3} more} other {{4} more}}."
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:67
+msgid "New chat with {0}, {1}, and {memberCount, plural, one {{memberCount} more} other {{memberCount} more}}."
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:223
@@ -6993,7 +7099,7 @@ msgstr ""
 msgid "New follower notifications"
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:164
+#: src/lib/hooks/useNotificationHandler.ts:171
 #: src/screens/Settings/NotificationSettings/index.tsx:138
 #: src/screens/Settings/NotificationSettings/NewFollowerNotificationSettings.tsx:41
 msgid "New followers"
@@ -7075,7 +7181,7 @@ msgstr "Uutiset"
 
 #: src/components/contacts/screens/ViewMatches.tsx:395
 #: src/components/contacts/screens/ViewMatches.tsx:410
-#: src/components/dms/AddMembersFlow.tsx:256
+#: src/components/dms/AddMembersFlow.tsx:265
 #: src/components/dms/InitiateChatFlow.tsx:442
 #: src/screens/Login/ForgotPasswordForm.tsx:149
 #: src/screens/Login/ForgotPasswordForm.tsx:156
@@ -7235,7 +7341,7 @@ msgid "No result"
 msgstr "Ei tulosta"
 
 #: src/components/dialogs/SearchablePeopleList.tsx:249
-#: src/components/dms/AddMembersFlow.tsx:208
+#: src/components/dms/AddMembersFlow.tsx:217
 #: src/components/dms/InitiateChatFlow.tsx:338
 #: src/components/ProgressGuide/FollowDialog.tsx:221
 msgid "No results"
@@ -7533,12 +7639,12 @@ msgstr "Avaa profiilikuvan luontityökalu"
 msgid "Open camera"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:634
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:138
 msgid "Open chat member options for {displayName}"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:410
-#: src/screens/Messages/components/ChatListItem.tsx:414
+#: src/screens/Messages/components/ChatListItem.tsx:413
+#: src/screens/Messages/components/ChatListItem.tsx:417
 msgid "Open conversation options"
 msgstr "Avaa keskustelun valinnat"
 
@@ -7573,7 +7679,7 @@ msgstr ""
 msgid "Open Germ DM"
 msgstr ""
 
-#: src/components/dms/MessagesListHeader.tsx:177
+#: src/components/dms/MessagesListHeader.tsx:179
 msgid "Open group chat settings"
 msgstr ""
 
@@ -7588,7 +7694,7 @@ msgstr ""
 msgid "Open link to {niceUrl}"
 msgstr "Avaa linkki {niceUrl}"
 
-#: src/components/dms/ActionsWrapper.tsx:37
+#: src/components/dms/ActionsWrapper.tsx:43
 msgid "Open message options"
 msgstr "Avaa viestin valinnat"
 
@@ -7732,7 +7838,7 @@ msgstr ""
 msgid "Opens this draft in the composer"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:223
+#: src/components/dms/MessageItem.tsx:220
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:606
 msgid "Opens this profile"
@@ -7878,6 +7984,14 @@ msgstr "Pysäytä video"
 msgid "People"
 msgstr "Käyttäjät"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:140
+msgid "People {ownerName} follows can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:145
+msgid "People {ownerName} follows can request to join"
+msgstr ""
+
 #. placeholder {0}: route.params.name
 #: src/Navigation.tsx:247
 msgid "People followed by @{0}"
@@ -7891,6 +8005,14 @@ msgstr "Käyttäjät, jotka seuraavat tiliä @{0}"
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:183
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:193
 msgid "People I follow"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:139
+msgid "People I follow can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:144
+msgid "People I follow can request to join"
 msgstr ""
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:510
@@ -8258,6 +8380,11 @@ msgstr ""
 msgid "Post language selection"
 msgstr ""
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:336
+#: src/screens/Messages/components/InviteLinkDialog.tsx:348
+msgid "Post link"
+msgstr ""
+
 #: src/screens/PostThread/components/ThreadError.tsx:33
 #: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:25
 msgid "Post not found"
@@ -8500,7 +8627,7 @@ msgstr "Lainausjulkaisu irrotettiin onnistuneesti"
 msgid "Quote posts disabled"
 msgstr "Lainausjulkaisut poissa käytöstä"
 
-#: src/lib/hooks/useNotificationHandler.ts:157
+#: src/lib/hooks/useNotificationHandler.ts:164
 #: src/screens/Post/PostQuotes.tsx:31
 #: src/screens/Settings/NotificationSettings/index.tsx:171
 #: src/screens/Settings/NotificationSettings/QuoteNotificationSettings.tsx:41
@@ -8523,6 +8650,14 @@ msgstr ""
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:700
 msgid "Re-attach quote"
 msgstr "Liitä lainaus uudelleen"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:365
+msgid "Re-enable invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:373
+msgid "Re-enable link"
+msgstr ""
 
 #: src/components/dms/EmojiReactionPicker.tsx:88
 msgid "React with {emoji}"
@@ -8658,7 +8793,7 @@ msgstr ""
 msgid "Remove {displayName} from starter pack"
 msgstr "Poista {displayName} aloituspaketista"
 
-#: src/screens/Messages/ConversationSettings.tsx:707
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:224
 msgid "Remove {displayName} from this group chat"
 msgstr ""
 
@@ -8712,7 +8847,7 @@ msgstr "Poista syöte"
 msgid "Remove feed?"
 msgstr "Poistetaanko syöte?"
 
-#: src/screens/Messages/ConversationSettings.tsx:710
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 msgid "Remove from chat"
 msgstr ""
 
@@ -8876,7 +9011,7 @@ msgstr ""
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:274
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:286
-#: src/lib/hooks/useNotificationHandler.ts:143
+#: src/lib/hooks/useNotificationHandler.ts:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:221
 #: src/screens/Settings/NotificationSettings/index.tsx:149
 #: src/screens/Settings/NotificationSettings/ReplyNotificationSettings.tsx:41
@@ -8938,11 +9073,11 @@ msgstr "Vastauksen näkyvyys päivitetty"
 msgid "Reply was successfully hidden"
 msgstr "Vastaus piilotettiin onnistuneesti"
 
-#: src/components/dms/MessageContextMenu.tsx:176
+#: src/components/dms/MessageContextMenu.tsx:177
 #: src/components/dms/MessagesListBlockedFooter.tsx:86
 #: src/components/dms/MessagesListBlockedFooter.tsx:93
 #: src/features/liveNow/components/LiveStatusDialog.tsx:266
-#: src/screens/Messages/ConversationSettings.tsx:911
+#: src/screens/Messages/ConversationSettings/index.tsx:491
 msgid "Report"
 msgstr "Ilmianna"
 
@@ -8974,7 +9109,7 @@ msgstr "Ilmianna syöte"
 msgid "Report list"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:174
+#: src/components/dms/MessageContextMenu.tsx:175
 msgid "Report message"
 msgstr "Ilmianna viesti"
 
@@ -9001,7 +9136,7 @@ msgstr ""
 msgid "Report this feed"
 msgstr "Ilmianna tämä syöte"
 
-#: src/screens/Messages/ConversationSettings.tsx:910
+#: src/screens/Messages/ConversationSettings/index.tsx:490
 msgid "Report this group chat"
 msgstr ""
 
@@ -9069,7 +9204,7 @@ msgstr ""
 msgid "Reposted by you"
 msgstr "Uudelleenjulkaisit"
 
-#: src/lib/hooks/useNotificationHandler.ts:136
+#: src/lib/hooks/useNotificationHandler.ts:143
 #: src/screens/Settings/NotificationSettings/index.tsx:182
 #: src/screens/Settings/NotificationSettings/RepostNotificationSettings.tsx:41
 msgid "Reposts"
@@ -9079,7 +9214,7 @@ msgstr ""
 msgid "Reposts of this post"
 msgstr "Tämän julkaisun uudelleenjulkaisut"
 
-#: src/lib/hooks/useNotificationHandler.ts:178
+#: src/lib/hooks/useNotificationHandler.ts:185
 #: src/screens/Settings/NotificationSettings/index.tsx:223
 #: src/screens/Settings/NotificationSettings/RepostsOnRepostsNotificationSettings.tsx:41
 msgid "Reposts of your reposts"
@@ -9236,7 +9371,7 @@ msgstr ""
 #: src/components/StarterPack/QrCodeDialog.tsx:207
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Messages/ConversationSettings.tsx:1088
+#: src/screens/Messages/ConversationSettings/prompts.tsx:47
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Profile/Header/EditProfileDialog.tsx:267
 #: src/screens/SavedFeeds.tsx:124
@@ -9723,7 +9858,7 @@ msgid "Send feedback"
 msgstr "Lähetä palautetta"
 
 #: src/screens/Messages/components/MessageComposer.tsx:266
-#: src/screens/Messages/components/MessageInput.tsx:225
+#: src/screens/Messages/components/MessageInput.tsx:226
 #: src/screens/Messages/components/MessageInput.web.tsx:216
 msgid "Send message"
 msgstr "Lähetä viesti"
@@ -9863,6 +9998,8 @@ msgstr "Seksuaalisesti vihjaileva"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:195
 #: src/screens/Hashtag.tsx:130
+#: src/screens/Messages/components/InviteLinkDialog.tsx:352
+#: src/screens/Messages/components/InviteLinkDialog.tsx:359
 #: src/screens/StarterPack/StarterPackScreen.tsx:447
 #: src/screens/Topic.tsx:90
 msgid "Share"
@@ -10262,7 +10399,7 @@ msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:281
 msgid "Someone reacted {0}"
 msgstr ""
 
@@ -10284,7 +10421,7 @@ msgid "Something wasn't quite right with the data you're trying to report. Pleas
 msgstr ""
 
 #: src/screens/Messages/Conversation.tsx:144
-#: src/screens/Messages/ConversationSettings.tsx:211
+#: src/screens/Messages/ConversationSettings/index.tsx:112
 msgid "Something went wrong"
 msgstr "Jokin meni vikaan"
 
@@ -10528,7 +10665,7 @@ msgstr "Onnistui!"
 msgid "Successfully verified"
 msgstr ""
 
-#: src/components/dms/AddMembersFlow.tsx:200
+#: src/components/dms/AddMembersFlow.tsx:209
 #: src/components/dms/InitiateChatFlow.tsx:317
 msgid "Suggested"
 msgstr ""
@@ -10676,7 +10813,7 @@ msgstr ""
 msgid "Tap to remove your {0} reaction"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:557
+#: src/components/dms/MessageItem.tsx:561
 msgid "Tap to retry"
 msgstr ""
 
@@ -10689,7 +10826,7 @@ msgstr ""
 msgid "Tap to show all reactions"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:309
+#: src/components/dms/MessageItem.tsx:310
 msgid "Tap to view reactions"
 msgstr ""
 
@@ -10914,6 +11051,10 @@ msgstr "Teema"
 msgid "There is a limit to how often you can change your birthdate. You may need to wait a day or two before updating it again."
 msgstr ""
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:400
+msgid "There is no invite link for this group chat."
+msgstr ""
+
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:86
 msgid "There is no time limit for account deactivation, come back any time."
 msgstr "Tilin käytöstä poistamiseen ei ole aikarajaa. Palaa takaisin milloin tahansa."
@@ -10983,8 +11124,8 @@ msgstr "Syötteidesi päivityksessä ilmeni ongelma. Tarkista internetyhteytesi 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:431
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:454
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:474
-#: src/screens/Messages/ConversationSettings.tsx:593
-#: src/screens/Messages/ConversationSettings.tsx:606
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:108
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:121
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:95
@@ -11143,10 +11284,6 @@ msgstr ""
 msgid "This feature is not available while using an App Password. Please sign in with your main password."
 msgstr "Tämä ominaisuus ei ole saatavilla sovellussalasanaa käytettäessä. Kirjaudu sisään pääsalasanallasi."
 
-#: src/screens/Messages/Conversation.tsx:352
-msgid "This feature isn't available to you yet. Please check back later."
-msgstr ""
-
 #: src/view/com/posts/PostFeedErrorMessage.tsx:128
 msgid "This feed is currently receiving high traffic and is temporarily unavailable. Please try again later."
 msgstr "Tämä syöte saa tällä hetkellä paljon liikennettä ja on tilapäisesti pois käytöstä. Yritä uudelleen myöhemmin."
@@ -11256,6 +11393,10 @@ msgstr "Tämä profiili näkyy vain kirjautuneille käyttäjille. Se ei näy kir
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:844
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr "Tämä vastaus sijoitetaan piilotettuun osaan ketjusi loppuun, ja ilmoitukset myöhemmistä vastauksista – niin omista kuin muidenkin – mykistetään."
+
+#: src/screens/Messages/ConversationSettings/index.tsx:134
+msgid "This screen is only available for group conversations."
+msgstr ""
 
 #: src/screens/Signup/StepInfo/Policies.tsx:32
 msgid "This service has not provided terms of service or a privacy policy."
@@ -11433,8 +11574,8 @@ msgstr ""
 msgid "Topic"
 msgstr "Aihe"
 
-#: src/components/dms/MessageContextMenu.tsx:147
-#: src/components/dms/MessageContextMenu.tsx:149
+#: src/components/dms/MessageContextMenu.tsx:148
+#: src/components/dms/MessageContextMenu.tsx:150
 #: src/components/Post/Translated/index.tsx:150
 #: src/components/Post/Translated/index.tsx:157
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:553
@@ -11511,7 +11652,7 @@ msgstr "Kaksivaiheinen tunnistautuminen"
 msgid "Type a tag and press , or enter"
 msgstr ""
 
-#: src/screens/Messages/components/MessageInput.tsx:170
+#: src/screens/Messages/components/MessageInput.tsx:171
 msgid "Type your message here"
 msgstr "Kirjoita viestisi tähän"
 
@@ -11583,7 +11724,7 @@ msgctxt "action"
 msgid "Unblock"
 msgstr "Poista esto"
 
-#: src/screens/Messages/ConversationSettings.tsx:695
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:208
 msgid "Unblock {displayName}"
 msgstr ""
 
@@ -11658,11 +11799,11 @@ msgstr ""
 msgid "Unfortunately, your declared age indicates that you are not old enough to access Bluesky in your region."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:720
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:238
 msgid "Uninvite"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:717
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:234
 msgid "Uninvite {displayName} from this group chat"
 msgstr ""
 
@@ -11688,7 +11829,7 @@ msgstr "Älä tykkää"
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr "Älä tykkää ({0, plural, one {# tykkäys} other {# tykkäystä}})"
 
-#: src/screens/Messages/ConversationSettings.tsx:900
+#: src/screens/Messages/ConversationSettings/index.tsx:477
 msgid "Unlock this group chat"
 msgstr ""
 
@@ -11725,7 +11866,7 @@ msgstr "Poista keskustelun mykistys"
 msgid "Unmute list"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:875
+#: src/screens/Messages/ConversationSettings/index.tsx:445
 msgid "Unmute this group chat"
 msgstr ""
 
@@ -11824,12 +11965,16 @@ msgstr "Päivitä <0>{displayName}</0> listoissa"
 msgid "Update email"
 msgstr ""
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:246
+msgid "Update invite link"
+msgstr ""
+
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:544
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:565
 msgid "Update to {domain}"
 msgstr "Päivitä verkkotunnukseen {domain}"
 
-#: src/screens/Messages/Conversation.tsx:350
+#: src/screens/Messages/Conversation.tsx:355
 msgid "Update your app to the latest version to join in!"
 msgstr ""
 
@@ -12218,7 +12363,7 @@ msgid "View {0}’s profile"
 msgstr ""
 
 #: src/components/dms/MessagesListHeader.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:671
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:184
 msgid "View {displayName}’s profile"
 msgstr ""
 
@@ -12244,7 +12389,7 @@ msgstr "Näytä lisätietoja"
 msgid "View full thread"
 msgstr "Näytä koko ketju"
 
-#: src/screens/Messages/ConversationSettings.tsx:273
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:44
 msgid "View incoming group chat requests"
 msgstr ""
 
@@ -12283,6 +12428,10 @@ msgstr ""
 #: src/view/com/profile/ProfileSubpageHeader.tsx:108
 msgid "View the avatar"
 msgstr "Näytä profiilikuva"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:465
+msgid "View the invite link for this group chat"
+msgstr ""
 
 #. placeholder {0}: labeler.creator.handle
 #: src/components/LabelingServiceCard/index.tsx:164
@@ -12399,7 +12548,7 @@ msgstr "Emme löytäneet tuloksia tästä aiheesta."
 msgid "We couldn't load this conversation"
 msgstr "Emme voineet ladata tätä keskustelua"
 
-#: src/screens/Messages/ConversationSettings.tsx:212
+#: src/screens/Messages/ConversationSettings/index.tsx:113
 msgid "We couldn’t load this conversation’s settings"
 msgstr ""
 
@@ -12509,7 +12658,7 @@ msgstr ""
 msgid "We're having network issues, try again"
 msgstr "Meillä on verkko-ongelmia, yritä uudelleen"
 
-#: src/components/dms/AddMembersFlow.tsx:152
+#: src/components/dms/AddMembersFlow.tsx:157
 #: src/components/dms/InitiateChatFlow.tsx:254
 msgid "We’re having network issues, try again"
 msgstr ""
@@ -12613,6 +12762,10 @@ msgstr ""
 msgid "Who can interact with this post?"
 msgstr "Kuka voi olla vuorovaikutuksessa tämän julkaisun kanssa?"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:199
+msgid "Who can join this group chat and how"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:427
 #: src/components/WhoCanReply.tsx:116
 msgid "Who can reply"
@@ -12703,6 +12856,10 @@ msgstr "Kirjoittajat"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:368
 msgid "Wrong DID returned from server. Received: {0}"
 msgstr "Palvelin palautti väärän DID:n. Vastaanotettiin {0}"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:133
+msgid "Wrong kind of conversation"
+msgstr ""
 
 #: src/features/liveNow/components/EditLiveDialog.tsx:154
 #: src/features/liveNow/components/GoLiveDialog.tsx:157
@@ -12817,7 +12974,7 @@ msgstr ""
 msgid "You can always opt out and delete your data"
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:104
+#: src/lib/hooks/useNotificationHandler.ts:111
 msgid "You can choose whether chat notifications have sound in the chat settings within the app"
 msgstr ""
 
@@ -13061,7 +13218,7 @@ msgid "You probably want to restart the app now."
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:277
+#: src/components/dms/MessageItem.tsx:274
 msgid "You reacted {0}"
 msgstr ""
 
@@ -13097,7 +13254,7 @@ msgstr "Saat nyt ilmoituksia tästä ketjusta"
 msgid "You will receive an email with a \"reset code.\" Enter that code here, then enter your new password."
 msgstr "Saat sähköpostiisi ”palautuskoodin”. Syötä koodi tähän, ja syötä sitten uusi salasanasi."
 
-#: src/screens/Messages/ConversationSettings.tsx:1156
+#: src/screens/Messages/ConversationSettings/prompts.tsx:91
 msgid "You won’t be able to rejoin unless you’re invited."
 msgstr ""
 
@@ -13325,6 +13482,10 @@ msgstr ""
 #: src/components/dialogs/MutedWords.tsx:378
 msgid "Your muted words"
 msgstr "Mykistämäsi sanat"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:165
+msgid "Your name, avatar, and the name of the group chat will be visible to everyone."
+msgstr ""
 
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:72
 msgid "Your password has been changed successfully! Please use your new password when you sign in to Bluesky from now on."

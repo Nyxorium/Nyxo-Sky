@@ -22,10 +22,6 @@ msgstr ""
 msgid " to create your account, then sign in here."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:966
-msgid "…"
-msgstr ""
-
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:330
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -96,7 +92,7 @@ msgstr "{0, plural, one {# mhìos} two {# mhìos} few {# mìosan} other {# mìos
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:289
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
@@ -244,7 +240,7 @@ msgstr "{0} à 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:284
+#: src/components/dms/MessageItem.tsx:279
 msgid "{0} reacted {1}"
 msgstr "Chuir {0} {1} mar fhrith-fhreagairt"
 
@@ -269,7 +265,7 @@ msgid "{0}'s avatar"
 msgstr "An t-avatar aig {0}"
 
 #. placeholder {0}: createSanitizedDisplayName(profile)
-#: src/components/dms/MessageItem.tsx:222
+#: src/components/dms/MessageItem.tsx:219
 msgid "{0}’s avatar"
 msgstr ""
 
@@ -298,7 +294,7 @@ msgid "{0}s"
 msgstr "{0}d"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
-#. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
+#. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:487
 msgid "{1}"
 msgstr ""
@@ -524,7 +520,7 @@ msgid "{MAX_PRONOUNS, plural, other {Max length exceeded. The maximum number of 
 msgstr ""
 
 #. The number of group chat members out of the total number of permitted users.
-#: src/screens/Messages/ConversationSettings.tsx:264
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:34
 msgid "{memberCount}/{MEMBER_LIMIT}"
 msgstr ""
 
@@ -592,12 +588,12 @@ msgid "{rank}."
 msgstr "{rank}."
 
 #. The number of requests to join a group chat.
-#: src/screens/Messages/ConversationSettings.tsx:282
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:54
 msgid "{requestCount, plural, one {# request} other {# requests}}"
 msgstr ""
 
 #. Displayed when there are more than 50 requests to join a group chat
-#: src/screens/Messages/ConversationSettings.tsx:277
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:49
 msgid "{requestCount}+ requests"
 msgstr ""
 
@@ -821,7 +817,7 @@ msgstr "Cunntas"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:426
 #: src/screens/Messages/components/RequestButtons.tsx:101
-#: src/screens/Messages/ConversationSettings.tsx:601
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:116
 #: src/view/com/profile/ProfileMenu.tsx:206
 msgctxt "toast"
 msgid "Account blocked"
@@ -867,7 +863,7 @@ msgstr "Solaraiche a’ chunntais"
 msgid "Account removed from quick access"
 msgstr "Chaidh an cunntas a thoirt air falbh on ghrad-inntrigeadh"
 
-#: src/screens/Messages/ConversationSettings.tsx:588
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:103
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:90
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:315
 #: src/view/com/profile/ProfileMenu.tsx:194
@@ -890,7 +886,7 @@ msgstr "Chaidh an cunntas a neo-mhùchadh"
 msgid "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by Bluesky."
 msgstr "’S urrainn do chunntasan aig a bheil cromag chrom-bhileach ghorm <0><1/></0> cunntasan eile a dhearbhadh. ’S e Bluesky a thaghas an luchd-dearbhaidh earbsach seo."
 
-#: src/lib/hooks/useNotificationHandler.ts:185
+#: src/lib/hooks/useNotificationHandler.ts:192
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:105
 #: src/screens/Settings/NotificationSettings/index.tsx:193
 msgid "Activity from others"
@@ -904,7 +900,7 @@ msgstr "Brathan gnìomhachd"
 #: src/components/dialogs/MutedWords.tsx:337
 #: src/components/dialogs/StarterPackDialog.tsx:376
 #: src/components/dialogs/StarterPackDialog.tsx:388
-#: src/components/dms/AddMembersFlow.tsx:341
+#: src/components/dms/AddMembersFlow.tsx:350
 #: src/view/com/modals/UserAddRemoveLists.tsx:236
 #: src/view/com/modals/UserAddRemoveLists.tsx:240
 msgid "Add"
@@ -985,7 +981,7 @@ msgstr ""
 msgid "Add emoji reaction"
 msgstr "Cuir emoji mar fhrith-fhreagairt"
 
-#: src/components/dms/AddMembersFlow.tsx:422
+#: src/components/dms/AddMembersFlow.tsx:431
 msgid "Add group chat members"
 msgstr ""
 
@@ -998,8 +994,9 @@ msgstr "Cuir dealbh ris"
 msgid "Add media to post"
 msgstr "Cuir meadhan ris a’ phost"
 
-#: src/screens/Messages/ConversationSettings.tsx:356
-#: src/screens/Messages/ConversationSettings.tsx:373
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:47
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:81
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:100
 msgid "Add members"
 msgstr ""
 
@@ -1021,8 +1018,8 @@ msgstr "Cuir am facal mùchaidh ris leis na roghainnean a thagh thu"
 msgid "Add muted words and tags"
 msgstr "Cuir ris faclan is tagaichean mùchaidh"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:101
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:126
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:119
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:154
 #: src/screens/ProfileList/AboutSection.tsx:72
 #: src/screens/ProfileList/AboutSection.tsx:90
 msgid "Add people"
@@ -1087,6 +1084,11 @@ msgstr "Cuir an cleachdaiche ri liosta"
 msgid "Add your birthdate"
 msgstr "Cuir latha do bhreith ris"
 
+#. placeholder {0}: createSanitizedDisplayName( profile.kind.addedBy, true, moderateProfile(profile.kind.addedBy, moderationOpts).ui('displayName'), )
+#: src/screens/Messages/ConversationSettings/Member.tsx:70
+msgid "Added by {0}"
+msgstr ""
+
 #: src/components/dialogs/lists/ListAddRemoveUsersDialog.tsx:113
 #: src/view/com/modals/UserAddRemoveLists.tsx:164
 msgid "Added to list"
@@ -1109,8 +1111,8 @@ msgstr "Mion-fhiosrachadh a bharrachd (1,000 caractar air a’ char as motha)"
 msgid "Additional details (limit 300 characters)"
 msgstr "Fiosrachadh a bharrachd (300 caractar air a’ char as motha)"
 
-#: src/screens/Messages/ConversationSettings.tsx:419
-#: src/screens/Messages/ConversationSettings.tsx:639
+#: src/screens/Messages/ConversationSettings/Member.tsx:55
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:151
 msgid "Admin"
 msgstr ""
 
@@ -1389,8 +1391,8 @@ msgstr "Dealbh de ghrunn puist Bluesky ri taobh ìomhaigheadan ath-phostaidh, �
 msgid "An illustration showing that Bluesky selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
 msgstr "Dealbh a sheallas gun tagh Bluesky luchd-dearbhaidh earbsach agus gun dearbh an luchd-dearbhaidh earbsach seo cunntasan fa leth aig an luchd-chleachdaidh an uair sin."
 
-#: src/screens/Messages/ConversationSettings.tsx:1112
-msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time. Your name, avatar, and the name of the group chat will be visible to everyone."
+#: src/screens/Messages/components/InviteLinkDialog.tsx:158
+msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time."
 msgstr ""
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:239
@@ -1466,6 +1468,16 @@ msgstr "Duine sam bith"
 #: src/view/com/composer/threadgate/ThreadgateBtn.tsx:137
 msgid "Anyone can interact"
 msgstr "Faodaidh duine sam bith eadar-ghabhail a dhèanamh"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:129
+#: src/screens/Messages/components/InviteLinkDialog.tsx:130
+msgid "Anyone can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:134
+#: src/screens/Messages/components/InviteLinkDialog.tsx:135
+msgid "Anyone can request to join"
+msgstr ""
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:112
 #: src/screens/Settings/ActivityPrivacySettings.tsx:117
@@ -1598,7 +1610,7 @@ msgstr "A bheil thu cinnteach cinnteach?"
 msgid "Are you sure you want to delete the app password \"{0}\"?"
 msgstr "A bheil thu cinnteach gu bheil thu airson faclan-faire na h-aplacaid “{0}” a sguabadh às?"
 
-#: src/components/dms/MessageContextMenu.tsx:207
+#: src/components/dms/MessageContextMenu.tsx:208
 msgid "Are you sure you want to delete this message? The message will be deleted for you, but not for the other participants."
 msgstr ""
 
@@ -1611,7 +1623,7 @@ msgstr "A bheil thu cinnteach gu bheil thu airson a’ phacaid tòiseachaidh seo
 msgid "Are you sure you want to discard your changes?"
 msgstr "A bheil thu cinnteach gu bheil thu airson na h-atharraichean agad a thilgeil air falbh?"
 
-#: src/screens/Messages/ConversationSettings.tsx:1155
+#: src/screens/Messages/ConversationSettings/prompts.tsx:90
 msgid "Are you sure you want to leave {groupName}?"
 msgstr ""
 
@@ -1702,9 +1714,9 @@ msgstr ""
 msgid "Available"
 msgstr "Ri fhaighinn"
 
-#: src/components/dms/AddMembersFlow.tsx:290
-#: src/components/dms/AddMembersFlow.tsx:445
-#: src/components/dms/AddMembersFlow.tsx:452
+#: src/components/dms/AddMembersFlow.tsx:299
+#: src/components/dms/AddMembersFlow.tsx:454
+#: src/components/dms/AddMembersFlow.tsx:461
 #: src/components/dms/InitiateChatFlow.tsx:489
 #: src/components/dms/InitiateChatFlow.tsx:674
 #: src/components/dms/InitiateChatFlow.tsx:681
@@ -1772,7 +1784,7 @@ msgstr "Mus fhaigh thu brathan mu phuist a dh’fhoillsicheas {name}, feumaidh t
 #: src/components/dms/MessageProfileButton.tsx:60
 #: src/screens/Messages/ChatList.tsx:380
 #: src/screens/Messages/Conversation.tsx:235
-#: src/screens/Messages/ConversationSettings.tsx:578
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:93
 msgid "Before you can message another user, you must first verify your email."
 msgstr "Mus cuir thu teachdaireachd gu cleachdaiche eile, feumaidh tu am post-d agad a dhearbhadh."
 
@@ -1801,14 +1813,14 @@ msgid "Birthday"
 msgstr "Co-là breith"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:853
-#: src/screens/Messages/ConversationSettings.tsx:700
-#: src/screens/Messages/ConversationSettings.tsx:1180
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:217
+#: src/screens/Messages/ConversationSettings/prompts.tsx:115
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:212
 #: src/view/com/profile/ProfileMenu.tsx:605
 msgid "Block"
 msgstr "Bac"
 
-#: src/screens/Messages/ConversationSettings.tsx:696
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:209
 msgid "Block {displayName}"
 msgstr ""
 
@@ -1823,7 +1835,7 @@ msgstr ""
 msgid "Block account"
 msgstr "Bac an cunntas"
 
-#: src/screens/Messages/ConversationSettings.tsx:1177
+#: src/screens/Messages/ConversationSettings/prompts.tsx:112
 msgid "Block account?"
 msgstr ""
 
@@ -1845,7 +1857,7 @@ msgstr "Bac is sguab às"
 msgid "Block list"
 msgstr "Liosta-bhacaidh"
 
-#: src/screens/Messages/components/ChatStatusInfo.tsx:46
+#: src/screens/Messages/components/ChatStatusInfo.tsx:44
 msgid "Block or report"
 msgstr "Bac no dèan aithris air"
 
@@ -1880,7 +1892,7 @@ msgid "Blocked Accounts"
 msgstr "Cunntasan air am bacadh"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:851
-#: src/screens/Messages/ConversationSettings.tsx:1178
+#: src/screens/Messages/ConversationSettings/prompts.tsx:113
 #: src/view/com/profile/ProfileMenu.tsx:600
 msgid "Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
 msgstr "Chan eil cead aig cunntasan bacte freagairt a chur sna snàithleanan agad, iomradh a dhèanamh ort no eadar-ghabhail eile a dhèanamh leat."
@@ -2126,17 +2138,16 @@ msgstr "An camara"
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:299
 #: src/components/Menu/index.tsx:355
 #: src/components/PostControls/RepostButton.tsx:210
-#: src/components/Prompt.tsx:136
-#: src/components/Prompt.tsx:138
+#: src/components/Prompt.tsx:153
+#: src/components/Prompt.tsx:155
 #: src/features/liveEvents/components/LiveEventFeedOptionsMenu.tsx:152
 #: src/features/liveEvents/components/LiveEventFeedOptionsMenu.tsx:157
 #: src/features/liveNow/components/GoLiveDialog.tsx:269
 #: src/features/liveNow/components/GoLiveDialog.tsx:275
 #: src/lib/media/picker.tsx:38
 #: src/screens/Deactivated.tsx:150
-#: src/screens/Messages/ConversationSettings.tsx:1114
-#: src/screens/Messages/ConversationSettings.tsx:1135
-#: src/screens/Messages/ConversationSettings.tsx:1159
+#: src/screens/Messages/ConversationSettings/prompts.tsx:70
+#: src/screens/Messages/ConversationSettings/prompts.tsx:94
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
 #: src/screens/Search/Shell.tsx:396
@@ -2264,7 +2275,7 @@ msgstr "Chaidh na h-atharraichean a shàbhaladh"
 msgid "Changes to the starter pack will not be reflected in the list after creation. The list will be an independent copy."
 msgstr "Cha bhi buaidh air an liosta ma dh’atharraicheas tu a’ phacaid-thòiseachaidh an dèidh dhut a chruthachadh. Bidh an liosta na lethbhreac neo-eisimeileach."
 
-#: src/lib/hooks/useNotificationHandler.ts:102
+#: src/lib/hooks/useNotificationHandler.ts:109
 #: src/Navigation.tsx:606
 #: src/view/shell/bottom-bar/BottomBar.tsx:224
 #: src/view/shell/desktop/LeftNav.tsx:611
@@ -2286,11 +2297,11 @@ msgstr ""
 msgid "Chat locked permanently"
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:117
+#: src/lib/hooks/useNotificationHandler.ts:124
 msgid "Chat messages - silent"
 msgstr "Teachdaireachdan cabadaich – sàmhach"
 
-#: src/lib/hooks/useNotificationHandler.ts:108
+#: src/lib/hooks/useNotificationHandler.ts:115
 msgid "Chat messages - sound"
 msgstr "Teachdaireachdan cabadaich – fuaim"
 
@@ -2397,6 +2408,10 @@ msgstr "Tagh cànain nam post"
 msgid "Choose this color as your avatar"
 msgstr "Tagh an dath seo mar avatar agad"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:194
+msgid "Choose who can join this group chat and how."
+msgstr ""
+
 #: src/components/contacts/components/InviteInfo.tsx:57
 msgid "Choose who to invite"
 msgstr "Cuir romhad cò gheibh cuireadh"
@@ -2442,13 +2457,17 @@ msgstr "Dèan briogadh airson barrachd fiosrachaidh"
 msgid "click here"
 msgstr "dèan briogadh an-seo"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:97
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:115
 msgid "Click here to add people to this group chat"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:129
 msgid "Click here to contact our support team"
 msgstr "Briog an-seo airson fios a chur ri sgioba na taice againn"
+
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:129
+msgid "Click here to create or manage an invite link for this group chat"
+msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:263
 msgid "Click here to delete your account"
@@ -2476,8 +2495,8 @@ msgstr "Briog an-seo airson latha do bhreith atharrachadh"
 msgid "Click here to update your email"
 msgstr "Briog an-seo airson am post-d agad ùrachadh"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:109
-msgid "Click here to view or create an invite link for this group chat"
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:130
+msgid "Click here to view the invite link for this group chat"
 msgstr ""
 
 #. placeholder {0}: isCashtag ? tag : `#${tag}`
@@ -2485,11 +2504,11 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr "Dèan briogadh airson clàr-taice an taga airson {0} fhosgladh"
 
-#: src/components/dms/MessageItem.tsx:553
+#: src/components/dms/MessageItem.tsx:557
 msgid "Click to retry failed message"
 msgstr "Dèan briogadh airson feuchainn ris an teachdaireachd a dh’fhàillig as ùr"
 
-#: src/components/dms/ActionsWrapper.web.tsx:142
+#: src/components/dms/ActionsWrapper.web.tsx:145
 msgid "Click to view the date and time"
 msgstr ""
 
@@ -2518,7 +2537,7 @@ msgstr "Turt 🐴 turt 🐴"
 #: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:199
 #: src/components/dialogs/SearchablePeopleList.tsx:339
 #: src/components/dialogs/StarterPackDialog.tsx:187
-#: src/components/dms/AddMembersFlow.tsx:315
+#: src/components/dms/AddMembersFlow.tsx:324
 #: src/components/dms/AfterReportDialog.tsx:93
 #: src/components/dms/AfterReportDialog.tsx:98
 #: src/components/dms/AfterReportDialog.tsx:212
@@ -2537,6 +2556,8 @@ msgstr "Turt 🐴 turt 🐴"
 #: src/components/WhoCanReply.tsx:243
 #: src/features/liveNow/components/EditLiveDialog.tsx:217
 #: src/features/liveNow/components/EditLiveDialog.tsx:223
+#: src/screens/Messages/components/InviteLinkDialog.tsx:405
+#: src/screens/Messages/components/InviteLinkDialog.tsx:410
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:288
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:293
 #: src/view/com/feeds/MissingFeed.tsx:211
@@ -2685,8 +2706,8 @@ msgstr "Rèitich bratach an tachartais bheò"
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Air a rèiteachadh ann an <0>roghainnean na modarataireachd</0>."
 
-#: src/components/Prompt.tsx:195
-#: src/components/Prompt.tsx:198
+#: src/components/Prompt.tsx:212
+#: src/components/Prompt.tsx:215
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:186
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:189
 msgid "Confirm"
@@ -2825,7 +2846,7 @@ msgstr "Lean air an t-snàithlean"
 msgid "Continue thread..."
 msgstr "Leugh an còrr dhen t-snàithlean…"
 
-#: src/components/dms/AddMembersFlow.tsx:255
+#: src/components/dms/AddMembersFlow.tsx:264
 #: src/components/dms/InitiateChatFlow.tsx:441
 msgid "Continue to group name"
 msgstr ""
@@ -2860,7 +2881,7 @@ msgstr "Chaidh an còmhradh a sguabadh às"
 msgid "Copied build version to clipboard"
 msgstr "Chaidh lethbhreac de thionndadh a’ bhuild a chur air an stòr-bhòrd"
 
-#: src/components/dms/MessageContextMenu.tsx:64
+#: src/components/dms/MessageContextMenu.tsx:67
 #: src/components/PostControls/DiscoverDebug.tsx:36
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:272
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:89
@@ -2870,6 +2891,7 @@ msgid "Copied to clipboard"
 msgstr "Chaidh lethbhreac a chur air an stòr-bhòrd"
 
 #: src/components/dialogs/Embed.tsx:197
+#: src/screens/Messages/components/CopyTextButton.tsx:71
 #: src/screens/Settings/components/CopyButton.tsx:66
 msgid "Copied!"
 msgstr "Chaidh lethbhreac a dhèanamh!"
@@ -2941,8 +2963,8 @@ msgstr "Cuir lethbhreac dhen cheangal dhan phròifil"
 msgid "Copy link to starter pack"
 msgstr "Cuir lethbhreac dhen cheangal dhan pacaid tòiseachaidh"
 
-#: src/components/dms/MessageContextMenu.tsx:154
-#: src/components/dms/MessageContextMenu.tsx:157
+#: src/components/dms/MessageContextMenu.tsx:155
+#: src/components/dms/MessageContextMenu.tsx:158
 msgid "Copy message text"
 msgstr "Dèan lethbhreac de theacsa na teachdaireachd"
 
@@ -3106,10 +3128,6 @@ msgstr "Cruthaich cunntas ach as aonais na pacaid tòiseachaidh seo"
 msgid "Create an avatar instead"
 msgstr "Cruthaich avatar na àite"
 
-#: src/screens/Messages/ConversationSettings.tsx:891
-msgid "Create an invite link for this group chat"
-msgstr ""
-
 #: src/components/StarterPack/ProfileStarterPacks.tsx:214
 msgid "Create another"
 msgstr "Cruthaich fear eile"
@@ -3141,6 +3159,10 @@ msgstr "Cruthaich liosta modarataireachd"
 msgid "Create new account"
 msgstr "Cruthaich cunntas ùr"
 
+#: src/screens/Messages/ConversationSettings/index.tsx:464
+msgid "Create or modify an invite link for this group chat"
+msgstr ""
+
 #. Accessibility label for button to create a moderation report for the selected option
 #. placeholder {0}: option.title
 #: src/components/moderation/ReportDialog/index.tsx:713
@@ -3157,10 +3179,18 @@ msgstr "Cruthaich pacaid tòiseachaidh"
 msgid "Create user list"
 msgstr "Cruthaich liosta luchd-cleachdaidh"
 
+#. placeholder {0}: dateFormatter.format(createdAt)
 #. placeholder {0}: i18n.date(appPassword.createdAt, { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', })
+#: src/screens/Messages/ConversationSettings/index.tsx:429
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "Air a chruthachadh {0}"
+
+#. placeholder {0}: timeFormatter.format(createdAt)
+#. placeholder {1}: dateFormatter.format(createdAt)
+#: src/screens/Messages/components/InviteLinkDialog.tsx:289
+msgid "Created {0} {1}"
+msgstr ""
 
 #: src/screens/List/ListHiddenScreen.tsx:131
 msgid "Creator has been blocked"
@@ -3242,9 +3272,9 @@ msgstr "Bun-roghainn"
 msgid "Default icons"
 msgstr "Na h-ìomhaigheagan bunaiteach"
 
-#: src/components/dms/MessageContextMenu.tsx:208
+#: src/components/dms/MessageContextMenu.tsx:209
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:803
-#: src/screens/Messages/components/ChatStatusInfo.tsx:55
+#: src/screens/Messages/components/ChatStatusInfo.tsx:53
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:275
 #: src/screens/Settings/AppPasswords.tsx:213
 #: src/screens/StarterPack/StarterPackScreen.tsx:617
@@ -3295,7 +3325,7 @@ msgstr "Sguab an còmhradh às"
 msgid "Delete Conversation"
 msgstr "Sguab às an còmhradh"
 
-#: src/components/dms/MessageContextMenu.tsx:168
+#: src/components/dms/MessageContextMenu.tsx:169
 msgid "Delete for me"
 msgstr "Sguab às dhomh-sa"
 
@@ -3304,11 +3334,11 @@ msgstr "Sguab às dhomh-sa"
 msgid "Delete list"
 msgstr "Sguab an liosta às"
 
-#: src/components/dms/MessageContextMenu.tsx:206
+#: src/components/dms/MessageContextMenu.tsx:207
 msgid "Delete message"
 msgstr "Sguab an teachdaireachd às"
 
-#: src/components/dms/MessageContextMenu.tsx:166
+#: src/components/dms/MessageContextMenu.tsx:167
 msgid "Delete message for me"
 msgstr "Sguab an teachdaireachd às dhomh-sa"
 
@@ -3345,8 +3375,7 @@ msgstr "Air a sguabadh às"
 
 #: src/components/dms/MessagesListHeader.tsx:105
 #: src/screens/Messages/components/ChatListItem.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:409
-#: src/screens/Messages/ConversationSettings.tsx:625
+#: src/screens/Messages/ConversationSettings/Member.tsx:48
 msgid "Deleted Account"
 msgstr "Cunntas a chaidh a sguabadh às"
 
@@ -3407,6 +3436,11 @@ msgstr "Còmhradh: co-dhùin cò aig a bheil cead eadar-ghabhail a dhèanamh lei
 #: src/screens/Settings/AppearanceSettings.tsx:133
 msgid "Dim"
 msgstr "Doilleir"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:323
+#: src/screens/Messages/components/InviteLinkDialog.tsx:331
+msgid "Disable"
+msgstr ""
 
 #: src/screens/Settings/MiscellaneousSettings.tsx:190
 #: src/screens/Settings/MiscellaneousSettings.tsx:196
@@ -3645,7 +3679,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Deiseil"
 
-#: src/components/dms/MessageItem.tsx:448
+#: src/components/dms/MessageItem.tsx:452
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Thoir gnogag dhùbailte no dèan brùthadh fada air an teachdaireachd airson frith-fhreagairt a chur"
 
@@ -3747,6 +3781,7 @@ msgstr "m.e. luchd-cleachdaidh a chuireas sanasachd mar fhreagairt gu tric."
 msgid "Eating disorders"
 msgstr "Mì-rian ithe"
 
+#: src/screens/Messages/components/EditTextButton.tsx:51
 #: src/screens/Settings/AccountSettings.tsx:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:255
 #: src/screens/StarterPack/StarterPackScreen.tsx:606
@@ -3770,8 +3805,8 @@ msgstr "Deasaich an t-avatar"
 msgid "Edit Feeds"
 msgstr "Deasaich na h-inbhirean"
 
-#: src/screens/Messages/ConversationSettings.tsx:1067
-#: src/screens/Messages/ConversationSettings.tsx:1072
+#: src/screens/Messages/ConversationSettings/prompts.tsx:27
+#: src/screens/Messages/ConversationSettings/prompts.tsx:32
 msgid "Edit group name"
 msgstr ""
 
@@ -3790,6 +3825,10 @@ msgstr "Deasaich roghainnean na h-eadar-ghabhalach"
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:106
 msgid "Edit interests"
 msgstr "Deasaich na rudan sa bheil ùidh agad"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:300
+msgid "Edit link settings"
+msgstr ""
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:191
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:194
@@ -3810,7 +3849,7 @@ msgstr "Deasaich an liosta modarataireachd "
 msgid "Edit My Feeds"
 msgstr "Deasaich na h-inbhirean agam"
 
-#: src/screens/Messages/ConversationSettings.tsx:885
+#: src/screens/Messages/ConversationSettings/index.tsx:455
 msgid "Edit name"
 msgstr ""
 
@@ -3844,7 +3883,7 @@ msgstr "Deasaich a’ phròifil"
 msgid "Edit starter pack"
 msgstr "Deasaich a’ phacaid tòiseachaidh"
 
-#: src/screens/Messages/ConversationSettings.tsx:884
+#: src/screens/Messages/ConversationSettings/index.tsx:454
 msgid "Edit this group chat’s name"
 msgstr ""
 
@@ -4249,10 +4288,15 @@ msgctxt "toast"
 msgid "Failed to accept chat"
 msgstr "Cha b’ urrainn dhuinn gabhail ris a’ chabadaich"
 
-#: src/components/dms/ActionsWrapper.web.tsx:67
-#: src/components/dms/MessageContextMenu.tsx:104
+#: src/components/dms/ActionsWrapper.web.tsx:70
+#: src/components/dms/MessageContextMenu.tsx:107
 msgid "Failed to add emoji reaction"
 msgstr "Cha b’ urrainn dhuinn an emoji a chur mar fhrith-fhreagairt"
+
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:39
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:38
+msgid "Failed to add members"
+msgstr ""
 
 #: src/components/dialogs/StarterPackDialog.tsx:280
 msgid "Failed to add to starter pack"
@@ -4267,9 +4311,13 @@ msgid "Failed to create app password. Please try again."
 msgstr "Cha b’ urrainn dhuinn facal-faire a chruthachadh dhan aplacaid. Feuch ris a-rithist."
 
 #: src/components/dms/MessageProfileButton.tsx:38
-#: src/screens/Messages/ConversationSettings.tsx:555
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:63
 msgid "Failed to create conversation"
 msgstr "Cha b’ urrainn dhuinn an còmhradh a chruthachadh"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:85
+msgid "Failed to create invite link"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:250
 #: src/screens/StarterPack/Wizard/index.tsx:260
@@ -4282,7 +4330,7 @@ msgctxt "toast"
 msgid "Failed to delete chat"
 msgstr "Cha b’ urrainn dhuinn a’ chabadaich a sguabadh às"
 
-#: src/components/dms/MessageContextMenu.tsx:86
+#: src/components/dms/MessageContextMenu.tsx:89
 msgid "Failed to delete message"
 msgstr "Cha b’ urrainn dhuinn an teachdaireachd a sguabadh às"
 
@@ -4294,13 +4342,25 @@ msgstr "Cha b’ urrainn dhuinn am post a sguabadh às, feuch ris a-rithist"
 msgid "Failed to delete starter pack"
 msgstr "Cha b’ urrainn dhuinn a’ phacaid tòiseachaidh a sguabadh às"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:108
+msgid "Failed to disable invite link"
+msgstr ""
+
 #. placeholder {0}: error?.message
 #: src/screens/Profile/components/GermButton.tsx:195
 msgid "Failed to disconnect Germ DM. Error: {0}"
 msgstr "Cha b’ urrainn dhuinn Germ DM a dhì-cheangal. Seo a’ mhearachd: {0}"
 
-#: src/screens/Messages/ConversationSettings.tsx:757
+#: src/screens/Messages/ConversationSettings/index.tsx:317
 msgid "Failed to edit group chat name"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:98
+msgid "Failed to edit invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:118
+msgid "Failed to enable invite link"
 msgstr ""
 
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:143
@@ -4319,7 +4379,7 @@ msgstr "Cha b’ urrainn dhuinn am moladh a chur am falach, thoir sùil air a’
 msgid "Failed to launch SMS app"
 msgstr "Cha b’ urrainn dhuinn aplacaid nan SMS a chur gu dol"
 
-#: src/screens/Messages/ConversationSettings.tsx:785
+#: src/screens/Messages/ConversationSettings/index.tsx:342
 msgctxt "toast"
 msgid "Failed to leave group chat"
 msgstr ""
@@ -4383,12 +4443,16 @@ msgstr "Cha b’ urrainn dhuinn na h-inbhirean a mholamaid a luchdadh"
 msgid "Failed to load suggested follows"
 msgstr "Cha b’ urrainn dhuinn na daoine a mholamaid an leantainn a luchdadh"
 
+#: src/screens/Messages/ConversationSettings/index.tsx:360
+msgid "Failed to lock group chat"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:321
 #: src/screens/Messages/Inbox.tsx:348
 msgid "Failed to mark all requests as read"
 msgstr "Cha b’ urrainn dhuinn comharradh gun deach gach iarrtas a leughadh"
 
-#: src/screens/Messages/ConversationSettings.tsx:773
+#: src/screens/Messages/ConversationSettings/index.tsx:331
 msgid "Failed to mute group chat"
 msgstr ""
 
@@ -4410,8 +4474,8 @@ msgstr "Cha b’ urrainn dhuinn an dàta a thoirt air falbh air sgàth mearachd 
 msgid "Failed to remove data. {0}"
 msgstr "Cha b’ urrainn dhuinn an dàta a thoirt air falbh. {0}"
 
-#: src/components/dms/ActionsWrapper.web.tsx:63
-#: src/components/dms/MessageContextMenu.tsx:100
+#: src/components/dms/ActionsWrapper.web.tsx:66
+#: src/components/dms/MessageContextMenu.tsx:103
 #: src/components/dms/ReactionsDialog.tsx:174
 msgid "Failed to remove emoji reaction"
 msgstr "Cha b’ urrainn dhuinn an emoji a chuir thu mar fhrith-fhreagairt a thoirt air falbh"
@@ -4419,6 +4483,10 @@ msgstr "Cha b’ urrainn dhuinn an emoji a chuir thu mar fhrith-fhreagairt a tho
 #: src/components/dialogs/StarterPackDialog.tsx:293
 msgid "Failed to remove from starter pack"
 msgstr "Cha b’ urrainn dhuinn a thoirt air falbh on phacaid tòiseachaidh"
+
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:70
+msgid "Failed to remove group chat member"
+msgstr ""
 
 #: src/components/verification/VerificationRemovePrompt.tsx:34
 msgid "Failed to remove verification"
@@ -4465,6 +4533,10 @@ msgstr "Cha b’ urrainn dhuinn an t-ath-thagradh a chur, feuch ris a-rithist."
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:251
 msgid "Failed to toggle thread mute, please try again"
 msgstr "Cha b’ urrainn dhuinn mùchadh an t-snàithlein a thoglachadh, feuch ris a-rithist"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:363
+msgid "Failed to unlock group chat"
+msgstr ""
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:107
 msgid "Failed to unpin list"
@@ -4961,6 +5033,20 @@ msgstr "O <0/>"
 msgid "Generate a starter pack"
 msgstr "Gin pacaid tòiseachaidh"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:189
+#: src/screens/Messages/components/InviteLinkDialog.tsx:224
+#: src/screens/Messages/components/InviteLinkDialog.tsx:247
+msgid "Generate invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:378
+msgid "Generate new invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:383
+msgid "Generate new link"
+msgstr ""
+
 #: src/screens/Profile/components/GermButton.tsx:86
 #: src/screens/Profile/components/GermButton.tsx:224
 msgid "Germ DM"
@@ -5041,7 +5127,8 @@ msgstr "Faigh brath nuair a dh’fhoillsicheas cuideigin post ùr"
 
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:77
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:87
-#: src/screens/Messages/ConversationSettings.tsx:1113
+#: src/screens/Messages/components/InviteLinkDialog.tsx:173
+#: src/screens/Messages/components/InviteLinkDialog.tsx:180
 msgid "Get started"
 msgstr "Dèan toiseach-tòiseachaidh"
 
@@ -5083,7 +5170,7 @@ msgstr "Air ais"
 
 #: src/components/Error.tsx:77
 #: src/screens/List/ListHiddenScreen.tsx:228
-#: src/screens/Messages/Conversation.tsx:360
+#: src/screens/Messages/Conversation.tsx:366
 #: src/screens/Profile/ErrorState.tsx:63
 #: src/screens/Profile/ErrorState.tsx:67
 #: src/screens/StarterPack/StarterPackScreen.tsx:809
@@ -5158,7 +5245,7 @@ msgid "Go to next"
 msgstr "Tadhail air an ath-fhear,"
 
 #: src/components/dms/ConvoMenu.tsx:255
-#: src/screens/Messages/ConversationSettings.tsx:676
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:189
 #: src/view/shell/desktop/LeftNav.tsx:319
 #: src/view/shell/desktop/LeftNav.tsx:325
 msgid "Go to profile"
@@ -5196,26 +5283,40 @@ msgstr "Susbaint glè ainneartach"
 msgid "Grooming or predatory behavior"
 msgstr "Grumachadh no giùlan creachach"
 
-#: src/screens/Messages/ConversationSettings.tsx:766
+#: src/screens/Messages/components/InviteLinkDialog.tsx:437
+msgid "Group chat invite link dialog"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:352
+msgctxt "toast"
+msgid "Group chat locked"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:324
 msgctxt "toast"
 msgid "Group chat muted"
 msgstr ""
 
 #: src/Navigation.tsx:611
-#: src/screens/Messages/ConversationSettings.tsx:107
+#: src/screens/Messages/ConversationSettings/index.tsx:92
 msgid "Group chat settings"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:768
+#: src/screens/Messages/ConversationSettings/index.tsx:354
+msgctxt "toast"
+msgid "Group chat unlocked"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:326
 msgctxt "toast"
 msgid "Group chat unmuted"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:345
+#: src/screens/Messages/Conversation.tsx:350
 msgid "Group chats are not yet available"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:343
+#: src/screens/Messages/Conversation.tsx:348
 msgid "Group chats are now available"
 msgstr ""
 
@@ -5225,7 +5326,7 @@ msgstr ""
 
 #: src/components/dms/InitiateChatFlow.tsx:231
 #: src/components/dms/InitiateChatFlow.tsx:549
-#: src/screens/Messages/ConversationSettings.tsx:1073
+#: src/screens/Messages/ConversationSettings/prompts.tsx:33
 msgid "Group name"
 msgstr ""
 
@@ -5479,6 +5580,10 @@ msgstr "Hm, cha b’ urrainn dhuinn an t-seirbheis modarataireachd sin a luchdad
 #: src/view/com/composer/state/video.ts:414
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr "Air do shocair! Tha sinn a’ toirt comas air video mean air mhean – glacaidh foighidinn iasg. Na bi fada gun tilleadh!"
+
+#: src/screens/Messages/Conversation.tsx:357
+msgid "Hold your horses! This feature isn't available to you yet. Please check back later."
+msgstr ""
 
 #: src/Navigation.tsx:855
 #: src/Navigation.tsx:875
@@ -5833,9 +5938,12 @@ msgstr "Thoir cuireadh dha do charaidean"
 msgid "Invite friends <0/>"
 msgstr "Thoir cuireadh dha do charaidean <0/>"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:113
-#: src/screens/Messages/ConversationSettings.tsx:892
-#: src/screens/Messages/ConversationSettings.tsx:1111
+#: src/screens/Messages/components/InviteLinkDialog.tsx:153
+#: src/screens/Messages/components/InviteLinkDialog.tsx:267
+#: src/screens/Messages/components/InviteLinkDialog.tsx:273
+#: src/screens/Messages/components/InviteLinkDialog.tsx:395
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:135
+#: src/screens/Messages/ConversationSettings/index.tsx:467
 msgid "Invite link"
 msgstr ""
 
@@ -5844,6 +5952,7 @@ msgid "Invite link created"
 msgstr ""
 
 #: src/components/dms/getSystemMessageInfo.ts:86
+#: src/screens/Messages/components/InviteLinkDialog.tsx:267
 msgid "Invite link disabled"
 msgstr ""
 
@@ -5867,7 +5976,7 @@ msgstr "Thoir cuireadh do dhaoine gun phacaid tòiseachaidh seo!"
 msgid "Invite your friends to follow your favorite feeds and people"
 msgstr "Thoir cuireadh dha do charaidean na h-inbhirean is daoine as fheàrr leat a leantainn"
 
-#: src/screens/Messages/ConversationSettings.tsx:639
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:151
 msgid "Invited"
 msgstr ""
 
@@ -6081,7 +6190,7 @@ msgid "Learn more."
 msgstr "Barrachd fiosrachaidh."
 
 #: src/components/dms/LeaveConvoPrompt.tsx:52
-#: src/screens/Messages/ConversationSettings.tsx:920
+#: src/screens/Messages/ConversationSettings/index.tsx:500
 msgid "Leave"
 msgstr "Fàg an­-seo"
 
@@ -6098,11 +6207,11 @@ msgstr "Fàg a’ chabadaich"
 msgid "Leave conversation"
 msgstr "Fàg an còmhradh"
 
-#: src/screens/Messages/ConversationSettings.tsx:1157
+#: src/screens/Messages/ConversationSettings/prompts.tsx:92
 msgid "Leave group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:919
+#: src/screens/Messages/ConversationSettings/index.tsx:499
 msgid "Leave this group chat"
 msgstr ""
 
@@ -6196,7 +6305,7 @@ msgstr "’S toil le {0, plural, one {# seo} two {# seo} few {# seo} other {# se
 msgid "Liked by {likeCount, plural, one {# user} other {# users}}"
 msgstr "’S toil le {likeCount, plural, one {# seo} two {# seo} few {# seo} other {# seo}}"
 
-#: src/lib/hooks/useNotificationHandler.ts:129
+#: src/lib/hooks/useNotificationHandler.ts:136
 #: src/screens/Settings/NotificationSettings/index.tsx:127
 #: src/screens/Settings/NotificationSettings/LikeNotificationSettings.tsx:41
 #: src/screens/Settings/ProfileTabsVisibility.tsx:168
@@ -6205,7 +6314,7 @@ msgstr "’S toil le {likeCount, plural, one {# seo} two {# seo} few {# seo} oth
 msgid "Likes"
 msgstr "Na ’s toil le daoine"
 
-#: src/lib/hooks/useNotificationHandler.ts:171
+#: src/lib/hooks/useNotificationHandler.ts:178
 #: src/screens/Settings/NotificationSettings/index.tsx:208
 #: src/screens/Settings/NotificationSettings/LikesOnRepostsNotificationSettings.tsx:41
 msgid "Likes of your reposts"
@@ -6403,27 +6512,27 @@ msgstr "A’ luchdadh roghainnean eadar-ghabhail nam post…"
 msgid "Loading..."
 msgstr "Ga luchdadh…"
 
-#: src/screens/Messages/ConversationSettings.tsx:1031
+#: src/screens/Messages/ConversationSettings/index.tsx:621
 msgid "Loading…"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:902
+#: src/screens/Messages/ConversationSettings/index.tsx:480
 msgid "Lock"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1134
+#: src/screens/Messages/ConversationSettings/prompts.tsx:69
 msgid "Lock group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1132
+#: src/screens/Messages/ConversationSettings/prompts.tsx:67
 msgid "Lock group chat?"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:900
+#: src/screens/Messages/ConversationSettings/index.tsx:478
 msgid "Lock this group chat"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:902
+#: src/screens/Messages/ConversationSettings/index.tsx:480
 msgid "Locked"
 msgstr ""
 
@@ -6541,11 +6650,11 @@ msgstr "Meadhanan a th’ air uidheam eile"
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Meadhanan a chuireadh dragh air cuid a dhaoine no a bhiodh mì-iomchaidh."
 
-#: src/screens/Messages/ConversationSettings.tsx:260
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:28
 msgid "Members"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:1133
+#: src/screens/Messages/ConversationSettings/prompts.tsx:68
 msgid "Members can still read chat history but can’t send new messages."
 msgstr ""
 
@@ -6557,7 +6666,7 @@ msgstr "Brathan mu iomradh"
 msgid "mentioned users"
 msgstr "luchd-cleachdaidh air a bheil iomradh"
 
-#: src/lib/hooks/useNotificationHandler.ts:150
+#: src/lib/hooks/useNotificationHandler.ts:157
 #: src/screens/Settings/NotificationSettings/index.tsx:160
 #: src/screens/Settings/NotificationSettings/MentionNotificationSettings.tsx:41
 #: src/view/screens/Notifications.tsx:101
@@ -6569,12 +6678,12 @@ msgid "Menu"
 msgstr "An clàr-taice"
 
 #: src/screens/Messages/components/MessageComposer.tsx:208
-#: src/screens/Messages/components/MessageInput.tsx:171
+#: src/screens/Messages/components/MessageInput.tsx:172
 #: src/screens/Messages/components/MessageInput.web.tsx:195
 msgid "Message"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:684
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:197
 msgctxt "action"
 msgid "Message"
 msgstr ""
@@ -6584,7 +6693,7 @@ msgstr ""
 msgid "Message {0}"
 msgstr "Cuir teachdaireachd gu {0}"
 
-#: src/screens/Messages/ConversationSettings.tsx:681
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:194
 msgid "Message {displayName}"
 msgstr ""
 
@@ -6592,18 +6701,18 @@ msgstr ""
 msgid "Message deleted"
 msgstr "Chaidh an teachdaireachd a sguabadh às"
 
-#: src/components/dms/MessageContextMenu.tsx:85
+#: src/components/dms/MessageContextMenu.tsx:88
 msgctxt "toast"
 msgid "Message deleted"
 msgstr "Chaidh an teachdaireachd a sguabadh às"
 
-#: src/components/dms/MessageItem.tsx:547
+#: src/components/dms/MessageItem.tsx:551
 msgid "Message failed to send."
 msgstr ""
 
 #. placeholder {0}: sender?.handle ?? 'unknown'
 #. placeholder {1}: message.text
-#: src/components/dms/MessageContextMenu.tsx:133
+#: src/components/dms/MessageContextMenu.tsx:134
 msgid "Message from @{0}: {1}"
 msgstr "Teachdaireachd o @{0}: {1}"
 
@@ -6613,7 +6722,7 @@ msgid "Message from server: {0}"
 msgstr "Teachdaireachd on fhrithealaiche: {0}"
 
 #: src/screens/Messages/components/MessageComposer.tsx:207
-#: src/screens/Messages/components/MessageInput.tsx:169
+#: src/screens/Messages/components/MessageInput.tsx:170
 msgid "Message input field"
 msgstr "Raon ion-chur na teachdaireachd"
 
@@ -6626,7 +6735,7 @@ msgstr "Tha an teachdaireachd ro fhada"
 msgid "Message is too long ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgstr ""
 
-#: src/components/dms/MessageContextMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:133
 msgid "Message options"
 msgstr "Roghainnean na teachdaireachd"
 
@@ -6764,7 +6873,7 @@ msgstr "Filmichean"
 msgid "Music"
 msgstr "Ceòl"
 
-#: src/screens/Messages/ConversationSettings.tsx:878
+#: src/screens/Messages/ConversationSettings/index.tsx:448
 msgid "Mute"
 msgstr "Mùch"
 
@@ -6809,7 +6918,7 @@ msgstr "Mùch an liosta"
 msgid "Mute these accounts?"
 msgstr "A bheil thu airson na cunntasan seo a mhùchadh?"
 
-#: src/screens/Messages/ConversationSettings.tsx:876
+#: src/screens/Messages/ConversationSettings/index.tsx:446
 msgid "Mute this group chat"
 msgstr ""
 
@@ -6847,7 +6956,7 @@ msgstr "Mùch an snàithlean"
 msgid "Mute words & tags"
 msgstr "Mùch faclan ⁊ tagaichean"
 
-#: src/screens/Messages/ConversationSettings.tsx:878
+#: src/screens/Messages/ConversationSettings/index.tsx:448
 msgid "Muted"
 msgstr ""
 
@@ -6959,23 +7068,20 @@ msgid "New chat"
 msgstr "Cabadaich ùr"
 
 #. placeholder {0}: members[0].displayName
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:38
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:57
 msgid "New chat with {0}"
 msgstr ""
 
 #. placeholder {0}: members[0].displayName
 #. placeholder {1}: members[1].displayName
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:42
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:60
 msgid "New chat with {0} and {1}"
 msgstr ""
 
 #. placeholder {0}: members[0].displayName
 #. placeholder {1}: members[1].displayName
-#. placeholder {2}: members.length - 2
-#. placeholder {3}: members.length - 2
-#. placeholder {4}: members.length - 2
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:49
-msgid "New chat with {0}, {1}, and {2, plural, one {{3} more} other {{4} more}}."
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:67
+msgid "New chat with {0}, {1}, and {memberCount, plural, one {{memberCount} more} other {{memberCount} more}}."
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:223
@@ -6993,7 +7099,7 @@ msgstr "Gleus ùr"
 msgid "New follower notifications"
 msgstr "Brathan mu luchd-leantainn ùr"
 
-#: src/lib/hooks/useNotificationHandler.ts:164
+#: src/lib/hooks/useNotificationHandler.ts:171
 #: src/screens/Settings/NotificationSettings/index.tsx:138
 #: src/screens/Settings/NotificationSettings/NewFollowerNotificationSettings.tsx:41
 msgid "New followers"
@@ -7075,7 +7181,7 @@ msgstr "Naidheachdan"
 
 #: src/components/contacts/screens/ViewMatches.tsx:395
 #: src/components/contacts/screens/ViewMatches.tsx:410
-#: src/components/dms/AddMembersFlow.tsx:256
+#: src/components/dms/AddMembersFlow.tsx:265
 #: src/components/dms/InitiateChatFlow.tsx:442
 #: src/screens/Login/ForgotPasswordForm.tsx:149
 #: src/screens/Login/ForgotPasswordForm.tsx:156
@@ -7235,7 +7341,7 @@ msgid "No result"
 msgstr "Cha robh toradh ann"
 
 #: src/components/dialogs/SearchablePeopleList.tsx:249
-#: src/components/dms/AddMembersFlow.tsx:208
+#: src/components/dms/AddMembersFlow.tsx:217
 #: src/components/dms/InitiateChatFlow.tsx:338
 #: src/components/ProgressGuide/FollowDialog.tsx:221
 msgid "No results"
@@ -7533,12 +7639,12 @@ msgstr "Fosgail cruthadair nan avatar"
 msgid "Open camera"
 msgstr "Fosgail an camara"
 
-#: src/screens/Messages/ConversationSettings.tsx:634
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:138
 msgid "Open chat member options for {displayName}"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:410
-#: src/screens/Messages/components/ChatListItem.tsx:414
+#: src/screens/Messages/components/ChatListItem.tsx:413
+#: src/screens/Messages/components/ChatListItem.tsx:417
 msgid "Open conversation options"
 msgstr "Fosgail roghainnean nan còmhraidhean"
 
@@ -7573,7 +7679,7 @@ msgstr "Fosgail liosta shlàn nan emoji"
 msgid "Open Germ DM"
 msgstr "Fosgail Germ DM"
 
-#: src/components/dms/MessagesListHeader.tsx:177
+#: src/components/dms/MessagesListHeader.tsx:179
 msgid "Open group chat settings"
 msgstr ""
 
@@ -7588,7 +7694,7 @@ msgstr ""
 msgid "Open link to {niceUrl}"
 msgstr "Fosgail an ceangal ri {niceUrl}"
 
-#: src/components/dms/ActionsWrapper.tsx:37
+#: src/components/dms/ActionsWrapper.tsx:43
 msgid "Open message options"
 msgstr "Fosgail roghainnean nan teachdaireachdan"
 
@@ -7732,7 +7838,7 @@ msgstr "Fosglaidh seo uinneag sgrìobhadh nam post"
 msgid "Opens this draft in the composer"
 msgstr "Fosglaidh seo an dreachd san uinneag sgrìobhaidh"
 
-#: src/components/dms/MessageItem.tsx:223
+#: src/components/dms/MessageItem.tsx:220
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:606
 msgid "Opens this profile"
@@ -7878,6 +7984,14 @@ msgstr "Cuir a’ video na stad"
 msgid "People"
 msgstr "Daoine"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:140
+msgid "People {ownerName} follows can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:145
+msgid "People {ownerName} follows can request to join"
+msgstr ""
+
 #. placeholder {0}: route.params.name
 #: src/Navigation.tsx:247
 msgid "People followed by @{0}"
@@ -7892,6 +8006,14 @@ msgstr "Daoine a leanas ri @{0}"
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:193
 msgid "People I follow"
 msgstr "Daoine a tha mi gan leantainn"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:139
+msgid "People I follow can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:144
+msgid "People I follow can request to join"
+msgstr ""
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:510
 msgid "People you follow"
@@ -8258,6 +8380,11 @@ msgstr "Roghainnean eadar-ghabhail a’ phuist"
 msgid "Post language selection"
 msgstr "Taghadh cànain a’ phuist"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:336
+#: src/screens/Messages/components/InviteLinkDialog.tsx:348
+msgid "Post link"
+msgstr ""
+
 #: src/screens/PostThread/components/ThreadError.tsx:33
 #: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:25
 msgid "Post not found"
@@ -8500,7 +8627,7 @@ msgstr "Chaidh an luaidh air a’ phost a dhealachadh"
 msgid "Quote posts disabled"
 msgstr "Tha luaidhean air puist à comas"
 
-#: src/lib/hooks/useNotificationHandler.ts:157
+#: src/lib/hooks/useNotificationHandler.ts:164
 #: src/screens/Post/PostQuotes.tsx:31
 #: src/screens/Settings/NotificationSettings/index.tsx:171
 #: src/screens/Settings/NotificationSettings/QuoteNotificationSettings.tsx:41
@@ -8523,6 +8650,14 @@ msgstr "Seachad air a’ chrìoch. Feuch ris a-rithist an ceann greis."
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:700
 msgid "Re-attach quote"
 msgstr "Ceangail an luaidh ris as ùr"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:365
+msgid "Re-enable invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:373
+msgid "Re-enable link"
+msgstr ""
 
 #: src/components/dms/EmojiReactionPicker.tsx:88
 msgid "React with {emoji}"
@@ -8658,7 +8793,7 @@ msgstr ""
 msgid "Remove {displayName} from starter pack"
 msgstr "Thoir air falbh {displayName} on phacaid tòiseachaidh"
 
-#: src/screens/Messages/ConversationSettings.tsx:707
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:224
 msgid "Remove {displayName} from this group chat"
 msgstr ""
 
@@ -8712,7 +8847,7 @@ msgstr "Thoir an t-inbhir air falbh"
 msgid "Remove feed?"
 msgstr "A bheil thu airson an t-inbhir a thoirt air falbh?"
 
-#: src/screens/Messages/ConversationSettings.tsx:710
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 msgid "Remove from chat"
 msgstr ""
 
@@ -8876,7 +9011,7 @@ msgstr "Fhreagair iad thu"
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:274
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:286
-#: src/lib/hooks/useNotificationHandler.ts:143
+#: src/lib/hooks/useNotificationHandler.ts:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:221
 #: src/screens/Settings/NotificationSettings/index.tsx:149
 #: src/screens/Settings/NotificationSettings/ReplyNotificationSettings.tsx:41
@@ -8938,11 +9073,11 @@ msgstr "Chaidh faicsinneachd na freagairt ùrachadh"
 msgid "Reply was successfully hidden"
 msgstr "Chaidh an fhreagairt a chur am falach"
 
-#: src/components/dms/MessageContextMenu.tsx:176
+#: src/components/dms/MessageContextMenu.tsx:177
 #: src/components/dms/MessagesListBlockedFooter.tsx:86
 #: src/components/dms/MessagesListBlockedFooter.tsx:93
 #: src/features/liveNow/components/LiveStatusDialog.tsx:266
-#: src/screens/Messages/ConversationSettings.tsx:911
+#: src/screens/Messages/ConversationSettings/index.tsx:491
 msgid "Report"
 msgstr "Dèan aithris"
 
@@ -8974,7 +9109,7 @@ msgstr "Dèan aithris air an inbhir"
 msgid "Report list"
 msgstr "Dèan aithris air an liosta"
 
-#: src/components/dms/MessageContextMenu.tsx:174
+#: src/components/dms/MessageContextMenu.tsx:175
 msgid "Report message"
 msgstr "Dèan aithris air an teachdaireachd"
 
@@ -9001,7 +9136,7 @@ msgstr "Dèan aithris air a’ chòmhradh seo"
 msgid "Report this feed"
 msgstr "Dèan aithris air an inbhir seo"
 
-#: src/screens/Messages/ConversationSettings.tsx:910
+#: src/screens/Messages/ConversationSettings/index.tsx:490
 msgid "Report this group chat"
 msgstr ""
 
@@ -9069,7 +9204,7 @@ msgstr "Air ath-phostadh le {reposter}"
 msgid "Reposted by you"
 msgstr "Rinn thu ath-phostadh"
 
-#: src/lib/hooks/useNotificationHandler.ts:136
+#: src/lib/hooks/useNotificationHandler.ts:143
 #: src/screens/Settings/NotificationSettings/index.tsx:182
 #: src/screens/Settings/NotificationSettings/RepostNotificationSettings.tsx:41
 msgid "Reposts"
@@ -9079,7 +9214,7 @@ msgstr "Ath-phostadh"
 msgid "Reposts of this post"
 msgstr "Ath-phostaidh a’ phuist seo"
 
-#: src/lib/hooks/useNotificationHandler.ts:178
+#: src/lib/hooks/useNotificationHandler.ts:185
 #: src/screens/Settings/NotificationSettings/index.tsx:223
 #: src/screens/Settings/NotificationSettings/RepostsOnRepostsNotificationSettings.tsx:41
 msgid "Reposts of your reposts"
@@ -9236,7 +9371,7 @@ msgstr "Tillidh seo thu gun cheum roimhe"
 #: src/components/StarterPack/QrCodeDialog.tsx:207
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Messages/ConversationSettings.tsx:1088
+#: src/screens/Messages/ConversationSettings/prompts.tsx:47
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Profile/Header/EditProfileDialog.tsx:267
 #: src/screens/SavedFeeds.tsx:124
@@ -9723,7 +9858,7 @@ msgid "Send feedback"
 msgstr "Cuir do bheachdan"
 
 #: src/screens/Messages/components/MessageComposer.tsx:266
-#: src/screens/Messages/components/MessageInput.tsx:225
+#: src/screens/Messages/components/MessageInput.tsx:226
 #: src/screens/Messages/components/MessageInput.web.tsx:216
 msgid "Send message"
 msgstr "Cuir an teachdaireachd"
@@ -9863,6 +9998,8 @@ msgstr "Leth-fheiseil"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:195
 #: src/screens/Hashtag.tsx:130
+#: src/screens/Messages/components/InviteLinkDialog.tsx:352
+#: src/screens/Messages/components/InviteLinkDialog.tsx:359
 #: src/screens/StarterPack/StarterPackScreen.tsx:447
 #: src/screens/Topic.tsx:90
 msgid "Share"
@@ -10262,7 +10399,7 @@ msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:281
 msgid "Someone reacted {0}"
 msgstr "Chuir cuideigin {0} mar fhrith-fhreagairt"
 
@@ -10284,7 +10421,7 @@ msgid "Something wasn't quite right with the data you're trying to report. Pleas
 msgstr "Bha rudeigin ann nach robh buileach ceart leis an dàta a bha thu airson aithris a dhèanamh air. Cuir fios gu sgioba na taice."
 
 #: src/screens/Messages/Conversation.tsx:144
-#: src/screens/Messages/ConversationSettings.tsx:211
+#: src/screens/Messages/ConversationSettings/index.tsx:112
 msgid "Something went wrong"
 msgstr "Chaidh rudeigin ceàrr"
 
@@ -10528,7 +10665,7 @@ msgstr "Soirbheas!"
 msgid "Successfully verified"
 msgstr "Chaidh a dhearbhadh"
 
-#: src/components/dms/AddMembersFlow.tsx:200
+#: src/components/dms/AddMembersFlow.tsx:209
 #: src/components/dms/InitiateChatFlow.tsx:317
 msgid "Suggested"
 msgstr ""
@@ -10676,7 +10813,7 @@ msgstr ""
 msgid "Tap to remove your {0} reaction"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:557
+#: src/components/dms/MessageItem.tsx:561
 msgid "Tap to retry"
 msgstr ""
 
@@ -10689,7 +10826,7 @@ msgstr ""
 msgid "Tap to show all reactions"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:309
+#: src/components/dms/MessageItem.tsx:310
 msgid "Tap to view reactions"
 msgstr ""
 
@@ -10914,6 +11051,10 @@ msgstr "An t-ùrlar"
 msgid "There is a limit to how often you can change your birthdate. You may need to wait a day or two before updating it again."
 msgstr "Chan urrainn dhut latha do bhreith atharrachadh gun sgur. Dh’fhaodte gum feum thu fuireach fad latha no dhà mus urrainn dhut ùrachadh a-rithist."
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:400
+msgid "There is no invite link for this group chat."
+msgstr ""
+
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:86
 msgid "There is no time limit for account deactivation, come back any time."
 msgstr "Chan eil crìoch ùine ann airson cunntas a chur à gnìomh, till an-seo uair sam bith."
@@ -10983,8 +11124,8 @@ msgstr "Cha b’ urrainn dhuinn na h-inbhirean agad ùrachadh, thoir sùil air a
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:431
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:454
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:474
-#: src/screens/Messages/ConversationSettings.tsx:593
-#: src/screens/Messages/ConversationSettings.tsx:606
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:108
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:121
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:95
@@ -11143,10 +11284,6 @@ msgstr "Chan eil an gleus seo ri làimh fhad ’s a bhios tu a’ cleachdadh fac
 msgid "This feature is not available while using an App Password. Please sign in with your main password."
 msgstr "Chan eil an gleus seo ri làimh fhad ’s a bhios tu a’ cleachdadh facal-faire aplacaid. Clàraich a-steach leis a’ phrìomh-fhacal-faire agad."
 
-#: src/screens/Messages/Conversation.tsx:352
-msgid "This feature isn't available to you yet. Please check back later."
-msgstr ""
-
 #: src/view/com/posts/PostFeedErrorMessage.tsx:128
 msgid "This feed is currently receiving high traffic and is temporarily unavailable. Please try again later."
 msgstr "Tha cus trafaig a’ dol san inbhir seo an-dràsta fhèin agus chan eil e ri làimh an-dràsta fhèin. Feuch ris a-rithist an ceann greis."
@@ -11256,6 +11393,10 @@ msgstr "Chan fhaic ach luchd-cleachdaidh clàraichte a-staigh a’ phròifil seo
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:844
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr "Thèid an fhreagairt seo a chur ann an earrann fhalaichte aig bonn an t-snàithlein agad is mùchaidh e brathan mu fhreagairtean na dhèidh – an dà chuid dhut-sa is do dhaoine eile."
+
+#: src/screens/Messages/ConversationSettings/index.tsx:134
+msgid "This screen is only available for group conversations."
+msgstr ""
 
 #: src/screens/Signup/StepInfo/Policies.tsx:32
 msgid "This service has not provided terms of service or a privacy policy."
@@ -11433,8 +11574,8 @@ msgstr "Brod nam freagairtean an toiseach"
 msgid "Topic"
 msgstr "Cuspair"
 
-#: src/components/dms/MessageContextMenu.tsx:147
-#: src/components/dms/MessageContextMenu.tsx:149
+#: src/components/dms/MessageContextMenu.tsx:148
+#: src/components/dms/MessageContextMenu.tsx:150
 #: src/components/Post/Translated/index.tsx:150
 #: src/components/Post/Translated/index.tsx:157
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:553
@@ -11511,7 +11652,7 @@ msgstr "Dearbhadh dà-cheumnach (2FA)"
 msgid "Type a tag and press , or enter"
 msgstr ""
 
-#: src/screens/Messages/components/MessageInput.tsx:170
+#: src/screens/Messages/components/MessageInput.tsx:171
 msgid "Type your message here"
 msgstr "Sgrìobh do theachdaireachd an-seo"
 
@@ -11583,7 +11724,7 @@ msgctxt "action"
 msgid "Unblock"
 msgstr "Dì-bhac"
 
-#: src/screens/Messages/ConversationSettings.tsx:695
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:208
 msgid "Unblock {displayName}"
 msgstr ""
 
@@ -11658,11 +11799,11 @@ msgstr "Gu mì-fhortanach, a rèir latha do bhreith a shàbhail thu sa chunntas 
 msgid "Unfortunately, your declared age indicates that you are not old enough to access Bluesky in your region."
 msgstr "Gu mì-fhortanach, a rèir na h-aoise a thug thu dhuinn, chan eil thu aosta gu leòr ’s chan fhaigh thu cothrom air Bluesky far a bheil thusa."
 
-#: src/screens/Messages/ConversationSettings.tsx:720
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:238
 msgid "Uninvite"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:717
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:234
 msgid "Uninvite {displayName} from this group chat"
 msgstr ""
 
@@ -11688,7 +11829,7 @@ msgstr "Cha toil tuilleadh"
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr "Cha toil tuilleadh ({0, plural, one {’s toil le # seo} two {’s toil le # seo} few {’s toil le # seo} other {’s toil le # seo}})"
 
-#: src/screens/Messages/ConversationSettings.tsx:900
+#: src/screens/Messages/ConversationSettings/index.tsx:477
 msgid "Unlock this group chat"
 msgstr ""
 
@@ -11725,7 +11866,7 @@ msgstr "Neo-mhùch an còmhradh"
 msgid "Unmute list"
 msgstr "Neo-mhùch an liosta"
 
-#: src/screens/Messages/ConversationSettings.tsx:875
+#: src/screens/Messages/ConversationSettings/index.tsx:445
 msgid "Unmute this group chat"
 msgstr ""
 
@@ -11824,12 +11965,16 @@ msgstr "Ùraich <0>{displayName}</0> sna liostaichean"
 msgid "Update email"
 msgstr "Ùraich am post-d"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:246
+msgid "Update invite link"
+msgstr ""
+
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:544
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:565
 msgid "Update to {domain}"
 msgstr "Ùraich air {domain}"
 
-#: src/screens/Messages/Conversation.tsx:350
+#: src/screens/Messages/Conversation.tsx:355
 msgid "Update your app to the latest version to join in!"
 msgstr ""
 
@@ -12218,7 +12363,7 @@ msgid "View {0}’s profile"
 msgstr ""
 
 #: src/components/dms/MessagesListHeader.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:671
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:184
 msgid "View {displayName}’s profile"
 msgstr ""
 
@@ -12244,7 +12389,7 @@ msgstr "Seall am mion-fhiosrachadh"
 msgid "View full thread"
 msgstr "Seall an snàithlean slàn"
 
-#: src/screens/Messages/ConversationSettings.tsx:273
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:44
 msgid "View incoming group chat requests"
 msgstr ""
 
@@ -12283,6 +12428,10 @@ msgstr ""
 #: src/view/com/profile/ProfileSubpageHeader.tsx:108
 msgid "View the avatar"
 msgstr "Seall an t-avatar"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:465
+msgid "View the invite link for this group chat"
+msgstr ""
 
 #. placeholder {0}: labeler.creator.handle
 #: src/components/LabelingServiceCard/index.tsx:164
@@ -12399,7 +12548,7 @@ msgstr "Cha d’fhuair sinn lorg air toradh sam bith a tha mun chuspair sin."
 msgid "We couldn't load this conversation"
 msgstr "Cha b’ urrainn dhuinn an còmhradh seo a luchdadh"
 
-#: src/screens/Messages/ConversationSettings.tsx:212
+#: src/screens/Messages/ConversationSettings/index.tsx:113
 msgid "We couldn’t load this conversation’s settings"
 msgstr ""
 
@@ -12509,7 +12658,7 @@ msgstr "Chan urrainn dhuinn tòiseachadh air d’ aois a dhearbhadh sa chunntas 
 msgid "We're having network issues, try again"
 msgstr "Tha duilgheadasan aig an lìonra againn, feuch ris a-rithist"
 
-#: src/components/dms/AddMembersFlow.tsx:152
+#: src/components/dms/AddMembersFlow.tsx:157
 #: src/components/dms/InitiateChatFlow.tsx:254
 msgid "We’re having network issues, try again"
 msgstr ""
@@ -12613,6 +12762,10 @@ msgstr "Ma bhriogas tu air cromag, chì thu dè na buidhnean a rinn dearbhadh ai
 msgid "Who can interact with this post?"
 msgstr "Cò aig a bheil cead eadar-ghabhail a dhèanamh leis a’ phost seo?"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:199
+msgid "Who can join this group chat and how"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:427
 #: src/components/WhoCanReply.tsx:116
 msgid "Who can reply"
@@ -12703,6 +12856,10 @@ msgstr "Sgrìobhadairean"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:368
 msgid "Wrong DID returned from server. Received: {0}"
 msgstr "Chaidh an DID ceàrr a thilleadh leis an fhrithealaiche. Na fhuaras: {0}"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:133
+msgid "Wrong kind of conversation"
+msgstr ""
 
 #: src/features/liveNow/components/EditLiveDialog.tsx:154
 #: src/features/liveNow/components/GoLiveDialog.tsx:157
@@ -12817,7 +12974,7 @@ msgstr "’S urrainn dhut an dàta cabadaich agad a luchdadh a-nuas mar fhaidhle
 msgid "You can always opt out and delete your data"
 msgstr "’S urrainn dhut an ro-aonta a thoirt air falbh uair sam bith agus an dàta agad a sguabadh às"
 
-#: src/lib/hooks/useNotificationHandler.ts:104
+#: src/lib/hooks/useNotificationHandler.ts:111
 msgid "You can choose whether chat notifications have sound in the chat settings within the app"
 msgstr "Tha e an urra riut fhèin an dèan brathan cabadaich fuaim ann an roghainnean na cabaich am broinn na h-aplacaid"
 
@@ -13061,7 +13218,7 @@ msgid "You probably want to restart the app now."
 msgstr "’S mathaid gum b’ fheàirrde dhut an aplacaid ath-thòiseachadh an-dràsta."
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:277
+#: src/components/dms/MessageItem.tsx:274
 msgid "You reacted {0}"
 msgstr "Chuir thu {0} mar fhrith-fhreagairt"
 
@@ -13097,7 +13254,7 @@ msgstr "Gheibh thu brathan mun t-snàithlean seo a-nis"
 msgid "You will receive an email with a \"reset code.\" Enter that code here, then enter your new password."
 msgstr "Gheibh thu post-d anns am bi còd airson ath-shuidheachadh. Cuir a-steach an còd an-seo agus an uair sin am facal-faire ùr agad."
 
-#: src/screens/Messages/ConversationSettings.tsx:1156
+#: src/screens/Messages/ConversationSettings/prompts.tsx:91
 msgid "You won’t be able to rejoin unless you’re invited."
 msgstr ""
 
@@ -13325,6 +13482,10 @@ msgstr "Chaidh an t-ionad agad ùrachadh."
 #: src/components/dialogs/MutedWords.tsx:378
 msgid "Your muted words"
 msgstr "Na faclan a mhùch thu"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:165
+msgid "Your name, avatar, and the name of the group chat will be visible to everyone."
+msgstr ""
 
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:72
 msgid "Your password has been changed successfully! Please use your new password when you sign in to Bluesky from now on."

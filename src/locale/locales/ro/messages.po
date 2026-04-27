@@ -22,10 +22,6 @@ msgstr ""
 msgid " to create your account, then sign in here."
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings.tsx:966
-msgid "…"
-msgstr "…"
-
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:330
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -96,7 +92,7 @@ msgstr "{0, plural, one {o lună} few {# luni} other {# de luni}}"
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:289
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr "{0, plural, one {o persoană a} few {# persoane au} other {# de persoane au}} reacționat – {1}"
 
@@ -244,7 +240,7 @@ msgstr "{0} din 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:284
+#: src/components/dms/MessageItem.tsx:279
 msgid "{0} reacted {1}"
 msgstr "{0} a reacționat {1}"
 
@@ -269,7 +265,7 @@ msgid "{0}'s avatar"
 msgstr "Avatarul folosit de {0}"
 
 #. placeholder {0}: createSanitizedDisplayName(profile)
-#: src/components/dms/MessageItem.tsx:222
+#: src/components/dms/MessageItem.tsx:219
 msgid "{0}’s avatar"
 msgstr "Avatarul lui {0}"
 
@@ -298,7 +294,7 @@ msgid "{0}s"
 msgstr "{0}s"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
-#. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
+#. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:487
 msgid "{1}"
 msgstr ""
@@ -524,7 +520,7 @@ msgid "{MAX_PRONOUNS, plural, other {Max length exceeded. The maximum number of 
 msgstr ""
 
 #. The number of group chat members out of the total number of permitted users.
-#: src/screens/Messages/ConversationSettings.tsx:264
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:34
 msgid "{memberCount}/{MEMBER_LIMIT}"
 msgstr "{memberCount}/{MEMBER_LIMIT}"
 
@@ -592,12 +588,12 @@ msgid "{rank}."
 msgstr "{rank}."
 
 #. The number of requests to join a group chat.
-#: src/screens/Messages/ConversationSettings.tsx:282
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:54
 msgid "{requestCount, plural, one {# request} other {# requests}}"
 msgstr "{requestCount, plural, one {o cerere} few {# cereri} other {# de cereri}}"
 
 #. Displayed when there are more than 50 requests to join a group chat
-#: src/screens/Messages/ConversationSettings.tsx:277
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:49
 msgid "{requestCount}+ requests"
 msgstr ""
 
@@ -821,7 +817,7 @@ msgstr "Cont"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:426
 #: src/screens/Messages/components/RequestButtons.tsx:101
-#: src/screens/Messages/ConversationSettings.tsx:601
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:116
 #: src/view/com/profile/ProfileMenu.tsx:206
 msgctxt "toast"
 msgid "Account blocked"
@@ -867,7 +863,7 @@ msgstr "Furnizor cont"
 msgid "Account removed from quick access"
 msgstr "Cont eliminat din acces rapid"
 
-#: src/screens/Messages/ConversationSettings.tsx:588
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:103
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:90
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:315
 #: src/view/com/profile/ProfileMenu.tsx:194
@@ -890,7 +886,7 @@ msgstr "Cont dezamuțit"
 msgid "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by Bluesky."
 msgstr "Conturile cu bifa albastră în formă de feston <0><1/></0> pot verifica alte persoane. Acești verificatori de încredere sunt selectați de Bluesky."
 
-#: src/lib/hooks/useNotificationHandler.ts:185
+#: src/lib/hooks/useNotificationHandler.ts:192
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:105
 #: src/screens/Settings/NotificationSettings/index.tsx:193
 msgid "Activity from others"
@@ -904,7 +900,7 @@ msgstr "Notificări de activitate"
 #: src/components/dialogs/MutedWords.tsx:337
 #: src/components/dialogs/StarterPackDialog.tsx:376
 #: src/components/dialogs/StarterPackDialog.tsx:388
-#: src/components/dms/AddMembersFlow.tsx:341
+#: src/components/dms/AddMembersFlow.tsx:350
 #: src/view/com/modals/UserAddRemoveLists.tsx:236
 #: src/view/com/modals/UserAddRemoveLists.tsx:240
 msgid "Add"
@@ -985,7 +981,7 @@ msgstr "Adăugați o etichetă de automatizare contului"
 msgid "Add emoji reaction"
 msgstr "Adăugați reacție emoji"
 
-#: src/components/dms/AddMembersFlow.tsx:422
+#: src/components/dms/AddMembersFlow.tsx:431
 msgid "Add group chat members"
 msgstr "Adăugați membrii la conversația de grup"
 
@@ -998,8 +994,9 @@ msgstr "Adăugare imagine"
 msgid "Add media to post"
 msgstr "Adăugare conținut media la postare"
 
-#: src/screens/Messages/ConversationSettings.tsx:356
-#: src/screens/Messages/ConversationSettings.tsx:373
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:47
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:81
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:100
 msgid "Add members"
 msgstr "Adăugare membri"
 
@@ -1021,8 +1018,8 @@ msgstr "Adăugați un cuvânt amuțit cu setările alese"
 msgid "Add muted words and tags"
 msgstr "Adăugați cuvinte și etichete pentru amuțire"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:101
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:126
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:119
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:154
 #: src/screens/ProfileList/AboutSection.tsx:72
 #: src/screens/ProfileList/AboutSection.tsx:90
 msgid "Add people"
@@ -1087,6 +1084,11 @@ msgstr "Adăugare utilizator la listă"
 msgid "Add your birthdate"
 msgstr "Adăugați data nașterii"
 
+#. placeholder {0}: createSanitizedDisplayName( profile.kind.addedBy, true, moderateProfile(profile.kind.addedBy, moderationOpts).ui('displayName'), )
+#: src/screens/Messages/ConversationSettings/Member.tsx:70
+msgid "Added by {0}"
+msgstr ""
+
 #: src/components/dialogs/lists/ListAddRemoveUsersDialog.tsx:113
 #: src/view/com/modals/UserAddRemoveLists.tsx:164
 msgid "Added to list"
@@ -1109,8 +1111,8 @@ msgstr "Detalii suplimentare (limită de 1000 de caractere)"
 msgid "Additional details (limit 300 characters)"
 msgstr "Detalii suplimentare (limită de 300 de caractere)"
 
-#: src/screens/Messages/ConversationSettings.tsx:419
-#: src/screens/Messages/ConversationSettings.tsx:639
+#: src/screens/Messages/ConversationSettings/Member.tsx:55
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:151
 msgid "Admin"
 msgstr "Administrator"
 
@@ -1389,9 +1391,9 @@ msgstr "O ilustrație a mai multor postări Bluesky alături de pictograme de re
 msgid "An illustration showing that Bluesky selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
 msgstr "O ilustrație care arată că Bluesky selectează verificatori de încredere, iar verificatorii de încredere verifică la rândul lor conturile de utilizator individuale."
 
-#: src/screens/Messages/ConversationSettings.tsx:1112
-msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time. Your name, avatar, and the name of the group chat will be visible to everyone."
-msgstr "Un link de invitație permite utilizatorilor să se alăture acestei conversații de grup fără a fi adăugați direct. Dvs. controlați cine poate folosi linkul și dacă au nevoie de aprobare. Puteți dezactiva linkul oricând. Numele dvs., avatarul și numele conversației de grup vor fi vizibile pentru toată lumea."
+#: src/screens/Messages/components/InviteLinkDialog.tsx:158
+msgid "An invite link lets people join this group chat without being added directly. You control who can use the link and whether they need your approval. You can disable the link at any time."
+msgstr ""
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:239
 msgid "An issue not included in these options"
@@ -1466,6 +1468,16 @@ msgstr ""
 #: src/view/com/composer/threadgate/ThreadgateBtn.tsx:137
 msgid "Anyone can interact"
 msgstr "Oricine poate interacționa"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:129
+#: src/screens/Messages/components/InviteLinkDialog.tsx:130
+msgid "Anyone can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:134
+#: src/screens/Messages/components/InviteLinkDialog.tsx:135
+msgid "Anyone can request to join"
+msgstr ""
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:112
 #: src/screens/Settings/ActivityPrivacySettings.tsx:117
@@ -1598,7 +1610,7 @@ msgstr "Sunteți foarte, foarte sigur?"
 msgid "Are you sure you want to delete the app password \"{0}\"?"
 msgstr "Sigur doriți să ștergeți parola de aplicație „{0}”?"
 
-#: src/components/dms/MessageContextMenu.tsx:207
+#: src/components/dms/MessageContextMenu.tsx:208
 msgid "Are you sure you want to delete this message? The message will be deleted for you, but not for the other participants."
 msgstr "Sunteți sigur că doriți să ștergeți acest mesaj? Mesajul va fi șters pentru dvs., dar nu și pentru ceilalți participanți."
 
@@ -1611,7 +1623,7 @@ msgstr "Sunteți sigur că doriți să ștergeți acest pachet de pornire?"
 msgid "Are you sure you want to discard your changes?"
 msgstr "Sunteți sigur că doriți să renunțați la modificările dvs.?"
 
-#: src/screens/Messages/ConversationSettings.tsx:1155
+#: src/screens/Messages/ConversationSettings/prompts.tsx:90
 msgid "Are you sure you want to leave {groupName}?"
 msgstr "Sunteți sigur că doriți să părăsiți {groupName}?"
 
@@ -1702,9 +1714,9 @@ msgstr ""
 msgid "Available"
 msgstr "Disponibil"
 
-#: src/components/dms/AddMembersFlow.tsx:290
-#: src/components/dms/AddMembersFlow.tsx:445
-#: src/components/dms/AddMembersFlow.tsx:452
+#: src/components/dms/AddMembersFlow.tsx:299
+#: src/components/dms/AddMembersFlow.tsx:454
+#: src/components/dms/AddMembersFlow.tsx:461
 #: src/components/dms/InitiateChatFlow.tsx:489
 #: src/components/dms/InitiateChatFlow.tsx:674
 #: src/components/dms/InitiateChatFlow.tsx:681
@@ -1772,7 +1784,7 @@ msgstr "Înainte de a primi notificări despre postările noi de la {name}, treb
 #: src/components/dms/MessageProfileButton.tsx:60
 #: src/screens/Messages/ChatList.tsx:380
 #: src/screens/Messages/Conversation.tsx:235
-#: src/screens/Messages/ConversationSettings.tsx:578
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:93
 msgid "Before you can message another user, you must first verify your email."
 msgstr "Înainte de a putea trimite mesaje unui alt utilizator, trebuie mai întâi să vă verificați adresa de e-mail."
 
@@ -1801,14 +1813,14 @@ msgid "Birthday"
 msgstr "Zi de naștere"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:853
-#: src/screens/Messages/ConversationSettings.tsx:700
-#: src/screens/Messages/ConversationSettings.tsx:1180
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:217
+#: src/screens/Messages/ConversationSettings/prompts.tsx:115
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:212
 #: src/view/com/profile/ProfileMenu.tsx:605
 msgid "Block"
 msgstr "Blocare"
 
-#: src/screens/Messages/ConversationSettings.tsx:696
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:209
 msgid "Block {displayName}"
 msgstr "Blocați pe {displayName}"
 
@@ -1823,7 +1835,7 @@ msgstr "Blocați pe {displayName}"
 msgid "Block account"
 msgstr "Blocare cont"
 
-#: src/screens/Messages/ConversationSettings.tsx:1177
+#: src/screens/Messages/ConversationSettings/prompts.tsx:112
 msgid "Block account?"
 msgstr "Blocați contul?"
 
@@ -1845,7 +1857,7 @@ msgstr "Blocare și ștergere"
 msgid "Block list"
 msgstr "Listă de blocări"
 
-#: src/screens/Messages/components/ChatStatusInfo.tsx:46
+#: src/screens/Messages/components/ChatStatusInfo.tsx:44
 msgid "Block or report"
 msgstr "Blocare sau raportare"
 
@@ -1880,7 +1892,7 @@ msgid "Blocked Accounts"
 msgstr "Conturi blocate"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:851
-#: src/screens/Messages/ConversationSettings.tsx:1178
+#: src/screens/Messages/ConversationSettings/prompts.tsx:113
 #: src/view/com/profile/ProfileMenu.tsx:600
 msgid "Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
 msgstr "Conturile blocate nu pot răspunde în firele dvs., să vă menționeze, sau să interacționeze într-un fel cu dvs."
@@ -2126,17 +2138,16 @@ msgstr "Cameră"
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:299
 #: src/components/Menu/index.tsx:355
 #: src/components/PostControls/RepostButton.tsx:210
-#: src/components/Prompt.tsx:136
-#: src/components/Prompt.tsx:138
+#: src/components/Prompt.tsx:153
+#: src/components/Prompt.tsx:155
 #: src/features/liveEvents/components/LiveEventFeedOptionsMenu.tsx:152
 #: src/features/liveEvents/components/LiveEventFeedOptionsMenu.tsx:157
 #: src/features/liveNow/components/GoLiveDialog.tsx:269
 #: src/features/liveNow/components/GoLiveDialog.tsx:275
 #: src/lib/media/picker.tsx:38
 #: src/screens/Deactivated.tsx:150
-#: src/screens/Messages/ConversationSettings.tsx:1114
-#: src/screens/Messages/ConversationSettings.tsx:1135
-#: src/screens/Messages/ConversationSettings.tsx:1159
+#: src/screens/Messages/ConversationSettings/prompts.tsx:70
+#: src/screens/Messages/ConversationSettings/prompts.tsx:94
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
 #: src/screens/Search/Shell.tsx:396
@@ -2264,7 +2275,7 @@ msgstr "Modificări salvate"
 msgid "Changes to the starter pack will not be reflected in the list after creation. The list will be an independent copy."
 msgstr "Modificările la pachetul de pornire nu se vor reflecta în listă după creare. Lista va fi o copie independentă."
 
-#: src/lib/hooks/useNotificationHandler.ts:102
+#: src/lib/hooks/useNotificationHandler.ts:109
 #: src/Navigation.tsx:606
 #: src/view/shell/bottom-bar/BottomBar.tsx:224
 #: src/view/shell/desktop/LeftNav.tsx:611
@@ -2286,11 +2297,11 @@ msgstr ""
 msgid "Chat locked permanently"
 msgstr ""
 
-#: src/lib/hooks/useNotificationHandler.ts:117
+#: src/lib/hooks/useNotificationHandler.ts:124
 msgid "Chat messages - silent"
 msgstr "Conversații - silențios"
 
-#: src/lib/hooks/useNotificationHandler.ts:108
+#: src/lib/hooks/useNotificationHandler.ts:115
 msgid "Chat messages - sound"
 msgstr "Conversații - sunet"
 
@@ -2397,6 +2408,10 @@ msgstr "Selectați limbile postării"
 msgid "Choose this color as your avatar"
 msgstr "Alegeți această culoare ca avatar"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:194
+msgid "Choose who can join this group chat and how."
+msgstr ""
+
 #: src/components/contacts/components/InviteInfo.tsx:57
 msgid "Choose who to invite"
 msgstr "Alegeți pe cine să invitați"
@@ -2442,13 +2457,17 @@ msgstr "Clic pentru informații"
 msgid "click here"
 msgstr "faceți clic aici"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:97
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:115
 msgid "Click here to add people to this group chat"
 msgstr "Faceți clic aici pentru a adăuga persoane la această conversație de grup"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:129
 msgid "Click here to contact our support team"
 msgstr "Faceți clic aici pentru a contacta echipa noastră de asistență"
+
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:129
+msgid "Click here to create or manage an invite link for this group chat"
+msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:263
 msgid "Click here to delete your account"
@@ -2476,20 +2495,20 @@ msgstr "Faceți clic aici pentru a vă actualiza data nașterii"
 msgid "Click here to update your email"
 msgstr "Faceți clic aici pentru a vă actualiza e-mailul"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:109
-msgid "Click here to view or create an invite link for this group chat"
-msgstr "Faceți clic aici pentru a vizualiza sau a crea un link de invitație pentru această conversație de grup"
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:130
+msgid "Click here to view the invite link for this group chat"
+msgstr ""
 
 #. placeholder {0}: isCashtag ? tag : `#${tag}`
 #: src/components/RichTextTag.tsx:56
 msgid "Click to open tag menu for {0}"
 msgstr "Faceți clic pentru a deschide meniul de etichete pentru {0}"
 
-#: src/components/dms/MessageItem.tsx:553
+#: src/components/dms/MessageItem.tsx:557
 msgid "Click to retry failed message"
 msgstr "Faceți clic pentru a reîncerca mesajul eșuat"
 
-#: src/components/dms/ActionsWrapper.web.tsx:142
+#: src/components/dms/ActionsWrapper.web.tsx:145
 msgid "Click to view the date and time"
 msgstr "Faceți clic aici pentru a vedea data și ora"
 
@@ -2518,7 +2537,7 @@ msgstr "Clip 🐴 clop 🐴"
 #: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:199
 #: src/components/dialogs/SearchablePeopleList.tsx:339
 #: src/components/dialogs/StarterPackDialog.tsx:187
-#: src/components/dms/AddMembersFlow.tsx:315
+#: src/components/dms/AddMembersFlow.tsx:324
 #: src/components/dms/AfterReportDialog.tsx:93
 #: src/components/dms/AfterReportDialog.tsx:98
 #: src/components/dms/AfterReportDialog.tsx:212
@@ -2537,6 +2556,8 @@ msgstr "Clip 🐴 clop 🐴"
 #: src/components/WhoCanReply.tsx:243
 #: src/features/liveNow/components/EditLiveDialog.tsx:217
 #: src/features/liveNow/components/EditLiveDialog.tsx:223
+#: src/screens/Messages/components/InviteLinkDialog.tsx:405
+#: src/screens/Messages/components/InviteLinkDialog.tsx:410
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:288
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:293
 #: src/view/com/feeds/MissingFeed.tsx:211
@@ -2685,8 +2706,8 @@ msgstr "Configurați banner-ul pentru evenimente în direct"
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Configurat în <0>setările de moderare</0>."
 
-#: src/components/Prompt.tsx:195
-#: src/components/Prompt.tsx:198
+#: src/components/Prompt.tsx:212
+#: src/components/Prompt.tsx:215
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:186
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:189
 msgid "Confirm"
@@ -2825,7 +2846,7 @@ msgstr "Continuați firul"
 msgid "Continue thread..."
 msgstr "Continuați firul..."
 
-#: src/components/dms/AddMembersFlow.tsx:255
+#: src/components/dms/AddMembersFlow.tsx:264
 #: src/components/dms/InitiateChatFlow.tsx:441
 msgid "Continue to group name"
 msgstr "Continuați la numele grupului"
@@ -2860,7 +2881,7 @@ msgstr "Conversație ștearsă"
 msgid "Copied build version to clipboard"
 msgstr "Versiunea de compilare a fost copiată în clipboard"
 
-#: src/components/dms/MessageContextMenu.tsx:64
+#: src/components/dms/MessageContextMenu.tsx:67
 #: src/components/PostControls/DiscoverDebug.tsx:36
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:272
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:89
@@ -2870,6 +2891,7 @@ msgid "Copied to clipboard"
 msgstr "Copiat în clipboard"
 
 #: src/components/dialogs/Embed.tsx:197
+#: src/screens/Messages/components/CopyTextButton.tsx:71
 #: src/screens/Settings/components/CopyButton.tsx:66
 msgid "Copied!"
 msgstr "Copiat!"
@@ -2941,8 +2963,8 @@ msgstr "Copiere link profil"
 msgid "Copy link to starter pack"
 msgstr "Copiere link pachet de pornire"
 
-#: src/components/dms/MessageContextMenu.tsx:154
-#: src/components/dms/MessageContextMenu.tsx:157
+#: src/components/dms/MessageContextMenu.tsx:155
+#: src/components/dms/MessageContextMenu.tsx:158
 msgid "Copy message text"
 msgstr "Copiere mesaj text"
 
@@ -3106,10 +3128,6 @@ msgstr "Creați un cont fără a utiliza acest pachet de pornire"
 msgid "Create an avatar instead"
 msgstr "Creați un avatar în schimb"
 
-#: src/screens/Messages/ConversationSettings.tsx:891
-msgid "Create an invite link for this group chat"
-msgstr "Creați un link de invitație pentru această conversație de grup"
-
 #: src/components/StarterPack/ProfileStarterPacks.tsx:214
 msgid "Create another"
 msgstr "Creați altul"
@@ -3141,6 +3159,10 @@ msgstr "Creare listă de moderare"
 msgid "Create new account"
 msgstr "Creare cont nou"
 
+#: src/screens/Messages/ConversationSettings/index.tsx:464
+msgid "Create or modify an invite link for this group chat"
+msgstr ""
+
 #. Accessibility label for button to create a moderation report for the selected option
 #. placeholder {0}: option.title
 #: src/components/moderation/ReportDialog/index.tsx:713
@@ -3157,10 +3179,18 @@ msgstr "Creare pachet de pornire"
 msgid "Create user list"
 msgstr "Creare listă de utilizatori"
 
+#. placeholder {0}: dateFormatter.format(createdAt)
 #. placeholder {0}: i18n.date(appPassword.createdAt, { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', })
+#: src/screens/Messages/ConversationSettings/index.tsx:429
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "Creat {0}"
+
+#. placeholder {0}: timeFormatter.format(createdAt)
+#. placeholder {1}: dateFormatter.format(createdAt)
+#: src/screens/Messages/components/InviteLinkDialog.tsx:289
+msgid "Created {0} {1}"
+msgstr ""
 
 #: src/screens/List/ListHiddenScreen.tsx:131
 msgid "Creator has been blocked"
@@ -3242,9 +3272,9 @@ msgstr "Implicit"
 msgid "Default icons"
 msgstr "Pictograme implicite"
 
-#: src/components/dms/MessageContextMenu.tsx:208
+#: src/components/dms/MessageContextMenu.tsx:209
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:803
-#: src/screens/Messages/components/ChatStatusInfo.tsx:55
+#: src/screens/Messages/components/ChatStatusInfo.tsx:53
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:275
 #: src/screens/Settings/AppPasswords.tsx:213
 #: src/screens/StarterPack/StarterPackScreen.tsx:617
@@ -3295,7 +3325,7 @@ msgstr "Ștergere conversație"
 msgid "Delete Conversation"
 msgstr "Ștergere conversație"
 
-#: src/components/dms/MessageContextMenu.tsx:168
+#: src/components/dms/MessageContextMenu.tsx:169
 msgid "Delete for me"
 msgstr "Ștergeți pentru mine"
 
@@ -3304,11 +3334,11 @@ msgstr "Ștergeți pentru mine"
 msgid "Delete list"
 msgstr "Ștergere listă"
 
-#: src/components/dms/MessageContextMenu.tsx:206
+#: src/components/dms/MessageContextMenu.tsx:207
 msgid "Delete message"
 msgstr "Ștergere mesaj"
 
-#: src/components/dms/MessageContextMenu.tsx:166
+#: src/components/dms/MessageContextMenu.tsx:167
 msgid "Delete message for me"
 msgstr "Ștergere mesaj pentru mine"
 
@@ -3345,8 +3375,7 @@ msgstr "Șters"
 
 #: src/components/dms/MessagesListHeader.tsx:105
 #: src/screens/Messages/components/ChatListItem.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:409
-#: src/screens/Messages/ConversationSettings.tsx:625
+#: src/screens/Messages/ConversationSettings/Member.tsx:48
 msgid "Deleted Account"
 msgstr "Cont șters"
 
@@ -3407,6 +3436,11 @@ msgstr "Dialog: ajustați cine poate interacționa cu această postare"
 #: src/screens/Settings/AppearanceSettings.tsx:133
 msgid "Dim"
 msgstr "Luminozitate redusă"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:323
+#: src/screens/Messages/components/InviteLinkDialog.tsx:331
+msgid "Disable"
+msgstr ""
 
 #: src/screens/Settings/MiscellaneousSettings.tsx:190
 #: src/screens/Settings/MiscellaneousSettings.tsx:196
@@ -3645,7 +3679,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Finalizare"
 
-#: src/components/dms/MessageItem.tsx:448
+#: src/components/dms/MessageItem.tsx:452
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Atingeți de două ori sau apăsați lung mesajul pentru a adăuga o reacție"
 
@@ -3747,6 +3781,7 @@ msgstr "de ex. Utilizatori care răspund în mod repetat cu reclame."
 msgid "Eating disorders"
 msgstr "Tulburări de alimentație"
 
+#: src/screens/Messages/components/EditTextButton.tsx:51
 #: src/screens/Settings/AccountSettings.tsx:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:255
 #: src/screens/StarterPack/StarterPackScreen.tsx:606
@@ -3770,8 +3805,8 @@ msgstr "Editare avatar"
 msgid "Edit Feeds"
 msgstr "Editare fluxuri"
 
-#: src/screens/Messages/ConversationSettings.tsx:1067
-#: src/screens/Messages/ConversationSettings.tsx:1072
+#: src/screens/Messages/ConversationSettings/prompts.tsx:27
+#: src/screens/Messages/ConversationSettings/prompts.tsx:32
 msgid "Edit group name"
 msgstr "Editare nume grup"
 
@@ -3790,6 +3825,10 @@ msgstr "Editare setări de interacțiune"
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:106
 msgid "Edit interests"
 msgstr "Editare interese"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:300
+msgid "Edit link settings"
+msgstr ""
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:191
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:194
@@ -3810,7 +3849,7 @@ msgstr "Editare listă de moderare"
 msgid "Edit My Feeds"
 msgstr "Editați fluxurile mele"
 
-#: src/screens/Messages/ConversationSettings.tsx:885
+#: src/screens/Messages/ConversationSettings/index.tsx:455
 msgid "Edit name"
 msgstr "Editare nume"
 
@@ -3844,7 +3883,7 @@ msgstr "Editare profil"
 msgid "Edit starter pack"
 msgstr "Editare pachet de pornire"
 
-#: src/screens/Messages/ConversationSettings.tsx:884
+#: src/screens/Messages/ConversationSettings/index.tsx:454
 msgid "Edit this group chat’s name"
 msgstr "Editați numele acestei conversații de grup"
 
@@ -4249,10 +4288,15 @@ msgctxt "toast"
 msgid "Failed to accept chat"
 msgstr "Acceptarea conversației a eșuat"
 
-#: src/components/dms/ActionsWrapper.web.tsx:67
-#: src/components/dms/MessageContextMenu.tsx:104
+#: src/components/dms/ActionsWrapper.web.tsx:70
+#: src/components/dms/MessageContextMenu.tsx:107
 msgid "Failed to add emoji reaction"
 msgstr "Adăugarea reacției emoji a eșuat"
+
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:39
+#: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:38
+msgid "Failed to add members"
+msgstr ""
 
 #: src/components/dialogs/StarterPackDialog.tsx:280
 msgid "Failed to add to starter pack"
@@ -4267,9 +4311,13 @@ msgid "Failed to create app password. Please try again."
 msgstr "Nu s-a reușit crearea parolei de aplicație. Încercați din nou."
 
 #: src/components/dms/MessageProfileButton.tsx:38
-#: src/screens/Messages/ConversationSettings.tsx:555
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:63
 msgid "Failed to create conversation"
 msgstr "Crearea conversației a eșuat"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:85
+msgid "Failed to create invite link"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:250
 #: src/screens/StarterPack/Wizard/index.tsx:260
@@ -4282,7 +4330,7 @@ msgctxt "toast"
 msgid "Failed to delete chat"
 msgstr "Ștergerea conversației a eșuat"
 
-#: src/components/dms/MessageContextMenu.tsx:86
+#: src/components/dms/MessageContextMenu.tsx:89
 msgid "Failed to delete message"
 msgstr "Ștergerea mesajului a eșuat"
 
@@ -4294,14 +4342,26 @@ msgstr "Ștergerea postării a eșuat, vă rugăm să încercați din nou"
 msgid "Failed to delete starter pack"
 msgstr "Ștergerea pachetului de pornire a eșuat"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:108
+msgid "Failed to disable invite link"
+msgstr ""
+
 #. placeholder {0}: error?.message
 #: src/screens/Profile/components/GermButton.tsx:195
 msgid "Failed to disconnect Germ DM. Error: {0}"
 msgstr "Nu s-a reușit deconectarea conversației Germ. Eroare: {0}"
 
-#: src/screens/Messages/ConversationSettings.tsx:757
+#: src/screens/Messages/ConversationSettings/index.tsx:317
 msgid "Failed to edit group chat name"
 msgstr "Eroare la editarea numelui conversației de grup"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:98
+msgid "Failed to edit invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:118
+msgid "Failed to enable invite link"
+msgstr ""
 
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:143
 msgid "Failed to follow all suggested accounts, please try again"
@@ -4319,7 +4379,7 @@ msgstr "Nu s-a reușit ascunderea sugestiei, vă rugăm să vă verificați cone
 msgid "Failed to launch SMS app"
 msgstr "Lansarea aplicației SMS a eșuat"
 
-#: src/screens/Messages/ConversationSettings.tsx:785
+#: src/screens/Messages/ConversationSettings/index.tsx:342
 msgctxt "toast"
 msgid "Failed to leave group chat"
 msgstr "Nu s-a reușit părăsirea conversației de grup"
@@ -4383,12 +4443,16 @@ msgstr "Încărcarea fluxurilor sugerate a eșuat"
 msgid "Failed to load suggested follows"
 msgstr "Încărcarea sugestiilor de urmărire a eșuat"
 
+#: src/screens/Messages/ConversationSettings/index.tsx:360
+msgid "Failed to lock group chat"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:321
 #: src/screens/Messages/Inbox.tsx:348
 msgid "Failed to mark all requests as read"
 msgstr "Nu s-a reușit marcarea tuturor cererilor ca fiind citite"
 
-#: src/screens/Messages/ConversationSettings.tsx:773
+#: src/screens/Messages/ConversationSettings/index.tsx:331
 msgid "Failed to mute group chat"
 msgstr "Nu s-a reușit amuțirea conversației de grup"
 
@@ -4410,8 +4474,8 @@ msgstr "Nu s-au putut șterge datele din cauza unei erori de rețea, vă rugăm 
 msgid "Failed to remove data. {0}"
 msgstr "Eroare la ștergerea datelor. {0}"
 
-#: src/components/dms/ActionsWrapper.web.tsx:63
-#: src/components/dms/MessageContextMenu.tsx:100
+#: src/components/dms/ActionsWrapper.web.tsx:66
+#: src/components/dms/MessageContextMenu.tsx:103
 #: src/components/dms/ReactionsDialog.tsx:174
 msgid "Failed to remove emoji reaction"
 msgstr "Ștergerea reacției emoji a eșuat"
@@ -4419,6 +4483,10 @@ msgstr "Ștergerea reacției emoji a eșuat"
 #: src/components/dialogs/StarterPackDialog.tsx:293
 msgid "Failed to remove from starter pack"
 msgstr "Nu s-a putut elimina din pachetul de pornire"
+
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:70
+msgid "Failed to remove group chat member"
+msgstr ""
 
 #: src/components/verification/VerificationRemovePrompt.tsx:34
 msgid "Failed to remove verification"
@@ -4465,6 +4533,10 @@ msgstr "Nu s-a putut trimite contestația, vă rugăm să încercați din nou."
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:251
 msgid "Failed to toggle thread mute, please try again"
 msgstr "Nu s-a putut comuta amuțirea firului, vă rugăm încercați din nou"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:363
+msgid "Failed to unlock group chat"
+msgstr ""
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:107
 msgid "Failed to unpin list"
@@ -4961,6 +5033,20 @@ msgstr "De la <0/>"
 msgid "Generate a starter pack"
 msgstr "Generați un pachet de pornire"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:189
+#: src/screens/Messages/components/InviteLinkDialog.tsx:224
+#: src/screens/Messages/components/InviteLinkDialog.tsx:247
+msgid "Generate invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:378
+msgid "Generate new invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:383
+msgid "Generate new link"
+msgstr ""
+
 #: src/screens/Profile/components/GermButton.tsx:86
 #: src/screens/Profile/components/GermButton.tsx:224
 msgid "Germ DM"
@@ -5041,7 +5127,8 @@ msgstr "Primiți notificări când cineva postează"
 
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:77
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:87
-#: src/screens/Messages/ConversationSettings.tsx:1113
+#: src/screens/Messages/components/InviteLinkDialog.tsx:173
+#: src/screens/Messages/components/InviteLinkDialog.tsx:180
 msgid "Get started"
 msgstr "Începeți"
 
@@ -5083,7 +5170,7 @@ msgstr "Mergeți înapoi"
 
 #: src/components/Error.tsx:77
 #: src/screens/List/ListHiddenScreen.tsx:228
-#: src/screens/Messages/Conversation.tsx:360
+#: src/screens/Messages/Conversation.tsx:366
 #: src/screens/Profile/ErrorState.tsx:63
 #: src/screens/Profile/ErrorState.tsx:67
 #: src/screens/StarterPack/StarterPackScreen.tsx:809
@@ -5158,7 +5245,7 @@ msgid "Go to next"
 msgstr "Mergeți la următorul"
 
 #: src/components/dms/ConvoMenu.tsx:255
-#: src/screens/Messages/ConversationSettings.tsx:676
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:189
 #: src/view/shell/desktop/LeftNav.tsx:319
 #: src/view/shell/desktop/LeftNav.tsx:325
 msgid "Go to profile"
@@ -5196,26 +5283,40 @@ msgstr "Conținut violent grafic"
 msgid "Grooming or predatory behavior"
 msgstr "Comportament de seducere și manipulare a minorilor (grooming)"
 
-#: src/screens/Messages/ConversationSettings.tsx:766
+#: src/screens/Messages/components/InviteLinkDialog.tsx:437
+msgid "Group chat invite link dialog"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:352
+msgctxt "toast"
+msgid "Group chat locked"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:324
 msgctxt "toast"
 msgid "Group chat muted"
 msgstr "Conversație de grup amuțită"
 
 #: src/Navigation.tsx:611
-#: src/screens/Messages/ConversationSettings.tsx:107
+#: src/screens/Messages/ConversationSettings/index.tsx:92
 msgid "Group chat settings"
 msgstr "Setări conversație în grup"
 
-#: src/screens/Messages/ConversationSettings.tsx:768
+#: src/screens/Messages/ConversationSettings/index.tsx:354
+msgctxt "toast"
+msgid "Group chat unlocked"
+msgstr ""
+
+#: src/screens/Messages/ConversationSettings/index.tsx:326
 msgctxt "toast"
 msgid "Group chat unmuted"
 msgstr "Conversație de grup dezamuțită"
 
-#: src/screens/Messages/Conversation.tsx:345
+#: src/screens/Messages/Conversation.tsx:350
 msgid "Group chats are not yet available"
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:343
+#: src/screens/Messages/Conversation.tsx:348
 msgid "Group chats are now available"
 msgstr ""
 
@@ -5225,7 +5326,7 @@ msgstr "Grupul este blocat"
 
 #: src/components/dms/InitiateChatFlow.tsx:231
 #: src/components/dms/InitiateChatFlow.tsx:549
-#: src/screens/Messages/ConversationSettings.tsx:1073
+#: src/screens/Messages/ConversationSettings/prompts.tsx:33
 msgid "Group name"
 msgstr "Numele grupului"
 
@@ -5479,6 +5580,10 @@ msgstr "Hmmmm, nu am putut încărca acest serviciu de moderare."
 #: src/view/com/composer/state/video.ts:414
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr "Stați așa! Oferim acces la videoclipuri treptat și încă sunteți pe lista de așteptare. Verificați din nou în curând!"
+
+#: src/screens/Messages/Conversation.tsx:357
+msgid "Hold your horses! This feature isn't available to you yet. Please check back later."
+msgstr ""
 
 #: src/Navigation.tsx:855
 #: src/Navigation.tsx:875
@@ -5833,9 +5938,12 @@ msgstr "Invitați prieteni"
 msgid "Invite friends <0/>"
 msgstr "Invitați prieteni <0/>"
 
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:113
-#: src/screens/Messages/ConversationSettings.tsx:892
-#: src/screens/Messages/ConversationSettings.tsx:1111
+#: src/screens/Messages/components/InviteLinkDialog.tsx:153
+#: src/screens/Messages/components/InviteLinkDialog.tsx:267
+#: src/screens/Messages/components/InviteLinkDialog.tsx:273
+#: src/screens/Messages/components/InviteLinkDialog.tsx:395
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:135
+#: src/screens/Messages/ConversationSettings/index.tsx:467
 msgid "Invite link"
 msgstr "Link de invitație"
 
@@ -5844,6 +5952,7 @@ msgid "Invite link created"
 msgstr ""
 
 #: src/components/dms/getSystemMessageInfo.ts:86
+#: src/screens/Messages/components/InviteLinkDialog.tsx:267
 msgid "Invite link disabled"
 msgstr ""
 
@@ -5867,7 +5976,7 @@ msgstr "Invitați persoane la acest pachet de pornire!"
 msgid "Invite your friends to follow your favorite feeds and people"
 msgstr "Invitați-vă prietenii să vă urmărească fluxurile și persoanele preferate"
 
-#: src/screens/Messages/ConversationSettings.tsx:639
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:151
 msgid "Invited"
 msgstr "Invitat(ă)"
 
@@ -6081,7 +6190,7 @@ msgid "Learn more."
 msgstr "Aflați mai multe."
 
 #: src/components/dms/LeaveConvoPrompt.tsx:52
-#: src/screens/Messages/ConversationSettings.tsx:920
+#: src/screens/Messages/ConversationSettings/index.tsx:500
 msgid "Leave"
 msgstr "Părăsire"
 
@@ -6098,11 +6207,11 @@ msgstr "Părăsiți conversația"
 msgid "Leave conversation"
 msgstr "Părăsire conversație"
 
-#: src/screens/Messages/ConversationSettings.tsx:1157
+#: src/screens/Messages/ConversationSettings/prompts.tsx:92
 msgid "Leave group chat"
 msgstr "Părăsiți conversația de grup"
 
-#: src/screens/Messages/ConversationSettings.tsx:919
+#: src/screens/Messages/ConversationSettings/index.tsx:499
 msgid "Leave this group chat"
 msgstr "Părăsiți conversația de grup"
 
@@ -6196,7 +6305,7 @@ msgstr "Apreciat de {0, plural, one {un utilizator} few {# utilizatori} other {#
 msgid "Liked by {likeCount, plural, one {# user} other {# users}}"
 msgstr "Apreciat de {likeCount, plural, one {un utilizator} few {# utilizatori} other {# de utilizatori}}"
 
-#: src/lib/hooks/useNotificationHandler.ts:129
+#: src/lib/hooks/useNotificationHandler.ts:136
 #: src/screens/Settings/NotificationSettings/index.tsx:127
 #: src/screens/Settings/NotificationSettings/LikeNotificationSettings.tsx:41
 #: src/screens/Settings/ProfileTabsVisibility.tsx:168
@@ -6205,7 +6314,7 @@ msgstr "Apreciat de {likeCount, plural, one {un utilizator} few {# utilizatori} 
 msgid "Likes"
 msgstr "Aprecieri"
 
-#: src/lib/hooks/useNotificationHandler.ts:171
+#: src/lib/hooks/useNotificationHandler.ts:178
 #: src/screens/Settings/NotificationSettings/index.tsx:208
 #: src/screens/Settings/NotificationSettings/LikesOnRepostsNotificationSettings.tsx:41
 msgid "Likes of your reposts"
@@ -6403,27 +6512,27 @@ msgstr "Se încarcă setările de interacțiune pentru postări..."
 msgid "Loading..."
 msgstr "Se Încarcă..."
 
-#: src/screens/Messages/ConversationSettings.tsx:1031
+#: src/screens/Messages/ConversationSettings/index.tsx:621
 msgid "Loading…"
 msgstr "Se încarcă…"
 
-#: src/screens/Messages/ConversationSettings.tsx:902
+#: src/screens/Messages/ConversationSettings/index.tsx:480
 msgid "Lock"
 msgstr "Blocare"
 
-#: src/screens/Messages/ConversationSettings.tsx:1134
+#: src/screens/Messages/ConversationSettings/prompts.tsx:69
 msgid "Lock group chat"
 msgstr "Blocare conversație de grup"
 
-#: src/screens/Messages/ConversationSettings.tsx:1132
+#: src/screens/Messages/ConversationSettings/prompts.tsx:67
 msgid "Lock group chat?"
 msgstr "Blocați conversația de grup?"
 
-#: src/screens/Messages/ConversationSettings.tsx:900
+#: src/screens/Messages/ConversationSettings/index.tsx:478
 msgid "Lock this group chat"
 msgstr "Blocați această conversație de grup"
 
-#: src/screens/Messages/ConversationSettings.tsx:902
+#: src/screens/Messages/ConversationSettings/index.tsx:480
 msgid "Locked"
 msgstr "Blocat"
 
@@ -6541,11 +6650,11 @@ msgstr "Conținut media stocat pe un alt dispozitiv"
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Conținut media care poate fi deranjant sau neadecvat pentru anumite audiențe."
 
-#: src/screens/Messages/ConversationSettings.tsx:260
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:28
 msgid "Members"
 msgstr "Membri"
 
-#: src/screens/Messages/ConversationSettings.tsx:1133
+#: src/screens/Messages/ConversationSettings/prompts.tsx:68
 msgid "Members can still read chat history but can’t send new messages."
 msgstr "Membrii încă pot citi istoricul conversațiilor, dar nu pot trimite mesaje noi."
 
@@ -6557,7 +6666,7 @@ msgstr "Notificări pentru mențiuni"
 msgid "mentioned users"
 msgstr "utilizatori menționați"
 
-#: src/lib/hooks/useNotificationHandler.ts:150
+#: src/lib/hooks/useNotificationHandler.ts:157
 #: src/screens/Settings/NotificationSettings/index.tsx:160
 #: src/screens/Settings/NotificationSettings/MentionNotificationSettings.tsx:41
 #: src/view/screens/Notifications.tsx:101
@@ -6569,12 +6678,12 @@ msgid "Menu"
 msgstr "Meniu"
 
 #: src/screens/Messages/components/MessageComposer.tsx:208
-#: src/screens/Messages/components/MessageInput.tsx:171
+#: src/screens/Messages/components/MessageInput.tsx:172
 #: src/screens/Messages/components/MessageInput.web.tsx:195
 msgid "Message"
 msgstr "Mesaj"
 
-#: src/screens/Messages/ConversationSettings.tsx:684
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:197
 msgctxt "action"
 msgid "Message"
 msgstr "Mesaj"
@@ -6584,7 +6693,7 @@ msgstr "Mesaj"
 msgid "Message {0}"
 msgstr "Trimiteți mesaj lui {0}"
 
-#: src/screens/Messages/ConversationSettings.tsx:681
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:194
 msgid "Message {displayName}"
 msgstr "Trimiteți mesaj lui {displayName}"
 
@@ -6592,18 +6701,18 @@ msgstr "Trimiteți mesaj lui {displayName}"
 msgid "Message deleted"
 msgstr "Mesaj șters"
 
-#: src/components/dms/MessageContextMenu.tsx:85
+#: src/components/dms/MessageContextMenu.tsx:88
 msgctxt "toast"
 msgid "Message deleted"
 msgstr "Mesaj șters"
 
-#: src/components/dms/MessageItem.tsx:547
+#: src/components/dms/MessageItem.tsx:551
 msgid "Message failed to send."
 msgstr "Mesajul nu a putut fi trimis."
 
 #. placeholder {0}: sender?.handle ?? 'unknown'
 #. placeholder {1}: message.text
-#: src/components/dms/MessageContextMenu.tsx:133
+#: src/components/dms/MessageContextMenu.tsx:134
 msgid "Message from @{0}: {1}"
 msgstr "Mesaj de la @{0}: {1}"
 
@@ -6613,7 +6722,7 @@ msgid "Message from server: {0}"
 msgstr "Mesaj de la server: {0}"
 
 #: src/screens/Messages/components/MessageComposer.tsx:207
-#: src/screens/Messages/components/MessageInput.tsx:169
+#: src/screens/Messages/components/MessageInput.tsx:170
 msgid "Message input field"
 msgstr "Câmp introducere mesaj"
 
@@ -6626,7 +6735,7 @@ msgstr "Mesajul este prea lung"
 msgid "Message is too long ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgstr "Mesajul este prea lung ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 
-#: src/components/dms/MessageContextMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:133
 msgid "Message options"
 msgstr "Opțiuni mesaj"
 
@@ -6764,7 +6873,7 @@ msgstr "Filme"
 msgid "Music"
 msgstr "Muzică"
 
-#: src/screens/Messages/ConversationSettings.tsx:878
+#: src/screens/Messages/ConversationSettings/index.tsx:448
 msgid "Mute"
 msgstr "Dezactivare sunet"
 
@@ -6809,7 +6918,7 @@ msgstr "Amuțire listă"
 msgid "Mute these accounts?"
 msgstr "Amuțiți aceste conturi?"
 
-#: src/screens/Messages/ConversationSettings.tsx:876
+#: src/screens/Messages/ConversationSettings/index.tsx:446
 msgid "Mute this group chat"
 msgstr "Amuțiți conversația de grup"
 
@@ -6847,7 +6956,7 @@ msgstr "Amuțire fir"
 msgid "Mute words & tags"
 msgstr "Amuțire cuvinte & etichete"
 
-#: src/screens/Messages/ConversationSettings.tsx:878
+#: src/screens/Messages/ConversationSettings/index.tsx:448
 msgid "Muted"
 msgstr "Amuțită"
 
@@ -6959,24 +7068,21 @@ msgid "New chat"
 msgstr "Conversație nouă"
 
 #. placeholder {0}: members[0].displayName
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:38
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:57
 msgid "New chat with {0}"
 msgstr "Conversație nouă cu {0}"
 
 #. placeholder {0}: members[0].displayName
 #. placeholder {1}: members[1].displayName
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:42
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:60
 msgid "New chat with {0} and {1}"
 msgstr "Conversație nouă cu {0} și {1}"
 
 #. placeholder {0}: members[0].displayName
 #. placeholder {1}: members[1].displayName
-#. placeholder {2}: members.length - 2
-#. placeholder {3}: members.length - 2
-#. placeholder {4}: members.length - 2
-#: src/screens/Messages/components/MessagesListInfoPanel.tsx:49
-msgid "New chat with {0}, {1}, and {2, plural, one {{3} more} other {{4} more}}."
-msgstr "Conversație nouă cu {0}, {1} și {2, plural, one {încă {3} utilizator} few {alți {4} utilizatori} other {alți {4} de utilizatori}}."
+#: src/screens/Messages/components/MessagesListInfoPanel.tsx:67
+msgid "New chat with {0}, {1}, and {memberCount, plural, one {{memberCount} more} other {{memberCount} more}}."
+msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:223
 msgid "New email address"
@@ -6993,7 +7099,7 @@ msgstr "Caracteristică nouă"
 msgid "New follower notifications"
 msgstr "Notificări pentru urmăritori nou"
 
-#: src/lib/hooks/useNotificationHandler.ts:164
+#: src/lib/hooks/useNotificationHandler.ts:171
 #: src/screens/Settings/NotificationSettings/index.tsx:138
 #: src/screens/Settings/NotificationSettings/NewFollowerNotificationSettings.tsx:41
 msgid "New followers"
@@ -7075,7 +7181,7 @@ msgstr "Știri"
 
 #: src/components/contacts/screens/ViewMatches.tsx:395
 #: src/components/contacts/screens/ViewMatches.tsx:410
-#: src/components/dms/AddMembersFlow.tsx:256
+#: src/components/dms/AddMembersFlow.tsx:265
 #: src/components/dms/InitiateChatFlow.tsx:442
 #: src/screens/Login/ForgotPasswordForm.tsx:149
 #: src/screens/Login/ForgotPasswordForm.tsx:156
@@ -7235,7 +7341,7 @@ msgid "No result"
 msgstr "Niciun rezultat"
 
 #: src/components/dialogs/SearchablePeopleList.tsx:249
-#: src/components/dms/AddMembersFlow.tsx:208
+#: src/components/dms/AddMembersFlow.tsx:217
 #: src/components/dms/InitiateChatFlow.tsx:338
 #: src/components/ProgressGuide/FollowDialog.tsx:221
 msgid "No results"
@@ -7533,12 +7639,12 @@ msgstr "Deschideți creatorul de avatar"
 msgid "Open camera"
 msgstr "Deschidere cameră"
 
-#: src/screens/Messages/ConversationSettings.tsx:634
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:138
 msgid "Open chat member options for {displayName}"
 msgstr "Deschideți opțiunile pentru membrii conversației pentru {displayName}"
 
-#: src/screens/Messages/components/ChatListItem.tsx:410
-#: src/screens/Messages/components/ChatListItem.tsx:414
+#: src/screens/Messages/components/ChatListItem.tsx:413
+#: src/screens/Messages/components/ChatListItem.tsx:417
 msgid "Open conversation options"
 msgstr "Deschideți opțiunile conversației"
 
@@ -7573,7 +7679,7 @@ msgstr "Deschideți lista completă de emoji-uri"
 msgid "Open Germ DM"
 msgstr "Deschidere conversație Germ"
 
-#: src/components/dms/MessagesListHeader.tsx:177
+#: src/components/dms/MessagesListHeader.tsx:179
 msgid "Open group chat settings"
 msgstr "Deschideți setările de conversație de grup"
 
@@ -7588,7 +7694,7 @@ msgstr ""
 msgid "Open link to {niceUrl}"
 msgstr "Deschideți link-ul către {niceUrl}"
 
-#: src/components/dms/ActionsWrapper.tsx:37
+#: src/components/dms/ActionsWrapper.tsx:43
 msgid "Open message options"
 msgstr "Deschideți opțiunile pentru mesaje"
 
@@ -7732,7 +7838,7 @@ msgstr "Deschide compozitorul de postări"
 msgid "Opens this draft in the composer"
 msgstr "Deschideți această schiță în compozitor"
 
-#: src/components/dms/MessageItem.tsx:223
+#: src/components/dms/MessageItem.tsx:220
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:606
 msgid "Opens this profile"
@@ -7878,6 +7984,14 @@ msgstr "Pauză videoclip"
 msgid "People"
 msgstr "Persoane"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:140
+msgid "People {ownerName} follows can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:145
+msgid "People {ownerName} follows can request to join"
+msgstr ""
+
 #. placeholder {0}: route.params.name
 #: src/Navigation.tsx:247
 msgid "People followed by @{0}"
@@ -7892,6 +8006,14 @@ msgstr "Persoane care urmăresc @{0}"
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:193
 msgid "People I follow"
 msgstr "Persoane pe care le urmăriți"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:139
+msgid "People I follow can join instantly"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:144
+msgid "People I follow can request to join"
+msgstr ""
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:510
 msgid "People you follow"
@@ -8258,6 +8380,11 @@ msgstr "Setări de interacțiune postare"
 msgid "Post language selection"
 msgstr "Selectare limbă postare"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:336
+#: src/screens/Messages/components/InviteLinkDialog.tsx:348
+msgid "Post link"
+msgstr ""
+
 #: src/screens/PostThread/components/ThreadError.tsx:33
 #: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:25
 msgid "Post not found"
@@ -8500,7 +8627,7 @@ msgstr "Postarea citat a fost detașată cu succes"
 msgid "Quote posts disabled"
 msgstr "Postări citat dezactivate"
 
-#: src/lib/hooks/useNotificationHandler.ts:157
+#: src/lib/hooks/useNotificationHandler.ts:164
 #: src/screens/Post/PostQuotes.tsx:31
 #: src/screens/Settings/NotificationSettings/index.tsx:171
 #: src/screens/Settings/NotificationSettings/QuoteNotificationSettings.tsx:41
@@ -8523,6 +8650,14 @@ msgstr "Limită de solicitări depășită. Vă rugăm încercați din nou mai t
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:700
 msgid "Re-attach quote"
 msgstr "Reatașați citatul"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:365
+msgid "Re-enable invite link"
+msgstr ""
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:373
+msgid "Re-enable link"
+msgstr ""
 
 #: src/components/dms/EmojiReactionPicker.tsx:88
 msgid "React with {emoji}"
@@ -8658,7 +8793,7 @@ msgstr "Eliminați pe {displayName} din conversația de grup"
 msgid "Remove {displayName} from starter pack"
 msgstr "Eliminați pe {displayName} din pachetul de pornire"
 
-#: src/screens/Messages/ConversationSettings.tsx:707
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:224
 msgid "Remove {displayName} from this group chat"
 msgstr "Eliminați pe {displayName} din această conversație de grup"
 
@@ -8712,7 +8847,7 @@ msgstr "Eliminați fluxul"
 msgid "Remove feed?"
 msgstr "Eliminați fluxul?"
 
-#: src/screens/Messages/ConversationSettings.tsx:710
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 msgid "Remove from chat"
 msgstr "Eliminare din conversație"
 
@@ -8876,7 +9011,7 @@ msgstr "Răspuns la dvs."
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:274
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:286
-#: src/lib/hooks/useNotificationHandler.ts:143
+#: src/lib/hooks/useNotificationHandler.ts:150
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:221
 #: src/screens/Settings/NotificationSettings/index.tsx:149
 #: src/screens/Settings/NotificationSettings/ReplyNotificationSettings.tsx:41
@@ -8938,11 +9073,11 @@ msgstr "Vizibilitatea răspunsului actualizată"
 msgid "Reply was successfully hidden"
 msgstr "Răspunsul a fost ascuns cu succes"
 
-#: src/components/dms/MessageContextMenu.tsx:176
+#: src/components/dms/MessageContextMenu.tsx:177
 #: src/components/dms/MessagesListBlockedFooter.tsx:86
 #: src/components/dms/MessagesListBlockedFooter.tsx:93
 #: src/features/liveNow/components/LiveStatusDialog.tsx:266
-#: src/screens/Messages/ConversationSettings.tsx:911
+#: src/screens/Messages/ConversationSettings/index.tsx:491
 msgid "Report"
 msgstr "Raportare"
 
@@ -8974,7 +9109,7 @@ msgstr "Raportați fluxul"
 msgid "Report list"
 msgstr "Raportare listă"
 
-#: src/components/dms/MessageContextMenu.tsx:174
+#: src/components/dms/MessageContextMenu.tsx:175
 msgid "Report message"
 msgstr "Raportare mesaj"
 
@@ -9001,7 +9136,7 @@ msgstr "Raportați această conversație"
 msgid "Report this feed"
 msgstr "Raportați acest flux"
 
-#: src/screens/Messages/ConversationSettings.tsx:910
+#: src/screens/Messages/ConversationSettings/index.tsx:490
 msgid "Report this group chat"
 msgstr "Raportați această conversație de grup"
 
@@ -9069,7 +9204,7 @@ msgstr "Repostat de {reposter}"
 msgid "Reposted by you"
 msgstr "Repostat de dvs."
 
-#: src/lib/hooks/useNotificationHandler.ts:136
+#: src/lib/hooks/useNotificationHandler.ts:143
 #: src/screens/Settings/NotificationSettings/index.tsx:182
 #: src/screens/Settings/NotificationSettings/RepostNotificationSettings.tsx:41
 msgid "Reposts"
@@ -9079,7 +9214,7 @@ msgstr "Repostări"
 msgid "Reposts of this post"
 msgstr "Repostări ale acestei postări"
 
-#: src/lib/hooks/useNotificationHandler.ts:178
+#: src/lib/hooks/useNotificationHandler.ts:185
 #: src/screens/Settings/NotificationSettings/index.tsx:223
 #: src/screens/Settings/NotificationSettings/RepostsOnRepostsNotificationSettings.tsx:41
 msgid "Reposts of your reposts"
@@ -9236,7 +9371,7 @@ msgstr "Revine la pasul anterior"
 #: src/components/StarterPack/QrCodeDialog.tsx:207
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Messages/ConversationSettings.tsx:1088
+#: src/screens/Messages/ConversationSettings/prompts.tsx:47
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Profile/Header/EditProfileDialog.tsx:267
 #: src/screens/SavedFeeds.tsx:124
@@ -9723,7 +9858,7 @@ msgid "Send feedback"
 msgstr "Trimiteți feedback"
 
 #: src/screens/Messages/components/MessageComposer.tsx:266
-#: src/screens/Messages/components/MessageInput.tsx:225
+#: src/screens/Messages/components/MessageInput.tsx:226
 #: src/screens/Messages/components/MessageInput.web.tsx:216
 msgid "Send message"
 msgstr "Trimitere mesaj"
@@ -9863,6 +9998,8 @@ msgstr "Sugestiv Sexual"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:195
 #: src/screens/Hashtag.tsx:130
+#: src/screens/Messages/components/InviteLinkDialog.tsx:352
+#: src/screens/Messages/components/InviteLinkDialog.tsx:359
 #: src/screens/StarterPack/StarterPackScreen.tsx:447
 #: src/screens/Topic.tsx:90
 msgid "Share"
@@ -10262,7 +10399,7 @@ msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:281
 msgid "Someone reacted {0}"
 msgstr "Cineva a reacționat cu {0}"
 
@@ -10284,7 +10421,7 @@ msgid "Something wasn't quite right with the data you're trying to report. Pleas
 msgstr "Ceva nu a fost în regulă cu datele pe care încercați să le raportați. Vă rugăm să contactați asistența."
 
 #: src/screens/Messages/Conversation.tsx:144
-#: src/screens/Messages/ConversationSettings.tsx:211
+#: src/screens/Messages/ConversationSettings/index.tsx:112
 msgid "Something went wrong"
 msgstr "Ceva nu a mers bine"
 
@@ -10528,7 +10665,7 @@ msgstr "Succes!"
 msgid "Successfully verified"
 msgstr "Verificat cu succes"
 
-#: src/components/dms/AddMembersFlow.tsx:200
+#: src/components/dms/AddMembersFlow.tsx:209
 #: src/components/dms/InitiateChatFlow.tsx:317
 msgid "Suggested"
 msgstr "Sugerate"
@@ -10676,7 +10813,7 @@ msgstr "Atingeți pentru a elimina"
 msgid "Tap to remove your {0} reaction"
 msgstr "Atingeți pentru a vă elimina reacția {0}"
 
-#: src/components/dms/MessageItem.tsx:557
+#: src/components/dms/MessageItem.tsx:561
 msgid "Tap to retry"
 msgstr "Atingeți pentru a reîncerca"
 
@@ -10689,7 +10826,7 @@ msgstr "Atingeți pentru a afișa {0} reacții"
 msgid "Tap to show all reactions"
 msgstr "Atingeți pentru a afișa toate reacțiile"
 
-#: src/components/dms/MessageItem.tsx:309
+#: src/components/dms/MessageItem.tsx:310
 msgid "Tap to view reactions"
 msgstr "Atingeți pentru a vizualiza reacțiile"
 
@@ -10914,6 +11051,10 @@ msgstr "Temă"
 msgid "There is a limit to how often you can change your birthdate. You may need to wait a day or two before updating it again."
 msgstr "Există o limită pentru cât de des vă puteți schimba data nașterii. Poate fi necesar să așteptați o zi sau două înainte de a o actualiza din nou."
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:400
+msgid "There is no invite link for this group chat."
+msgstr ""
+
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:86
 msgid "There is no time limit for account deactivation, come back any time."
 msgstr "Nu există limită de timp pentru dezactivarea contului, puteți revenii oricând."
@@ -10983,8 +11124,8 @@ msgstr "A apărut o problemă la actualizarea fluxurilor dvs., vă rugăm să v�
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:431
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:454
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:474
-#: src/screens/Messages/ConversationSettings.tsx:593
-#: src/screens/Messages/ConversationSettings.tsx:606
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:108
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:121
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:95
@@ -11143,10 +11284,6 @@ msgstr "Această caracteristică nu este disponibilă când utilizați o parolă
 msgid "This feature is not available while using an App Password. Please sign in with your main password."
 msgstr "Această caracteristică nu este disponibilă când utilizați o Parolă de Aplicație. Vă rugăm să vă conectați cu parola principală."
 
-#: src/screens/Messages/Conversation.tsx:352
-msgid "This feature isn't available to you yet. Please check back later."
-msgstr ""
-
 #: src/view/com/posts/PostFeedErrorMessage.tsx:128
 msgid "This feed is currently receiving high traffic and is temporarily unavailable. Please try again later."
 msgstr "Acest flux primește în prezent trafic ridicat și este temporar indisponibil. Vă rugăm să încercați din nou mai târziu."
@@ -11256,6 +11393,10 @@ msgstr "Acest profil este vizibil numai pentru utilizatorii conectați. Nu va fi
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:844
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr "Acest răspuns va fi sortat într-o secțiune ascunsă în partea de jos a firului dvs. și va amuții notificările pentru răspunsurile ulterioare - atât pentru dvs., cât și pentru ceilalți."
+
+#: src/screens/Messages/ConversationSettings/index.tsx:134
+msgid "This screen is only available for group conversations."
+msgstr ""
 
 #: src/screens/Signup/StepInfo/Policies.tsx:32
 msgid "This service has not provided terms of service or a privacy policy."
@@ -11433,8 +11574,8 @@ msgstr "Răspunsurile de top primele"
 msgid "Topic"
 msgstr "Subiect"
 
-#: src/components/dms/MessageContextMenu.tsx:147
-#: src/components/dms/MessageContextMenu.tsx:149
+#: src/components/dms/MessageContextMenu.tsx:148
+#: src/components/dms/MessageContextMenu.tsx:150
 #: src/components/Post/Translated/index.tsx:150
 #: src/components/Post/Translated/index.tsx:157
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:553
@@ -11511,7 +11652,7 @@ msgstr "Autentificare cu doi factori (A2F)"
 msgid "Type a tag and press , or enter"
 msgstr ""
 
-#: src/screens/Messages/components/MessageInput.tsx:170
+#: src/screens/Messages/components/MessageInput.tsx:171
 msgid "Type your message here"
 msgstr "Tastați aici mesajul dvs."
 
@@ -11583,7 +11724,7 @@ msgctxt "action"
 msgid "Unblock"
 msgstr "Deblocare"
 
-#: src/screens/Messages/ConversationSettings.tsx:695
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:208
 msgid "Unblock {displayName}"
 msgstr "Deblocați pe {displayName}"
 
@@ -11658,11 +11799,11 @@ msgstr "Din păcate, data nașterii pe care ați salvat-o în profilul dvs. vă 
 msgid "Unfortunately, your declared age indicates that you are not old enough to access Bluesky in your region."
 msgstr "Din păcate, vârsta declarată indică faptul că nu aveți vârsta necesară pentru a accesa Bluesky în regiunea dvs."
 
-#: src/screens/Messages/ConversationSettings.tsx:720
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:238
 msgid "Uninvite"
 msgstr "Anulați invitația"
 
-#: src/screens/Messages/ConversationSettings.tsx:717
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:234
 msgid "Uninvite {displayName} from this group chat"
 msgstr "Anulați invitația utilizatorului {displayName} din această conversație de grup"
 
@@ -11688,7 +11829,7 @@ msgstr "Nu mai apreciați"
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr "Nu mai apreciați ({0, plural, one {o apreciere} few {# aprecieri} other {# de aprecieri}})"
 
-#: src/screens/Messages/ConversationSettings.tsx:900
+#: src/screens/Messages/ConversationSettings/index.tsx:477
 msgid "Unlock this group chat"
 msgstr "Deblocați această conversație de grup"
 
@@ -11725,7 +11866,7 @@ msgstr "Dezamuțire conversație"
 msgid "Unmute list"
 msgstr "Dezamuțire listă"
 
-#: src/screens/Messages/ConversationSettings.tsx:875
+#: src/screens/Messages/ConversationSettings/index.tsx:445
 msgid "Unmute this group chat"
 msgstr "Dezamuțiți această conversație de grup"
 
@@ -11824,12 +11965,16 @@ msgstr "Actualizați <0>{displayName}</0> în Liste"
 msgid "Update email"
 msgstr "Actualizare e-mail"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:246
+msgid "Update invite link"
+msgstr ""
+
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:544
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:565
 msgid "Update to {domain}"
 msgstr "Actualizare la {domain}"
 
-#: src/screens/Messages/Conversation.tsx:350
+#: src/screens/Messages/Conversation.tsx:355
 msgid "Update your app to the latest version to join in!"
 msgstr ""
 
@@ -12218,7 +12363,7 @@ msgid "View {0}’s profile"
 msgstr "Vizualizați profilul {0}"
 
 #: src/components/dms/MessagesListHeader.tsx:118
-#: src/screens/Messages/ConversationSettings.tsx:671
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:184
 msgid "View {displayName}’s profile"
 msgstr "Vizualizați profilul utilizatorului {displayName}"
 
@@ -12244,7 +12389,7 @@ msgstr "Vizualizare detalii"
 msgid "View full thread"
 msgstr "Vizualizați întregul fir"
 
-#: src/screens/Messages/ConversationSettings.tsx:273
+#: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:44
 msgid "View incoming group chat requests"
 msgstr "Vizualizați cererile de adăugare la conversația de grup"
 
@@ -12283,6 +12428,10 @@ msgstr "Vizualizați bannerul profilului"
 #: src/view/com/profile/ProfileSubpageHeader.tsx:108
 msgid "View the avatar"
 msgstr "Vizualizați avatarul"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:465
+msgid "View the invite link for this group chat"
+msgstr ""
 
 #. placeholder {0}: labeler.creator.handle
 #: src/components/LabelingServiceCard/index.tsx:164
@@ -12399,7 +12548,7 @@ msgstr "Nu am putut găsi niciun rezultat pentru acest subiect."
 msgid "We couldn't load this conversation"
 msgstr "Nu am putut încărca această conversație"
 
-#: src/screens/Messages/ConversationSettings.tsx:212
+#: src/screens/Messages/ConversationSettings/index.tsx:113
 msgid "We couldn’t load this conversation’s settings"
 msgstr "Nu am putut încărca setările acestei conversații"
 
@@ -12509,7 +12658,7 @@ msgstr "Întâmpinăm probleme la inițializarea procesului de verificare a vâr
 msgid "We're having network issues, try again"
 msgstr "Avem probleme cu rețeaua, încercați din nou"
 
-#: src/components/dms/AddMembersFlow.tsx:152
+#: src/components/dms/AddMembersFlow.tsx:157
 #: src/components/dms/InitiateChatFlow.tsx:254
 msgid "We’re having network issues, try again"
 msgstr "Avem probleme cu rețeaua, încercați din nou"
@@ -12613,6 +12762,10 @@ msgstr "Când atingeți o bifă, veți vedea ce organizații au acordat verifica
 msgid "Who can interact with this post?"
 msgstr "Cine poate interacționa cu această postare?"
 
+#: src/screens/Messages/components/InviteLinkDialog.tsx:199
+msgid "Who can join this group chat and how"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:427
 #: src/components/WhoCanReply.tsx:116
 msgid "Who can reply"
@@ -12703,6 +12856,10 @@ msgstr "Scriitori"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:368
 msgid "Wrong DID returned from server. Received: {0}"
 msgstr "DID greșit returnat de la server. Primit: {0}"
+
+#: src/screens/Messages/ConversationSettings/index.tsx:133
+msgid "Wrong kind of conversation"
+msgstr ""
 
 #: src/features/liveNow/components/EditLiveDialog.tsx:154
 #: src/features/liveNow/components/GoLiveDialog.tsx:157
@@ -12817,7 +12974,7 @@ msgstr "De asemenea, puteți descărca datele de conversație ca fișier „JSON
 msgid "You can always opt out and delete your data"
 msgstr "Puteți renunța întotdeauna și șterge datele dvs."
 
-#: src/lib/hooks/useNotificationHandler.ts:104
+#: src/lib/hooks/useNotificationHandler.ts:111
 msgid "You can choose whether chat notifications have sound in the chat settings within the app"
 msgstr "Puteți alege dacă notificările de conversații să aibă sunet în setările de conversație în cadrul aplicației"
 
@@ -13061,7 +13218,7 @@ msgid "You probably want to restart the app now."
 msgstr "Probabil doriți să reporniți aplicația acum."
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:277
+#: src/components/dms/MessageItem.tsx:274
 msgid "You reacted {0}"
 msgstr "Ați reacționat cu {0}"
 
@@ -13097,7 +13254,7 @@ msgstr "Acum veți primi notificări pentru acest fir"
 msgid "You will receive an email with a \"reset code.\" Enter that code here, then enter your new password."
 msgstr "Veți primi un e-mail cu un „cod de resetare”. Introduceți codul aici, apoi introduceți noua parolă."
 
-#: src/screens/Messages/ConversationSettings.tsx:1156
+#: src/screens/Messages/ConversationSettings/prompts.tsx:91
 msgid "You won’t be able to rejoin unless you’re invited."
 msgstr "Nu vă veți putea alătura decât dacă sunteți invitat."
 
@@ -13325,6 +13482,10 @@ msgstr "Locația dvs. a fost actualizată."
 #: src/components/dialogs/MutedWords.tsx:378
 msgid "Your muted words"
 msgstr "Cuvintele dvs. amuțite"
+
+#: src/screens/Messages/components/InviteLinkDialog.tsx:165
+msgid "Your name, avatar, and the name of the group chat will be visible to everyone."
+msgstr ""
 
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:72
 msgid "Your password has been changed successfully! Please use your new password when you sign in to Bluesky from now on."
