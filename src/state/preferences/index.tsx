@@ -15,7 +15,7 @@ import {Provider as ProfileTabVisibilityPrefs} from './tabs-visibility-profiles'
 import {Provider as EnableSquareAvatars} from './enable-square-avatars'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as GateOverridesProvider} from './gateOverrides'
-import {Provider as MetricVisibilityProvider} from './metric-visibility'
+import {Provider as ImpressionVisibilityProvider} from './impression-visibility'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -68,9 +68,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                             <DisableComposerPromptInFeeds>
                                               <NoAppLabelersProvider>
                                                 <GateOverridesProvider>
-                                                  <MetricVisibilityProvider>
+                                                  <ImpressionVisibilityProvider>
                                                     <KawaiiProvider>{children}</KawaiiProvider>
-                                                  </MetricVisibilityProvider>
+                                                  </ImpressionVisibilityProvider>
                                                 </GateOverridesProvider>
                                               </NoAppLabelersProvider>
                                             </DisableComposerPromptInFeeds>

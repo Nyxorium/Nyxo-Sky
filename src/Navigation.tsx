@@ -109,7 +109,7 @@ import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaS
 import {MiscellaneousSettingsScreen} from './screens/Settings/MiscellaneousSettings'
 import {ProfileTabVisibilitySettingsScreen} from './screens/Settings/ProfileTabsVisibility'
 import {FeatureGatesSettingsScreen} from './screens/Settings/FeatureGates'
-import {MetricVisibilitySettingsScreen} from './screens/Settings/MetricVisibilitySettings'
+import {ImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilityPreferences'
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
 import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
@@ -418,8 +418,8 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         }}
       />
       <Stack.Screen
-        name="MetricVisibilitySettings"
-        getComponent={() => MetricVisibilitySettingsScreen}
+        name="ImpressionVisibilitySettings"
+        getComponent={() => ImpressionVisibilitySettingsScreen}
         options={{
           title: title(msg`Impression Visibility`),
           requireAuth: true,

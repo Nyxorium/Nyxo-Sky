@@ -19,7 +19,7 @@ import {
   usePostLikeMutationQueue,
   usePostRepostMutationQueue,
 } from '#/state/queries/post'
-import {useRequireAuth} from '#/state/session'
+import {useRequireAuth, useSession} from '#/state/session'
 import {
   ProgressGuideAction,
   useProgressGuideControls,
@@ -39,8 +39,7 @@ import {
 import {PostMenuButton} from './PostMenu'
 import {RepostButton} from './RepostButton'
 import {ShareMenuButton} from './ShareMenu'
-import {useSession} from '#/state/session'
-import {useIsMetricHidden} from '#/state/preferences/metric-visibility'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 
 let PostControls = ({
   big,
@@ -107,13 +106,13 @@ let PostControls = ({
 
 
   const {currentAccount} = useSession()
-  const isOwnPost = post.author.did === currentAccount?.did
+  const isMe = post.author.did === currentAccount?.did
 
-  const hideLikes   = useIsMetricHidden('likes',   isOwnPost)
-  const hideReposts = useIsMetricHidden('reposts', isOwnPost)
-  const hideReplies = useIsMetricHidden('replies', isOwnPost)
-  const hideQuotes  = useIsMetricHidden('quotes',  isOwnPost)
-  const hideBookmarks = useIsMetricHidden('bookmarks', isOwnPost)
+  const hideLikes   = useIsImpressionHidden('likes',   isMe)
+  const hideReposts = useIsImpressionHidden('reposts', isMe)
+  const hideReplies = useIsImpressionHidden('replies', isMe)
+  const hideQuotes  = useIsImpressionHidden('quotes',  isMe)
+  const hideBookmarks = useIsImpressionHidden('bookmarks', isMe)
 
   const [hasLikeIconBeenToggled, setHasLikeIconBeenToggled] = useState(false)
 

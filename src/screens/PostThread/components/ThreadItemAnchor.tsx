@@ -60,7 +60,7 @@ import {useAnalytics} from '#/analytics'
 import {useActorStatus} from '#/features/liveNow'
 import * as bsky from '#/types/bsky'
 import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
-import {useIsMetricHidden} from '#/state/preferences/metric-visibility'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 
 export function ThreadItemAnchor({
   item,
@@ -202,12 +202,12 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
   const authorHref = makeProfileLink(post.author)
   const isThreadAuthor = getThreadAuthor(post, record) === currentAccount?.did
 
-  const isOwnPost = post.author.did === currentAccount?.did
+  const isMe = post.author.did === currentAccount?.did
 
-  const hideLikes   = useIsMetricHidden('likes',   isOwnPost)
-  const hideReposts = useIsMetricHidden('reposts', isOwnPost)
-  const hideQuotes  = useIsMetricHidden('quotes',  isOwnPost)
-  const hideBookmarks = useIsMetricHidden('bookmarks', isOwnPost)
+  const hideLikes   = useIsImpressionHidden('likes',   isMe)
+  const hideReposts = useIsImpressionHidden('reposts', isMe)
+  const hideQuotes  = useIsImpressionHidden('quotes',  isMe)
+  const hideBookmarks = useIsImpressionHidden('bookmarks', isMe)
 
   const likesHref = useMemo(() => {
     const urip = new AtUri(post.uri)

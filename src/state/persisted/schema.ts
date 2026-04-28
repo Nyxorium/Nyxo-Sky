@@ -6,6 +6,12 @@ import {logger} from '#/logger'
 import {PlatformInfo} from '../../../modules/expo-bluesky-swiss-army'
 
 const externalEmbedOptions = ['show', 'hide'] as const
+const impressionVisibilityOptions = [
+  'show',
+  'hideOwn',
+  'hideOthers',
+  'hideAll',
+] as const
 
 /**
  * A account persisted to storage. Stored in the `accounts[]` array. Contains
@@ -170,12 +176,15 @@ const schema = z.object({
   disableStarterPacksProfileTab_self: z.boolean().optional(),
   disableListsProfileTab_self: z.boolean().optional(),
 
-  metricVisibility: z.object({
-    likes:   z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
-    reposts: z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
-    replies: z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
-    quotes:  z.enum(['show', 'hide_own', 'hide_others', 'hide_all']).optional(),
-  }).optional(),
+  impressionVisibility: z
+    .object({
+      likes: z.enum(impressionVisibilityOptions).optional(),
+      reposts: z.enum(impressionVisibilityOptions).optional(),
+      replies: z.enum(impressionVisibilityOptions).optional(),
+      quotes: z.enum(impressionVisibilityOptions).optional(),
+      bookmarks: z.enum(impressionVisibilityOptions).optional(),
+    })
+    .optional(),
 
 })
 export type Schema = z.infer<typeof schema>
@@ -266,7 +275,7 @@ export const defaults: Schema = {
   disableStarterPacksProfileTab_self: false,
   disableListsProfileTab_self: false,
 
-  metricVisibility: {},
+  impressionVisibility: {},
 
 }
 

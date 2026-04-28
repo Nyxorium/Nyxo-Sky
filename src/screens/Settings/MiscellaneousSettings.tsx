@@ -108,7 +108,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
           </SettingsList.LinkItem>
 
           <SettingsList.LinkItem
-            to="/settings/metric-visibility"
+            to="/settings/impression-visibility"
             label={_(msg`Impression Visibility`)}>
             <SettingsList.ItemIcon icon={EyeSlashIcon} />
             <SettingsList.ItemText>
