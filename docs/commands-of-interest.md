@@ -1,5 +1,9 @@
 
 
+# Warning:
+This is not intended as a proper piece of documentation
+It simply outlines the things I use for my specific setup while developing Nyxo Sky
+
 # APK Build
 `cd ./android`
 `./gradlew assembleRelease`
@@ -35,7 +39,7 @@ than copy everything to a new directiory tied to the repo I'm pushing too when I
 
 
 # Deleting old files in other directory
-`find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +`
+`find /Nyxo-Sky/Nyxorium -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +`
 
 
 # For checking the state of values
