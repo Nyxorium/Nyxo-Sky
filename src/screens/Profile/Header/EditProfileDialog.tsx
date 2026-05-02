@@ -30,6 +30,7 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useSimpleVerificationState} from '#/components/verification'
+import {IS_WEB} from '#/env'
 
 export function EditProfileDialog({
   profile,
@@ -417,6 +418,7 @@ function DialogInner({
               defaultValue={description}
               onChangeText={setDescription}
               multiline
+              style={[{minHeight: 80, maxHeight: 280}, IS_WEB && ({fieldSizing: 'content'} as any)]}
               label={_(msg`Description`)}
               placeholder={_(msg`Tell us a bit about yourself`)}
               testID="editProfileDescriptionInput"
