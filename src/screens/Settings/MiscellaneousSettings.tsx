@@ -157,13 +157,13 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="enable_square_avatars"
-            label={_(msg`Enable square avatars`)}
+            label={_(msg`Enable Square Avatars`)}
             value={enableSquareAvatars}
             onChange={value => setEnableSquareAvatars(value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={PersonIcon} />
               <SettingsList.ItemText>
-                <Trans>Enable square avatars</Trans>
+                <Trans>Enable Square Avatars</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -218,13 +218,13 @@ export function MiscellaneousSettingsScreen({}: Props) {
           {IS_NATIVE && (
             <Toggle.Item
               name="disable_share-via-dms"
-              label={_(msg`Disable 'Share Via DMS' in Share Menu`)}
+              label={_(msg`Disable 'Share Via DMs' in Share Menu`)}
               value={disableShareViaDms}
               onChange={value => setDisableShareViaDms(value)}>
               <SettingsList.Item>
                 <SettingsList.ItemIcon icon={PhoneIcon} />
                 <SettingsList.ItemText>
-                  <Trans>Disable 'Share Via DMS' in Share Menu</Trans>
+                  <Trans>Disable 'Share Via DMs' in Share Menu</Trans>
                 </SettingsList.ItemText>
                 <Toggle.Platform />
               </SettingsList.Item>
