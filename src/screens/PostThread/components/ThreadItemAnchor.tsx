@@ -61,6 +61,8 @@ import {useActorStatus} from '#/features/liveNow'
 import * as bsky from '#/types/bsky'
 import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
+import {IS_WEB, IS_NATIVE} from '#/env'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 
 export function ThreadItemAnchor({
   item,
@@ -574,6 +576,40 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
   )
 })
 
+function normaliseVia(via: string): string {
+  try {
+    const url = new URL(via)
+    return url.hostname
+  } catch {
+    // Not a URL, strip scheme-like prefix just in case and trim
+    return via.replace(/^https?:\/\//, '').replace(/\/$/, '').trim()
+  }
+}
+
+function parseVia(via: unknown): string | undefined {
+  if (typeof via !== 'string') return undefined
+  if (via.length === 0 || via.length > 64) return undefined
+  if (/[\n\r\t]/.test(via)) return undefined
+  return normaliseVia(via.trim())
+}
+
+function truncateVia(via: string): string {
+  return via.length > 24 ? `${via.slice(0, 23)}…` : via
+}
+
+function ViaIndicator({post}: {post: AppBskyFeedDefs.PostView}) {
+  const t = useTheme()
+  const via = parseVia((post.record as AppBskyFeedPost.Record & {via?: unknown}).via)
+
+  if (!via) return null
+
+  return (
+    <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+      {truncateVia(via)}
+    </Text>
+  )
+}
+
 function ExpandedPostDetails({
   post,
   isThreadAuthor,
@@ -584,6 +620,7 @@ function ExpandedPostDetails({
   const t = useTheme()
   const {i18n} = useLingui()
   const isRootPost = !('reply' in post.record)
+  const [devModeEnabled] = useDevMode()
 
   return (
     <View style={[a.gap_md, a.pt_md, a.align_start]}>
@@ -592,9 +629,12 @@ function ExpandedPostDetails({
         <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
           {niceDate(i18n, post.indexedAt, 'dot separated')}
         </Text>
+        {IS_WEB && <ViaIndicator post={post} />}
         {isRootPost && (
           <WhoCanReply post={post} isThreadAuthor={isThreadAuthor} />
         )}
+        {IS_NATIVE && devModeEnabled && <ViaIndicator post={post} />}
+        {/* Behind dev mode until the layout can be improved on mobile - Sunstar */}
       </View>
     </View>
   )
