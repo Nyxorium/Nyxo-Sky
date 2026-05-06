@@ -177,6 +177,31 @@ const schema = z.object({
   disableStarterPacksProfileTab_self: z.boolean().optional(),
   disableListsProfileTab_self: z.boolean().optional(),
 
+  profileTabVisibility: z
+    .object({
+      posts: z.boolean().optional(),
+      replies: z.boolean().optional(),
+      media: z.boolean().optional(),
+      videos: z.boolean().optional(),
+      feeds: z.boolean().optional(),
+      starterPacks: z.boolean().optional(),
+      lists: z.boolean().optional(),
+    })
+    .optional(),
+
+  profileTabVisibility_self: z
+    .object({
+      posts: z.boolean().optional(),
+      replies: z.boolean().optional(),
+      media: z.boolean().optional(),
+      videos: z.boolean().optional(),
+      likes: z.boolean().optional(),
+      feeds: z.boolean().optional(),
+      starterPacks: z.boolean().optional(),
+      lists: z.boolean().optional(),
+    })
+    .optional(),
+  
   impressionVisibility: z
     .object({
       likes: z.enum(impressionVisibilityOptions).optional(),
@@ -276,6 +301,9 @@ export const defaults: Schema = {
   disableFeedsProfileTab_self: false,
   disableStarterPacksProfileTab_self: false,
   disableListsProfileTab_self: false,
+
+  profileTabVisibility: {},
+  profileTabVisibility_self: {},
 
   impressionVisibility: {},
 

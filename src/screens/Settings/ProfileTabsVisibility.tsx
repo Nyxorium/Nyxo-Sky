@@ -6,10 +6,10 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import * as Toggle from '#/components/forms/Toggle'
-import { 
-  useProfileTabVisibilityPref,
+import {
+  useProfileTabVisibilityPrefs,
   useSetProfileTabVisibilityPref,
- } from '#/state/preferences/tabs-visibility-profiles'
+} from '#/state/preferences/profile-tab-visibility'
 import * as Layout from '#/components/Layout'
 import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
 import {Heart2_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
@@ -23,44 +23,17 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
   const {_} = useLingui()
   const t = useTheme()
 
-  const {
-    postsProfileTab,
-    repliesProfileTab,
-    mediaProfileTab,
-    videosProfileTab,
-    feedsProfileTab,
-    starterPacksProfileTab,
-    listsProfileTab,
+  const {ownTabs, otherTabs} = useProfileTabVisibilityPrefs()
+  const {setOwnTabs, setOtherTabs} = useSetProfileTabVisibilityPref()
 
-    postsProfileTab_self,
-    repliesProfileTab_self,
-    mediaProfileTab_self,
-    videosProfileTab_self,
-    likesProfileTab_self,
-    feedsProfileTab_self,
-    starterPacksProfileTab_self,
-    listsProfileTab_self,
-  } = useProfileTabVisibilityPref()
-
-  const {
-    setPostsProfileTab,
-    setRepliesProfileTab,
-    setMediaProfileTab,
-    setVideosProfileTab,
-    setFeedsProfileTab,
-    setStarterPacksProfileTab,
-    setListsProfileTab,
-
-    setPostsProfileTab_self,
-    setRepliesProfileTab_self,
-    setMediaProfileTab_self,
-    setVideosProfileTab_self,
-    setLikesProfileTab_self,
-    setFeedsProfileTab_self,
-    setStarterPacksProfileTab_self,
-    setListsProfileTab_self,
-  } = useSetProfileTabVisibilityPref()
-
+  const toggleStyle = [
+    a.py_xs,
+    platform({
+      native: [a.justify_between],
+      web: [a.flex_row_reverse, a.gap_sm],
+    }),
+  ]
+  const labelStyle = [t.atoms.text, a.font_normal, a.text_md, a.flex_1]
 
   return (
     <Layout.Screen>
@@ -87,164 +60,35 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
             />
           </SettingsList.Item>
           <View style={[a.px_xl, a.pt_md, a.gap_sm]}>
-              <View style={[a.gap_sm]}>
+            <View style={[a.gap_sm]}>
+              {(
+                [
+                  ['posts', 'Posts', 'hide_self_posts'],
+                  ['replies', 'Replies', 'hide_self_replies'],
+                  ['media', 'Media', 'hide_self_media'],
+                  ['videos', 'Videos', 'hide_self_videos'],
+                  ['likes', 'Likes', 'hide_self_likes'],
+                  ['feeds', 'Feeds', 'hide_self_feeds'],
+                  ['starterPacks', 'Starter Packs', 'hide_self_starter_packs'],
+                  ['lists', 'Lists', 'hide_self_lists'],
+                ] as const
+              ).map(([key, label, name]) => (
                 <Toggle.Item
-                  label={_(msg`Posts`)}
-                  name="hide_on_own_posts"
-                  value={!postsProfileTab_self}
-                  onChange={value => setPostsProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Posts</Trans>
+                  key={key}
+                  label={_(msg`${label}`)}
+                  name={name}
+                  value={!ownTabs[key]}
+                  onChange={value => setOwnTabs(key, !value)}
+                  style={toggleStyle}>
+                  <Toggle.LabelText style={labelStyle}>
+                    <Trans>{label}</Trans>
                   </Toggle.LabelText>
                   <Toggle.Platform />
                 </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Replies`)}
-                  name="hide_on_own_replies"
-                  value={!repliesProfileTab_self}
-                  onChange={value => setRepliesProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Replies</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Media`)}
-                  name="hide_on_own_media"
-                  value={!mediaProfileTab_self}
-                  onChange={value => setMediaProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Media</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Videos`)}
-                  name="hide_on_own_videos"
-                  value={!videosProfileTab_self}
-                  onChange={value => setVideosProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Videos</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Likes`)}
-                  name="hide_on_own_likes"
-                  value={!likesProfileTab_self}
-                  onChange={value => setLikesProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Likes</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Feeds`)}
-                  name="hide_on_own_feeds"
-                  value={!feedsProfileTab_self}
-                  onChange={value => setFeedsProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Feeds</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Starter Packs`)}
-                  name="hide_on_own_starter_packs"
-                  value={!starterPacksProfileTab_self}
-                  onChange={value => setStarterPacksProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Starter Packs</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Lists`)}
-                  name="hide_on_own_lists"
-                  value={!listsProfileTab_self}
-                  onChange={value => setListsProfileTab_self(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Lists</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-              </View>
+              ))}
+            </View>
             <Divider />
           </View>
-
-
 
           <SettingsList.Item style={[a.align_start]}>
             <SettingsList.ItemIcon icon={HeartIcon} />
@@ -257,141 +101,32 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
             />
           </SettingsList.Item>
           <View style={[a.px_xl, a.pt_md, a.gap_sm]}>
-              <View style={[a.gap_sm]}>
+            <View style={[a.gap_sm]}>
+              {(
+                [
+                  ['posts', 'Posts', 'hide_others_posts'],
+                  ['replies', 'Replies', 'hide_others_replies'],
+                  ['media', 'Media', 'hide_others_media'],
+                  ['videos', 'Videos', 'hide_others_videos'],
+                  ['feeds', 'Feeds', 'hide_others_feeds'],
+                  ['starterPacks', 'Starter Packs', 'hide_others_starter_packs'],
+                  ['lists', 'Lists', 'hide_others_lists'],
+                ] as const
+              ).map(([key, label, name]) => (
                 <Toggle.Item
-                  label={_(msg`Posts`)}
-                  name="hide_on_own_posts"
-                  value={!postsProfileTab}
-                  onChange={value => setPostsProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Posts</Trans>
+                  key={key}
+                  label={_(msg`${label}`)}
+                  name={name}
+                  value={!otherTabs[key]}
+                  onChange={value => setOtherTabs(key, !value)}
+                  style={toggleStyle}>
+                  <Toggle.LabelText style={labelStyle}>
+                    <Trans>{label}</Trans>
                   </Toggle.LabelText>
                   <Toggle.Platform />
                 </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Replies`)}
-                  name="hide_on_own_replies"
-                  value={!repliesProfileTab}
-                  onChange={value => setRepliesProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Replies</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Media`)}
-                  name="hide_on_own_media"
-                  value={!mediaProfileTab}
-                  onChange={value => setMediaProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Media</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Videos`)}
-                  name="hide_on_own_videos"
-                  value={!videosProfileTab}
-                  onChange={value => setVideosProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Videos</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Feeds`)}
-                  name="hide_on_own_feeds"
-                  value={!feedsProfileTab}
-                  onChange={value => setFeedsProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Feeds</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Starter Packs`)}
-                  name="hide_on_own_starter_packs"
-                  value={!starterPacksProfileTab}
-                  onChange={value => setStarterPacksProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Starter Packs</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-                <Toggle.Item
-                  label={_(msg`Lists`)}
-                  name="hide_on_own_lists"
-                  value={!listsProfileTab}
-                  onChange={value => setListsProfileTab(!value)}
-                  style={[
-                    a.py_xs,
-                    platform({
-                      native: [a.justify_between],
-                      web: [a.flex_row_reverse, a.gap_sm],
-                    }),
-                  ]}>
-                  <Toggle.LabelText
-                    style={[t.atoms.text, a.font_normal, a.text_md, a.flex_1]}>
-                    <Trans>Lists</Trans>
-                  </Toggle.LabelText>
-                  <Toggle.Platform />
-                </Toggle.Item>
-
-              </View>
+              ))}
+            </View>
             <Divider />
           </View>
 

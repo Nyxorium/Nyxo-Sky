@@ -9,7 +9,7 @@ import {
   tryStringify,
 } from '#/state/persisted/schema'
 import {type PersistedApi} from './types'
-import {normalizeData} from './util'
+import {migrateProfileTabVisibility, normalizeData} from './util'
 
 export type {PersistedAccount, Schema} from '#/state/persisted/schema'
 export {defaults} from '#/state/persisted/schema'
@@ -28,9 +28,15 @@ export async function init() {
   broadcast.onmessage = onBroadcastMessage
   window.onstorage = onStorage
   const stored = readFromStorage()
+  // if (stored) {
+  //   _state = stored
+  // }
+
   if (stored) {
-    _state = stored
+    _state = migrateProfileTabVisibility(stored)
+    writeToStorage(_state)
   }
+
 }
 init satisfies PersistedApi['init']
 

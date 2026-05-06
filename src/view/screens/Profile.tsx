@@ -56,7 +56,7 @@ import {navigate} from '#/Navigation'
 import {ExpoScrollForwarderView} from '../../../modules/expo-scroll-forwarder'
 import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 
-import {useProfileTabVisibilityPref} from '#/state/preferences/tabs-visibility-profiles'
+import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
 
 interface SectionRef {
   scrollToTop: () => void
@@ -203,25 +203,6 @@ function ProfileScreenLoaded({
   const starterPacksSectionRef = useRef<SectionRef>(null)
   const labelsSectionRef = useRef<SectionRef>(null)
 
-  const {
-    postsProfileTab,
-    repliesProfileTab,
-    mediaProfileTab,
-    videosProfileTab,
-    feedsProfileTab,
-    starterPacksProfileTab,
-    listsProfileTab,
-
-    postsProfileTab_self,
-    repliesProfileTab_self,
-    mediaProfileTab_self,
-    videosProfileTab_self,
-    likesProfileTab_self,
-    feedsProfileTab_self,
-    starterPacksProfileTab_self,
-    listsProfileTab_self,
-  } = useProfileTabVisibilityPref()
-
   useSetTitle(combinedDisplayName(profile))
 
   const description = profile.description ?? ''
@@ -236,44 +217,22 @@ function ProfileScreenLoaded({
   const isMe = profile.did === currentAccount?.did
   const hasLabeler = !!profile.associated?.labeler
 
-  const prefPosts = isMe ? postsProfileTab_self : postsProfileTab
-  const prefReplies = isMe ? repliesProfileTab_self : repliesProfileTab
-  const prefMedia = isMe ? mediaProfileTab_self : mediaProfileTab
-  const prefVideos = isMe ? videosProfileTab_self : videosProfileTab
-  const prefLikes = isMe ? likesProfileTab_self : false
-  const prefFeeds = isMe ? feedsProfileTab_self : feedsProfileTab
-  const prefStarterPacks = isMe ? starterPacksProfileTab_self : starterPacksProfileTab
-  const prefLists = isMe ? listsProfileTab_self : listsProfileTab
+  const {ownTabs, otherTabs} = useProfileTabVisibilityPrefs()
+  const tabPrefs = isMe ? ownTabs : otherTabs
 
   const showFiltersTab = hasLabeler
-  const showPostsTab = true && (prefPosts !== true)
-  const showRepliesTab = hasSession && (prefReplies !== true)
-  const showMediaTab = !hasLabeler && (prefMedia !== true)
-  const showVideosTab = !hasLabeler && (prefVideos !== true)
-  const showLikesTab = isMe && (prefLikes !== true)
+  const showPostsTab = tabPrefs.posts !== true
+  const showRepliesTab = hasSession && tabPrefs.replies !== true
+  const showMediaTab = !hasLabeler && tabPrefs.media !== true
+  const showVideosTab = !hasLabeler && tabPrefs.videos !== true
+  const showLikesTab = isMe && ownTabs.likes !== true
   const feedGenCount = profile.associated?.feedgens || 0
-  const showFeedsTab = (isMe || feedGenCount > 0) && (prefFeeds !== true)
+  const showFeedsTab = (isMe || feedGenCount > 0) && tabPrefs.feeds !== true
   const starterPackCount = profile.associated?.starterPacks || 0
-  const showStarterPacksTab = (isMe || starterPackCount > 0) && (prefStarterPacks !== true)
-  // subtract starterpack count from list count, since starterpacks are a type of list
+  const showStarterPacksTab = (isMe || starterPackCount > 0) && tabPrefs.starterPacks !== true
   const listCount = (profile.associated?.lists || 0) - starterPackCount
-  const showListsTab = hasSession && (isMe || listCount > 0) && (prefLists !== true)
+  const showListsTab = hasSession && (isMe || listCount > 0) && tabPrefs.lists !== true
 
-  // const showFiltersTab = hasLabeler
-  // const showPostsTab = true
-  // const showRepliesTab = hasSession
-  // const showMediaTab = !hasLabeler
-  // const showVideosTab = !hasLabeler
-  // const showLikesTab = isMe
-  // const feedGenCount = profile.associated?.feedgens || 0
-  // const showFeedsTab = isMe || feedGenCount > 0
-  // const starterPackCount = profile.associated?.starterPacks || 0
-  // const showStarterPacksTab = isMe || starterPackCount > 0
-  // // subtract starterpack count from list count, since starterpacks are a type of list
-  // const listCount = (profile.associated?.lists || 0) - starterPackCount
-  // const showListsTab = hasSession && (isMe || listCount > 0)
-
-  // Make these tabs optional in the same manner as metics - Sunstar
   const sectionTitles = [
     showFiltersTab ? _(msg`Labels`) : undefined,
     showListsTab && hasLabeler ? _(msg`Lists`) : undefined,
