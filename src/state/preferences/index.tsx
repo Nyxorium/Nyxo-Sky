@@ -16,6 +16,7 @@ import {Provider as EnableSquareAvatars} from './enable-square-avatars'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as GateOverridesProvider} from './gateOverrides'
 import {Provider as ImpressionVisibilityProvider} from './impression-visibility'
+import {Provider as DisableProfileDescriptions} from './disable-profile-descriptions'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -69,7 +70,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                               <NoAppLabelersProvider>
                                                 <GateOverridesProvider>
                                                   <ImpressionVisibilityProvider>
-                                                    <KawaiiProvider>{children}</KawaiiProvider>
+                                                    <DisableProfileDescriptions>
+                                                      <KawaiiProvider>{children}</KawaiiProvider>
+                                                    </DisableProfileDescriptions>
                                                   </ImpressionVisibilityProvider>
                                                 </GateOverridesProvider>
                                               </NoAppLabelersProvider>

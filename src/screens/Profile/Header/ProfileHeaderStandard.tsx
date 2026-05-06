@@ -48,6 +48,7 @@ import {ProfileHeaderShell} from './Shell'
 import {ProfileHeaderSuggestedFollows} from './SuggestedFollows'
 import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderPronouns} from './Pronouns'
+import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -106,6 +107,8 @@ let ProfileHeaderStandard = ({
 
   const {isActive: live} = useActorStatus(profile)
 
+  const disableProfileDescriptions = useDisableProfileDescriptions()
+
   return (
     <>
       <ProfileHeaderShell
@@ -163,7 +166,7 @@ let ProfileHeaderStandard = ({
           {!isPlaceholderProfile && !isBlockedUser && (
             <View style={a.gap_md}>
               <ProfileHeaderMetrics profile={profile} />
-              {descriptionRT && !moderation.ui('profileView').blur ? (
+              {descriptionRT && !disableProfileDescriptions &&!moderation.ui('profileView').blur ? (
                 <View pointerEvents="auto">
                   <RichText
                     testID="profileHeaderDescription"

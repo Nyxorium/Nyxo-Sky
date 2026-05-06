@@ -43,6 +43,7 @@ import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
 import {ProfileHeaderMetaRow} from './MetaRow'
+import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -107,6 +108,8 @@ let ProfileHeaderLabeler = ({
     }
   }, [ax, labeler, playHaptic, likeUri, unlikeMod, likeMod, _])
 
+  const disableProfileDescriptions = useDisableProfileDescriptions()
+
   return (
     <ProfileHeaderShell
       profile={profile}
@@ -128,7 +131,7 @@ let ProfileHeaderLabeler = ({
         {!isPlaceholderProfile && (
           <>
             {isSelf && <ProfileHeaderMetrics profile={profile} />}
-            {descriptionRT && !moderation.ui('profileView').blur ? (
+            {descriptionRT && !disableProfileDescriptions && !moderation.ui('profileView').blur ? (
               <View pointerEvents="auto">
                 <RichText
                   testID="profileHeaderDescription"

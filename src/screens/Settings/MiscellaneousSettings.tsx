@@ -36,6 +36,10 @@ import {
   useComposerPromptDisabled,
   useSetComposerPromptDisabled,
 } from '#/state/preferences/disable-composer-prompt-in-feeds'
+import { 
+  useDisableProfileDescriptions,
+  useSetDisableProfileDescriptions,
+} from '#/state/preferences/disable-profile-descriptions'
 import {
   useNoAppLabelers,
   useSetNoAppLabelers,
@@ -43,7 +47,7 @@ import {
 import { 
   useLimitComposePostButton,
   useSetLimitComposePostButton,
- } from '#/state/preferences/limit-compose-post-button'
+} from '#/state/preferences/limit-compose-post-button'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
@@ -56,12 +60,16 @@ import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/W
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/icons/EyeSlash'
+import {Message_Stroke2_Corner0_Rounded as Message} from '#/components/icons/Message'
 import {IS_NATIVE} from '#/env'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
   const {_} = useLingui()
+
+  const [devModeEnabled] = useDevMode()
 
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const setAltLabelDisplayProfile = useSetAltLabelDisplayProfile()
@@ -77,6 +85,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
   const disableComposerPromptInFeeds = useComposerPromptDisabled()
   const setDisableComposerPromptInFeeds = useSetComposerPromptDisabled()
+  const disableProfileDescriptions = useDisableProfileDescriptions()
+  const setDisableProfileDescriptions = useSetDisableProfileDescriptions()
   const limitComposePostButton = useLimitComposePostButton()
   const setLimitComposePostButton = useSetLimitComposePostButton()
   const noAppLabelers = useNoAppLabelers()
@@ -212,6 +222,22 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
+
+          {devModeEnabled && (
+            <Toggle.Item
+              name="disable_profile_descriptions"
+              label={_(msg`Disable Profile Descriptions`)}
+              value={disableProfileDescriptions}
+              onChange={value => setDisableProfileDescriptions(value)}>
+              <SettingsList.Item>
+                <SettingsList.ItemIcon icon={Message} />
+                <SettingsList.ItemText>
+                  <Trans>Disable Profile Descriptions</Trans>
+                </SettingsList.ItemText>
+                <Toggle.Platform />
+              </SettingsList.Item>
+            </Toggle.Item>
+          )}
 
           {IS_NATIVE && <SettingsList.Divider />}
 

@@ -158,6 +158,7 @@ const schema = z.object({
   disableShareViaDms: z.boolean().optional(),
   disableFeedPromoTab: z.boolean().optional(),
   disableComposerPromptInFeeds: z.boolean().optional(),
+  disableProfileDescriptions: z.boolean().optional(),
 
   disablePostsProfileTab: z.boolean().optional(),
   disableRepliesProfileTab: z.boolean().optional(),
@@ -257,6 +258,7 @@ export const defaults: Schema = {
   enableShareViaDID: false,
   disableFeedPromoTab: false,
   disableComposerPromptInFeeds: true,
+  disableProfileDescriptions: false,
 
   disablePostsProfileTab: false,
   disableRepliesProfileTab: false,
