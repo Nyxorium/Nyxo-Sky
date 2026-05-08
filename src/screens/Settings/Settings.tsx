@@ -43,6 +43,7 @@ import {Contacts_Stroke2_Corner2_Rounded as ContactsIcon} from '#/components/ico
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsHorizontal} from '#/components/icons/DotGrid'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
+import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/icons/EyeSlash'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
 import {
@@ -206,6 +207,14 @@ export function SettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={WindowIcon} />
             <SettingsList.ItemText>
               <Trans>Content and media</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/impression-visibility"
+            label={l`Impression Visibility`}>
+            <SettingsList.ItemIcon icon={EyeSlashIcon} />
+            <SettingsList.ItemText>
+              <Trans>Impression Visibility</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           {IS_NATIVE &&
