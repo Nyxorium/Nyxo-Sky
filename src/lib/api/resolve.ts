@@ -1,13 +1,13 @@
 import {
   type AppBskyFeedDefs,
   type AppBskyGraphDefs,
+  type BskyAgent,
   type ComAtprotoRepoStrongRef,
 } from '@atproto/api'
 import {AtUri} from '@atproto/api'
-import {type BskyAgent} from '@atproto/api'
 
 import {POST_IMG_MAX} from '#/lib/constants'
-import {getLinkMeta} from '#/lib/link-meta/link-meta'
+import {getLinkMeta, type LinkMeta} from '#/lib/link-meta/link-meta'
 import {resolveShortLink} from '#/lib/link-meta/resolve-short-link'
 import {downloadAndResize} from '#/lib/media/manip'
 import {
@@ -15,18 +15,19 @@ import {
   parseStarterPackUri,
 } from '#/lib/strings/starter-pack'
 import {
+  convertBskyAppUrlIfNeeded,
   isBskyCustomFeedUrl,
   isBskyListUrl,
   isBskyPostUrl,
   isBskyStarterPackUrl,
   isBskyStartUrl,
   isShortLink,
+  makeRecordUri,
 } from '#/lib/strings/url-helpers'
 import {type ComposerImage} from '#/state/gallery'
 import {createComposerImage} from '#/state/gallery'
-import {type Gif} from '#/state/queries/tenor'
+import {type Gif} from '#/features/gifPicker/types'
 import {createGIFDescription} from '../gif-alt-text'
-import {convertBskyAppUrlIfNeeded, makeRecordUri} from '../strings/url-helpers'
 
 type ResolvedExternalLink = {
   type: 'external'
@@ -34,6 +35,11 @@ type ResolvedExternalLink = {
   title: string
   description: string
   thumb: ComposerImage | undefined
+  /**
+   * The AT-URI of the Atmosphere record representing this external content, if
+   * it exists. Example: a site.standard.document record.
+   */
+  associatedRecord?: LinkMeta['associatedRecord']
 }
 
 type ResolvedPostRecord = {
@@ -239,6 +245,7 @@ async function resolveExternal(
     title: result.title ?? '',
     description: result.description ?? '',
     thumb: result.image ? await imageToThumb(result.image) : undefined,
+    associatedRecord: result.associatedRecord,
   }
 }
 

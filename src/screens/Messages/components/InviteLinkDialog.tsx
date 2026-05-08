@@ -1,5 +1,6 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {View} from 'react-native'
+import {moderateProfile, type ModerationOpts} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
@@ -17,7 +18,10 @@ import {
   StackedButton,
 } from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
-import {type ConvoWithDetails} from '#/components/dms/util'
+import {
+  type ConvoWithDetails,
+  type GroupConvoMember,
+} from '#/components/dms/util'
 import * as Toggle from '#/components/forms/Toggle'
 import {ArrowRight_Stroke2_Corner0_Rounded as ArrowRightIcon} from '#/components/icons/Arrow'
 import {ArrowShareRight_Stroke2_Corner2_Rounded as ArrowShareRightIcon} from '#/components/icons/ArrowShareRight'
@@ -36,29 +40,27 @@ enum Step {
   MANAGE,
 }
 
-const timeFormatter = new Intl.DateTimeFormat(undefined, {
-  hour: 'numeric',
-  minute: 'numeric',
-})
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-  month: 'long',
-  day: 'numeric',
-  year: 'numeric',
-})
-
 export function InviteLinkDialog({
   convo,
   control,
+  owner,
   isOwner,
+  moderationOpts,
 }: {
   convo: Extract<ConvoWithDetails, {kind: 'group'}>
   control: Dialog.DialogOuterProps['control']
+  owner: GroupConvoMember
   isOwner: boolean
+  moderationOpts: ModerationOpts
 }) {
   const t = useTheme()
-  const {t: l} = useLingui()
+  const {t: l, i18n} = useLingui()
 
-  const ownerName = createSanitizedDisplayName(convo.primaryMember)
+  const ownerName = createSanitizedDisplayName(
+    owner,
+    false,
+    moderateProfile(owner, moderationOpts).ui('displayName'),
+  )
 
   const {joinLink} = convo.details
   const enabledStatus = joinLink?.enabledStatus
@@ -70,8 +72,19 @@ export function InviteLinkDialog({
       ]
     : ['anyone']
 
-  const [step, setStep] = useState<Step>(defaultStep)
+  const [step, setStep] = useState(defaultStep)
   const [whoCanJoin, setWhoCanJoin] = useState(defaultWhoCanJoin)
+
+  // Resync local state when the server-side join link rules change (mutation
+  // success, refetch, or change from another client). Keyed on the rule string
+  // so identity-only refetches don't bump a user mid-edit.
+  const joinLinkRuleKey = joinLink
+    ? `${joinLink.joinRule}${joinLink.requireApproval ? ':requireApproval' : ''}`
+    : null
+  useEffect(() => {
+    setStep(joinLinkRuleKey ? Step.MANAGE : Step.INFO)
+    setWhoCanJoin([joinLinkRuleKey ?? 'anyone'])
+  }, [joinLinkRuleKey])
 
   const {openComposer} = useOpenComposer()
 
@@ -204,7 +217,7 @@ export function InviteLinkDialog({
                 {whoCanJoinOptions.map(option => (
                   <Toggle.Item
                     key={option.name}
-                    highlightRow={true}
+                    highlightRow
                     label={isOwner ? option.owner : option.member}
                     name={option.name}
                     style={[a.flex_1]}>
@@ -253,13 +266,15 @@ export function InviteLinkDialog({
       )
       break
     case Step.MANAGE: {
-      const hasJoinLinkCode = joinLink && joinLink.code !== ''
-      const joinLinkURI = hasJoinLinkCode
+      const joinLinkURI = joinLink?.code
         ? `https://bsky.app/chat/${joinLink.code}`
         : 'https://bsky.app/chat'
       const createdAt = joinLink ? new Date(joinLink.createdAt) : null
+      const currentOptionName = joinLink
+        ? `${joinLink.joinRule}${joinLink.requireApproval ? ':requireApproval' : ''}`
+        : whoCanJoinOptions[0].name
       const currentOption = whoCanJoinOptions.find(
-        o => o.name === whoCanJoin[0],
+        o => o.name === currentOptionName,
       )
       const ownerValue = currentOption?.owner ?? whoCanJoinOptions[0].owner
       const memberValue = currentOption?.member ?? whoCanJoinOptions[0].member
@@ -269,7 +284,7 @@ export function InviteLinkDialog({
         <>
           <View style={[a.mt_lg]}>
             <CopyTextButton
-              disabled={enabledStatus === 'disabled' || !hasJoinLinkCode}
+              disabled={enabledStatus === 'disabled' || !joinLink?.code}
               label={l`Invite link`}
               value={joinLinkURI}>
               <Text
@@ -287,8 +302,11 @@ export function InviteLinkDialog({
             {createdAt ? (
               <Text style={[a.mt_xs, a.text_xs, t.atoms.text_contrast_medium]}>
                 <Trans>
-                  Created {timeFormatter.format(createdAt)}{' '}
-                  {dateFormatter.format(createdAt)}
+                  Created{' '}
+                  {i18n.date(createdAt, {
+                    dateStyle: 'long',
+                    timeStyle: 'short',
+                  })}
                 </Trans>
               </Text>
             ) : null}
@@ -300,16 +318,11 @@ export function InviteLinkDialog({
                   label={l`Edit link settings`}
                   value={ownerValue}
                   onPress={() => setStep(Step.GENERATE)}>
-                  <Text
-                    numberOfLines={1}
-                    style={[
-                      a.mr_xs,
-                      a.text_md,
-                      t.atoms.text,
-                      {maxWidth: '80%'},
-                    ]}>
-                    {ownerValue}
-                  </Text>
+                  <View style={[a.flex_1, a.mr_xs]}>
+                    <Text numberOfLines={1} style={[a.text_md, t.atoms.text]}>
+                      {ownerValue}
+                    </Text>
+                  </View>
                 </EditTextButton>
               ) : (
                 <Text style={[a.text_sm, t.atoms.text]}>{memberValue}</Text>
@@ -391,7 +404,7 @@ export function InviteLinkDialog({
     }
   }
 
-  if (!isOwner && (!joinLink || joinLink?.enabledStatus === 'disabled')) {
+  if (!isOwner && (!joinLink || joinLink.enabledStatus === 'disabled')) {
     header = l`Invite link`
     content = (
       <>

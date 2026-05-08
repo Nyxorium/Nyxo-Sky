@@ -49,8 +49,10 @@ import {Loader} from '#/components/Loader'
 import * as Prompt from '#/components/Prompt'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
-import {IS_LIQUID_GLASS, IS_WEB} from '#/env'
+import {IS_INTERNAL, IS_LIQUID_GLASS, IS_WEB} from '#/env'
 import {ChatDisabled} from './components/ChatDisabled'
+import {ChatEnded} from './components/ChatEnded'
+import {ChatLocked} from './components/ChatLocked'
 
 type Props = NativeStackScreenProps<
   CommonNavigatorParams,
@@ -262,6 +264,26 @@ function InnerReady({
 
   const header = <MessagesListHeader convo={convo} />
 
+  let footer: React.ReactNode = null
+  if (isDisabled) {
+    footer = <ChatDisabled />
+  } else if (convo && primaryMember && primaryMemberModeration?.blocked) {
+    footer = (
+      <MessagesListBlockedFooter
+        recipient={primaryMember}
+        convoId={convo.view.id}
+        hasMessages={hasMessages}
+        moderation={primaryMemberModeration}
+      />
+    )
+  } else if (convo?.kind === 'group') {
+    if (convo.details.lockStatus === 'locked') {
+      footer = <ChatLocked convo={convo} />
+    } else if (convo.details.lockStatus === 'locked-permanently') {
+      footer = <ChatEnded convo={convo} />
+    }
+  }
+
   return (
     <>
       {IS_LIQUID_GLASS ? (
@@ -280,27 +302,15 @@ function InnerReady({
           setHasScrolled={setHasScrolled}
           hasAcceptOverride={!!params.accept}
           transparentHeaderHeight={IS_LIQUID_GLASS ? headerHeight : 0}
-          footer={
-            isDisabled ? (
-              <ChatDisabled />
-            ) : convo && primaryMember && primaryMemberModeration?.blocked ? (
-              <MessagesListBlockedFooter
-                recipient={primaryMember}
-                convoId={convo.view.id}
-                hasMessages={hasMessages}
-                moderation={primaryMemberModeration}
-              />
-            ) : null
-          }
+          footer={footer}
         />
       )}
 
-      {/*{!IS_INTERNAL && convo?.kind === 'group' && <GroupChatGate />}*/}
+      {!IS_INTERNAL && convo?.kind === 'group' && <GroupChatGate />}
     </>
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function GroupChatGate() {
   const {t: l} = useLingui()
   const ax = useAnalytics()

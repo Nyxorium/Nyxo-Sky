@@ -25,6 +25,7 @@ import {
   type $Typed,
   type AppBskyEmbedRecord,
   AppBskyRichtextFacet,
+  ChatBskyConvoDefs,
   RichText,
 } from '@atproto/api'
 import {useScrollEdgeEffectRef} from '@bsky.app/expo-scroll-edge-effect'
@@ -55,7 +56,6 @@ import {MessageInput} from '#/screens/Messages/components/MessageInput'
 import {MessageListError} from '#/screens/Messages/components/MessageListError'
 import {atoms as a, platform, tokens, useTheme, web} from '#/alf'
 import {ChatEmptyPill} from '#/components/dms/ChatEmptyPill'
-import {DateDividerToggleProvider} from '#/components/dms/DateDividerToggle'
 import {MessageItem} from '#/components/dms/MessageItem'
 import {NewMessagesPill} from '#/components/dms/NewMessagesPill'
 import {SystemMessageItem} from '#/components/dms/SystemMessageItem'
@@ -84,6 +84,27 @@ function MaybeLoader({isLoading}: {isLoading: boolean}) {
 
 function keyExtractor(item: ConvoItem) {
   return item.key
+}
+
+function getNeighborMessage(
+  items: ConvoItem[],
+  index: number,
+): ChatBskyConvoDefs.MessageView | ChatBskyConvoDefs.DeletedMessageView | null {
+  const neighbor = items[index]
+  if (!neighbor) return null
+  if (
+    neighbor.type === 'message' ||
+    neighbor.type === 'pending-message' ||
+    neighbor.type === 'deleted-message'
+  ) {
+    if (
+      ChatBskyConvoDefs.isMessageView(neighbor.message) ||
+      ChatBskyConvoDefs.isDeletedMessageView(neighbor.message)
+    ) {
+      return neighbor.message
+    }
+  }
+  return null
 }
 
 function onScrollToIndexFailed() {
@@ -369,18 +390,26 @@ export function MessagesList({
     })
   }, [flatListRef])
 
-  const renderItem = ({item}: {item: ConvoItem}) => {
+  const renderItem = ({item, index}: {item: ConvoItem; index: number}) => {
     if (item.type === 'message' || item.type === 'pending-message') {
       return (
         <MessageItem
           item={item}
           isGroupChat={convoState.convo.kind === 'group'}
+          prevMessage={getNeighborMessage(convoState.items, index - 1)}
+          nextMessage={getNeighborMessage(convoState.items, index + 1)}
+          relatedProfiles={convoState.relatedProfiles}
         />
       )
     } else if (item.type === 'deleted-message') {
       return <Text>Deleted message</Text>
     } else if (item.type === 'system-message') {
-      return <SystemMessageItem item={item} />
+      return (
+        <SystemMessageItem
+          item={item}
+          relatedProfiles={convoState.relatedProfiles}
+        />
+      )
     } else if (item.type === 'error') {
       return <MessageListError item={item} />
     }
@@ -410,7 +439,7 @@ export function MessagesList({
   )
 
   return (
-    <DateDividerToggleProvider>
+    <>
       <KeyboardGestureArea
         interpolator="ios"
         // HACKFIX: https://github.com/kirillzyusko/react-native-keyboard-controller/issues/1419
@@ -514,7 +543,7 @@ export function MessagesList({
       </KeyboardGestureArea>
 
       {newMessagesPill.show && <NewMessagesPill onPress={scrollToEndOnPress} />}
-    </DateDividerToggleProvider>
+    </>
   )
 }
 
