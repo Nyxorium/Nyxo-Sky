@@ -23,10 +23,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> = 
     label: 'Group chats',
     description: 'Enable group chat functionality in direct messages',
   },
-  [Features.KlipyGifProviderEnable]: {
-    label: 'Klipy GIF provider',
-    description: 'Use Klipy as an additional GIF provider in the composer',
-  },
   [Features.ComposerLanguageDetectionEnable]: {
     label: 'Composer language detection',
     description: 'Automatically detect the language of posts as you write them',
