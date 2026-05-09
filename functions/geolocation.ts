@@ -1,3 +1,10 @@
+const nyxoNeutralGeo = {
+  countryCode: 'NL',
+  regionCode: undefined,
+} as const
+
+const filteredRegions = new Set(['GB', 'AU', 'US'])
+
 export async function onRequest(
   context: EventContext<Env, string, Record<string, unknown>>,
 ) {
@@ -7,7 +14,11 @@ export async function onRequest(
   const countryCode = country && country !== 'XX' ? country : undefined
   const regionCode = region && region !== 'XX' ? region : undefined
 
-  return new Response(JSON.stringify({countryCode, regionCode}), {
+  const geo = countryCode && filteredRegions.has(countryCode)
+    ? nyxoNeutralGeo
+    : {countryCode, regionCode}
+
+  return new Response(JSON.stringify({geo}), {
     headers: {
       'Content-Type': 'application/json',
       'Cache-Control': 'no-store',
