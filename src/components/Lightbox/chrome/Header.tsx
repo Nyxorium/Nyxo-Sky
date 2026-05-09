@@ -6,21 +6,16 @@ import {useLingui} from '@lingui/react'
 import {atoms as a} from '#/alf'
 import {TimesLarge_Stroke2_Corner0_Rounded as CloseIcon} from '#/components/icons/Times'
 import {CircleChromeButton} from './CircleChromeButton'
-import {ImageMenu} from './ImageMenu'
 import {PagerDots} from './PagerDots'
 
 type Props = {
   onRequestClose: () => void
-  onPressShare: () => void
-  onPressSave: () => void
   imageCount: number
   activeIndex: number
 }
 
 export function Header({
   onRequestClose,
-  onPressShare,
-  onPressSave,
   imageCount,
   activeIndex,
 }: Props) {
@@ -38,7 +33,7 @@ export function Header({
         {paddingTop: insets.top + 8},
       ]}
       pointerEvents="box-none">
-      <ImageMenu onPressShare={onPressShare} onPressSave={onPressSave} />
+      <View style={styles.spacer} />
       <PagerDots count={imageCount} activeIndex={activeIndex} />
       <CircleChromeButton
         icon={CloseIcon}
@@ -55,5 +50,9 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
+  },
+  spacer: {
+    width: 44,
+    height: 44,
   },
 })

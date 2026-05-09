@@ -409,8 +409,6 @@ function ImageView({
           renderToHardwareTextureAndroid>
           <Header
             onRequestClose={handleRequestClose}
-            onPressShare={() => onPressShare(images[imageIndex].uri)}
-            onPressSave={() => onPressSave(images[imageIndex].uri)}
             imageCount={images.length}
             activeIndex={imageIndex}
           />
@@ -423,6 +421,8 @@ function ImageView({
             altText={images[imageIndex].alt}
             isAltExpanded={isAltExpanded}
             onToggleAltExpanded={() => setIsAltExpanded(e => !e)}
+            onPressShare={() => onPressShare(images[imageIndex].uri)}
+            onPressSave={() => onPressSave(images[imageIndex].uri)}
           />
         </Animated.View>
       </View>
