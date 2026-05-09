@@ -211,7 +211,7 @@ export function UserBanner({
       />
     </>
   ) : banner &&
-    !((moderation?.blur && IS_ANDROID && !devModeEnabled) /* android crashes with blur */) ? (
+    !((moderation?.blur && IS_ANDROID && !devModeEnabled && false ) /* android crashes with blur */) ? (
     <Image
       style={[styles.bannerImage, t.atoms.bg_contrast_25]}
       contentFit="cover"
