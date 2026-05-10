@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = boolean
 type SetContext = (v: boolean) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   Boolean(persisted.defaults.disableFeedPromoTab),
 )
 stateContext.displayName = 'DisableFeedPromoTabStateContext'
-const setContext = React.createContext<SetContext>((_: boolean) => {})
+const setContext = createContext<SetContext>((_: boolean) => {})
 setContext.displayName = 'DisableFeedPromoTabSetContext'
 
 export function Provider({children}: {children: React.ReactNode}) {
-  const [state, setState] = React.useState(
+  const [state, setState] = useState(
     Boolean(persisted.get('disableFeedPromoTab')),
   )
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (disableFeedPromoTab: persisted.Schema['disableFeedPromoTab']) => {
       setState(Boolean(disableFeedPromoTab))
       persisted.write('disableFeedPromoTab', disableFeedPromoTab)
@@ -25,7 +31,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate(
       'disableFeedPromoTab',
       nextDisableFeedPromoTab => {
@@ -43,5 +49,5 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 }
 
-export const useDisableFeedPromoTab = () => React.useContext(stateContext)
-export const useSetDisableFeedPromoTab = () => React.useContext(setContext)
+export const useDisableFeedPromoTab = () => useContext(stateContext)
+export const useSetDisableFeedPromoTab = () => useContext(setContext)

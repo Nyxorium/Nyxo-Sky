@@ -26,6 +26,7 @@ import {logger} from '#/logger'
 import {usePostAuthorShadowFilter} from '#/state/cache/profile-shadow'
 import {listenPostCreated} from '#/state/events'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
+import {useComposerPromptDisabled} from '#/state/preferences/disable-composer-prompt-in-feeds'
 import {useTrendingSettings} from '#/state/preferences/trending'
 import {STALE} from '#/state/queries'
 import {
@@ -73,8 +74,6 @@ import {PostFeedErrorMessage} from './PostFeedErrorMessage'
 import {PostFeedItem} from './PostFeedItem'
 import {ShowLessFollowup} from './ShowLessFollowup'
 import {ViewFullThread} from './ViewFullThread'
-
-import {useComposerPromptDisabled} from '#/state/preferences/disable-composer-prompt-in-feeds'
 
 type FeedRow =
   | {

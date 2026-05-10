@@ -2,8 +2,8 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
   useMemo,
+  useState,
 } from 'react'
 
 import * as persisted from '#/state/persisted'

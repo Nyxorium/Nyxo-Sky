@@ -13,9 +13,9 @@ import {useRequireAuth} from '#/state/session'
 import {useTheme} from '#/alf'
 import {Bookmark, BookmarkFilled} from '#/components/icons/Bookmark'
 import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
+import {useFormatPostStatCount} from '#/components/PostControls/util'
 import * as toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
-import {useFormatPostStatCount} from '#/components/PostControls/util'
 import {PostControlButton, PostControlButtonIcon, PostControlButtonText} from './PostControlButton'
 
 export const BookmarkButton = memo(function BookmarkButton({
@@ -50,7 +50,7 @@ export const BookmarkButton = memo(function BookmarkButton({
     }),
   )
 
-  const save = async ({disableUndo}: {disableUndo?: boolean} = {}) => {
+  const save = async ({/* disableUndo */}: {disableUndo?: boolean} = {}) => {
     try {
       await bookmark({
         action: 'create',

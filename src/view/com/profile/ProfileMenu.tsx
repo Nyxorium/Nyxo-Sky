@@ -13,6 +13,8 @@ import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {useModalControls} from '#/state/modals'
+import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
+import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
 import {Nux, useNux, useSaveNux} from '#/state/queries/nuxs'
 import {
   RQKEY as profileQueryKey,
@@ -47,6 +49,10 @@ import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as Unmute} from '#/components/
 import {StarterPack} from '#/components/icons/StarterPack'
 import * as Menu from '#/components/Menu'
 import {
+  LabelsOnMeDialog,
+  useLabelsOnMeDialogControl,
+} from '#/components/moderation/LabelsOnMeDialog'
+import {
   ReportDialog,
   useReportDialogControl,
 } from '#/components/moderation/ReportDialog'
@@ -64,14 +70,6 @@ import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabled
 import {Dot} from '#/features/nuxs/components/Dot'
 import {Gradient} from '#/features/nuxs/components/Gradient'
 import {useDevMode} from '#/storage/hooks/dev-mode'
-
-import {
-  LabelsOnMeDialog,
-  useLabelsOnMeDialogControl,
-} from '#/components/moderation/LabelsOnMeDialog'
-
-import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
 
 let ProfileMenu = ({
   profile,

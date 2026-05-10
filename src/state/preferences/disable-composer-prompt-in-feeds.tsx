@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = boolean
 type SetContext = (v: boolean) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   Boolean(persisted.defaults.disableComposerPromptInFeeds),
 )
 stateContext.displayName = 'ComposerPromptStateContext'
-const setContext = React.createContext<SetContext>((_: boolean) => {})
+const setContext = createContext<SetContext>((_: boolean) => {})
 setContext.displayName = 'ComposerPromptSetContext'
 
 export function Provider({children}: {children: React.ReactNode}) {
-  const [state, setState] = React.useState(
+  const [state, setState] = useState(
     Boolean(persisted.get('disableComposerPromptInFeeds')),
   )
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (composerPromptDisabled: persisted.Schema['disableComposerPromptInFeeds']) => {
       setState(Boolean(composerPromptDisabled))
       persisted.write('disableComposerPromptInFeeds', composerPromptDisabled)
@@ -25,7 +31,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate('disableComposerPromptInFeeds', nextDisableComposerPrompt => {
       setState(Boolean(nextDisableComposerPrompt))
     })
@@ -40,5 +46,5 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 }
 
-export const useComposerPromptDisabled = () => React.useContext(stateContext)
-export const useSetComposerPromptDisabled = () => React.useContext(setContext)
+export const useComposerPromptDisabled = () => useContext(stateContext)
+export const useSetComposerPromptDisabled = () => useContext(setContext)

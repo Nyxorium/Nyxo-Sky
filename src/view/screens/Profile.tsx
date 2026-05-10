@@ -28,7 +28,10 @@ import {isInvalidHandle} from '#/lib/strings/handles'
 import {colors, s} from '#/lib/styles'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {listenSoftReset} from '#/state/events'
+import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
+import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
+import {useSkipProfileWideContentWarning} from '#/state/preferences/skip-profile-wide-content-warning'
 import {useLabelerInfoQuery} from '#/state/queries/labeler'
 import {resetProfilePostsQueries} from '#/state/queries/post-feed'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -50,15 +53,11 @@ import {Image_Stroke1_Corner0_Rounded as ImageIcon} from '#/components/icons/Ima
 import {Message_Stroke1_Corner0_Rounded_Filled as MessageIcon} from '#/components/icons/Message'
 import {VideoClip_Stroke1_Corner0_Rounded as VideoIcon} from '#/components/icons/VideoClip'
 import * as Layout from '#/components/Layout'
+import {isAccountNsfwBlur} from '#/components/moderation/ContentHider'
 import {ScreenHider} from '#/components/moderation/ScreenHider'
 import {ProfileStarterPacks} from '#/components/StarterPack/ProfileStarterPacks'
 import {navigate} from '#/Navigation'
 import {ExpoScrollForwarderView} from '../../../modules/expo-scroll-forwarder'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
-
-import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
-import {useSkipProfileWideContentWarning} from '#/state/preferences/skip-profile-wide-content-warning'
-import {isAccountNsfwBlur} from '#/components/moderation/ContentHider'
 
 interface SectionRef {
   scrollToTop: () => void

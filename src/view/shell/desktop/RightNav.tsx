@@ -7,8 +7,8 @@ import {useNavigation} from '@react-navigation/native'
 
 import {
   FEEDBACK_FORM_URL,
-  TERMS_OF_SERVICE_URL,
   PRIVACY_POLICY_URL,
+  TERMS_OF_SERVICE_URL,
 } from '#/lib/constants'
 import {useKawaiiMode} from '#/state/preferences/kawaii'
 import {useSession} from '#/state/session'

@@ -22,6 +22,7 @@ import {s} from '#/lib/styles'
 import {listenSoftReset} from '#/state/events'
 import {FeedFeedbackProvider, useFeedFeedback} from '#/state/feed-feedback'
 import {useSetHomeBadge} from '#/state/home-badge'
+import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {type FeedSourceInfo} from '#/state/queries/feed'
 import {
   type FeedDescriptor,
@@ -38,7 +39,6 @@ import {FAB} from '../util/fab/FAB'
 import {type ListMethods} from '../util/List'
 import {LoadLatestBtn} from '../util/load-latest/LoadLatestBtn'
 import {MainScrollProvider} from '../util/MainScrollProvider'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 
 const POLL_FREQ = 60e3 // 60sec
 

@@ -1,21 +1,21 @@
-import {Trans} from '@lingui/react/macro'
+import {View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
+import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
-import * as SettingsList from '#/screens/Settings/components/SettingsList'
-import * as Toggle from '#/components/forms/Toggle'
 import {
   useProfileTabVisibilityPrefs,
   useSetProfileTabVisibilityPref,
 } from '#/state/preferences/profile-tab-visibility'
-import * as Layout from '#/components/Layout'
-import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
-import {Heart2_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
+import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, platform, useTheme} from '#/alf'
-import {View} from 'react-native'
+import * as Toggle from '#/components/forms/Toggle'
+import {Heart2_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
+import * as Layout from '#/components/Layout'
 import {Divider} from './components/SettingsList'
+import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 

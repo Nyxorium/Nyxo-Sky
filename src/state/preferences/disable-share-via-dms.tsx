@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = boolean
 type SetContext = (v: boolean) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   Boolean(persisted.defaults.disableShareViaDms),
 )
 stateContext.displayName = 'DisableShareViaDmsStateContext'
-const setContext = React.createContext<SetContext>((_: boolean) => {})
+const setContext = createContext<SetContext>((_: boolean) => {})
 setContext.displayName = 'DisableShareViaDmsSetContext'
 
 export function Provider({children}: {children: React.ReactNode}) {
-  const [state, setState] = React.useState(
+  const [state, setState] = useState(
     Boolean(persisted.get('disableShareViaDms')),
   )
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (disableShareViaDms: persisted.Schema['disableShareViaDms']) => {
       setState(Boolean(disableShareViaDms))
       persisted.write('disableShareViaDms', disableShareViaDms)
@@ -25,7 +31,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate(
       'disableShareViaDms',
       nextDisableShareViaDms => {
@@ -43,5 +49,5 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 }
 
-export const useDisableShareViaDms = () => React.useContext(stateContext)
-export const useSetDisableShareViaDms = () => React.useContext(setContext)
+export const useDisableShareViaDms = () => useContext(stateContext)
+export const useSetDisableShareViaDms = () => useContext(setContext)

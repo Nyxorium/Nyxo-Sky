@@ -9,8 +9,8 @@ import {StackActions, useNavigation} from '@react-navigation/native'
 import {
   FEEDBACK_FORM_URL, 
   HELP_DESK_URL,
-  TERMS_OF_SERVICE_URL,
   PRIVACY_POLICY_URL,
+  TERMS_OF_SERVICE_URL,
 } from '#/lib/constants'
 import {type PressableScale} from '#/lib/custom-animations/PressableScale'
 import {useNavigationTabState} from '#/lib/hooks/useNavigationTabState'

@@ -157,7 +157,7 @@ function DialogInner({
       try {
         setNewUserAvatar(img)
         setUserAvatar(img.path)
-      } catch (e: any) {
+      } catch (e) {
         setImageError(cleanError(e))
       }
     },
@@ -198,7 +198,7 @@ function DialogInner({
       })
       control.close(() => onUpdate?.())
       Toast.show(_(msg({message: 'Profile updated', context: 'toast'})))
-    } catch (e: any) {
+    } catch (e) {
       logger.error('Failed to update user profile', {message: String(e)})
     }
   }, [
@@ -418,7 +418,7 @@ function DialogInner({
               defaultValue={description}
               onChangeText={setDescription}
               multiline
-              style={[{minHeight: 80, maxHeight: 280}, IS_WEB && ({fieldSizing: 'content'} as any)]}
+              style={[{minHeight: 80, maxHeight: 280}, IS_WEB && ({fieldSizing: 'content'} as object)]}
               label={_(msg`Description`)}
               placeholder={_(msg`Tell us a bit about yourself`)}
               testID="editProfileDescriptionInput"

@@ -1,10 +1,11 @@
 import {View} from 'react-native'
 import {type AppBskyActorDefs} from '@atproto/api'
 import {Trans} from '@lingui/react/macro'
+
 import {atoms as a, useTheme} from '#/alf'
-import {InlineLinkText} from '#/components/Link'
-import {Globe_Stroke2_Corner0_Rounded as Globe} from '#/components/icons/Globe'
 import {Calendar_Stroke2_Corner0_Rounded as Calendar} from '#/components/icons/Calendar'
+import {Globe_Stroke2_Corner0_Rounded as Globe} from '#/components/icons/Globe'
+import {InlineLinkText} from '#/components/Link'
 import {Text} from '#/components/Typography'
 
 export function ProfileHeaderMetaRow({

@@ -1,9 +1,9 @@
 import {createContext, useCallback, useContext, useEffect, useState} from 'react'
 
-import {features} from '#/analytics/features'
-import {Features} from '#/analytics/features/types'
-import {NYXO_GATE_REGISTRY} from '#/analytics/features/nyxo-registry'
 import * as persisted from '#/state/persisted'
+import {features} from '#/analytics/features'
+import {NYXO_GATE_REGISTRY} from '#/analytics/features/nyxo-registry'
+import {Features} from '#/analytics/features/types'
 
 type Overrides = Record<string, boolean>
 

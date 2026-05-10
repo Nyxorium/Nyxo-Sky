@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = boolean
 type SetContext = (v: boolean) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   Boolean(persisted.defaults.disableProfileDescriptions),
 )
 stateContext.displayName = 'DisableProfileDescriptionsStateContext'
-const setContext = React.createContext<SetContext>((_: boolean) => {})
+const setContext = createContext<SetContext>((_: boolean) => {})
 setContext.displayName = 'DisableProfileDescriptionsSetContext'
 
 export function Provider({children}: {children: React.ReactNode}) {
-  const [state, setState] = React.useState(
+  const [state, setState] = useState(
     Boolean(persisted.get('disableProfileDescriptions')),
   )
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (disableProfileDescriptions: persisted.Schema['disableProfileDescriptions']) => {
       setState(Boolean(disableProfileDescriptions))
       persisted.write('disableProfileDescriptions', disableProfileDescriptions)
@@ -25,7 +31,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate(
       'disableProfileDescriptions',
       nextDisableProfileDescriptions => {
@@ -43,5 +49,5 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 }
 
-export const useDisableProfileDescriptions = () => React.useContext(stateContext)
-export const useSetDisableProfileDescriptions = () => React.useContext(setContext)
+export const useDisableProfileDescriptions = () => useContext(stateContext)
+export const useSetDisableProfileDescriptions = () => useContext(setContext)

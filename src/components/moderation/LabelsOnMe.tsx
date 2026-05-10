@@ -1,9 +1,11 @@
 import {type StyleProp, View, type ViewStyle} from 'react-native'
 import {type AppBskyFeedDefs, type ComAtprotoLabelDefs} from '@atproto/api'
+import {type ModerationDecision} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Plural, Trans} from '@lingui/react/macro'
 
+import {getModerationCauseKey, unique} from '#/lib/moderation'
 import {useSession} from '#/state/session'
 import {atoms as a} from '#/alf'
 import {
@@ -17,9 +19,6 @@ import {
   LabelsOnMeDialog,
   useLabelsOnMeDialogControl,
 } from '#/components/moderation/LabelsOnMeDialog'
-
-import {type ModerationDecision} from '@atproto/api'
-import {getModerationCauseKey, unique} from '#/lib/moderation'
 import * as Pills from '#/components/Pills'
 
 export function LabelsOnMe({

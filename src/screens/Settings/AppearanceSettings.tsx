@@ -19,9 +19,9 @@ import {SettingsListItem as AppIconSettingsListItem} from '#/screens/Settings/Ap
 import {type Alf, atoms as a, native, useAlf, useTheme} from '#/alf'
 import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import * as SegmentedControl from '#/components/forms/SegmentedControl'
-import {type Props as SVGIconProps} from '#/components/icons/common'
 import {CircleCheck_Stroke2_Corner0_Rounded as CheckIcon} from '#/components/icons/CircleCheck'
 import {ColorPalette_Stroke2_Corner0_Rounded as PaletteIcon} from '#/components/icons/ColorPalette'
+import {type Props as SVGIconProps} from '#/components/icons/common'
 import {Moon_Stroke2_Corner0_Rounded as MoonIcon} from '#/components/icons/Moon'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import {TextSize_Stroke2_Corner0_Rounded as TextSize} from '#/components/icons/TextSize'
@@ -288,6 +288,7 @@ function ThemePresetGrid({
           <Pressable
             key={key}
             accessibilityRole="button"
+            accessibilityHint=""
             accessibilityLabel={preset.label}
             accessibilityState={{selected: isSelected}}
             onPress={() => onChange(key)}

@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = boolean
 type SetContext = (v: boolean) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   Boolean(persisted.defaults.disableSimilarAccounts),
 )
 stateContext.displayName = 'SimilarAccountsStateContext'
-const setContext = React.createContext<SetContext>((_: boolean) => {})
+const setContext = createContext<SetContext>((_: boolean) => {})
 setContext.displayName = 'SimilarAccountsSetContext'
 
 export function Provider({children}: {children: React.ReactNode}) {
-  const [state, setState] = React.useState(
+  const [state, setState] = useState(
     Boolean(persisted.get('disableSimilarAccounts')),
   )
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (similarAccountsDisabled: persisted.Schema['disableSimilarAccounts']) => {
       setState(Boolean(similarAccountsDisabled))
       persisted.write('disableSimilarAccounts', similarAccountsDisabled)
@@ -25,7 +31,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate(
       'disableSimilarAccounts',
       nextDisableSimilarAccounts => {
@@ -43,5 +49,5 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 }
 
-export const useSimilarAccountsDisabled = () => React.useContext(stateContext)
-export const useSetSimilarAccountsDisabled = () => React.useContext(setContext)
+export const useSimilarAccountsDisabled = () => useContext(stateContext)
+export const useSetSimilarAccountsDisabled = () => useContext(setContext)

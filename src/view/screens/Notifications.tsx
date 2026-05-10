@@ -16,6 +16,7 @@ import {
 import {s} from '#/lib/styles'
 import {logger} from '#/logger'
 import {emitSoftReset, listenSoftReset} from '#/state/events'
+import { useLimitComposePostButton } from '#/state/preferences/limit-compose-post-button'
 import {RQKEY as NOTIFS_RQKEY} from '#/state/queries/notifications/feed'
 import {useNotificationSettingsQuery} from '#/state/queries/notifications/settings'
 import {
@@ -38,7 +39,6 @@ import * as Layout from '#/components/Layout'
 import {InlineLinkText, Link} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {IS_NATIVE} from '#/env'
-import { useLimitComposePostButton } from '#/state/preferences/limit-compose-post-button'
 
 // We don't currently persist this across reloads since
 // you gotta visit All to clear the badge anyway.

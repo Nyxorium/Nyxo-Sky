@@ -1,17 +1,17 @@
 import {useEffect, useState} from 'react'
 import {Pressable, View} from 'react-native'
 import {msg} from '@lingui/core/macro'
-import {Trans} from '@lingui/react/macro'
 import {useLingui} from '@lingui/react'
+import {Trans} from '@lingui/react/macro'
 
+import {useSignupContext} from '#/screens/Signup/state'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as TextField from '#/components/forms/TextField'
 import {Globe_Stroke2_Corner0_Rounded as Globe} from '#/components/icons/Globe'
-import {Text} from '#/components/Typography'
-import {useSignupContext} from '#/screens/Signup/state'
-import {IS_WEB} from '#/env'
 import {InlineLinkText} from '#/components/Link'
+import {Text} from '#/components/Typography'
+import {IS_WEB} from '#/env'
 
 type Provider = {
   serviceUrl: string
@@ -71,8 +71,6 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
     dispatch({type: 'next'})
   }
 
-  const isPreset = PROVIDERS.find(p => p.serviceUrl === serviceUrl)
-
   return (
     <View style={[a.flex_1, a.gap_md]}>
       <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
@@ -115,6 +113,7 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
               key={provider.serviceUrl}
               accessibilityRole="radio"
               accessibilityState={{checked: isSelected}}
+              accessibilityHint=""
               accessibilityLabel={provider.name}
               onPress={() => !isDisabled && setServiceUrl(provider.serviceUrl)}
               style={[

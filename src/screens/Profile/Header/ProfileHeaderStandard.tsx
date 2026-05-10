@@ -16,6 +16,7 @@ import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {logger} from '#/logger'
 import {type Shadow, useProfileShadow} from '#/state/cache/profile-shadow'
+import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 import {
   useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
@@ -43,12 +44,11 @@ import {useActorStatus} from '#/features/liveNow'
 import {GermButton} from '../components/GermButton'
 import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
+import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderMetrics} from './Metrics'
+import {ProfileHeaderPronouns} from './Pronouns'
 import {ProfileHeaderShell} from './Shell'
 import {ProfileHeaderSuggestedFollows} from './SuggestedFollows'
-import {ProfileHeaderMetaRow} from './MetaRow'
-import {ProfileHeaderPronouns} from './Pronouns'
-import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed

@@ -1,21 +1,29 @@
-import {Trans} from '@lingui/react/macro'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
+import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
-import * as SettingsList from '#/screens/Settings/components/SettingsList'
-import * as Toggle from '#/components/forms/Toggle'
-import {Admonition} from '#/components/Admonition'
-import {atoms as a} from '#/alf'
 import { 
   useAltLabelDisplayProfile,
   useSetAltLabelDisplayProfile,
  } from '#/state/preferences/alternate-label-display-profile'
+import {
+  useComposerPromptDisabled,
+  useSetComposerPromptDisabled,
+} from '#/state/preferences/disable-composer-prompt-in-feeds'
+import { 
+  useDisableFeedPromoTab,
+  useSetDisableFeedPromoTab,
+ } from '#/state/preferences/disable-feed-promo-tab'
 import { 
   useDisableFollowbackBIN,
   useSetDisableFollowbackBIN,
  } from '#/state/preferences/disable-followback-BIN'
+import { 
+  useDisableProfileDescriptions,
+  useSetDisableProfileDescriptions,
+} from '#/state/preferences/disable-profile-descriptions'
 import { 
   useDisableShareViaDms,
   useSetDisableShareViaDms,
@@ -24,46 +32,38 @@ import {
   useEnableShareViaDID,
   useSetEnableShareViaDID,
  } from '#/state/preferences/enable-share-by-DID'
-import { 
-  useDisableFeedPromoTab,
-  useSetDisableFeedPromoTab,
- } from '#/state/preferences/disable-feed-promo-tab'
 import {
   useEnableSquareAvatars,
   useSetEnableSquareAvatars,
 } from '#/state/preferences/enable-square-avatars'
-import {
-  useComposerPromptDisabled,
-  useSetComposerPromptDisabled,
-} from '#/state/preferences/disable-composer-prompt-in-feeds'
-import { 
-  useDisableProfileDescriptions,
-  useSetDisableProfileDescriptions,
-} from '#/state/preferences/disable-profile-descriptions'
-import {
-  useNoAppLabelers,
-  useSetNoAppLabelers,
-} from '#/state/preferences/no-app-labelers'
 import { 
   useLimitComposePostButton,
   useSetLimitComposePostButton,
 } from '#/state/preferences/limit-compose-post-button'
 import {
-  useSkipProfileWideContentWarning,
-  useSetSkipProfileWideContentWarning,
-} from '#/state/preferences/skip-profile-wide-content-warning'
-import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
-import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
-import * as Layout from '#/components/Layout'
+  useNoAppLabelers,
+  useSetNoAppLabelers,
+} from '#/state/preferences/no-app-labelers'
 import {
-  PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon,
-  Person_Stroke2_Corner2_Rounded as PersonIcon,
-} from '#/components/icons/Person'
-import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
-import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
-import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
+  useSetSkipProfileWideContentWarning,
+  useSkipProfileWideContentWarning,
+} from '#/state/preferences/skip-profile-wide-content-warning'
+import * as SettingsList from '#/screens/Settings/components/SettingsList'
+import {atoms as a} from '#/alf'
+import {Admonition} from '#/components/Admonition'
+import * as Toggle from '#/components/forms/Toggle'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
+import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
+import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Message_Stroke2_Corner0_Rounded as Message} from '#/components/icons/Message'
+import {
+  Person_Stroke2_Corner2_Rounded as PersonIcon,
+  PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon,
+} from '#/components/icons/Person'
+import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
+import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
+import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
+import * as Layout from '#/components/Layout'
 import {IS_NATIVE} from '#/env'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 

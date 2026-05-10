@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = boolean
 type SetContext = (v: boolean) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   Boolean(persisted.defaults.enableSquareAvatars),
 )
 stateContext.displayName = 'EnableSquareAvatarsStateContext'
-const setContext = React.createContext<SetContext>((_: boolean) => {})
+const setContext = createContext<SetContext>((_: boolean) => {})
 setContext.displayName = 'EnableSquareAvatarsSetContext'
 
 export function Provider({children}: {children: React.ReactNode}) {
-  const [state, setState] = React.useState(
+  const [state, setState] = useState(
     Boolean(persisted.get('enableSquareAvatars')),
   )
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (enableSquareAvatars: persisted.Schema['enableSquareAvatars']) => {
       setState(Boolean(enableSquareAvatars))
       persisted.write('enableSquareAvatars', enableSquareAvatars)
@@ -25,7 +31,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate(
       'enableSquareAvatars',
       nextEnableSquareAvatars => {
@@ -43,5 +49,5 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 }
 
-export const useEnableSquareAvatars = () => React.useContext(stateContext)
-export const useSetEnableSquareAvatars = () => React.useContext(setContext)
+export const useEnableSquareAvatars = () => useContext(stateContext)
+export const useSetEnableSquareAvatars = () => useContext(setContext)

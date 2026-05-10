@@ -2,8 +2,8 @@ import {useLayoutEffect} from 'react'
 import {type ColorSchemeName, useColorScheme} from 'react-native'
 import {type ThemeName} from '@bsky.app/alf'
 
-import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import {useThemePrefs} from '#/state/shell'
+import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import {IS_WEB} from '#/env'
 
 export function useColorModeTheme(): ThemeName {

@@ -14,6 +14,8 @@ import {BACK_HITSLOP} from '#/lib/constants'
 import {useHaptics} from '#/lib/haptics'
 import {type NavigationProp} from '#/lib/routes/types'
 import {type Shadow} from '#/state/cache/types'
+import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
+import {useEnableSquareAvatars} from '#/state/preferences/enable-square-avatars'
 import {useSession} from '#/state/session'
 import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
@@ -34,8 +36,6 @@ import {LiveStatusDialog} from '#/features/liveNow/components/LiveStatusDialog'
 import {GrowableAvatar} from './GrowableAvatar'
 import {GrowableBanner} from './GrowableBanner'
 import {StatusBarShadow} from './StatusBarShadow'
-import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
-import {useEnableSquareAvatars} from '#/state/preferences/enable-square-avatars'
 
 interface Props {
   profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>

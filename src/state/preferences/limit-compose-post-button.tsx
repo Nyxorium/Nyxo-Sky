@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = persisted.Schema['limitComposePostButton']
 type SetContext = (v: persisted.Schema['limitComposePostButton']) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   persisted.defaults.limitComposePostButton,
 )
 stateContext.displayName = 'LimitComposePostButtonStateContext'
-const setContext = React.createContext<SetContext>(
+const setContext = createContext<SetContext>(
   (_: persisted.Schema['limitComposePostButton']) => {},
 )
 setContext.displayName = 'LimitComposePostButtonSetContext'
 
 export function Provider({children}: React.PropsWithChildren<{}>) {
-  const [state, setState] = React.useState(persisted.get('limitComposePostButton'))
+  const [state, setState] = useState(persisted.get('limitComposePostButton'))
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (hasLimitComposePostButton: persisted.Schema['limitComposePostButton']) => {
       setState(hasLimitComposePostButton)
       persisted.write('limitComposePostButton', hasLimitComposePostButton)
@@ -25,7 +31,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate('limitComposePostButton', nextUseLimitComposePostButton => {
       setState(nextUseLimitComposePostButton)
     })
@@ -41,9 +47,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
 }
 
 export function useLimitComposePostButton() {
-  return React.useContext(stateContext)
+  return useContext(stateContext)
 }
 
 export function useSetLimitComposePostButton() {
-  return React.useContext(setContext)
+  return useContext(setContext)
 }

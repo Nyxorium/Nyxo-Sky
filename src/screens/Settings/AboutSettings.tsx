@@ -9,12 +9,11 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useMutation} from '@tanstack/react-query'
 
 import {
+  FUNDING_URL,
+  PRIVACY_POLICY_URL,
+  SOURCE_CODE_URL,
   STATUS_PAGE_URL,  
   TERMS_OF_SERVICE_URL,
-  PRIVACY_POLICY_URL,
-  HELP_DESK_URL,
-  SOURCE_CODE_URL,
-  FUNDING_URL,
 } from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -23,7 +22,6 @@ import {BroomSparkle_Stroke2_Corner2_Rounded as BroomSparkleIcon} from '#/compon
 import {Bubbles_Stroke2_Corner2_Rounded as BubblesIcon} from '#/components/icons/Bubble'
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
 import {Globe_Stroke2_Corner0_Rounded as GlobeIcon} from '#/components/icons/Globe'
-import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/components/icons/CircleQuestion'
 import {Heart2_Stroke2_Corner0_Rounded as Heart2Icon} from '#/components/icons/Heart2'
 import {Newspaper_Stroke2_Corner2_Rounded as NewspaperIcon} from '#/components/icons/Newspaper'
 import {Wrench_Stroke2_Corner2_Rounded as WrenchIcon} from '#/components/icons/Wrench'

@@ -1,19 +1,19 @@
+import {useState} from 'react'
 import {Keyboard, View} from 'react-native'
+import {TextInput} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
 import {atoms as a, useTheme, web} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
+import {Button as Btn, ButtonText as BtnText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {Check_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
 import {TinyChevronBottom_Stroke2_Corner0_Rounded as TinyChevronIcon} from '#/components/icons/Chevron'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Text} from '#/components/Typography'
-import {Button as Btn, ButtonText as BtnText} from '#/components/Button'
 import {IS_WEB} from '#/env'
-import {useState} from 'react'
-import {TextInput} from 'react-native'
 
 const MAX_TAGS = 8
 const MAX_TAG_LENGTH = 64
@@ -169,7 +169,9 @@ function TagsDialogInner({
               : t.atoms.border_contrast_medium,
             t.atoms.bg_contrast_25,
           ]}>
-          <TextInput
+          <TextInput 
+            accessibilityHint=""
+            accessibilityLabel="Text input field"
             value={input}
             onChangeText={onChangeText}
             onSubmitEditing={onSubmitEditing}

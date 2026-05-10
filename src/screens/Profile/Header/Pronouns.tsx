@@ -1,11 +1,10 @@
 import {View} from 'react-native'
 import {type AppBskyActorDefs} from '@atproto/api'
 
+import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {type Shadow} from '#/state/cache/types'
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
-
-import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 
 export function ProfileHeaderPronouns({
   profile,

@@ -1,10 +1,9 @@
 import {
   useCallback, 
+  useEffect,
   useImperativeHandle, 
   useRef, 
-  useState, 
-  useEffect
-} from 'react'
+  useState} from 'react'
 import {View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'

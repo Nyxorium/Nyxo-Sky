@@ -4,10 +4,10 @@ import {SafeAreaView} from 'react-native-safe-area-context'
 import BottomSheet from '@discord/bottom-sheet/src'
 
 import {useModalControls, useModals} from '#/state/modals'
+import {useTheme} from '#/alf'
 import {FullWindowOverlay} from '#/components/FullWindowOverlay'
 import {createCustomBackdrop} from '../util/BottomSheetCustomBackdrop'
 import * as UserAddRemoveListsModal from './UserAddRemoveLists'
-import {useTheme} from '#/alf'
 
 const DEFAULT_SNAPPOINTS = ['90%']
 const HANDLE_HEIGHT = 24

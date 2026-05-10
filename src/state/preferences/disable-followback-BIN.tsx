@@ -1,23 +1,29 @@
-import React from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
 type StateContext = persisted.Schema['disableFollowbackBIN']
 type SetContext = (v: persisted.Schema['disableFollowbackBIN']) => void
 
-const stateContext = React.createContext<StateContext>(
+const stateContext = createContext<StateContext>(
   persisted.defaults.disableFollowbackBIN,
 )
 stateContext.displayName = 'DisableFollowbackBINStateContext'
-const setContext = React.createContext<SetContext>(
+const setContext = createContext<SetContext>(
   (_: persisted.Schema['disableFollowbackBIN']) => {},
 )
 setContext.displayName = 'DisableFollowbackBINSetContext'
 
 export function Provider({children}: React.PropsWithChildren<{}>) {
-  const [state, setState] = React.useState(persisted.get('disableFollowbackBIN'))
+  const [state, setState] = useState(persisted.get('disableFollowbackBIN'))
 
-  const setStateWrapped = React.useCallback(
+  const setStateWrapped = useCallback(
     (hasDisableFollowbackBIN: persisted.Schema['disableFollowbackBIN']) => {
       setState(hasDisableFollowbackBIN)
       persisted.write('disableFollowbackBIN', hasDisableFollowbackBIN)
@@ -25,7 +31,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     [setState],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return persisted.onUpdate('disableFollowbackBIN', nextUseDisableFollowbackBIN => {
       setState(nextUseDisableFollowbackBIN) 
     })
@@ -41,9 +47,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
 }
 
 export function useDisableFollowbackBIN() {
-  return React.useContext(stateContext)
+  return useContext(stateContext)
 }
 
 export function useSetDisableFollowbackBIN() {
-  return React.useContext(setContext)
+  return useContext(setContext)
 }

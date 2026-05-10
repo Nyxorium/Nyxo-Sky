@@ -1,7 +1,5 @@
 import {
   createThemes,
-  DEFAULT_PALETTE,
-  DEFAULT_SUBDUED_PALETTE,
   type Palette,
 } from '@bsky.app/alf'
 

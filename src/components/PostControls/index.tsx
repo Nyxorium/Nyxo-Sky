@@ -15,6 +15,7 @@ import {useHaptics} from '#/lib/haptics'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {type Shadow} from '#/state/cache/types'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 import {
   usePostLikeMutationQueue,
   usePostRepostMutationQueue,
@@ -39,7 +40,6 @@ import {
 import {PostMenuButton} from './PostMenu'
 import {RepostButton} from './RepostButton'
 import {ShareMenuButton} from './ShareMenu'
-import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 
 let PostControls = ({
   big,

@@ -1,7 +1,7 @@
 import {createContext, useContext, useEffect, useMemo, useState} from 'react'
 
-import {type ThemePresetName} from '#/alf/theme-presets'
 import * as persisted from '#/state/persisted'
+import {type ThemePresetName} from '#/alf/theme-presets'
 
 type StateContext = {
   colorMode: persisted.Schema['colorMode']

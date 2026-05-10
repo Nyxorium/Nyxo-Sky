@@ -12,6 +12,7 @@ import {
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {formatCount} from '#/view/com/util/numeric/format'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
@@ -28,7 +29,6 @@ import {MediaInsetBorder} from '#/components/MediaInsetBorder'
 import * as Hider from '#/components/moderation/Hider'
 import {Text} from '#/components/Typography'
 import * as bsky from '#/types/bsky'
-import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 
 function getBlackColor(t: ReturnType<typeof useTheme>) {
   return select(t.name, {

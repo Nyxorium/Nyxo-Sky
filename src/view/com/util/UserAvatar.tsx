@@ -35,6 +35,7 @@ import {
   compressImage,
   createComposerImage,
 } from '#/state/gallery'
+import {useEnableSquareAvatars} from '#/state/preferences/enable-square-avatars'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
 import {EditImageDialog} from '#/view/com/composer/photos/EditImageDialog'
 import {atoms as a, tokens, useTheme} from '#/alf'
@@ -56,10 +57,8 @@ import {IS_ANDROID, IS_NATIVE, IS_WEB, IS_WEB_TOUCH_DEVICE} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {LiveIndicator} from '#/features/liveNow/components/LiveIndicator'
 import {LiveStatusDialog} from '#/features/liveNow/components/LiveStatusDialog'
-import type * as bsky from '#/types/bsky'
-
-import {useEnableSquareAvatars} from '#/state/preferences/enable-square-avatars'
 import {useDevMode} from '#/storage/hooks/dev-mode'
+import type * as bsky from '#/types/bsky'
 
 export type UserAvatarType = 'user' | 'algo' | 'list' | 'labeler'
 

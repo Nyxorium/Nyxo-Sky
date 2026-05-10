@@ -16,6 +16,7 @@ import {
 } from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {s} from '#/lib/styles'
+import { useLimitComposePostButton } from '#/state/preferences/limit-compose-post-button'
 import {
   type SavedFeedItem,
   useGetPopularFeedsQuery,
@@ -45,7 +46,6 @@ import * as Layout from '#/components/Layout'
 import {Link} from '#/components/Link'
 import * as ListCard from '#/components/ListCard'
 import {IS_NATIVE, IS_WEB} from '#/env'
-import { useLimitComposePostButton } from '#/state/preferences/limit-compose-post-button'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Feeds'>
 

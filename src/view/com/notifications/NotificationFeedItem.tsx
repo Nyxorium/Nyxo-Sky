@@ -35,6 +35,7 @@ import {niceDate} from '#/lib/strings/time'
 import {s} from '#/lib/styles'
 import {logger} from '#/logger'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
+import {useDisableFollowbackBIN} from '#/state/preferences/disable-followback-BIN'
 import {type FeedNotification} from '#/state/queries/notifications/feed'
 import {useProfileFollowMutationQueue} from '#/state/queries/profile'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
@@ -68,7 +69,6 @@ import {SubtleHover} from '#/components/SubtleHover'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import * as bsky from '#/types/bsky'
-import {useDisableFollowbackBIN} from '#/state/preferences/disable-followback-BIN'
 
 const MAX_AUTHORS = 5
 

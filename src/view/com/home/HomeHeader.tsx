@@ -2,12 +2,12 @@ import {useCallback, useMemo} from 'react'
 import {useNavigation} from '@react-navigation/native'
 
 import {type NavigationProp} from '#/lib/routes/types'
+import {useDisableFeedPromoTab} from '#/state/preferences/disable-feed-promo-tab'
 import {type FeedSourceInfo} from '#/state/queries/feed'
 import {useSession} from '#/state/session'
 import {type RenderTabBarFnProps} from '#/view/com/pager/Pager'
 import {TabBar} from '../pager/TabBar'
 import {HomeHeaderLayout} from './HomeHeaderLayout'
-import {useDisableFeedPromoTab} from '#/state/preferences/disable-feed-promo-tab'
 
 export function HomeHeader(
   props: RenderTabBarFnProps & {
@@ -35,7 +35,7 @@ export function HomeHeader(
       return pinnedNames.concat('Feeds ✨')
     }
     return pinnedNames
-  }, [hasPinnedCustom, feeds])
+  }, [hasPinnedCustom, feeds, disableFeedPromoTab])
 
   const onPressFeedsLink = useCallback(() => {
     navigation.navigate('Feeds')
