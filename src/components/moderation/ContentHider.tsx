@@ -28,7 +28,7 @@ import {
 } from '#/components/moderation/ModerationDetailsDialog'
 import {Text} from '#/components/Typography'
 
-function isAccountNsfwBlur(b: ModerationCause): boolean {
+export function isAccountNsfwBlur(b: ModerationCause): boolean {
   return (
     b.type === 'label' &&
     b.source.type === 'labeler' &&

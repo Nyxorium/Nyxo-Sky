@@ -48,6 +48,10 @@ import {
   useLimitComposePostButton,
   useSetLimitComposePostButton,
 } from '#/state/preferences/limit-compose-post-button'
+import {
+  useSkipProfileWideContentWarning,
+  useSetSkipProfileWideContentWarning,
+} from '#/state/preferences/skip-profile-wide-content-warning'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import * as Layout from '#/components/Layout'
@@ -90,6 +94,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setLimitComposePostButton = useSetLimitComposePostButton()
   const noAppLabelers = useNoAppLabelers()
   const setNoAppLabelers = useSetNoAppLabelers()
+  const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
+  const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -208,6 +214,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={WindowIcon} />
               <SettingsList.ItemText>
                 <Trans>Disable Composer Prompt</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_profile_content_warning"
+            label={_(msg`Disable Profile wide content warnings`)}
+            value={skipProfileWideContentWarning}
+            onChange={value => setSkipProfileWideContentWarning(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PersonIcon} />
+              <SettingsList.ItemText>
+                <Trans>Disable Profile Wide Content Warnings</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>

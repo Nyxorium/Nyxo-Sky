@@ -17,6 +17,7 @@ import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as GateOverridesProvider} from './gateOverrides'
 import {Provider as ImpressionVisibilityProvider} from './impression-visibility'
 import {Provider as DisableProfileDescriptions} from './disable-profile-descriptions'
+import {Provider as SkipProfileWideContentWarning} from './skip-profile-wide-content-warning'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
@@ -42,6 +43,10 @@ export {
   useSetSimilarAccountsDisabled,
   useSimilarAccountsDisabled,
 } from './similar-accounts'
+export {
+  useSetSkipProfileWideContentWarning,
+  useSkipProfileWideContentWarning,
+} from './skip-profile-wide-content-warning'
 export {useSetSubtitlesEnabled, useSubtitlesEnabled} from './subtitles'
 
 export function Provider({children}: React.PropsWithChildren<{}>) {
@@ -71,7 +76,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                 <GateOverridesProvider>
                                                   <ImpressionVisibilityProvider>
                                                     <DisableProfileDescriptions>
-                                                      <KawaiiProvider>{children}</KawaiiProvider>
+                                                      <SkipProfileWideContentWarning>
+                                                        <KawaiiProvider>{children}</KawaiiProvider>
+                                                      </SkipProfileWideContentWarning>
                                                     </DisableProfileDescriptions>
                                                   </ImpressionVisibilityProvider>
                                                 </GateOverridesProvider>

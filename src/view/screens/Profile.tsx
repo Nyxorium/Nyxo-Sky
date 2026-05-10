@@ -57,6 +57,8 @@ import {ExpoScrollForwarderView} from '../../../modules/expo-scroll-forwarder'
 import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 
 import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
+import {useSkipProfileWideContentWarning} from '#/state/preferences/skip-profile-wide-content-warning'
+import {isAccountNsfwBlur} from '#/components/moderation/ContentHider'
 
 interface SectionRef {
   scrollToTop: () => void
@@ -213,6 +215,14 @@ function ProfileScreenLoaded({
     () => moderateProfile(profile, moderationOpts),
     [profile, moderationOpts],
   )
+
+  const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
+  const profileViewModui = useMemo(() => {
+    const base = moderation.ui('profileView')
+    if (!skipProfileWideContentWarning) return base
+    base.blurs = base.blurs.filter(b => !isAccountNsfwBlur(b))
+    return base
+  }, [moderation, skipProfileWideContentWarning])
 
   const isMe = profile.did === currentAccount?.did
   const hasLabeler = !!profile.associated?.labeler
@@ -388,7 +398,7 @@ function ProfileScreenLoaded({
       testID="profileView"
       style={styles.container}
       screenDescription={_(msg`user`)}
-      modui={moderation.ui('profileView')}>
+      modui={profileViewModui}>
       <PagerWithHeader
         testID="profilePager"
         isHeaderReady={!showPlaceholder}
