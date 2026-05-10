@@ -5,7 +5,7 @@ import {
   View,
   type ViewStyle,
 } from 'react-native'
-import {BSKY_LABELER_DID, type ModerationUI} from '@atproto/api'
+import {BSKY_LABELER_DID, type ModerationCause, type ModerationUI} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
@@ -28,6 +28,17 @@ import {
 } from '#/components/moderation/ModerationDetailsDialog'
 import {Text} from '#/components/Typography'
 
+function isAccountNsfwBlur(b: ModerationCause): boolean {
+  return (
+    b.type === 'label' &&
+    b.source.type === 'labeler' &&
+    b.source.did === BSKY_LABELER_DID &&
+    ['porn', 'sexual', 'nudity'].includes(b.label.val) &&
+    !!b.label.uri &&
+    !b.label.uri.includes('/app.bsky.')
+  )
+}
+
 export function ContentHider({
   testID,
   modui,
@@ -46,7 +57,10 @@ export function ContentHider({
   children?: React.ReactNode | ((props: {active: boolean}) => React.ReactNode)
 }) {
   const blur = modui?.blurs[0]
-  if (!blur || (ignoreMute && isJustAMute(modui))) {
+
+  const hasNonAccountNsfwBlur = modui?.blurs.some(b => !isAccountNsfwBlur(b))
+
+  if (!blur || (ignoreMute && isJustAMute(modui)) || !hasNonAccountNsfwBlur) {
     return (
       <View testID={testID} style={style}>
         {typeof children === 'function' ? children({active: false}) : children}
@@ -89,20 +103,22 @@ function ContentHiderActive({
   const blur = useMemo(() => {
     const blurs = modui.blurs!
     const primary = blurs[0]
+
+    const effectivePrimary = blurs.find(b => !isAccountNsfwBlur(b)) ?? primary
   
-    if (primary.type === 'label' && primary.source.type !== 'user') {
+    if (effectivePrimary.type === 'label' && effectivePrimary.source.type !== 'user') {
       const ADULT_SELF_LABEL_FAMILY = ['sexual', 'nudity', 'porn']
     
       const userEquivalent = blurs.find(
         b =>
           b.type === 'label' &&
           b.source.type === 'user' &&
-          (b.label.val === primary.label.val ||
+          (b.label.val === effectivePrimary.label.val ||
             (ADULT_SELF_LABEL_FAMILY.includes(b.label.val) &&
-              ADULT_SELF_LABEL_FAMILY.includes(primary.label.val))),
+              ADULT_SELF_LABEL_FAMILY.includes(effectivePrimary.label.val))),
       )
 
-      if (primary.type === 'label' && primary.label.val === 'sexual-figurative') {
+      if (effectivePrimary.type === 'label' && effectivePrimary.label.val === 'sexual-figurative') {
         const alternative = blurs.find(
           b => b.type === 'label' && b.label.val !== 'sexual-figurative',
         )
@@ -116,7 +132,7 @@ function ContentHiderActive({
       }
     }
   
-    return primary
+    return effectivePrimary
   }, [modui.blurs])
 
   //  const blur = useMemo(() => {
