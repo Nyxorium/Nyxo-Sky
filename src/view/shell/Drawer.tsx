@@ -19,6 +19,7 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {colors} from '#/lib/styles'
 import {emitSoftReset} from '#/state/events'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 import {useKawaiiMode} from '#/state/preferences/kawaii'
 import {useUnreadNotifications} from '#/state/queries/notifications/unread'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -77,6 +78,9 @@ let DrawerProfileCard = ({
   const {data: profile} = useProfileQuery({did: account.did})
   const {isActive: live} = useActorStatus(profile)
 
+  const hideFollowers = useIsImpressionHidden('followers', true)
+  const hideFollows = useIsImpressionHidden('follows', true)
+
   return (
     <TouchableOpacity
       testID="profileCardButton"
@@ -109,29 +113,37 @@ let DrawerProfileCard = ({
           {sanitizeHandle(account.handle, '@')}
         </Text>
       </View>
-      <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
-        <Trans>
-          <Text style={[a.text_md, a.font_semi_bold]}>
-            {formatCount(i18n, profile?.followersCount ?? 0)}
-          </Text>{' '}
-          <Plural
-            value={profile?.followersCount || 0}
-            one="follower"
-            other="followers"
-          />
-        </Trans>{' '}
-        &middot;{' '}
-        <Trans>
-          <Text style={[a.text_md, a.font_semi_bold]}>
-            {formatCount(i18n, profile?.followsCount ?? 0)}
-          </Text>{' '}
-          <Plural
-            value={profile?.followsCount || 0}
-            one="following"
-            other="following"
-          />
-        </Trans>
-      </Text>
+      {(!hideFollowers || !hideFollows) && (
+        <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
+          {!hideFollowers && (
+            <>
+              <Trans>
+                <Text style={[a.text_md, a.font_semi_bold]}>
+                  {formatCount(i18n, profile?.followersCount ?? 0)}
+                </Text>{' '}
+                <Plural
+                  value={profile?.followersCount || 0}
+                  one="follower"
+                  other="followers"
+                />
+              </Trans>
+              {!hideFollows && <>{' '}&middot;{' '}</>}
+            </>
+          )}
+          {!hideFollows && (
+            <Trans>
+              <Text style={[a.text_md, a.font_semi_bold]}>
+                {formatCount(i18n, profile?.followsCount ?? 0)}
+              </Text>{' '}
+              <Plural
+                value={profile?.followsCount || 0}
+                one="following"
+                other="following"
+              />
+            </Trans>
+          )}
+        </Text>
+      )}
     </TouchableOpacity>
   )
 }
