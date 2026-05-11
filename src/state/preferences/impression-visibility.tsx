@@ -15,6 +15,11 @@ export type ImpressionVisibilityKey =
   | 'replies'
   | 'quotes'
   | 'bookmarks'
+  | 'followers'
+  | 'follows'
+  | 'posts'
+  | 'labelerLikes'
+  | 'feedLikes'
 export type ImpressionVisibilityPrefs = Partial<
   Record<ImpressionVisibilityKey, ImpressionVisibility>
 >

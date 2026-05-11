@@ -5,6 +5,8 @@ import {useLingui} from '@lingui/react'
 
 import {makeProfileLink} from '#/lib/routes/links'
 import {type Shadow} from '#/state/cache/types'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
+import {useSession} from '#/state/session'
 import {formatCount} from '#/view/com/util/numeric/format'
 import {atoms as a, useTheme} from '#/alf'
 import {InlineLinkText} from '#/components/Link'
@@ -17,6 +19,13 @@ export function ProfileHeaderMetrics({
 }) {
   const t = useTheme()
   const {_, i18n} = useLingui()
+  const {currentAccount} = useSession()
+
+  const isMe = currentAccount?.did === profile.did
+  const hideFollowers = useIsImpressionHidden('followers', isMe)
+  const hideFollows = useIsImpressionHidden('follows', isMe)
+  const hidePosts = useIsImpressionHidden('posts', isMe)
+
   const following = formatCount(i18n, profile.followsCount || 0)
   const followers = formatCount(i18n, profile.followersCount || 0)
   const pluralizedFollowers = plural(profile.followersCount || 0, {
@@ -36,28 +45,46 @@ export function ProfileHeaderMetrics({
         testID="profileHeaderFollowersButton"
         style={[a.flex_row, t.atoms.text]}
         to={makeProfileLink(profile, 'followers')}
-        label={`${profile.followersCount || 0} ${pluralizedFollowers}`}>
-        <Text style={[a.font_semi_bold, a.text_md]}>{followers} </Text>
-        <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
-          {pluralizedFollowers}
-        </Text>
+        label={hideFollowers ? _(msg`View followers`) : `${profile.followersCount || 0} ${pluralizedFollowers}`}>
+        {hideFollowers ? (
+          <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
+            {_(msg`View followers`)}
+          </Text>
+        ) : (
+          <>
+            <Text style={[a.font_semi_bold, a.text_md]}>{followers} </Text>
+            <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
+              {pluralizedFollowers}
+            </Text>
+          </>
+        )}
       </InlineLinkText>
       <InlineLinkText
         testID="profileHeaderFollowsButton"
         style={[a.flex_row, t.atoms.text]}
         to={makeProfileLink(profile, 'follows')}
-        label={_(msg`${profile.followsCount || 0} following`)}>
-        <Text style={[a.font_semi_bold, a.text_md]}>{following} </Text>
-        <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
-          {pluralizedFollowings}
-        </Text>
+        label={hideFollows ? _(msg`View following`) : _(msg`${profile.followsCount || 0} following`)}>
+        {hideFollows ? (
+          <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
+            {_(msg`View following`)}
+          </Text>
+        ) : (
+          <>
+            <Text style={[a.font_semi_bold, a.text_md]}>{following} </Text>
+            <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
+              {pluralizedFollowings}
+            </Text>
+          </>
+        )}
       </InlineLinkText>
-      <Text style={[a.font_semi_bold, t.atoms.text, a.text_md]}>
-        {formatCount(i18n, profile.postsCount || 0)}{' '}
-        <Text style={[t.atoms.text_contrast_medium, a.font_normal, a.text_md]}>
-          {plural(profile.postsCount || 0, {one: 'post', other: 'posts'})}
+      {!hidePosts && (
+        <Text style={[a.font_semi_bold, t.atoms.text, a.text_md]}>
+          {formatCount(i18n, profile.postsCount || 0)}{' '}
+          <Text style={[t.atoms.text_contrast_medium, a.font_normal, a.text_md]}>
+            {plural(profile.postsCount || 0, {one: 'post', other: 'posts'})}
+          </Text>
         </Text>
-      </Text>
+      )}
     </View>
   )
 }

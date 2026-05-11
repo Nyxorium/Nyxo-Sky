@@ -11,6 +11,7 @@ import {useQueryClient} from '@tanstack/react-query'
 
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {logger} from '#/logger'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 import {precacheFeedFromGeneratorView} from '#/state/queries/feed'
 import {
   useAddSavedFeedsMutation,
@@ -58,7 +59,7 @@ export function Default(props: Props) {
           <SaveButton view={view} pin />
         </Header>
         <Description description={view.description} />
-        <Likes count={view.likeCount || 0} />
+        <Likes count={view.likeCount || 0} creatorDid={view.creator.did} />
       </Outer>
     </Link>
   )
@@ -242,8 +243,15 @@ export function DescriptionPlaceholder() {
   )
 }
 
-export function Likes({count}: {count: number}) {
+export function Likes({count, creatorDid}: {count: number, creatorDid: string}) {
   const t = useTheme()
+  const {currentAccount} = useSession()
+
+  const isMe = creatorDid === currentAccount?.did
+  const hideFeedLikes = useIsImpressionHidden('feedLikes', isMe)
+
+  if (hideFeedLikes) return null
+
   return (
     <Text style={[a.text_sm, t.atoms.text_contrast_medium, a.font_semi_bold]}>
       <Trans>

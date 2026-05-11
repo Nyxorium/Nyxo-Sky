@@ -18,6 +18,7 @@ import {isAppLabeler} from '#/lib/moderation'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 import {useLabelerSubscriptionMutation} from '#/state/queries/labeler'
 import {useLikeMutation, useUnlikeMutation} from '#/state/queries/like'
 import {usePreferencesQuery} from '#/state/queries/preferences'
@@ -45,6 +46,7 @@ import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
 
+
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
   labeler: AppBskyLabelerDefs.LabelerViewDetailed
@@ -70,6 +72,8 @@ let ProfileHeaderLabeler = ({
   const {currentAccount, hasSession} = useSession()
   const playHaptic = useHaptics()
   const isSelf = currentAccount?.did === profile.did
+
+  const hideLabelerLikes = useIsImpressionHidden('labelerLikes', isSelf)
 
   const moderation = useMemo(
     () => moderateProfile(profile, moderationOpts),
@@ -174,12 +178,11 @@ let ProfileHeaderLabeler = ({
                       },
                     }}
                     size="tiny"
-                    label={_(
-                      msg`Liked by ${plural(likeCount, {
-                        one: '# user',
-                        other: '# users',
-                      })}`,
-                    )}>
+                    label={
+                      hideLabelerLikes
+                        ? _(msg`View likes`)
+                        : _(msg`Liked by ${plural(likeCount, {one: '# user', other: '# users'})}`)
+                    }>
                     {({hovered, focused, pressed}) => (
                       <Text
                         style={[
@@ -189,14 +192,18 @@ let ProfileHeaderLabeler = ({
                           (hovered || focused || pressed) &&
                             t.atoms.text_contrast_high,
                         ]}>
-                        <Trans>
-                          Liked by{' '}
-                          <Plural
-                            value={likeCount}
-                            one="# user"
-                            other="# users"
-                          />
-                        </Trans>
+                        {hideLabelerLikes ? (
+                          <Trans>View likes</Trans>
+                        ) : (
+                          <Trans>
+                            Liked by{' '}
+                            <Plural
+                              value={likeCount}
+                              one="# user"
+                              other="# users"
+                            />
+                          </Trans>
+                        )}
                       </Text>
                     )}
                   </Link>

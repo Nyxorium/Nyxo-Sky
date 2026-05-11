@@ -210,6 +210,11 @@ const schema = z.object({
       replies: z.enum(impressionVisibilityOptions).optional(),
       quotes: z.enum(impressionVisibilityOptions).optional(),
       bookmarks: z.enum(impressionVisibilityOptions).optional(),
+      followers: z.enum(impressionVisibilityOptions).optional(),
+      following: z.enum(impressionVisibilityOptions).optional(),
+      posts: z.enum(impressionVisibilityOptions).optional(),
+      labelerLikes: z.enum(impressionVisibilityOptions).optional(),
+      feedLikes: z.enum(impressionVisibilityOptions).optional(),
     })
     .optional(),
 

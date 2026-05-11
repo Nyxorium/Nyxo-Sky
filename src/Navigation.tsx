@@ -109,7 +109,9 @@ import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaS
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
 import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
-import {ImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilityPreferences'
+import {ImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilitySettings/index'
+import {PostImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilitySettings/Posts'
+import {ProfileImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilitySettings/Profiles'
 import {InterestsSettingsScreen} from '#/screens/Settings/InterestsSettings'
 import {LanguageSettingsScreen} from '#/screens/Settings/LanguageSettings'
 import {LegacyNotificationSettingsScreen} from '#/screens/Settings/LegacyNotificationSettings'
@@ -422,6 +424,22 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ImpressionVisibilitySettingsScreen}
         options={{
           title: title(msg`Impression Visibility`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="PostImpressionVisibilitySettings"
+        getComponent={() => PostImpressionVisibilitySettingsScreen}
+        options={{
+          title: title(msg`Post Impressions`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="ProfileImpressionVisibilitySettings"
+        getComponent={() => ProfileImpressionVisibilitySettingsScreen}
+        options={{
+          title: title(msg`Profile Statistics`),
           requireAuth: true,
         }}
       />

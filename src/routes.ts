@@ -52,6 +52,8 @@ export const router = new Router<AllNavigatableRoutes>({
   ProfileTabVisibilitySettings: '/settings/tabs-visibility',
   FeatureGatesSettings: '/settings/feature-gates',
   ImpressionVisibilitySettings: '/settings/impression-visibility',
+  PostImpressionVisibilitySettings: '/settings/impression-visibility/posts',
+  ProfileImpressionVisibilitySettings: '/settings/impression-visibility/profiles',
   SavedFeeds: '/settings/saved-feeds',
   AccountSettings: '/settings/account',
   AutomationLabelSettings: '/settings/automation-label',

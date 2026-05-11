@@ -15,8 +15,8 @@ import * as Toggle from '#/components/forms/Toggle'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/icons/EyeSlash'
 import * as Layout from '#/components/Layout'
 import {Text} from '#/components/Typography'
-import * as SettingsList from './components/SettingsList'
-import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
+import * as SettingsList from '../components/SettingsList'
+import {ItemTextWithSubtitle} from '../NotificationSettings/components/ItemTextWithSubtitle'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
@@ -26,11 +26,10 @@ type ImpressionConfig = {
 }
 
 const IMPRESSIONS: ImpressionConfig[] = [
-  {key: 'likes', label: 'Likes'},
-  {key: 'reposts', label: 'Reposts'},
-  {key: 'replies', label: 'Replies'},
-  {key: 'quotes', label: 'Quote posts'},
-  {key: 'bookmarks', label: 'Saves'},
+  {key: 'followers', label: 'Followers'},
+  {key: 'follows', label: 'Following'},
+  {key: 'posts', label: 'Posts'},
+  {key: 'labelerLikes', label: 'Likes (Labelers)'},
 ]
 
 function ImpressionSection({
@@ -85,7 +84,7 @@ function ImpressionSection({
   )
 }
 
-export function ImpressionVisibilitySettingsScreen({}: Props) {
+export function ProfileImpressionVisibilitySettingsScreen({}: Props) {
   const t = useTheme()
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
@@ -134,7 +133,7 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
         <Layout.Header.BackButton />
         <Layout.Header.Content>
           <Layout.Header.TitleText>
-            <Trans>Impression Visibility</Trans>
+            <Trans>Profile Statistics</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -145,8 +144,9 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
             <Text
               style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
               <Trans>
-                Control which post counts are visible to you. These settings
-                only affect your own view — counts are not hidden from others.
+                Control which profile statistics are visible to you. These
+                settings only affect your own view — statistics are not hidden from
+                others.
               </Trans>
             </Text>
           </SettingsList.Item>
@@ -154,15 +154,15 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
           <SettingsList.Divider />
 
           <ImpressionSection
-            titleText={<Trans>Your posts</Trans>}
-            subtitleText={<Trans>Show counts on posts you made</Trans>}
+            titleText={<Trans>Your profile</Trans>}
+            subtitleText={<Trans>Show statistics on your own profile</Trans>}
             getValue={getOwnValue}
             onToggle={onToggleOwn}
           />
 
           <ImpressionSection
-            titleText={<Trans>Others' posts</Trans>}
-            subtitleText={<Trans>Show counts on posts by other people</Trans>}
+            titleText={<Trans>Others' profiles</Trans>}
+            subtitleText={<Trans>Show statistics on other people's profiles</Trans>}
             getValue={getOthersValue}
             onToggle={onToggleOthers}
           />

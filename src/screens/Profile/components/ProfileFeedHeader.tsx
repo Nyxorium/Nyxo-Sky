@@ -11,6 +11,7 @@ import {shareUrl} from '#/lib/sharing'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {logger} from '#/logger'
+import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 import {type FeedSourceFeedInfo} from '#/state/queries/feed'
 import {useLikeMutation, useUnlikeMutation} from '#/state/queries/like'
 import {
@@ -88,7 +89,7 @@ export function ProfileFeedHeader({info}: {info: FeedSourceFeedInfo}) {
   const t = useTheme()
   const {_, i18n} = useLingui()
   const ax = useAnalytics()
-  const {hasSession} = useSession()
+  const {hasSession, currentAccount} = useSession()
   const {gtMobile} = useBreakpoints()
   const infoControl = Dialog.useDialogControl()
   const playHaptic = useHaptics()
@@ -114,6 +115,9 @@ export function ProfileFeedHeader({info}: {info: FeedSourceFeedInfo}) {
   )
   const isSaved = Boolean(savedFeedConfig)
   const isPinned = Boolean(savedFeedConfig?.pinned)
+
+  const isMe = info.creatorDid === currentAccount?.did
+  const hideFeedLikes   = useIsImpressionHidden('feedLikes',   isMe)
 
   const onToggleSaved = async () => {
     try {
@@ -268,15 +272,17 @@ export function ProfileFeedHeader({info}: {info: FeedSourceFeedInfo}) {
                                 : t.atoms.text_contrast_low.color
                             }
                           />
-                          <Text
-                            style={[
-                              a.text_sm,
-                              a.leading_snug,
-                              t.atoms.text_contrast_medium,
-                            ]}
-                            numberOfLines={1}>
-                            {formatCount(i18n, likeCount)}
-                          </Text>
+                          {!hideFeedLikes && (
+                            <Text
+                              style={[
+                                a.text_sm,
+                                a.leading_snug,
+                                t.atoms.text_contrast_medium,
+                              ]}
+                              numberOfLines={1}>
+                              {formatCount(i18n, likeCount)}
+                            </Text>
+                          )}
                         </View>
                       </View>
                     </View>
@@ -395,7 +401,7 @@ function DialogInner({
   const t = useTheme()
   const {_} = useLingui()
   const ax = useAnalytics()
-  const {hasSession} = useSession()
+  const {currentAccount, hasSession} = useSession()
   const playHaptic = useHaptics()
   const control = Dialog.useDialogContext()
   const reportDialogControl = useReportDialogControl()
@@ -406,6 +412,9 @@ function DialogInner({
 
   const isLiked = !!likeUri
   const feedRkey = useMemo(() => new AtUri(info.uri).rkey, [info.uri])
+
+  const isMe = info.creatorDid === currentAccount?.did
+  const hideFeedLikes = useIsImpressionHidden('feedLikes', isMe)
 
   const onToggleLiked = async () => {
     try {
@@ -496,9 +505,13 @@ function DialogInner({
             to={makeCustomFeedLink(info.creatorDid, feedRkey, 'liked-by')}
             style={[a.underline, t.atoms.text_contrast_medium]}
             onPress={() => control.close()}>
-            <Trans>
-              Liked by <Plural value={likeCount} one="# user" other="# users" />
-            </Trans>
+            {hideFeedLikes ? (
+              <Trans>View likes</Trans>
+            ) : (
+              <Trans>
+                Liked by <Plural value={likeCount} one="# user" other="# users" />
+              </Trans>
+            )}
           </InlineLinkText>
         )}
       </View>
