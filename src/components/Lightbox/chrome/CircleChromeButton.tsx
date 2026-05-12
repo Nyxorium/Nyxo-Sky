@@ -8,6 +8,7 @@ import {
   type TextStyle,
 } from 'react-native'
 import {BlurView} from 'expo-blur'
+
 import {HITSLOP_10} from '#/lib/constants'
 import {type Props as IconProps} from '#/components/icons/common'
 
