@@ -148,6 +148,7 @@ const schema = z.object({
   noAppLabelers: z.boolean().optional(), // Credit: deer.social
   nyxoGateOverrides: z.record(z.string(), z.boolean()).optional(),
   skipProfileWideContentWarning: z.boolean().optional(),
+  splitModerationLabelGrouping: z.boolean().optional(),
 
   // Enable X settings in Nyxo Sky
   enableShareViaDID: z.boolean().optional(),
@@ -279,6 +280,7 @@ export const defaults: Schema = {
   noAppLabelers: false, // Credit: deer.social
   nyxoGateOverrides: {},
   skipProfileWideContentWarning: true,
+  splitModerationLabelGrouping: false,
 
   // Enable X setting defaults in Nyxo Sky
   enableSquareAvatars: false,

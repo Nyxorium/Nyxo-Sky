@@ -22,6 +22,7 @@ import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
 import {Provider as SimilarAccountProvider} from './similar-accounts'
 import {Provider as SkipProfileWideContentWarning} from './skip-profile-wide-content-warning'
+import {Provider as SplitModerationLabelGrouping} from './split-moderation-label-grouping'
 import {Provider as SubtitlesProvider} from './subtitles'
 import {Provider as TrendingSettingsProvider} from './trending'
 import {Provider as UsedStarterPacksProvider} from './used-starter-packs'
@@ -77,7 +78,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                   <ImpressionVisibilityProvider>
                                                     <DisableProfileDescriptions>
                                                       <SkipProfileWideContentWarning>
-                                                        <KawaiiProvider>{children}</KawaiiProvider>
+                                                        <SplitModerationLabelGrouping>
+                                                          <KawaiiProvider>{children}</KawaiiProvider>
+                                                        </SplitModerationLabelGrouping>
                                                       </SkipProfileWideContentWarning>
                                                     </DisableProfileDescriptions>
                                                   </ImpressionVisibilityProvider>

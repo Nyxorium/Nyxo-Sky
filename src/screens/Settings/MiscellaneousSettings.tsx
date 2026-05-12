@@ -48,12 +48,17 @@ import {
   useSetSkipProfileWideContentWarning,
   useSkipProfileWideContentWarning,
 } from '#/state/preferences/skip-profile-wide-content-warning'
+import {
+  useSetSplitModerationLabelGrouping,
+  useSplitModerationLabelGrouping,
+} from '#/state/preferences/split-moderation-label-grouping'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import * as Toggle from '#/components/forms/Toggle'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
+import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Message_Stroke2_Corner0_Rounded as Message} from '#/components/icons/Message'
 import {
@@ -96,6 +101,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setNoAppLabelers = useSetNoAppLabelers()
   const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
   const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
+  const splitModerationlabelGrouping = useSplitModerationLabelGrouping()
+  const setSplitModerationlabelGrouping = useSetSplitModerationLabelGrouping()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -228,6 +235,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={PersonIcon} />
               <SettingsList.ItemText>
                 <Trans>Disable Profile Wide Content Warnings</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="split_moderation_label_grouping"
+            label={_(msg`Split moderation label grouping`)}
+            value={splitModerationlabelGrouping}
+            onChange={value => setSplitModerationlabelGrouping(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={Filter} />
+              <SettingsList.ItemText>
+                <Trans>Split Moderation Label Grouping</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
