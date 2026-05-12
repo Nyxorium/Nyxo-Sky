@@ -92,7 +92,7 @@ msgstr "{0, plural, one {# месяц} few {# месяца} other {# месяц�
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:291
+#: src/components/dms/MessageItem.tsx:289
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
@@ -218,10 +218,20 @@ msgstr "{0} недоступен"
 msgid "{0} is not supported by your device."
 msgstr ""
 
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:73
+msgid "{0} joined the group"
+msgstr ""
+
 #. placeholder {0}: formatCount(i18n, JOINED_THIS_WEEK)
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:232
 msgid "{0} joined this week"
 msgstr "{0} присоединился на этой неделе"
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:82
+msgid "{0} left the group"
+msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -237,9 +247,19 @@ msgstr "{0} из 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0} reacted {1}"
 msgstr "{0} отреагировал {1}"
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:55
+msgid "{0} was added to the group"
+msgstr ""
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:64
+msgid "{0} was removed from the group"
+msgstr ""
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -262,7 +282,7 @@ msgid "{0}'s avatar"
 msgstr "Аватар {0}"
 
 #. placeholder {0}: createSanitizedDisplayName(profile)
-#: src/components/dms/MessageItem.tsx:222
+#: src/components/dms/MessageItem.tsx:220
 msgid "{0}’s avatar"
 msgstr ""
 
@@ -294,6 +314,10 @@ msgstr "{0}с"
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:489
 msgid "{1}"
+msgstr ""
+
+#: src/components/dms/SystemMessageGroup.tsx:38
+msgid "{count, plural, one {# chat update} other {# chat updates}}"
 msgstr ""
 
 #: src/screens/Messages/components/InboxRequests.tsx:19
@@ -549,25 +573,9 @@ msgstr ""
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# минуту} few {# минуты} other {# минут}}"
 
-#: src/components/dms/getSystemMessageInfo.ts:57
-msgid "{name} joined the group"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:64
-msgid "{name} left the group"
-msgstr ""
-
 #. placeholder {0}: reaction.value
 #: src/components/dms/getReactionInfo.ts:45
 msgid "{name} reacted {0} to {target}"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:41
-msgid "{name} was added to the group"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:49
-msgid "{name} was removed from the group"
 msgstr ""
 
 #. When the last message in a group chat came from someone other than you.
@@ -708,6 +716,10 @@ msgstr "<0>{0}</0> участников"
 #: src/screens/Search/SearchResults.tsx:315
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<0>Войдите в свой аккаунт</0><1> или </1><2>создайте аккаунт</2><3>, </3><4> чтобы искать новости, спорт, политику и всё остальное, что происходит на Bluesky.</4>"
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:276
+msgid "<0>Tap here to confirm your location.</0>"
+msgstr ""
 
 #. placeholder {0}: getName(items[1] /* [0] is self, skip it */)
 #: src/screens/StarterPack/Wizard/index.tsx:494
@@ -1187,7 +1199,7 @@ msgid "Age assurance inquiry was submitted"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:383
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:220
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:207
 msgid "Age assurance only takes a few minutes"
 msgstr "Проверка возраста занимает всего лишь несколько минут"
 
@@ -1241,15 +1253,20 @@ msgstr "Разрешите доступ к своим личным сообще�
 msgid "Allow anyone to reply"
 msgstr ""
 
+#: src/screens/Messages/Settings.tsx:169
+#: src/screens/Messages/Settings.tsx:184
+msgid "Allow direct messages from"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:215
+#: src/screens/Messages/Settings.tsx:230
+msgid "Allow group chat invites from"
+msgstr ""
+
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:128
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:134
 msgid "Allow location access"
 msgstr "Разрешить доступ к местоположению"
-
-#: src/screens/Messages/Settings.tsx:89
-#: src/screens/Messages/Settings.tsx:92
-msgid "Allow new messages from"
-msgstr "Разрешить новые сообщения от"
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:53
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:92
@@ -1477,7 +1494,7 @@ msgstr ""
 msgid "Animals"
 msgstr "Животные"
 
-#: src/components/Post/Embed/ExternalEmbed/Gif.tsx:96
+#: src/components/Post/Embed/ExternalEmbed/Gif.tsx:97
 msgid "Animated GIF"
 msgstr "Анимированные GIF"
 
@@ -1784,6 +1801,14 @@ msgstr ""
 msgid "Banned user returning"
 msgstr ""
 
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:259
+msgid "Based on your device's location, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:265
+msgid "Based on your network, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
 #: src/view/screens/Lists.tsx:35
 #: src/view/screens/ModerationModlists.tsx:35
 msgid "Before creating a list, you must first verify your email."
@@ -1853,8 +1878,8 @@ msgstr "Заблокировать"
 msgid "Block {displayName}"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:275
-#: src/components/dms/ConvoMenu.tsx:278
+#: src/components/dms/ConvoMenu.tsx:277
+#: src/components/dms/ConvoMenu.tsx:281
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:747
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
 #: src/screens/Messages/components/RequestButtons.tsx:149
@@ -2320,11 +2345,11 @@ msgctxt "toast"
 msgid "Chat deleted"
 msgstr "Чат удалён"
 
-#: src/components/dms/getSystemMessageInfo.ts:71
+#: src/components/dms/getSystemMessageInfo.ts:91
 msgid "Chat ended"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:67
+#: src/components/dms/getSystemMessageInfo.ts:87
 msgid "Chat locked"
 msgstr ""
 
@@ -2336,7 +2361,7 @@ msgstr ""
 msgid "Chat messages - sound"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:202
+#: src/components/dms/ConvoMenu.tsx:199
 msgctxt "toast"
 msgid "Chat muted"
 msgstr "Чат без звука"
@@ -2350,33 +2375,33 @@ msgstr "Почтовый ящик запросов на чат"
 msgid "Chat requests"
 msgstr "Запросы на чат"
 
-#: src/components/dms/ConvoMenu.tsx:84
+#: src/components/dms/ConvoMenu.tsx:82
 #: src/Navigation.tsx:634
 #: src/screens/Messages/ChatList.tsx:73
 #: src/screens/Messages/ChatList.tsx:77
 #: src/screens/Messages/ChatList.tsx:379
-#: src/screens/Messages/Settings.tsx:34
+#: src/screens/Messages/Settings.tsx:38
 msgid "Chat settings"
 msgstr "Настройки чата"
 
-#: src/screens/Messages/Settings.tsx:81
+#: src/screens/Messages/Settings.tsx:160
 msgid "Chat Settings"
 msgstr "Настройки чата"
 
-#: src/components/dms/getSystemMessageInfo.ts:77
+#: src/components/dms/getSystemMessageInfo.ts:97
 msgid "Chat title changed"
 msgstr ""
 
 #. placeholder {0}: data.newName
-#: src/components/dms/getSystemMessageInfo.ts:76
+#: src/components/dms/getSystemMessageInfo.ts:96
 msgid "Chat title changed to {0}"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:69
+#: src/components/dms/getSystemMessageInfo.ts:89
 msgid "Chat unlocked"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:204
+#: src/components/dms/ConvoMenu.tsx:201
 msgctxt "toast"
 msgid "Chat unmuted"
 msgstr "Чат со звуком"
@@ -2538,7 +2563,7 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr "Нажмите, чтобы открыть меню тегов для {0}"
 
-#: src/components/dms/MessageItem.tsx:546
+#: src/components/dms/MessageItem.tsx:544
 msgid "Click to retry failed message"
 msgstr "Нажмите, чтобы повторить неудачное сообщение"
 
@@ -2739,7 +2764,7 @@ msgid "Confirm"
 msgstr "Подтвердить"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:397
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:116
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:278
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:41
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:106
 msgid "Confirm your location"
@@ -2766,12 +2791,12 @@ msgid "Connection issue"
 msgstr "Проблема с подключением"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:334
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:159
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:146
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:31
 msgid "Contact our moderation team"
 msgstr "Обратитесь к нашей команде модерации"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:100
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:127
 msgid "Contact our support team"
 msgstr ""
 
@@ -3060,7 +3085,7 @@ msgstr "Не удалось загрузить ленту"
 msgid "Could not load list"
 msgstr "Не удалось загрузить список"
 
-#: src/components/dms/ConvoMenu.tsx:208
+#: src/components/dms/ConvoMenu.tsx:205
 msgid "Could not mute chat"
 msgstr "Не удалось заглушить чат"
 
@@ -3545,8 +3570,6 @@ msgstr ""
 #: src/lib/moderation/useLabelBehaviorDescription.ts:35
 #: src/lib/moderation/useLabelBehaviorDescription.ts:45
 #: src/lib/moderation/useLabelBehaviorDescription.ts:71
-#: src/screens/Messages/Settings.tsx:160
-#: src/screens/Messages/Settings.tsx:163
 #: src/screens/Moderation/index.tsx:402
 msgid "Disabled"
 msgstr "Отключено"
@@ -3726,7 +3749,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Готово"
 
-#: src/components/dms/MessageItem.tsx:449
+#: src/components/dms/MessageItem.tsx:447
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Дважды нажмите или зажмите сообщение, чтобы добавить реакцию"
 
@@ -3738,6 +3761,11 @@ msgstr "Дважды нажмите, чтобы закрыть диалог"
 msgid "Double tap to like"
 msgstr "Дважды нажмите, чтобы поставить лайк"
 
+#: src/screens/Messages/Settings.tsx:296
+#: src/screens/Messages/Settings.tsx:301
+msgid "Download .jsonl file"
+msgstr ""
+
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:331
 msgid "Download Bluesky"
 msgstr "Скачать Bluesky"
@@ -3747,6 +3775,7 @@ msgstr "Скачать Bluesky"
 msgid "Download CAR file"
 msgstr "Скачать CAR файл"
 
+#: src/screens/Messages/Settings.tsx:278
 #: src/screens/Settings/components/ExportCarDialog.tsx:136
 #: src/screens/Settings/components/ExportCarDialog.tsx:141
 msgid "Download chat data"
@@ -4081,8 +4110,6 @@ msgstr "Включить актуальные темы"
 msgid "Enable trending videos in your Discover feed"
 msgstr "Включить актуальные видео в ленте Discover"
 
-#: src/screens/Messages/Settings.tsx:151
-#: src/screens/Messages/Settings.tsx:154
 #: src/screens/Moderation/index.tsx:400
 msgid "Enabled"
 msgstr "Включено"
@@ -4181,6 +4208,7 @@ msgstr ""
 msgid "Error message"
 msgstr ""
 
+#: src/screens/Messages/Settings.tsx:115
 #: src/screens/Settings/components/ExportCarDialog.tsx:49
 #: src/screens/Settings/components/ExportCarDialog.tsx:83
 msgid "Error occurred while saving file"
@@ -4202,12 +4230,20 @@ msgstr "Каждый может ответить"
 msgid "Everybody can reply to this post."
 msgstr "Все могут ответить на этот пост."
 
-#: src/screens/Messages/Settings.tsx:102
-#: src/screens/Messages/Settings.tsx:105
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:169
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:179
 msgid "Everyone"
 msgstr "Все"
+
+#: src/screens/Messages/Settings.tsx:78
+msgctxt "allow group chat invites from"
+msgid "Everyone"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:63
+msgctxt "allow messages from"
+msgid "Everyone"
+msgstr ""
 
 #: src/screens/Settings/NotificationSettings/index.tsx:236
 #: src/screens/Settings/NotificationSettings/MiscellaneousNotificationSettings.tsx:41
@@ -4614,7 +4650,7 @@ msgstr "Не удалось изменить ленты"
 msgid "Failed to update notification declaration"
 msgstr ""
 
-#: src/screens/Messages/Settings.tsx:51
+#: src/screens/Messages/Settings.tsx:123
 msgid "Failed to update settings"
 msgstr "Не удалось изменить настройки"
 
@@ -4732,6 +4768,7 @@ msgstr "Мы думаем, что вам понравятся эти ленты.
 msgid "Fetch update"
 msgstr "Получить обновление"
 
+#: src/screens/Messages/Settings.tsx:111
 #: src/screens/Settings/components/ExportCarDialog.tsx:45
 #: src/screens/Settings/components/ExportCarDialog.tsx:79
 msgid "File saved successfully!"
@@ -5319,7 +5356,7 @@ msgstr "В профиль"
 msgid "Go to the group chat named \"{chatName}\""
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:252
+#: src/components/dms/ConvoMenu.tsx:251
 msgid "Go to user's profile"
 msgstr "Перейти к профилю пользователя"
 
@@ -5544,6 +5581,10 @@ msgstr ""
 msgid "Hide customization options"
 msgstr ""
 
+#: src/components/dms/SystemMessageGroup.tsx:57
+msgid "Hide group chat updates"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:533
 msgid "Hide lists"
 msgstr ""
@@ -5730,7 +5771,7 @@ msgstr "Раскрывает альтернативный текст, если �
 msgid "If none are selected, all languages will be shown in your feeds."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:94
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:121
 msgid "If you are 18 years of age or older and want to try again, click the button below and use a different verification method if one is available in your region. If you have questions or concerns, <0>our support team can help.</0>"
 msgstr ""
 
@@ -6023,20 +6064,20 @@ msgstr ""
 msgid "Invite link"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:80
+#: src/components/dms/getSystemMessageInfo.ts:102
 msgid "Invite link created"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:86
+#: src/components/dms/getSystemMessageInfo.ts:120
 #: src/screens/Messages/components/InviteLinkDialog.tsx:282
 msgid "Invite link disabled"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:82
+#: src/components/dms/getSystemMessageInfo.ts:108
 msgid "Invite link edited"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:84
+#: src/components/dms/getSystemMessageInfo.ts:114
 msgid "Invite link enabled"
 msgstr ""
 
@@ -6061,7 +6102,6 @@ msgid "Invites, but personal"
 msgstr "Приглашения, но личные"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:394
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:113
 msgid "Is your location not accurate? <0>Tap here to confirm your location.</0> "
 msgstr ""
 
@@ -6171,12 +6211,12 @@ msgid "Larger"
 msgstr "Увеличенный"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:377
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:214
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:201
 msgid "Last initiated {timeAgo} ago"
 msgstr "Последнее инициирование {timeAgo} назад"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:375
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:212
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
 msgid "Last initiated just now"
 msgstr "Последнее инициирование только что"
 
@@ -6283,10 +6323,10 @@ msgstr ""
 msgid "Leave chat"
 msgstr "Выйти из чата"
 
-#: src/components/dms/ConvoMenu.tsx:231
-#: src/components/dms/ConvoMenu.tsx:234
-#: src/components/dms/ConvoMenu.tsx:294
-#: src/components/dms/ConvoMenu.tsx:297
+#: src/components/dms/ConvoMenu.tsx:229
+#: src/components/dms/ConvoMenu.tsx:233
+#: src/components/dms/ConvoMenu.tsx:299
+#: src/components/dms/ConvoMenu.tsx:303
 #: src/components/dms/LeaveConvoPrompt.tsx:43
 msgid "Leave conversation"
 msgstr "Выйти из беседы"
@@ -6692,8 +6732,8 @@ msgstr "Настраивайте ваши игнорируемые слова и
 msgid "Mark all as read"
 msgstr "Отметить все как прочитанные"
 
-#: src/components/dms/ConvoMenu.tsx:243
-#: src/components/dms/ConvoMenu.tsx:246
+#: src/components/dms/ConvoMenu.tsx:241
+#: src/components/dms/ConvoMenu.tsx:245
 msgid "Mark as read"
 msgstr "Отметить как прочитанное"
 
@@ -6786,7 +6826,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "Сообщение удалено"
 
-#: src/components/dms/MessageItem.tsx:540
+#: src/components/dms/MessageItem.tsx:538
 msgid "Message failed to send."
 msgstr ""
 
@@ -6982,7 +7022,7 @@ msgid "Mute accounts"
 msgstr "Игнорировать учётные записи"
 
 #: src/components/dms/ConvoMenu.tsx:260
-#: src/components/dms/ConvoMenu.tsx:266
+#: src/components/dms/ConvoMenu.tsx:267
 msgid "Mute conversation"
 msgstr "Отключить звук"
 
@@ -7206,10 +7246,6 @@ msgstr "Новый псевдоним"
 msgid "New list"
 msgstr "Новый список"
 
-#: src/components/dms/NewMessagesPill.tsx:92
-msgid "New messages"
-msgstr "Новые сообщения"
-
 #: src/screens/Login/SetNewPasswordForm.tsx:143
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:204
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:208
@@ -7379,8 +7415,12 @@ msgstr ""
 msgid "No notifications yet!"
 msgstr "Ещё никаких уведомлений!"
 
-#: src/screens/Messages/Settings.tsx:121
-#: src/screens/Messages/Settings.tsx:125
+#: src/screens/Messages/Settings.tsx:89
+msgctxt "allow group chat invites from"
+msgid "No one"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:71
 msgctxt "allow messages from"
 msgid "No one"
 msgstr ""
@@ -7555,12 +7595,9 @@ msgstr "Пока ничего не сохранено"
 msgid "Notification settings"
 msgstr "Настройки уведомления"
 
-#: src/screens/Messages/Settings.tsx:144
+#: src/screens/Messages/Settings.tsx:262
+#: src/screens/Messages/Settings.tsx:268
 msgid "Notification sounds"
-msgstr "Звуки уведомлений"
-
-#: src/screens/Messages/Settings.tsx:141
-msgid "Notification Sounds"
 msgstr "Звуки уведомлений"
 
 #: src/Navigation.tsx:644
@@ -7914,6 +7951,10 @@ msgstr "Открывает форму сброса пароля"
 msgid "Opens post language settings"
 msgstr ""
 
+#: src/components/dms/SystemMessageItem.tsx:60
+msgid "Opens profile"
+msgstr ""
+
 #. Accessibility hint announced after the GIF picker button label, describing what activating it will do.
 #: src/view/com/composer/photos/SelectGifBtn.tsx:45
 msgid "Opens the GIF picker dialog"
@@ -7927,7 +7968,7 @@ msgstr ""
 msgid "Opens this draft in the composer"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:223
+#: src/components/dms/MessageItem.tsx:221
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:605
 msgid "Opens this profile"
@@ -9205,8 +9246,8 @@ msgstr "Пожаловаться"
 msgid "Report account"
 msgstr "Пожаловаться на учётную запись"
 
-#: src/components/dms/ConvoMenu.tsx:283
-#: src/components/dms/ConvoMenu.tsx:286
+#: src/components/dms/ConvoMenu.tsx:287
+#: src/components/dms/ConvoMenu.tsx:291
 #: src/components/dms/ReportConversationPrompt.tsx:17
 #: src/screens/Messages/components/RequestButtons.tsx:160
 #: src/screens/Messages/components/RequestButtons.tsx:163
@@ -10274,6 +10315,10 @@ msgstr ""
 msgid "Show customization options"
 msgstr ""
 
+#: src/components/dms/SystemMessageGroup.tsx:57
+msgid "Show group chat updates"
+msgstr ""
+
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:593
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:595
 msgid "Show less like this"
@@ -10542,16 +10587,16 @@ msgstr "Некоторые другие ленты, которые могут в
 msgid "Some people can reply"
 msgstr "Некоторые люди могут ответить"
 
-#: src/components/dms/getSystemMessageInfo.ts:58
+#: src/components/dms/getSystemMessageInfo.ts:74
 msgid "Someone joined the group"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:64
+#: src/components/dms/getSystemMessageInfo.ts:83
 msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:288
+#: src/components/dms/MessageItem.tsx:286
 msgid "Someone reacted {0}"
 msgstr "Кто-то отреагировал {0}"
 
@@ -10560,11 +10605,11 @@ msgstr "Кто-то отреагировал {0}"
 msgid "Someone reacted {0} to {target}"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:42
+#: src/components/dms/getSystemMessageInfo.ts:56
 msgid "Someone was added to the group"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:50
+#: src/components/dms/getSystemMessageInfo.ts:65
 msgid "Someone was removed from the group"
 msgstr ""
 
@@ -10971,7 +11016,7 @@ msgstr ""
 msgid "Tap to remove your {0} reaction"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:550
+#: src/components/dms/MessageItem.tsx:548
 msgid "Tap to retry"
 msgstr ""
 
@@ -10984,7 +11029,7 @@ msgstr ""
 msgid "Tap to show all reactions"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:311
+#: src/components/dms/MessageItem.tsx:309
 msgid "Tap to view reactions"
 msgstr ""
 
@@ -11060,7 +11105,7 @@ msgid "Thanks, you have successfully verified your email address. You can close 
 msgstr "Спасибо, вы успешно подтвердили свой адрес электронной почты. Вы можете закрыть этот диалог."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:423
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:247
 msgid "Thanks! You're all set."
 msgstr ""
 
@@ -11466,6 +11511,10 @@ msgstr "Эта лента пуста."
 #: src/view/com/posts/FeedShutdownMsg.tsx:104
 msgid "This feed is no longer online. We are showing <0>Discover</0> instead."
 msgstr "Эта лента больше не работает. Вместо этого мы показываем <0>Discover</0>."
+
+#: src/screens/Messages/Settings.tsx:287
+msgid "This file only includes chat messages that you have sent and does not include chat messages that you have received."
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:611
 msgid "This handle is reserved. Please try a different one."
@@ -11911,8 +11960,8 @@ msgstr "Разблокировать"
 msgid "Unblock {displayName}"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:275
-#: src/components/dms/ConvoMenu.tsx:278
+#: src/components/dms/ConvoMenu.tsx:277
+#: src/components/dms/ConvoMenu.tsx:281
 #: src/view/com/profile/ProfileMenu.tsx:484
 #: src/view/com/profile/ProfileMenu.tsx:490
 msgid "Unblock account"
@@ -12044,7 +12093,7 @@ msgstr ""
 msgid "Unmute account"
 msgstr "Не игнорировать учётную запись"
 
-#: src/components/dms/ConvoMenu.tsx:264
+#: src/components/dms/ConvoMenu.tsx:265
 msgid "Unmute conversation"
 msgstr "Включить звук"
 
@@ -12348,10 +12397,15 @@ msgstr "пользователи, на которых подписан <0>@{0}</
 msgid "users following <0>@{0}</0>"
 msgstr "пользователи подписанные на <0>@{0}</0>"
 
-#: src/screens/Messages/Settings.tsx:111
-#: src/screens/Messages/Settings.tsx:114
+#: src/screens/Messages/Settings.tsx:82
+msgctxt "allow group chat invites from"
 msgid "Users I follow"
-msgstr "Пользователи, на которых я подписан"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:67
+msgctxt "allow messages from"
+msgid "Users I follow"
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:451
 msgid "Value:"
@@ -12386,7 +12440,7 @@ msgid "Verify account"
 msgstr "Подтвердить аккаунт"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:360
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:197
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:184
 msgid "Verify again"
 msgstr "Подтвердить снова"
 
@@ -12414,8 +12468,8 @@ msgstr "Диалоговое окно подтверждения электро�
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:348
 #: src/ageAssurance/components/NoAccessScreen.tsx:362
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:185
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:172
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:186
 msgid "Verify now"
 msgstr ""
 
@@ -12875,7 +12929,7 @@ msgid "We’re so excited to have you join us!"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:416
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:135
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:241
 msgid "We're sorry, but based on your device's location, you are currently located in a region that requires age assurance."
 msgstr ""
 
@@ -13120,7 +13174,7 @@ msgid "You are currently blocked from using the Go Live feature. To appeal this 
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:330
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:155
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
 msgid "You are currently unable to access Bluesky's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
 msgstr ""
 
@@ -13186,7 +13240,8 @@ msgstr ""
 msgid "You can choose whether chat notifications have sound in the chat settings within the app"
 msgstr ""
 
-#: src/screens/Messages/Settings.tsx:132
+#: src/screens/Messages/Settings.tsx:178
+#: src/screens/Messages/Settings.tsx:224
 msgid "You can continue ongoing conversations regardless of which setting you choose."
 msgstr "Вы можете продолжать беседу независимо от выбранной вами настройки."
 
@@ -13426,7 +13481,7 @@ msgid "You probably want to restart the app now."
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:281
+#: src/components/dms/MessageItem.tsx:279
 msgid "You reacted {0}"
 msgstr "Вы отреагировали {0}"
 

@@ -92,7 +92,7 @@ msgstr "{0, plural, other {# ay}}"
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:291
+#: src/components/dms/MessageItem.tsx:289
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
@@ -218,10 +218,20 @@ msgstr "{0} kullanılamaz"
 msgid "{0} is not supported by your device."
 msgstr "{0} cihazınız tarafından desteklenmiyor."
 
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:73
+msgid "{0} joined the group"
+msgstr ""
+
 #. placeholder {0}: formatCount(i18n, JOINED_THIS_WEEK)
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:232
 msgid "{0} joined this week"
 msgstr "{0} bu hafta katıldı"
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:82
+msgid "{0} left the group"
+msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -237,9 +247,19 @@ msgstr "50'de {0}"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0} reacted {1}"
 msgstr "{0} şu tepkiyi verdi: {1}"
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:55
+msgid "{0} was added to the group"
+msgstr ""
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:64
+msgid "{0} was removed from the group"
+msgstr ""
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -262,7 +282,7 @@ msgid "{0}'s avatar"
 msgstr "{0} kullanıcısının avatarı"
 
 #. placeholder {0}: createSanitizedDisplayName(profile)
-#: src/components/dms/MessageItem.tsx:222
+#: src/components/dms/MessageItem.tsx:220
 msgid "{0}’s avatar"
 msgstr ""
 
@@ -294,6 +314,10 @@ msgstr "{0}sn"
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:489
 msgid "{1}"
+msgstr ""
+
+#: src/components/dms/SystemMessageGroup.tsx:38
+msgid "{count, plural, one {# chat update} other {# chat updates}}"
 msgstr ""
 
 #: src/screens/Messages/components/InboxRequests.tsx:19
@@ -549,25 +573,9 @@ msgstr "{MIN_ACCESS_AGE, plural, other {Bir hesap oluşturmak için en az # yaş
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {# dakika}}"
 
-#: src/components/dms/getSystemMessageInfo.ts:57
-msgid "{name} joined the group"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:64
-msgid "{name} left the group"
-msgstr ""
-
 #. placeholder {0}: reaction.value
 #: src/components/dms/getReactionInfo.ts:45
 msgid "{name} reacted {0} to {target}"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:41
-msgid "{name} was added to the group"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:49
-msgid "{name} was removed from the group"
 msgstr ""
 
 #. When the last message in a group chat came from someone other than you.
@@ -708,6 +716,10 @@ msgstr "<0>{0}</0> üyeleri"
 #: src/screens/Search/SearchResults.tsx:315
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<4>Bluesky'da haber, spor, siyaset ve diğer olan biteni aramak için</4><3> </3><0>giriş yapın</0><1> veya </1><2>bir hesap oluşturun.</2>"
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:276
+msgid "<0>Tap here to confirm your location.</0>"
+msgstr ""
 
 #. placeholder {0}: getName(items[1] /* [0] is self, skip it */)
 #: src/screens/StarterPack/Wizard/index.tsx:494
@@ -1187,7 +1199,7 @@ msgid "Age assurance inquiry was submitted"
 msgstr "Yaş güvencesi sorgusu yollandı"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:383
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:220
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:207
 msgid "Age assurance only takes a few minutes"
 msgstr "Yaş güvencesi sadece birkaç dakika alacaktır"
 
@@ -1241,15 +1253,20 @@ msgstr "Doğrudan mesajlarınıza erişime izin verin"
 msgid "Allow anyone to reply"
 msgstr "Herkesin yanıt vermesine izin ver"
 
+#: src/screens/Messages/Settings.tsx:169
+#: src/screens/Messages/Settings.tsx:184
+msgid "Allow direct messages from"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:215
+#: src/screens/Messages/Settings.tsx:230
+msgid "Allow group chat invites from"
+msgstr ""
+
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:128
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:134
 msgid "Allow location access"
 msgstr "Konum erişimine izin ver"
-
-#: src/screens/Messages/Settings.tsx:89
-#: src/screens/Messages/Settings.tsx:92
-msgid "Allow new messages from"
-msgstr "Yeni mesajlara izin ver"
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:53
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:92
@@ -1477,7 +1494,7 @@ msgstr "Hayvan istismarı"
 msgid "Animals"
 msgstr "Hayvanlar"
 
-#: src/components/Post/Embed/ExternalEmbed/Gif.tsx:96
+#: src/components/Post/Embed/ExternalEmbed/Gif.tsx:97
 msgid "Animated GIF"
 msgstr "Animasyonlu GIF"
 
@@ -1784,6 +1801,14 @@ msgstr "Yasak eylemler ya da güvenlik ihlalleri"
 msgid "Banned user returning"
 msgstr "Uzaklaştırılmış kullanıcının geri gelmesi"
 
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:259
+msgid "Based on your device's location, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:265
+msgid "Based on your network, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
 #: src/view/screens/Lists.tsx:35
 #: src/view/screens/ModerationModlists.tsx:35
 msgid "Before creating a list, you must first verify your email."
@@ -1853,8 +1878,8 @@ msgstr "Engelle"
 msgid "Block {displayName}"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:275
-#: src/components/dms/ConvoMenu.tsx:278
+#: src/components/dms/ConvoMenu.tsx:277
+#: src/components/dms/ConvoMenu.tsx:281
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:747
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
 #: src/screens/Messages/components/RequestButtons.tsx:149
@@ -2320,11 +2345,11 @@ msgctxt "toast"
 msgid "Chat deleted"
 msgstr "Sohbet silindi"
 
-#: src/components/dms/getSystemMessageInfo.ts:71
+#: src/components/dms/getSystemMessageInfo.ts:91
 msgid "Chat ended"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:67
+#: src/components/dms/getSystemMessageInfo.ts:87
 msgid "Chat locked"
 msgstr ""
 
@@ -2336,7 +2361,7 @@ msgstr "Sohbet mesajları - sessiz"
 msgid "Chat messages - sound"
 msgstr "Sohbet mesajları - sesli"
 
-#: src/components/dms/ConvoMenu.tsx:202
+#: src/components/dms/ConvoMenu.tsx:199
 msgctxt "toast"
 msgid "Chat muted"
 msgstr "Sohbet sessize alındı"
@@ -2350,33 +2375,33 @@ msgstr "Sohbet istekleri gelen kutusu"
 msgid "Chat requests"
 msgstr "Sohbet istekleri"
 
-#: src/components/dms/ConvoMenu.tsx:84
+#: src/components/dms/ConvoMenu.tsx:82
 #: src/Navigation.tsx:634
 #: src/screens/Messages/ChatList.tsx:73
 #: src/screens/Messages/ChatList.tsx:77
 #: src/screens/Messages/ChatList.tsx:379
-#: src/screens/Messages/Settings.tsx:34
+#: src/screens/Messages/Settings.tsx:38
 msgid "Chat settings"
 msgstr "Mesajlaşma ayarları"
 
-#: src/screens/Messages/Settings.tsx:81
+#: src/screens/Messages/Settings.tsx:160
 msgid "Chat Settings"
 msgstr "Mesajlaşma Ayarları"
 
-#: src/components/dms/getSystemMessageInfo.ts:77
+#: src/components/dms/getSystemMessageInfo.ts:97
 msgid "Chat title changed"
 msgstr ""
 
 #. placeholder {0}: data.newName
-#: src/components/dms/getSystemMessageInfo.ts:76
+#: src/components/dms/getSystemMessageInfo.ts:96
 msgid "Chat title changed to {0}"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:69
+#: src/components/dms/getSystemMessageInfo.ts:89
 msgid "Chat unlocked"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:204
+#: src/components/dms/ConvoMenu.tsx:201
 msgctxt "toast"
 msgid "Chat unmuted"
 msgstr "Sohbet sessizden çıkarıldı"
@@ -2538,7 +2563,7 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr "{0} etiket menüsünü açmak için tıklayın"
 
-#: src/components/dms/MessageItem.tsx:546
+#: src/components/dms/MessageItem.tsx:544
 msgid "Click to retry failed message"
 msgstr "İletilemeyen mesajı tekrar denemek için tıklayın"
 
@@ -2739,7 +2764,7 @@ msgid "Confirm"
 msgstr "Onayla"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:397
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:116
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:278
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:41
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:106
 msgid "Confirm your location"
@@ -2766,12 +2791,12 @@ msgid "Connection issue"
 msgstr "Bağlantı sorunu"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:334
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:159
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:146
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:31
 msgid "Contact our moderation team"
 msgstr "Denetim ekibimize ulaşın"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:100
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:127
 msgid "Contact our support team"
 msgstr "Destek ekibimize ulaşın"
 
@@ -3060,7 +3085,7 @@ msgstr "Akış yüklenemedi"
 msgid "Could not load list"
 msgstr "Liste yüklenemedi"
 
-#: src/components/dms/ConvoMenu.tsx:208
+#: src/components/dms/ConvoMenu.tsx:205
 msgid "Could not mute chat"
 msgstr "Sohbet sessize alınamadı"
 
@@ -3545,8 +3570,6 @@ msgstr "Yanıtları tümden devre dışı bırak"
 #: src/lib/moderation/useLabelBehaviorDescription.ts:35
 #: src/lib/moderation/useLabelBehaviorDescription.ts:45
 #: src/lib/moderation/useLabelBehaviorDescription.ts:71
-#: src/screens/Messages/Settings.tsx:160
-#: src/screens/Messages/Settings.tsx:163
 #: src/screens/Moderation/index.tsx:402
 msgid "Disabled"
 msgstr "Devre dışı"
@@ -3726,7 +3749,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Tamam"
 
-#: src/components/dms/MessageItem.tsx:449
+#: src/components/dms/MessageItem.tsx:447
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Bir tepki eklemek için mesaja çift dokunun ya da uzun basın"
 
@@ -3738,6 +3761,11 @@ msgstr "Bu diyalogu kapatmak için çift dokunun"
 msgid "Double tap to like"
 msgstr "Beğenmek için çift dokunun"
 
+#: src/screens/Messages/Settings.tsx:296
+#: src/screens/Messages/Settings.tsx:301
+msgid "Download .jsonl file"
+msgstr ""
+
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:331
 msgid "Download Bluesky"
 msgstr "Bluesky'ı İndir"
@@ -3747,6 +3775,7 @@ msgstr "Bluesky'ı İndir"
 msgid "Download CAR file"
 msgstr "CAR dosyasını indir"
 
+#: src/screens/Messages/Settings.tsx:278
 #: src/screens/Settings/components/ExportCarDialog.tsx:136
 #: src/screens/Settings/components/ExportCarDialog.tsx:141
 msgid "Download chat data"
@@ -4081,8 +4110,6 @@ msgstr "Gündem başlıklarını etkinleştir"
 msgid "Enable trending videos in your Discover feed"
 msgstr "Keşif akışında (\"Discover\") gündem videolarını etkinleştir"
 
-#: src/screens/Messages/Settings.tsx:151
-#: src/screens/Messages/Settings.tsx:154
 #: src/screens/Moderation/index.tsx:400
 msgid "Enabled"
 msgstr "Etkinleştirildi"
@@ -4181,6 +4208,7 @@ msgstr "Tercih yüklenirken hata oluştu"
 msgid "Error message"
 msgstr "Hata mesajı"
 
+#: src/screens/Messages/Settings.tsx:115
 #: src/screens/Settings/components/ExportCarDialog.tsx:49
 #: src/screens/Settings/components/ExportCarDialog.tsx:83
 msgid "Error occurred while saving file"
@@ -4202,12 +4230,20 @@ msgstr "Herkes yanıtlayabilir"
 msgid "Everybody can reply to this post."
 msgstr "Bu gönderiyi herkes yanıtlayabilir."
 
-#: src/screens/Messages/Settings.tsx:102
-#: src/screens/Messages/Settings.tsx:105
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:169
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:179
 msgid "Everyone"
 msgstr "Herkes"
+
+#: src/screens/Messages/Settings.tsx:78
+msgctxt "allow group chat invites from"
+msgid "Everyone"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:63
+msgctxt "allow messages from"
+msgid "Everyone"
+msgstr ""
 
 #: src/screens/Settings/NotificationSettings/index.tsx:236
 #: src/screens/Settings/NotificationSettings/MiscellaneousNotificationSettings.tsx:41
@@ -4614,7 +4650,7 @@ msgstr "Akışlar güncellenemedi"
 msgid "Failed to update notification declaration"
 msgstr "Bildirim beyanı güncellenemedi"
 
-#: src/screens/Messages/Settings.tsx:51
+#: src/screens/Messages/Settings.tsx:123
 msgid "Failed to update settings"
 msgstr "Ayarlar güncellenemedi"
 
@@ -4732,6 +4768,7 @@ msgstr "Beğeneceğinizi düşündüğümüz akışlar."
 msgid "Fetch update"
 msgstr "Güncellemeyi al"
 
+#: src/screens/Messages/Settings.tsx:111
 #: src/screens/Settings/components/ExportCarDialog.tsx:45
 #: src/screens/Settings/components/ExportCarDialog.tsx:79
 msgid "File saved successfully!"
@@ -5319,7 +5356,7 @@ msgstr "Profile git"
 msgid "Go to the group chat named \"{chatName}\""
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:252
+#: src/components/dms/ConvoMenu.tsx:251
 msgid "Go to user's profile"
 msgstr "Kullanıcının profiline git"
 
@@ -5544,6 +5581,10 @@ msgstr "Tüm etkinlikleri gizle"
 msgid "Hide customization options"
 msgstr "Özelleştirme seçeneklerini gizle"
 
+#: src/components/dms/SystemMessageGroup.tsx:57
+msgid "Hide group chat updates"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:533
 msgid "Hide lists"
 msgstr "Listeleri gizle"
@@ -5730,7 +5771,7 @@ msgstr "Alternatif metin uzunsa, alternatif metin genişletme durumunu değişti
 msgid "If none are selected, all languages will be shown in your feeds."
 msgstr "Eğer hiçbiri seçili değilse akışlarınızda tüm diller görünecektir."
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:94
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:121
 msgid "If you are 18 years of age or older and want to try again, click the button below and use a different verification method if one is available in your region. If you have questions or concerns, <0>our support team can help.</0>"
 msgstr "Eğer 18 veya üstü yaştaysanız ve yeniden denemek isterseniz aşağıdaki butona basın ve bölgenizde kullanılabilir olan farklı bir doğrulama yöntemini kullanın. Eğer sorularınız veya kaygılarınız varsa <0>destek ekibimiz yardım edebilir.</0>"
 
@@ -6023,20 +6064,20 @@ msgstr "Arkadaşları davet edin <0/>"
 msgid "Invite link"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:80
+#: src/components/dms/getSystemMessageInfo.ts:102
 msgid "Invite link created"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:86
+#: src/components/dms/getSystemMessageInfo.ts:120
 #: src/screens/Messages/components/InviteLinkDialog.tsx:282
 msgid "Invite link disabled"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:82
+#: src/components/dms/getSystemMessageInfo.ts:108
 msgid "Invite link edited"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:84
+#: src/components/dms/getSystemMessageInfo.ts:114
 msgid "Invite link enabled"
 msgstr ""
 
@@ -6061,7 +6102,6 @@ msgid "Invites, but personal"
 msgstr "Davetler, ancak kişisel"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:394
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:113
 msgid "Is your location not accurate? <0>Tap here to confirm your location.</0> "
 msgstr "Konumunuz tam tutmuyor mu? <0>Buraya dokunup konumunuzu onaylayın.</0> "
 
@@ -6171,12 +6211,12 @@ msgid "Larger"
 msgstr "Daha büyük"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:377
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:214
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:201
 msgid "Last initiated {timeAgo} ago"
 msgstr "En son {timeAgo} önce başlatılmış"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:375
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:212
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
 msgid "Last initiated just now"
 msgstr "En son az önce başlatılmış"
 
@@ -6283,10 +6323,10 @@ msgstr ""
 msgid "Leave chat"
 msgstr "Sohbetten ayrıl"
 
-#: src/components/dms/ConvoMenu.tsx:231
-#: src/components/dms/ConvoMenu.tsx:234
-#: src/components/dms/ConvoMenu.tsx:294
-#: src/components/dms/ConvoMenu.tsx:297
+#: src/components/dms/ConvoMenu.tsx:229
+#: src/components/dms/ConvoMenu.tsx:233
+#: src/components/dms/ConvoMenu.tsx:299
+#: src/components/dms/ConvoMenu.tsx:303
 #: src/components/dms/LeaveConvoPrompt.tsx:43
 msgid "Leave conversation"
 msgstr "Yazışmadan ayrıl"
@@ -6692,8 +6732,8 @@ msgstr "Sessize alınmış kelimelerinizi ve etiketlerinizi yönetin"
 msgid "Mark all as read"
 msgstr "Tümünü okunmuş olarak işaretle"
 
-#: src/components/dms/ConvoMenu.tsx:243
-#: src/components/dms/ConvoMenu.tsx:246
+#: src/components/dms/ConvoMenu.tsx:241
+#: src/components/dms/ConvoMenu.tsx:245
 msgid "Mark as read"
 msgstr "Okundu olarak işaretle"
 
@@ -6786,7 +6826,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "Mesaj silindi"
 
-#: src/components/dms/MessageItem.tsx:540
+#: src/components/dms/MessageItem.tsx:538
 msgid "Message failed to send."
 msgstr ""
 
@@ -6982,7 +7022,7 @@ msgid "Mute accounts"
 msgstr "Hesapları sessize al"
 
 #: src/components/dms/ConvoMenu.tsx:260
-#: src/components/dms/ConvoMenu.tsx:266
+#: src/components/dms/ConvoMenu.tsx:267
 msgid "Mute conversation"
 msgstr "Yazışmayı sustur"
 
@@ -7206,10 +7246,6 @@ msgstr "Yeni kullanıcı adı"
 msgid "New list"
 msgstr "Yeni liste"
 
-#: src/components/dms/NewMessagesPill.tsx:92
-msgid "New messages"
-msgstr "Yeni mesajlar"
-
 #: src/screens/Login/SetNewPasswordForm.tsx:143
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:204
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:208
@@ -7379,8 +7415,12 @@ msgstr "İsim yok"
 msgid "No notifications yet!"
 msgstr "Henüz bildirim yok!"
 
-#: src/screens/Messages/Settings.tsx:121
-#: src/screens/Messages/Settings.tsx:125
+#: src/screens/Messages/Settings.tsx:89
+msgctxt "allow group chat invites from"
+msgid "No one"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:71
 msgctxt "allow messages from"
 msgid "No one"
 msgstr "Hiç kimse"
@@ -7555,13 +7595,10 @@ msgstr "Henüz hiçbir şey kaydedilmedi"
 msgid "Notification settings"
 msgstr "Bildirim ayarları"
 
-#: src/screens/Messages/Settings.tsx:144
+#: src/screens/Messages/Settings.tsx:262
+#: src/screens/Messages/Settings.tsx:268
 msgid "Notification sounds"
 msgstr "Bildirim sesleri"
-
-#: src/screens/Messages/Settings.tsx:141
-msgid "Notification Sounds"
-msgstr "Bildirim Sesleri"
 
 #: src/Navigation.tsx:644
 #: src/Navigation.tsx:883
@@ -7914,6 +7951,10 @@ msgstr "Şifre sıfırlama formunu açar"
 msgid "Opens post language settings"
 msgstr "Gönderi dili ayarlarını açar"
 
+#: src/components/dms/SystemMessageItem.tsx:60
+msgid "Opens profile"
+msgstr ""
+
 #. Accessibility hint announced after the GIF picker button label, describing what activating it will do.
 #: src/view/com/composer/photos/SelectGifBtn.tsx:45
 msgid "Opens the GIF picker dialog"
@@ -7927,7 +7968,7 @@ msgstr "Gönderi oluşturucusunu açar"
 msgid "Opens this draft in the composer"
 msgstr "Bu taslağı düzenleyicide açar"
 
-#: src/components/dms/MessageItem.tsx:223
+#: src/components/dms/MessageItem.tsx:221
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:605
 msgid "Opens this profile"
@@ -9205,8 +9246,8 @@ msgstr "Raporla"
 msgid "Report account"
 msgstr "Hesabı raporla"
 
-#: src/components/dms/ConvoMenu.tsx:283
-#: src/components/dms/ConvoMenu.tsx:286
+#: src/components/dms/ConvoMenu.tsx:287
+#: src/components/dms/ConvoMenu.tsx:291
 #: src/components/dms/ReportConversationPrompt.tsx:17
 #: src/screens/Messages/components/RequestButtons.tsx:160
 #: src/screens/Messages/components/RequestButtons.tsx:163
@@ -10274,6 +10315,10 @@ msgstr ""
 msgid "Show customization options"
 msgstr "Özelleştirme seçeneklerini göster"
 
+#: src/components/dms/SystemMessageGroup.tsx:57
+msgid "Show group chat updates"
+msgstr ""
+
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:593
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:595
 msgid "Show less like this"
@@ -10542,16 +10587,16 @@ msgstr "Beğenebileceğiniz diğer akışlar"
 msgid "Some people can reply"
 msgstr "Bazı kişiler yanıtlayabilir"
 
-#: src/components/dms/getSystemMessageInfo.ts:58
+#: src/components/dms/getSystemMessageInfo.ts:74
 msgid "Someone joined the group"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:64
+#: src/components/dms/getSystemMessageInfo.ts:83
 msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:288
+#: src/components/dms/MessageItem.tsx:286
 msgid "Someone reacted {0}"
 msgstr "Birisi {0} tepkisi verdi"
 
@@ -10560,11 +10605,11 @@ msgstr "Birisi {0} tepkisi verdi"
 msgid "Someone reacted {0} to {target}"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:42
+#: src/components/dms/getSystemMessageInfo.ts:56
 msgid "Someone was added to the group"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:50
+#: src/components/dms/getSystemMessageInfo.ts:65
 msgid "Someone was removed from the group"
 msgstr ""
 
@@ -10971,7 +11016,7 @@ msgstr ""
 msgid "Tap to remove your {0} reaction"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:550
+#: src/components/dms/MessageItem.tsx:548
 msgid "Tap to retry"
 msgstr ""
 
@@ -10984,7 +11029,7 @@ msgstr ""
 msgid "Tap to show all reactions"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:311
+#: src/components/dms/MessageItem.tsx:309
 msgid "Tap to view reactions"
 msgstr ""
 
@@ -11060,7 +11105,7 @@ msgid "Thanks, you have successfully verified your email address. You can close 
 msgstr "Teşekkürler, e-posta adresinizi başarıyla doğruladınız. Bu iletişim kutusunu kapatabilirsiniz."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:423
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:247
 msgid "Thanks! You're all set."
 msgstr "Teşekkürler! Her şey tamam."
 
@@ -11466,6 +11511,10 @@ msgstr "Bu akış boş."
 #: src/view/com/posts/FeedShutdownMsg.tsx:104
 msgid "This feed is no longer online. We are showing <0>Discover</0> instead."
 msgstr "Bu akış çevrimiçi değil. Onun yerine size keşif akışı <0>Discover</0>'ı gösteriyoruz."
+
+#: src/screens/Messages/Settings.tsx:287
+msgid "This file only includes chat messages that you have sent and does not include chat messages that you have received."
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:611
 msgid "This handle is reserved. Please try a different one."
@@ -11911,8 +11960,8 @@ msgstr "Engeli kaldır"
 msgid "Unblock {displayName}"
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:275
-#: src/components/dms/ConvoMenu.tsx:278
+#: src/components/dms/ConvoMenu.tsx:277
+#: src/components/dms/ConvoMenu.tsx:281
 #: src/view/com/profile/ProfileMenu.tsx:484
 #: src/view/com/profile/ProfileMenu.tsx:490
 msgid "Unblock account"
@@ -12044,7 +12093,7 @@ msgstr "{0} etiketini sessizden çıkar"
 msgid "Unmute account"
 msgstr "Hesabı sessizden çıkar"
 
-#: src/components/dms/ConvoMenu.tsx:264
+#: src/components/dms/ConvoMenu.tsx:265
 msgid "Unmute conversation"
 msgstr "Yazışmayı sessizden çıkar"
 
@@ -12348,10 +12397,15 @@ msgstr "<0>@{0}</0> tarafından takip edilen kullanıcılar"
 msgid "users following <0>@{0}</0>"
 msgstr "<0>@{0}</0> kullanıcısını takip edenler"
 
-#: src/screens/Messages/Settings.tsx:111
-#: src/screens/Messages/Settings.tsx:114
+#: src/screens/Messages/Settings.tsx:82
+msgctxt "allow group chat invites from"
 msgid "Users I follow"
-msgstr "Takip ettiğim kişiler"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:67
+msgctxt "allow messages from"
+msgid "Users I follow"
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:451
 msgid "Value:"
@@ -12386,7 +12440,7 @@ msgid "Verify account"
 msgstr "Hesabı doğrula"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:360
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:197
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:184
 msgid "Verify again"
 msgstr "Tekrar onayla"
 
@@ -12414,8 +12468,8 @@ msgstr "E-posta onay diyaloğu"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:348
 #: src/ageAssurance/components/NoAccessScreen.tsx:362
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:185
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:172
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:186
 msgid "Verify now"
 msgstr "Şimdi onayla"
 
@@ -12875,7 +12929,7 @@ msgid "We’re so excited to have you join us!"
 msgstr "Sizi aramızda görmekten dolayı çok heyecanlıyız!"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:416
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:135
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:241
 msgid "We're sorry, but based on your device's location, you are currently located in a region that requires age assurance."
 msgstr "Üzgünüz fakat cihazınızın konumuna göre şu anda yaş güvencesi gerektiren bir bölgedesiniz."
 
@@ -13120,7 +13174,7 @@ msgid "You are currently blocked from using the Go Live feature. To appeal this 
 msgstr "Canlıya Çık özelliğini kullanmanız engellenmiştir. Bu moderasyon kararına itiraz etmek için lütfen aşağıdaki formu yollayın."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:330
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:155
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
 msgid "You are currently unable to access Bluesky's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
 msgstr "Şu anda Bluesky'ın Yaş Güvencesi işlemine erişemiyorsunuz. Bunun bir hatadan kaynaklı olduğunu düşünüyorsanız lütfen <0>moderasyon ekibimize ulaşın</0>."
 
@@ -13186,7 +13240,8 @@ msgstr "Her zaman vazgeçip verinizi silebilirsiniz"
 msgid "You can choose whether chat notifications have sound in the chat settings within the app"
 msgstr "Uygulama içindeki sohbet ayarlarından sohbet bildirimlerinin sesli olup olmayacağını seçebilirsiniz"
 
-#: src/screens/Messages/Settings.tsx:132
+#: src/screens/Messages/Settings.tsx:178
+#: src/screens/Messages/Settings.tsx:224
 msgid "You can continue ongoing conversations regardless of which setting you choose."
 msgstr "Hangi ayarı seçerseniz seçin devam eden yazışmaları sürdürebilirsiniz."
 
@@ -13426,7 +13481,7 @@ msgid "You probably want to restart the app now."
 msgstr "Şimdi uygulamayı yeniden başlatmak isteyebilirsiniz."
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:281
+#: src/components/dms/MessageItem.tsx:279
 msgid "You reacted {0}"
 msgstr "{0} tepkisi verdiniz"
 

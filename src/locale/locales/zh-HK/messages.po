@@ -92,7 +92,7 @@ msgstr "{0, plural, one {# 個月} other {# 個月}}"
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:291
+#: src/components/dms/MessageItem.tsx:289
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr "{0, plural, other {# 個人}}畀咗個 {1} 反應"
 
@@ -218,10 +218,20 @@ msgstr "{0} 俾人用咗"
 msgid "{0} is not supported by your device."
 msgstr "你嘅裝置唔支援翻譯{0}。"
 
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:73
+msgid "{0} joined the group"
+msgstr ""
+
 #. placeholder {0}: formatCount(i18n, JOINED_THIS_WEEK)
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:232
 msgid "{0} joined this week"
 msgstr "呢個禮拜有 {0} 人加入"
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:82
+msgid "{0} left the group"
+msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -237,9 +247,19 @@ msgstr "已輸入 {0} 個字元，最多輸入 50 個字元"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:286
+#: src/components/dms/MessageItem.tsx:284
 msgid "{0} reacted {1}"
 msgstr "{0} 畀咗個 {1} 反應"
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:55
+msgid "{0} was added to the group"
+msgstr ""
+
+#. placeholder {0}: action.displayName
+#: src/components/dms/getSystemMessageInfo.ts:64
+msgid "{0} was removed from the group"
+msgstr ""
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -262,7 +282,7 @@ msgid "{0}'s avatar"
 msgstr "{0} 嘅頭像"
 
 #. placeholder {0}: createSanitizedDisplayName(profile)
-#: src/components/dms/MessageItem.tsx:222
+#: src/components/dms/MessageItem.tsx:220
 msgid "{0}’s avatar"
 msgstr "{0}嘅頭像"
 
@@ -294,6 +314,10 @@ msgstr "{0} 秒鐘前"
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:489
 msgid "{1}"
+msgstr ""
+
+#: src/components/dms/SystemMessageGroup.tsx:38
+msgid "{count, plural, one {# chat update} other {# chat updates}}"
 msgstr ""
 
 #: src/screens/Messages/components/InboxRequests.tsx:19
@@ -549,25 +573,9 @@ msgstr "{MIN_ACCESS_AGE, plural, other {你要夠 # 歲先可以建立帳號。}
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {# 分鐘}}"
 
-#: src/components/dms/getSystemMessageInfo.ts:57
-msgid "{name} joined the group"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:64
-msgid "{name} left the group"
-msgstr ""
-
 #. placeholder {0}: reaction.value
 #: src/components/dms/getReactionInfo.ts:45
 msgid "{name} reacted {0} to {target}"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:41
-msgid "{name} was added to the group"
-msgstr ""
-
-#: src/components/dms/getSystemMessageInfo.ts:49
-msgid "{name} was removed from the group"
 msgstr ""
 
 #. When the last message in a group chat came from someone other than you.
@@ -708,6 +716,10 @@ msgstr "<0>{0}</0> 嘅成員"
 #: src/screens/Search/SearchResults.tsx:315
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<0>登入</0><1>或</1><2>建立帳號</2><3></3><4>就可以搵到新聞、體育、政治，同埋 Bluesky 上面嘅大小事。</4>"
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:276
+msgid "<0>Tap here to confirm your location.</0>"
+msgstr ""
 
 #. placeholder {0}: getName(items[1] /* [0] is self, skip it */)
 #: src/screens/StarterPack/Wizard/index.tsx:494
@@ -1187,7 +1199,7 @@ msgid "Age assurance inquiry was submitted"
 msgstr "已提交年齡驗證資訊"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:383
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:220
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:207
 msgid "Age assurance only takes a few minutes"
 msgstr "淨係用幾分鐘就攪掂年齡認證"
 
@@ -1241,15 +1253,20 @@ msgstr "允許取用你嘅私人訊息"
 msgid "Allow anyone to reply"
 msgstr "允許任何人回覆"
 
+#: src/screens/Messages/Settings.tsx:169
+#: src/screens/Messages/Settings.tsx:184
+msgid "Allow direct messages from"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:215
+#: src/screens/Messages/Settings.tsx:230
+msgid "Allow group chat invites from"
+msgstr ""
+
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:128
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:134
 msgid "Allow location access"
 msgstr "允許取用位置"
-
-#: src/screens/Messages/Settings.tsx:89
-#: src/screens/Messages/Settings.tsx:92
-msgid "Allow new messages from"
-msgstr "允許呢啲人同你傾偈"
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:53
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:92
@@ -1477,7 +1494,7 @@ msgstr "虐待動物"
 msgid "Animals"
 msgstr "動物"
 
-#: src/components/Post/Embed/ExternalEmbed/Gif.tsx:96
+#: src/components/Post/Embed/ExternalEmbed/Gif.tsx:97
 msgid "Animated GIF"
 msgstr "GIF 動畫"
 
@@ -1784,6 +1801,14 @@ msgstr "違禁活動或違反保安規定行爲"
 msgid "Banned user returning"
 msgstr "停權用戶嘗試逃避懲罰"
 
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:259
+msgid "Based on your device's location, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:265
+msgid "Based on your network, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
 #: src/view/screens/Lists.tsx:35
 #: src/view/screens/ModerationModlists.tsx:35
 msgid "Before creating a list, you must first verify your email."
@@ -1853,8 +1878,8 @@ msgstr "封鎖"
 msgid "Block {displayName}"
 msgstr "封鎖 {displayName}"
 
-#: src/components/dms/ConvoMenu.tsx:275
-#: src/components/dms/ConvoMenu.tsx:278
+#: src/components/dms/ConvoMenu.tsx:277
+#: src/components/dms/ConvoMenu.tsx:281
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:747
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
 #: src/screens/Messages/components/RequestButtons.tsx:149
@@ -2320,11 +2345,11 @@ msgctxt "toast"
 msgid "Chat deleted"
 msgstr "已刪除傾偈"
 
-#: src/components/dms/getSystemMessageInfo.ts:71
+#: src/components/dms/getSystemMessageInfo.ts:91
 msgid "Chat ended"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:67
+#: src/components/dms/getSystemMessageInfo.ts:87
 msgid "Chat locked"
 msgstr "傾偈已鎖定"
 
@@ -2336,7 +2361,7 @@ msgstr "傾偈訊息 - 靜音"
 msgid "Chat messages - sound"
 msgstr "傾偈訊息 - 聲音"
 
-#: src/components/dms/ConvoMenu.tsx:202
+#: src/components/dms/ConvoMenu.tsx:199
 msgctxt "toast"
 msgid "Chat muted"
 msgstr "已靜音傾偈"
@@ -2350,33 +2375,33 @@ msgstr "傾偈請求收件箱"
 msgid "Chat requests"
 msgstr "傾偈邀請"
 
-#: src/components/dms/ConvoMenu.tsx:84
+#: src/components/dms/ConvoMenu.tsx:82
 #: src/Navigation.tsx:634
 #: src/screens/Messages/ChatList.tsx:73
 #: src/screens/Messages/ChatList.tsx:77
 #: src/screens/Messages/ChatList.tsx:379
-#: src/screens/Messages/Settings.tsx:34
+#: src/screens/Messages/Settings.tsx:38
 msgid "Chat settings"
 msgstr "傾偈設定"
 
-#: src/screens/Messages/Settings.tsx:81
+#: src/screens/Messages/Settings.tsx:160
 msgid "Chat Settings"
 msgstr "傾偈設定"
 
-#: src/components/dms/getSystemMessageInfo.ts:77
+#: src/components/dms/getSystemMessageInfo.ts:97
 msgid "Chat title changed"
 msgstr ""
 
 #. placeholder {0}: data.newName
-#: src/components/dms/getSystemMessageInfo.ts:76
+#: src/components/dms/getSystemMessageInfo.ts:96
 msgid "Chat title changed to {0}"
 msgstr "傾偈標題經已改成 {0}"
 
-#: src/components/dms/getSystemMessageInfo.ts:69
+#: src/components/dms/getSystemMessageInfo.ts:89
 msgid "Chat unlocked"
 msgstr "傾偈已解鎖"
 
-#: src/components/dms/ConvoMenu.tsx:204
+#: src/components/dms/ConvoMenu.tsx:201
 msgctxt "toast"
 msgid "Chat unmuted"
 msgstr "已唔再靜音傾偈"
@@ -2538,7 +2563,7 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr "撳低去打開 {0} 嘅標籤選單"
 
-#: src/components/dms/MessageItem.tsx:546
+#: src/components/dms/MessageItem.tsx:544
 msgid "Click to retry failed message"
 msgstr "撳低去試多次傳送訊息"
 
@@ -2739,7 +2764,7 @@ msgid "Confirm"
 msgstr "確認"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:397
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:116
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:278
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:41
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:106
 msgid "Confirm your location"
@@ -2766,12 +2791,12 @@ msgid "Connection issue"
 msgstr "連線問題"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:334
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:159
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:146
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:31
 msgid "Contact our moderation team"
 msgstr "聯絡我哋嘅支援團隊"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:100
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:127
 msgid "Contact our support team"
 msgstr "聯絡我哋嘅支援團隊"
 
@@ -3060,7 +3085,7 @@ msgstr "撈唔到動態源"
 msgid "Could not load list"
 msgstr "撈唔到清單"
 
-#: src/components/dms/ConvoMenu.tsx:208
+#: src/components/dms/ConvoMenu.tsx:205
 msgid "Could not mute chat"
 msgstr "靜音唔到對話"
 
@@ -3545,8 +3570,6 @@ msgstr "徹底關閉回覆"
 #: src/lib/moderation/useLabelBehaviorDescription.ts:35
 #: src/lib/moderation/useLabelBehaviorDescription.ts:45
 #: src/lib/moderation/useLabelBehaviorDescription.ts:71
-#: src/screens/Messages/Settings.tsx:160
-#: src/screens/Messages/Settings.tsx:163
 #: src/screens/Moderation/index.tsx:402
 msgid "Disabled"
 msgstr "停用"
@@ -3726,7 +3749,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "攪掂"
 
-#: src/components/dms/MessageItem.tsx:449
+#: src/components/dms/MessageItem.tsx:447
 msgid "Double tap or long press the message to add a reaction"
 msgstr "撳兩吓或撳住訊息去加入反應"
 
@@ -3738,6 +3761,11 @@ msgstr "撳兩吓閂咗呢個對話框"
 msgid "Double tap to like"
 msgstr "撳兩吓讚佢"
 
+#: src/screens/Messages/Settings.tsx:296
+#: src/screens/Messages/Settings.tsx:301
+msgid "Download .jsonl file"
+msgstr ""
+
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:331
 msgid "Download Bluesky"
 msgstr "下載 Bluesky"
@@ -3747,6 +3775,7 @@ msgstr "下載 Bluesky"
 msgid "Download CAR file"
 msgstr "下載 CAR 檔案"
 
+#: src/screens/Messages/Settings.tsx:278
 #: src/screens/Settings/components/ExportCarDialog.tsx:136
 #: src/screens/Settings/components/ExportCarDialog.tsx:141
 msgid "Download chat data"
@@ -4081,8 +4110,6 @@ msgstr "啓用時興話題"
 msgid "Enable trending videos in your Discover feed"
 msgstr "喺你「Discover」動態源度啓用時興影片"
 
-#: src/screens/Messages/Settings.tsx:151
-#: src/screens/Messages/Settings.tsx:154
 #: src/screens/Moderation/index.tsx:400
 msgid "Enabled"
 msgstr "啓用"
@@ -4181,6 +4208,7 @@ msgstr "撈緊偏好設定嗰陣出咗錯"
 msgid "Error message"
 msgstr "錯誤資訊"
 
+#: src/screens/Messages/Settings.tsx:115
 #: src/screens/Settings/components/ExportCarDialog.tsx:49
 #: src/screens/Settings/components/ExportCarDialog.tsx:83
 msgid "Error occurred while saving file"
@@ -4202,12 +4230,20 @@ msgstr "所有人都可以回覆"
 msgid "Everybody can reply to this post."
 msgstr "所有人都可以回覆呢條帖文。"
 
-#: src/screens/Messages/Settings.tsx:102
-#: src/screens/Messages/Settings.tsx:105
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:169
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:179
 msgid "Everyone"
 msgstr "所有人"
+
+#: src/screens/Messages/Settings.tsx:78
+msgctxt "allow group chat invites from"
+msgid "Everyone"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:63
+msgctxt "allow messages from"
+msgid "Everyone"
+msgstr ""
 
 #: src/screens/Settings/NotificationSettings/index.tsx:236
 #: src/screens/Settings/NotificationSettings/MiscellaneousNotificationSettings.tsx:41
@@ -4614,7 +4650,7 @@ msgstr "更新唔到動態源"
 msgid "Failed to update notification declaration"
 msgstr "更新唔到動態通知範圍"
 
-#: src/screens/Messages/Settings.tsx:51
+#: src/screens/Messages/Settings.tsx:123
 msgid "Failed to update settings"
 msgstr "更新唔到設定"
 
@@ -4732,6 +4768,7 @@ msgstr "我哋覺得呢啲動態源可能會啱你心水。"
 msgid "Fetch update"
 msgstr "取得更新"
 
+#: src/screens/Messages/Settings.tsx:111
 #: src/screens/Settings/components/ExportCarDialog.tsx:45
 #: src/screens/Settings/components/ExportCarDialog.tsx:79
 msgid "File saved successfully!"
@@ -5319,7 +5356,7 @@ msgstr "去到個人檔案"
 msgid "Go to the group chat named \"{chatName}\""
 msgstr "去到「{chatName}」嘅羣組傾偈"
 
-#: src/components/dms/ConvoMenu.tsx:252
+#: src/components/dms/ConvoMenu.tsx:251
 msgid "Go to user's profile"
 msgstr "去到用戶嘅個人檔案"
 
@@ -5544,6 +5581,10 @@ msgstr "隱藏所有活動"
 msgid "Hide customization options"
 msgstr "隱藏自訂選項"
 
+#: src/components/dms/SystemMessageGroup.tsx:57
+msgid "Hide group chat updates"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:533
 msgid "Hide lists"
 msgstr "隱藏清單"
@@ -5730,7 +5771,7 @@ msgstr "若然替代文字太長，就會切換替代文字展開狀態"
 msgid "If none are selected, all languages will be shown in your feeds."
 msgstr "若然未指定語言，你嘅動態源就會顯示所有語言嘅內容。"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:94
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:121
 msgid "If you are 18 years of age or older and want to try again, click the button below and use a different verification method if one is available in your region. If you have questions or concerns, <0>our support team can help.</0>"
 msgstr "若然你已年滿 18 歲而且想重新驗證，請撳下低粒掣，試吓用你所在地區支援嘅其他驗證方式。若有任何問題或疑慮，<0>我哋嘅支援團隊願意爲你提供幫助。</0>"
 
@@ -6023,20 +6064,20 @@ msgstr "邀請朋友 <0/>"
 msgid "Invite link"
 msgstr "邀請連結"
 
-#: src/components/dms/getSystemMessageInfo.ts:80
+#: src/components/dms/getSystemMessageInfo.ts:102
 msgid "Invite link created"
 msgstr "已建立邀請連結"
 
-#: src/components/dms/getSystemMessageInfo.ts:86
+#: src/components/dms/getSystemMessageInfo.ts:120
 #: src/screens/Messages/components/InviteLinkDialog.tsx:282
 msgid "Invite link disabled"
 msgstr "已停用邀請連結"
 
-#: src/components/dms/getSystemMessageInfo.ts:82
+#: src/components/dms/getSystemMessageInfo.ts:108
 msgid "Invite link edited"
 msgstr "已變更邀請連結"
 
-#: src/components/dms/getSystemMessageInfo.ts:84
+#: src/components/dms/getSystemMessageInfo.ts:114
 msgid "Invite link enabled"
 msgstr "已啓用邀請連結"
 
@@ -6061,7 +6102,6 @@ msgid "Invites, but personal"
 msgstr "邀請朋友加入，同時保持個人化"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:394
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:113
 msgid "Is your location not accurate? <0>Tap here to confirm your location.</0> "
 msgstr "你嘅位置資訊唔啱？<0>撳呢度重新確認你嘅位置。</0> "
 
@@ -6171,12 +6211,12 @@ msgid "Larger"
 msgstr "大啲"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:377
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:214
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:201
 msgid "Last initiated {timeAgo} ago"
 msgstr "最後一次請求喺 {timeAgo} 前"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:375
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:212
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
 msgid "Last initiated just now"
 msgstr "最後一次請求喺冇幾耐前"
 
@@ -6283,10 +6323,10 @@ msgstr ""
 msgid "Leave chat"
 msgstr "離開唔再傾偈"
 
-#: src/components/dms/ConvoMenu.tsx:231
-#: src/components/dms/ConvoMenu.tsx:234
-#: src/components/dms/ConvoMenu.tsx:294
-#: src/components/dms/ConvoMenu.tsx:297
+#: src/components/dms/ConvoMenu.tsx:229
+#: src/components/dms/ConvoMenu.tsx:233
+#: src/components/dms/ConvoMenu.tsx:299
+#: src/components/dms/ConvoMenu.tsx:303
 #: src/components/dms/LeaveConvoPrompt.tsx:43
 msgid "Leave conversation"
 msgstr "離開對話"
@@ -6692,8 +6732,8 @@ msgstr "管理你嘅靜音字詞同標籤"
 msgid "Mark all as read"
 msgstr "標記晒做已讀"
 
-#: src/components/dms/ConvoMenu.tsx:243
-#: src/components/dms/ConvoMenu.tsx:246
+#: src/components/dms/ConvoMenu.tsx:241
+#: src/components/dms/ConvoMenu.tsx:245
 msgid "Mark as read"
 msgstr "標記爲已讀"
 
@@ -6786,7 +6826,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "已刪除訊息"
 
-#: src/components/dms/MessageItem.tsx:540
+#: src/components/dms/MessageItem.tsx:538
 msgid "Message failed to send."
 msgstr "傳送唔到訊息。"
 
@@ -6982,7 +7022,7 @@ msgid "Mute accounts"
 msgstr "靜音帳號"
 
 #: src/components/dms/ConvoMenu.tsx:260
-#: src/components/dms/ConvoMenu.tsx:266
+#: src/components/dms/ConvoMenu.tsx:267
 msgid "Mute conversation"
 msgstr "靜音對話"
 
@@ -7206,10 +7246,6 @@ msgstr "新帳號代碼"
 msgid "New list"
 msgstr "新清單"
 
-#: src/components/dms/NewMessagesPill.tsx:92
-msgid "New messages"
-msgstr "新訊息"
-
 #: src/screens/Login/SetNewPasswordForm.tsx:143
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:204
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:208
@@ -7379,8 +7415,12 @@ msgstr "冇名"
 msgid "No notifications yet!"
 msgstr "而家仲未有通知！"
 
-#: src/screens/Messages/Settings.tsx:121
-#: src/screens/Messages/Settings.tsx:125
+#: src/screens/Messages/Settings.tsx:89
+msgctxt "allow group chat invites from"
+msgid "No one"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:71
 msgctxt "allow messages from"
 msgid "No one"
 msgstr "冇人"
@@ -7555,12 +7595,9 @@ msgstr "而家仲未有收藏內容"
 msgid "Notification settings"
 msgstr "通知設定"
 
-#: src/screens/Messages/Settings.tsx:144
+#: src/screens/Messages/Settings.tsx:262
+#: src/screens/Messages/Settings.tsx:268
 msgid "Notification sounds"
-msgstr "通知音效"
-
-#: src/screens/Messages/Settings.tsx:141
-msgid "Notification Sounds"
 msgstr "通知音效"
 
 #: src/Navigation.tsx:644
@@ -7914,6 +7951,10 @@ msgstr "打開密碼重設表單"
 msgid "Opens post language settings"
 msgstr "打開帖文語言設定"
 
+#: src/components/dms/SystemMessageItem.tsx:60
+msgid "Opens profile"
+msgstr ""
+
 #. Accessibility hint announced after the GIF picker button label, describing what activating it will do.
 #: src/view/com/composer/photos/SelectGifBtn.tsx:45
 msgid "Opens the GIF picker dialog"
@@ -7927,7 +7968,7 @@ msgstr "打開帖文編輯器"
 msgid "Opens this draft in the composer"
 msgstr "喺編輯器度打開呢份草稿"
 
-#: src/components/dms/MessageItem.tsx:223
+#: src/components/dms/MessageItem.tsx:221
 #: src/view/com/notifications/NotificationFeedItem.tsx:1021
 #: src/view/com/util/UserAvatar.tsx:605
 msgid "Opens this profile"
@@ -9205,8 +9246,8 @@ msgstr "擧報"
 msgid "Report account"
 msgstr "擧報帳號"
 
-#: src/components/dms/ConvoMenu.tsx:283
-#: src/components/dms/ConvoMenu.tsx:286
+#: src/components/dms/ConvoMenu.tsx:287
+#: src/components/dms/ConvoMenu.tsx:291
 #: src/components/dms/ReportConversationPrompt.tsx:17
 #: src/screens/Messages/components/RequestButtons.tsx:160
 #: src/screens/Messages/components/RequestButtons.tsx:163
@@ -10274,6 +10315,10 @@ msgstr ""
 msgid "Show customization options"
 msgstr "顯示自訂選項"
 
+#: src/components/dms/SystemMessageGroup.tsx:57
+msgid "Show group chat updates"
+msgstr ""
+
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:593
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:595
 msgid "Show less like this"
@@ -10542,16 +10587,16 @@ msgstr "其他可能都會啱你心水嘅動態源"
 msgid "Some people can reply"
 msgstr "淨係得部分人可以回覆"
 
-#: src/components/dms/getSystemMessageInfo.ts:58
+#: src/components/dms/getSystemMessageInfo.ts:74
 msgid "Someone joined the group"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:64
+#: src/components/dms/getSystemMessageInfo.ts:83
 msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:288
+#: src/components/dms/MessageItem.tsx:286
 msgid "Someone reacted {0}"
 msgstr "有人畀咗個 {0} 反應"
 
@@ -10560,11 +10605,11 @@ msgstr "有人畀咗個 {0} 反應"
 msgid "Someone reacted {0} to {target}"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:42
+#: src/components/dms/getSystemMessageInfo.ts:56
 msgid "Someone was added to the group"
 msgstr ""
 
-#: src/components/dms/getSystemMessageInfo.ts:50
+#: src/components/dms/getSystemMessageInfo.ts:65
 msgid "Someone was removed from the group"
 msgstr ""
 
@@ -10971,7 +11016,7 @@ msgstr "撳吓移除"
 msgid "Tap to remove your {0} reaction"
 msgstr "撳吓移除你嘅 {0} 反應"
 
-#: src/components/dms/MessageItem.tsx:550
+#: src/components/dms/MessageItem.tsx:548
 msgid "Tap to retry"
 msgstr "撳吓試多次"
 
@@ -10984,7 +11029,7 @@ msgstr "撳吓顯示 {0} 反應"
 msgid "Tap to show all reactions"
 msgstr "撳吓顯示所有反應"
 
-#: src/components/dms/MessageItem.tsx:311
+#: src/components/dms/MessageItem.tsx:309
 msgid "Tap to view reactions"
 msgstr "撳吓顯示反應"
 
@@ -11060,7 +11105,7 @@ msgid "Thanks, you have successfully verified your email address. You can close 
 msgstr "多謝，你經已成功驗證你嘅電郵地址。而家你可以閂咗呢個對話框。"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:423
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:247
 msgid "Thanks! You're all set."
 msgstr "唔該晒！攪掂喇。"
 
@@ -11466,6 +11511,10 @@ msgstr "呢個動態源度得個吉。"
 #: src/view/com/posts/FeedShutdownMsg.tsx:104
 msgid "This feed is no longer online. We are showing <0>Discover</0> instead."
 msgstr "呢個動態源唔再用到，我哋改成顯示 <0>Discover</0>。"
+
+#: src/screens/Messages/Settings.tsx:287
+msgid "This file only includes chat messages that you have sent and does not include chat messages that you have received."
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:611
 msgid "This handle is reserved. Please try a different one."
@@ -11911,8 +11960,8 @@ msgstr "解除封鎖"
 msgid "Unblock {displayName}"
 msgstr "解除封鎖 {displayName}"
 
-#: src/components/dms/ConvoMenu.tsx:275
-#: src/components/dms/ConvoMenu.tsx:278
+#: src/components/dms/ConvoMenu.tsx:277
+#: src/components/dms/ConvoMenu.tsx:281
 #: src/view/com/profile/ProfileMenu.tsx:484
 #: src/view/com/profile/ProfileMenu.tsx:490
 msgid "Unblock account"
@@ -12044,7 +12093,7 @@ msgstr "唔再靜音 {0}"
 msgid "Unmute account"
 msgstr "唔再靜音帳號"
 
-#: src/components/dms/ConvoMenu.tsx:264
+#: src/components/dms/ConvoMenu.tsx:265
 msgid "Unmute conversation"
 msgstr "唔再靜音對話"
 
@@ -12348,10 +12397,15 @@ msgstr "<0>@{0}</0> 跟咗嘅用戶"
 msgid "users following <0>@{0}</0>"
 msgstr "跟緊 <0>@{0}</0> 嘅用戶"
 
-#: src/screens/Messages/Settings.tsx:111
-#: src/screens/Messages/Settings.tsx:114
+#: src/screens/Messages/Settings.tsx:82
+msgctxt "allow group chat invites from"
 msgid "Users I follow"
-msgstr "我跟嘅用戶"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:67
+msgctxt "allow messages from"
+msgid "Users I follow"
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:451
 msgid "Value:"
@@ -12386,7 +12440,7 @@ msgid "Verify account"
 msgstr "驗證帳號"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:360
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:197
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:184
 msgid "Verify again"
 msgstr "重新驗證"
 
@@ -12414,8 +12468,8 @@ msgstr "驗證電郵對話框"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:348
 #: src/ageAssurance/components/NoAccessScreen.tsx:362
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:185
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:172
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:186
 msgid "Verify now"
 msgstr "即刻驗證"
 
@@ -12875,7 +12929,7 @@ msgid "We’re so excited to have you join us!"
 msgstr "我哋非常之高興你加入我哋！"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:416
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:135
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:241
 msgid "We're sorry, but based on your device's location, you are currently located in a region that requires age assurance."
 msgstr "對唔住，根據你裝置嘅位置資訊，你而家身處嘅地區需要完成年齡驗證。"
 
@@ -13120,7 +13174,7 @@ msgid "You are currently blocked from using the Go Live feature. To appeal this 
 msgstr "你而家被禁止使用直播功能，若要就審覈決定提出申訴，請提交下低表格。"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:330
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:155
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
 msgid "You are currently unable to access Bluesky's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
 msgstr "你而家取用唔到 Bluesky 嘅年齡驗證流程。若然你覺得係系統誤判，請<0>聯絡我哋嘅支援團隊</0>。"
 
@@ -13186,7 +13240,8 @@ msgstr "你可以隨時選擇退出兼且刪除你嘅資料"
 msgid "You can choose whether chat notifications have sound in the chat settings within the app"
 msgstr "你可以喺應用程式度嘅傾偈設定揀返通知想唔想有聲"
 
-#: src/screens/Messages/Settings.tsx:132
+#: src/screens/Messages/Settings.tsx:178
+#: src/screens/Messages/Settings.tsx:224
 msgid "You can continue ongoing conversations regardless of which setting you choose."
 msgstr "無論你揀咗邊個設定，你都可以繼續返之前嘅對話。"
 
@@ -13426,7 +13481,7 @@ msgid "You probably want to restart the app now."
 msgstr "你家陣可能要重新啓用個應用程式。"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:281
+#: src/components/dms/MessageItem.tsx:279
 msgid "You reacted {0}"
 msgstr "你畀咗個 {0} 反應"
 
