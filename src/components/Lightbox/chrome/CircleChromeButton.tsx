@@ -1,5 +1,6 @@
-import {type ComponentType} from 'react'
+import {type ComponentType, useRef} from 'react'
 import {
+  Animated,
   Pressable,
   type PressableProps,
   type StyleProp,
@@ -7,7 +8,6 @@ import {
   type TextStyle,
 } from 'react-native'
 import {BlurView} from 'expo-blur'
-
 import {HITSLOP_10} from '#/lib/constants'
 import {type Props as IconProps} from '#/components/icons/common'
 
@@ -30,19 +30,43 @@ export function CircleChromeButton({
   onPress,
   testID,
 }: Props) {
+  const scale = useRef(new Animated.Value(1)).current
+
+  const handlePressIn = () => {
+    Animated.spring(scale, {
+      toValue: 0.82,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 0,
+    }).start()
+  }
+
+  const handlePressOut = () => {
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+      speed: 20,
+      bounciness: 14,
+    }).start()
+  }
+
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      accessibilityHint=""
-      hitSlop={HITSLOP_10}
-      onPress={onPress}
-      testID={testID}
-      style={({pressed}) => [styles.root, pressed && styles.pressed]}>
-      <BlurView intensity={20} tint="dark" style={styles.inner}>
-        <Icon width={ICON} fill="#fff" style={iconStyle} />
-      </BlurView>
-    </Pressable>
+    <Animated.View style={{transform: [{scale}]}}>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        accessibilityHint=""
+        hitSlop={HITSLOP_10}
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        testID={testID}
+        style={styles.root}>
+        <BlurView intensity={20} tint="dark" style={styles.inner}>
+          <Icon width={ICON} fill="#fff" style={iconStyle} />
+        </BlurView>
+      </Pressable>
+    </Animated.View>
   )
 }
 
