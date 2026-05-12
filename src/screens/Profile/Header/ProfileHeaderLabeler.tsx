@@ -152,64 +152,62 @@ let ProfileHeaderLabeler = ({
                 <ProfileHeaderMetaRow profile={profile} />
               </View>
             )}
-            {!isAppLabeler(profile.did) && (
-              <View style={[a.flex_row, a.gap_xs, a.align_center, a.pt_lg]}>
-                <Button
-                  testID="toggleLikeBtn"
-                  size="small"
-                  color="secondary"
-                  shape="round"
-                  label={_(msg`Like this labeler`)}
-                  disabled={!hasSession || isLikePending || isUnlikePending}
-                  onPress={onToggleLiked}>
-                  {likeUri ? (
-                    <HeartFilled fill={t.palette.negative_400} />
-                  ) : (
-                    <Heart fill={t.atoms.text_contrast_medium.color} />
-                  )}
-                </Button>
-
-                {typeof likeCount === 'number' && (
-                  <Link
-                    to={{
-                      screen: 'ProfileLabelerLikedBy',
-                      params: {
-                        name: labeler.creator.handle || labeler.creator.did,
-                      },
-                    }}
-                    size="tiny"
-                    label={
-                      hideLabelerLikes
-                        ? _(msg`View likes`)
-                        : _(msg`Liked by ${plural(likeCount, {one: '# user', other: '# users'})}`)
-                    }>
-                    {({hovered, focused, pressed}) => (
-                      <Text
-                        style={[
-                          a.font_semi_bold,
-                          a.text_sm,
-                          t.atoms.text_contrast_medium,
-                          (hovered || focused || pressed) &&
-                            t.atoms.text_contrast_high,
-                        ]}>
-                        {hideLabelerLikes ? (
-                          <Trans>View likes</Trans>
-                        ) : (
-                          <Trans>
-                            Liked by{' '}
-                            <Plural
-                              value={likeCount}
-                              one="# user"
-                              other="# users"
-                            />
-                          </Trans>
-                        )}
-                      </Text>
-                    )}
-                  </Link>
+            <View style={[a.flex_row, a.gap_xs, a.align_center, a.pt_lg]}>
+              <Button
+                testID="toggleLikeBtn"
+                size="small"
+                color="secondary"
+                shape="round"
+                label={_(msg`Like this labeler`)}
+                disabled={!hasSession || isLikePending || isUnlikePending}
+                onPress={onToggleLiked}>
+                {likeUri ? (
+                  <HeartFilled fill={t.palette.negative_400} />
+                ) : (
+                  <Heart fill={t.atoms.text_contrast_medium.color} />
                 )}
-              </View>
-            )}
+              </Button>
+
+              {typeof likeCount === 'number' && (
+                <Link
+                  to={{
+                    screen: 'ProfileLabelerLikedBy',
+                    params: {
+                      name: labeler.creator.handle || labeler.creator.did,
+                    },
+                  }}
+                  size="tiny"
+                  label={
+                    hideLabelerLikes
+                      ? _(msg`View likes`)
+                      : _(msg`Liked by ${plural(likeCount, {one: '# user', other: '# users'})}`)
+                  }>
+                  {({hovered, focused, pressed}) => (
+                    <Text
+                      style={[
+                        a.font_semi_bold,
+                        a.text_sm,
+                        t.atoms.text_contrast_medium,
+                        (hovered || focused || pressed) &&
+                          t.atoms.text_contrast_high,
+                      ]}>
+                      {hideLabelerLikes ? (
+                        <Trans>View likes</Trans>
+                      ) : (
+                        <Trans>
+                          Liked by{' '}
+                          <Plural
+                            value={likeCount}
+                            one="# user"
+                            other="# users"
+                          />
+                        </Trans>
+                      )}
+                    </Text>
+                  )}
+                </Link>
+              )}
+            </View>
           </>
         )}
       </View>
