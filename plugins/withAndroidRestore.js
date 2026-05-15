@@ -41,6 +41,10 @@ module.exports = function withAndroidRestore(config) {
           from: 'app/build.gradle',
           to: 'app/build.gradle',
         },
+        {
+          from: 'local.properties',
+          to: 'local.properties',
+        },
       ];
 
       files.forEach(({ from, to }) => {
