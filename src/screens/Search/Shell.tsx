@@ -136,7 +136,7 @@ export function SearchScreenShell({
       const newAccountHistory = [
         item.did,
         ...accountHistory.filter(p => p !== item.did),
-      ].slice(0, 10)
+      ].slice(0, 15)
       setAccountHistory(newAccountHistory)
     },
     [accountHistory, setAccountHistory],
