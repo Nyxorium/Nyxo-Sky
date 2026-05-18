@@ -142,13 +142,13 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="alt_label_display_profile"
-            label={_(msg`Use Alternate Label Display for Profiles`)}
+            label={_(msg`Alternate Label Display for Profiles`)}
             value={altLabelDisplayProfile}
             onChange={value => setAltLabelDisplayProfile(value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={PhoneIcon} />
               <SettingsList.ItemText>
-                <Trans>Use Alternate Label Display for Profiles</Trans>
+                <Trans>Alternate Label Display for Profiles</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -156,13 +156,13 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="enable_share_via_did"
-            label={_(msg`Enable Sharing by DID`)}
+            label={_(msg`Share by DID`)}
             value={enableShareViaDID}
             onChange={value => setEnableShareViaDID(value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={ChainLinkIcon} />
               <SettingsList.ItemText>
-                <Trans>Enable Sharing by DID</Trans>
+                <Trans>Share by DID</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -170,13 +170,13 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="enable_square_avatars"
-            label={_(msg`Enable Square Avatars`)}
+            label={_(msg`Square Avatars`)}
             value={enableSquareAvatars}
             onChange={value => setEnableSquareAvatars(value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={PersonIcon} />
               <SettingsList.ItemText>
-                <Trans>Enable Square Avatars</Trans>
+                <Trans>Square Avatars</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -248,7 +248,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={Filter} />
               <SettingsList.ItemText>
-                <Trans>Split Moderation Label Grouping</Trans>
+                <Trans>Decouple Moderation Label Grouping</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
