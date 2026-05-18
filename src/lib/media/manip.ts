@@ -93,7 +93,6 @@ export async function shareImageModal({uri}: {uri: string}) {
 }
 
 const ALBUM_NAME = 'Bluesky'
-// Image Album, do the thing - Sunstar
 
 /**
  * Saves an image to the user's device. Uses the CDN's `download` preset

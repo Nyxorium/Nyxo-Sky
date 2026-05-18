@@ -264,7 +264,7 @@ export const defaults: Schema = {
   useInAppBrowser: undefined,
   lastSelectedHomeFeed: undefined,
   pdsAddressHistory: [],
-  disableHaptics: false, // Consider: default to true? (Test android behavior) - Sunstar
+  disableHaptics: false,
   disableGifAutoplay: PlatformInfo.getIsReducedMotionEnabled(),
   disableVideoAutoplay: PlatformInfo.getIsReducedMotionEnabled(),
   kawaii: false,

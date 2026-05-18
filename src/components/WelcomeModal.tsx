@@ -118,7 +118,6 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     The AT Protocol, BlueSky, and more!
                   </Text>
                 </View>
-                {/* Previously just BlueSky - Sunstar */}
               </View>
               <View
                 style={[
