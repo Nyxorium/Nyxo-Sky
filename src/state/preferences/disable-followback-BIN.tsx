@@ -32,9 +32,12 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   )
 
   useEffect(() => {
-    return persisted.onUpdate('disableFollowbackBIN', nextUseDisableFollowbackBIN => {
-      setState(nextUseDisableFollowbackBIN) 
-    })
+    return persisted.onUpdate(
+      'disableFollowbackBIN',
+      nextUseDisableFollowbackBIN => {
+        setState(nextUseDisableFollowbackBIN)
+      },
+    )
   }, [setStateWrapped])
 
   return (

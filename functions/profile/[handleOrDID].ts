@@ -26,8 +26,8 @@ class HeadHandler {
           <meta name="twitter:card" content="summary_large_image" />
         `
       : view.avatar
-      ? html`<meta name="twitter:card" content="summary" />`
-      : ''
+        ? html`<meta name="twitter:card" content="summary" />`
+        : ''
     element.append(
       html`
         <meta property="og:site_name" content="Nyxo Sky" />

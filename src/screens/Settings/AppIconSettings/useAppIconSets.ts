@@ -13,28 +13,20 @@ export function useAppIconSets() {
         id: 'default_light',
         name: _(msg({context: 'Name of app icon variant', message: 'Light'})),
         iosImage: () => {
-          return require(
-            `../../../../assets/app-icons/nasa_PIA09412_icon.png`,
-          )
+          return require(`../../../../assets/app-icons/nasa_PIA09412_icon.png`)
         },
         androidImage: () => {
-          return require(
-            `../../../../assets/app-icons/nasa_PIA09412_icon.png`,
-          )
+          return require(`../../../../assets/app-icons/nasa_PIA09412_icon.png`)
         },
       },
       {
         id: 'default_dark',
         name: _(msg({context: 'Name of app icon variant', message: 'Dark'})),
         iosImage: () => {
-          return require(
-            `../../../../assets/app-icons/nasa_PIA09412_icon.png`,
-          )
+          return require(`../../../../assets/app-icons/nasa_PIA09412_icon.png`)
         },
         androidImage: () => {
-          return require(
-            `../../../../assets/app-icons/nasa_PIA09412_icon.png`,
-          )
+          return require(`../../../../assets/app-icons/nasa_PIA09412_icon.png`)
         },
       },
     ] satisfies AppIconSet[]

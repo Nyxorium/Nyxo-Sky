@@ -24,7 +24,9 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   const setStateWrapped = useCallback(
-    (composerPromptDisabled: persisted.Schema['disableComposerPromptInFeeds']) => {
+    (
+      composerPromptDisabled: persisted.Schema['disableComposerPromptInFeeds'],
+    ) => {
       setState(Boolean(composerPromptDisabled))
       persisted.write('disableComposerPromptInFeeds', composerPromptDisabled)
     },
@@ -32,9 +34,12 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   useEffect(() => {
-    return persisted.onUpdate('disableComposerPromptInFeeds', nextDisableComposerPrompt => {
-      setState(Boolean(nextDisableComposerPrompt))
-    })
+    return persisted.onUpdate(
+      'disableComposerPromptInFeeds',
+      nextDisableComposerPrompt => {
+        setState(Boolean(nextDisableComposerPrompt))
+      },
+    )
   }, [setStateWrapped])
 
   return (

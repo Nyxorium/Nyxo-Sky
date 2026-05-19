@@ -166,7 +166,9 @@ let ProfileHeaderStandard = ({
           {!isPlaceholderProfile && !isBlockedUser && (
             <View style={a.gap_md}>
               <ProfileHeaderMetrics profile={profile} />
-              {descriptionRT && !disableProfileDescriptions &&!moderation.ui('profileView').blur ? (
+              {descriptionRT &&
+              !disableProfileDescriptions &&
+              !moderation.ui('profileView').blur ? (
                 <View pointerEvents="auto">
                   <RichText
                     testID="profileHeaderDescription"

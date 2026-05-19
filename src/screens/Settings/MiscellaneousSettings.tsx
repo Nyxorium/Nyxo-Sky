@@ -4,39 +4,39 @@ import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
-import { 
+import {
   useAltLabelDisplayProfile,
   useSetAltLabelDisplayProfile,
- } from '#/state/preferences/alternate-label-display-profile'
+} from '#/state/preferences/alternate-label-display-profile'
 import {
   useComposerPromptDisabled,
   useSetComposerPromptDisabled,
 } from '#/state/preferences/disable-composer-prompt-in-feeds'
-import { 
+import {
   useDisableFeedPromoTab,
   useSetDisableFeedPromoTab,
- } from '#/state/preferences/disable-feed-promo-tab'
-import { 
+} from '#/state/preferences/disable-feed-promo-tab'
+import {
   useDisableFollowbackBIN,
   useSetDisableFollowbackBIN,
- } from '#/state/preferences/disable-followback-BIN'
-import { 
+} from '#/state/preferences/disable-followback-BIN'
+import {
   useDisableProfileDescriptions,
   useSetDisableProfileDescriptions,
 } from '#/state/preferences/disable-profile-descriptions'
-import { 
+import {
   useDisableShareViaDms,
   useSetDisableShareViaDms,
- } from '#/state/preferences/disable-share-via-dms'
-import { 
+} from '#/state/preferences/disable-share-via-dms'
+import {
   useEnableShareViaDID,
   useSetEnableShareViaDID,
- } from '#/state/preferences/enable-share-by-DID'
+} from '#/state/preferences/enable-share-by-DID'
 import {
   useEnableSquareAvatars,
   useSetEnableSquareAvatars,
 } from '#/state/preferences/enable-square-avatars'
-import { 
+import {
   useLimitComposePostButton,
   useSetLimitComposePostButton,
 } from '#/state/preferences/limit-compose-post-button'
@@ -119,7 +119,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
       </Layout.Header.Outer>
       <Layout.Content>
         <SettingsList.Container>
-
           <SettingsList.LinkItem
             to="/settings/tabs-visibility"
             label={_(msg`Tabs Visibility`)}>
@@ -326,7 +325,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Trans>Restart app after changing this setting.</Trans>
             </Admonition>
           </SettingsList.Group>
-
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

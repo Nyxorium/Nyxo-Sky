@@ -203,7 +203,7 @@ const schema = z.object({
       lists: z.boolean().optional(),
     })
     .optional(),
-  
+
   impressionVisibility: z
     .object({
       likes: z.enum(impressionVisibilityOptions).optional(),
@@ -218,7 +218,6 @@ const schema = z.object({
       feedLikes: z.enum(impressionVisibilityOptions).optional(),
     })
     .optional(),
-
 })
 export type Schema = z.infer<typeof schema>
 
@@ -315,7 +314,6 @@ export const defaults: Schema = {
   profileTabVisibility_self: {},
 
   impressionVisibility: {},
-
 }
 
 export function tryParse(rawData: string): Schema | undefined {

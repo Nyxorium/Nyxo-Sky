@@ -666,7 +666,10 @@ let NotificationFeedItem = ({
                 </TimeElapsed>
               </Text>
             </ExpandListPressable>
-            {(item.type === 'follow' && !hasMultipleAuthors && !isFollowBack && !disableFollowbackBIN) ||
+            {(item.type === 'follow' &&
+              !hasMultipleAuthors &&
+              !isFollowBack &&
+              !disableFollowbackBIN) ||
             (item.type === 'contact-match' && // should disableFollowbackBIN be here too? - Sunstar
               !item.notification.author.viewer?.following) ? (
               <FollowBackButton profile={item.notification.author} />

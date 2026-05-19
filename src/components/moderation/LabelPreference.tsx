@@ -211,7 +211,8 @@ export function LabelerLabelPreference({
   const adultDisabled =
     adultOnly && !preferences?.moderationPrefs.adultContentEnabled
   // are there any reasons we cant configure this label here?
-  const cantConfigure = (isGlobalLabel && !splitModerationlabelGrouping) || adultDisabled
+  const cantConfigure =
+    (isGlobalLabel && !splitModerationlabelGrouping) || adultDisabled
   const showConfig = !disabled && (gtPhone || !cantConfigure)
 
   // adjust the pref based on whether warn is available

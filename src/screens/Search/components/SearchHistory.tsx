@@ -87,31 +87,36 @@ export function SearchHistory({
 
         {searchHistory.length > 0 && (
           <View style={[a.px_lg, a.pt_sm]}>
-            {searchHistory.slice(0, 10).map((historyItem, index) => ( // previously 0, 5, handles shown recent searches
-              <View key={index} style={[a.flex_row, a.align_center]}>
-                <Pressable
-                  accessibilityRole="button"
-                  onPress={() => {
-                    ax.metric('search:query', {
-                      source: 'history',
-                    })
-                    onItemClick(historyItem)
-                  }}
-                  hitSlop={HITSLOP_10}
-                  style={[a.flex_1, a.py_sm]}>
-                  <Text style={[a.text_md]}>{historyItem}</Text>
-                </Pressable>
-                <Button
-                  label={l`Remove ${historyItem}`}
-                  onPress={() => onRemoveItemClick(historyItem)}
-                  size="small"
-                  variant="ghost"
-                  color="secondary"
-                  shape="round">
-                  <ButtonIcon icon={XIcon} />
-                </Button>
-              </View>
-            ))}
+            {searchHistory.slice(0, 10).map(
+              (
+                historyItem,
+                index, // previously 0, 5, handles shown recent searches
+              ) => (
+                <View key={index} style={[a.flex_row, a.align_center]}>
+                  <Pressable
+                    accessibilityRole="button"
+                    onPress={() => {
+                      ax.metric('search:query', {
+                        source: 'history',
+                      })
+                      onItemClick(historyItem)
+                    }}
+                    hitSlop={HITSLOP_10}
+                    style={[a.flex_1, a.py_sm]}>
+                    <Text style={[a.text_md]}>{historyItem}</Text>
+                  </Pressable>
+                  <Button
+                    label={l`Remove ${historyItem}`}
+                    onPress={() => onRemoveItemClick(historyItem)}
+                    size="small"
+                    variant="ghost"
+                    color="secondary"
+                    shape="round">
+                    <ButtonIcon icon={XIcon} />
+                  </Button>
+                </View>
+              ),
+            )}
           </View>
         )}
       </View>

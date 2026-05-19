@@ -14,11 +14,7 @@ type Props = {
   activeIndex: number
 }
 
-export function Header({
-  onRequestClose,
-  imageCount,
-  activeIndex,
-}: Props) {
+export function Header({onRequestClose, imageCount, activeIndex}: Props) {
   const {_} = useLingui()
   const insets = useSafeAreaInsets()
 

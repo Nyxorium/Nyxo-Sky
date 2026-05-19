@@ -24,7 +24,9 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   const setStateWrapped = useCallback(
-    (disableProfileDescriptions: persisted.Schema['disableProfileDescriptions']) => {
+    (
+      disableProfileDescriptions: persisted.Schema['disableProfileDescriptions'],
+    ) => {
       setState(Boolean(disableProfileDescriptions))
       persisted.write('disableProfileDescriptions', disableProfileDescriptions)
     },

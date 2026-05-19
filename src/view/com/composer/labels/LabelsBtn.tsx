@@ -208,7 +208,9 @@ function DialogInner({
                   updateOtherLabels(values as OtherSelfLabel[])
                 }}>
                 <View style={[a.gap_sm]}>
-                  <Toggle.Item name="graphic-media" label={_(msg`Graphic Media`)}>
+                  <Toggle.Item
+                    name="graphic-media"
+                    label={_(msg`Graphic Media`)}>
                     <Toggle.Checkbox />
                     <Toggle.LabelText>
                       <Trans>Graphic Media</Trans>

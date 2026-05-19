@@ -13,8 +13,9 @@ export function useColorModeTheme(): ThemeName {
   useLayoutEffect(() => {
     // Resolve the background colour directly from the preset registry —
     // no need to be inside the ALF context tree.
-    const preset = THEME_PRESETS[(themePreset ?? 'nyxoSky') as ThemePresetName]
-      ?? THEME_PRESETS.nyxoSky
+    const preset =
+      THEME_PRESETS[(themePreset ?? 'nyxoSky') as ThemePresetName] ??
+      THEME_PRESETS.nyxoSky
     const bgColor = preset.themes[theme].atoms.bg.backgroundColor
     updateDocument(theme, bgColor)
   }, [theme, themePreset])
@@ -71,8 +72,11 @@ function updateDocument(theme: ThemeName, bgColor: string) {
 export function getBackgroundColor(theme: ThemeName): string {
   // Fallback for static usage (e.g. splash) — uses Bluesky defaults
   switch (theme) {
-    case 'light': return '#FFFFFF'
-    case 'dark':  return '#000000'
-    case 'dim':   return '#151D28'
+    case 'light':
+      return '#FFFFFF'
+    case 'dark':
+      return '#000000'
+    case 'dim':
+      return '#151D28'
   }
 }

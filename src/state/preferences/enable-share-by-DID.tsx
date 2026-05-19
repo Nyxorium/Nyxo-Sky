@@ -32,12 +32,9 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   useEffect(() => {
-    return persisted.onUpdate(
-      'enableShareViaDID',
-      nextEnableShareViaDID => {
-        setState(Boolean(nextEnableShareViaDID))
-      },
-    )
+    return persisted.onUpdate('enableShareViaDID', nextEnableShareViaDID => {
+      setState(Boolean(nextEnableShareViaDID))
+    })
   }, [setStateWrapped])
 
   return (

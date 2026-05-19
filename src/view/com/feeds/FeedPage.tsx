@@ -138,7 +138,7 @@ export function FeedPage({
   const shouldPrefetch = IS_NATIVE && isPageAdjacent
   const isDiscoverFeed = feedInfo.uri === DISCOVER_FEED_URI
 
-  const limitComposePostButton = useLimitComposePostButton();
+  const limitComposePostButton = useLimitComposePostButton()
 
   return (
     <View
@@ -173,8 +173,7 @@ export function FeedPage({
         />
       )}
 
-      {hasSession && 
-      !limitComposePostButton && (
+      {hasSession && !limitComposePostButton && (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}

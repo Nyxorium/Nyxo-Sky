@@ -66,7 +66,12 @@ export const LoggedOutLayout = ({
         </Text>
       </View>
       {scrollable ? (
-        <View style={[styles.scrollableContent, t.atoms.bg, {borderLeftWidth: 1, borderColor: t.palette.contrast_200}]}>
+        <View
+          style={[
+            styles.scrollableContent,
+            t.atoms.bg,
+            {borderLeftWidth: 1, borderColor: t.palette.contrast_200},
+          ]}>
           <ScrollView
             style={a.flex_1}
             contentContainerStyle={styles.scrollViewContentContainer}
@@ -78,7 +83,12 @@ export const LoggedOutLayout = ({
           </ScrollView>
         </View>
       ) : (
-        <View style={[styles.content, t.atoms.bg, {borderLeftWidth: 1, borderColor: t.palette.contrast_200}]}>
+        <View
+          style={[
+            styles.content,
+            t.atoms.bg,
+            {borderLeftWidth: 1, borderColor: t.palette.contrast_200},
+          ]}>
           <View style={styles.contentWrapper}>{children}</View>
         </View>
       )}

@@ -45,7 +45,11 @@ export function ProfileHeaderMetrics({
         testID="profileHeaderFollowersButton"
         style={[a.flex_row, t.atoms.text]}
         to={makeProfileLink(profile, 'followers')}
-        label={hideFollowers ? _(msg`View followers`) : `${profile.followersCount || 0} ${pluralizedFollowers}`}>
+        label={
+          hideFollowers
+            ? _(msg`View followers`)
+            : `${profile.followersCount || 0} ${pluralizedFollowers}`
+        }>
         {hideFollowers ? (
           <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
             {_(msg`View followers`)}
@@ -63,7 +67,11 @@ export function ProfileHeaderMetrics({
         testID="profileHeaderFollowsButton"
         style={[a.flex_row, t.atoms.text]}
         to={makeProfileLink(profile, 'follows')}
-        label={hideFollows ? _(msg`View following`) : _(msg`${profile.followsCount || 0} following`)}>
+        label={
+          hideFollows
+            ? _(msg`View following`)
+            : _(msg`${profile.followsCount || 0} following`)
+        }>
         {hideFollows ? (
           <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
             {_(msg`View following`)}
@@ -80,7 +88,8 @@ export function ProfileHeaderMetrics({
       {!hidePosts && (
         <Text style={[a.font_semi_bold, t.atoms.text, a.text_md]}>
           {formatCount(i18n, profile.postsCount || 0)}{' '}
-          <Text style={[t.atoms.text_contrast_medium, a.font_normal, a.text_md]}>
+          <Text
+            style={[t.atoms.text_contrast_medium, a.font_normal, a.text_md]}>
             {plural(profile.postsCount || 0, {one: 'post', other: 'posts'})}
           </Text>
         </Text>

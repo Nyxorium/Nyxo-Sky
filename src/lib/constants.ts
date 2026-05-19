@@ -13,8 +13,10 @@ export const PUBLIC_BSKY_SERVICE = 'https://public.api.bsky.app'
 export const DEFAULT_SERVICE = BSKY_SERVICE
 export const HELP_DESK_URL = `https://github.com/Nyxorium/Nyxo-Sky/discussions`
 export const FEEDBACK_FORM_URL = `https://github.com/Nyxorium/Nyxo-Sky/issues/new/choose`
-export const TERMS_OF_SERVICE_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Terms.html'
-export const PRIVACY_POLICY_URL = 'https://nyxorium.github.io/NyxoSky-TOS/Privacy.html'
+export const TERMS_OF_SERVICE_URL =
+  'https://nyxorium.github.io/NyxoSky-TOS/Terms.html'
+export const PRIVACY_POLICY_URL =
+  'https://nyxorium.github.io/NyxoSky-TOS/Privacy.html'
 export const SOURCE_CODE_URL = 'https://github.com/Nyxorium/Nyxo-Sky'
 export const FUNDING_URL = 'https://ko-fi.com/retrosunstar'
 

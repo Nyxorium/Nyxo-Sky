@@ -115,7 +115,9 @@ export function Component({
           label={_(msg({message: `Done`, context: 'action'}))}
           size="small"
           color="secondary">
-          <ButtonText><Trans>Done</Trans></ButtonText>
+          <ButtonText>
+            <Trans>Done</Trans>
+          </ButtonText>
         </Button>
       </View>
     </View>
@@ -237,7 +239,13 @@ function ListItem({
             onPress={onToggleMembership}
             size="small"
             color={membership === false ? 'primary' : 'secondary'}>
-            <ButtonText>{membership === false ? <Trans>Add</Trans> : <Trans>Remove</Trans>}</ButtonText>
+            <ButtonText>
+              {membership === false ? (
+                <Trans>Add</Trans>
+              ) : (
+                <Trans>Remove</Trans>
+              )}
+            </ButtonText>
           </Button>
         )}
       </View>

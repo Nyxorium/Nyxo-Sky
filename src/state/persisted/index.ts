@@ -28,7 +28,6 @@ export async function init() {
     _state = migrateProfileTabVisibility(stored)
     await writeToStorage(_state)
   }
-
 }
 init satisfies PersistedApi['init']
 

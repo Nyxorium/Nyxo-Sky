@@ -32,12 +32,9 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   useEffect(() => {
-    return persisted.onUpdate(
-      'disableShareViaDms',
-      nextDisableShareViaDms => {
-        setState(Boolean(nextDisableShareViaDms))
-      },
-    )
+    return persisted.onUpdate('disableShareViaDms', nextDisableShareViaDms => {
+      setState(Boolean(nextDisableShareViaDms))
+    })
   }, [setStateWrapped])
 
   return (

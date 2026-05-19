@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Alert, LayoutAnimation, Pressable, View} from 'react-native' // Linking, 
+import {Alert, LayoutAnimation, Pressable, View} from 'react-native' // Linking,
 import {useReducedMotion} from 'react-native-reanimated'
 import {type AppBskyActorDefs, moderateProfile} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
@@ -237,7 +237,9 @@ export function SettingsScreen({}: Props) {
               <Trans>Appearance</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
-          <SettingsList.LinkItem to="/settings/miscellaneous" label={l`Miscellaneous`}>
+          <SettingsList.LinkItem
+            to="/settings/miscellaneous"
+            label={l`Miscellaneous`}>
             <SettingsList.ItemIcon icon={CodeLinesIcon} />
             <SettingsList.ItemText>
               <Trans>Miscellaneous</Trans>

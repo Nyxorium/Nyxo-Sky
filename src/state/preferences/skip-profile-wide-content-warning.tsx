@@ -24,9 +24,14 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   const setStateWrapped = useCallback(
-    (skipProfileWideContentWarning: persisted.Schema['skipProfileWideContentWarning']) => {
+    (
+      skipProfileWideContentWarning: persisted.Schema['skipProfileWideContentWarning'],
+    ) => {
       setState(Boolean(skipProfileWideContentWarning))
-      persisted.write('skipProfileWideContentWarning', skipProfileWideContentWarning)
+      persisted.write(
+        'skipProfileWideContentWarning',
+        skipProfileWideContentWarning,
+      )
     },
     [setState],
   )

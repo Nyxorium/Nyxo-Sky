@@ -16,7 +16,7 @@ import {
 } from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {s} from '#/lib/styles'
-import { useLimitComposePostButton } from '#/state/preferences/limit-compose-post-button'
+import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {
   type SavedFeedItem,
   useGetPopularFeedsQuery,
@@ -494,7 +494,7 @@ export function FeedsScreen(_props: Props) {
     ],
   )
 
-  const limitComposePostButton = useLimitComposePostButton();
+  const limitComposePostButton = useLimitComposePostButton()
 
   return (
     <Layout.Screen testID="FeedsScreen">
@@ -538,8 +538,7 @@ export function FeedsScreen(_props: Props) {
         />
       </Layout.Center>
 
-      {hasSession && 
-      !limitComposePostButton && (
+      {hasSession && !limitComposePostButton && (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}

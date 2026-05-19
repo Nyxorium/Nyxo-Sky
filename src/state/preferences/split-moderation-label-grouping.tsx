@@ -24,9 +24,14 @@ export function Provider({children}: {children: React.ReactNode}) {
   )
 
   const setStateWrapped = useCallback(
-    (splitModerationLabelGrouping: persisted.Schema['splitModerationLabelGrouping']) => {
+    (
+      splitModerationLabelGrouping: persisted.Schema['splitModerationLabelGrouping'],
+    ) => {
       setState(Boolean(splitModerationLabelGrouping))
-      persisted.write('splitModerationLabelGrouping', splitModerationLabelGrouping)
+      persisted.write(
+        'splitModerationLabelGrouping',
+        splitModerationLabelGrouping,
+      )
     },
     [setState],
   )

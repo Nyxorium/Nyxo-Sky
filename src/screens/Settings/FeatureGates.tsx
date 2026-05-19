@@ -5,7 +5,10 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {useRawGateValues} from '#/state/preferences/gateOverrides'
-import {useGateOverrides, useSetGateOverride} from '#/state/preferences/gateOverrides'
+import {
+  useGateOverrides,
+  useSetGateOverride,
+} from '#/state/preferences/gateOverrides'
 import {atoms as a, useTheme} from '#/alf'
 import * as SegmentedControl from '#/components/forms/SegmentedControl'
 import * as Layout from '#/components/Layout'
@@ -37,7 +40,8 @@ export function FeatureGatesSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
           <SettingsList.Item>
-            <Text style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
+            <Text
+              style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
               <Trans>
                 These settings let you override feature flags set by Bluesky.
                 Auto follows whatever Bluesky has enabled for your account.
@@ -53,8 +57,11 @@ export function FeatureGatesSettingsScreen({}: Props) {
             const liveValue = rawValues[key] ?? false
 
             const segmentedValue =
-              currentOverride === undefined ? 'auto' :
-              currentOverride ? 'on' : 'off'
+              currentOverride === undefined
+                ? 'auto'
+                : currentOverride
+                  ? 'on'
+                  : 'off'
 
             return (
               <SettingsList.Group
@@ -80,9 +87,11 @@ export function FeatureGatesSettingsScreen({}: Props) {
                   onChange={value => {
                     setOverride(
                       key,
-                      value === 'on' ? true :
-                      value === 'off' ? false :
-                      undefined,
+                      value === 'on'
+                        ? true
+                        : value === 'off'
+                          ? false
+                          : undefined,
                     )
                   }}>
                   <SegmentedControl.Item label={_(msg`Off`)} value="off">
@@ -94,7 +103,9 @@ export function FeatureGatesSettingsScreen({}: Props) {
                     label={_(msg`Auto (${liveValue ? 'on' : 'off'})`)}
                     value="auto">
                     <SegmentedControl.ItemText>
-                      <Trans>Auto ({liveValue ? _(msg`on`) : _(msg`off`)})</Trans>
+                      <Trans>
+                        Auto ({liveValue ? _(msg`on`) : _(msg`off`)})
+                      </Trans>
                     </SegmentedControl.ItemText>
                   </SegmentedControl.Item>
                   <SegmentedControl.Item label={_(msg`On`)} value="on">

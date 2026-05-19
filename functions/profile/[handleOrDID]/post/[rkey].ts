@@ -123,16 +123,16 @@ class HeadHandler {
     const embedElems = !embed
       ? ''
       : AppBskyEmbedImages.isView(embed)
-      ? html`${embed.images.map(
-            i => html`<meta property="og:image" content="${i.thumb}" />`,
-          )}
-          <meta name="twitter:card" content="summary_large_image" /> `
-      : 'thumbnail' in embed && embed.thumbnail
-      ? html`
-          <meta property="og:image" content="${embed.thumbnail}" />
-          <meta name="twitter:card" content="summary_large_image" />
-        `
-      : html`<meta name="twitter:card" content="summary" />`
+        ? html`${embed.images.map(
+              i => html`<meta property="og:image" content="${i.thumb}" />`,
+            )}
+            <meta name="twitter:card" content="summary_large_image" /> `
+        : 'thumbnail' in embed && embed.thumbnail
+          ? html`
+              <meta property="og:image" content="${embed.thumbnail}" />
+              <meta name="twitter:card" content="summary_large_image" />
+            `
+          : html`<meta name="twitter:card" content="summary" />`
 
     element.append(
       html`

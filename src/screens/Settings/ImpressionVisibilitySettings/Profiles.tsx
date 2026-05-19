@@ -145,8 +145,8 @@ export function ProfileImpressionVisibilitySettingsScreen({}: Props) {
               style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
               <Trans>
                 Control which profile statistics are visible to you. These
-                settings only affect your own view — statistics are not hidden from
-                others.
+                settings only affect your own view — statistics are not hidden
+                from others.
               </Trans>
             </Text>
           </SettingsList.Item>
@@ -162,7 +162,9 @@ export function ProfileImpressionVisibilitySettingsScreen({}: Props) {
 
           <ImpressionSection
             titleText={<Trans>Others' profiles</Trans>}
-            subtitleText={<Trans>Show statistics on other people's profiles</Trans>}
+            subtitleText={
+              <Trans>Show statistics on other people's profiles</Trans>
+            }
             getValue={getOthersValue}
             onToggle={onToggleOthers}
           />

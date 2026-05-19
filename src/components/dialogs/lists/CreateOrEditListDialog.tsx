@@ -450,7 +450,10 @@ function DialogInner({
               defaultValue={descriptionRt.text}
               onChangeText={onChangeDescription}
               multiline
-              style={[{minHeight: 80, maxHeight: 280}, IS_WEB && ({fieldSizing: 'content'} as object)]}
+              style={[
+                {minHeight: 80, maxHeight: 280},
+                IS_WEB && ({fieldSizing: 'content'} as object),
+              ]}
               label={_(msg`Description`)}
               placeholder={descriptionPlaceholder}
               testID="editListDescriptionInput"

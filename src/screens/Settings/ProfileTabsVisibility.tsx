@@ -48,14 +48,15 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
       </Layout.Header.Outer>
       <Layout.Content>
         <SettingsList.Container>
-
           <SettingsList.Item style={[a.align_start]}>
             <SettingsList.ItemIcon icon={HeartIcon} />
             <ItemTextWithSubtitle
               bold
               titleText={<Trans>Tabs on your profile</Trans>}
               subtitleText={
-                <Trans>Toggle the visibility of various tabs found on your profile</Trans>
+                <Trans>
+                  Toggle the visibility of various tabs found on your profile
+                </Trans>
               }
             />
           </SettingsList.Item>
@@ -96,7 +97,9 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
               bold
               titleText={<Trans>Tabs on other profiles</Trans>}
               subtitleText={
-                <Trans>Toggle the visibility of various tabs found on other profiles</Trans>
+                <Trans>
+                  Toggle the visibility of various tabs found on other profiles
+                </Trans>
               }
             />
           </SettingsList.Item>
@@ -109,7 +112,11 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
                   ['media', 'Media', 'hide_others_media'],
                   ['videos', 'Videos', 'hide_others_videos'],
                   ['feeds', 'Feeds', 'hide_others_feeds'],
-                  ['starterPacks', 'Starter Packs', 'hide_others_starter_packs'],
+                  [
+                    'starterPacks',
+                    'Starter Packs',
+                    'hide_others_starter_packs',
+                  ],
                   ['lists', 'Lists', 'hide_others_lists'],
                 ] as const
               ).map(([key, label, name]) => (
@@ -129,7 +136,6 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
             </View>
             <Divider />
           </View>
-
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

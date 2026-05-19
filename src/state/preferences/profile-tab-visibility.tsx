@@ -1,4 +1,10 @@
-import {createContext, useCallback, useContext, useEffect, useState} from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import * as persisted from '#/state/persisted'
 
@@ -89,7 +95,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
 
   return (
     <stateContext.Provider value={{otherTabs, ownTabs}}>
-      <setContext.Provider value={{setOtherTabs: setOtherTabsWrapped, setOwnTabs: setOwnTabsWrapped}}>
+      <setContext.Provider
+        value={{
+          setOtherTabs: setOtherTabsWrapped,
+          setOwnTabs: setOwnTabsWrapped,
+        }}>
         {children}
       </setContext.Provider>
     </stateContext.Provider>

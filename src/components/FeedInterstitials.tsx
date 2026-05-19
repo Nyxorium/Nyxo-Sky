@@ -439,10 +439,21 @@ export function ProfileGrid({
   const profileCountForMinCheck = totalProfileCount ?? profiles.length
 
   useEffect(() => {
-    if (error || (!isLoading && profileCountForMinCheck < minLength) || disabledSimilarAccounts) {
+    if (
+      error ||
+      (!isLoading && profileCountForMinCheck < minLength) ||
+      disabledSimilarAccounts
+    ) {
       onRequestHide?.()
     }
-  }, [error, isLoading, onRequestHide, profileCountForMinCheck, minLength, disabledSimilarAccounts])
+  }, [
+    error,
+    isLoading,
+    onRequestHide,
+    profileCountForMinCheck,
+    minLength,
+    disabledSimilarAccounts,
+  ])
 
   if (disabledSimilarAccounts) {
     return null

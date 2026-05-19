@@ -7,7 +7,7 @@ import {Plural, Trans} from '@lingui/react/macro'
 import {StackActions, useNavigation} from '@react-navigation/native'
 
 import {
-  FEEDBACK_FORM_URL, 
+  FEEDBACK_FORM_URL,
   HELP_DESK_URL,
   PRIVACY_POLICY_URL,
   TERMS_OF_SERVICE_URL,
@@ -127,7 +127,7 @@ let DrawerProfileCard = ({
                   other="followers"
                 />
               </Trans>
-              {!hideFollows && <>{' '}&middot;{' '}</>}
+              {!hideFollows && <> &middot; </>}
             </>
           )}
           {!hideFollows && (
@@ -249,9 +249,7 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
   }, [navigation, setDrawerOpen])
 
   const onPressFeedback = useCallback(() => {
-    Linking.openURL(
-      FEEDBACK_FORM_URL,
-    )
+    Linking.openURL(FEEDBACK_FORM_URL)
   }, [currentAccount])
 
   const onPressHelp = useCallback(() => {

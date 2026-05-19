@@ -115,28 +115,30 @@ let ShareMenuItems = ({
   return (
     <>
       <Menu.Outer>
-        {hasSession && aa.state.access === aa.Access.Full && !disableShareViaDms && (
-          <Menu.Group>
-            <Menu.ContainerItem>
-              <RecentChats
-                postUri={postUri}
-                onBeforePress={onBeforeShareViaChat}
-              />
-            </Menu.ContainerItem>
-            <Menu.Item
-              testID="postDropdownSendViaDMBtn"
-              label={_(msg`Send via direct message`)}
-              onPress={() => {
-                ax.metric('share:press:openDmSearch', {})
-                sendViaChatControl.open()
-              }}>
-              <Menu.ItemText>
-                <Trans>Send via direct message</Trans>
-              </Menu.ItemText>
-              <Menu.ItemIcon icon={PaperPlaneIcon} position="right" />
-            </Menu.Item>
-          </Menu.Group>
-        )}
+        {hasSession &&
+          aa.state.access === aa.Access.Full &&
+          !disableShareViaDms && (
+            <Menu.Group>
+              <Menu.ContainerItem>
+                <RecentChats
+                  postUri={postUri}
+                  onBeforePress={onBeforeShareViaChat}
+                />
+              </Menu.ContainerItem>
+              <Menu.Item
+                testID="postDropdownSendViaDMBtn"
+                label={_(msg`Send via direct message`)}
+                onPress={() => {
+                  ax.metric('share:press:openDmSearch', {})
+                  sendViaChatControl.open()
+                }}>
+                <Menu.ItemText>
+                  <Trans>Send via direct message</Trans>
+                </Menu.ItemText>
+                <Menu.ItemIcon icon={PaperPlaneIcon} position="right" />
+              </Menu.Item>
+            </Menu.Group>
+          )}
 
         <Menu.Group>
           <Menu.Item

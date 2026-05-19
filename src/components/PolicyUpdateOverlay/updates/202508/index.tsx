@@ -32,7 +32,7 @@ export function Content({state}: {state: PolicyUpdateState}) {
     },
     privacy: {
       overridePresentation: false,
-      to: `https://bsky.social/about/support/privacy-policy`, 
+      to: `https://bsky.social/about/support/privacy-policy`,
       // chaning this doesn't seem needed right now, as it's an old popup - Sunstar
       label: _(msg`Privacy Policy`),
     },

@@ -96,7 +96,9 @@ export function HostingProvider({
                     }
                   />
                 </View>
-                <Text style={[a.text_md]}>{toNiceDomain(serviceUrl ?? '')}</Text>
+                <Text style={[a.text_md]}>
+                  {toNiceDomain(serviceUrl ?? '')}
+                </Text>
                 <View
                   style={[
                     a.rounded_sm,

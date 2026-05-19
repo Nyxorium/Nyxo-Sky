@@ -36,13 +36,18 @@ async function fetchGeolocationServiceData(
   return res.json() as Promise<Geolocation>
 }
 
-export async function fetchGeolocationWithFallback(): Promise<Geolocation | undefined> {
+export async function fetchGeolocationWithFallback(): Promise<
+  Geolocation | undefined
+> {
   try {
     return await fetchGeolocationWithFallback() // fetchGeolocationServiceData(GEOLOCATION_SERVICE_URL)
   } catch (e) {
-    logger.info('fetchGeolocationWithFallback: primary failed, trying fallback', {
-      safeMessage: e,
-    })
+    logger.info(
+      'fetchGeolocationWithFallback: primary failed, trying fallback',
+      {
+        safeMessage: e,
+      },
+    )
     try {
       return await fetchGeolocationServiceData('/geolocation')
     } catch (e2) {
@@ -114,8 +119,9 @@ export async function resolve() {
         )
 
         // retry 3 times, but don't await, proceed with default
-        networkRetry(3, () =>
-          fetchGeolocationWithFallback(), // fetchGeolocationServiceData(GEOLOCATION_SERVICE_URL),
+        networkRetry(
+          3,
+          () => fetchGeolocationWithFallback(), // fetchGeolocationServiceData(GEOLOCATION_SERVICE_URL),
         )
           .then(config => {
             cacheResponseOrThrow(config)

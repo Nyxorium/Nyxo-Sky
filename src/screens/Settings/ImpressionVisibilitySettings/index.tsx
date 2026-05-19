@@ -11,12 +11,9 @@ import {
 } from '#/state/preferences/impression-visibility'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
-import {Person_Stroke2_Corner2_Rounded as PersonIcon,} from '#/components/icons/Person'
+import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
 import * as Layout from '#/components/Layout'
-import {
-  type ImpressionConfig,
-  ImpressionSection,
-} from './ImpressionSection'
+import {type ImpressionConfig, ImpressionSection} from './ImpressionSection'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
@@ -80,7 +77,6 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
       </Layout.Header.Outer>
       <Layout.Content>
         <SettingsList.Container>
-
           <SettingsList.LinkItem
             to="/settings/impression-visibility/posts"
             label={_(msg`Post impressions`)}>
@@ -110,7 +106,6 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
             onToggleOwn={onToggleOwn}
             onToggleOthers={onToggleOthers}
           />
-
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

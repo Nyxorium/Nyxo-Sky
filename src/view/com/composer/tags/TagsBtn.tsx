@@ -169,7 +169,7 @@ function TagsDialogInner({
               : t.atoms.border_contrast_medium,
             t.atoms.bg_contrast_25,
           ]}>
-          <TextInput 
+          <TextInput
             accessibilityHint=""
             accessibilityLabel="Text input field"
             value={input}

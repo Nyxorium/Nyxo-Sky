@@ -5,7 +5,11 @@ import {
   View,
   type ViewStyle,
 } from 'react-native'
-import {BSKY_LABELER_DID, type ModerationCause, type ModerationUI} from '@atproto/api'
+import {
+  BSKY_LABELER_DID,
+  type ModerationCause,
+  type ModerationUI,
+} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
@@ -105,10 +109,13 @@ function ContentHiderActive({
     const primary = blurs[0]
 
     const effectivePrimary = blurs.find(b => !isAccountNsfwBlur(b)) ?? primary
-  
-    if (effectivePrimary.type === 'label' && effectivePrimary.source.type !== 'user') {
+
+    if (
+      effectivePrimary.type === 'label' &&
+      effectivePrimary.source.type !== 'user'
+    ) {
       const ADULT_SELF_LABEL_FAMILY = ['sexual', 'nudity', 'porn']
-    
+
       const userEquivalent = blurs.find(
         b =>
           b.type === 'label' &&
@@ -118,7 +125,10 @@ function ContentHiderActive({
               ADULT_SELF_LABEL_FAMILY.includes(effectivePrimary.label.val))),
       )
 
-      if (effectivePrimary.type === 'label' && effectivePrimary.label.val === 'sexual-figurative') {
+      if (
+        effectivePrimary.type === 'label' &&
+        effectivePrimary.label.val === 'sexual-figurative'
+      ) {
         const alternative = blurs.find(
           b => b.type === 'label' && b.label.val !== 'sexual-figurative',
         )
@@ -131,14 +141,14 @@ function ContentHiderActive({
         return userEquivalent
       }
     }
-  
+
     return effectivePrimary
   }, [modui.blurs])
 
   //  const blur = useMemo(() => {
   //    const blurs = modui.blurs!
   //    const primary = blurs[0]
-  //  
+  //
   //    if (primary.type === 'label' && primary.source.type !== 'user') {
   //      const userEquivalent = blurs.find(
   //        b =>
@@ -146,15 +156,14 @@ function ContentHiderActive({
   //          b.source.type === 'user' &&
   //          b.label.val === primary.label.val,
   //      )
-  //  
+  //
   //      if (userEquivalent) {
   //        return userEquivalent
   //      }
   //    }
-  //  
+  //
   //    return primary
   //  }, [modui.blurs])
-
 
   const desc = useModerationCauseDescription(blur)
 
@@ -218,7 +227,6 @@ function ContentHiderActive({
 
     const baseName = [...new Set(selfBlurNames)].join(', ')
 
-
     if (blur.type === 'label') {
       if (blur.source.type === 'user') {
         return `${baseName} (${_(msg`Self`)})`
@@ -230,7 +238,6 @@ function ContentHiderActive({
         return `${baseName} (${_(msg`Bluesky`)})`
       }
     }
-
 
     return baseName
   }, [

@@ -1,9 +1,10 @@
 import {
-  useCallback, 
+  useCallback,
   useEffect,
-  useImperativeHandle, 
-  useRef, 
-  useState} from 'react'
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import {View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -38,12 +39,11 @@ export function ServerInputDialog({
   const formRef = useRef<DialogInnerRef>(null)
 
   // persist these options between dialog open/close
-  const [fixedOption, setFixedOption] =
-    useState<SegmentedControlOptions>(
-      initialServiceUrl && initialServiceUrl !== BSKY_SERVICE
-        ? 'custom'
-        : BSKY_SERVICE,
-    )
+  const [fixedOption, setFixedOption] = useState<SegmentedControlOptions>(
+    initialServiceUrl && initialServiceUrl !== BSKY_SERVICE
+      ? 'custom'
+      : BSKY_SERVICE,
+  )
   const [previousCustomAddress, setPreviousCustomAddress] = useState(
     initialServiceUrl && initialServiceUrl !== BSKY_SERVICE
       ? initialServiceUrl

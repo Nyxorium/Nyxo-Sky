@@ -88,7 +88,9 @@ export function AppearanceSettingsScreen({}: Props) {
         </Layout.Header.Outer>
         <Layout.Content>
           <SettingsList.Container>
-            <SettingsList.Group contentContainerStyle={[a.gap_sm]} iconInset={false}>
+            <SettingsList.Group
+              contentContainerStyle={[a.gap_sm]}
+              iconInset={false}>
               <SettingsList.ItemIcon icon={PaletteIcon} />
               <SettingsList.ItemText>
                 <Trans>App theme</Trans>
@@ -319,9 +321,7 @@ function ThemePresetGrid({
                 numberOfLines={1}>
                 {preset.label}
               </Text>
-              {isSelected && (
-                <CheckIcon size="sm" style={{color: textColor}} />
-              )}
+              {isSelected && <CheckIcon size="sm" style={{color: textColor}} />}
             </View>
           </Pressable>
         )

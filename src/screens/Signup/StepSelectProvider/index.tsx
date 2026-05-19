@@ -75,8 +75,8 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
     <View style={[a.flex_1, a.gap_md]}>
       <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
         <Trans>
-          Your account lives on a server. Choose a provider below, or enter
-          your own.
+          Your account lives on a server. Choose a provider below, or enter your
+          own.
         </Trans>
       </Text>
 
@@ -92,8 +92,16 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
               backgroundColor: t.palette.primary_25,
             },
           ]}>
-          <Text style={[a.text_sm, a.font_semi_bold, {color: t.palette.primary_600}]}>
-            <Trans>Bluesky account creation isn't supported in the browser. Visit </Trans>
+          <Text
+            style={[
+              a.text_sm,
+              a.font_semi_bold,
+              {color: t.palette.primary_600},
+            ]}>
+            <Trans>
+              Bluesky account creation isn't supported in the browser.
+              Visit{' '}
+            </Trans>
             <InlineLinkText
               label="bsky.app/signup"
               to="https://bsky.app/signup">
@@ -107,7 +115,8 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
       <View style={[a.gap_sm]}>
         {PROVIDERS.map(provider => {
           const isSelected = serviceUrl === provider.serviceUrl
-          const isDisabled = provider.serviceUrl === 'https://bsky.social' && bskyWebDisabled
+          const isDisabled =
+            provider.serviceUrl === 'https://bsky.social' && bskyWebDisabled
           return (
             <Pressable
               key={provider.serviceUrl}
@@ -127,11 +136,11 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
                 isDisabled
                   ? [t.atoms.border_contrast_low, {opacity: 0.5}]
                   : isSelected
-                  ? {
-                      borderColor: t.palette.primary_500,
-                      backgroundColor: t.palette.primary_25,
-                    }
-                  : t.atoms.border_contrast_low,
+                    ? {
+                        borderColor: t.palette.primary_500,
+                        backgroundColor: t.palette.primary_25,
+                      }
+                    : t.atoms.border_contrast_low,
               ]}>
               <View style={[a.flex_1, a.gap_xs]}>
                 <View style={[a.flex_row, a.align_center, a.gap_sm]}>

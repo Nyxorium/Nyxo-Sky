@@ -46,7 +46,6 @@ import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
 
-
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
   labeler: AppBskyLabelerDefs.LabelerViewDetailed
@@ -135,7 +134,9 @@ let ProfileHeaderLabeler = ({
         {!isPlaceholderProfile && (
           <>
             {isSelf && <ProfileHeaderMetrics profile={profile} />}
-            {descriptionRT && !disableProfileDescriptions && !moderation.ui('profileView').blur ? (
+            {descriptionRT &&
+            !disableProfileDescriptions &&
+            !moderation.ui('profileView').blur ? (
               <View pointerEvents="auto">
                 <RichText
                   testID="profileHeaderDescription"
@@ -180,7 +181,9 @@ let ProfileHeaderLabeler = ({
                   label={
                     hideLabelerLikes
                       ? _(msg`View likes`)
-                      : _(msg`Liked by ${plural(likeCount, {one: '# user', other: '# users'})}`)
+                      : _(
+                          msg`Liked by ${plural(likeCount, {one: '# user', other: '# users'})}`,
+                        )
                   }>
                   {({hovered, focused, pressed}) => (
                     <Text
@@ -301,7 +304,6 @@ export function HeaderLabelerButtons({
     })
   return (
     <>
-
       {hasSession && !isMe && (!minimal || profile.viewer?.following) && (
         <>
           <MessageProfileButton profile={profile} />

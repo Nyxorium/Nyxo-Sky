@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import {Alert, View} from 'react-native'
+import * as DynamicAppIcon from '@bsky.app/expo-dynamic-app-icon'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
-import * as DynamicAppIcon from '@bsky.app/expo-dynamic-app-icon'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {PressableScale} from '#/lib/custom-animations/PressableScale'
@@ -124,16 +124,12 @@ export function AppIconSettingsScreen({}: Props) {
           value={currentAppIcon}
           onChange={onSetAppIcon}>
           {sets.core.map((icon, i) => (
-            <Row
-              key={icon.id}
-              icon={icon}
-              isEnd={i === sets.core.length - 1}>
+            <Row key={icon.id} icon={icon} isEnd={i === sets.core.length - 1}>
               <AppIcon icon={icon} key={icon.id} size={40} />
               <RowText>{icon.name}</RowText>
             </Row>
           ))}
         </Group>
-
       </Layout.Content>
     </Layout.Screen>
   )

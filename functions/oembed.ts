@@ -1,8 +1,4 @@
-import {
-  AppBskyEmbedImages,
-  AppBskyFeedDefs,
-  AtpAgent,
-} from '@atproto/api'
+import {AppBskyEmbedImages, AppBskyFeedDefs, AtpAgent} from '@atproto/api'
 
 import {renderHandleString} from './profile/_shared'
 

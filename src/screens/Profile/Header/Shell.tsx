@@ -88,7 +88,8 @@ let ProfileHeaderShell = ({
             thumbRect: null,
             thumbRef,
             dimensions:
-              type === 'circle-avi' && enableSquareAvatars === false || type === 'rect-avi'
+              (type === 'circle-avi' && enableSquareAvatars === false) ||
+              type === 'rect-avi'
                 ? {
                     // It's fine if it's actually smaller but we know it's 1:1.
                     height: 1000,
@@ -230,8 +231,7 @@ let ProfileHeaderShell = ({
       {children}
 
       {!isPlaceholderProfile &&
-        (isMe &&
-        useAltLabelDisplay ? (
+        (isMe && useAltLabelDisplay ? (
           <LabelsOnMeRevised
             type="account"
             labels={profile.labels}
@@ -243,9 +243,7 @@ let ProfileHeaderShell = ({
               IS_IOS ? a.pointer_events_auto : {pointerEvents: 'box-none'},
             ]} // Check LabelsOnMe.tsx for more info
           />
-        ) : 
-        isMe &&
-        !useAltLabelDisplay ? (
+        ) : isMe && !useAltLabelDisplay ? (
           <LabelsOnMe
             type="account"
             labels={profile.labels}

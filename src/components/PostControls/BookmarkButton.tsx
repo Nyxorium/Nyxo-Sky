@@ -16,7 +16,11 @@ import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Tra
 import {useFormatPostStatCount} from '#/components/PostControls/util'
 import * as toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
-import {PostControlButton, PostControlButtonIcon, PostControlButtonText} from './PostControlButton'
+import {
+  PostControlButton,
+  PostControlButtonIcon,
+  PostControlButtonText,
+} from './PostControlButton'
 
 export const BookmarkButton = memo(function BookmarkButton({
   post,
@@ -50,7 +54,7 @@ export const BookmarkButton = memo(function BookmarkButton({
     }),
   )
 
-  const save = async ({/* disableUndo */}: {disableUndo?: boolean} = {}) => {
+  const save = async ({} /* disableUndo */ : {disableUndo?: boolean} = {}) => {
     try {
       await bookmark({
         action: 'create',
@@ -146,10 +150,13 @@ export const BookmarkButton = memo(function BookmarkButton({
         isBookmarked
           ? _(
               msg({
-                message: `Remove from saved posts (${plural(bookmarkCount || 0, {
-                  one: '# save',
-                  other: '# saves',
-                })})`,
+                message: `Remove from saved posts (${plural(
+                  bookmarkCount || 0,
+                  {
+                    one: '# save',
+                    other: '# saves',
+                  },
+                )})`,
                 comment:
                   'Accessibility label for the save button when the post has been saved, verb followed by number of saves and noun',
               }),

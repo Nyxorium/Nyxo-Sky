@@ -12,7 +12,7 @@ import {
   FUNDING_URL,
   PRIVACY_POLICY_URL,
   SOURCE_CODE_URL,
-  STATUS_PAGE_URL,  
+  STATUS_PAGE_URL,
   TERMS_OF_SERVICE_URL,
 } from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'

@@ -32,9 +32,12 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   )
 
   useEffect(() => {
-    return persisted.onUpdate('altLabelDisplayProfile', nextUseAltLabelDisplayProfile => {
-      setState(nextUseAltLabelDisplayProfile) 
-    })
+    return persisted.onUpdate(
+      'altLabelDisplayProfile',
+      nextUseAltLabelDisplayProfile => {
+        setState(nextUseAltLabelDisplayProfile)
+      },
+    )
   }, [setStateWrapped])
 
   return (

@@ -117,7 +117,7 @@ export function ProfileFeedHeader({info}: {info: FeedSourceFeedInfo}) {
   const isPinned = Boolean(savedFeedConfig?.pinned)
 
   const isMe = info.creatorDid === currentAccount?.did
-  const hideFeedLikes   = useIsImpressionHidden('feedLikes',   isMe)
+  const hideFeedLikes = useIsImpressionHidden('feedLikes', isMe)
 
   const onToggleSaved = async () => {
     try {
@@ -509,7 +509,8 @@ function DialogInner({
               <Trans>View likes</Trans>
             ) : (
               <Trans>
-                Liked by <Plural value={likeCount} one="# user" other="# users" />
+                Liked by{' '}
+                <Plural value={likeCount} one="# user" other="# users" />
               </Trans>
             )}
           </InlineLinkText>

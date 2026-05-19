@@ -79,7 +79,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                     <DisableProfileDescriptions>
                                                       <SkipProfileWideContentWarning>
                                                         <SplitModerationLabelGrouping>
-                                                          <KawaiiProvider>{children}</KawaiiProvider>
+                                                          <KawaiiProvider>
+                                                            {children}
+                                                          </KawaiiProvider>
                                                         </SplitModerationLabelGrouping>
                                                       </SkipProfileWideContentWarning>
                                                     </DisableProfileDescriptions>

@@ -418,7 +418,10 @@ function DialogInner({
               defaultValue={description}
               onChangeText={setDescription}
               multiline
-              style={[{minHeight: 80, maxHeight: 280}, IS_WEB && ({fieldSizing: 'content'} as object)]}
+              style={[
+                {minHeight: 80, maxHeight: 280},
+                IS_WEB && ({fieldSizing: 'content'} as object),
+              ]}
               label={_(msg`Description`)}
               placeholder={_(msg`Tell us a bit about yourself`)}
               testID="editProfileDescriptionInput"

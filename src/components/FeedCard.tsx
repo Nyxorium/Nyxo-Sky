@@ -243,7 +243,13 @@ export function DescriptionPlaceholder() {
   )
 }
 
-export function Likes({count, creatorDid}: {count: number, creatorDid: string}) {
+export function Likes({
+  count,
+  creatorDid,
+}: {
+  count: number
+  creatorDid: string
+}) {
   const t = useTheme()
   const {currentAccount} = useSession()
 

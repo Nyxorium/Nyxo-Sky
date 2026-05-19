@@ -69,7 +69,7 @@ export function HomeHeaderLayoutMobile({
                 emitSoftReset()
               }
             }}>
-            { /* <Logo width={30} /> */}
+            {/* <Logo width={30} /> */}
           </PressableScale>
         </View>
 

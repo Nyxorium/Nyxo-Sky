@@ -175,9 +175,12 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                     !gtMobile && {paddingBottom: 100},
                   ]}>
                   <View style={[a.gap_sm, a.pb_3xl]}>
-
                     {state.activeStep !== SignupStep.SELECT_PROVIDER && (
-                      <Text style={[a.font_semi_bold, t.atoms.text_contrast_medium]}>
+                      <Text
+                        style={[
+                          a.font_semi_bold,
+                          t.atoms.text_contrast_medium,
+                        ]}>
                         <Trans>
                           Step {state.activeStep} of{' '}
                           {state.serviceDescription &&
@@ -234,7 +237,7 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                         t.atoms.text_contrast_medium,
                         !gtMobile && a.text_md,
                       ]}>
-                      { /*
+                      {/*
                       <Trans>Having trouble?</Trans>{' '}
                       <InlineLinkText
                         label={l`Contact support`}
@@ -242,7 +245,7 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                         style={[!gtMobile && a.text_md]}>
                         <Trans>Contact support</Trans>
                       </InlineLinkText>
-                      */ }
+                      */}
                     </Text>
                   </View>
                 </View>

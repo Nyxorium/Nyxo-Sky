@@ -32,9 +32,12 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   )
 
   useEffect(() => {
-    return persisted.onUpdate('limitComposePostButton', nextUseLimitComposePostButton => {
-      setState(nextUseLimitComposePostButton)
-    })
+    return persisted.onUpdate(
+      'limitComposePostButton',
+      nextUseLimitComposePostButton => {
+        setState(nextUseLimitComposePostButton)
+      },
+    )
   }, [setStateWrapped])
 
   return (

@@ -16,7 +16,7 @@ import {
 import {s} from '#/lib/styles'
 import {logger} from '#/logger'
 import {emitSoftReset, listenSoftReset} from '#/state/events'
-import { useLimitComposePostButton } from '#/state/preferences/limit-compose-post-button'
+import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {RQKEY as NOTIFS_RQKEY} from '#/state/queries/notifications/feed'
 import {useNotificationSettingsQuery} from '#/state/queries/notifications/settings'
 import {
@@ -121,7 +121,7 @@ export function NotificationsScreen({}: Props) {
     isLoadingMentions,
   ])
 
-  const limitComposePostButton = useLimitComposePostButton();
+  const limitComposePostButton = useLimitComposePostButton()
 
   return (
     <Layout.Screen testID="notificationsScreen">
@@ -161,7 +161,7 @@ export function NotificationsScreen({}: Props) {
           <View key={i}>{section.component}</View>
         ))}
       </Pager>
-      {!limitComposePostButton && (       
+      {!limitComposePostButton && (
         <FAB
           testID="composeFAB"
           onPress={() => openComposer({logContext: 'Fab'})}

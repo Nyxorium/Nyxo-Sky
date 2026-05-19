@@ -1863,7 +1863,7 @@ function ComposerPills({
           />
         )}
         {
-        // Controls Labels button visibility in composer - Sunstar
+          // Controls Labels button visibility in composer - Sunstar
         }
         {hasMedia || hasLink ? (
           <LabelsBtn

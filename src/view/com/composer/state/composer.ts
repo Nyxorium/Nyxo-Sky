@@ -76,7 +76,7 @@ export type PostDraft = {
 export type PostAction =
   | {type: 'update_richtext'; richtext: RichText}
   | {type: 'update_labels'; labels: SelfLabel[]}
-  | {type: 'update_tags'; tags: string[]} 
+  | {type: 'update_tags'; tags: string[]}
   | {type: 'embed_add_images'; images: ComposerImage[]}
   | {type: 'embed_update_image'; image: ComposerImage}
   | {type: 'embed_remove_image'; image: ComposerImage}

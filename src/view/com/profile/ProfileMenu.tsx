@@ -119,9 +119,10 @@ let ProfileMenu = ({
   const useAltLabelDisplay = useAltLabelDisplayProfile()
   const enableShareViaDID = useEnableShareViaDID()
 
-  const profileHref = useMemo(() =>
-    enableShareViaDID ? `/profile/${profile.did}` : makeProfileLink(profile),
-    [enableShareViaDID, profile]
+  const profileHref = useMemo(
+    () =>
+      enableShareViaDID ? `/profile/${profile.did}` : makeProfileLink(profile),
+    [enableShareViaDID, profile],
   )
 
   const showLoggedOutWarning = useMemo(() => {
@@ -538,9 +539,7 @@ let ProfileMenu = ({
               </Menu.Group>
             </>
           ) : null}
-          {isSelf &&
-          useAltLabelDisplay && 
-          labels.length > 0 ? (
+          {isSelf && useAltLabelDisplay && labels.length > 0 ? (
             <>
               <Menu.Divider />
               <Menu.Item
@@ -559,10 +558,10 @@ let ProfileMenu = ({
         </Menu.Outer>
       </Menu.Root>
 
-      <LabelsOnMeDialog 
-        control={control} 
-        labels={profile.labels || []} 
-        type={'account'} 
+      <LabelsOnMeDialog
+        control={control}
+        labels={profile.labels || []}
+        type={'account'}
       />
 
       <StarterPackDialog

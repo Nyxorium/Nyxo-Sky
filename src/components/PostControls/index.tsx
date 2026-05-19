@@ -104,14 +104,13 @@ let PostControls = ({
   const {gtPhone} = useBreakpoints()
   const formatPostStatCount = useFormatPostStatCount()
 
-
   const {currentAccount} = useSession()
   const isMe = post.author.did === currentAccount?.did
 
-  const hideLikes   = useIsImpressionHidden('likes',   isMe)
+  const hideLikes = useIsImpressionHidden('likes', isMe)
   const hideReposts = useIsImpressionHidden('reposts', isMe)
   const hideReplies = useIsImpressionHidden('replies', isMe)
-  const hideQuotes  = useIsImpressionHidden('quotes',  isMe)
+  const hideQuotes = useIsImpressionHidden('quotes', isMe)
   const hideBookmarks = useIsImpressionHidden('bookmarks', isMe)
 
   const [hasLikeIconBeenToggled, setHasLikeIconBeenToggled] = useState(false)
@@ -263,7 +262,11 @@ let PostControls = ({
             <PostControlButtonIcon icon={Bubble} />
             {typeof post.replyCount !== 'undefined' && post.replyCount > 0 && (
               <PostControlButtonText>
-                {!hideReplies ? formatPostStatCount(post.replyCount) : post.replyCount >1 ? '1+' : '1'}
+                {!hideReplies
+                  ? formatPostStatCount(post.replyCount)
+                  : post.replyCount > 1
+                    ? '1+'
+                    : '1'}
               </PostControlButtonText>
             )}
           </PostControlButton>
@@ -271,7 +274,10 @@ let PostControls = ({
         <View style={[a.flex_1, a.align_start]}>
           <RepostButton
             isReposted={!!post.viewer?.repost}
-            repostCount={(!hideReposts ? (post.repostCount ?? 0) : 0) + (!hideQuotes ? (post.quoteCount ?? 0) : 0)}
+            repostCount={
+              (!hideReposts ? (post.repostCount ?? 0) : 0) +
+              (!hideQuotes ? (post.quoteCount ?? 0) : 0)
+            }
             onRepost={() => void onRepost()}
             onQuote={onQuote}
             big={big}

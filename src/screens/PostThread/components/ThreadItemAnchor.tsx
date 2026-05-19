@@ -59,7 +59,7 @@ import * as Skele from '#/components/Skeleton'
 import {Text} from '#/components/Typography'
 import {WhoCanReply} from '#/components/WhoCanReply'
 import {useAnalytics} from '#/analytics'
-import {IS_NATIVE,IS_WEB} from '#/env'
+import {IS_NATIVE, IS_WEB} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 import * as bsky from '#/types/bsky'
@@ -206,9 +206,9 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
 
   const isMe = post.author.did === currentAccount?.did
 
-  const hideLikes   = useIsImpressionHidden('likes',   isMe)
+  const hideLikes = useIsImpressionHidden('likes', isMe)
   const hideReposts = useIsImpressionHidden('reposts', isMe)
-  const hideQuotes  = useIsImpressionHidden('quotes',  isMe)
+  const hideQuotes = useIsImpressionHidden('quotes', isMe)
   const hideBookmarks = useIsImpressionHidden('bookmarks', isMe)
 
   const likesHref = useMemo(() => {
@@ -384,12 +384,12 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                     numberOfLines={1}>
                     {sanitizeHandle(post.author.handle, '@')}
                     {post.author.pronouns
-                    ? NON_BREAKING_SPACE +
-                      '\u00B7' +
-                      NON_BREAKING_SPACE +
-                      post.author.pronouns
-                    : null}
-                </Text>
+                      ? NON_BREAKING_SPACE +
+                        '\u00B7' +
+                        NON_BREAKING_SPACE +
+                        post.author.pronouns
+                      : null}
+                  </Text>
                 </ProfileHoverCard>
               </View>
             </Link>
@@ -440,10 +440,13 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               isThreadAuthor={isThreadAuthor}
             />
             {(post.repostCount !== 0 ||
-            post.likeCount !== 0 ||
-            post.quoteCount !== 0 ||
-            post.bookmarkCount !== 0) &&
-            (!hideLikes || !hideReposts || post.quoteCount !== 0 || !hideBookmarks) ? (
+              post.likeCount !== 0 ||
+              post.quoteCount !== 0 ||
+              post.bookmarkCount !== 0) &&
+            (!hideLikes ||
+              !hideReposts ||
+              post.quoteCount !== 0 ||
+              !hideBookmarks) ? (
               // Show this section unless we're *sure* it has no engagement.
               <View
                 style={[
@@ -460,7 +463,9 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                   a.py_md,
                   t.atoms.border_contrast_low,
                 ]}>
-                {!hideReposts && post.repostCount != null && post.repostCount !== 0 ? (
+                {!hideReposts &&
+                post.repostCount != null &&
+                post.repostCount !== 0 ? (
                   <Link to={repostsHref} label={l`Reposts of this post`}>
                     <Text
                       testID="repostCount-expanded"
@@ -490,7 +495,11 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                         {!hideQuotes ? (
                           <>
                             <Text
-                              style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
+                              style={[
+                                a.text_md,
+                                a.font_semi_bold,
+                                t.atoms.text,
+                              ]}>
                               {formatPostStatCount(post.quoteCount)}
                             </Text>{' '}
                             <Plural
@@ -500,15 +509,20 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                             />
                           </>
                         ) : (
-                         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
-                           {post.quoteCount === 1 ? 'View quote' : 'View quotes'}
-                         </Text>
+                          <Text
+                            style={[a.text_md, t.atoms.text_contrast_medium]}>
+                            {post.quoteCount === 1
+                              ? 'View quote'
+                              : 'View quotes'}
+                          </Text>
                         )}
                       </Trans>
                     </Text>
                   </Link>
                 ) : null}
-                {!hideLikes && post.likeCount != null && post.likeCount !== 0 ? (
+                {!hideLikes &&
+                post.likeCount != null &&
+                post.likeCount !== 0 ? (
                   <Link to={likesHref} label={l`Likes on this post`}>
                     <Text
                       testID="likeCount-expanded"
@@ -527,7 +541,9 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                     </Text>
                   </Link>
                 ) : null}
-                {!hideBookmarks && post.bookmarkCount != null && post.bookmarkCount !== 0 ? (
+                {!hideBookmarks &&
+                post.bookmarkCount != null &&
+                post.bookmarkCount !== 0 ? (
                   <Text
                     testID="bookmarkCount-expanded"
                     style={[a.text_md, t.atoms.text_contrast_medium]}>
@@ -582,7 +598,10 @@ function normaliseVia(via: string): string {
     return url.hostname
   } catch {
     // Not a URL, strip scheme-like prefix just in case and trim
-    return via.replace(/^https?:\/\//, '').replace(/\/$/, '').trim()
+    return via
+      .replace(/^https?:\/\//, '')
+      .replace(/\/$/, '')
+      .trim()
   }
 }
 
@@ -599,7 +618,9 @@ function truncateVia(via: string): string {
 
 function ViaIndicator({post}: {post: AppBskyFeedDefs.PostView}) {
   const t = useTheme()
-  const via = parseVia((post.record as AppBskyFeedPost.Record & {via?: unknown}).via)
+  const via = parseVia(
+    (post.record as AppBskyFeedPost.Record & {via?: unknown}).via,
+  )
 
   if (!via) return null
 

@@ -238,9 +238,11 @@ function ProfileScreenLoaded({
   const feedGenCount = profile.associated?.feedgens || 0
   const showFeedsTab = (isMe || feedGenCount > 0) && tabPrefs.feeds !== true
   const starterPackCount = profile.associated?.starterPacks || 0
-  const showStarterPacksTab = (isMe || starterPackCount > 0) && tabPrefs.starterPacks !== true
+  const showStarterPacksTab =
+    (isMe || starterPackCount > 0) && tabPrefs.starterPacks !== true
   const listCount = (profile.associated?.lists || 0) - starterPackCount
-  const showListsTab = hasSession && (isMe || listCount > 0) && tabPrefs.lists !== true
+  const showListsTab =
+    hasSession && (isMe || listCount > 0) && tabPrefs.lists !== true
 
   const sectionTitles = [
     showFiltersTab ? _(msg`Labels`) : undefined,
@@ -390,7 +392,7 @@ function ProfileScreenLoaded({
     )
   }
 
-  const limitComposePostButton = useLimitComposePostButton();
+  const limitComposePostButton = useLimitComposePostButton()
 
   return (
     <ScreenHider
