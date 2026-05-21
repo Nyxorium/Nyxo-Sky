@@ -105,7 +105,7 @@ function ContentHiderActive({
   const {i18n} = useLingui()
 
   const blur = useMemo(() => {
-    const blurs = modui.blurs!
+    const blurs = modui.blurs
     const primary = blurs[0]
 
     const effectivePrimary = blurs.find(b => !isAccountNsfwBlur(b)) ?? primary
@@ -242,7 +242,7 @@ function ContentHiderActive({
     return baseName
   }, [
     _,
-    modui?.blurs,
+    modui.blurs,
     blur,
     desc.name,
     desc.isSubjectAccount,
