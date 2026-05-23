@@ -52,7 +52,6 @@ import {MessageComposer} from '#/screens/Messages/components/MessageComposer'
 import {MessageInput} from '#/screens/Messages/components/MessageInput'
 import {MessageListError} from '#/screens/Messages/components/MessageListError'
 import {atoms as a, platform, tokens, useTheme, web} from '#/alf'
-import {ChatEmptyPill} from '#/components/dms/ChatEmptyPill'
 import {DateDivider} from '#/components/dms/DateDivider'
 import {MessageItem} from '#/components/dms/MessageItem'
 import {NewMessagesPill} from '#/components/dms/NewMessagesPill'
@@ -66,6 +65,7 @@ import {ChatStatusInfo} from './ChatStatusInfo'
 import {groupSystemMessages, type RenderItem} from './groupSystemMessages'
 import {InviteLinkDialogProvider} from './InviteLinkDialogProvider'
 import {MessageInputEmbed, useMessageEmbed} from './MessageInputEmbed'
+import {MessagesListGroupInfoPanel} from './MessagesListGroupInfoPanel'
 import {MessagesListInfoPanel} from './MessagesListInfoPanel'
 import {KeyboardStickyView} from './vendor/KeyboardStickyView'
 
@@ -510,9 +510,12 @@ export function MessagesList({
             ListHeaderComponent={
               <>
                 <MaybeLoader isLoading={convoState.isFetchingHistory} />
-                {convoState.convo?.kind === 'group' &&
-                convoState.hasAllHistory ? (
-                  <MessagesListInfoPanel convo={convoState.convo} />
+                {convoState.hasAllHistory ? (
+                  convoState.convo?.kind === 'group' ? (
+                    <MessagesListGroupInfoPanel convo={convoState.convo} />
+                  ) : (
+                    <MessagesListInfoPanel convo={convoState.convo} />
+                  )
                 ) : null}
               </>
             }
@@ -666,12 +669,8 @@ function ConversationFooter({
     case 'loading':
       return null
     case 'new-chat':
-      return (
-        <>
-          <ChatEmptyPill />
-          {children}
-        </>
-      )
+      // new chat pill goes here - removed for now
+      return children
     case 'request':
       return <ChatStatusInfo convoState={convoState} />
     case 'standard':

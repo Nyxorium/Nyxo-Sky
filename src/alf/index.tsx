@@ -1,5 +1,5 @@
 import {createContext, useCallback, useContext, useMemo, useState} from 'react'
-import {type Theme, type ThemeName} from '@bsky.app/alf'
+import {type Theme, type ThemeName, utils as baseUtils} from '@bsky.app/alf'
 
 import {
   computeFontScaleMultiplier,
@@ -10,14 +10,10 @@ import {
 } from '#/alf/fonts'
 import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import {themes as defaultThemes} from '#/alf/themes'
+import {darken, lighten, rgbToHex} from '#/alf/util/colorGeneration'
 import {type Device} from '#/storage'
 
-export {
-  type TextStyleProp,
-  type Theme,
-  utils,
-  type ViewStyleProp,
-} from '@bsky.app/alf'
+export {type TextStyleProp, type Theme, type ViewStyleProp} from '@bsky.app/alf'
 export {atoms} from '#/alf/atoms'
 export * from '#/alf/breakpoints'
 export * from '#/alf/fonts'
@@ -26,6 +22,12 @@ export * from '#/alf/util/flatten'
 export * from '#/alf/util/platform'
 export * from '#/alf/util/themeSelector'
 export * from '#/alf/util/useGutters'
+export const utils = {
+  ...baseUtils,
+  rgbToHex,
+  lighten,
+  darken,
+}
 
 export type Alf = {
   themeName: ThemeName
@@ -66,7 +68,12 @@ export function ThemeProvider({
   children,
   theme: themeName,
   themePreset = 'nyxoSky',
-}: React.PropsWithChildren<{theme: ThemeName; themePreset?: ThemePresetName}>) {
+  themesOverride,
+}: React.PropsWithChildren<{
+  theme: ThemeName
+  themePreset?: ThemePresetName
+  themesOverride?: Partial<typeof defaultThemes>
+}>) {
   const [fontScale, setFontScale] = useState<Alf['fonts']['scale']>(() =>
     getFontScale(),
   )
@@ -92,25 +99,18 @@ export function ThemeProvider({
     [setFontFamily],
   )
 
-  // Resolve the active theme set from the chosen preset.
-  // Falls back to the default Bluesky themes if something unexpected is stored.
-  const activeThemes = useMemo(() => {
+  const value = useMemo<Alf>(() => {
+    // Start from the chosen preset, then let themesOverride patch on top.
+    // Falls back to the bluesky preset if themePreset is somehow unrecognised.
     const preset = THEME_PRESETS[themePreset] ?? THEME_PRESETS.bluesky
+    const t = {
+      ...preset.themes,
+      ...themesOverride,
+    } as typeof defaultThemes
     return {
-      lightPalette: preset.themes.light.palette,
-      darkPalette: preset.themes.dark.palette,
-      dimPalette: preset.themes.dim.palette,
-      light: preset.themes.light,
-      dark: preset.themes.dark,
-      dim: preset.themes.dim,
-    }
-  }, [themePreset])
-
-  const value = useMemo<Alf>(
-    () => ({
-      themes: activeThemes,
+      themes: t,
       themeName: themeName,
-      theme: activeThemes[themeName],
+      theme: t[themeName],
       fonts: {
         scale: fontScale,
         scaleMultiplier: fontScaleMultiplier,
@@ -119,17 +119,17 @@ export function ThemeProvider({
         setFontFamily: setFontFamilyAndPersist,
       },
       flags: {},
-    }),
-    [
-      activeThemes,
-      themeName,
-      fontScale,
-      setFontScaleAndPersist,
-      fontFamily,
-      setFontFamilyAndPersist,
-      fontScaleMultiplier,
-    ],
-  )
+    }
+  }, [
+    themePreset,
+    themesOverride,
+    themeName,
+    fontScale,
+    fontScaleMultiplier,
+    setFontScaleAndPersist,
+    fontFamily,
+    setFontFamilyAndPersist,
+  ])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
 }

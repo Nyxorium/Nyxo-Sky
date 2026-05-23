@@ -18,7 +18,15 @@ type Props = {
   label: string
   onPress?: PressableProps['onPress']
   testID?: string
-}
+} & Omit<
+  PressableProps,
+  | 'onPress'
+  | 'style'
+  | 'testID'
+  | 'accessibilityRole'
+  | 'accessibilityLabel'
+  | 'accessibilityHint'
+>
 
 const SIZE = 44
 const RADIUS = 24
@@ -30,6 +38,7 @@ export function CircleChromeButton({
   label,
   onPress,
   testID,
+  ...rest
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current
 
@@ -54,6 +63,7 @@ export function CircleChromeButton({
   return (
     <Animated.View style={{transform: [{scale}]}}>
       <Pressable
+        {...rest}
         accessibilityRole="button"
         accessibilityLabel={label}
         accessibilityHint=""
