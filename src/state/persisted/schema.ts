@@ -139,6 +139,8 @@ const schema = z.object({
   trendingDisabled: z.boolean().optional(),
   trendingVideoDisabled: z.boolean().optional(),
 
+  recentTags: z.array(z.string()).optional(),
+
   // Theme preset selector
   themePreset: z.string().optional(),
 
@@ -271,6 +273,8 @@ export const defaults: Schema = {
   subtitlesEnabled: true,
   trendingDisabled: false,
   trendingVideoDisabled: false,
+
+  recentTags: [],
 
   // Additional setting defaults in Nyxo Sky
   themePreset: 'nyxoSky',

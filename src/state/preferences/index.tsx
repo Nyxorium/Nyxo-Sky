@@ -20,6 +20,7 @@ import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
 import {Provider as LimitComposePostButton} from './limit-compose-post-button'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
+import {Provider as RecentTagsProvider} from './recent-tags'
 import {Provider as SimilarAccountProvider} from './similar-accounts'
 import {Provider as SkipProfileWideContentWarning} from './skip-profile-wide-content-warning'
 import {Provider as SplitModerationLabelGrouping} from './split-moderation-label-grouping'
@@ -40,6 +41,7 @@ export {
 export {useHiddenPosts, useHiddenPostsApi} from './hidden-posts'
 export {useLabelDefinitions} from './label-defs'
 export {useLanguagePrefs, useLanguagePrefsApi} from './languages'
+export {useRecentTags, useRecentTagsApi} from './recent-tags'
 export {
   useSetSimilarAccountsDisabled,
   useSimilarAccountsDisabled,
@@ -79,9 +81,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                     <DisableProfileDescriptions>
                                                       <SkipProfileWideContentWarning>
                                                         <SplitModerationLabelGrouping>
-                                                          <KawaiiProvider>
-                                                            {children}
-                                                          </KawaiiProvider>
+                                                          <RecentTagsProvider>
+                                                            <KawaiiProvider>
+                                                              {children}
+                                                            </KawaiiProvider>
+                                                          </RecentTagsProvider>
                                                         </SplitModerationLabelGrouping>
                                                       </SkipProfileWideContentWarning>
                                                     </DisableProfileDescriptions>
