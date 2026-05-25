@@ -140,7 +140,7 @@ let ShareMenuItems = ({
           </Menu.Item>
         )}
 
-        {canEmbed && (
+        {canEmbed && devModeEnabled && (
           <Menu.Item
             testID="postDropdownEmbedBtn"
             label={_(msg`Embed post`)}
