@@ -13,9 +13,8 @@ export function useColorModeTheme(): ThemeName {
   useLayoutEffect(() => {
     // Resolve the background colour directly from the preset registry —
     // no need to be inside the ALF context tree.
-    const preset =
-      THEME_PRESETS[(themePreset ?? 'nyxoSky') as ThemePresetName] ??
-      THEME_PRESETS.nyxoSky
+    const presetKey: ThemePresetName = themePreset ?? 'nyxoSky'
+    const preset = THEME_PRESETS[presetKey] ?? THEME_PRESETS.nyxoSky
     const bgColor = preset.themes[theme].atoms.bg.backgroundColor
     updateDocument(theme, bgColor)
   }, [theme, themePreset])
