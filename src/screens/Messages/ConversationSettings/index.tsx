@@ -27,7 +27,7 @@ import {useLockConvo} from '#/state/queries/messages/lock-conversation'
 import {useMuteConvo} from '#/state/queries/messages/mute-conversation'
 import {useSession} from '#/state/session'
 import {List} from '#/view/com/util/List'
-import {atoms as a, useBreakpoints, useTheme} from '#/alf'
+import {atoms as a, useTheme} from '#/alf'
 import {AvatarBubbles} from '#/components/AvatarBubbles'
 import {Button, type ButtonColor, ButtonIcon} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -78,15 +78,13 @@ type Props = NativeStackScreenProps<
 >
 
 export function MessagesConversationSettingsScreen({route}: Props) {
-  const {gtTablet} = useBreakpoints()
-
   const convoId = route.params.conversation
 
   return (
     <Layout.Screen>
       <Layout.Header.Outer>
         <Layout.Header.BackButton />
-        <Layout.Header.Content align={gtTablet ? 'left' : 'platform'}>
+        <Layout.Header.Content>
           <Layout.Header.TitleText>
             <Trans>Group chat settings</Trans>
           </Layout.Header.TitleText>
@@ -437,7 +435,10 @@ function SettingsHeader({
       <View
         style={[a.px_xl, a.py_4xl, a.border_b, t.atoms.border_contrast_low]}>
         <View style={[a.align_center, a.justify_center]}>
-          <AvatarBubbles profiles={convo.members} />
+          <AvatarBubbles
+            profiles={convo.members}
+            moderationOpts={moderationOpts}
+          />
         </View>
         <Text
           style={[

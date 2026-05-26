@@ -13,6 +13,7 @@ import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useSession} from '#/state/session'
 import {PreviewableUserAvatar} from '#/view/com/util/UserAvatar'
+import {useIsWithinSplitView} from '#/screens/Messages/components/splitView/context'
 import {atoms as a, useTheme} from '#/alf'
 import {AvatarBubbles} from '#/components/AvatarBubbles'
 import {ButtonIcon} from '#/components/Button'
@@ -31,18 +32,21 @@ const PFP_SIZE = IS_WEB ? 40 : Layout.HEADER_SLOT_SIZE
 export function MessagesListHeader({convo}: {convo?: ConvoWithDetails | null}) {
   const t = useTheme()
   const moderationOpts = useModerationOpts()
+  const {isWithinSplitView} = useIsWithinSplitView()
 
   return (
     <Layout.Header.Outer noBottomBorder={IS_LIQUID_GLASS}>
       <View style={[a.w_full, a.flex_row, a.gap_xs, a.align_start]}>
-        <View style={[{minHeight: PFP_SIZE}, a.justify_center]}>
-          <Layout.Header.BackButton />
-        </View>
+        {!isWithinSplitView && (
+          <View style={[{minHeight: PFP_SIZE}, a.justify_center]}>
+            <Layout.Header.BackButton />
+          </View>
+        )}
         {convo && moderationOpts ? (
           convo.kind === 'direct' ? (
             <ProfileHeaderReady convo={convo} moderationOpts={moderationOpts} />
           ) : (
-            <GroupHeaderReady convo={convo} />
+            <GroupHeaderReady convo={convo} moderationOpts={moderationOpts} />
           )
         ) : (
           <>
@@ -148,8 +152,10 @@ function ProfileHeaderReady({
 
 function GroupHeaderReady({
   convo,
+  moderationOpts,
 }: {
   convo: Extract<ConvoWithDetails, {kind: 'group'}>
+  moderationOpts: ModerationOpts
 }) {
   const {t: l} = useLingui()
 
@@ -172,7 +178,11 @@ function GroupHeaderReady({
                   },
                 }
           }>
-          <AvatarBubbles size={40} profiles={convo.members} />
+          <AvatarBubbles
+            size={40}
+            profiles={convo.members}
+            moderationOpts={moderationOpts}
+          />
           <View style={[a.flex_row, a.flex_1, a.align_center]}>
             <Text
               style={[a.text_md, a.font_semi_bold, a.flex_shrink]}

@@ -223,6 +223,10 @@ export const ComposePost = ({
   const [publishingStage, setPublishingStage] = useState('')
   const [error, setError] = useState('')
 
+  const enableLargeVideoUploads = ax.features.enabled(
+    ax.features.LargeVideoUploads,
+  )
+
   /**
    * Track when a draft was created so we can measure draft age in metrics.
    * Set when a draft is loaded via handleSelectDraft.
@@ -345,9 +349,10 @@ export const ComposePost = ({
         currentDid,
         abortController.signal,
         i18n,
+        enableLargeVideoUploads,
       )
     },
-    [i18n, agent, currentDid, composerDispatch],
+    [i18n, agent, currentDid, composerDispatch, enableLargeVideoUploads],
   )
 
   const onInitVideo = useNonReactiveCallback(() => {
@@ -492,6 +497,7 @@ export const ComposePost = ({
           currentDid,
           abortController.signal,
           i18n,
+          enableLargeVideoUploads,
         )
       } catch (e) {
         logger.error('Failed to restore video from draft', {
@@ -500,7 +506,7 @@ export const ComposePost = ({
         })
       }
     },
-    [i18n, agent, currentDid, composerDispatch],
+    [i18n, agent, currentDid, composerDispatch, enableLargeVideoUploads],
   )
 
   const handleSelectDraft = useCallback(
@@ -811,7 +817,7 @@ export const ComposePost = ({
           )),
     )
 
-  const getFilteredThread = (): {
+  const getFilteredThread = useCallback((): {
     type: 'none' | 'trailing-only' | 'non-trailing'
     filteredThread: ThreadDraft
   } => {
@@ -839,7 +845,7 @@ export const ComposePost = ({
       type: hasNonTrailingEmpty ? 'non-trailing' : 'trailing-only',
       filteredThread,
     }
-  }
+  }, [thread])
 
   const onPressPublish = useCallback(async () => {
     if (isPublishing) {
@@ -1012,7 +1018,7 @@ export const ComposePost = ({
     setLangPrefs.savePostLanguageToHistory()
     if (initQuote) {
       // We want to wait for the quote count to update before we call `onPost`, which will refetch data
-      whenAppViewReady(agent, initQuote.uri, res => {
+      void whenAppViewReady(agent, initQuote.uri, res => {
         const anchor = res.data.thread.at(0)
         if (
           AppBskyUnspeccedDefs.isThreadItemPost(anchor?.value) &&
@@ -1060,7 +1066,6 @@ export const ComposePost = ({
     l,
     ax,
     agent,
-    thread,
     canPost,
     isPublishing,
     currentLanguages,
@@ -1078,6 +1083,7 @@ export const ComposePost = ({
     cleanupPublishedDraft,
     loadedDraftCreatedAt,
     emptyPostsPromptControl,
+    getFilteredThread,
   ])
 
   const handleConfirmSkipEmpty = () => {

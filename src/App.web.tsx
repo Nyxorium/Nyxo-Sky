@@ -1,5 +1,4 @@
 import '#/logger/sentry/setup' // must be near top
-import '#/view/icons'
 import './style.css'
 
 import {Fragment, useEffect, useState} from 'react'
@@ -39,8 +38,7 @@ import {
   useSessionApi,
 } from '#/state/session'
 import {readLastActiveAccount} from '#/state/session/util'
-import {Provider as ShellStateProvider} from '#/state/shell'
-import {useThemePrefs} from '#/state/shell'
+import {Provider as ShellStateProvider, useThemePrefs} from '#/state/shell'
 import {Provider as ComposerProvider} from '#/state/shell/composer'
 import {Provider as LoggedOutViewProvider} from '#/state/shell/logged-out'
 import {Provider as OnboardingProvider} from '#/state/shell/onboarding'

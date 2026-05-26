@@ -1,5 +1,4 @@
 import '#/logger/sentry/setup'
-import '#/view/icons'
 
 import {Fragment, useEffect, useState} from 'react'
 import {GestureHandlerRootView} from 'react-native-gesture-handler'
@@ -46,8 +45,7 @@ import {
   useSessionApi,
 } from '#/state/session'
 import {readLastActiveAccount} from '#/state/session/util'
-import {Provider as ShellStateProvider} from '#/state/shell'
-import {useThemePrefs} from '#/state/shell'
+import {Provider as ShellStateProvider, useThemePrefs} from '#/state/shell'
 import {Provider as ComposerProvider} from '#/state/shell/composer'
 import {Provider as LoggedOutViewProvider} from '#/state/shell/logged-out'
 import {Provider as OnboardingProvider} from '#/state/shell/onboarding'

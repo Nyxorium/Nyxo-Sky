@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import {BlurView} from 'expo-blur'
 
-import {HITSLOP_10} from '#/lib/constants'
+import {HITSLOP_20} from '#/lib/constants'
 import {type Props as IconProps} from '#/components/icons/common'
 
 type Props = {
@@ -29,9 +29,9 @@ type Props = {
   | 'accessibilityHint'
 >
 
-const SIZE = 44
-const RADIUS = 24
-const ICON = 24
+const SIZE = 32
+const RADIUS = SIZE / 2
+const ICON = 18
 
 export function CircleChromeButton({
   icon: Icon,
@@ -69,7 +69,7 @@ export function CircleChromeButton({
         accessibilityRole="button"
         accessibilityLabel={label}
         accessibilityHint=""
-        hitSlop={HITSLOP_10}
+        hitSlop={HITSLOP_20} // HITSLOP_10
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
