@@ -80,11 +80,13 @@ export default function ImageViewRoot({
   onRequestClose,
   onPressSave,
   onPressShare,
+  onLongPressSave,
 }: {
   lightbox: Lightbox | null
   onRequestClose: () => void
   onPressSave: (uri: string) => void
   onPressShare: (uri: string) => void
+  onLongPressSave: () => void
 }) {
   'use no memo'
   const ref = useAnimatedRef<View>()
@@ -192,6 +194,7 @@ export default function ImageViewRoot({
             onRequestClose={onRequestClose}
             onPressSave={onPressSave}
             onPressShare={onPressShare}
+            onLongPressSave={onLongPressSave}
             onFlyAway={onFlyAway}
             safeAreaRef={ref}
             openProgress={openProgress}
@@ -209,6 +212,7 @@ function ImageView({
   onRequestClose,
   onPressSave,
   onPressShare,
+  onLongPressSave,
   onFlyAway,
   safeAreaRef,
   openProgress,
@@ -219,6 +223,7 @@ function ImageView({
   onRequestClose: () => void
   onPressSave: (uri: string) => void
   onPressShare: (uri: string) => void
+  onLongPressSave: () => void
   onFlyAway: () => void
   safeAreaRef: AnimatedRef<View>
   openProgress: SharedValue<number>
@@ -423,6 +428,7 @@ function ImageView({
             onToggleAltExpanded={() => setIsAltExpanded(e => !e)}
             onPressShare={() => onPressShare(images[imageIndex].uri)}
             onPressSave={() => onPressSave(images[imageIndex].uri)}
+            onLongPressSave={onLongPressSave}
           />
         </Animated.View>
       </View>

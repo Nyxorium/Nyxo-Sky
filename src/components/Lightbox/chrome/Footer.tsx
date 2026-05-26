@@ -22,6 +22,7 @@ type Props = {
   onToggleAltExpanded: () => void
   onPressShare: () => void
   onPressSave: () => void
+  onLongPressSave?: () => void
 }
 
 export function Footer({
@@ -30,6 +31,7 @@ export function Footer({
   onToggleAltExpanded,
   onPressShare,
   onPressSave,
+  onLongPressSave,
 }: Props) {
   const {_} = useLingui()
   const insets = useSafeAreaInsets()
@@ -49,6 +51,7 @@ export function Footer({
           icon={SaveIcon}
           label={_(msg`Save image`)}
           onPress={onPressSave}
+          onLongPress={onLongPressSave}
         />
       </View>
       {altText && (

@@ -17,6 +17,7 @@ type Props = {
   iconStyle?: StyleProp<TextStyle>
   label: string
   onPress?: PressableProps['onPress']
+  onLongPress?: PressableProps['onLongPress']
   testID?: string
 } & Omit<
   PressableProps,
@@ -37,6 +38,7 @@ export function CircleChromeButton({
   iconStyle,
   label,
   onPress,
+  onLongPress,
   testID,
   ...rest
 }: Props) {
@@ -71,6 +73,7 @@ export function CircleChromeButton({
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
+        onLongPress={onLongPress}
         testID={testID}
         style={styles.root}>
         <BlurView intensity={20} tint="dark" style={styles.inner}>

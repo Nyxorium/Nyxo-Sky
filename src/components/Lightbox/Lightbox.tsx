@@ -21,6 +21,9 @@ export function Lightbox() {
       onRequestClose={onClose}
       onPressSave={saveImageToAlbum}
       onPressShare={uri => shareImageModal({uri})}
+      onLongPressSave={() => {
+        activeLightbox?.images.forEach(img => saveImageToAlbum(img.uri))
+      }}
     />
   )
 }
