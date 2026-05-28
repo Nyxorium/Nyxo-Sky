@@ -11,14 +11,13 @@ It simply outlines the things I use for my specific setup while developing Nyxo 
 
 
 # Lang Update
-`yarn intl:build`
-(important after adding anything with Trans otherwise it'll show as random characters)
-(This should run itself at some point? 🤷)
+`pnpm intl:build`
+(Run after adding anything with Trans — also handled automatically by the workflow file: nightly-build-translations.yml)
 
 
 # Android Build
-`yarn prebuild -p android` || `yarn prebuild -p android --no-clean`
-`yarn android` || `yarn android --variant release`
+`pnpm prebuild -p android` || `pnpm prebuild -p android --no-clean`
+`pnpm android` || `pnpm android --variant release`
 
 
 # APK Signing (initial gen)
