@@ -21,6 +21,10 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: '2MB image upload limit',
       description: 'Allow uploading images up to 2MB instead of 1MB',
     },
+    [Features.LargeVideoUploads]: {
+      label: '300MB Video Upload Limit',
+      description: 'Allow uploading videos up to 300MB instead of 100MB',
+    },
     [Features.GroupChatsEnable]: {
       label: 'Group chats',
       description: 'Enable group chat functionality in direct messages',
