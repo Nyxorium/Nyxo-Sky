@@ -12,7 +12,7 @@ export const BSKY_SERVICE_DID = 'did:web:bsky.social'
 export const PUBLIC_BSKY_SERVICE = 'https://public.api.bsky.app'
 export const DEFAULT_SERVICE = BSKY_SERVICE
 export const HELP_DESK_URL = `https://github.com/Nyxorium/Nyxo-Sky/discussions`
-export const FEEDBACK_FORM_URL = `https://github.com/Nyxorium/Nyxo-Sky/issues/new/choose`
+export const FEEDBACK_FORM_URL = `https://github.com/Nyxorium/Nyxo-Sky/issues`
 export const TERMS_OF_SERVICE_URL =
   'https://nyxorium.github.io/NyxoSky-TOS/Terms.html'
 export const PRIVACY_POLICY_URL =
