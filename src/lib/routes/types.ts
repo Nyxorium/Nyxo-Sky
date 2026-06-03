@@ -88,6 +88,7 @@ export type CommonNavigatorParams = {
   ImpressionVisibilitySettings: undefined
   PostImpressionVisibilitySettings: undefined
   ProfileImpressionVisibilitySettings: undefined
+  NSFWLabelSettings: undefined
 }
 
 export type BottomTabNavigatorParams = CommonNavigatorParams & {

@@ -117,6 +117,7 @@ import {InterestsSettingsScreen} from '#/screens/Settings/InterestsSettings'
 import {LanguageSettingsScreen} from '#/screens/Settings/LanguageSettings'
 import {LegacyNotificationSettingsScreen} from '#/screens/Settings/LegacyNotificationSettings'
 import {NotificationSettingsScreen} from '#/screens/Settings/NotificationSettings'
+import {NSFWLabelSettingsScreen} from '#/screens/Settings/NSFWLabelSettings'
 import {PrivacyAndSecuritySettingsScreen} from '#/screens/Settings/PrivacyAndSecuritySettings'
 import {SettingsScreen} from '#/screens/Settings/Settings'
 import {ThreadPreferencesScreen} from '#/screens/Settings/ThreadPreferences'
@@ -432,6 +433,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ProfileImpressionVisibilitySettingsScreen}
         options={{
           title: title(msg`Profile Statistics`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="NSFWLabelSettings"
+        getComponent={() => NSFWLabelSettingsScreen}
+        options={{
+          title: title(msg`NSFW Label Settings`),
           requireAuth: true,
         }}
       />

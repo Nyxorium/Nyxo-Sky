@@ -21,6 +21,7 @@ import {BirthdayCake_Stroke2_Corner2_Rounded as BirthdayCakeIcon} from '#/compon
 import {Bot_Stroke as RobotIcon} from '#/components/icons/Bot'
 import {Car_Stroke2_Corner2_Rounded as CarIcon} from '#/components/icons/Car'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
+import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
 import {Freeze_Stroke2_Corner2_Rounded as FreezeIcon} from '#/components/icons/Freeze'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PencilLine_Stroke2_Corner2_Rounded as PencilIcon} from '#/components/icons/Pencil'
@@ -164,6 +165,14 @@ export function AccountSettingsScreen({}: Props) {
                 {isBotAccount(profile) ? _(msg`On`) : _(msg`Off`)}
               </SettingsList.BadgeText>
             )}
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/nsfw-labels"
+            label={_(msg`NSFW Labels`)}>
+            <SettingsList.ItemIcon icon={Filter} />
+            <SettingsList.ItemText>
+              <Trans>NSFW Labels</Trans>
+            </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.Divider />
           <SettingsList.PressableItem
