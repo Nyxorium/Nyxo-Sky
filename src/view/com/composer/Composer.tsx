@@ -223,10 +223,6 @@ export const ComposePost = ({
   const [publishingStage, setPublishingStage] = useState('')
   const [error, setError] = useState('')
 
-  const enableLargeVideoUploads = ax.features.enabled(
-    ax.features.LargeVideoUploads,
-  )
-
   /**
    * Track when a draft was created so we can measure draft age in metrics.
    * Set when a draft is loaded via handleSelectDraft.
@@ -349,10 +345,9 @@ export const ComposePost = ({
         currentDid,
         abortController.signal,
         i18n,
-        enableLargeVideoUploads,
       )
     },
-    [i18n, agent, currentDid, composerDispatch, enableLargeVideoUploads],
+    [i18n, agent, currentDid, composerDispatch],
   )
 
   const onInitVideo = useNonReactiveCallback(() => {
@@ -497,7 +492,6 @@ export const ComposePost = ({
           currentDid,
           abortController.signal,
           i18n,
-          enableLargeVideoUploads,
         )
       } catch (e) {
         logger.error('Failed to restore video from draft', {
@@ -506,7 +500,7 @@ export const ComposePost = ({
         })
       }
     },
-    [i18n, agent, currentDid, composerDispatch, enableLargeVideoUploads],
+    [i18n, agent, currentDid, composerDispatch],
   )
 
   const handleSelectDraft = useCallback(
@@ -884,24 +878,12 @@ export const ComposePost = ({
     try {
       logger.info(`composer: posting...`)
       postUri = (
-        await apilib.post(
-          agent,
-          queryClient,
-          {
-            thread: filteredThread,
-            replyTo: replyTo?.uri,
-            onStateChange: setPublishingStage,
-            langs: currentLanguages,
-          },
-          {
-            highResolutionImages: ax.features.enabled(
-              ax.features.ImageUploadsHighResolution,
-            ),
-            increasedBlobSizeLimit: ax.features.enabled(
-              ax.features.ImageUploadsBlobSize2mbEnabled,
-            ),
-          },
-        )
+        await apilib.post(agent, queryClient, {
+          thread: filteredThread,
+          replyTo: replyTo?.uri,
+          onStateChange: setPublishingStage,
+          langs: currentLanguages,
+        })
       ).uris[0]
 
       /*

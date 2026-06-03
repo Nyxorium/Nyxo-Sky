@@ -230,8 +230,11 @@ function LightboxGallery({
           style={[
             a.px_4xl,
             a.py_2xl,
-            // {backgroundColor: 'rgba(0, 0, 0, 0.45)'},
-            t.atoms.bg,
+            {
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              // @ts-expect-error web only
+              backdropFilter: 'blur(48px)',
+            },
             delayedFadeInAnim,
           ]}>
           <Pressable

@@ -20,6 +20,7 @@ export const PRIVACY_POLICY_URL =
 export const SOURCE_CODE_URL = 'https://github.com/Nyxorium/Nyxo-Sky'
 export const FUNDING_URL = 'https://ko-fi.com/retrosunstar'
 
+export const CHAT_SERVICE = 'https://api.bsky.chat'
 export const EMBED_SERVICE = 'https://embed.bsky.app'
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
 export const BSKY_DOWNLOAD_URL = 'https://bsky.app/download'
@@ -178,8 +179,8 @@ export const VIDEO_MAX_DURATION_MS = 3 * 60 * 1000 // 3 minutes in milliseconds
  * Maximum size of a video in megabytes, _not_ mebibytes. Backend uses
  * ISO megabytes.
  */
-export const VIDEO_MAX_SIZE_REDUCED = 1000 * 1000 * 100 // 100mb
-export const VIDEO_MAX_SIZE = 3000 * 1000 * 100 // 300mb
+export const VIDEO_MAX_SIZE_MB = 300
+export const VIDEO_MAX_SIZE = VIDEO_MAX_SIZE_MB * 1000 * 1000 // 300mb
 
 export const SUPPORTED_MIME_TYPES = [
   'video/mp4',

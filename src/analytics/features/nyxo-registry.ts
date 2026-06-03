@@ -13,30 +13,30 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
         'Show multiple images as a swipeable carousel instead of a grid',
     },
     // future gates: one line each
-    [Features.ImageUploadsHighResolution]: {
-      label: 'High resolution image uploads',
-      description: 'Upload images at higher resolution than the default',
-    },
-    [Features.ImageUploadsBlobSize2mbEnabled]: {
-      label: '2MB image upload limit',
-      description: 'Allow uploading images up to 2MB instead of 1MB',
-    },
-    [Features.LargeVideoUploads]: {
-      label: '300MB Video Upload Limit',
-      description: 'Allow uploading videos up to 300MB instead of 100MB',
-    },
     [Features.GroupChatsEnable]: {
       label: 'Group chats',
       description: 'Enable group chat functionality in direct messages',
+    },
+    [Features.GroupChatsHasBeenReleased]: {
+      label: 'Group chats (released)',
+      description:
+        'Treat group chats as a fully released feature rather than a beta',
+    },
+    [Features.DmsNewMessageComposerEnable]: {
+      label: 'New DM composer',
+      description: 'Use the redesigned message composer in direct messages',
     },
     [Features.ComposerLanguageDetectionEnable]: {
       label: 'Composer language detection',
       description:
         'Automatically detect the language of posts as you write them',
     },
+    [Features.ImportContactsSettingsDisable]: {
+      label: 'Disable contact import (settings)',
+      description: 'Hide the import contacts option in settings',
+    },
     [Features.LiveNowBetaDisable]: {
       label: 'Disable Live Now beta',
-      description:
-        'Hide the Live Now feature if it has been enabled by Bluesky',
+      description: 'Hide the Live Now feature',
     },
   }

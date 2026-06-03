@@ -7,9 +7,10 @@ import {
   View,
 } from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {BlurView} from 'expo-blur'
 import {useLingui} from '@lingui/react/macro'
 
-import {atoms as a, useTheme} from '#/alf'
+import {atoms as a, platform, useTheme} from '#/alf'
 import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components/icons/ArrowShareRight'
 import {Download_Stroke2_Corner0_Rounded as SaveIcon} from '#/components/icons/Download'
 import {Text} from '#/components/Typography'
@@ -62,36 +63,50 @@ export function Footer({
       </View>
       {altText && (
         <View style={[styles.altWrap]}>
-          <ScrollView
-            scrollEnabled={isAltExpanded}
-            onMomentumScrollBegin={() => {
-              isMomentumScrolling.current = true
-            }}
-            onMomentumScrollEnd={() => {
-              isMomentumScrolling.current = false
-            }}
-            contentContainerStyle={[a.px_2xl, a.py_sm]}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={l`Expand alt text`}
-              accessibilityHint=""
-              onPress={() => {
-                if (isMomentumScrolling.current) return
-                LayoutAnimation.configureNext({
-                  duration: 450,
-                  update: {type: 'spring', springDamping: 1},
-                })
-                onToggleAltExpanded()
-              }}>
-              <Text
-                emoji
-                selectable
-                style={[a.text_sm, {color: t.palette.white}]}
-                numberOfLines={isAltExpanded ? undefined : 3}>
-                {altText}
-              </Text>
-            </Pressable>
-          </ScrollView>
+          <BlurView
+            intensity={16}
+            tint="dark"
+            style={[
+              // Tint kept over the blur so dense, text-heavy images stay
+              // readable. On Android the blur falls back to a flat overlay, so
+              // bump the opacity to keep the contrast the real blur provides
+              // elsewhere.
+              platform({
+                ios: {backgroundColor: 'rgba(0, 0, 0, 0.5)'},
+                android: {backgroundColor: 'rgba(0, 0, 0, 0.85)'},
+              }),
+            ]}>
+            <ScrollView
+              scrollEnabled={isAltExpanded}
+              onMomentumScrollBegin={() => {
+                isMomentumScrolling.current = true
+              }}
+              onMomentumScrollEnd={() => {
+                isMomentumScrolling.current = false
+              }}
+              contentContainerStyle={[a.px_2xl, a.py_sm]}>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={l`Expand alt text`}
+                accessibilityHint=""
+                onPress={() => {
+                  if (isMomentumScrolling.current) return
+                  LayoutAnimation.configureNext({
+                    duration: 450,
+                    update: {type: 'spring', springDamping: 1},
+                  })
+                  onToggleAltExpanded()
+                }}>
+                <Text
+                  emoji
+                  selectable
+                  style={[a.text_sm, {color: t.palette.white}]}
+                  numberOfLines={isAltExpanded ? undefined : 3}>
+                  {altText}
+                </Text>
+              </Pressable>
+            </ScrollView>
+          </BlurView>
         </View>
       )}
     </View>
@@ -100,7 +115,6 @@ export function Footer({
 
 const styles = StyleSheet.create({
   altWrap: {
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
     borderRadius: 12,
     overflow: 'hidden',
   },
