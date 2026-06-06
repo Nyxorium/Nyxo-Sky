@@ -9,8 +9,6 @@ import {
 import {plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react/macro'
 
-import {CountWheel} from '#/lib/custom-animations/CountWheel'
-import {AnimatedLikeIcon} from '#/lib/custom-animations/LikeIcon'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {type Shadow} from '#/state/cache/types'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
@@ -24,13 +22,14 @@ import {
   ProgressGuideAction,
   useProgressGuideControls,
 } from '#/state/shell/progress-guide'
-import {atoms as a, useBreakpoints, useTheme} from '#/alf'
+import {atoms as a, useBreakpoints} from '#/alf'
 import {Reply as Bubble} from '#/components/icons/Reply'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
 import * as Skele from '#/components/Skeleton'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {BookmarkButton} from './BookmarkButton'
+import {LikeButton} from './LikeButton'
 import {
   PostControlButton,
   PostControlButtonIcon,
@@ -74,7 +73,6 @@ let PostControls = ({
   forceGoogleTranslate?: boolean
 }): React.ReactNode => {
   const ax = useAnalytics()
-  const t = useTheme()
   const {t: l} = useLingui()
   const {openComposer} = useOpenComposer()
   const {feedDescriptor} = useFeedFeedbackContext()
@@ -282,47 +280,13 @@ let PostControls = ({
           />
         </View>
         <View style={[a.flex_1, a.align_start]}>
-          <PostControlButton
-            testID="likeBtn"
+          <LikeButton
+            post={post}
             big={big}
-            active={Boolean(post.viewer?.like)}
-            activeColor={t.palette.pink}
-            onPress={() => requireAuth(() => onPressToggleLike())}
-            label={
-              post.viewer?.like
-                ? l({
-                    message: `Unlike (${plural(post.likeCount || 0, {
-                      one: '# like',
-                      other: '# likes',
-                    })})`,
-                    comment:
-                      'Accessibility label for the like button when the post has been liked, verb followed by number of likes and noun',
-                  })
-                : l({
-                    message: `Like (${plural(post.likeCount || 0, {
-                      one: '# like',
-                      other: '# likes',
-                    })})`,
-                    comment:
-                      'Accessibility label for the like button when the post has not been liked, verb form followed by number of likes and noun form',
-                  })
-            }>
-            <AnimatedLikeIcon
-              isLiked={Boolean(post.viewer?.like)}
-              big={big}
-              hasBeenToggled={hasLikeIconBeenToggled}
-            />
-            <CountWheel
-              count={!hideLikes ? (post.likeCount ?? 0) : 0}
-              isToggled={Boolean(post.viewer?.like)}
-              hasBeenToggled={hasLikeIconBeenToggled}
-              renderCount={({count}) => (
-                <PostControlButtonText testID="likeCount">
-                  {formatPostStatCount(count)}
-                </PostControlButtonText>
-              )}
-            />
-          </PostControlButton>
+            hideLikes={hideLikes}
+            hasBeenToggled={hasLikeIconBeenToggled} // still needed for the wheel
+            onToggleLike={onPressToggleLike}
+          />
         </View>
         {/* Spacer! */}
         <View />

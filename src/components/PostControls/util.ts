@@ -1,4 +1,9 @@
 import {useCallback} from 'react'
+import {
+  AppBskyEmbedRecord,
+  AppBskyEmbedRecordWithMedia,
+  type AppBskyFeedDefs,
+} from '@atproto/api'
 import {useLingui} from '@lingui/react'
 
 /**
@@ -20,4 +25,26 @@ export function useFormatPostStatCount() {
     },
     [i18n],
   )
+}
+
+export function getQuotedPost(
+  embed: AppBskyFeedDefs.PostView['embed'],
+): {uri: string; cid: string} | null {
+  // embed.record (plain quote)
+  if (AppBskyEmbedRecord.isView(embed)) {
+    if (AppBskyEmbedRecord.isViewRecord(embed.record)) {
+      return {uri: embed.record.uri, cid: embed.record.cid}
+    }
+  }
+  // embed.recordWithMedia (quote + image/video)
+  if (AppBskyEmbedRecordWithMedia.isView(embed)) {
+    const inner = embed.record
+    if (
+      AppBskyEmbedRecord.isView(inner) &&
+      AppBskyEmbedRecord.isViewRecord(inner.record)
+    ) {
+      return {uri: inner.record.uri, cid: inner.record.cid}
+    }
+  }
+  return null
 }
