@@ -10,7 +10,12 @@ import {
 } from '#/alf/fonts'
 import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import {themes as defaultThemes} from '#/alf/themes'
-import {darken, lighten, rgbToHex} from '#/alf/util/colorGeneration'
+import {
+  contrastRatio,
+  darken,
+  lighten,
+  rgbToHex,
+} from '#/alf/util/colorGeneration'
 import {type Device} from '#/storage'
 
 export {type TextStyleProp, type Theme, type ViewStyleProp} from '@bsky.app/alf'
@@ -27,6 +32,7 @@ export const utils = {
   rgbToHex,
   lighten,
   darken,
+  contrastRatio,
 }
 
 export type Alf = {
