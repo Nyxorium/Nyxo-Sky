@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useMemo, useState} from 'react'
-import {View} from 'react-native'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {type TextInput, View} from 'react-native'
 import {type AppBskyGraphDefs, RichText as RichTextAPI} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -358,6 +358,41 @@ function DialogInner({
     [setDescriptionRt],
   )
 
+  const descriptionRef = useRef<TextInput>(null)
+  const descriptionScrollContainer = useRef<Element | null>(null)
+
+  const resizeDescription = useCallback(() => {
+    if (IS_WEB && descriptionRef.current) {
+      const el = ((
+        descriptionRef.current as unknown as {
+          getNativeNode?: () => HTMLTextAreaElement
+        }
+      ).getNativeNode?.() ?? descriptionRef.current) as HTMLTextAreaElement
+
+      if (!descriptionScrollContainer.current) {
+        let node: Element | null = el.parentElement
+        while (node) {
+          if (getComputedStyle(node).overflowY === 'auto') {
+            descriptionScrollContainer.current = node
+            break
+          }
+          node = node.parentElement
+        }
+      }
+
+      const scrollTop = descriptionScrollContainer.current?.scrollTop ?? 0
+      el.style.height = 'auto'
+      el.style.height = `${Math.min(280, Math.max(80, el.scrollHeight))}px`
+      if (descriptionScrollContainer.current) {
+        descriptionScrollContainer.current.scrollTop = scrollTop
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    resizeDescription()
+  }, [resizeDescription])
+
   const title = list
     ? isCurateList
       ? _(msg`Edit user list`)
@@ -447,13 +482,13 @@ function DialogInner({
           </TextField.LabelText>
           <TextField.Root isInvalid={descriptionTooLong}>
             <Dialog.Input
+              inputRef={descriptionRef}
               defaultValue={descriptionRt.text}
-              onChangeText={onChangeDescription}
+              onChangeText={text => {
+                onChangeDescription(text)
+                resizeDescription()
+              }}
               multiline
-              style={[
-                {minHeight: 80, maxHeight: 280},
-                IS_WEB && ({fieldSizing: 'content'} as object),
-              ]}
               label={_(msg`Description`)}
               placeholder={descriptionPlaceholder}
               testID="editListDescriptionInput"
