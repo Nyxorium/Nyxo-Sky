@@ -4,9 +4,9 @@ import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
-import {useRawGateValues} from '#/state/preferences/gateOverrides'
 import {
   useGateOverrides,
+  useRawGateValues,
   useSetGateOverride,
 } from '#/state/preferences/gateOverrides'
 import {atoms as a, useTheme} from '#/alf'
@@ -14,7 +14,7 @@ import * as SegmentedControl from '#/components/forms/SegmentedControl'
 import * as Layout from '#/components/Layout'
 import {Text} from '#/components/Typography'
 import {NYXO_GATE_REGISTRY} from '#/analytics/features/nyxo-registry'
-import {Features} from '#/analytics/features/types'
+import {type Features} from '#/analytics/features/types'
 import * as SettingsList from './components/SettingsList'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>

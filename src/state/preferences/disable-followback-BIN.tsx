@@ -26,7 +26,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   const setStateWrapped = useCallback(
     (hasDisableFollowbackBIN: persisted.Schema['disableFollowbackBIN']) => {
       setState(hasDisableFollowbackBIN)
-      persisted.write('disableFollowbackBIN', hasDisableFollowbackBIN)
+      void persisted.write('disableFollowbackBIN', hasDisableFollowbackBIN)
     },
     [setState],
   )

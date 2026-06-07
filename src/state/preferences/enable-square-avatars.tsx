@@ -26,7 +26,7 @@ export function Provider({children}: {children: React.ReactNode}) {
   const setStateWrapped = useCallback(
     (enableSquareAvatars: persisted.Schema['enableSquareAvatars']) => {
       setState(Boolean(enableSquareAvatars))
-      persisted.write('enableSquareAvatars', enableSquareAvatars)
+      void persisted.write('enableSquareAvatars', enableSquareAvatars)
     },
     [setState],
   )

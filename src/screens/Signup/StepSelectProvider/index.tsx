@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {Pressable, View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -51,16 +51,15 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
   const {_} = useLingui()
   const t = useTheme()
   const {state, dispatch} = useSignupContext()
-  const [serviceUrl, setServiceUrl] = useState('https://bsky.social')
 
-  const [bskyWebDisabled, setBskyWebDisabled] = useState(false)
+  const bskyWebDisabled =
+    IS_WEB && !!state.serviceDescription?.phoneVerificationRequired
 
-  useEffect(() => {
-    if (IS_WEB && state.serviceDescription?.phoneVerificationRequired) {
-      setBskyWebDisabled(true)
-      setServiceUrl('https://selfhosted.social')
-    }
-  }, [state.serviceDescription])
+  const [serviceUrl, setServiceUrl] = useState(
+    IS_WEB && state.serviceDescription?.phoneVerificationRequired
+      ? 'https://selfhosted.social'
+      : 'https://bsky.social',
+  )
 
   const onNext = () => {
     let url = serviceUrl.trim().toLowerCase()

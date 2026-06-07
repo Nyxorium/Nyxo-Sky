@@ -26,7 +26,7 @@ export function Provider({children}: {children: React.ReactNode}) {
   const setStateWrapped = useCallback(
     (enableShareViaDID: persisted.Schema['enableShareViaDID']) => {
       setState(Boolean(enableShareViaDID))
-      persisted.write('enableShareViaDID', enableShareViaDID)
+      void persisted.write('enableShareViaDID', enableShareViaDID)
     },
     [setState],
   )

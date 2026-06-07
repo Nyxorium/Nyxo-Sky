@@ -28,7 +28,10 @@ export function Provider({children}: {children: React.ReactNode}) {
       disableProfileDescriptions: persisted.Schema['disableProfileDescriptions'],
     ) => {
       setState(Boolean(disableProfileDescriptions))
-      persisted.write('disableProfileDescriptions', disableProfileDescriptions)
+      void persisted.write(
+        'disableProfileDescriptions',
+        disableProfileDescriptions,
+      )
     },
     [setState],
   )

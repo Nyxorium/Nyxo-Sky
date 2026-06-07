@@ -26,7 +26,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   const setStateWrapped = useCallback(
     (noAppLabelers: persisted.Schema['noAppLabelers']) => {
       setState(noAppLabelers)
-      persisted.write('noAppLabelers', noAppLabelers)
+      void persisted.write('noAppLabelers', noAppLabelers)
     },
     [setState],
   )

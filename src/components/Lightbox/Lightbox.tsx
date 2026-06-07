@@ -23,7 +23,7 @@ export function Lightbox() {
       onPressSave={uri => void saveImageToAlbum(uri)}
       onPressShare={uri => void shareImageModal({uri})}
       onLongPressSave={() => {
-        activeLightbox?.images.forEach(img => saveImageToAlbum(img.uri))
+        activeLightbox?.images.forEach(img => void saveImageToAlbum(img.uri))
       }}
     />
   )

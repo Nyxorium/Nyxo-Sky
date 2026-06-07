@@ -36,7 +36,7 @@ export function Provider({children}: {children: React.ReactNode}) {
     setState(prev => {
       const deduped = prev.filter(t => t.toLowerCase() !== tag.toLowerCase())
       const next = [tag, ...deduped].slice(0, MAX_RECENT_STORED)
-      persisted.write('recentTags', next)
+      void persisted.write('recentTags', next)
       return next
     })
   }, [])
@@ -44,7 +44,7 @@ export function Provider({children}: {children: React.ReactNode}) {
   const removeRecentTag = useCallback((tag: string) => {
     setState(prev => {
       const next = prev.filter(t => t.toLowerCase() !== tag.toLowerCase())
-      persisted.write('recentTags', next)
+      void persisted.write('recentTags', next)
       return next
     })
   }, [])

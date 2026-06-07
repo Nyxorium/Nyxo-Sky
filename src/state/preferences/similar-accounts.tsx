@@ -26,7 +26,7 @@ export function Provider({children}: {children: React.ReactNode}) {
   const setStateWrapped = useCallback(
     (similarAccountsDisabled: persisted.Schema['disableSimilarAccounts']) => {
       setState(Boolean(similarAccountsDisabled))
-      persisted.write('disableSimilarAccounts', similarAccountsDisabled)
+      void persisted.write('disableSimilarAccounts', similarAccountsDisabled)
     },
     [setState],
   )
