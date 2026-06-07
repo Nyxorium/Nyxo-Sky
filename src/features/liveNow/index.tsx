@@ -298,7 +298,7 @@ export function useUpsertLiveStatusMutation(
         image: linkMeta?.image,
       }
     },
-    onError: (e: unknown) => {
+    onError: e => {
       ax.logger.error(`Failed to upsert live status`, {
         url: linkMeta?.url,
         image: linkMeta?.image,
@@ -361,7 +361,7 @@ export function useRemoveLiveStatusMutation() {
         rkey: 'self',
       })
     },
-    onError: (e: unknown) => {
+    onError: e => {
       ax.logger.error(`Failed to remove live status`, {
         safeMessage: e,
       })
