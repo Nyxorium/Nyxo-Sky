@@ -28,7 +28,10 @@ export function Provider({children}: {children: React.ReactNode}) {
       composerPromptDisabled: persisted.Schema['disableComposerPromptInFeeds'],
     ) => {
       setState(Boolean(composerPromptDisabled))
-      persisted.write('disableComposerPromptInFeeds', composerPromptDisabled)
+      void persisted.write(
+        'disableComposerPromptInFeeds',
+        composerPromptDisabled,
+      )
     },
     [setState],
   )

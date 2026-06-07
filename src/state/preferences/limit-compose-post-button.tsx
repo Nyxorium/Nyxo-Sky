@@ -26,7 +26,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   const setStateWrapped = useCallback(
     (hasLimitComposePostButton: persisted.Schema['limitComposePostButton']) => {
       setState(hasLimitComposePostButton)
-      persisted.write('limitComposePostButton', hasLimitComposePostButton)
+      void persisted.write('limitComposePostButton', hasLimitComposePostButton)
     },
     [setState],
   )

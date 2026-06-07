@@ -42,6 +42,7 @@ export function CircleChromeButton({
   testID,
   ...rest
 }: Props) {
+  // eslint-disable-next-line react-hooks/refs
   const scale = useRef(new Animated.Value(1)).current
 
   const handlePressIn = () => {

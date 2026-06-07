@@ -26,7 +26,7 @@ export function Provider({children}: {children: React.ReactNode}) {
   const setStateWrapped = useCallback(
     (disableShareViaDms: persisted.Schema['disableShareViaDms']) => {
       setState(Boolean(disableShareViaDms))
-      persisted.write('disableShareViaDms', disableShareViaDms)
+      void persisted.write('disableShareViaDms', disableShareViaDms)
     },
     [setState],
   )

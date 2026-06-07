@@ -62,7 +62,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     (tab: keyof ProfileTabVisibilityPrefs, value: boolean) => {
       setOtherTabs(prev => {
         const next = {...prev, [tab]: value}
-        persisted.write('profileTabVisibility', next)
+        void persisted.write('profileTabVisibility', next)
         return next
       })
     },
@@ -73,7 +73,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     (tab: keyof ProfileTabVisibilitySelfPrefs, value: boolean) => {
       setOwnTabs(prev => {
         const next = {...prev, [tab]: value}
-        persisted.write('profileTabVisibility_self', next)
+        void persisted.write('profileTabVisibility_self', next)
         return next
       })
     },

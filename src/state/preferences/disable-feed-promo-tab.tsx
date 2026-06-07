@@ -26,7 +26,7 @@ export function Provider({children}: {children: React.ReactNode}) {
   const setStateWrapped = useCallback(
     (disableFeedPromoTab: persisted.Schema['disableFeedPromoTab']) => {
       setState(Boolean(disableFeedPromoTab))
-      persisted.write('disableFeedPromoTab', disableFeedPromoTab)
+      void persisted.write('disableFeedPromoTab', disableFeedPromoTab)
     },
     [setState],
   )

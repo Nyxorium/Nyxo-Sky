@@ -43,15 +43,15 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     () => ({
       setColorMode: (_colorMode: persisted.Schema['colorMode']) => {
         setColorMode(_colorMode)
-        persisted.write('colorMode', _colorMode)
+        void persisted.write('colorMode', _colorMode)
       },
       setDarkTheme: (_darkTheme: persisted.Schema['darkTheme']) => {
         setDarkTheme(_darkTheme)
-        persisted.write('darkTheme', _darkTheme)
+        void persisted.write('darkTheme', _darkTheme)
       },
       setThemePreset: (_themePreset: ThemePresetName) => {
         setThemePreset(_themePreset)
-        persisted.write('themePreset', _themePreset)
+        void persisted.write('themePreset', _themePreset)
       },
     }),
     [],

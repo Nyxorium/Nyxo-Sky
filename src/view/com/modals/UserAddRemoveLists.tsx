@@ -236,7 +236,7 @@ function ListItem({
           <Button
             testID={`user-${handle}-addBtn`}
             label={membership === false ? _(msg`Add`) : _(msg`Remove`)}
-            onPress={onToggleMembership}
+            onPress={() => void onToggleMembership()}
             size="small"
             color={membership === false ? 'primary' : 'secondary'}>
             <ButtonText>

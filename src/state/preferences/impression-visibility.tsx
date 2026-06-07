@@ -47,7 +47,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     (impression: ImpressionVisibilityKey, value: ImpressionVisibility) => {
       setState(prev => {
         const next = {...prev, [impression]: value}
-        persisted.write('impressionVisibility', next)
+        void persisted.write('impressionVisibility', next)
         return next
       })
     },

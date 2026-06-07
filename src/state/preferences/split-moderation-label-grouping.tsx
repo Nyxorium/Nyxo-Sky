@@ -28,7 +28,7 @@ export function Provider({children}: {children: React.ReactNode}) {
       splitModerationLabelGrouping: persisted.Schema['splitModerationLabelGrouping'],
     ) => {
       setState(Boolean(splitModerationLabelGrouping))
-      persisted.write(
+      void persisted.write(
         'splitModerationLabelGrouping',
         splitModerationLabelGrouping,
       )

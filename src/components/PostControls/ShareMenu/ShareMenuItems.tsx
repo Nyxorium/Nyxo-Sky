@@ -155,7 +155,7 @@ let ShareMenuItems = ({
             testID="postDropdownOpenInBskyBtn"
             label={_(msg`Open in Bluesky`)}
             onPress={() => {
-              Linking.openURL(bskyUrl)
+              void Linking.openURL(bskyUrl)
               onShareProp()
             }}>
             <Menu.ItemText>
@@ -167,7 +167,7 @@ let ShareMenuItems = ({
           <Menu.Item
             testID="postDropdownShareBtn"
             label={_(msg`Copy link to post`)}
-            onPress={onCopyLink}>
+            onPress={() => void onCopyLink()}>
             <Menu.ItemText>
               <Trans>Copy link to post</Trans>
             </Menu.ItemText>

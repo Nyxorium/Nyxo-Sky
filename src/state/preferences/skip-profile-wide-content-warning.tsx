@@ -28,7 +28,7 @@ export function Provider({children}: {children: React.ReactNode}) {
       skipProfileWideContentWarning: persisted.Schema['skipProfileWideContentWarning'],
     ) => {
       setState(Boolean(skipProfileWideContentWarning))
-      persisted.write(
+      void persisted.write(
         'skipProfileWideContentWarning',
         skipProfileWideContentWarning,
       )

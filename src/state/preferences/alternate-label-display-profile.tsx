@@ -26,7 +26,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   const setStateWrapped = useCallback(
     (hasAltLabelDisplayProfile: persisted.Schema['altLabelDisplayProfile']) => {
       setState(hasAltLabelDisplayProfile)
-      persisted.write('altLabelDisplayProfile', hasAltLabelDisplayProfile)
+      void persisted.write('altLabelDisplayProfile', hasAltLabelDisplayProfile)
     },
     [setState],
   )

@@ -9,7 +9,7 @@ import {
 import * as persisted from '#/state/persisted'
 import {features} from '#/analytics/features'
 import {NYXO_GATE_REGISTRY} from '#/analytics/features/nyxo-registry'
-import {Features} from '#/analytics/features/types'
+import {type Features} from '#/analytics/features/types'
 
 type Overrides = Record<string, boolean>
 
@@ -36,7 +36,7 @@ function applyToGrowthBook(overrides: Overrides) {
 }
 
 export function Provider({children}: React.PropsWithChildren<{}>) {
-  const [rawValues] = useState<Record<string, boolean>>(() => {
+  const [rawValues, _setRawValues] = useState<Record<string, boolean>>(() => {
     const raw: Record<string, boolean> = {}
     for (const key of Object.keys(NYXO_GATE_REGISTRY)) {
       raw[key] = features.isOn(key as Features)
@@ -59,7 +59,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
         } else {
           next[gate] = value
         }
-        persisted.write('nyxoGateOverrides', next)
+        void persisted.write('nyxoGateOverrides', next)
         applyToGrowthBook(next)
         return next
       })

@@ -43,13 +43,13 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
         _videoAutoplayState: persisted.Schema['disableVideoAutoplay'],
       ) => {
         setVideoAutoplayState(_videoAutoplayState)
-        persisted.write('disableVideoAutoplay', _videoAutoplayState)
+        void persisted.write('disableVideoAutoplay', _videoAutoplayState)
       },
       setGifAutoplayDisabled: (
         _gifAutoplayState: persisted.Schema['disableGifAutoplay'],
       ) => {
         setGifAutoplayState(_gifAutoplayState)
-        persisted.write('disableGifAutoplay', _gifAutoplayState)
+        void persisted.write('disableGifAutoplay', _gifAutoplayState)
       },
     }),
     [],
