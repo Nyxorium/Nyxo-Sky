@@ -69,7 +69,8 @@ export function SubscribeProfileButton({
 
   const Icon = isSubscribed ? BellRingingIcon : BellPlusIcon
 
-  const tooltipVisible = showTooltip && !disableHint
+  const tooltipVisible = showTooltip && !disableHint && false
+  // intentionally disabled tooltip - Sunstar
 
   return (
     <>
