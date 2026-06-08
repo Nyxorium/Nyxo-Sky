@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useRef, useState} from 'react'
-import {type TextInput, View} from 'react-native'
+import {useCallback, useEffect, useState} from 'react'
+import {View} from 'react-native'
 import {type AppBskyActorDefs} from '@atproto/api'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -30,7 +30,6 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useSimpleVerificationState} from '#/components/verification'
-import {IS_WEB} from '#/env'
 
 export function EditProfileDialog({
   profile,
@@ -282,41 +281,6 @@ function DialogInner({
     ],
   )
 
-  const descriptionRef = useRef<TextInput>(null)
-  const descriptionScrollContainer = useRef<Element | null>(null)
-
-  const resizeDescription = useCallback(() => {
-    if (IS_WEB && descriptionRef.current) {
-      const el = ((
-        descriptionRef.current as unknown as {
-          getNativeNode?: () => HTMLTextAreaElement
-        }
-      ).getNativeNode?.() ?? descriptionRef.current) as HTMLTextAreaElement
-
-      if (!descriptionScrollContainer.current) {
-        let node: Element | null = el.parentElement
-        while (node) {
-          if (getComputedStyle(node).overflowY === 'auto') {
-            descriptionScrollContainer.current = node
-            break
-          }
-          node = node.parentElement
-        }
-      }
-
-      const scrollTop = descriptionScrollContainer.current?.scrollTop ?? 0
-      el.style.height = 'auto'
-      el.style.height = `${Math.min(280, Math.max(80, el.scrollHeight))}px`
-      if (descriptionScrollContainer.current) {
-        descriptionScrollContainer.current.scrollTop = scrollTop
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    resizeDescription()
-  }, [resizeDescription])
-
   return (
     <Dialog.ScrollableInner
       label={_(msg`Edit profile`)}
@@ -450,12 +414,8 @@ function DialogInner({
           </TextField.LabelText>
           <TextField.Root isInvalid={descriptionTooLong}>
             <Dialog.Input
-              inputRef={descriptionRef}
               defaultValue={description}
-              onChangeText={text => {
-                setDescription(text)
-                resizeDescription()
-              }}
+              onChangeText={setDescription}
               multiline
               label={_(msg`Description`)}
               placeholder={_(msg`Tell us a bit about yourself`)}
