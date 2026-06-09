@@ -98,7 +98,9 @@ let ProfileMenu = ({
     isSelf &&
     canGoLive &&
     statusNudge.status === 'ready' &&
-    !statusNudge.nux?.completed
+    !statusNudge.nux?.completed &&
+    false
+  // intentionally disabled nudge - Sunstar
   const {mutate: saveNux} = useSaveNux()
 
   const labels = profile.labels ?? []
