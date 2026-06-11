@@ -17,6 +17,7 @@ import {Provider as InAppBrowserProvider} from './in-app-browser'
 import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
+import {Provider as LikeOnRepost} from './like-on-repost'
 import {Provider as LimitComposePostButton} from './limit-compose-post-button'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
@@ -82,9 +83,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                       <SkipProfileWideContentWarning>
                                                         <SplitModerationLabelGrouping>
                                                           <RecentTagsProvider>
-                                                            <KawaiiProvider>
-                                                              {children}
-                                                            </KawaiiProvider>
+                                                            <LikeOnRepost>
+                                                              <KawaiiProvider>
+                                                                {children}
+                                                              </KawaiiProvider>
+                                                            </LikeOnRepost>
                                                           </RecentTagsProvider>
                                                         </SplitModerationLabelGrouping>
                                                       </SkipProfileWideContentWarning>
