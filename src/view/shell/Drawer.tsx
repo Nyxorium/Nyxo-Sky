@@ -1,5 +1,11 @@
 import {type ComponentProps, type JSX, memo, useCallback} from 'react'
-import {Linking, ScrollView, TouchableOpacity, View} from 'react-native'
+import {
+  Linking,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {msg, plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -31,7 +37,9 @@ import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {NavSignupCard} from '#/view/shell/NavSignupCard'
 import {atoms as a, tokens, useTheme, web} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
+import {useDialogControl} from '#/components/Dialog'
 import {Divider} from '#/components/Divider'
+import {ArrowShareRight_Stroke2_Corner2_Rounded as ArrowShareRight} from '#/components/icons/ArrowShareRight'
 import {
   Bell_Filled_Corner0_Rounded as BellFilled,
   Bell_Stroke2_Corner0_Rounded as Bell,
@@ -63,7 +71,8 @@ import {InlineLinkText} from '#/components/Link'
 import {ProfileBadges} from '#/components/ProfileBadges'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
-import {IS_WEB} from '#/env'
+import {IS_NATIVE, IS_WEB} from '#/env'
+import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
 
 const iconWidth = 26
@@ -71,9 +80,11 @@ const iconWidth = 26
 let DrawerProfileCard = ({
   account,
   onPressProfile,
+  onPressShare,
 }: {
   account: SessionAccount
   onPressProfile: () => void
+  onPressShare?: () => void
 }): React.ReactNode => {
   const {_, i18n} = useLingui()
   const t = useTheme()
@@ -102,11 +113,45 @@ let DrawerProfileCard = ({
         <View style={[a.flex_row, a.align_center, a.gap_xs, a.flex_1]}>
           <Text
             emoji
-            style={[a.font_bold, a.text_xl, a.mt_2xs, a.leading_tight]}
+            style={[
+              a.font_bold,
+              a.text_xl,
+              a.mt_2xs,
+              a.leading_tight,
+              a.flex_shrink,
+            ]}
             numberOfLines={1}>
             {profile?.displayName || account.handle}
           </Text>
           {profile && <ProfileBadges profile={profile} size="lg" />}
+          {onPressShare && (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={_(msg`Invite friends`)}
+              accessibilityHint={_(
+                msg`Opens the invite friends sheet to share your profile`,
+              )}
+              onPress={onPressShare}
+              hitSlop={8}
+              style={({pressed}) => [
+                a.ml_auto,
+                {
+                  width: 32,
+                  height: 32,
+                  borderRadius: 16,
+                  backgroundColor: t.palette.contrast_50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  opacity: pressed ? 0.7 : 1,
+                },
+              ]}>
+              <ArrowShareRight
+                width={16}
+                height={16}
+                fill={t.palette.primary_500}
+              />
+            </Pressable>
+          )}
         </View>
         <Text
           emoji
@@ -168,6 +213,7 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
     isAtMessages,
   } = useNavigationTabState()
   const {hasSession, currentAccount} = useSession()
+  const inviteFriendsControl = useDialogControl()
 
   // events
   // =
@@ -265,7 +311,7 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
 
   const onPressFeedback = useCallback(() => {
     Linking.openURL(FEEDBACK_FORM_URL)
-  }, [currentAccount])
+  }, [])
 
   const onPressHelp = useCallback(() => {
     Linking.openURL(HELP_DESK_URL)
@@ -293,6 +339,15 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
             <DrawerProfileCard
               account={currentAccount}
               onPressProfile={onPressDrawerHeaderProfile}
+              onPressShare={
+                IS_NATIVE
+                  ? () => {
+                      ax.metric('invite:dialog:open', {logContext: 'Drawer'})
+                      setDrawerOpen(false)
+                      inviteFriendsControl.open()
+                    }
+                  : undefined
+              }
             />
           ) : (
             <View style={[a.pr_xl]}>
@@ -342,6 +397,7 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
         onPressFeedback={onPressFeedback}
         onPressHelp={onPressHelp}
       />
+      <InviteFriendsDialog control={inviteFriendsControl} />
     </View>
   )
 }
