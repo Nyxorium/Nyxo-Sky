@@ -37,6 +37,10 @@ import {
   useSetEnableSquareAvatars,
 } from '#/state/preferences/enable-square-avatars'
 import {
+  useLikeOnRepost,
+  useSetLikeOnRepost,
+} from '#/state/preferences/like-on-repost'
+import {
   useLimitComposePostButton,
   useSetLimitComposePostButton,
 } from '#/state/preferences/limit-compose-post-button'
@@ -103,6 +107,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
   const splitModerationlabelGrouping = useSplitModerationLabelGrouping()
   const setSplitModerationlabelGrouping = useSetSplitModerationLabelGrouping()
+  const likeOnRepost = useLikeOnRepost()
+  const setLikeOnRepost = useSetLikeOnRepost()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -248,6 +254,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={Filter} />
               <SettingsList.ItemText>
                 <Trans>Decouple Moderation Label Grouping</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="like_on_repost"
+            label={_(msg`Like on repost`)}
+            value={likeOnRepost}
+            onChange={value => setLikeOnRepost(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={Filter} />
+              <SettingsList.ItemText>
+                <Trans>Like on Repost</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>

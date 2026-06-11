@@ -15,6 +15,7 @@ import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {type Shadow} from '#/state/cache/types'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
 import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
+import {useLikeOnRepost} from '#/state/preferences/like-on-repost'
 import {
   usePostLikeMutationQueue,
   usePostRepostMutationQueue,
@@ -111,6 +112,8 @@ let PostControls = ({
   const hideQuotes = useIsImpressionHidden('quotes', isMe)
   const hideBookmarks = useIsImpressionHidden('bookmarks', isMe)
 
+  const likeOnRepost = useLikeOnRepost()
+
   const [hasLikeIconBeenToggled, setHasLikeIconBeenToggled] = useState(false)
 
   const onPressToggleLike = async () => {
@@ -160,6 +163,14 @@ let PostControls = ({
           reqId,
         })
         await queueRepost()
+
+        if (likeOnRepost && !post.viewer?.like) {
+          try {
+            await queueLike()
+          } catch {
+            Toast.show(l`Failed to auto-like post`, {type: 'warning'})
+          }
+        }
       } else {
         await queueUnrepost()
       }
