@@ -1,6 +1,4 @@
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
@@ -22,7 +20,7 @@ const FEED_IMPRESSIONS: ImpressionConfig[] = [
 ]
 
 export function ImpressionVisibilitySettingsScreen({}: Props) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
 
@@ -79,7 +77,7 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
         <SettingsList.Container>
           <SettingsList.LinkItem
             to="/settings/impression-visibility/posts"
-            label={_(msg`Post impressions`)}>
+            label={l`Post impressions`}>
             <SettingsList.ItemIcon icon={BubbleInfoIcon} />
             <SettingsList.ItemText>
               <Trans>Post Impressions</Trans>
@@ -88,7 +86,7 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
 
           <SettingsList.LinkItem
             to="/settings/impression-visibility/profiles"
-            label={_(msg`Profile statistics`)}>
+            label={l`Profile statistics`}>
             <SettingsList.ItemIcon icon={PersonIcon} />
             <SettingsList.ItemText>
               <Trans>Profile Statistics</Trans>

@@ -1,7 +1,5 @@
 import {View} from 'react-native'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
@@ -43,7 +41,7 @@ function ImpressionSection({
   getValue: (key: ImpressionVisibilityKey) => boolean
   onToggle: (key: ImpressionVisibilityKey, val: boolean) => void
 }) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
 
   return (
@@ -60,7 +58,7 @@ function ImpressionSection({
         {IMPRESSIONS.map(impression => (
           <Toggle.Item
             key={impression.key}
-            label={_(msg`Show ${impression.label}`)}
+            label={l`Show ${impression.label}`}
             name={`${impression.key}`}
             value={!getValue(impression.key)}
             onChange={val => onToggle(impression.key, !val)}

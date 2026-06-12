@@ -1,7 +1,5 @@
 import {View} from 'react-native'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {type ImpressionVisibilityKey} from '#/state/preferences/impression-visibility'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -32,7 +30,7 @@ export function ImpressionSection({
   onToggleOwn: (key: ImpressionVisibilityKey, val: boolean) => void
   onToggleOthers: (key: ImpressionVisibilityKey, val: boolean) => void
 }) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
 
   return (
@@ -49,7 +47,7 @@ export function ImpressionSection({
         {impressions.map(impression => (
           <View key={impression.key}>
             <Toggle.Item
-              label={_(msg`Your feeds`)}
+              label={l`Your feeds`}
               name={`${impression.key}_own`}
               value={!getOwnValue(impression.key)}
               onChange={val => onToggleOwn(impression.key, !val)}
@@ -67,7 +65,7 @@ export function ImpressionSection({
               <Toggle.Platform />
             </Toggle.Item>
             <Toggle.Item
-              label={_(msg`Others' feeds`)}
+              label={l`Others' feeds`}
               name={`${impression.key}_others`}
               value={!getOthersValue(impression.key)}
               onChange={val => onToggleOthers(impression.key, !val)}
