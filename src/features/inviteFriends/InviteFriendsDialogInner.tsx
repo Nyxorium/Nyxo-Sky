@@ -137,7 +137,7 @@ export function InviteFriendsDialogInner({
 
   return (
     <Dialog.ScrollableInner
-      label={l`Invite friends`}
+      label={l`Share profile`}
       contentContainerStyle={[a.pt_0, a.px_0]}
       header={
         <Dialog.Header
@@ -152,7 +152,7 @@ export function InviteFriendsDialogInner({
               <ButtonText style={[a.text_md]}>{l`Done`}</ButtonText>
             </Button>
           )}>
-          <Dialog.HeaderText>{l`Invite Friends`}</Dialog.HeaderText>
+          <Dialog.HeaderText>{l`Share Profile`}</Dialog.HeaderText>
         </Dialog.Header>
       }>
       <View style={[a.align_center, a.pt_xl, a.px_xl]}>
