@@ -1,7 +1,5 @@
 import {View} from 'react-native'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
@@ -20,7 +18,7 @@ import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWi
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function ProfileTabVisibilitySettingsScreen({}: Props) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
 
   const {ownTabs, otherTabs} = useProfileTabVisibilityPrefs()
@@ -76,7 +74,7 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
               ).map(([key, label, name]) => (
                 <Toggle.Item
                   key={key}
-                  label={_(msg`${label}`)}
+                  label={l`${label}`}
                   name={name}
                   value={!ownTabs[key]}
                   onChange={value => setOwnTabs(key, !value)}
@@ -122,7 +120,7 @@ export function ProfileTabVisibilitySettingsScreen({}: Props) {
               ).map(([key, label, name]) => (
                 <Toggle.Item
                   key={key}
-                  label={_(msg`${label}`)}
+                  label={l`${label}`}
                   name={name}
                   value={!otherTabs[key]}
                   onChange={value => setOtherTabs(key, !value)}

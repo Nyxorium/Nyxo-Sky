@@ -1,6 +1,4 @@
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
@@ -20,7 +18,7 @@ import * as SettingsList from './components/SettingsList'
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function FeatureGatesSettingsScreen({}: Props) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
   const overrides = useGateOverrides()
   const setOverride = useSetGateOverride()
@@ -94,21 +92,19 @@ export function FeatureGatesSettingsScreen({}: Props) {
                           : undefined,
                     )
                   }}>
-                  <SegmentedControl.Item label={_(msg`Off`)} value="off">
+                  <SegmentedControl.Item label={l`Off`} value="off">
                     <SegmentedControl.ItemText>
                       <Trans>Off</Trans>
                     </SegmentedControl.ItemText>
                   </SegmentedControl.Item>
                   <SegmentedControl.Item
-                    label={_(msg`Auto (${liveValue ? 'on' : 'off'})`)}
+                    label={l`Auto (${liveValue ? 'on' : 'off'})`}
                     value="auto">
                     <SegmentedControl.ItemText>
-                      <Trans>
-                        Auto ({liveValue ? _(msg`on`) : _(msg`off`)})
-                      </Trans>
+                      <Trans>Auto ({liveValue ? l`on` : l`off`})</Trans>
                     </SegmentedControl.ItemText>
                   </SegmentedControl.Item>
-                  <SegmentedControl.Item label={_(msg`On`)} value="on">
+                  <SegmentedControl.Item label={l`On`} value="on">
                     <SegmentedControl.ItemText>
                       <Trans>On</Trans>
                     </SegmentedControl.ItemText>

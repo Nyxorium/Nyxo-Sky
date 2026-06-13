@@ -1,6 +1,4 @@
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
@@ -79,7 +77,7 @@ import {useDevMode} from '#/storage/hooks/dev-mode'
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
 
   const [devModeEnabled] = useDevMode()
 
@@ -127,7 +125,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
         <SettingsList.Container>
           <SettingsList.LinkItem
             to="/settings/tabs-visibility"
-            label={_(msg`Tabs Visibility`)}>
+            label={l`Tabs Visibility`}>
             <SettingsList.ItemIcon icon={HashtagIcon} />
             <SettingsList.ItemText>
               <Trans>Tabs Visibility</Trans>
@@ -136,7 +134,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <SettingsList.LinkItem
             to="/settings/feature-gates"
-            label={_(msg`Feature Gates`)}>
+            label={l`Feature Gates`}>
             <SettingsList.ItemIcon icon={BeakerIcon} />
             <SettingsList.ItemText>
               <Trans>Feature Gates</Trans>
@@ -147,7 +145,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="alt_label_display_profile"
-            label={_(msg`Alternate Label Display for Profiles`)}
+            label={l`Alternate Label Display for Profiles`}
             value={altLabelDisplayProfile}
             onChange={value => setAltLabelDisplayProfile(value)}>
             <SettingsList.Item>
@@ -161,7 +159,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="enable_share_via_did"
-            label={_(msg`Share by DID`)}
+            label={l`Share by DID`}
             value={enableShareViaDID}
             onChange={value => setEnableShareViaDID(value)}>
             <SettingsList.Item>
@@ -175,7 +173,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="enable_square_avatars"
-            label={_(msg`Square Avatars`)}
+            label={l`Square Avatars`}
             value={enableSquareAvatars}
             onChange={value => setEnableSquareAvatars(value)}>
             <SettingsList.Item>
@@ -191,7 +189,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="disable_followback_bin"
-            label={_(msg`Disable Followback Button in Notifications`)}
+            label={l`Disable Followback Button in Notifications`}
             value={disableFollowbackBIN}
             onChange={value => setDisableFollowbackBIN(value)}>
             <SettingsList.Item>
@@ -205,7 +203,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="disable_feed_promo_tab"
-            label={_(msg`Disable 'Feeds ✨'`)}
+            label={l`Disable 'Feeds ✨'`}
             value={disableFeedPromoTab}
             onChange={value => setDisableFeedPromoTab(value)}>
             <SettingsList.Item>
@@ -219,7 +217,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="disable_composer_prompt_in_feeds"
-            label={_(msg`Disable Composer Prompt`)}
+            label={l`Disable Composer Prompt`}
             value={disableComposerPromptInFeeds}
             onChange={value => setDisableComposerPromptInFeeds(value)}>
             <SettingsList.Item>
@@ -233,7 +231,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="disable_profile_content_warning"
-            label={_(msg`Disable Profile wide content warnings`)}
+            label={l`Disable Profile wide content warnings`}
             value={skipProfileWideContentWarning}
             onChange={value => setSkipProfileWideContentWarning(value)}>
             <SettingsList.Item>
@@ -247,7 +245,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="split_moderation_label_grouping"
-            label={_(msg`Split moderation label grouping`)}
+            label={l`Split moderation label grouping`}
             value={splitModerationlabelGrouping}
             onChange={value => setSplitModerationlabelGrouping(value)}>
             <SettingsList.Item>
@@ -261,7 +259,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="like_on_repost"
-            label={_(msg`Like on repost`)}
+            label={l`Like on repost`}
             value={likeOnRepost}
             onChange={value => setLikeOnRepost(value)}>
             <SettingsList.Item>
@@ -276,7 +274,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
           {devModeEnabled && (
             <Toggle.Item
               name="disable_profile_descriptions"
-              label={_(msg`Disable Profile Descriptions`)}
+              label={l`Disable Profile Descriptions`}
               value={disableProfileDescriptions}
               onChange={value => setDisableProfileDescriptions(value)}>
               <SettingsList.Item>
@@ -294,7 +292,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
           {IS_NATIVE && (
             <Toggle.Item
               name="disable_share-via-dms"
-              label={_(msg`Disable 'Share Via DMs' in Share Menu`)}
+              label={l`Disable 'Share Via DMs' in Share Menu`}
               value={disableShareViaDms}
               onChange={value => setDisableShareViaDms(value)}>
               <SettingsList.Item>
@@ -310,7 +308,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
           {IS_NATIVE && (
             <Toggle.Item
               name="hide_new_post_button"
-              label={_(msg`Hide New Post button`)}
+              label={l`Hide New Post button`}
               value={limitComposePostButton}
               onChange={value => setLimitComposePostButton(value)}>
               <SettingsList.Item>
@@ -332,7 +330,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.ItemText>
             <Toggle.Item
               name="no_app_labelers"
-              label={_(msg`Do not declare any app labelers`)}
+              label={l`Do not declare any app labelers`}
               value={noAppLabelers}
               onChange={value => setNoAppLabelers(value)}
               style={[a.w_full]}>
