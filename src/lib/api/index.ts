@@ -7,8 +7,8 @@ import {
   type AppBskyEmbedRecordWithMedia,
   type AppBskyEmbedVideo,
   AppBskyFeedPost,
+  type AtpAgent,
   BlobRef,
-  type BskyAgent,
   ChatBskyGroupDefs,
   type ComAtprotoLabelDefs,
   type ComAtprotoRepoApplyWrites,
@@ -55,7 +55,7 @@ interface PostOpts {
 }
 
 export async function post(
-  agent: BskyAgent,
+  agent: AtpAgent,
   queryClient: QueryClient,
   opts: PostOpts,
 ) {
@@ -200,7 +200,7 @@ export async function post(
   return {uris}
 }
 
-async function resolveRT(agent: BskyAgent, richtext: RichText) {
+async function resolveRT(agent: AtpAgent, richtext: RichText) {
   const trimmedText = richtext.text
     // Trim leading whitespace-only lines (but don't break ASCII art).
     .replace(/^(\s*\n)+/, '')
@@ -220,7 +220,7 @@ export class ReplyDeletedError extends Error {
   }
 }
 
-async function resolveReply(agent: BskyAgent, replyTo: string) {
+async function resolveReply(agent: AtpAgent, replyTo: string) {
   const {data} = await agent.app.bsky.feed.getPosts({
     uris: [replyTo],
   })
@@ -253,7 +253,7 @@ async function resolveReply(agent: BskyAgent, replyTo: string) {
 }
 
 async function resolveEmbed(
-  agent: BskyAgent,
+  agent: AtpAgent,
   queryClient: QueryClient,
   draft: PostDraft,
   onStateChange: ((state: string) => void) | undefined,
@@ -312,7 +312,7 @@ async function resolveEmbed(
 }
 
 async function resolveMedia(
-  agent: BskyAgent,
+  agent: AtpAgent,
   queryClient: QueryClient,
   embedDraft: EmbedDraft,
   onStateChange: ((state: string) => void) | undefined,
@@ -485,7 +485,7 @@ async function resolveMedia(
 }
 
 async function resolveRecord(
-  agent: BskyAgent,
+  agent: AtpAgent,
   queryClient: QueryClient,
   uri: string,
 ): Promise<ComAtprotoRepoStrongRef.Main> {

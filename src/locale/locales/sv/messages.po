@@ -27,11 +27,11 @@ msgstr ""
 msgid "\"{interestsDisplayName}\" category (active)"
 msgstr "Kategorin ”{interestsDisplayName}” (aktiv)"
 
-#: src/components/dms/getMessageInfo.ts:91
+#: src/components/dms/getMessageInfo.ts:123
 msgid "(chat invite link)"
 msgstr "(inbjudningslänk till chatt)"
 
-#: src/components/dms/getMessageInfo.ts:73
+#: src/components/dms/getMessageInfo.ts:105
 msgid "(contains embedded content)"
 msgstr "(innehåller inbäddat innehåll)"
 
@@ -101,7 +101,7 @@ msgstr "{0, plural, one {# ny medlemsförfrågan} other {# nya medlemsförfrågn
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:269
+#: src/components/dms/MessageItem.tsx:281
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr "{0, plural, one {# person} other {# personer}} reagerade med {1}"
 
@@ -122,15 +122,15 @@ msgstr "{0, plural, one {# sekund} other {# sekunder}}"
 
 #. placeholder {0}: numUnreadMessages.numUnread ?? 0
 #. placeholder {0}: numUnreadNotifications ?? 0
-#: src/view/shell/bottom-bar/BottomBar.tsx:234
-#: src/view/shell/bottom-bar/BottomBar.tsx:266
+#: src/view/shell/bottom-bar/BottomBar.tsx:245
+#: src/view/shell/bottom-bar/BottomBar.tsx:277
 #: src/view/shell/Drawer.tsx:569
 msgid "{0, plural, one {# unread item} other {# unread items}}"
 msgstr "{0, plural, one {# oläst notis} other {# olästa notiser}}"
 
 #. How long it takes to read an article, in minutes. Displayed in a short form, e.g. "5m" for 5 minutes.
 #. placeholder {0}: view.readingTime
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:231
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:251
 msgid "{0, plural, one {#m} other {#m}}"
 msgstr "{0, plural, one {# min} other {# min}}"
 
@@ -230,7 +230,7 @@ msgid "{0} following"
 msgstr "{0} följda"
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:614
+#: src/components/dms/MessageItem.tsx:618
 msgid "{0} is blocking you"
 msgstr "{0} blockerar dig"
 
@@ -288,7 +288,7 @@ msgstr "{0} av 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:264
+#: src/components/dms/MessageItem.tsx:276
 msgid "{0} reacted {1}"
 msgstr "{0} reagerade med {1}"
 
@@ -346,25 +346,23 @@ msgstr "{0}s avatar"
 #. The number of active group chat members out of the total number allowed.
 #. placeholder {0}: joinLinkPreview.memberCount
 #. placeholder {1}: joinLinkPreview.memberLimit
-#: src/screens/Messages/JoinRequest.tsx:143
+#: src/screens/Messages/JoinRequest.tsx:139
 msgctxt "group-chat-member-count"
 msgid "{0}/{1}"
 msgstr "{0}/{1}"
 
 #. The number of members in a group chat, in the format '{members}/{total} members'.
+#. The number of members in a group chat, in the format '{members}/{total} members'.
+#. placeholder {0}: joinLinkPreview.memberCount
 #. placeholder {0}: preview.memberCount
+#. placeholder {1}: joinLinkPreview.memberLimit
 #. placeholder {1}: preview.memberLimit
-#. placeholder {2}: preview.memberCount
-#: src/components/dms/ChatInvite/Card.tsx:57
+#. placeholder {2}: joinLinkPreview.memberLimit
+#. placeholder {2}: preview.memberLimit
+#: src/components/dms/ChatInvite/Card.tsx:62
+#: src/components/intents/GroupChatJoinDialog.tsx:341
 msgid "{0}/{1} {2, plural, one {member} other {members}}"
 msgstr "{0}/{1} {2, plural, other {medlemmar}}"
-
-#. The number of active group chat members out of the total number allowed.
-#. placeholder {0}: joinLinkPreview.memberCount
-#. placeholder {1}: joinLinkPreview.memberLimit
-#: src/components/intents/GroupChatJoinDialog.tsx:329
-msgid "{0}/{1} members"
-msgstr "{0}/{1} medlemmar"
 
 #. Badge showing the current image position out of the total number of images in a gallery.
 #. placeholder {0}: index + 1
@@ -700,12 +698,12 @@ msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# minut} other {# minuter}}"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/getReactionInfo.ts:45
+#: src/components/dms/getReactionInfo.ts:65
 msgid "{name} reacted {0} to {target}"
 msgstr "{name} reagerade med {0} på {target}"
 
 #. When the last message in a group chat came from someone other than you.
-#: src/components/dms/getMessageInfo.ts:57
+#: src/components/dms/getMessageInfo.ts:89
 msgid "{name}: {message}"
 msgstr "{name}: {message}"
 
@@ -894,7 +892,7 @@ msgid "A collection of popular feeds you can find on Bluesky, including News, Bo
 msgstr "En samling av populära flöden som du kan hitta på Bluesky, inklusive News, Booksky, Game Dev, Blacksky och Fountain Pens"
 
 #. If last message does not contain text, fall back to "{user} reacted to {a message}"
-#: src/components/dms/getReactionInfo.ts:33
+#: src/components/dms/getReactionInfo.ts:53
 msgid "a message"
 msgstr "ett meddelande"
 
@@ -907,8 +905,8 @@ msgstr "Ett nätverksfel uppstod. Kontrollera din internetanslutning"
 #: src/components/dms/dialogs/NewChatDialog.tsx:56
 #: src/components/dms/dialogs/NewChatDialog.tsx:94
 #: src/components/dms/LeaveConvoPrompt.tsx:38
-#: src/components/moderation/BlockDialog.tsx:286
-#: src/components/moderation/BlockDialog.tsx:312
+#: src/components/moderation/BlockDialog.tsx:287
+#: src/components/moderation/BlockDialog.tsx:313
 #: src/screens/Messages/JoinRequests.tsx:192
 #: src/screens/Messages/JoinRequests.tsx:225
 msgid "A network error occurred. Please check your internet connection."
@@ -989,7 +987,7 @@ msgstr "Använd det här språkförslaget"
 msgid "Accepted conversations"
 msgstr "Accepterade konversationer"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:113
+#: src/components/intents/GroupChatJoinDialog.tsx:119
 msgid "Access requested! The group owner will review your request."
 msgstr "Förfrågan skickad! Gruppägaren kommer att granska din förfrågan."
 
@@ -1014,12 +1012,12 @@ msgstr "Konto"
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:427
 #: src/screens/Messages/components/RequestButtons.tsx:104
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:122
-#: src/view/com/profile/ProfileMenu.tsx:209
+#: src/view/com/profile/ProfileMenu.tsx:208
 msgctxt "toast"
 msgid "Account blocked"
 msgstr "Konto blockerat"
 
-#: src/view/com/profile/ProfileMenu.tsx:225
+#: src/view/com/profile/ProfileMenu.tsx:224
 msgctxt "toast"
 msgid "Account followed"
 msgstr "Konto följt"
@@ -1033,7 +1031,7 @@ msgid "Account is deactivated"
 msgstr "Kontot är inaktiverat"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:470
-#: src/view/com/profile/ProfileMenu.tsx:179
+#: src/view/com/profile/ProfileMenu.tsx:178
 msgctxt "toast"
 msgid "Account muted"
 msgstr "Konto ignorerat"
@@ -1062,18 +1060,18 @@ msgstr "Konto borttaget från snabbåtkomst"
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:109
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:94
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:325
-#: src/view/com/profile/ProfileMenu.tsx:196
+#: src/view/com/profile/ProfileMenu.tsx:195
 msgctxt "toast"
 msgid "Account unblocked"
 msgstr "Konto avblockerat"
 
-#: src/view/com/profile/ProfileMenu.tsx:240
+#: src/view/com/profile/ProfileMenu.tsx:239
 msgctxt "toast"
 msgid "Account unfollowed"
 msgstr "Konto avföljt"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:450
-#: src/view/com/profile/ProfileMenu.tsx:166
+#: src/view/com/profile/ProfileMenu.tsx:165
 msgctxt "toast"
 msgid "Account unmuted"
 msgstr "Konto inte längre ignorerat"
@@ -1263,8 +1261,8 @@ msgstr "Lägg till följande DNS-post i din domän:"
 msgid "Add this feed to your feeds"
 msgstr "Lägg till i dina flöden"
 
-#: src/view/com/profile/ProfileMenu.tsx:374
-#: src/view/com/profile/ProfileMenu.tsx:377
+#: src/view/com/profile/ProfileMenu.tsx:376
+#: src/view/com/profile/ProfileMenu.tsx:379
 msgid "Add to lists"
 msgstr "Lägg till i listor"
 
@@ -1275,8 +1273,8 @@ msgid "Add to saved posts ({0, plural, one {# save} other {# saves}})"
 msgstr ""
 
 #: src/components/dialogs/StarterPackDialog.tsx:184
-#: src/view/com/profile/ProfileMenu.tsx:365
-#: src/view/com/profile/ProfileMenu.tsx:368
+#: src/view/com/profile/ProfileMenu.tsx:367
+#: src/view/com/profile/ProfileMenu.tsx:370
 msgid "Add to starter packs"
 msgstr "Lägg till i startpaket"
 
@@ -1383,7 +1381,7 @@ msgid "alice@example.com"
 msgstr "alice@exempel.com"
 
 #. the default tab in the interests tab bar
-#: src/components/dms/ReactionsDialog.tsx:288
+#: src/components/dms/ReactionsDialog.tsx:292
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:201
 #: src/view/screens/Notifications.tsx:87
 msgid "All"
@@ -1391,7 +1389,7 @@ msgstr "Alla"
 
 #. Tab label showing the total count of reactions on a chat message.
 #. placeholder {0}: tab.count
-#: src/components/dms/ReactionsDialog.tsx:385
+#: src/components/dms/ReactionsDialog.tsx:389
 msgid "All {0}"
 msgstr "Alla {0}"
 
@@ -1699,7 +1697,7 @@ msgstr "Alla"
 msgid "Anyone can interact"
 msgstr "Alla får interagera"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:340
+#: src/components/intents/GroupChatJoinDialog.tsx:356
 msgid "Anyone can join"
 msgstr "Vem som helst kan gå med"
 
@@ -1780,8 +1778,8 @@ msgstr "Begär omprövning"
 msgid "Appeal \"{0}\" label"
 msgstr "Begär omprövning av etiketten ”{0}”"
 
-#: src/view/com/profile/ProfileMenu.tsx:549
-#: src/view/com/profile/ProfileMenu.tsx:554
+#: src/view/com/profile/ProfileMenu.tsx:551
+#: src/view/com/profile/ProfileMenu.tsx:556
 msgid "Appeal labels"
 msgstr ""
 
@@ -1861,8 +1859,8 @@ msgstr "Är du säker på att du vill radera det här startpaketet?"
 msgid "Are you sure you want to discard your changes?"
 msgstr "Är du säker på att du vill slänga dina ändringar?"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:120
-#: src/screens/Messages/ConversationSettings/prompts.tsx:144
+#: src/screens/Messages/ConversationSettings/prompts.tsx:128
+#: src/screens/Messages/ConversationSettings/prompts.tsx:152
 msgid "Are you sure you want to leave {groupName}?"
 msgstr "Är du säker på att du vill lämna {groupName}?"
 
@@ -1879,7 +1877,7 @@ msgid "Are you sure you want to remove this from your feeds?"
 msgstr "Är du säker på att du vill ta bort det här från dina flöden?"
 
 #. placeholder {0}: convoView.name
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:120
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:116
 msgid "Are you sure you want to rescind your request to join {0}?"
 msgstr "Är du säker på att du vill återkalla din förfrågan om att gå med i {0}?"
 
@@ -2088,8 +2086,8 @@ msgstr "Blockera {displayName}"
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:758
 #: src/screens/Messages/components/RequestButtons.tsx:154
 #: src/screens/Messages/components/RequestButtons.tsx:156
-#: src/view/com/profile/ProfileMenu.tsx:488
-#: src/view/com/profile/ProfileMenu.tsx:495
+#: src/view/com/profile/ProfileMenu.tsx:490
+#: src/view/com/profile/ProfileMenu.tsx:497
 msgid "Block account"
 msgstr "Blockera konto"
 
@@ -2358,7 +2356,7 @@ msgstr ""
 #. placeholder {0}: sanitizeHandle(item.feed.creator.handle, '@')
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:847
-#: src/screens/Messages/JoinRequest.tsx:181
+#: src/screens/Messages/JoinRequest.tsx:177
 #: src/screens/Search/components/StarterPackCard.tsx:107
 #: src/screens/Search/Explore.tsx:971
 msgid "By {0}"
@@ -2372,13 +2370,13 @@ msgstr "av @{0}"
 #. The group chat creator, in the format 'By {displayName}'.
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile(joinLinkPreview.owner, moderationOpts).ui( 'displayName', ), )
 #. placeholder {0}: sanitizeHandle(info.creatorHandle, '@')
-#: src/components/intents/GroupChatJoinDialog.tsx:363
+#: src/components/intents/GroupChatJoinDialog.tsx:379
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:460
 msgid "By <0>{0}</0>"
 msgstr "Av <0>{0}</0>"
 
 #. The group chat creator, in the format 'By {displayName}'.
-#: src/components/dms/ChatInvite/Card.tsx:79
+#: src/components/dms/ChatInvite/Card.tsx:84
 msgid "By <0>{ownerDisplayName}</0>"
 msgstr "Av <0>{ownerDisplayName}</0>"
 
@@ -2446,10 +2444,10 @@ msgstr "Kameraåtkomst krävs"
 #: src/screens/Deactivated.tsx:150
 #: src/screens/Messages/components/InviteLinkDialog.tsx:500
 #: src/screens/Messages/components/InviteLinkDialog.tsx:504
-#: src/screens/Messages/ConversationSettings/prompts.tsx:100
-#: src/screens/Messages/ConversationSettings/prompts.tsx:124
-#: src/screens/Messages/ConversationSettings/prompts.tsx:148
-#: src/screens/Messages/ConversationSettings/prompts.tsx:172
+#: src/screens/Messages/ConversationSettings/prompts.tsx:108
+#: src/screens/Messages/ConversationSettings/prompts.tsx:132
+#: src/screens/Messages/ConversationSettings/prompts.tsx:156
+#: src/screens/Messages/ConversationSettings/prompts.tsx:180
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
 #: src/screens/Search/Shell.tsx:405
@@ -2579,7 +2577,7 @@ msgstr "Ändringar i startpaketet kommer inte att återspeglas i listan efter sk
 
 #: src/lib/hooks/useNotificationHandler.ts:133
 #: src/Navigation.tsx:554
-#: src/view/shell/bottom-bar/BottomBar.tsx:230
+#: src/view/shell/bottom-bar/BottomBar.tsx:242
 #: src/view/shell/desktop/LeftNav.tsx:698
 #: src/view/shell/Drawer.tsx:537
 msgid "Chat"
@@ -2596,7 +2594,7 @@ msgid "Chat ended"
 msgstr "Chatt avslutad"
 
 #: src/components/dms/ChatInvite/Unavailable.tsx:25
-#: src/components/intents/GroupChatJoinDialog.tsx:256
+#: src/components/intents/GroupChatJoinDialog.tsx:269
 #: src/screens/Messages/JoinRequest.tsx:97
 msgid "Chat invite link no longer available"
 msgstr "Inbjudningslänken till den här chatten är inte längre tillgänglig"
@@ -2618,12 +2616,12 @@ msgctxt "toast"
 msgid "Chat muted"
 msgstr "Chatt ignorerad"
 
-#: src/components/moderation/BlockDialog.tsx:288
-#: src/components/moderation/BlockDialog.tsx:316
+#: src/components/moderation/BlockDialog.tsx:289
+#: src/components/moderation/BlockDialog.tsx:317
 msgid "Chat not found."
 msgstr "Chatten hittades inte."
 
-#: src/components/moderation/BlockDialog.tsx:292
+#: src/components/moderation/BlockDialog.tsx:293
 msgid "Chat owners cannot leave a group chat."
 msgstr "Chattägare kan inte lämna sina gruppchattar."
 
@@ -2829,7 +2827,7 @@ msgstr "Klicka här för att visa inbjudningslänken för den här gruppchatten"
 msgid "Click to open tag menu for {0}"
 msgstr "Klicka för att öppna taggmenyn för {0}"
 
-#: src/components/dms/MessageItem.tsx:533
+#: src/components/dms/MessageItem.tsx:537
 msgid "Click to retry failed message"
 msgstr "Klicka för att försöka på nytt med misslyckat meddelande"
 
@@ -2865,8 +2863,8 @@ msgstr "Klicka för att försöka på nytt med misslyckat meddelande"
 #: src/components/dms/AfterReportDialog.tsx:217
 #: src/components/dms/EmojiPopup.android.tsx:59
 #: src/components/dms/InitiateChatFlow.tsx:565
-#: src/components/intents/GroupChatJoinDialog.tsx:233
-#: src/components/intents/GroupChatJoinDialog.tsx:268
+#: src/components/intents/GroupChatJoinDialog.tsx:246
+#: src/components/intents/GroupChatJoinDialog.tsx:281
 #: src/components/NewskieDialog.tsx:169
 #: src/components/NewskieDialog.tsx:175
 #: src/components/Post/Embed/VideoEmbed/GifPresentationControls.tsx:107
@@ -2948,10 +2946,10 @@ msgstr "Stäng skanner"
 msgid "Close the incoming requests banner"
 msgstr "Stäng banderollen för väntande förfrågningar"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:226
-#: src/components/intents/GroupChatJoinDialog.tsx:227
-#: src/components/intents/GroupChatJoinDialog.tsx:263
-#: src/components/intents/GroupChatJoinDialog.tsx:264
+#: src/components/intents/GroupChatJoinDialog.tsx:239
+#: src/components/intents/GroupChatJoinDialog.tsx:240
+#: src/components/intents/GroupChatJoinDialog.tsx:276
+#: src/components/intents/GroupChatJoinDialog.tsx:277
 #: src/components/Menu/index.tsx:361
 msgid "Close this dialog"
 msgstr "Stäng den här dialogrutan"
@@ -3263,8 +3261,8 @@ msgstr "Kopiera"
 msgid "Copy App Password"
 msgstr "Kopiera applösenord"
 
-#: src/view/com/profile/ProfileMenu.tsx:525
-#: src/view/com/profile/ProfileMenu.tsx:528
+#: src/view/com/profile/ProfileMenu.tsx:527
+#: src/view/com/profile/ProfileMenu.tsx:530
 msgid "Copy at:// URI"
 msgstr "Kopiera at://-URI"
 
@@ -3279,8 +3277,8 @@ msgid "Copy code"
 msgstr "Kopiera kod"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:504
-#: src/view/com/profile/ProfileMenu.tsx:534
-#: src/view/com/profile/ProfileMenu.tsx:537
+#: src/view/com/profile/ProfileMenu.tsx:536
+#: src/view/com/profile/ProfileMenu.tsx:539
 msgid "Copy DID"
 msgstr "Kopiera DID"
 
@@ -3314,8 +3312,8 @@ msgstr "Kopiera länk till lista"
 msgid "Copy link to post"
 msgstr "Kopiera länk till inlägg"
 
-#: src/view/com/profile/ProfileMenu.tsx:304
-#: src/view/com/profile/ProfileMenu.tsx:314
+#: src/view/com/profile/ProfileMenu.tsx:306
+#: src/view/com/profile/ProfileMenu.tsx:316
 msgid "Copy link to profile"
 msgstr "Kopiera länk till profil"
 
@@ -3398,7 +3396,7 @@ msgstr "Kunde inte följa alla matchningar. {0}"
 msgid "Could not leave chat"
 msgstr "Kunde inte lämna chatt"
 
-#: src/components/moderation/BlockDialog.tsx:284
+#: src/components/moderation/BlockDialog.tsx:285
 msgid "Could not leave chat."
 msgstr "Kunde inte lämna chatten."
 
@@ -3424,7 +3422,7 @@ msgstr "Kunde inte ignorera chatt"
 msgid "Could not process your video"
 msgstr "Kunde inte bearbeta ditt videoklipp"
 
-#: src/components/moderation/BlockDialog.tsx:310
+#: src/components/moderation/BlockDialog.tsx:311
 msgid "Could not remove member."
 msgstr "Kunde inte ta bort medlemmen."
 
@@ -3498,12 +3496,12 @@ msgstr "Skapa ett startpaket åt mig"
 
 #: src/components/WelcomeModal.tsx:158
 #: src/components/WelcomeModal.tsx:166
-#: src/screens/Messages/JoinRequest.tsx:314
+#: src/screens/Messages/JoinRequest.tsx:310
 #: src/screens/Signup/index.tsx:135
 #: src/view/com/auth/SplashScreen.tsx:107
 #: src/view/com/auth/SplashScreen.web.tsx:116
-#: src/view/shell/bottom-bar/BottomBar.tsx:333
-#: src/view/shell/bottom-bar/BottomBar.tsx:338
+#: src/view/shell/bottom-bar/BottomBar.tsx:345
+#: src/view/shell/bottom-bar/BottomBar.tsx:349
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:240
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:245
 #: src/view/shell/NavSignupCard.tsx:48
@@ -3553,13 +3551,13 @@ msgstr "Skapa lista baserad på startpaket"
 msgid "Create moderation list"
 msgstr "Skapa modereringslista"
 
-#: src/screens/Messages/JoinRequest.tsx:308
+#: src/screens/Messages/JoinRequest.tsx:304
 #: src/view/com/auth/SplashScreen.tsx:100
 #: src/view/com/auth/SplashScreen.web.tsx:108
 msgid "Create new account"
 msgstr "Skapa nytt konto"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:553
+#: src/screens/Messages/ConversationSettings/index.tsx:554
 msgid "Create or modify an invite link for this group chat"
 msgstr "Skapa eller modifiera en inbjudningslänk för den här gruppchatten"
 
@@ -3583,7 +3581,7 @@ msgstr "Skapa användarlista"
 #. placeholder {0}: i18n.date(createdAt, { dateStyle: 'long', timeStyle: 'short', })
 #. placeholder {0}: i18n.date(createdAt, { month: 'long', day: 'numeric', year: 'numeric', })
 #: src/screens/Messages/components/InviteLinkDialog.tsx:355
-#: src/screens/Messages/ConversationSettings/index.tsx:505
+#: src/screens/Messages/ConversationSettings/index.tsx:509
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "Skapad {0}"
@@ -4125,7 +4123,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Klar"
 
-#: src/components/dms/MessageItem.tsx:437
+#: src/components/dms/MessageItem.tsx:440
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Håll nere eller dubbeltryck på meddelandet för att lägga till en reaktion"
 
@@ -4270,8 +4268,8 @@ msgstr "Redigera avatar"
 msgid "Edit Feeds"
 msgstr "Redigera flöden"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:36
-#: src/screens/Messages/ConversationSettings/prompts.tsx:41
+#: src/screens/Messages/ConversationSettings/prompts.tsx:43
+#: src/screens/Messages/ConversationSettings/prompts.tsx:49
 msgid "Edit group name"
 msgstr "Redigera gruppnamn"
 
@@ -4309,8 +4307,8 @@ msgstr "Redigera länkinställningar"
 msgid "Edit list details"
 msgstr "Redigera listdetaljer"
 
-#: src/view/com/profile/ProfileMenu.tsx:388
-#: src/view/com/profile/ProfileMenu.tsx:408
+#: src/view/com/profile/ProfileMenu.tsx:390
+#: src/view/com/profile/ProfileMenu.tsx:410
 msgid "Edit live status"
 msgstr "Redigera livesändningsstatus"
 
@@ -4323,7 +4321,7 @@ msgstr "Redigera modereringslista"
 msgid "Edit My Feeds"
 msgstr "Redigera mina flöden"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:540
+#: src/screens/Messages/ConversationSettings/index.tsx:544
 msgid "Edit name"
 msgstr "Redigera namn"
 
@@ -4352,8 +4350,8 @@ msgstr "Redigera profil"
 msgid "Edit starter pack"
 msgstr "Redigera startpaket"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:486
-#: src/screens/Messages/ConversationSettings/index.tsx:539
+#: src/screens/Messages/ConversationSettings/index.tsx:493
+#: src/screens/Messages/ConversationSettings/index.tsx:543
 msgid "Edit this group chat’s name"
 msgstr "Redigera gruppchattens namn"
 
@@ -4764,7 +4762,7 @@ msgstr "Det gick inte att acceptera chatt"
 msgid "Failed to accept join request"
 msgstr "Det gick inte att godkänna medlemsförfrågan"
 
-#: src/components/dms/ActionsWrapper.web.tsx:90
+#: src/components/dms/ActionsWrapper.web.tsx:88
 #: src/components/dms/MessageContextMenu.tsx:116
 msgid "Failed to add emoji reaction"
 msgstr "Det gick inte att lägga till emoji-reaktion"
@@ -4836,7 +4834,7 @@ msgstr "Det gick inte att inaktivera inbjudningslänk"
 msgid "Failed to disconnect Germ DM. Error: {0}"
 msgstr "Det gick inte att koppla från Germ DM. Fel: {0}"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:374
+#: src/screens/Messages/ConversationSettings/index.tsx:381
 msgid "Failed to edit group chat name"
 msgstr "Det gick inte att redigera gruppchattens namn"
 
@@ -4864,7 +4862,7 @@ msgstr "Det gick inte att dölja förslag. Kontrollera din internetanslutning"
 msgid "Failed to ignore join request"
 msgstr "Det gick inte att avvisa medlemsförfrågan"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:137
+#: src/components/intents/GroupChatJoinDialog.tsx:147
 msgid "Failed to join the group chat. Please try again."
 msgstr "Det gick inte att gå med i gruppchatten. Försök igen."
 
@@ -4872,9 +4870,9 @@ msgstr "Det gick inte att gå med i gruppchatten. Försök igen."
 msgid "Failed to launch SMS app"
 msgstr "Det gick inte att starta SMS-app"
 
-#: src/screens/Messages/components/ChatEnded.tsx:42
-#: src/screens/Messages/components/ChatLocked.tsx:62
-#: src/screens/Messages/ConversationSettings/index.tsx:401
+#: src/screens/Messages/components/ChatEnded.tsx:41
+#: src/screens/Messages/components/ChatLocked.tsx:61
+#: src/screens/Messages/ConversationSettings/index.tsx:408
 msgctxt "toast"
 msgid "Failed to leave group chat"
 msgstr "Det gick inte att lämna gruppchatt"
@@ -4925,15 +4923,20 @@ msgstr "Det gick inte att läsa in föreslagna flöden"
 msgid "Failed to load suggested follows"
 msgstr "Det gick inte att läsa in föreslagna konton att följa"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:426
+#: src/screens/Messages/ConversationSettings/index.tsx:433
 msgid "Failed to lock group chat"
 msgstr "Det gick inte att låsa gruppchatt"
 
+#: src/view/shell/bottom-bar/BottomBar.tsx:441
+msgid "Failed to mark all chats as read"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:311
+#: src/view/shell/bottom-bar/BottomBar.tsx:450
 msgid "Failed to mark all requests as read"
 msgstr "Det gick inte att markera alla förfrågningar som lästa"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:390
+#: src/screens/Messages/ConversationSettings/index.tsx:397
 msgid "Failed to mute group chat"
 msgstr "Det gick inte att ignorera gruppchatt"
 
@@ -4955,9 +4958,9 @@ msgstr "Det gick inte att ta bort data på grund av ett nätverksfel. Kontroller
 msgid "Failed to remove data. {0}"
 msgstr "Det gick inte att ta bort data. {0}"
 
-#: src/components/dms/ActionsWrapper.web.tsx:75
+#: src/components/dms/ActionsWrapper.web.tsx:73
 #: src/components/dms/MessageContextMenu.tsx:101
-#: src/components/dms/ReactionsDialog.tsx:175
+#: src/components/dms/ReactionsDialog.tsx:179
 msgid "Failed to remove emoji reaction"
 msgstr "Det gick inte att ta bort emoji-reaktion"
 
@@ -4974,7 +4977,7 @@ msgstr "Det gick inte att ta bort medlem från gruppchatt"
 msgid "Failed to remove verification"
 msgstr "Det gick inte att ta bort verifiering"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:180
+#: src/components/intents/GroupChatJoinDialog.tsx:193
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:34
 msgid "Failed to rescind your request. Please try again."
 msgstr "Det gick inte att återkalla din förfrågan. Försök igen."
@@ -5026,7 +5029,7 @@ msgid "Failed to toggle thread mute, please try again"
 msgstr "Det gick inte att ignorera tråden. Försök igen"
 
 #: src/screens/Messages/components/ChatLocked.tsx:51
-#: src/screens/Messages/ConversationSettings/index.tsx:435
+#: src/screens/Messages/ConversationSettings/index.tsx:442
 msgid "Failed to unlock group chat"
 msgstr "Det gick inte att låsa upp gruppchatt"
 
@@ -5302,7 +5305,7 @@ msgstr "Fokusera sökfältet"
 #: src/components/ProfileHoverCard/index.web.tsx:506
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:435
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:439
 #: src/screens/VideoFeed/index.tsx:866
 #: src/view/com/notifications/NotificationFeedItem.tsx:873
 #: src/view/com/notifications/NotificationFeedItem.tsx:880
@@ -5311,7 +5314,7 @@ msgstr "Följ"
 
 #. placeholder {0}: profile.handle
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:144
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:423
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:427
 msgid "Follow {0}"
 msgstr "Följ {0}"
 
@@ -5335,8 +5338,8 @@ msgstr "Följ 10 personer för att komma igång"
 msgid "Follow 7 accounts"
 msgstr "Följ 7 konton"
 
-#: src/view/com/profile/ProfileMenu.tsx:344
-#: src/view/com/profile/ProfileMenu.tsx:355
+#: src/view/com/profile/ProfileMenu.tsx:346
+#: src/view/com/profile/ProfileMenu.tsx:357
 msgid "Follow account"
 msgstr "Följ konto"
 
@@ -5359,7 +5362,7 @@ msgstr "Följ alla konton"
 #. User is not following this account, click to follow back
 #: src/components/ProfileCard.tsx:542
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:155
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:433
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:437
 #: src/view/com/notifications/NotificationFeedItem.tsx:873
 #: src/view/com/notifications/NotificationFeedItem.tsx:880
 msgid "Follow back"
@@ -5397,7 +5400,7 @@ msgstr "Följs av <0>{0}</0> och <1>{1}</1>"
 msgid "Followed by <0>{0}</0>, <1>{1}</1>, and {2, plural, one {# other} other {# others}}"
 msgstr "Följs av <0>{0}</0>, <1>{1}</1>, och {2, plural, one {# annan} other {# andra}}"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:339
+#: src/components/intents/GroupChatJoinDialog.tsx:355
 msgid "Followers can join"
 msgstr "Följare kan gå med"
 
@@ -5417,7 +5420,7 @@ msgstr "Följare som du känner"
 #: src/components/ProfileHoverCard/index.web.tsx:494
 #: src/components/ProfileHoverCard/index.web.tsx:505
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:431
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:435
 #: src/screens/VideoFeed/index.tsx:864
 #: src/view/com/notifications/NotificationFeedItem.tsx:851
 #: src/view/com/notifications/NotificationFeedItem.tsx:868
@@ -5712,8 +5715,8 @@ msgctxt "Button to go back to the home timeline"
 msgid "Go home"
 msgstr "Gå till Hem"
 
-#: src/view/com/profile/ProfileMenu.tsx:389
-#: src/view/com/profile/ProfileMenu.tsx:410
+#: src/view/com/profile/ProfileMenu.tsx:391
+#: src/view/com/profile/ProfileMenu.tsx:412
 msgid "Go live"
 msgstr "Sänd live"
 
@@ -5724,8 +5727,8 @@ msgstr "Sänd live"
 msgid "Go Live"
 msgstr "Sänd live"
 
-#: src/view/com/profile/ProfileMenu.tsx:386
-#: src/view/com/profile/ProfileMenu.tsx:406
+#: src/view/com/profile/ProfileMenu.tsx:388
+#: src/view/com/profile/ProfileMenu.tsx:408
 msgid "Go live (disabled)"
 msgstr "Sänd live (inaktiverat)"
 
@@ -5808,9 +5811,9 @@ msgstr "Grafiskt våldsamt innehåll"
 msgid "Grooming or predatory behavior"
 msgstr "Sexuell manipulation eller utnyttjande av barn (”grooming”)"
 
-#: src/components/dms/ChatInvite/Card.tsx:46
-#: src/components/intents/GroupChatJoinDialog.tsx:321
-#: src/screens/Messages/JoinRequest.tsx:129
+#: src/components/dms/ChatInvite/Card.tsx:51
+#: src/components/intents/GroupChatJoinDialog.tsx:333
+#: src/screens/Messages/JoinRequest.tsx:125
 msgid "Group chat"
 msgstr "Gruppchatt"
 
@@ -5818,17 +5821,17 @@ msgstr "Gruppchatt"
 msgid "Group chat invite link dialog"
 msgstr "Dialogruta för inbjudningslänk för gruppchatt"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:417
+#: src/screens/Messages/ConversationSettings/index.tsx:424
 msgctxt "toast"
 msgid "Group chat locked"
 msgstr "Gruppchatt låst"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:382
+#: src/screens/Messages/ConversationSettings/index.tsx:389
 msgctxt "toast"
 msgid "Group chat muted"
 msgstr "Gruppchatt ignorerad"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:369
+#: src/screens/Messages/ConversationSettings/index.tsx:376
 msgctxt "toast"
 msgid "Group chat name updated"
 msgstr "Namn på gruppchatt uppdaterat"
@@ -5839,12 +5842,12 @@ msgid "Group chat settings"
 msgstr "Inställningar för gruppchatt"
 
 #: src/screens/Messages/components/ChatLocked.tsx:41
-#: src/screens/Messages/ConversationSettings/index.tsx:420
+#: src/screens/Messages/ConversationSettings/index.tsx:427
 msgctxt "toast"
 msgid "Group chat unlocked"
 msgstr "Gruppchatt upplåst"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:385
+#: src/screens/Messages/ConversationSettings/index.tsx:392
 msgctxt "toast"
 msgid "Group chat unmuted"
 msgstr "Gruppchatt inte längre ignorerad"
@@ -5868,12 +5871,12 @@ msgstr "Gruppen är låst"
 
 #: src/components/dms/InitiateChatFlow.tsx:264
 #: src/components/dms/InitiateChatFlow.tsx:600
-#: src/screens/Messages/ConversationSettings/prompts.tsx:42
+#: src/screens/Messages/ConversationSettings/prompts.tsx:50
 msgid "Group name"
 msgstr "Gruppnamn"
 
 #: src/components/dms/InitiateChatFlow.tsx:625
-#: src/screens/Messages/ConversationSettings/prompts.tsx:61
+#: src/screens/Messages/ConversationSettings/prompts.tsx:69
 msgid "Group name is too long. {MAX_GROUP_NAME_GRAPHEME_LENGTH, plural, other {The maximum number of characters is #.}}"
 msgstr "Gruppnamnet är för långt. {MAX_GROUP_NAME_GRAPHEME_LENGTH, plural, other {Maximalt antal tecken är #.}}"
 
@@ -6143,7 +6146,7 @@ msgstr "Vänta lite! Vi ger gradvis tillgång till videoklipp till fler använda
 
 #: src/Navigation.tsx:809
 #: src/Navigation.tsx:830
-#: src/view/shell/bottom-bar/BottomBar.tsx:185
+#: src/view/shell/bottom-bar/BottomBar.tsx:196
 #: src/view/shell/desktop/LeftNav.tsx:667
 #: src/view/shell/Drawer.tsx:511
 msgid "Home"
@@ -6458,7 +6461,7 @@ msgstr "Nu införs sparade inlägg, även kallat bokmärken"
 msgid "Invalid 2FA confirmation code."
 msgstr "Ogiltig bekräftelsekod för 2FA."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:147
+#: src/components/intents/GroupChatJoinDialog.tsx:157
 msgid "Invalid group chat code."
 msgstr "Ogiltig gruppchattskod."
 
@@ -6480,7 +6483,7 @@ msgstr "Ogiltigt telefonnummer"
 msgid "Invalid report subject"
 msgstr "Ogiltigt ämne för anmälan"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:187
+#: src/components/intents/GroupChatJoinDialog.tsx:200
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:41
 msgid "Invalid rescind request."
 msgstr "Ogiltig begäran om återkallelse."
@@ -6505,7 +6508,7 @@ msgstr "Inbjudningskod"
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Inbjudningskoden godkändes inte. Kontrollera att du har angett den korrekt och försök igen."
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:378
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:382
 #: src/view/shell/Drawer.tsx:130
 msgid "Invite friends"
 msgstr "Bjud in vänner"
@@ -6524,7 +6527,7 @@ msgstr "Bjud in vänner <0/>"
 #: src/screens/Messages/components/InviteLinkDialog.tsx:335
 #: src/screens/Messages/components/InviteLinkDialog.tsx:514
 #: src/screens/Messages/components/MessagesListGroupInfoPanel.tsx:149
-#: src/screens/Messages/ConversationSettings/index.tsx:556
+#: src/screens/Messages/ConversationSettings/index.tsx:557
 msgid "Invite link"
 msgstr "Inbjudningslänk"
 
@@ -6607,7 +6610,7 @@ msgid "Job ID: {0}"
 msgstr "Jobb-ID: {0}"
 
 #: src/components/dms/ChatInvite/Root.tsx:117
-#: src/components/intents/GroupChatJoinDialog.tsx:282
+#: src/components/intents/GroupChatJoinDialog.tsx:296
 msgid "Join"
 msgstr "Gå med"
 
@@ -6618,12 +6621,12 @@ msgstr "Gå med"
 msgid "Join Bluesky"
 msgstr "Gå med i Bluesky"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:71
-#: src/components/intents/GroupChatJoinDialog.tsx:448
+#: src/components/intents/GroupChatJoinDialog.tsx:72
+#: src/components/intents/GroupChatJoinDialog.tsx:464
 msgid "Join group chat"
 msgstr "Gå med i gruppchatt"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:176
+#: src/components/intents/GroupChatJoinDialog.tsx:189
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:31
 msgid "Join request rescinded."
 msgstr "Medlemsförfrågan återkallad."
@@ -6805,7 +6808,7 @@ msgid "Learn more."
 msgstr "Läs mer."
 
 #: src/components/dms/LeaveConvoPrompt.tsx:59
-#: src/screens/Messages/ConversationSettings/index.tsx:590
+#: src/screens/Messages/ConversationSettings/index.tsx:591
 msgid "Leave"
 msgstr "Lämna"
 
@@ -6819,8 +6822,8 @@ msgstr "Lämna"
 #: src/components/dms/MessagesListBlockedFooter.tsx:116
 #: src/components/moderation/BlockDialog.tsx:384
 #: src/components/moderation/BlockDialog.tsx:391
-#: src/screens/Messages/components/ChatEnded.tsx:67
-#: src/screens/Messages/components/ChatLocked.tsx:113
+#: src/screens/Messages/components/ChatEnded.tsx:66
+#: src/screens/Messages/components/ChatLocked.tsx:112
 msgid "Leave chat"
 msgstr "Lämna chatt"
 
@@ -6840,16 +6843,16 @@ msgctxt "button"
 msgid "Leave conversation"
 msgstr "Lämna konversation"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:122
-#: src/screens/Messages/ConversationSettings/prompts.tsx:146
+#: src/screens/Messages/ConversationSettings/prompts.tsx:130
+#: src/screens/Messages/ConversationSettings/prompts.tsx:154
 msgid "Leave group chat"
 msgstr "Lämna gruppchatt"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:589
+#: src/screens/Messages/ConversationSettings/index.tsx:590
 msgid "Leave this group chat"
 msgstr "Lämna den här gruppchatten"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:145
+#: src/screens/Messages/ConversationSettings/prompts.tsx:153
 msgid "Leaving this chat will lock it permanently and you won’t be able to rejoin."
 msgstr "Om du lämnar den här chatten kommer den att låsas permanent, och du kommer inte kunna gå med i den igen."
 
@@ -6858,7 +6861,7 @@ msgstr "Om du lämnar den här chatten kommer den att låsas permanent, och du k
 msgid "Leaving Us"
 msgstr ""
 
-#: src/components/moderation/BlockDialog.tsx:276
+#: src/components/moderation/BlockDialog.tsx:277
 msgid "Left group chat."
 msgstr "Du lämnade gruppchatten."
 
@@ -7159,23 +7162,23 @@ msgstr "Läser in inläggets interaktionsinställningar…"
 msgid "Loading..."
 msgstr "Laddar…"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:570
+#: src/screens/Messages/ConversationSettings/index.tsx:571
 msgid "Lock"
 msgstr "Lås"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:99
+#: src/screens/Messages/ConversationSettings/prompts.tsx:107
 msgid "Lock group chat"
 msgstr "Lås gruppchatt"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:97
+#: src/screens/Messages/ConversationSettings/prompts.tsx:105
 msgid "Lock group chat?"
 msgstr "Lås gruppchatt?"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:568
+#: src/screens/Messages/ConversationSettings/index.tsx:569
 msgid "Lock this group chat"
 msgstr "Lås den här gruppchatten"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:570
+#: src/screens/Messages/ConversationSettings/index.tsx:571
 msgid "Locked"
 msgstr "Låst"
 
@@ -7256,6 +7259,16 @@ msgstr "Hantera dina ignorerade ord och taggar"
 msgid "Mark all as read"
 msgstr "Markera alla som lästa"
 
+#: src/view/shell/bottom-bar/BottomBar.tsx:459
+#: src/view/shell/bottom-bar/BottomBar.tsx:463
+msgid "Mark all chats as read"
+msgstr ""
+
+#: src/view/shell/bottom-bar/BottomBar.tsx:467
+#: src/view/shell/bottom-bar/BottomBar.tsx:471
+msgid "Mark all requests as read"
+msgstr ""
+
 #: src/components/dms/ConvoMenu.tsx:248
 #: src/components/dms/ConvoMenu.tsx:252
 msgid "Mark as read"
@@ -7264,6 +7277,14 @@ msgstr "Markera som läst"
 #: src/screens/Messages/Inbox.tsx:306
 msgid "Marked all as read"
 msgstr "Markerade alla som lästa"
+
+#: src/view/shell/bottom-bar/BottomBar.tsx:438
+msgid "Marked all chats as read"
+msgstr ""
+
+#: src/view/shell/bottom-bar/BottomBar.tsx:447
+msgid "Marked all requests as read"
+msgstr ""
 
 #: src/view/com/composer/tags/TagsBtn.tsx:282
 msgid "Maximum tags reached"
@@ -7292,7 +7313,7 @@ msgstr "Media lagrad på en annan enhet"
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Media som kan vara störande eller olämplig för vissa målgrupper."
 
-#: src/components/moderation/BlockDialog.tsx:302
+#: src/components/moderation/BlockDialog.tsx:303
 msgid "Member removed from group chat."
 msgstr "Medlemmen togs bort från gruppchatten."
 
@@ -7301,7 +7322,7 @@ msgstr "Medlemmen togs bort från gruppchatten."
 msgid "Members"
 msgstr "Medlemmar"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:98
+#: src/screens/Messages/ConversationSettings/prompts.tsx:106
 msgid "Members can still read chat history but can’t send new messages."
 msgstr "Medlemmarna kan fortfarande läsa chatthistoriken men kan inte skicka nya meddelanden."
 
@@ -7350,7 +7371,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "Meddelande raderat"
 
-#: src/components/dms/MessageItem.tsx:527
+#: src/components/dms/MessageItem.tsx:531
 msgid "Message failed to send."
 msgstr "Det gick inte att skicka meddelande."
 
@@ -7387,11 +7408,11 @@ msgstr "Meddelandealternativ"
 msgid "Messages"
 msgstr "Meddelanden"
 
-#: src/components/dms/MessageItem.tsx:626
+#: src/components/dms/MessageItem.tsx:630
 msgid "Messages from this person are hidden while they are blocking you."
 msgstr "Meddelanden från den här personen är dolda så länge personen blockerar dig."
 
-#: src/components/dms/MessageItem.tsx:621
+#: src/components/dms/MessageItem.tsx:625
 msgid "Messages from this person are hidden while you are blocking them."
 msgstr "Meddelanden från den här personen är dolda så länge du blockerar personen."
 
@@ -7500,8 +7521,8 @@ msgstr "Fler språk…"
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:144
 #: src/view/com/composer/drafts/DraftItem.tsx:190
-#: src/view/com/profile/ProfileMenu.tsx:278
-#: src/view/com/profile/ProfileMenu.tsx:285
+#: src/view/com/profile/ProfileMenu.tsx:277
+#: src/view/com/profile/ProfileMenu.tsx:284
 msgid "More options"
 msgstr "Fler alternativ"
 
@@ -7521,7 +7542,7 @@ msgstr "Filmer"
 msgid "Music"
 msgstr "Musik"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:532
+#: src/screens/Messages/ConversationSettings/index.tsx:536
 msgid "Mute"
 msgstr "Ignorera"
 
@@ -7539,8 +7560,8 @@ msgstr "Ignorera {0}"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:739
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:745
-#: src/view/com/profile/ProfileMenu.tsx:467
-#: src/view/com/profile/ProfileMenu.tsx:474
+#: src/view/com/profile/ProfileMenu.tsx:469
+#: src/view/com/profile/ProfileMenu.tsx:476
 msgid "Mute account"
 msgstr "Ignorera konto"
 
@@ -7566,7 +7587,7 @@ msgstr "Ignoreringslista"
 msgid "Mute these accounts?"
 msgstr "Ignorera dessa konton?"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:530
+#: src/screens/Messages/ConversationSettings/index.tsx:534
 msgid "Mute this group chat"
 msgstr "Ignorera den här gruppchatten"
 
@@ -7608,7 +7629,7 @@ msgstr "Ignorera ord och taggar"
 msgid "Mute, leave, or remove people anytime. It’s your chat."
 msgstr "Stäng av notiser, lämna chatten eller ta bort deltagare när du vill. Det är din chatt."
 
-#: src/screens/Messages/ConversationSettings/index.tsx:532
+#: src/screens/Messages/ConversationSettings/index.tsx:536
 msgid "Muted"
 msgstr "Ignoreras"
 
@@ -7699,7 +7720,7 @@ msgstr "Det var inget. Skapa ett användarnamn åt mig"
 
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:171
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:184
-#: src/view/com/profile/ProfileMenu.tsx:422
+#: src/view/com/profile/ProfileMenu.tsx:424
 msgid "New"
 msgstr "Nytt"
 
@@ -7984,7 +8005,7 @@ msgstr "Ingen"
 msgid "No one but the author can quote this post."
 msgstr "Ingen annan än författaren kan citera det här inlägget."
 
-#: src/screens/Messages/components/ChatLocked.tsx:74
+#: src/screens/Messages/components/ChatLocked.tsx:73
 msgid "No one can send messages"
 msgstr "Ingen kan skicka meddelanden"
 
@@ -8116,7 +8137,7 @@ msgstr "Hittades inte"
 msgid "Not ready to hit post? Keep your best ideas in Drafts until the timing is just right."
 msgstr "Inte redo att publicera? Spara dina idéer som utkast tills tiden är inne."
 
-#: src/view/com/profile/ProfileMenu.tsx:586
+#: src/view/com/profile/ProfileMenu.tsx:588
 msgid "Note about sharing"
 msgstr "Anmärkning om delning"
 
@@ -8152,7 +8173,7 @@ msgstr "Notisljud"
 #: src/screens/Settings/Settings.tsx:198
 #: src/screens/Settings/Settings.tsx:201
 #: src/view/screens/Notifications.tsx:131
-#: src/view/shell/bottom-bar/BottomBar.tsx:261
+#: src/view/shell/bottom-bar/BottomBar.tsx:273
 #: src/view/shell/desktop/LeftNav.tsx:687
 #: src/view/shell/Drawer.tsx:564
 msgid "Notifications"
@@ -8215,7 +8236,7 @@ msgstr "OK"
 #: src/components/BotAccountAlert.tsx:52
 #: src/components/BotAccountAlert.tsx:57
 #: src/components/dms/InitiateChatFlow.tsx:733
-#: src/components/dms/MessageItem.tsx:633
+#: src/components/dms/MessageItem.tsx:637
 #: src/screens/Login/PasswordUpdatedForm.tsx:37
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:748
 msgid "Okay"
@@ -8299,7 +8320,7 @@ msgstr "Endast administratörer kan godkänna medlemsförfrågningar."
 msgid "Only admins can ignore join requests."
 msgstr "Endast administratörer kan avvisa medlemsförfrågningar."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:145
+#: src/components/intents/GroupChatJoinDialog.tsx:155
 msgid "Only followers can join this group chat."
 msgstr "Endast följare kan gå med i den här gruppchatten."
 
@@ -8314,12 +8335,12 @@ msgid "Only image files are supported"
 msgstr "Endast bildfiler stöds"
 
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile(joinLinkPreview.owner, moderationOpts).ui( 'displayName', ), )
-#: src/screens/Messages/JoinRequest.tsx:222
+#: src/screens/Messages/JoinRequest.tsx:218
 msgid "Only people {0} follows can join."
 msgstr "Endast personer som {0} följer kan gå med."
 
 #: src/components/dms/ChatInvite/Root.tsx:127
-#: src/components/intents/GroupChatJoinDialog.tsx:292
+#: src/components/intents/GroupChatJoinDialog.tsx:306
 msgid "Only people the chat owner follows can join"
 msgstr "Endast personer som chattägaren följer kan gå med"
 
@@ -8353,7 +8374,7 @@ msgid "Open camera"
 msgstr "Öppna kamera"
 
 #: src/components/dms/ChatInvite/Root.tsx:104
-#: src/components/intents/GroupChatJoinDialog.tsx:437
+#: src/components/intents/GroupChatJoinDialog.tsx:453
 msgid "Open chat"
 msgstr "Öppna chatt"
 
@@ -8361,8 +8382,8 @@ msgstr "Öppna chatt"
 msgid "Open chat member options for {displayName}"
 msgstr "Öppna medlemsalternativ för {displayName}"
 
-#: src/screens/Messages/components/ChatListItem.tsx:487
-#: src/screens/Messages/components/ChatListItem.tsx:491
+#: src/screens/Messages/components/ChatListItem.tsx:490
+#: src/screens/Messages/components/ChatListItem.tsx:494
 msgid "Open conversation options"
 msgstr "Öppna konversationsalternativ"
 
@@ -8397,7 +8418,7 @@ msgstr "Öppna fullständig emoji-lista"
 msgid "Open Germ DM"
 msgstr "Öppna Germ DM"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:430
+#: src/components/intents/GroupChatJoinDialog.tsx:446
 msgid "Open group chat"
 msgstr "Öppna gruppchatt"
 
@@ -8419,11 +8440,11 @@ msgid "Open in Google Translate"
 msgstr ""
 
 #: src/components/Post/Embed/ExternalEmbed/index.tsx:88
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:141
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:147
 msgid "Open link to {niceUrl}"
 msgstr "Öppna länk till {niceUrl}"
 
-#: src/components/dms/ActionsWrapper.tsx:43
+#: src/components/dms/ActionsWrapper.tsx:42
 msgid "Open message options"
 msgstr "Öppna meddelandealternativ"
 
@@ -8474,7 +8495,7 @@ msgstr "Öppna Storybook-sida"
 msgid "Open system log"
 msgstr "Öppna systemlogg"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:431
+#: src/components/intents/GroupChatJoinDialog.tsx:447
 msgid "Open this group chat"
 msgstr "Öppna den här gruppchatten"
 
@@ -8532,13 +8553,13 @@ msgstr "Öppnar enhetens kamera"
 msgid "Opens device gallery to select up to {MAX_GALLERY_IMAGES, plural, other {# images}}, or a single video or GIF."
 msgstr "Öppnar enhetens galleri där du kan välja upp till {MAX_GALLERY_IMAGES, plural, other {# bilder}}, ett enskilt videoklipp eller en enskild gif-bild."
 
-#: src/screens/Messages/JoinRequest.tsx:309
+#: src/screens/Messages/JoinRequest.tsx:305
 #: src/view/com/auth/SplashScreen.tsx:102
 #: src/view/com/auth/SplashScreen.web.tsx:110
 msgid "Opens flow to create a new Bluesky account"
 msgstr "Öppnar guiden för att skapa ett nytt Bluesky-konto"
 
-#: src/screens/Messages/JoinRequest.tsx:295
+#: src/screens/Messages/JoinRequest.tsx:291
 #: src/view/com/auth/SplashScreen.tsx:120
 #: src/view/com/auth/SplashScreen.web.tsx:124
 msgid "Opens flow to sign in to your existing Bluesky account"
@@ -8778,6 +8799,16 @@ msgstr "Personer som följer @{0}"
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:198
 msgid "People I follow"
 msgstr "Personer jag följer"
+
+#: src/screens/Messages/Settings.tsx:84
+msgctxt "allow group chat invites from"
+msgid "People I follow"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:69
+msgctxt "allow messages from"
+msgid "People I follow"
+msgstr ""
 
 #: src/screens/Messages/components/InviteLinkDialog.tsx:163
 msgid "People I follow can join instantly"
@@ -9303,7 +9334,7 @@ msgstr "Bearbetar…"
 msgid "profile"
 msgstr "profil"
 
-#: src/view/shell/bottom-bar/BottomBar.tsx:304
+#: src/view/shell/bottom-bar/BottomBar.tsx:316
 #: src/view/shell/desktop/LeftNav.tsx:745
 #: src/view/shell/Drawer.tsx:100
 #: src/view/shell/Drawer.tsx:667
@@ -9459,8 +9490,8 @@ msgstr "Återaktivera länk"
 msgid "React with {emoji}"
 msgstr "Reagera med {emoji}"
 
-#: src/components/dms/ReactionsDialog.tsx:66
-#: src/components/dms/ReactionsDialog.tsx:94
+#: src/components/dms/ReactionsDialog.tsx:70
+#: src/components/dms/ReactionsDialog.tsx:98
 msgid "Reactions"
 msgstr "Reaktioner"
 
@@ -9598,7 +9629,7 @@ msgstr "Ladda om konversationer"
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:113
 #: src/screens/Bookmarks/index.tsx:265
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
-#: src/screens/Messages/ConversationSettings/prompts.tsx:170
+#: src/screens/Messages/ConversationSettings/prompts.tsx:178
 #: src/screens/Moderation/index.tsx:477
 #: src/screens/Settings/Settings.tsx:680
 #: src/view/com/modals/UserAddRemoveLists.tsx:238
@@ -9620,7 +9651,7 @@ msgstr "Ta bort {displayName} från startpaketet"
 msgid "Remove {displayName} from this group chat"
 msgstr "Ta bort {displayName} från den här gruppchatten"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:168
+#: src/screens/Messages/ConversationSettings/prompts.tsx:176
 msgid "Remove {displayName}?"
 msgstr "Ta bort {displayName}?"
 
@@ -9756,8 +9787,8 @@ msgstr "Ta bort användare från lista"
 
 #: src/components/verification/VerificationRemovePrompt.tsx:48
 #: src/components/verification/VerificationsDialog.tsx:250
-#: src/view/com/profile/ProfileMenu.tsx:440
-#: src/view/com/profile/ProfileMenu.tsx:443
+#: src/view/com/profile/ProfileMenu.tsx:442
+#: src/view/com/profile/ProfileMenu.tsx:445
 msgid "Remove verification"
 msgstr "Ta bort verifiering"
 
@@ -9899,12 +9930,12 @@ msgstr "Svaret doldes utan problem"
 
 #: src/components/dms/MessageContextMenu.tsx:189
 #: src/features/liveNow/components/LiveStatusDialog.tsx:267
-#: src/screens/Messages/ConversationSettings/index.tsx:582
+#: src/screens/Messages/ConversationSettings/index.tsx:583
 msgid "Report"
 msgstr "Anmäl"
 
-#: src/view/com/profile/ProfileMenu.tsx:507
-#: src/view/com/profile/ProfileMenu.tsx:510
+#: src/view/com/profile/ProfileMenu.tsx:509
+#: src/view/com/profile/ProfileMenu.tsx:512
 msgid "Report account"
 msgstr "Anmäl konto"
 
@@ -9964,7 +9995,7 @@ msgstr "Anmäl den här konversationen"
 msgid "Report this feed"
 msgstr "Anmäl det här flödet"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:581
+#: src/screens/Messages/ConversationSettings/index.tsx:582
 msgid "Report this group chat"
 msgstr "Anmäl den här gruppchatten"
 
@@ -10044,7 +10075,7 @@ msgstr "Återpubliceringar av det här inlägget"
 msgid "Reposts of your reposts"
 msgstr "Återpubliceringar av dina återpubliceringar"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:447
+#: src/components/intents/GroupChatJoinDialog.tsx:463
 msgid "Request access to group chat"
 msgstr "Begär att få åtkomst till gruppchatten"
 
@@ -10062,7 +10093,7 @@ msgid "Request ignored."
 msgstr "Förfrågan avvisad."
 
 #: src/components/dms/ChatInvite/Root.tsx:117
-#: src/components/intents/GroupChatJoinDialog.tsx:281
+#: src/components/intents/GroupChatJoinDialog.tsx:295
 msgid "Request to join"
 msgstr "Begär att få gå med"
 
@@ -10098,9 +10129,9 @@ msgstr "Obligatoriskt för den här leverantören"
 msgid "Required in your region"
 msgstr "Obligatoriskt i din region"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:296
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:119
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:121
+#: src/components/intents/GroupChatJoinDialog.tsx:310
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:115
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:117
 msgid "Rescind request"
 msgstr "Återkalla förfrågan"
 
@@ -10239,7 +10270,7 @@ msgstr "Ledsna gif-bilder"
 #: src/components/StarterPack/QrCodeDialog.tsx:210
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Messages/ConversationSettings/prompts.tsx:74
+#: src/screens/Messages/ConversationSettings/prompts.tsx:82
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Profile/Header/EditProfileDialog.tsx:267
 #: src/screens/SavedFeeds.tsx:124
@@ -10379,7 +10410,7 @@ msgstr "Gå till toppen"
 #: src/components/forms/SearchInput.tsx:53
 #: src/screens/Search/Shell.tsx:362
 #: src/screens/Search/Shell.tsx:525
-#: src/view/shell/bottom-bar/BottomBar.tsx:205
+#: src/view/shell/bottom-bar/BottomBar.tsx:216
 msgid "Search"
 msgstr "Sök"
 
@@ -10460,8 +10491,8 @@ msgstr "Sök språk"
 msgid "Search my posts"
 msgstr "Sök i mina inlägg"
 
-#: src/view/com/profile/ProfileMenu.tsx:325
-#: src/view/com/profile/ProfileMenu.tsx:328
+#: src/view/com/profile/ProfileMenu.tsx:327
+#: src/view/com/profile/ProfileMenu.tsx:330
 msgid "Search posts"
 msgstr "Sök inlägg"
 
@@ -10896,7 +10927,7 @@ msgstr "Sexuellt suggestivt"
 msgid "Share"
 msgstr "Dela"
 
-#: src/view/com/profile/ProfileMenu.tsx:589
+#: src/view/com/profile/ProfileMenu.tsx:591
 msgid "Share anyway"
 msgstr "Dela ändå"
 
@@ -10974,8 +11005,8 @@ msgstr "Dela det här startpaketet och hjälp andra att gå med i din gemenskap 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:166
 #: src/screens/StarterPack/StarterPackScreen.tsx:638
 #: src/screens/StarterPack/StarterPackScreen.tsx:646
-#: src/view/com/profile/ProfileMenu.tsx:304
-#: src/view/com/profile/ProfileMenu.tsx:316
+#: src/view/com/profile/ProfileMenu.tsx:306
+#: src/view/com/profile/ProfileMenu.tsx:318
 msgid "Share via..."
 msgstr "Dela via…"
 
@@ -11159,15 +11190,15 @@ msgstr "Visar innehållet"
 #: src/screens/Login/LoginForm.tsx:231
 #: src/screens/Login/LoginForm.tsx:403
 #: src/screens/Login/LoginForm.tsx:409
-#: src/screens/Messages/JoinRequest.tsx:294
-#: src/screens/Messages/JoinRequest.tsx:300
+#: src/screens/Messages/JoinRequest.tsx:290
+#: src/screens/Messages/JoinRequest.tsx:296
 #: src/screens/Search/SearchResults.tsx:316
 #: src/view/com/auth/SplashScreen.tsx:118
 #: src/view/com/auth/SplashScreen.tsx:124
 #: src/view/com/auth/SplashScreen.web.tsx:122
 #: src/view/com/auth/SplashScreen.web.tsx:130
-#: src/view/shell/bottom-bar/BottomBar.tsx:343
-#: src/view/shell/bottom-bar/BottomBar.tsx:348
+#: src/view/shell/bottom-bar/BottomBar.tsx:354
+#: src/view/shell/bottom-bar/BottomBar.tsx:358
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:250
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:255
 #: src/view/shell/NavSignupCard.tsx:58
@@ -11193,7 +11224,7 @@ msgstr "Logga in eller skapa ett konto"
 msgid "Sign in or create your account to join the conversation!"
 msgstr "Logga in eller skapa ett konto för att delta i konversationen!"
 
-#: src/screens/Messages/JoinRequest.tsx:220
+#: src/screens/Messages/JoinRequest.tsx:216
 msgid "Sign in to accept invite."
 msgstr "Logga in för att acceptera inbjudan."
 
@@ -11205,7 +11236,7 @@ msgstr "Logga in på ett olistat konto"
 msgid "Sign in to Bluesky or create a new account"
 msgstr "Logga in på Bluesky eller skapa ett nytt konto"
 
-#: src/screens/Messages/JoinRequest.tsx:219
+#: src/screens/Messages/JoinRequest.tsx:215
 msgid "Sign in to request access to this group chat."
 msgstr "Logga in för att begära att få åtkomst till den här gruppchatten."
 
@@ -11342,12 +11373,12 @@ msgid "Someone left the group"
 msgstr "Någon lämnade gruppen"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:266
+#: src/components/dms/MessageItem.tsx:278
 msgid "Someone reacted {0}"
 msgstr "Någon reagerade med {0}"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/getReactionInfo.ts:47
+#: src/components/dms/getReactionInfo.ts:67
 msgid "Someone reacted {0} to {target}"
 msgstr "Någon reagerade med {0} på {target}"
 
@@ -11599,13 +11630,13 @@ msgid "Subscribe"
 msgstr "Prenumerera"
 
 #. placeholder {0}: highlightedPublisher.name
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:425
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:454
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:447
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:476
 msgid "Subscribe on {0}"
 msgstr "Prenumerera med {0}"
 
 #. placeholder {0}: highlightedPublisher.name
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:453
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:475
 msgid "Subscribe to {publicationTitle} on {0}"
 msgstr "Prenumerera på {publicationTitle} med {0}"
 
@@ -11640,7 +11671,7 @@ msgstr "Klart"
 msgid "Success!"
 msgstr "Klart!"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:121
+#: src/components/intents/GroupChatJoinDialog.tsx:131
 msgid "Successfully joined the group chat!"
 msgstr "Du har gått med i gruppchatten!"
 
@@ -11773,7 +11804,7 @@ msgstr "Fortsätt samtalet privat."
 msgid "Tap below to allow Bluesky to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
 msgstr "Tryck nedan för att ge Bluesky åtkomst till din GPS-position. Vi använder sedan den informationen för att mer exakt kunna avgöra vilket innehåll och vilka funktioner som är tillgängliga i din region."
 
-#: src/components/dms/MessageItem.tsx:572
+#: src/components/dms/MessageItem.tsx:576
 msgid "Tap for details"
 msgstr "Tryck för detaljer"
 
@@ -11808,7 +11839,7 @@ msgid "Tap to dismiss"
 msgstr "Tryck för att avvisa"
 
 #: src/components/dms/ChatInvite/Root.tsx:140
-#: src/components/intents/GroupChatJoinDialog.tsx:453
+#: src/components/intents/GroupChatJoinDialog.tsx:469
 msgid "Tap to join this group chat immediately"
 msgstr "Tryck för att gå med i den här gruppchatten direkt"
 
@@ -11816,34 +11847,34 @@ msgstr "Tryck för att gå med i den här gruppchatten direkt"
 msgid "Tap to open this group chat"
 msgstr "Tryck för att öppna den här gruppchatten"
 
-#: src/components/dms/ReactionsDialog.tsx:196
+#: src/components/dms/ReactionsDialog.tsx:200
 msgid "Tap to remove"
 msgstr "Tryck för att ta bort"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/ReactionsDialog.tsx:212
+#: src/components/dms/ReactionsDialog.tsx:216
 msgid "Tap to remove your {0} reaction"
 msgstr "Tryck för att ta bort din reaktion {0}"
 
 #: src/components/dms/ChatInvite/Root.tsx:139
-#: src/components/intents/GroupChatJoinDialog.tsx:452
+#: src/components/intents/GroupChatJoinDialog.tsx:468
 msgid "Tap to request access to join this group chat"
 msgstr "Tryck för att begära att få åtkomst till den här gruppchatten"
 
-#: src/components/dms/MessageItem.tsx:537
+#: src/components/dms/MessageItem.tsx:541
 msgid "Tap to retry"
 msgstr "Tryck för att försöka igen"
 
 #. placeholder {0}: tab.value
-#: src/components/dms/ReactionsDialog.tsx:358
+#: src/components/dms/ReactionsDialog.tsx:362
 msgid "Tap to show {0} reactions"
 msgstr "Tryck för att visa reaktioner med {0}"
 
-#: src/components/dms/ReactionsDialog.tsx:357
+#: src/components/dms/ReactionsDialog.tsx:361
 msgid "Tap to show all reactions"
 msgstr "Tryck för att visa alla reaktioner"
 
-#: src/components/dms/MessageItem.tsx:289
+#: src/components/dms/MessageItem.tsx:304
 msgid "Tap to view reactions"
 msgstr "Tryck för att visa reaktioner"
 
@@ -11946,7 +11977,7 @@ msgstr "Det var allt!"
 
 #: src/components/moderation/BlockDialog.tsx:153
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:214
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:448
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:452
 msgid "The account will be able to interact with you after unblocking."
 msgstr "Kontot kommer att kunna interagera med dig om du häver blockeringen."
 
@@ -12012,7 +12043,7 @@ msgstr "Följande inställningar används som standard när du skapar nya inläg
 msgid "The laws in your region require you to verify you're an adult to access certain features. Tap to learn more."
 msgstr "Enligt lagen i din region måste du verifiera att du är vuxen för att få tillgång till vissa funktioner. Tryck för att läsa mer."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:155
+#: src/components/intents/GroupChatJoinDialog.tsx:165
 #: src/screens/Messages/JoinRequests.tsx:205
 msgid "The member limit has been reached."
 msgstr "Gränsen för antalet medlemmar har nåtts."
@@ -12083,8 +12114,8 @@ msgid "There was a problem loading GIFs. Check your connection and try again."
 msgstr "Ett problem uppstod under inläsningen av gif-bilderna. Kontrollera din anslutning och försök igen."
 
 #: src/components/contacts/screens/GetContacts.tsx:147
-#: src/components/intents/GroupChatJoinDialog.tsx:139
-#: src/components/intents/GroupChatJoinDialog.tsx:182
+#: src/components/intents/GroupChatJoinDialog.tsx:149
+#: src/components/intents/GroupChatJoinDialog.tsx:195
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:36
 msgid "There was a problem with your internet connection, please try again"
 msgstr "Ett problem uppstod med din internetanslutning. Försök igen"
@@ -12151,12 +12182,12 @@ msgstr "Ett problem uppstod med att uppdatera dina flöden. Kontrollera din inte
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:287
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:314
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:330
-#: src/view/com/profile/ProfileMenu.tsx:171
-#: src/view/com/profile/ProfileMenu.tsx:184
-#: src/view/com/profile/ProfileMenu.tsx:201
-#: src/view/com/profile/ProfileMenu.tsx:214
-#: src/view/com/profile/ProfileMenu.tsx:230
-#: src/view/com/profile/ProfileMenu.tsx:245
+#: src/view/com/profile/ProfileMenu.tsx:170
+#: src/view/com/profile/ProfileMenu.tsx:183
+#: src/view/com/profile/ProfileMenu.tsx:200
+#: src/view/com/profile/ProfileMenu.tsx:213
+#: src/view/com/profile/ProfileMenu.tsx:229
+#: src/view/com/profile/ProfileMenu.tsx:244
 msgid "There was an issue! {0}"
 msgstr "Ett problem uppstod! {0}"
 
@@ -12200,7 +12231,7 @@ msgstr "De här inställningarna gäller bara för flödet Följer."
 msgid "They own this chat"
 msgstr "Användaren äger chatten"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:169
+#: src/screens/Messages/ConversationSettings/prompts.tsx:177
 msgid "They won’t be able to rejoin unless you invite them again."
 msgstr "Användaren kommer inte kunna gå med igen utan att bli inbjuden av dig."
 
@@ -12250,22 +12281,22 @@ msgstr "Den här författaren har valt att bara visa sina inlägg för inloggade
 msgid "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Bluesky account from Germ DM altogether by clicking the button below."
 msgstr "Med den här knappen kan andra öppna Germ DM-appen för att skicka ett meddelande till dig. Du kan ställa in om knappen ska visas eller inte i Germ DM-appen. Du kan också koppla från ditt Bluesky-konto från Germ DM helt och hållet genom att trycka på knappen nedan."
 
-#: src/screens/Messages/components/ChatEnded.tsx:49
+#: src/screens/Messages/components/ChatEnded.tsx:48
 msgid "This chat has ended"
 msgstr "Den här chatten är avslutad"
 
 #: src/components/dms/ChatInvite/Root.tsx:122
-#: src/components/intents/GroupChatJoinDialog.tsx:287
+#: src/components/intents/GroupChatJoinDialog.tsx:301
 msgid "This chat is full"
 msgstr "Den här chatten är full"
 
-#: src/screens/Messages/components/ChatListItem.tsx:373
-#: src/screens/Messages/components/ChatLocked.tsx:70
+#: src/screens/Messages/components/ChatListItem.tsx:376
+#: src/screens/Messages/components/ChatLocked.tsx:69
 msgid "This chat is locked"
 msgstr "Den här chatten är låst"
 
 #: src/screens/Messages/components/ChatLocked.tsx:45
-#: src/screens/Messages/ConversationSettings/index.tsx:430
+#: src/screens/Messages/ConversationSettings/index.tsx:437
 msgid "This chat is locked by a moderation action"
 msgstr "Den här chatten är låst på grund av en modereringsåtgärd"
 
@@ -12303,7 +12334,7 @@ msgstr "Det här innehållet är inte tillgängligt eftersom en av de involverad
 msgid "This content is not viewable without a Bluesky account."
 msgstr "Det här innehållet kan inte visas utan ett Bluesky-konto."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:141
+#: src/components/intents/GroupChatJoinDialog.tsx:151
 msgid "This conversation is locked."
 msgstr "Den här konversationen är låst."
 
@@ -12353,7 +12384,7 @@ msgstr "Det här flödet är tomt."
 msgid "This feed is no longer online. We are showing <0>Discover</0> instead."
 msgstr "Det här flödet är inte längre online. Vi visar <0>Upptäck</0> istället."
 
-#: src/screens/Messages/components/ChatLocked.tsx:73
+#: src/screens/Messages/components/ChatLocked.tsx:72
 msgid "This group is locked by a moderation action on the owner"
 msgstr "Den här gruppen är låst på grund av en modereringsåtgärd mot ägaren"
 
@@ -12369,11 +12400,11 @@ msgstr "Den här bilden kunde inte användas. Försök med ett annat format sås
 msgid "This information is private and not shared with other users."
 msgstr "Den här informationen är privat och delas inte med andra användare."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:151
+#: src/components/intents/GroupChatJoinDialog.tsx:161
 msgid "This invite link has been disabled."
 msgstr "Den här inbjudningslänken har inaktiverats."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:223
+#: src/components/intents/GroupChatJoinDialog.tsx:236
 msgid "This invite link is invalid"
 msgstr "Den här inbjudningslänken är ogiltig"
 
@@ -12423,17 +12454,17 @@ msgstr "Den här listan är tom."
 msgid "This menu lets you apply labels such as Adult Content, Sexually Suggestive, Non-sexual Nudity, and Graphic Media on an account level. They can be turned on or off at any time."
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:334
+#: src/screens/Messages/components/ChatListItem.tsx:335
 msgid "This message is hidden"
 msgstr "Det här meddelandet är dolt"
 
-#: src/components/dms/MessageItem.tsx:570
-#: src/components/dms/MessageItem.tsx:599
+#: src/components/dms/MessageItem.tsx:574
+#: src/components/dms/MessageItem.tsx:603
 msgid "This message is hidden because this user is blocking you."
 msgstr "Det här meddelandet är dolt eftersom användaren blockerar dig."
 
-#: src/components/dms/MessageItem.tsx:569
-#: src/components/dms/MessageItem.tsx:595
+#: src/components/dms/MessageItem.tsx:573
+#: src/components/dms/MessageItem.tsx:599
 msgid "This message is hidden because you are blocking this user."
 msgstr "Det här meddelandet är dolt eftersom du blockerar användaren."
 
@@ -12475,7 +12506,7 @@ msgstr "Det här inlägget kommer att hållas dolt från flöden och trådar. De
 msgid "This post's author has disabled quote posts."
 msgstr "Författaren till det här inlägget har inaktiverat citatinlägg."
 
-#: src/view/com/profile/ProfileMenu.tsx:587
+#: src/view/com/profile/ProfileMenu.tsx:589
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
 msgstr "Den här profilen är syns bara för inloggade användare. Den syns inte för personer som inte är inloggade."
 
@@ -12839,7 +12870,7 @@ msgstr "Otillgängligt"
 msgid "Unavailable feed information"
 msgstr "Otillgänglig flödesinformation"
 
-#: src/components/dms/MessageItem.tsx:637
+#: src/components/dms/MessageItem.tsx:641
 #: src/components/dms/MessagesListBlockedFooter.tsx:97
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
 #: src/components/moderation/BlockDialog.tsx:186
@@ -12847,14 +12878,14 @@ msgstr "Otillgänglig flödesinformation"
 #: src/components/moderation/BlockDialog.tsx:211
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:220
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:391
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:453
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:395
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:457
 #: src/screens/ProfileList/components/Header.tsx:166
 #: src/screens/ProfileList/components/Header.tsx:173
 msgid "Unblock"
 msgstr "Häv blockering"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:395
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:399
 msgctxt "action"
 msgid "Unblock"
 msgstr "Häv blockering"
@@ -12865,8 +12896,8 @@ msgstr "Häv blockering av {displayName}"
 
 #: src/components/dms/ConvoMenu.tsx:284
 #: src/components/dms/ConvoMenu.tsx:288
-#: src/view/com/profile/ProfileMenu.tsx:487
-#: src/view/com/profile/ProfileMenu.tsx:493
+#: src/view/com/profile/ProfileMenu.tsx:489
+#: src/view/com/profile/ProfileMenu.tsx:495
 msgid "Unblock account"
 msgstr "Häv blockering av konto"
 
@@ -12875,7 +12906,7 @@ msgid "Unblock account?"
 msgstr "Häv blockering av konto?"
 
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:212
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:446
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:450
 msgid "Unblock Account?"
 msgstr "Häv blockering av konto?"
 
@@ -12912,12 +12943,12 @@ msgid "Undo repost ({0, plural, one {# repost} other {# reposts}})"
 msgstr "Ångra återpublicering ({0, plural, one {# återpublicering} other {# återpubliceringar}})"
 
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:422
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:426
 msgid "Unfollow {0}"
 msgstr "Sluta följ {0}"
 
-#: src/view/com/profile/ProfileMenu.tsx:344
-#: src/view/com/profile/ProfileMenu.tsx:353
+#: src/view/com/profile/ProfileMenu.tsx:346
+#: src/view/com/profile/ProfileMenu.tsx:355
 msgid "Unfollow account"
 msgstr "Sluta följ konto"
 
@@ -12959,11 +12990,11 @@ msgstr "Sluta gilla"
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr "Sluta gilla ({0, plural, one {# gillamarkering} other {# gillamarkeringar}})"
 
-#: src/screens/Messages/components/ChatLocked.tsx:92
+#: src/screens/Messages/components/ChatLocked.tsx:91
 msgid "Unlock chat"
 msgstr "Lås upp chatt"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:567
+#: src/screens/Messages/ConversationSettings/index.tsx:568
 msgid "Unlock this group chat"
 msgstr "Lås upp den här gruppchatten"
 
@@ -12986,8 +13017,8 @@ msgstr "Sluta ignorera {0}"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:738
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:744
-#: src/view/com/profile/ProfileMenu.tsx:466
-#: src/view/com/profile/ProfileMenu.tsx:472
+#: src/view/com/profile/ProfileMenu.tsx:468
+#: src/view/com/profile/ProfileMenu.tsx:474
 msgid "Unmute account"
 msgstr "Sluta ignorera konto"
 
@@ -13000,7 +13031,7 @@ msgstr "Sluta ignorera konversation"
 msgid "Unmute list"
 msgstr "Sluta ignorera lista"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:529
+#: src/screens/Messages/ConversationSettings/index.tsx:533
 msgid "Unmute this group chat"
 msgstr "Sluta ignorera den här gruppchatten"
 
@@ -13313,16 +13344,6 @@ msgstr "användare som <0>@{0}</0> följer"
 msgid "users following <0>@{0}</0>"
 msgstr "användare som följer <0>@{0}</0>"
 
-#: src/screens/Messages/Settings.tsx:84
-msgctxt "allow group chat invites from"
-msgid "Users I follow"
-msgstr "Användare jag följer"
-
-#: src/screens/Messages/Settings.tsx:69
-msgctxt "allow messages from"
-msgid "Users I follow"
-msgstr "Användare jag följer"
-
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:451
 msgid "Value:"
 msgstr "Värde:"
@@ -13350,8 +13371,8 @@ msgstr "Verifierat av:"
 
 #: src/components/verification/VerificationCreatePrompt.tsx:85
 #: src/components/verification/VerificationCreatePrompt.tsx:87
-#: src/view/com/profile/ProfileMenu.tsx:450
-#: src/view/com/profile/ProfileMenu.tsx:453
+#: src/view/com/profile/ProfileMenu.tsx:452
+#: src/view/com/profile/ProfileMenu.tsx:455
 msgid "Verify account"
 msgstr "Verifiera konto"
 
@@ -13500,8 +13521,8 @@ msgid "View"
 msgstr "Visa"
 
 #. placeholder {0}: view.source.title
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:318
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:640
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:340
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:670
 msgid "View {0}"
 msgstr "Visa {0}"
 
@@ -13530,7 +13551,7 @@ msgstr "Visa {0}s profil"
 msgid "View {displayName}’s profile"
 msgstr "Visa {displayName}s profil"
 
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:456
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:478
 msgid "View {publicationTitle}"
 msgstr "Visa {publicationTitle}"
 
@@ -13616,10 +13637,10 @@ msgstr "Visa profil"
 msgid "View profile banner"
 msgstr "Visa profilbanderoll"
 
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:318
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:426
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:457
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:640
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:340
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:448
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:479
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:670
 msgid "View publication"
 msgstr "Visa publikation"
 
@@ -13627,7 +13648,7 @@ msgstr "Visa publikation"
 msgid "View the avatar"
 msgstr "Visa avataren"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:554
+#: src/screens/Messages/ConversationSettings/index.tsx:555
 msgid "View the invite link for this group chat"
 msgstr "Visa inbjudningslänken för den här gruppchatten"
 
@@ -14117,7 +14138,7 @@ msgid "You are accessing Bluesky from a region that legally requires us to verif
 msgstr "Du använder Bluesky från en region där vi enligt lag måste verifiera din ålder innan du får tillgång till appen."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:610
+#: src/components/dms/MessageItem.tsx:614
 msgid "You are blocking {0}"
 msgstr "Du blockerar {0}"
 
@@ -14262,7 +14283,7 @@ msgstr "Du kan välja upp till {MAX_GALLERY_IMAGES, plural, other {# bilder}} to
 msgid "You can update this later from your settings."
 msgstr "Du kan ändra det här senare i dina inställningar."
 
-#: src/components/dms/ActionsWrapper.web.tsx:79
+#: src/components/dms/ActionsWrapper.web.tsx:77
 #: src/components/dms/MessageContextMenu.tsx:105
 msgid "You cannot add more than {EMOJI_REACTION_LIMIT, plural, one {# emoji reaction} other {# emoji reactions}}"
 msgstr "Du kan inte lägga till mer än {EMOJI_REACTION_LIMIT, plural, one {# emojireaktion} other {# emojireaktioner}}"
@@ -14298,7 +14319,7 @@ msgstr "Du har inga sparade flöden."
 msgid "You got here first"
 msgstr "Du kom hit först"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:166
+#: src/components/intents/GroupChatJoinDialog.tsx:176
 msgid "You have been previously removed from this group and can’t join it using this link."
 msgstr "Du har tidigare tagits bort från den här gruppen och kan inte gå med i den genom länken."
 
@@ -14429,7 +14450,7 @@ msgstr "Du kan bara lägga till högst {STARTER_PACK_MAX_SIZE, plural, other {{S
 msgid "You may only add up to 3 feeds"
 msgstr "Du kan bara lägga till högst 3 flöden"
 
-#: src/components/moderation/BlockDialog.tsx:320
+#: src/components/moderation/BlockDialog.tsx:321
 msgid "You must be a chat owner to remove a member."
 msgstr "Du måste vara chattägare för att ta bort en medlem."
 
@@ -14468,12 +14489,12 @@ msgid "You probably want to restart the app now."
 msgstr "Du vill nog starta om appen nu."
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:259
+#: src/components/dms/MessageItem.tsx:271
 msgid "You reacted {0}"
 msgstr "Du reagerade med {0}"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/getReactionInfo.ts:43
+#: src/components/dms/getReactionInfo.ts:63
 msgid "You reacted {0} to {target}"
 msgstr "Du reagerade med {0} på {target}"
 
@@ -14483,7 +14504,7 @@ msgid "You recently changed your birthdate"
 msgstr "Du ändrade ditt födelsedatum nyligen"
 
 #. Displayed when the user has requested to join a group chat.
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:109
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:105
 msgid "You requested to join"
 msgstr "Medlemsförfrågan skickad"
 
@@ -14509,12 +14530,12 @@ msgstr "Du kommer att få notiser om den här tråden i fortsättningen"
 msgid "You will receive an email with a \"reset code.\" Enter that code here, then enter your new password."
 msgstr "Du kommer att få ett e-postmeddelande med en ”återställningskod”. Ange koden här och ange sedan ditt nya lösenord."
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:121
+#: src/screens/Messages/ConversationSettings/prompts.tsx:129
 msgid "You won’t be able to rejoin unless you’re invited."
 msgstr "Du kommer inte att kunna gå med igen utan en inbjudan."
 
 #. When the last message in a chat was made by you.
-#: src/components/dms/getMessageInfo.ts:50
+#: src/components/dms/getMessageInfo.ts:82
 msgid "You: {message}"
 msgstr "Du: {message}"
 

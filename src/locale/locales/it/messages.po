@@ -27,11 +27,11 @@ msgstr ""
 msgid "\"{interestsDisplayName}\" category (active)"
 msgstr "Categoria \"{interestsDisplayName}\" (attiva)"
 
-#: src/components/dms/getMessageInfo.ts:91
+#: src/components/dms/getMessageInfo.ts:123
 msgid "(chat invite link)"
 msgstr "(link invito alla chat)"
 
-#: src/components/dms/getMessageInfo.ts:73
+#: src/components/dms/getMessageInfo.ts:105
 msgid "(contains embedded content)"
 msgstr "(contiene allegati)"
 
@@ -101,7 +101,7 @@ msgstr "{0, plural, one {# nuova richiesta di partecipazione} other {# nuove ric
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:269
+#: src/components/dms/MessageItem.tsx:281
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr "{0, plural, one {# persona ha} other {# persone hanno}} reagito – {1}"
 
@@ -122,15 +122,15 @@ msgstr "{0, plural, one {# secondo} other {# secondi}}"
 
 #. placeholder {0}: numUnreadMessages.numUnread ?? 0
 #. placeholder {0}: numUnreadNotifications ?? 0
-#: src/view/shell/bottom-bar/BottomBar.tsx:234
-#: src/view/shell/bottom-bar/BottomBar.tsx:266
+#: src/view/shell/bottom-bar/BottomBar.tsx:245
+#: src/view/shell/bottom-bar/BottomBar.tsx:277
 #: src/view/shell/Drawer.tsx:569
 msgid "{0, plural, one {# unread item} other {# unread items}}"
 msgstr "{0, plural, one {# elemento non letto} other {# elementi non letti}}"
 
 #. How long it takes to read an article, in minutes. Displayed in a short form, e.g. "5m" for 5 minutes.
 #. placeholder {0}: view.readingTime
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:231
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:251
 msgid "{0, plural, one {#m} other {#m}}"
 msgstr "{0, plural, one {#m} other {#m}}"
 
@@ -230,7 +230,7 @@ msgid "{0} following"
 msgstr "{0} seguiti"
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:614
+#: src/components/dms/MessageItem.tsx:618
 msgid "{0} is blocking you"
 msgstr "{0} ti sta bloccando"
 
@@ -288,7 +288,7 @@ msgstr "{0} di 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:264
+#: src/components/dms/MessageItem.tsx:276
 msgid "{0} reacted {1}"
 msgstr "{0} ha reagito con {1}"
 
@@ -346,25 +346,23 @@ msgstr "Foto profilo di {0}"
 #. The number of active group chat members out of the total number allowed.
 #. placeholder {0}: joinLinkPreview.memberCount
 #. placeholder {1}: joinLinkPreview.memberLimit
-#: src/screens/Messages/JoinRequest.tsx:143
+#: src/screens/Messages/JoinRequest.tsx:139
 msgctxt "group-chat-member-count"
 msgid "{0}/{1}"
 msgstr "{0}/{1}"
 
 #. The number of members in a group chat, in the format '{members}/{total} members'.
+#. The number of members in a group chat, in the format '{members}/{total} members'.
+#. placeholder {0}: joinLinkPreview.memberCount
 #. placeholder {0}: preview.memberCount
+#. placeholder {1}: joinLinkPreview.memberLimit
 #. placeholder {1}: preview.memberLimit
-#. placeholder {2}: preview.memberCount
-#: src/components/dms/ChatInvite/Card.tsx:57
+#. placeholder {2}: joinLinkPreview.memberLimit
+#. placeholder {2}: preview.memberLimit
+#: src/components/dms/ChatInvite/Card.tsx:62
+#: src/components/intents/GroupChatJoinDialog.tsx:341
 msgid "{0}/{1} {2, plural, one {member} other {members}}"
 msgstr "{0}/{1} {2, plural, one {membro} other {membri}}"
-
-#. The number of active group chat members out of the total number allowed.
-#. placeholder {0}: joinLinkPreview.memberCount
-#. placeholder {1}: joinLinkPreview.memberLimit
-#: src/components/intents/GroupChatJoinDialog.tsx:329
-msgid "{0}/{1} members"
-msgstr "{0}/{1} membri"
 
 #. Badge showing the current image position out of the total number of images in a gallery.
 #. placeholder {0}: index + 1
@@ -700,12 +698,12 @@ msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, one {# minuto} other {# minuti}}"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/getReactionInfo.ts:45
+#: src/components/dms/getReactionInfo.ts:65
 msgid "{name} reacted {0} to {target}"
 msgstr "{name} ha reagito con {0} a {target}"
 
 #. When the last message in a group chat came from someone other than you.
-#: src/components/dms/getMessageInfo.ts:57
+#: src/components/dms/getMessageInfo.ts:89
 msgid "{name}: {message}"
 msgstr "{name}: {message}"
 
@@ -894,7 +892,7 @@ msgid "A collection of popular feeds you can find on Bluesky, including News, Bo
 msgstr "Una raccolta di feed popolari che puoi trovare su Bluesky, tra cui News, Booksky, Game Dev, Blacksky e Fountain Pens"
 
 #. If last message does not contain text, fall back to "{user} reacted to {a message}"
-#: src/components/dms/getReactionInfo.ts:33
+#: src/components/dms/getReactionInfo.ts:53
 msgid "a message"
 msgstr "un messaggio"
 
@@ -907,8 +905,8 @@ msgstr "Si è verificato un errore di rete. Controlla la tua connessione a inter
 #: src/components/dms/dialogs/NewChatDialog.tsx:56
 #: src/components/dms/dialogs/NewChatDialog.tsx:94
 #: src/components/dms/LeaveConvoPrompt.tsx:38
-#: src/components/moderation/BlockDialog.tsx:286
-#: src/components/moderation/BlockDialog.tsx:312
+#: src/components/moderation/BlockDialog.tsx:287
+#: src/components/moderation/BlockDialog.tsx:313
 #: src/screens/Messages/JoinRequests.tsx:192
 #: src/screens/Messages/JoinRequests.tsx:225
 msgid "A network error occurred. Please check your internet connection."
@@ -989,7 +987,7 @@ msgstr "Accetta questa lingua suggerita"
 msgid "Accepted conversations"
 msgstr "Conversazioni accettate"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:113
+#: src/components/intents/GroupChatJoinDialog.tsx:119
 msgid "Access requested! The group owner will review your request."
 msgstr "Richiesta di adesione inoltrata: il proprietario del gruppo esaminerà la tua richiesta."
 
@@ -1014,12 +1012,12 @@ msgstr "Account"
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:427
 #: src/screens/Messages/components/RequestButtons.tsx:104
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:122
-#: src/view/com/profile/ProfileMenu.tsx:209
+#: src/view/com/profile/ProfileMenu.tsx:208
 msgctxt "toast"
 msgid "Account blocked"
 msgstr "Account bloccato"
 
-#: src/view/com/profile/ProfileMenu.tsx:225
+#: src/view/com/profile/ProfileMenu.tsx:224
 msgctxt "toast"
 msgid "Account followed"
 msgstr "Account seguito"
@@ -1033,7 +1031,7 @@ msgid "Account is deactivated"
 msgstr "L'account è disattivato"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:470
-#: src/view/com/profile/ProfileMenu.tsx:179
+#: src/view/com/profile/ProfileMenu.tsx:178
 msgctxt "toast"
 msgid "Account muted"
 msgstr "Account silenziato"
@@ -1062,18 +1060,18 @@ msgstr "Account rimosso dall'accesso rapido"
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:109
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:94
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:325
-#: src/view/com/profile/ProfileMenu.tsx:196
+#: src/view/com/profile/ProfileMenu.tsx:195
 msgctxt "toast"
 msgid "Account unblocked"
 msgstr "Account sbloccato"
 
-#: src/view/com/profile/ProfileMenu.tsx:240
+#: src/view/com/profile/ProfileMenu.tsx:239
 msgctxt "toast"
 msgid "Account unfollowed"
 msgstr "Non segui più questo account"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:450
-#: src/view/com/profile/ProfileMenu.tsx:166
+#: src/view/com/profile/ProfileMenu.tsx:165
 msgctxt "toast"
 msgid "Account unmuted"
 msgstr "Account riattivato"
@@ -1263,8 +1261,8 @@ msgstr "Aggiungi il seguente record DNS al tuo dominio:"
 msgid "Add this feed to your feeds"
 msgstr "Aggiungi feed"
 
-#: src/view/com/profile/ProfileMenu.tsx:374
-#: src/view/com/profile/ProfileMenu.tsx:377
+#: src/view/com/profile/ProfileMenu.tsx:376
+#: src/view/com/profile/ProfileMenu.tsx:379
 msgid "Add to lists"
 msgstr "Aggiungi a liste"
 
@@ -1275,8 +1273,8 @@ msgid "Add to saved posts ({0, plural, one {# save} other {# saves}})"
 msgstr ""
 
 #: src/components/dialogs/StarterPackDialog.tsx:184
-#: src/view/com/profile/ProfileMenu.tsx:365
-#: src/view/com/profile/ProfileMenu.tsx:368
+#: src/view/com/profile/ProfileMenu.tsx:367
+#: src/view/com/profile/ProfileMenu.tsx:370
 msgid "Add to starter packs"
 msgstr "Aggiungi a starter pack"
 
@@ -1383,7 +1381,7 @@ msgid "alice@example.com"
 msgstr "alice@example.com"
 
 #. the default tab in the interests tab bar
-#: src/components/dms/ReactionsDialog.tsx:288
+#: src/components/dms/ReactionsDialog.tsx:292
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:201
 #: src/view/screens/Notifications.tsx:87
 msgid "All"
@@ -1391,7 +1389,7 @@ msgstr "Tutte"
 
 #. Tab label showing the total count of reactions on a chat message.
 #. placeholder {0}: tab.count
-#: src/components/dms/ReactionsDialog.tsx:385
+#: src/components/dms/ReactionsDialog.tsx:389
 msgid "All {0}"
 msgstr "Tutti e {0}"
 
@@ -1699,7 +1697,7 @@ msgstr "Chiunque"
 msgid "Anyone can interact"
 msgstr "Tutti possono interagire"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:340
+#: src/components/intents/GroupChatJoinDialog.tsx:356
 msgid "Anyone can join"
 msgstr "Chiunque può partecipare"
 
@@ -1780,8 +1778,8 @@ msgstr "Ricorso"
 msgid "Appeal \"{0}\" label"
 msgstr "Etichetta \"{0}\" del ricorso"
 
-#: src/view/com/profile/ProfileMenu.tsx:549
-#: src/view/com/profile/ProfileMenu.tsx:554
+#: src/view/com/profile/ProfileMenu.tsx:551
+#: src/view/com/profile/ProfileMenu.tsx:556
 msgid "Appeal labels"
 msgstr ""
 
@@ -1861,8 +1859,8 @@ msgstr "Eliminare questo starter pack?"
 msgid "Are you sure you want to discard your changes?"
 msgstr "Annullare le modifiche?"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:120
-#: src/screens/Messages/ConversationSettings/prompts.tsx:144
+#: src/screens/Messages/ConversationSettings/prompts.tsx:128
+#: src/screens/Messages/ConversationSettings/prompts.tsx:152
 msgid "Are you sure you want to leave {groupName}?"
 msgstr "Abbandonare {groupName}?"
 
@@ -1879,7 +1877,7 @@ msgid "Are you sure you want to remove this from your feeds?"
 msgstr "Vuoi rimuoverlo dai tuoi feed?"
 
 #. placeholder {0}: convoView.name
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:120
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:116
 msgid "Are you sure you want to rescind your request to join {0}?"
 msgstr "Annullare la richiesta di partecipare a {0}?"
 
@@ -2088,8 +2086,8 @@ msgstr "Blocca {displayName}"
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:758
 #: src/screens/Messages/components/RequestButtons.tsx:154
 #: src/screens/Messages/components/RequestButtons.tsx:156
-#: src/view/com/profile/ProfileMenu.tsx:488
-#: src/view/com/profile/ProfileMenu.tsx:495
+#: src/view/com/profile/ProfileMenu.tsx:490
+#: src/view/com/profile/ProfileMenu.tsx:497
 msgid "Block account"
 msgstr "Blocca account"
 
@@ -2358,7 +2356,7 @@ msgstr ""
 #. placeholder {0}: sanitizeHandle(item.feed.creator.handle, '@')
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:847
-#: src/screens/Messages/JoinRequest.tsx:181
+#: src/screens/Messages/JoinRequest.tsx:177
 #: src/screens/Search/components/StarterPackCard.tsx:107
 #: src/screens/Search/Explore.tsx:971
 msgid "By {0}"
@@ -2372,13 +2370,13 @@ msgstr "di @{0}"
 #. The group chat creator, in the format 'By {displayName}'.
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile(joinLinkPreview.owner, moderationOpts).ui( 'displayName', ), )
 #. placeholder {0}: sanitizeHandle(info.creatorHandle, '@')
-#: src/components/intents/GroupChatJoinDialog.tsx:363
+#: src/components/intents/GroupChatJoinDialog.tsx:379
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:460
 msgid "By <0>{0}</0>"
 msgstr "Di <0>{0}</0>"
 
 #. The group chat creator, in the format 'By {displayName}'.
-#: src/components/dms/ChatInvite/Card.tsx:79
+#: src/components/dms/ChatInvite/Card.tsx:84
 msgid "By <0>{ownerDisplayName}</0>"
 msgstr "Di <0>{ownerDisplayName}</0>"
 
@@ -2446,10 +2444,10 @@ msgstr "Accesso alla fotocamera necessario"
 #: src/screens/Deactivated.tsx:150
 #: src/screens/Messages/components/InviteLinkDialog.tsx:500
 #: src/screens/Messages/components/InviteLinkDialog.tsx:504
-#: src/screens/Messages/ConversationSettings/prompts.tsx:100
-#: src/screens/Messages/ConversationSettings/prompts.tsx:124
-#: src/screens/Messages/ConversationSettings/prompts.tsx:148
-#: src/screens/Messages/ConversationSettings/prompts.tsx:172
+#: src/screens/Messages/ConversationSettings/prompts.tsx:108
+#: src/screens/Messages/ConversationSettings/prompts.tsx:132
+#: src/screens/Messages/ConversationSettings/prompts.tsx:156
+#: src/screens/Messages/ConversationSettings/prompts.tsx:180
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
 #: src/screens/Search/Shell.tsx:405
@@ -2579,7 +2577,7 @@ msgstr "Le modifiche allo starter pack fatte dopo la sua creazione non cambieran
 
 #: src/lib/hooks/useNotificationHandler.ts:133
 #: src/Navigation.tsx:554
-#: src/view/shell/bottom-bar/BottomBar.tsx:230
+#: src/view/shell/bottom-bar/BottomBar.tsx:242
 #: src/view/shell/desktop/LeftNav.tsx:698
 #: src/view/shell/Drawer.tsx:537
 msgid "Chat"
@@ -2596,7 +2594,7 @@ msgid "Chat ended"
 msgstr "Chat terminata"
 
 #: src/components/dms/ChatInvite/Unavailable.tsx:25
-#: src/components/intents/GroupChatJoinDialog.tsx:256
+#: src/components/intents/GroupChatJoinDialog.tsx:269
 #: src/screens/Messages/JoinRequest.tsx:97
 msgid "Chat invite link no longer available"
 msgstr "Link di invito alla chat non più disponibile"
@@ -2618,12 +2616,12 @@ msgctxt "toast"
 msgid "Chat muted"
 msgstr "Conversazione silenziata"
 
-#: src/components/moderation/BlockDialog.tsx:288
-#: src/components/moderation/BlockDialog.tsx:316
+#: src/components/moderation/BlockDialog.tsx:289
+#: src/components/moderation/BlockDialog.tsx:317
 msgid "Chat not found."
 msgstr "Chat non trovata."
 
-#: src/components/moderation/BlockDialog.tsx:292
+#: src/components/moderation/BlockDialog.tsx:293
 msgid "Chat owners cannot leave a group chat."
 msgstr "I proprietari delle chat non possono lasciare una chat di gruppo."
 
@@ -2829,7 +2827,7 @@ msgstr "Fai clic qui per visualizzare il link di invito per questa chat di grupp
 msgid "Click to open tag menu for {0}"
 msgstr "Fai clic per aprire il menu dei tag di {0}"
 
-#: src/components/dms/MessageItem.tsx:533
+#: src/components/dms/MessageItem.tsx:537
 msgid "Click to retry failed message"
 msgstr "Clicca per riprovare l'invio"
 
@@ -2865,8 +2863,8 @@ msgstr "Clicca per riprovare l'invio"
 #: src/components/dms/AfterReportDialog.tsx:217
 #: src/components/dms/EmojiPopup.android.tsx:59
 #: src/components/dms/InitiateChatFlow.tsx:565
-#: src/components/intents/GroupChatJoinDialog.tsx:233
-#: src/components/intents/GroupChatJoinDialog.tsx:268
+#: src/components/intents/GroupChatJoinDialog.tsx:246
+#: src/components/intents/GroupChatJoinDialog.tsx:281
 #: src/components/NewskieDialog.tsx:169
 #: src/components/NewskieDialog.tsx:175
 #: src/components/Post/Embed/VideoEmbed/GifPresentationControls.tsx:107
@@ -2948,10 +2946,10 @@ msgstr "Chiudi scanner"
 msgid "Close the incoming requests banner"
 msgstr "Chiudi il banner delle richieste in arrivo"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:226
-#: src/components/intents/GroupChatJoinDialog.tsx:227
-#: src/components/intents/GroupChatJoinDialog.tsx:263
-#: src/components/intents/GroupChatJoinDialog.tsx:264
+#: src/components/intents/GroupChatJoinDialog.tsx:239
+#: src/components/intents/GroupChatJoinDialog.tsx:240
+#: src/components/intents/GroupChatJoinDialog.tsx:276
+#: src/components/intents/GroupChatJoinDialog.tsx:277
 #: src/components/Menu/index.tsx:361
 msgid "Close this dialog"
 msgstr "Chiudi la finestra"
@@ -3263,8 +3261,8 @@ msgstr "Copia"
 msgid "Copy App Password"
 msgstr "Copia password per app"
 
-#: src/view/com/profile/ProfileMenu.tsx:525
-#: src/view/com/profile/ProfileMenu.tsx:528
+#: src/view/com/profile/ProfileMenu.tsx:527
+#: src/view/com/profile/ProfileMenu.tsx:530
 msgid "Copy at:// URI"
 msgstr "Copia URL at://"
 
@@ -3279,8 +3277,8 @@ msgid "Copy code"
 msgstr "Copia codice"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:504
-#: src/view/com/profile/ProfileMenu.tsx:534
-#: src/view/com/profile/ProfileMenu.tsx:537
+#: src/view/com/profile/ProfileMenu.tsx:536
+#: src/view/com/profile/ProfileMenu.tsx:539
 msgid "Copy DID"
 msgstr "Copia DID"
 
@@ -3314,8 +3312,8 @@ msgstr "Copia link della lista"
 msgid "Copy link to post"
 msgstr "Copia link del post"
 
-#: src/view/com/profile/ProfileMenu.tsx:304
-#: src/view/com/profile/ProfileMenu.tsx:314
+#: src/view/com/profile/ProfileMenu.tsx:306
+#: src/view/com/profile/ProfileMenu.tsx:316
 msgid "Copy link to profile"
 msgstr "Copia link al profilo"
 
@@ -3398,7 +3396,7 @@ msgstr "Impossibile seguire tutte le corrispondenze. {0}"
 msgid "Could not leave chat"
 msgstr "Impossibile abbandonare la chat"
 
-#: src/components/moderation/BlockDialog.tsx:284
+#: src/components/moderation/BlockDialog.tsx:285
 msgid "Could not leave chat."
 msgstr "Impossibile abbandonare la chat."
 
@@ -3424,7 +3422,7 @@ msgstr "Errore nel silenziare la conversazione"
 msgid "Could not process your video"
 msgstr "Impossibile processare il tuo video"
 
-#: src/components/moderation/BlockDialog.tsx:310
+#: src/components/moderation/BlockDialog.tsx:311
 msgid "Could not remove member."
 msgstr "Impossibile rimuovere il membro."
 
@@ -3498,12 +3496,12 @@ msgstr "Crea uno starter pack per me"
 
 #: src/components/WelcomeModal.tsx:158
 #: src/components/WelcomeModal.tsx:166
-#: src/screens/Messages/JoinRequest.tsx:314
+#: src/screens/Messages/JoinRequest.tsx:310
 #: src/screens/Signup/index.tsx:135
 #: src/view/com/auth/SplashScreen.tsx:107
 #: src/view/com/auth/SplashScreen.web.tsx:116
-#: src/view/shell/bottom-bar/BottomBar.tsx:333
-#: src/view/shell/bottom-bar/BottomBar.tsx:338
+#: src/view/shell/bottom-bar/BottomBar.tsx:345
+#: src/view/shell/bottom-bar/BottomBar.tsx:349
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:240
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:245
 #: src/view/shell/NavSignupCard.tsx:48
@@ -3553,13 +3551,13 @@ msgstr "Crea lista da starter pack"
 msgid "Create moderation list"
 msgstr "Crea lista di moderazione"
 
-#: src/screens/Messages/JoinRequest.tsx:308
+#: src/screens/Messages/JoinRequest.tsx:304
 #: src/view/com/auth/SplashScreen.tsx:100
 #: src/view/com/auth/SplashScreen.web.tsx:108
 msgid "Create new account"
 msgstr "Crea un nuovo account"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:553
+#: src/screens/Messages/ConversationSettings/index.tsx:554
 msgid "Create or modify an invite link for this group chat"
 msgstr "Crea o modifica un link di invito per questa chat di gruppo"
 
@@ -3583,7 +3581,7 @@ msgstr "Crea lista di utenti"
 #. placeholder {0}: i18n.date(createdAt, { dateStyle: 'long', timeStyle: 'short', })
 #. placeholder {0}: i18n.date(createdAt, { month: 'long', day: 'numeric', year: 'numeric', })
 #: src/screens/Messages/components/InviteLinkDialog.tsx:355
-#: src/screens/Messages/ConversationSettings/index.tsx:505
+#: src/screens/Messages/ConversationSettings/index.tsx:509
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "Creato {0}"
@@ -4125,7 +4123,7 @@ msgctxt "action"
 msgid "Done"
 msgstr "Fatto"
 
-#: src/components/dms/MessageItem.tsx:437
+#: src/components/dms/MessageItem.tsx:440
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Tocca due volte o tieni premuto il messaggio per aggiungere una reazione"
 
@@ -4270,8 +4268,8 @@ msgstr "Modifica avatar"
 msgid "Edit Feeds"
 msgstr "Modifica i feed"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:36
-#: src/screens/Messages/ConversationSettings/prompts.tsx:41
+#: src/screens/Messages/ConversationSettings/prompts.tsx:43
+#: src/screens/Messages/ConversationSettings/prompts.tsx:49
 msgid "Edit group name"
 msgstr "Modifica nome del gruppo"
 
@@ -4309,8 +4307,8 @@ msgstr "Modifica impostazioni link"
 msgid "Edit list details"
 msgstr "Modifica lista"
 
-#: src/view/com/profile/ProfileMenu.tsx:388
-#: src/view/com/profile/ProfileMenu.tsx:408
+#: src/view/com/profile/ProfileMenu.tsx:390
+#: src/view/com/profile/ProfileMenu.tsx:410
 msgid "Edit live status"
 msgstr "Modifica stato in diretta"
 
@@ -4323,7 +4321,7 @@ msgstr "Modifica lista di moderazione"
 msgid "Edit My Feeds"
 msgstr "Modifica i miei feed"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:540
+#: src/screens/Messages/ConversationSettings/index.tsx:544
 msgid "Edit name"
 msgstr "Modifica nome"
 
@@ -4352,8 +4350,8 @@ msgstr "Modifica profilo"
 msgid "Edit starter pack"
 msgstr "Modifica starter pack"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:486
-#: src/screens/Messages/ConversationSettings/index.tsx:539
+#: src/screens/Messages/ConversationSettings/index.tsx:493
+#: src/screens/Messages/ConversationSettings/index.tsx:543
 msgid "Edit this group chat’s name"
 msgstr "Modifica il nome di questa chat di gruppo"
 
@@ -4764,7 +4762,7 @@ msgstr "Impossibile accettare la richiesta"
 msgid "Failed to accept join request"
 msgstr "Impossibile accettare la richiesta di partecipazione"
 
-#: src/components/dms/ActionsWrapper.web.tsx:90
+#: src/components/dms/ActionsWrapper.web.tsx:88
 #: src/components/dms/MessageContextMenu.tsx:116
 msgid "Failed to add emoji reaction"
 msgstr "Non è stato possibile aggiungere la reazione"
@@ -4836,7 +4834,7 @@ msgstr "Impossibile disattivare il link di invito"
 msgid "Failed to disconnect Germ DM. Error: {0}"
 msgstr "Impossibile disconnettere Germ DM. Errore: {0}"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:374
+#: src/screens/Messages/ConversationSettings/index.tsx:381
 msgid "Failed to edit group chat name"
 msgstr "Modifica del nome della chat di gruppo non riuscita"
 
@@ -4864,7 +4862,7 @@ msgstr "Impossibile nascondere il suggerimento, controlla la tua connessione a i
 msgid "Failed to ignore join request"
 msgstr "Impossibile ignorare la richiesta di partecipazione"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:137
+#: src/components/intents/GroupChatJoinDialog.tsx:147
 msgid "Failed to join the group chat. Please try again."
 msgstr "Impossibile partecipare alla chat di gruppo. Riprova."
 
@@ -4872,9 +4870,9 @@ msgstr "Impossibile partecipare alla chat di gruppo. Riprova."
 msgid "Failed to launch SMS app"
 msgstr "Impossibile avviare l'app per gli SMS"
 
-#: src/screens/Messages/components/ChatEnded.tsx:42
-#: src/screens/Messages/components/ChatLocked.tsx:62
-#: src/screens/Messages/ConversationSettings/index.tsx:401
+#: src/screens/Messages/components/ChatEnded.tsx:41
+#: src/screens/Messages/components/ChatLocked.tsx:61
+#: src/screens/Messages/ConversationSettings/index.tsx:408
 msgctxt "toast"
 msgid "Failed to leave group chat"
 msgstr "Impossibile abbandonare la chat di gruppo"
@@ -4925,15 +4923,20 @@ msgstr "Impossibile caricare feed consigliati"
 msgid "Failed to load suggested follows"
 msgstr "Impossibile caricare follow consigliati"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:426
+#: src/screens/Messages/ConversationSettings/index.tsx:433
 msgid "Failed to lock group chat"
 msgstr "Impossibile bloccare la chat di gruppo"
 
+#: src/view/shell/bottom-bar/BottomBar.tsx:441
+msgid "Failed to mark all chats as read"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:311
+#: src/view/shell/bottom-bar/BottomBar.tsx:450
 msgid "Failed to mark all requests as read"
 msgstr "Impossibile segnare le richieste come lette"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:390
+#: src/screens/Messages/ConversationSettings/index.tsx:397
 msgid "Failed to mute group chat"
 msgstr "Impossibile silenziare la chat di gruppo"
 
@@ -4955,9 +4958,9 @@ msgstr "Impossibile rimuovere i dati a causa di un errore di rete, controlla la 
 msgid "Failed to remove data. {0}"
 msgstr "Impossibile rimuovere i dati. {0}"
 
-#: src/components/dms/ActionsWrapper.web.tsx:75
+#: src/components/dms/ActionsWrapper.web.tsx:73
 #: src/components/dms/MessageContextMenu.tsx:101
-#: src/components/dms/ReactionsDialog.tsx:175
+#: src/components/dms/ReactionsDialog.tsx:179
 msgid "Failed to remove emoji reaction"
 msgstr "Non è stato possibile rimuovere la reazione"
 
@@ -4974,7 +4977,7 @@ msgstr "Impossibile rimuovere il membro dalla chat di gruppo"
 msgid "Failed to remove verification"
 msgstr "Non è stato possibile rimuovere la verifica"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:180
+#: src/components/intents/GroupChatJoinDialog.tsx:193
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:34
 msgid "Failed to rescind your request. Please try again."
 msgstr "Impossibile annullare la richiesta. Riprova."
@@ -5026,7 +5029,7 @@ msgid "Failed to toggle thread mute, please try again"
 msgstr "Impossibile abilitare silenziamento thread, riprovare"
 
 #: src/screens/Messages/components/ChatLocked.tsx:51
-#: src/screens/Messages/ConversationSettings/index.tsx:435
+#: src/screens/Messages/ConversationSettings/index.tsx:442
 msgid "Failed to unlock group chat"
 msgstr "Impossibile sbloccare la chat di gruppo"
 
@@ -5302,7 +5305,7 @@ msgstr "Attiva il campo di ricerca"
 #: src/components/ProfileHoverCard/index.web.tsx:506
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:435
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:439
 #: src/screens/VideoFeed/index.tsx:866
 #: src/view/com/notifications/NotificationFeedItem.tsx:873
 #: src/view/com/notifications/NotificationFeedItem.tsx:880
@@ -5311,7 +5314,7 @@ msgstr "Segui"
 
 #. placeholder {0}: profile.handle
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:144
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:423
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:427
 msgid "Follow {0}"
 msgstr "Segui {0}"
 
@@ -5335,8 +5338,8 @@ msgstr "Segui 10 persone per iniziare"
 msgid "Follow 7 accounts"
 msgstr "Segui 7 account"
 
-#: src/view/com/profile/ProfileMenu.tsx:344
-#: src/view/com/profile/ProfileMenu.tsx:355
+#: src/view/com/profile/ProfileMenu.tsx:346
+#: src/view/com/profile/ProfileMenu.tsx:357
 msgid "Follow account"
 msgstr "Segui account"
 
@@ -5359,7 +5362,7 @@ msgstr "Segui tutti gli account"
 #. User is not following this account, click to follow back
 #: src/components/ProfileCard.tsx:542
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:155
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:433
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:437
 #: src/view/com/notifications/NotificationFeedItem.tsx:873
 #: src/view/com/notifications/NotificationFeedItem.tsx:880
 msgid "Follow back"
@@ -5397,7 +5400,7 @@ msgstr "Seguito da <0>{0}</0> e <1>{1}</1>"
 msgid "Followed by <0>{0}</0>, <1>{1}</1>, and {2, plural, one {# other} other {# others}}"
 msgstr "Seguito da <0>{0}</0>, <1>{1}</1>, e {2, plural, one {# altro} other {# altri}}"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:339
+#: src/components/intents/GroupChatJoinDialog.tsx:355
 msgid "Followers can join"
 msgstr "Chi segue può partecipare"
 
@@ -5417,7 +5420,7 @@ msgstr "Follower che conosci"
 #: src/components/ProfileHoverCard/index.web.tsx:494
 #: src/components/ProfileHoverCard/index.web.tsx:505
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:431
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:435
 #: src/screens/VideoFeed/index.tsx:864
 #: src/view/com/notifications/NotificationFeedItem.tsx:851
 #: src/view/com/notifications/NotificationFeedItem.tsx:868
@@ -5712,8 +5715,8 @@ msgctxt "Button to go back to the home timeline"
 msgid "Go home"
 msgstr "Vai alla home"
 
-#: src/view/com/profile/ProfileMenu.tsx:389
-#: src/view/com/profile/ProfileMenu.tsx:410
+#: src/view/com/profile/ProfileMenu.tsx:391
+#: src/view/com/profile/ProfileMenu.tsx:412
 msgid "Go live"
 msgstr "Vai in diretta"
 
@@ -5724,8 +5727,8 @@ msgstr "Vai in diretta"
 msgid "Go Live"
 msgstr "Vai in diretta"
 
-#: src/view/com/profile/ProfileMenu.tsx:386
-#: src/view/com/profile/ProfileMenu.tsx:406
+#: src/view/com/profile/ProfileMenu.tsx:388
+#: src/view/com/profile/ProfileMenu.tsx:408
 msgid "Go live (disabled)"
 msgstr "Vai in diretta (disabilitato)"
 
@@ -5808,9 +5811,9 @@ msgstr "Contenuti violenti espliciti"
 msgid "Grooming or predatory behavior"
 msgstr "Adescamento o comportamento predatorio"
 
-#: src/components/dms/ChatInvite/Card.tsx:46
-#: src/components/intents/GroupChatJoinDialog.tsx:321
-#: src/screens/Messages/JoinRequest.tsx:129
+#: src/components/dms/ChatInvite/Card.tsx:51
+#: src/components/intents/GroupChatJoinDialog.tsx:333
+#: src/screens/Messages/JoinRequest.tsx:125
 msgid "Group chat"
 msgstr "Chat di gruppo"
 
@@ -5818,17 +5821,17 @@ msgstr "Chat di gruppo"
 msgid "Group chat invite link dialog"
 msgstr "Finestra di dialogo link di invito alla chat di gruppo"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:417
+#: src/screens/Messages/ConversationSettings/index.tsx:424
 msgctxt "toast"
 msgid "Group chat locked"
 msgstr "Chat di gruppo bloccata"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:382
+#: src/screens/Messages/ConversationSettings/index.tsx:389
 msgctxt "toast"
 msgid "Group chat muted"
 msgstr "Chat di gruppo silenziata"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:369
+#: src/screens/Messages/ConversationSettings/index.tsx:376
 msgctxt "toast"
 msgid "Group chat name updated"
 msgstr "Nome chat di gruppo aggiornato"
@@ -5839,12 +5842,12 @@ msgid "Group chat settings"
 msgstr "Impostazioni chat di gruppo"
 
 #: src/screens/Messages/components/ChatLocked.tsx:41
-#: src/screens/Messages/ConversationSettings/index.tsx:420
+#: src/screens/Messages/ConversationSettings/index.tsx:427
 msgctxt "toast"
 msgid "Group chat unlocked"
 msgstr "Chat di gruppo sbloccata"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:385
+#: src/screens/Messages/ConversationSettings/index.tsx:392
 msgctxt "toast"
 msgid "Group chat unmuted"
 msgstr "Chat di gruppo riattivata"
@@ -5868,12 +5871,12 @@ msgstr "Il gruppo è bloccato"
 
 #: src/components/dms/InitiateChatFlow.tsx:264
 #: src/components/dms/InitiateChatFlow.tsx:600
-#: src/screens/Messages/ConversationSettings/prompts.tsx:42
+#: src/screens/Messages/ConversationSettings/prompts.tsx:50
 msgid "Group name"
 msgstr "Nome del gruppo"
 
 #: src/components/dms/InitiateChatFlow.tsx:625
-#: src/screens/Messages/ConversationSettings/prompts.tsx:61
+#: src/screens/Messages/ConversationSettings/prompts.tsx:69
 msgid "Group name is too long. {MAX_GROUP_NAME_GRAPHEME_LENGTH, plural, other {The maximum number of characters is #.}}"
 msgstr "Il nome del gruppo è troppo lungo. {MAX_GROUP_NAME_GRAPHEME_LENGTH, plural, other {Il numero massimo di caratteri è #.}}"
 
@@ -6143,7 +6146,7 @@ msgstr "Un po' di pazienza: stiamo gradualmente dando accesso al video e tu sei 
 
 #: src/Navigation.tsx:809
 #: src/Navigation.tsx:830
-#: src/view/shell/bottom-bar/BottomBar.tsx:185
+#: src/view/shell/bottom-bar/BottomBar.tsx:196
 #: src/view/shell/desktop/LeftNav.tsx:667
 #: src/view/shell/Drawer.tsx:511
 msgid "Home"
@@ -6458,7 +6461,7 @@ msgstr "Presentazione dei post salvati, noti anche come segnalibri"
 msgid "Invalid 2FA confirmation code."
 msgstr "Codice di conferma 2FA non valido."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:147
+#: src/components/intents/GroupChatJoinDialog.tsx:157
 msgid "Invalid group chat code."
 msgstr "Codice chat di gruppo non valido."
 
@@ -6480,7 +6483,7 @@ msgstr "Numero di telefono non valido"
 msgid "Invalid report subject"
 msgstr "Oggetto segnalazione non valido"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:187
+#: src/components/intents/GroupChatJoinDialog.tsx:200
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:41
 msgid "Invalid rescind request."
 msgstr "Richiesta di annullamento non valida."
@@ -6505,7 +6508,7 @@ msgstr "Codice d'invito"
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Codice invito non accettato. Controlla di averlo inserito correttamente e riprova."
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:378
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:382
 #: src/view/shell/Drawer.tsx:130
 msgid "Invite friends"
 msgstr "Invita amici"
@@ -6524,7 +6527,7 @@ msgstr "Invita amici <0/>"
 #: src/screens/Messages/components/InviteLinkDialog.tsx:335
 #: src/screens/Messages/components/InviteLinkDialog.tsx:514
 #: src/screens/Messages/components/MessagesListGroupInfoPanel.tsx:149
-#: src/screens/Messages/ConversationSettings/index.tsx:556
+#: src/screens/Messages/ConversationSettings/index.tsx:557
 msgid "Invite link"
 msgstr "Link di invito"
 
@@ -6607,7 +6610,7 @@ msgid "Job ID: {0}"
 msgstr "ID processo: {0}"
 
 #: src/components/dms/ChatInvite/Root.tsx:117
-#: src/components/intents/GroupChatJoinDialog.tsx:282
+#: src/components/intents/GroupChatJoinDialog.tsx:296
 msgid "Join"
 msgstr "Partecipa"
 
@@ -6618,12 +6621,12 @@ msgstr "Partecipa"
 msgid "Join Bluesky"
 msgstr "Entra in Bluesky"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:71
-#: src/components/intents/GroupChatJoinDialog.tsx:448
+#: src/components/intents/GroupChatJoinDialog.tsx:72
+#: src/components/intents/GroupChatJoinDialog.tsx:464
 msgid "Join group chat"
 msgstr "Partecipa alla chat di gruppo"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:176
+#: src/components/intents/GroupChatJoinDialog.tsx:189
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:31
 msgid "Join request rescinded."
 msgstr "Richiesta di partecipazione annullata."
@@ -6805,7 +6808,7 @@ msgid "Learn more."
 msgstr "Saperne di più."
 
 #: src/components/dms/LeaveConvoPrompt.tsx:59
-#: src/screens/Messages/ConversationSettings/index.tsx:590
+#: src/screens/Messages/ConversationSettings/index.tsx:591
 msgid "Leave"
 msgstr "Abbandona"
 
@@ -6819,8 +6822,8 @@ msgstr "Abbandona"
 #: src/components/dms/MessagesListBlockedFooter.tsx:116
 #: src/components/moderation/BlockDialog.tsx:384
 #: src/components/moderation/BlockDialog.tsx:391
-#: src/screens/Messages/components/ChatEnded.tsx:67
-#: src/screens/Messages/components/ChatLocked.tsx:113
+#: src/screens/Messages/components/ChatEnded.tsx:66
+#: src/screens/Messages/components/ChatLocked.tsx:112
 msgid "Leave chat"
 msgstr "Abbandona la chat"
 
@@ -6840,16 +6843,16 @@ msgctxt "button"
 msgid "Leave conversation"
 msgstr "Abbandona conversazione"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:122
-#: src/screens/Messages/ConversationSettings/prompts.tsx:146
+#: src/screens/Messages/ConversationSettings/prompts.tsx:130
+#: src/screens/Messages/ConversationSettings/prompts.tsx:154
 msgid "Leave group chat"
 msgstr "Abbandona chat di gruppo"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:589
+#: src/screens/Messages/ConversationSettings/index.tsx:590
 msgid "Leave this group chat"
 msgstr "Abbandona questa chat di gruppo"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:145
+#: src/screens/Messages/ConversationSettings/prompts.tsx:153
 msgid "Leaving this chat will lock it permanently and you won’t be able to rejoin."
 msgstr "Se la abbandoni, questa chat verrà bloccata definitivamente e non potrai parteciparvi più."
 
@@ -6858,7 +6861,7 @@ msgstr "Se la abbandoni, questa chat verrà bloccata definitivamente e non potra
 msgid "Leaving Us"
 msgstr ""
 
-#: src/components/moderation/BlockDialog.tsx:276
+#: src/components/moderation/BlockDialog.tsx:277
 msgid "Left group chat."
 msgstr "Chat di gruppo abbandonata."
 
@@ -7159,23 +7162,23 @@ msgstr "Caricamento impostazioni di interazione del post..."
 msgid "Loading..."
 msgstr "Caricamento..."
 
-#: src/screens/Messages/ConversationSettings/index.tsx:570
+#: src/screens/Messages/ConversationSettings/index.tsx:571
 msgid "Lock"
 msgstr "Blocca"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:99
+#: src/screens/Messages/ConversationSettings/prompts.tsx:107
 msgid "Lock group chat"
 msgstr "Blocca chat di gruppo"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:97
+#: src/screens/Messages/ConversationSettings/prompts.tsx:105
 msgid "Lock group chat?"
 msgstr "Bloccare la chat di gruppo?"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:568
+#: src/screens/Messages/ConversationSettings/index.tsx:569
 msgid "Lock this group chat"
 msgstr "Blocca questa chat di gruppo"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:570
+#: src/screens/Messages/ConversationSettings/index.tsx:571
 msgid "Locked"
 msgstr "Bloccato"
 
@@ -7256,6 +7259,16 @@ msgstr "Gestisci parole e tag silenziati"
 msgid "Mark all as read"
 msgstr "Segna tutto come letto"
 
+#: src/view/shell/bottom-bar/BottomBar.tsx:459
+#: src/view/shell/bottom-bar/BottomBar.tsx:463
+msgid "Mark all chats as read"
+msgstr ""
+
+#: src/view/shell/bottom-bar/BottomBar.tsx:467
+#: src/view/shell/bottom-bar/BottomBar.tsx:471
+msgid "Mark all requests as read"
+msgstr ""
+
 #: src/components/dms/ConvoMenu.tsx:248
 #: src/components/dms/ConvoMenu.tsx:252
 msgid "Mark as read"
@@ -7264,6 +7277,14 @@ msgstr "Segna come letto"
 #: src/screens/Messages/Inbox.tsx:306
 msgid "Marked all as read"
 msgstr "Segnato tutto come letto"
+
+#: src/view/shell/bottom-bar/BottomBar.tsx:438
+msgid "Marked all chats as read"
+msgstr ""
+
+#: src/view/shell/bottom-bar/BottomBar.tsx:447
+msgid "Marked all requests as read"
+msgstr ""
 
 #: src/view/com/composer/tags/TagsBtn.tsx:282
 msgid "Maximum tags reached"
@@ -7292,7 +7313,7 @@ msgstr "Media salvati su un altro dispositivo"
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Contenuti che potrebbero disturbare o risultare inappropriati per alcuni tipi di pubblico."
 
-#: src/components/moderation/BlockDialog.tsx:302
+#: src/components/moderation/BlockDialog.tsx:303
 msgid "Member removed from group chat."
 msgstr "Membro rimosso dalla chat di gruppo."
 
@@ -7301,7 +7322,7 @@ msgstr "Membro rimosso dalla chat di gruppo."
 msgid "Members"
 msgstr "Membri"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:98
+#: src/screens/Messages/ConversationSettings/prompts.tsx:106
 msgid "Members can still read chat history but can’t send new messages."
 msgstr "I membri possono ancora leggere la cronologia della chat ma non possono inviare nuovi messaggi."
 
@@ -7350,7 +7371,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "Messaggio eliminato"
 
-#: src/components/dms/MessageItem.tsx:527
+#: src/components/dms/MessageItem.tsx:531
 msgid "Message failed to send."
 msgstr "Impossibile inviare il messaggio."
 
@@ -7387,11 +7408,11 @@ msgstr "Opzioni messaggio"
 msgid "Messages"
 msgstr "Messaggi"
 
-#: src/components/dms/MessageItem.tsx:626
+#: src/components/dms/MessageItem.tsx:630
 msgid "Messages from this person are hidden while they are blocking you."
 msgstr "I messaggi di questa persona sono nascosti mentre ti sta bloccando."
 
-#: src/components/dms/MessageItem.tsx:621
+#: src/components/dms/MessageItem.tsx:625
 msgid "Messages from this person are hidden while you are blocking them."
 msgstr "I messaggi di questa persona sono nascosti mentre la stai bloccando."
 
@@ -7500,8 +7521,8 @@ msgstr "Altre lingue..."
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:144
 #: src/view/com/composer/drafts/DraftItem.tsx:190
-#: src/view/com/profile/ProfileMenu.tsx:278
-#: src/view/com/profile/ProfileMenu.tsx:285
+#: src/view/com/profile/ProfileMenu.tsx:277
+#: src/view/com/profile/ProfileMenu.tsx:284
 msgid "More options"
 msgstr "Altre opzioni"
 
@@ -7521,7 +7542,7 @@ msgstr "Film"
 msgid "Music"
 msgstr "Musica"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:532
+#: src/screens/Messages/ConversationSettings/index.tsx:536
 msgid "Mute"
 msgstr "Silenzia"
 
@@ -7539,8 +7560,8 @@ msgstr "Silenzia {0}"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:739
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:745
-#: src/view/com/profile/ProfileMenu.tsx:467
-#: src/view/com/profile/ProfileMenu.tsx:474
+#: src/view/com/profile/ProfileMenu.tsx:469
+#: src/view/com/profile/ProfileMenu.tsx:476
 msgid "Mute account"
 msgstr "Silenzia account"
 
@@ -7566,7 +7587,7 @@ msgstr "Silenzia lista"
 msgid "Mute these accounts?"
 msgstr "Silenziare questi account?"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:530
+#: src/screens/Messages/ConversationSettings/index.tsx:534
 msgid "Mute this group chat"
 msgstr "Silenzia questa chat di gruppo"
 
@@ -7608,7 +7629,7 @@ msgstr "Silenzia parole e tag"
 msgid "Mute, leave, or remove people anytime. It’s your chat."
 msgstr "Silenzia, abbandona o rimuovi persone in qualsiasi momento. È la tua chat."
 
-#: src/screens/Messages/ConversationSettings/index.tsx:532
+#: src/screens/Messages/ConversationSettings/index.tsx:536
 msgid "Muted"
 msgstr "Silenziato"
 
@@ -7699,7 +7720,7 @@ msgstr "Non importa, crea un nome utente per me"
 
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:171
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:184
-#: src/view/com/profile/ProfileMenu.tsx:422
+#: src/view/com/profile/ProfileMenu.tsx:424
 msgid "New"
 msgstr "Nuova"
 
@@ -7984,7 +8005,7 @@ msgstr "Nessuno"
 msgid "No one but the author can quote this post."
 msgstr "Solo l'autore può citare questo post."
 
-#: src/screens/Messages/components/ChatLocked.tsx:74
+#: src/screens/Messages/components/ChatLocked.tsx:73
 msgid "No one can send messages"
 msgstr "Nessuno può inviare messaggi"
 
@@ -8116,7 +8137,7 @@ msgstr "Non trovato"
 msgid "Not ready to hit post? Keep your best ideas in Drafts until the timing is just right."
 msgstr "Non sei pronto a pubblicare? Conserva le tue idee migliori nelle Bozze fino al momento giusto."
 
-#: src/view/com/profile/ProfileMenu.tsx:586
+#: src/view/com/profile/ProfileMenu.tsx:588
 msgid "Note about sharing"
 msgstr "Nota sulla condivisione"
 
@@ -8152,7 +8173,7 @@ msgstr "Suoni di notifica"
 #: src/screens/Settings/Settings.tsx:198
 #: src/screens/Settings/Settings.tsx:201
 #: src/view/screens/Notifications.tsx:131
-#: src/view/shell/bottom-bar/BottomBar.tsx:261
+#: src/view/shell/bottom-bar/BottomBar.tsx:273
 #: src/view/shell/desktop/LeftNav.tsx:687
 #: src/view/shell/Drawer.tsx:564
 msgid "Notifications"
@@ -8215,7 +8236,7 @@ msgstr "OK"
 #: src/components/BotAccountAlert.tsx:52
 #: src/components/BotAccountAlert.tsx:57
 #: src/components/dms/InitiateChatFlow.tsx:733
-#: src/components/dms/MessageItem.tsx:633
+#: src/components/dms/MessageItem.tsx:637
 #: src/screens/Login/PasswordUpdatedForm.tsx:37
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:748
 msgid "Okay"
@@ -8299,7 +8320,7 @@ msgstr "Solo gli amministratori possono accettare le richieste di partecipazione
 msgid "Only admins can ignore join requests."
 msgstr "Solo gli amministratori possono ignorare le richieste di partecipazione."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:145
+#: src/components/intents/GroupChatJoinDialog.tsx:155
 msgid "Only followers can join this group chat."
 msgstr "Solo i follower possono partecipare a questa chat di gruppo."
 
@@ -8314,12 +8335,12 @@ msgid "Only image files are supported"
 msgstr "Sono supportati solo i file immagine"
 
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile(joinLinkPreview.owner, moderationOpts).ui( 'displayName', ), )
-#: src/screens/Messages/JoinRequest.tsx:222
+#: src/screens/Messages/JoinRequest.tsx:218
 msgid "Only people {0} follows can join."
 msgstr "Solo le persone che seguono {0} possono partecipare."
 
 #: src/components/dms/ChatInvite/Root.tsx:127
-#: src/components/intents/GroupChatJoinDialog.tsx:292
+#: src/components/intents/GroupChatJoinDialog.tsx:306
 msgid "Only people the chat owner follows can join"
 msgstr "Solo le persone seguite dal proprietario della chat possono partecipare"
 
@@ -8353,7 +8374,7 @@ msgid "Open camera"
 msgstr "Apri fotocamera"
 
 #: src/components/dms/ChatInvite/Root.tsx:104
-#: src/components/intents/GroupChatJoinDialog.tsx:437
+#: src/components/intents/GroupChatJoinDialog.tsx:453
 msgid "Open chat"
 msgstr "Apri chat"
 
@@ -8361,8 +8382,8 @@ msgstr "Apri chat"
 msgid "Open chat member options for {displayName}"
 msgstr "Apri le opzioni dei membri della chat per {displayName}"
 
-#: src/screens/Messages/components/ChatListItem.tsx:487
-#: src/screens/Messages/components/ChatListItem.tsx:491
+#: src/screens/Messages/components/ChatListItem.tsx:490
+#: src/screens/Messages/components/ChatListItem.tsx:494
 msgid "Open conversation options"
 msgstr "Apri opzioni conversazione"
 
@@ -8397,7 +8418,7 @@ msgstr "Apri elenco completo di emoji"
 msgid "Open Germ DM"
 msgstr "Apri Germ DM"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:430
+#: src/components/intents/GroupChatJoinDialog.tsx:446
 msgid "Open group chat"
 msgstr "Apri chat di gruppo"
 
@@ -8419,11 +8440,11 @@ msgid "Open in Google Translate"
 msgstr "Apri in Google Translate"
 
 #: src/components/Post/Embed/ExternalEmbed/index.tsx:88
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:141
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:147
 msgid "Open link to {niceUrl}"
 msgstr "Apri link verso {niceUrl}"
 
-#: src/components/dms/ActionsWrapper.tsx:43
+#: src/components/dms/ActionsWrapper.tsx:42
 msgid "Open message options"
 msgstr "Apri opzioni messaggio"
 
@@ -8474,7 +8495,7 @@ msgstr "Apri la pagina della cronologia"
 msgid "Open system log"
 msgstr "Apri il registro di sistema"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:431
+#: src/components/intents/GroupChatJoinDialog.tsx:447
 msgid "Open this group chat"
 msgstr "Apri questa chat di gruppo"
 
@@ -8532,13 +8553,13 @@ msgstr "Apre la fotocamera del dispositivo"
 msgid "Opens device gallery to select up to {MAX_GALLERY_IMAGES, plural, other {# images}}, or a single video or GIF."
 msgstr "Apre la galleria del dispositivo per selezionare fino a {MAX_GALLERY_IMAGES, plural, other {# immagini}} o un singolo video o una GIF."
 
-#: src/screens/Messages/JoinRequest.tsx:309
+#: src/screens/Messages/JoinRequest.tsx:305
 #: src/view/com/auth/SplashScreen.tsx:102
 #: src/view/com/auth/SplashScreen.web.tsx:110
 msgid "Opens flow to create a new Bluesky account"
 msgstr "Apre il procedimento per creare un nuovo account Bluesky"
 
-#: src/screens/Messages/JoinRequest.tsx:295
+#: src/screens/Messages/JoinRequest.tsx:291
 #: src/view/com/auth/SplashScreen.tsx:120
 #: src/view/com/auth/SplashScreen.web.tsx:124
 msgid "Opens flow to sign in to your existing Bluesky account"
@@ -8778,6 +8799,16 @@ msgstr "Persone che seguono @{0}"
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:198
 msgid "People I follow"
 msgstr "Persone che seguo"
+
+#: src/screens/Messages/Settings.tsx:84
+msgctxt "allow group chat invites from"
+msgid "People I follow"
+msgstr ""
+
+#: src/screens/Messages/Settings.tsx:69
+msgctxt "allow messages from"
+msgid "People I follow"
+msgstr ""
 
 #: src/screens/Messages/components/InviteLinkDialog.tsx:163
 msgid "People I follow can join instantly"
@@ -9303,7 +9334,7 @@ msgstr "Elaborazione in corso…"
 msgid "profile"
 msgstr "profilo"
 
-#: src/view/shell/bottom-bar/BottomBar.tsx:304
+#: src/view/shell/bottom-bar/BottomBar.tsx:316
 #: src/view/shell/desktop/LeftNav.tsx:745
 #: src/view/shell/Drawer.tsx:100
 #: src/view/shell/Drawer.tsx:667
@@ -9459,8 +9490,8 @@ msgstr "Riattiva link"
 msgid "React with {emoji}"
 msgstr "Reagisci con {emoji}"
 
-#: src/components/dms/ReactionsDialog.tsx:66
-#: src/components/dms/ReactionsDialog.tsx:94
+#: src/components/dms/ReactionsDialog.tsx:70
+#: src/components/dms/ReactionsDialog.tsx:98
 msgid "Reactions"
 msgstr "Reazioni"
 
@@ -9598,7 +9629,7 @@ msgstr "Ricarica conversazioni"
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:113
 #: src/screens/Bookmarks/index.tsx:265
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
-#: src/screens/Messages/ConversationSettings/prompts.tsx:170
+#: src/screens/Messages/ConversationSettings/prompts.tsx:178
 #: src/screens/Moderation/index.tsx:477
 #: src/screens/Settings/Settings.tsx:680
 #: src/view/com/modals/UserAddRemoveLists.tsx:238
@@ -9620,7 +9651,7 @@ msgstr "Rimuovi {displayName} dallo starter pack"
 msgid "Remove {displayName} from this group chat"
 msgstr "Rimuovi {displayName} da questa chat di gruppo"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:168
+#: src/screens/Messages/ConversationSettings/prompts.tsx:176
 msgid "Remove {displayName}?"
 msgstr "Rimuovere {displayName}?"
 
@@ -9756,8 +9787,8 @@ msgstr "Rimuovi utente dalla lista"
 
 #: src/components/verification/VerificationRemovePrompt.tsx:48
 #: src/components/verification/VerificationsDialog.tsx:250
-#: src/view/com/profile/ProfileMenu.tsx:440
-#: src/view/com/profile/ProfileMenu.tsx:443
+#: src/view/com/profile/ProfileMenu.tsx:442
+#: src/view/com/profile/ProfileMenu.tsx:445
 msgid "Remove verification"
 msgstr "Rimuovi verifica"
 
@@ -9899,12 +9930,12 @@ msgstr "Risposta nascosta con successo"
 
 #: src/components/dms/MessageContextMenu.tsx:189
 #: src/features/liveNow/components/LiveStatusDialog.tsx:267
-#: src/screens/Messages/ConversationSettings/index.tsx:582
+#: src/screens/Messages/ConversationSettings/index.tsx:583
 msgid "Report"
 msgstr "Segnala"
 
-#: src/view/com/profile/ProfileMenu.tsx:507
-#: src/view/com/profile/ProfileMenu.tsx:510
+#: src/view/com/profile/ProfileMenu.tsx:509
+#: src/view/com/profile/ProfileMenu.tsx:512
 msgid "Report account"
 msgstr "Segnala account"
 
@@ -9964,7 +9995,7 @@ msgstr "Segnala questa conversazione"
 msgid "Report this feed"
 msgstr "Segnala questo feed"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:581
+#: src/screens/Messages/ConversationSettings/index.tsx:582
 msgid "Report this group chat"
 msgstr "Segnala questa chat di gruppo"
 
@@ -10044,7 +10075,7 @@ msgstr "Ripubblicazioni di questo post"
 msgid "Reposts of your reposts"
 msgstr "Repost dei tuoi repost"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:447
+#: src/components/intents/GroupChatJoinDialog.tsx:463
 msgid "Request access to group chat"
 msgstr "Richiedi l'accesso alla chat di gruppo"
 
@@ -10062,7 +10093,7 @@ msgid "Request ignored."
 msgstr "Richiesta ignorata."
 
 #: src/components/dms/ChatInvite/Root.tsx:117
-#: src/components/intents/GroupChatJoinDialog.tsx:281
+#: src/components/intents/GroupChatJoinDialog.tsx:295
 msgid "Request to join"
 msgstr "Chiedi di partecipare"
 
@@ -10098,9 +10129,9 @@ msgstr "Obbligatorio per questo fornitore"
 msgid "Required in your region"
 msgstr "Richiesto nel tuo paese"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:296
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:119
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:121
+#: src/components/intents/GroupChatJoinDialog.tsx:310
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:115
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:117
 msgid "Rescind request"
 msgstr "Annulla richiesta"
 
@@ -10239,7 +10270,7 @@ msgstr "GIF tristi"
 #: src/components/StarterPack/QrCodeDialog.tsx:210
 #: src/features/liveNow/components/EditLiveDialog.tsx:204
 #: src/features/liveNow/components/EditLiveDialog.tsx:211
-#: src/screens/Messages/ConversationSettings/prompts.tsx:74
+#: src/screens/Messages/ConversationSettings/prompts.tsx:82
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Profile/Header/EditProfileDialog.tsx:267
 #: src/screens/SavedFeeds.tsx:124
@@ -10379,7 +10410,7 @@ msgstr "Scorri verso l'alto"
 #: src/components/forms/SearchInput.tsx:53
 #: src/screens/Search/Shell.tsx:362
 #: src/screens/Search/Shell.tsx:525
-#: src/view/shell/bottom-bar/BottomBar.tsx:205
+#: src/view/shell/bottom-bar/BottomBar.tsx:216
 msgid "Search"
 msgstr "Cerca"
 
@@ -10460,8 +10491,8 @@ msgstr "Cerca lingue"
 msgid "Search my posts"
 msgstr "Cerca nei miei post"
 
-#: src/view/com/profile/ProfileMenu.tsx:325
-#: src/view/com/profile/ProfileMenu.tsx:328
+#: src/view/com/profile/ProfileMenu.tsx:327
+#: src/view/com/profile/ProfileMenu.tsx:330
 msgid "Search posts"
 msgstr "Cerca post"
 
@@ -10896,7 +10927,7 @@ msgstr "Sessualmente allusivo"
 msgid "Share"
 msgstr "Condividi"
 
-#: src/view/com/profile/ProfileMenu.tsx:589
+#: src/view/com/profile/ProfileMenu.tsx:591
 msgid "Share anyway"
 msgstr "Condividi comunque"
 
@@ -10974,8 +11005,8 @@ msgstr "Condividi questo starter pack e invita le persone a far parte della tua 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:166
 #: src/screens/StarterPack/StarterPackScreen.tsx:638
 #: src/screens/StarterPack/StarterPackScreen.tsx:646
-#: src/view/com/profile/ProfileMenu.tsx:304
-#: src/view/com/profile/ProfileMenu.tsx:316
+#: src/view/com/profile/ProfileMenu.tsx:306
+#: src/view/com/profile/ProfileMenu.tsx:318
 msgid "Share via..."
 msgstr "Condividi tramite..."
 
@@ -11159,15 +11190,15 @@ msgstr "Mostra il contenuto"
 #: src/screens/Login/LoginForm.tsx:231
 #: src/screens/Login/LoginForm.tsx:403
 #: src/screens/Login/LoginForm.tsx:409
-#: src/screens/Messages/JoinRequest.tsx:294
-#: src/screens/Messages/JoinRequest.tsx:300
+#: src/screens/Messages/JoinRequest.tsx:290
+#: src/screens/Messages/JoinRequest.tsx:296
 #: src/screens/Search/SearchResults.tsx:316
 #: src/view/com/auth/SplashScreen.tsx:118
 #: src/view/com/auth/SplashScreen.tsx:124
 #: src/view/com/auth/SplashScreen.web.tsx:122
 #: src/view/com/auth/SplashScreen.web.tsx:130
-#: src/view/shell/bottom-bar/BottomBar.tsx:343
-#: src/view/shell/bottom-bar/BottomBar.tsx:348
+#: src/view/shell/bottom-bar/BottomBar.tsx:354
+#: src/view/shell/bottom-bar/BottomBar.tsx:358
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:250
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:255
 #: src/view/shell/NavSignupCard.tsx:58
@@ -11193,7 +11224,7 @@ msgstr "Accedi o crea un account"
 msgid "Sign in or create your account to join the conversation!"
 msgstr "Accedi o crea il tuo account per partecipare alla conversazione!"
 
-#: src/screens/Messages/JoinRequest.tsx:220
+#: src/screens/Messages/JoinRequest.tsx:216
 msgid "Sign in to accept invite."
 msgstr "Accedi per accettare l'invito."
 
@@ -11205,7 +11236,7 @@ msgstr "Accedi a un account non in elenco"
 msgid "Sign in to Bluesky or create a new account"
 msgstr "Accedi a Bluesky o crea un nuovo account"
 
-#: src/screens/Messages/JoinRequest.tsx:219
+#: src/screens/Messages/JoinRequest.tsx:215
 msgid "Sign in to request access to this group chat."
 msgstr "Accedi per richiedere l'accesso a questa chat di gruppo."
 
@@ -11342,12 +11373,12 @@ msgid "Someone left the group"
 msgstr "Qualcuno ha lasciato il gruppo"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:266
+#: src/components/dms/MessageItem.tsx:278
 msgid "Someone reacted {0}"
 msgstr "Qualcuno ha reagito con {0}"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/getReactionInfo.ts:47
+#: src/components/dms/getReactionInfo.ts:67
 msgid "Someone reacted {0} to {target}"
 msgstr "Qualcuno ha reagito con {0} a {target}"
 
@@ -11599,13 +11630,13 @@ msgid "Subscribe"
 msgstr "Iscriviti"
 
 #. placeholder {0}: highlightedPublisher.name
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:425
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:454
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:447
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:476
 msgid "Subscribe on {0}"
 msgstr "Iscriviti a {0}"
 
 #. placeholder {0}: highlightedPublisher.name
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:453
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:475
 msgid "Subscribe to {publicationTitle} on {0}"
 msgstr "Iscriviti a {publicationTitle} su {0}"
 
@@ -11640,7 +11671,7 @@ msgstr "Successo"
 msgid "Success!"
 msgstr "Successo!"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:121
+#: src/components/intents/GroupChatJoinDialog.tsx:131
 msgid "Successfully joined the group chat!"
 msgstr "Adesione alla chat di gruppo completata!"
 
@@ -11773,7 +11804,7 @@ msgstr "Porta la conversazione in privato."
 msgid "Tap below to allow Bluesky to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
 msgstr "Tocca qui sotto per consentire a Bluesky di accedere alla tua posizione GPS. Utilizzeremo tali dati per determinare con maggiore precisione il contenuto e le funzionalità disponibili nella tua zona."
 
-#: src/components/dms/MessageItem.tsx:572
+#: src/components/dms/MessageItem.tsx:576
 msgid "Tap for details"
 msgstr "Tocca per dettagli"
 
@@ -11808,7 +11839,7 @@ msgid "Tap to dismiss"
 msgstr "Tocca per ignorare"
 
 #: src/components/dms/ChatInvite/Root.tsx:140
-#: src/components/intents/GroupChatJoinDialog.tsx:453
+#: src/components/intents/GroupChatJoinDialog.tsx:469
 msgid "Tap to join this group chat immediately"
 msgstr "Tocca per partecipare subito a questa chat di gruppo"
 
@@ -11816,34 +11847,34 @@ msgstr "Tocca per partecipare subito a questa chat di gruppo"
 msgid "Tap to open this group chat"
 msgstr "Tocca per aprire questa chat di gruppo"
 
-#: src/components/dms/ReactionsDialog.tsx:196
+#: src/components/dms/ReactionsDialog.tsx:200
 msgid "Tap to remove"
 msgstr "Tocca per rimuovere"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/ReactionsDialog.tsx:212
+#: src/components/dms/ReactionsDialog.tsx:216
 msgid "Tap to remove your {0} reaction"
 msgstr "Tocca per rimuovere la tua reazione {0}"
 
 #: src/components/dms/ChatInvite/Root.tsx:139
-#: src/components/intents/GroupChatJoinDialog.tsx:452
+#: src/components/intents/GroupChatJoinDialog.tsx:468
 msgid "Tap to request access to join this group chat"
 msgstr "Tocca per chiedere di partecipare a questa chat di gruppo"
 
-#: src/components/dms/MessageItem.tsx:537
+#: src/components/dms/MessageItem.tsx:541
 msgid "Tap to retry"
 msgstr "Tocca per riprovare"
 
 #. placeholder {0}: tab.value
-#: src/components/dms/ReactionsDialog.tsx:358
+#: src/components/dms/ReactionsDialog.tsx:362
 msgid "Tap to show {0} reactions"
 msgstr "Tocca per mostrare le reazioni {0}"
 
-#: src/components/dms/ReactionsDialog.tsx:357
+#: src/components/dms/ReactionsDialog.tsx:361
 msgid "Tap to show all reactions"
 msgstr "Tocca per mostrare tutte le reazioni"
 
-#: src/components/dms/MessageItem.tsx:289
+#: src/components/dms/MessageItem.tsx:304
 msgid "Tap to view reactions"
 msgstr "Tocca per vedere le reazioni"
 
@@ -11946,7 +11977,7 @@ msgstr "È tutto!"
 
 #: src/components/moderation/BlockDialog.tsx:153
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:214
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:448
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:452
 msgid "The account will be able to interact with you after unblocking."
 msgstr "L'account sarà in grado di interagire con te dopo lo sblocco."
 
@@ -12012,7 +12043,7 @@ msgstr "Queste impostazioni saranno utilizzate come predefinite quando si crea u
 msgid "The laws in your region require you to verify you're an adult to access certain features. Tap to learn more."
 msgstr "Le leggi vigenti nella tua regione richiedono di verificare che tu sia un adulto prima di accedere a determinate funzionalità. Tocca per ulteriori informazioni."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:155
+#: src/components/intents/GroupChatJoinDialog.tsx:165
 #: src/screens/Messages/JoinRequests.tsx:205
 msgid "The member limit has been reached."
 msgstr "È stato raggiunto il limite dei membri."
@@ -12083,8 +12114,8 @@ msgid "There was a problem loading GIFs. Check your connection and try again."
 msgstr "Si è verificato un problema durante il caricamento delle GIF. Controlla la connessione e riprova."
 
 #: src/components/contacts/screens/GetContacts.tsx:147
-#: src/components/intents/GroupChatJoinDialog.tsx:139
-#: src/components/intents/GroupChatJoinDialog.tsx:182
+#: src/components/intents/GroupChatJoinDialog.tsx:149
+#: src/components/intents/GroupChatJoinDialog.tsx:195
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:36
 msgid "There was a problem with your internet connection, please try again"
 msgstr "Si è verificato un problema con la tua connessione a internet, riprova"
@@ -12151,12 +12182,12 @@ msgstr "Si è verificato un problema durante l'aggiornamento dei tuoi feed. Veri
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:287
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:314
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:330
-#: src/view/com/profile/ProfileMenu.tsx:171
-#: src/view/com/profile/ProfileMenu.tsx:184
-#: src/view/com/profile/ProfileMenu.tsx:201
-#: src/view/com/profile/ProfileMenu.tsx:214
-#: src/view/com/profile/ProfileMenu.tsx:230
-#: src/view/com/profile/ProfileMenu.tsx:245
+#: src/view/com/profile/ProfileMenu.tsx:170
+#: src/view/com/profile/ProfileMenu.tsx:183
+#: src/view/com/profile/ProfileMenu.tsx:200
+#: src/view/com/profile/ProfileMenu.tsx:213
+#: src/view/com/profile/ProfileMenu.tsx:229
+#: src/view/com/profile/ProfileMenu.tsx:244
 msgid "There was an issue! {0}"
 msgstr "Si è verificato un problema! {0}"
 
@@ -12200,7 +12231,7 @@ msgstr "Queste impostazioni si applicano solo al feed Seguiti."
 msgid "They own this chat"
 msgstr "È il proprietario di questa chat"
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:169
+#: src/screens/Messages/ConversationSettings/prompts.tsx:177
 msgid "They won’t be able to rejoin unless you invite them again."
 msgstr "Non potrà più partecipare finché non lo inviti di nuovo."
 
@@ -12250,22 +12281,22 @@ msgstr "Questo autore ha scelto di rendere i propri post visibili solo a chi ha 
 msgid "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Bluesky account from Germ DM altogether by clicking the button below."
 msgstr "Questo pulsante consente agli altri di aprire l'app Germ DM per inviarti un messaggio. Puoi gestire la sua visibilità dall'app Germ DM, oppure puoi disconnettere il tuo account Bluesky da Germ DM facendo clic sul pulsante qui sotto."
 
-#: src/screens/Messages/components/ChatEnded.tsx:49
+#: src/screens/Messages/components/ChatEnded.tsx:48
 msgid "This chat has ended"
 msgstr "Questa chat è terminata"
 
 #: src/components/dms/ChatInvite/Root.tsx:122
-#: src/components/intents/GroupChatJoinDialog.tsx:287
+#: src/components/intents/GroupChatJoinDialog.tsx:301
 msgid "This chat is full"
 msgstr "Questa chat è al completo"
 
-#: src/screens/Messages/components/ChatListItem.tsx:373
-#: src/screens/Messages/components/ChatLocked.tsx:70
+#: src/screens/Messages/components/ChatListItem.tsx:376
+#: src/screens/Messages/components/ChatLocked.tsx:69
 msgid "This chat is locked"
 msgstr "Questa chat è bloccata"
 
 #: src/screens/Messages/components/ChatLocked.tsx:45
-#: src/screens/Messages/ConversationSettings/index.tsx:430
+#: src/screens/Messages/ConversationSettings/index.tsx:437
 msgid "This chat is locked by a moderation action"
 msgstr "Questa chat è bloccata da un'azione di moderazione"
 
@@ -12303,7 +12334,7 @@ msgstr "Questo contenuto non è disponibile perché uno degli utenti coinvolti h
 msgid "This content is not viewable without a Bluesky account."
 msgstr "Questo contenuto non è visualizzabile senza un account Bluesky."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:141
+#: src/components/intents/GroupChatJoinDialog.tsx:151
 msgid "This conversation is locked."
 msgstr "Questa conversazione è bloccata."
 
@@ -12353,7 +12384,7 @@ msgstr "Questo feed è vuoto."
 msgid "This feed is no longer online. We are showing <0>Discover</0> instead."
 msgstr "Questo feed non è più online. Stiamo mostrando <0>Discover</0> al suo posto."
 
-#: src/screens/Messages/components/ChatLocked.tsx:73
+#: src/screens/Messages/components/ChatLocked.tsx:72
 msgid "This group is locked by a moderation action on the owner"
 msgstr "Questo gruppo è bloccato da un'azione di moderazione sul proprietario"
 
@@ -12369,11 +12400,11 @@ msgstr "Questa immagine non può essere usata. Prova un altro formato come .jpg 
 msgid "This information is private and not shared with other users."
 msgstr "Queste informazioni sono private e non vengono condivise con altri utenti."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:151
+#: src/components/intents/GroupChatJoinDialog.tsx:161
 msgid "This invite link has been disabled."
 msgstr "Questo link di invito è stato disabilitato."
 
-#: src/components/intents/GroupChatJoinDialog.tsx:223
+#: src/components/intents/GroupChatJoinDialog.tsx:236
 msgid "This invite link is invalid"
 msgstr "Questo link di invito non è valido"
 
@@ -12423,17 +12454,17 @@ msgstr "Questa lista è vuota."
 msgid "This menu lets you apply labels such as Adult Content, Sexually Suggestive, Non-sexual Nudity, and Graphic Media on an account level. They can be turned on or off at any time."
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:334
+#: src/screens/Messages/components/ChatListItem.tsx:335
 msgid "This message is hidden"
 msgstr "Questo messaggio è nascosto"
 
-#: src/components/dms/MessageItem.tsx:570
-#: src/components/dms/MessageItem.tsx:599
+#: src/components/dms/MessageItem.tsx:574
+#: src/components/dms/MessageItem.tsx:603
 msgid "This message is hidden because this user is blocking you."
 msgstr "Questo messaggio è nascosto perché questo utente ti sta bloccando."
 
-#: src/components/dms/MessageItem.tsx:569
-#: src/components/dms/MessageItem.tsx:595
+#: src/components/dms/MessageItem.tsx:573
+#: src/components/dms/MessageItem.tsx:599
 msgid "This message is hidden because you are blocking this user."
 msgstr "Questo messaggio è nascosto perché stai bloccando questo utente."
 
@@ -12475,7 +12506,7 @@ msgstr "Questo post verrà nascosto dai feed e dai thread. L'azione è irreversi
 msgid "This post's author has disabled quote posts."
 msgstr "L'autore del post ha disattivato le citazioni."
 
-#: src/view/com/profile/ProfileMenu.tsx:587
+#: src/view/com/profile/ProfileMenu.tsx:589
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
 msgstr "Questo profilo è visibile solo agli utenti registrati. Non sarà visibile alle persone che non hanno effettuato l'accesso."
 
@@ -12839,7 +12870,7 @@ msgstr "Non disponibile"
 msgid "Unavailable feed information"
 msgstr "Informazioni sui feed non disponibili"
 
-#: src/components/dms/MessageItem.tsx:637
+#: src/components/dms/MessageItem.tsx:641
 #: src/components/dms/MessagesListBlockedFooter.tsx:97
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
 #: src/components/moderation/BlockDialog.tsx:186
@@ -12847,14 +12878,14 @@ msgstr "Informazioni sui feed non disponibili"
 #: src/components/moderation/BlockDialog.tsx:211
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:220
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:391
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:453
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:395
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:457
 #: src/screens/ProfileList/components/Header.tsx:166
 #: src/screens/ProfileList/components/Header.tsx:173
 msgid "Unblock"
 msgstr "Sblocca"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:395
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:399
 msgctxt "action"
 msgid "Unblock"
 msgstr "Sblocca"
@@ -12865,8 +12896,8 @@ msgstr "Sblocca {displayName}"
 
 #: src/components/dms/ConvoMenu.tsx:284
 #: src/components/dms/ConvoMenu.tsx:288
-#: src/view/com/profile/ProfileMenu.tsx:487
-#: src/view/com/profile/ProfileMenu.tsx:493
+#: src/view/com/profile/ProfileMenu.tsx:489
+#: src/view/com/profile/ProfileMenu.tsx:495
 msgid "Unblock account"
 msgstr "Sblocca account"
 
@@ -12875,7 +12906,7 @@ msgid "Unblock account?"
 msgstr "Sbloccare l'account?"
 
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:212
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:446
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:450
 msgid "Unblock Account?"
 msgstr "Sblocca account?"
 
@@ -12912,12 +12943,12 @@ msgid "Undo repost ({0, plural, one {# repost} other {# reposts}})"
 msgstr "Annulla repost ({0, plural, one {# repost} other {# repost}})"
 
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:422
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:426
 msgid "Unfollow {0}"
 msgstr "Smetti di seguire {0}"
 
-#: src/view/com/profile/ProfileMenu.tsx:344
-#: src/view/com/profile/ProfileMenu.tsx:353
+#: src/view/com/profile/ProfileMenu.tsx:346
+#: src/view/com/profile/ProfileMenu.tsx:355
 msgid "Unfollow account"
 msgstr "Smetti di seguire"
 
@@ -12959,11 +12990,11 @@ msgstr "Non mi piace più"
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr "Non mi piace più ({0, plural, one {# mi piace} other {# mi piace}})"
 
-#: src/screens/Messages/components/ChatLocked.tsx:92
+#: src/screens/Messages/components/ChatLocked.tsx:91
 msgid "Unlock chat"
 msgstr "Sblocca chat"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:567
+#: src/screens/Messages/ConversationSettings/index.tsx:568
 msgid "Unlock this group chat"
 msgstr "Sblocca questa chat di gruppo"
 
@@ -12986,8 +13017,8 @@ msgstr "Riattiva {0}"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:738
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:744
-#: src/view/com/profile/ProfileMenu.tsx:466
-#: src/view/com/profile/ProfileMenu.tsx:472
+#: src/view/com/profile/ProfileMenu.tsx:468
+#: src/view/com/profile/ProfileMenu.tsx:474
 msgid "Unmute account"
 msgstr "Riattiva account"
 
@@ -13000,7 +13031,7 @@ msgstr "Riattiva conversazione"
 msgid "Unmute list"
 msgstr "Riattiva lista"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:529
+#: src/screens/Messages/ConversationSettings/index.tsx:533
 msgid "Unmute this group chat"
 msgstr "Riattiva questa chat di gruppo"
 
@@ -13313,16 +13344,6 @@ msgstr "utenti seguiti da <0>@{0}</0>"
 msgid "users following <0>@{0}</0>"
 msgstr "utenti che seguono <0>@{0}</0>"
 
-#: src/screens/Messages/Settings.tsx:84
-msgctxt "allow group chat invites from"
-msgid "Users I follow"
-msgstr "Utenti che seguo"
-
-#: src/screens/Messages/Settings.tsx:69
-msgctxt "allow messages from"
-msgid "Users I follow"
-msgstr "Utenti che seguo"
-
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:451
 msgid "Value:"
 msgstr "Valore:"
@@ -13350,8 +13371,8 @@ msgstr "Verificato da:"
 
 #: src/components/verification/VerificationCreatePrompt.tsx:85
 #: src/components/verification/VerificationCreatePrompt.tsx:87
-#: src/view/com/profile/ProfileMenu.tsx:450
-#: src/view/com/profile/ProfileMenu.tsx:453
+#: src/view/com/profile/ProfileMenu.tsx:452
+#: src/view/com/profile/ProfileMenu.tsx:455
 msgid "Verify account"
 msgstr "Verifica account"
 
@@ -13500,8 +13521,8 @@ msgid "View"
 msgstr "Vedi"
 
 #. placeholder {0}: view.source.title
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:318
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:640
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:340
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:670
 msgid "View {0}"
 msgstr "Vedi {0}"
 
@@ -13530,7 +13551,7 @@ msgstr "Vedi il profilo di {0}"
 msgid "View {displayName}’s profile"
 msgstr "Vedi il profilo di {displayName}"
 
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:456
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:478
 msgid "View {publicationTitle}"
 msgstr "Vedi {publicationTitle}"
 
@@ -13616,10 +13637,10 @@ msgstr "Vedi il profilo"
 msgid "View profile banner"
 msgstr "Vedi banner del profilo"
 
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:318
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:426
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:457
-#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:640
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:340
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:448
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:479
+#: src/components/Post/Embed/StandardSiteEmbed/index.tsx:670
 msgid "View publication"
 msgstr "Vedi pubblicazione"
 
@@ -13627,7 +13648,7 @@ msgstr "Vedi pubblicazione"
 msgid "View the avatar"
 msgstr "Vedi l'avatar"
 
-#: src/screens/Messages/ConversationSettings/index.tsx:554
+#: src/screens/Messages/ConversationSettings/index.tsx:555
 msgid "View the invite link for this group chat"
 msgstr "Vedi il link di invito per questa chat di gruppo"
 
@@ -14117,7 +14138,7 @@ msgid "You are accessing Bluesky from a region that legally requires us to verif
 msgstr "Stai accedendo a Bluesky da una regione che ci impone per legge di verificare la tua età prima di consentirti l'accesso all'app."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:610
+#: src/components/dms/MessageItem.tsx:614
 msgid "You are blocking {0}"
 msgstr "Stai bloccando {0}"
 
@@ -14262,7 +14283,7 @@ msgstr "Puoi selezionare fino a {MAX_GALLERY_IMAGES, plural, other {# immagini}}
 msgid "You can update this later from your settings."
 msgstr "Puoi modificare questa preferenza dalle impostazioni."
 
-#: src/components/dms/ActionsWrapper.web.tsx:79
+#: src/components/dms/ActionsWrapper.web.tsx:77
 #: src/components/dms/MessageContextMenu.tsx:105
 msgid "You cannot add more than {EMOJI_REACTION_LIMIT, plural, one {# emoji reaction} other {# emoji reactions}}"
 msgstr "Non puoi aggiungere più di {EMOJI_REACTION_LIMIT, plural, one {# reazione emoji} other {# reazioni emoji}}"
@@ -14298,7 +14319,7 @@ msgstr "Non hai salvato nessun feed."
 msgid "You got here first"
 msgstr "Sei arrivato qui per primo"
 
-#: src/components/intents/GroupChatJoinDialog.tsx:166
+#: src/components/intents/GroupChatJoinDialog.tsx:176
 msgid "You have been previously removed from this group and can’t join it using this link."
 msgstr "Sei stato precedentemente rimosso da questo gruppo e non puoi partecipare usando questo link."
 
@@ -14429,7 +14450,7 @@ msgstr "Puoi aggiungere fino a {STARTER_PACK_MAX_SIZE, plural, other {{STARTER_P
 msgid "You may only add up to 3 feeds"
 msgstr "Puoi aggiungere un massimo di 3 feed"
 
-#: src/components/moderation/BlockDialog.tsx:320
+#: src/components/moderation/BlockDialog.tsx:321
 msgid "You must be a chat owner to remove a member."
 msgstr "Devi essere un proprietario della chat per rimuovere un membro."
 
@@ -14468,12 +14489,12 @@ msgid "You probably want to restart the app now."
 msgstr "Probabilmente è il momento di riavviare l'app."
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:259
+#: src/components/dms/MessageItem.tsx:271
 msgid "You reacted {0}"
 msgstr "Hai reagito con {0}"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/getReactionInfo.ts:43
+#: src/components/dms/getReactionInfo.ts:63
 msgid "You reacted {0} to {target}"
 msgstr "Hai reagito con {0} a {target}"
 
@@ -14483,7 +14504,7 @@ msgid "You recently changed your birthdate"
 msgstr "Hai cambiato di recente la tua data di nascita"
 
 #. Displayed when the user has requested to join a group chat.
-#: src/screens/Messages/components/OutgoingRequestListItem.tsx:109
+#: src/screens/Messages/components/OutgoingRequestListItem.tsx:105
 msgid "You requested to join"
 msgstr "Hai richiesto di partecipare"
 
@@ -14509,12 +14530,12 @@ msgstr "Riceverai le notifiche per questo thread"
 msgid "You will receive an email with a \"reset code.\" Enter that code here, then enter your new password."
 msgstr "Riceverai un'email con un codice di recupero. Inserisci il codice qui, poi inserisci la tua nuova password."
 
-#: src/screens/Messages/ConversationSettings/prompts.tsx:121
+#: src/screens/Messages/ConversationSettings/prompts.tsx:129
 msgid "You won’t be able to rejoin unless you’re invited."
 msgstr "Non sarai in grado di rientrare finché non sarai invitato a farlo."
 
 #. When the last message in a chat was made by you.
-#: src/components/dms/getMessageInfo.ts:50
+#: src/components/dms/getMessageInfo.ts:82
 msgid "You: {message}"
 msgstr "Tu: {message}"
 
