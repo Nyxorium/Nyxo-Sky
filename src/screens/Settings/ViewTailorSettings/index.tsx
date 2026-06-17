@@ -9,9 +9,10 @@ import {
 } from '#/state/preferences/impression-visibility'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
+import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
 import * as Layout from '#/components/Layout'
-import {type ImpressionConfig, ImpressionSection} from './ImpressionSection'
+import {type ImpressionConfig, ImpressionSection} from './FeedLikesSection'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
@@ -19,7 +20,7 @@ const FEED_IMPRESSIONS: ImpressionConfig[] = [
   {key: 'feedLikes', label: 'Likes'},
 ]
 
-export function ImpressionVisibilitySettingsScreen({}: Props) {
+export function ViewTailorSettingsScreen({}: Props) {
   const {t: l} = useLingui()
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
@@ -68,7 +69,7 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
         <Layout.Header.BackButton />
         <Layout.Header.Content>
           <Layout.Header.TitleText>
-            <Trans>Impression Visibility</Trans>
+            <Trans>View Tailor</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -76,7 +77,18 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
           <SettingsList.LinkItem
-            to="/settings/impression-visibility/posts"
+            to="/settings/view-tailor/tabs-visibility"
+            label={l`Tabs Visibility`}>
+            <SettingsList.ItemIcon icon={HashtagIcon} />
+            <SettingsList.ItemText>
+              <Trans>Tabs Visibility</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+
+          <SettingsList.Divider />
+
+          <SettingsList.LinkItem
+            to="/settings/view-tailor/post-impressions"
             label={l`Post impressions`}>
             <SettingsList.ItemIcon icon={BubbleInfoIcon} />
             <SettingsList.ItemText>
@@ -85,7 +97,7 @@ export function ImpressionVisibilitySettingsScreen({}: Props) {
           </SettingsList.LinkItem>
 
           <SettingsList.LinkItem
-            to="/settings/impression-visibility/profiles"
+            to="/settings/view-tailor/profile-statistics"
             label={l`Profile statistics`}>
             <SettingsList.ItemIcon icon={PersonIcon} />
             <SettingsList.ItemText>

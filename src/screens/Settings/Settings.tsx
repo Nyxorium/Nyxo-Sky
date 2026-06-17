@@ -210,11 +210,11 @@ export function SettingsScreen({}: Props) {
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem
-            to="/settings/impression-visibility"
-            label={l`Impression Visibility`}>
+            to="/settings/view-tailor"
+            label={l`View tailor`}>
             <SettingsList.ItemIcon icon={EyeSlashIcon} />
             <SettingsList.ItemText>
-              <Trans>Impression Visibility</Trans>
+              <Trans>View Tailor</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           {IS_NATIVE &&

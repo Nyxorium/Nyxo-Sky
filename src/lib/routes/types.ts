@@ -87,7 +87,7 @@ export type CommonNavigatorParams = {
   MiscellaneousSettings: undefined
   ProfileTabVisibilitySettings: undefined
   FeatureGatesSettings: undefined
-  ImpressionVisibilitySettings: undefined
+  ViewTailorSettings: undefined
   PostImpressionVisibilitySettings: undefined
   ProfileImpressionVisibilitySettings: undefined
   NSFWLabelSettings: undefined
