@@ -112,9 +112,6 @@ import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaS
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
 import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
-import {ImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilitySettings/index'
-import {PostImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilitySettings/Posts'
-import {ProfileImpressionVisibilitySettingsScreen} from '#/screens/Settings/ImpressionVisibilitySettings/Profiles'
 import {InterestsSettingsScreen} from '#/screens/Settings/InterestsSettings'
 import {LanguageSettingsScreen} from '#/screens/Settings/LanguageSettings'
 import {LegacyNotificationSettingsScreen} from '#/screens/Settings/LegacyNotificationSettings'
@@ -123,6 +120,9 @@ import {NSFWLabelSettingsScreen} from '#/screens/Settings/NSFWLabelSettings'
 import {PrivacyAndSecuritySettingsScreen} from '#/screens/Settings/PrivacyAndSecuritySettings'
 import {SettingsScreen} from '#/screens/Settings/Settings'
 import {ThreadPreferencesScreen} from '#/screens/Settings/ThreadPreferences'
+import {ViewTailorSettingsScreen} from '#/screens/Settings/ViewTailorSettings/index'
+import {PostImpressionVisibilitySettingsScreen} from '#/screens/Settings/ViewTailorSettings/PostImpressions'
+import {ProfileImpressionVisibilitySettingsScreen} from '#/screens/Settings/ViewTailorSettings/ProfileStatistics'
 import {
   StarterPackScreen,
   StarterPackScreenShort,
@@ -144,7 +144,7 @@ import {Referrer} from '../modules/expo-bluesky-swiss-army'
 import {renderMessagesSplitViewLayout} from './screens/Messages/components/splitView/MessagesSplitViewLayout'
 import {FeatureGatesSettingsScreen} from './screens/Settings/FeatureGates'
 import {MiscellaneousSettingsScreen} from './screens/Settings/MiscellaneousSettings'
-import {ProfileTabVisibilitySettingsScreen} from './screens/Settings/ProfileTabsVisibility'
+import {ProfileTabVisibilitySettingsScreen} from './screens/Settings/ViewTailorSettings/TabsVisibility'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
 
@@ -421,10 +421,10 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         }}
       />
       <Stack.Screen
-        name="ImpressionVisibilitySettings"
-        getComponent={() => ImpressionVisibilitySettingsScreen}
+        name="ViewTailorSettings"
+        getComponent={() => ViewTailorSettingsScreen}
         options={{
-          title: title(msg`Impression Visibility`),
+          title: title(msg`View Tailor`),
           requireAuth: true,
         }}
       />

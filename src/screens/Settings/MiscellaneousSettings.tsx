@@ -124,15 +124,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
           <SettingsList.LinkItem
-            to="/settings/tabs-visibility"
-            label={l`Tabs Visibility`}>
-            <SettingsList.ItemIcon icon={HashtagIcon} />
-            <SettingsList.ItemText>
-              <Trans>Tabs Visibility</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
-
-          <SettingsList.LinkItem
             to="/settings/feature-gates"
             label={l`Feature Gates`}>
             <SettingsList.ItemIcon icon={BeakerIcon} />

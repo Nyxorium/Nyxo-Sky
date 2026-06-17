@@ -12,8 +12,8 @@ import {atoms as a, platform, useTheme} from '#/alf'
 import * as Toggle from '#/components/forms/Toggle'
 import {Heart2_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
 import * as Layout from '#/components/Layout'
-import {Divider} from './components/SettingsList'
-import {ItemTextWithSubtitle} from './NotificationSettings/components/ItemTextWithSubtitle'
+import {Divider} from '../components/SettingsList'
+import {ItemTextWithSubtitle} from '../NotificationSettings/components/ItemTextWithSubtitle'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
