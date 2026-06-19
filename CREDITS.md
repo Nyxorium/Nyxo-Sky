@@ -4,6 +4,8 @@ Nyxo Sky is a fork of [Bluesky social-app](https://github.com/bluesky-social/).
 
 App Icon: [NASA/JPL-Caltech – PIA09412: Young Stars Emerge from Orion Head](https://images.nasa.gov/details/PIA09412)
 
+Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/microsoft/fluentui-emoji/blob/main/assets/Crystal%20ball/3D/crystal_ball_3d.png)
+
 ## Acknowledgements
 
 - [Deer Social](https://github.com/a-viv-a/deer-social)
