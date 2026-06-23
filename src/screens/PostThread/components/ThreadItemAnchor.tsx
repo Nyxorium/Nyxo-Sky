@@ -12,7 +12,6 @@ import {Plural, Trans, useLingui} from '@lingui/react/macro'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {makeProfileLink} from '#/lib/routes/links'
-import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {niceDate} from '#/lib/strings/time'
@@ -211,6 +210,10 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
   const hideQuotes = useIsImpressionHidden('quotes', isMe)
   const hideBookmarks = useIsImpressionHidden('bookmarks', isMe)
 
+  const pronouns = post.author.pronouns
+    ? ' \u00B7 ' + post.author.pronouns
+    : null
+
   const likesHref = useMemo(() => {
     const urip = new AtUri(post.uri)
     return makeProfileLink(post.author, 'post', urip.rkey, 'liked-by')
@@ -383,12 +386,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                     ]}
                     numberOfLines={1}>
                     {sanitizeHandle(post.author.handle, '@')}
-                    {post.author.pronouns
-                      ? NON_BREAKING_SPACE +
-                        '\u00B7' +
-                        NON_BREAKING_SPACE +
-                        post.author.pronouns
-                      : null}
+                    {pronouns}
                   </Text>
                 </ProfileHoverCard>
               </View>
