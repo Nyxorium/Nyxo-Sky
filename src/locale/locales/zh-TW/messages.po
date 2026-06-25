@@ -22,6 +22,11 @@ msgstr ""
 msgid " to create your account, then sign in here."
 msgstr ""
 
+#: src/components/PostEditedIndicator.tsx:101
+msgctxt "Indicates a post has been edited"
+msgid "· Edited"
+msgstr ""
+
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:330
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -167,7 +172,7 @@ msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, one {則貼文} other {則貼文}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:505
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:506
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -401,7 +406,7 @@ msgstr "{0} 秒前"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:494
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:495
 msgid "{1}"
 msgstr ""
 
@@ -800,21 +805,21 @@ msgstr "<0>{0}</0> {1, plural, one {個跟隨中} other {個跟隨中}}"
 #. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.likeCount)
 #. placeholder {1}: post.likeCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:530
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:531
 msgid "<0>{0}</0> {1, plural, one {like} other {likes}}"
 msgstr "<0>{0}</0> {1, plural, other {個喜歡}}"
 
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:473
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:474
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, other {則轉發}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:550
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:551
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, other {次收藏}}"
 
@@ -1832,12 +1837,12 @@ msgid "Apply Pull Request"
 msgstr "套用拉取請求 (Pull Request)"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:715
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:726
 msgid "Archived from {0}"
 msgstr "封存於 {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:686
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:724
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:735
 msgid "Archived post"
 msgstr "已封存的貼文"
 
@@ -2200,7 +2205,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:740
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:751
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "Bluesky 無法確認貼文發布日期的真實性。"
 
@@ -3603,6 +3608,15 @@ msgstr "已封鎖此列表的建立者"
 msgid "Culture"
 msgstr "文化"
 
+#: src/components/PostEditedIndicator.tsx:147
+msgid "Current"
+msgstr ""
+
+#. placeholder {0}: i18n.date(new Date(updatedAt), { dateStyle: 'medium', timeStyle: 'short', })
+#: src/components/PostEditedIndicator.tsx:143
+msgid "Current · {0}"
+msgstr ""
+
 #: src/components/moderation/BlockDialog.tsx:378
 msgid "Current chat"
 msgstr ""
@@ -4279,6 +4293,11 @@ msgstr "編輯動態源"
 msgid "Edit group name"
 msgstr "編輯群組名稱"
 
+#: src/components/PostEditedIndicator.tsx:132
+#: src/components/PostEditedIndicator.tsx:135
+msgid "Edit history"
+msgstr ""
+
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:86
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:90
 #: src/view/com/composer/photos/Gallery.tsx:218
@@ -4372,6 +4391,10 @@ msgstr "修改哪些人可以回覆"
 #: src/Navigation.tsx:610
 msgid "Edit your starter pack"
 msgstr "編輯您的新手包"
+
+#: src/components/PostEditedIndicator.tsx:71
+msgid "Edited"
+msgstr ""
 
 #: src/lib/interests.ts:59
 msgid "Education"
@@ -6975,7 +6998,7 @@ msgstr "喜歡"
 msgid "Likes of your reposts"
 msgstr "喜歡您轉發的貼文"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:526
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:527
 msgid "Likes on this post"
 msgstr "這則貼文的喜歡數"
 
@@ -8251,7 +8274,7 @@ msgstr "好的"
 #: src/components/dms/InitiateChatFlow.tsx:733
 #: src/components/dms/MessageItem.tsx:722
 #: src/screens/Login/PasswordUpdatedForm.tsx:37
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:746
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:757
 msgid "Okay"
 msgstr "了解"
 
@@ -8620,6 +8643,11 @@ msgstr "開啟 GIF 選擇對話框"
 msgid "Opens the invite friends sheet to share your profile"
 msgstr ""
 
+#: src/components/PostEditedIndicator.tsx:39
+#: src/components/PostEditedIndicator.tsx:92
+msgid "Opens the original and edited versions of this post"
+msgstr ""
+
 #: src/view/com/feeds/ComposerPrompt.tsx:148
 msgid "Opens the post composer"
 msgstr "開啟貼文編輯器"
@@ -8644,6 +8672,11 @@ msgstr "或以其他帳號繼續。"
 #: src/screens/Deactivated.tsx:179
 msgid "Or, sign in to one of your other accounts."
 msgstr "或登入您的其他帳號。"
+
+#. placeholder {0}: i18n.date(new Date(createdAt), { dateStyle: 'medium', timeStyle: 'short', })
+#: src/components/PostEditedIndicator.tsx:153
+msgid "Original · {0}"
+msgstr ""
 
 #: src/screens/Settings/components/OTAInfo.tsx:55
 msgid "OTA status: ..."
@@ -9173,7 +9206,7 @@ msgstr "成功刪除貼文"
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "貼文發布失敗。請檢查您的網路連線狀態後再試一次。"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:136
 #: src/screens/PostThread/components/ThreadItemPost.tsx:117
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:110
 #: src/screens/VideoFeed/index.tsx:547
@@ -9474,7 +9507,7 @@ msgstr "已拒絕引用貼文"
 msgid "Quotes"
 msgstr "引用"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:490
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:491
 msgid "Quotes of this post"
 msgstr "引用這則貼文"
 
@@ -10087,7 +10120,7 @@ msgstr "由您轉發"
 msgid "Reposts"
 msgstr "轉發"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:469
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:470
 msgid "Reposts of this post"
 msgstr "轉發這則貼文"
 
@@ -11193,7 +11226,7 @@ msgstr "顯示警告，並從動態中排除內容"
 msgid "Show when you’re live"
 msgstr "顯示直播狀態"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:687
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:698
 msgid "Shows information about when this post was created"
 msgstr "顯示有關此貼文建立時間的資訊"
 
@@ -12504,7 +12537,7 @@ msgstr "這個用戶封鎖了您"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:727
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:738
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "這則貼文宣告的發布時間為 <0>{0}</0>，但首次出現在 Bluesky 的時間是 <1>{1}</1>。"
 
@@ -13587,6 +13620,11 @@ msgstr "檢視偵錯項目"
 msgid "View details"
 msgstr "檢視詳細資訊"
 
+#: src/components/PostEditedIndicator.tsx:38
+#: src/components/PostEditedIndicator.tsx:91
+msgid "View edit history"
+msgstr ""
+
 #: src/screens/Profile/Header/Metrics.tsx:50
 #: src/screens/Profile/Header/Metrics.tsx:55
 msgid "View followers"
@@ -13643,8 +13681,8 @@ msgstr "檢視貼文"
 #: src/components/ProfileHoverCard/index.web.tsx:485
 #: src/components/ProfileHoverCard/index.web.tsx:512
 #: src/view/com/posts/PostFeedErrorMessage.tsx:183
-#: src/view/com/util/PostMeta.tsx:93
-#: src/view/com/util/PostMeta.tsx:120
+#: src/view/com/util/PostMeta.tsx:100
+#: src/view/com/util/PostMeta.tsx:127
 msgid "View profile"
 msgstr "檢視個人檔案"
 

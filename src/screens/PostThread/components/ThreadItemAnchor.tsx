@@ -50,6 +50,7 @@ import {Embed, PostEmbedViewContext} from '#/components/Post/Embed'
 import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls, PostControlsSkeleton} from '#/components/PostControls'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
+import {PostEditedIndicator} from '#/components/PostEditedIndicator'
 import {ProfileBadges} from '#/components/ProfileBadges'
 import {ProfileHoverCard} from '#/components/ProfileHoverCard'
 import * as Prompt from '#/components/Prompt'
@@ -643,6 +644,13 @@ function ExpandedPostDetails({
   const isRootPost = !('reply' in post.record)
   const [devModeEnabled] = useDevMode()
 
+  const record = bsky.dangerousIsType<AppBskyFeedPost.Record>(
+    post.record,
+    AppBskyFeedPost.isRecord,
+  )
+    ? post.record
+    : undefined
+
   return (
     <View style={[a.gap_md, a.pt_md, a.align_start]}>
       <BackdatedPostIndicator post={post} />
@@ -656,6 +664,9 @@ function ExpandedPostDetails({
         )}
         {IS_NATIVE && devModeEnabled && <ViaIndicator post={post} />}
         {/* Behind dev mode until the layout can be improved on mobile - Sunstar */}
+        {record && (devModeEnabled || IS_WEB) && (
+          <PostEditedIndicator record={record} standalone compact />
+        )}
       </View>
     </View>
   )
