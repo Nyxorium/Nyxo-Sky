@@ -20,3 +20,5 @@ Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/mi
   - Like on Repost concept
 - [DeckBlue](https://deck.blue)
   - Recently used tags concept
+- [mu.social](https://mu.social/)
+  - Edited post indicator ([source](https://github.com/eurosky-social/eurosky-social-app/pull/18))
