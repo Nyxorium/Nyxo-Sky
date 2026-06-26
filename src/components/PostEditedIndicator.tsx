@@ -124,6 +124,7 @@ function PostEditHistoryDialog({
   createdAt: string
   updatedAt: string | undefined
 }) {
+  const t = useTheme()
   const {t: l, i18n} = useLingui()
 
   return (
@@ -157,6 +158,13 @@ function PostEditHistoryDialog({
             text={originalText ?? ''}
           />
         </View>
+        <Text style={[a.text_xs, a.pt_md, t.atoms.text_contrast_medium]}>
+          <Trans>
+            Edit history is only shown for posts edited using compatible
+            clients. Posts edited on other platforms may not display history
+            here.
+          </Trans>
+        </Text>
         <Dialog.Close />
       </Dialog.ScrollableInner>
     </Dialog.Outer>
