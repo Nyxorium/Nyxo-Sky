@@ -5,7 +5,6 @@ import Animated, {FadeIn, LayoutAnimationConfig} from 'react-native-reanimated'
 import {AppBskyGraphStarterpack} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 
-// import {FEEDBACK_FORM_URL} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useServiceQuery} from '#/state/queries/service'
 import {useStarterPackQuery} from '#/state/queries/starter-packs'
@@ -231,22 +230,6 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                       a.align_center,
                     ]}>
                     <AppLanguageDropdown />
-                    <Text
-                      style={[
-                        a.flex_1,
-                        t.atoms.text_contrast_medium,
-                        !gtMobile && a.text_md,
-                      ]}>
-                      {/*
-                      <Trans>Having trouble?</Trans>{' '}
-                      <InlineLinkText
-                        label={l`Contact support`}
-                        to={FEEDBACK_FORM_URL}
-                        style={[!gtMobile && a.text_md]}>
-                        <Trans>Contact support</Trans>
-                      </InlineLinkText>
-                      */}
-                    </Text>
                   </View>
                 </View>
               </ScreenTransition>

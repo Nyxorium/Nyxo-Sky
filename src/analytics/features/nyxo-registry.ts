@@ -13,10 +13,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
         'Show multiple images as a swipeable carousel instead of a grid',
     },
     // future gates: one line each
-    [Features.DmsNewMessageComposerEnable]: {
-      label: 'New DM composer',
-      description: 'Use the redesigned message composer in direct messages',
-    },
     [Features.ComposerLanguageDetectionEnable]: {
       label: 'Composer language detection',
       description:

@@ -138,7 +138,7 @@ export function InviteFriendsDialogInner({
 
   return (
     <Dialog.ScrollableInner
-      label={l`Share profile`}
+      label={l`Share Profile`}
       contentContainerStyle={[a.pt_0, a.px_0]}
       header={
         <Dialog.Header
