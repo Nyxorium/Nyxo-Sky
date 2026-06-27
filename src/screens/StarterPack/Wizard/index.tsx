@@ -410,8 +410,6 @@ function Footer({
   const {currentAccount} = useSession()
   const items = state.currentStep === 'Profiles' ? state.profiles : state.feeds
 
-  const minimumItems = state.currentStep === 'Profiles' ? 8 : 0
-
   const textStyles = [a.text_md]
 
   return (
@@ -437,14 +435,12 @@ function Footer({
           },
         ],
       ]}>
-      {items.length > minimumItems && (
-        <View style={[a.absolute, {right: 14, top: 31}]}>
-          <Text style={[a.font_semi_bold]}>
-            {items.length}/
-            {state.currentStep === 'Profiles' ? STARTER_PACK_MAX_SIZE : 3}
-          </Text>
-        </View>
-      )}
+      <View style={[a.absolute, {right: 14, top: 31}]}>
+        <Text style={[a.font_semi_bold]}>
+          {items.length}/
+          {state.currentStep === 'Profiles' ? STARTER_PACK_MAX_SIZE : 3}
+        </Text>
+      </View>
 
       <View style={[a.flex_row]}>
         {items.slice(0, 6).map((p, index) => (
@@ -595,27 +591,13 @@ function Footer({
           a.gap_2xl,
           IS_NATIVE ? a.mt_sm : a.mt_md,
         ]}>
-        {state.currentStep === 'Profiles' && items.length < 8 && (
-          <Text
-            style={[
-              a.font_semi_bold,
-              textStyles,
-              t.atoms.text_contrast_medium,
-            ]}>
-            <Trans>Add {8 - items.length} more to continue</Trans>
-          </Text>
-        )}
         <Button
           label={nextBtnText}
           style={[a.w_full, a.py_md, a.px_2xl]}
           color="primary"
           size="large"
           onPress={onNext}
-          disabled={
-            !state.canNext ||
-            state.processing ||
-            (state.currentStep === 'Profiles' && items.length < 8)
-          }>
+          disabled={!state.canNext || state.processing}>
           <ButtonText>{nextBtnText}</ButtonText>
           {state.processing && <ButtonIcon icon={Loader} />}
         </Button>
