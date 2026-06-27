@@ -207,7 +207,13 @@ export function TitleText({
   )
 }
 
-export function SubtitleText({children}: {children: React.ReactNode}) {
+export function SubtitleText({
+  children,
+  numberOfLines = 2,
+}: {
+  children: React.ReactNode
+  numberOfLines?: number
+}) {
   const t = useTheme()
   const align = useContext(AlignmentContext)
   return (
@@ -218,7 +224,7 @@ export function SubtitleText({children}: {children: React.ReactNode}) {
         IS_IOS && align === 'platform' && a.text_center,
         t.atoms.text_contrast_medium,
       ]}
-      numberOfLines={2}>
+      numberOfLines={numberOfLines}>
       {children}
     </Text>
   )
