@@ -34,6 +34,7 @@ import {
   HeaderStandardButtons,
   ProfileHeaderStandard,
 } from './ProfileHeaderStandard'
+import {ProfileHeaderPronounsMinimal} from './Pronouns'
 
 let ProfileHeaderLoading = (_props: {}): React.ReactNode => {
   const t = useTheme()
@@ -192,9 +193,10 @@ const MinimalHeader = memo(function MinimalHeader({
           ) : (
             <ProfileCard.NamePlaceholder />
           )}
-          <Header.SubtitleText>
+          <Header.SubtitleText numberOfLines={1}>
             {sanitizeHandle(profile.handle, '@')}
           </Header.SubtitleText>
+          <ProfileHeaderPronounsMinimal profile={profile} />
         </Header.Content>
         {!profile.associated?.labeler
           ? moderationOpts &&
