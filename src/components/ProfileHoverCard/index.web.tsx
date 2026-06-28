@@ -472,7 +472,6 @@ function Inner({
         </Link>
 
         {!isMe &&
-          !isLabeler &&
           (isBlockedUser ? (
             <Link
               to={profileURL}
