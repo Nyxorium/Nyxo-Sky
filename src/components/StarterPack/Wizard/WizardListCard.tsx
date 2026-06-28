@@ -11,7 +11,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
-import {DISCOVER_FEED_URI, STARTER_PACK_MAX_SIZE} from '#/lib/constants'
+import {STARTER_PACK_MAX_SIZE} from '#/lib/constants'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useSession} from '#/state/session'
@@ -189,9 +189,8 @@ export function WizardFeedCard({
   dispatch: (action: WizardAction) => void
   moderationOpts: ModerationOpts
 }) {
-  const isDiscover = generator.uri === DISCOVER_FEED_URI
-  const included = isDiscover || state.feeds.some(f => f.uri === generator.uri)
-  const disabled = isDiscover || (!included && state.feeds.length >= 3)
+  const included = state.feeds.some(f => f.uri === generator.uri)
+  const disabled = !included && state.feeds.length >= 3
   const moderationUi = moderateFeedGenerator(generator, moderationOpts).ui(
     'avatar',
   )
