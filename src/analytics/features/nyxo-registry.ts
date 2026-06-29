@@ -30,4 +30,12 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Expanded profile cards in notifications',
       description: 'Show a richer profile card when viewing notifications',
     },
+    [Features.SearchV2Enable]: {
+      label: 'Search v2',
+      description: 'Enable the redesigned search experience',
+    },
+    [Features.AdvancedSearchV2Enable]: {
+      label: 'Advanced search v2',
+      description: 'Enable the redesigned advanced search experience',
+    },
   }
