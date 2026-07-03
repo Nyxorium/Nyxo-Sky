@@ -169,6 +169,21 @@ let RepostButtonDialogInner = ({
     <Dialog.ScrollableInner label={_(msg`Repost or quote post`)}>
       <View style={a.gap_xl}>
         <View style={a.gap_xs}>
+          {!isReposted && !isLiked && showLikeAndRepost && (
+            <Button
+              testID="likeAndRepostBtn"
+              style={[a.justify_start, a.px_md, a.gap_sm]}
+              label={_(msg`Like & Repost`)}
+              onPress={onPressLikeAndRepost}
+              size="large"
+              variant="ghost"
+              color="primary">
+              <HeartIcon size="lg" fill={t.palette.primary_500} />
+              <Text style={[a.font_semi_bold, a.text_xl]}>
+                <Trans>Like & Repost</Trans>
+              </Text>
+            </Button>
+          )}
           <Button
             style={[a.justify_start, a.px_md, a.gap_sm]}
             label={
@@ -189,21 +204,6 @@ let RepostButtonDialogInner = ({
               )}
             </Text>
           </Button>
-          {!isReposted && !isLiked && showLikeAndRepost && (
-            <Button
-              testID="likeAndRepostBtn"
-              style={[a.justify_start, a.px_md, a.gap_sm]}
-              label={_(msg`Like & Repost`)}
-              onPress={onPressLikeAndRepost}
-              size="large"
-              variant="ghost"
-              color="primary">
-              <HeartIcon size="lg" fill={t.palette.primary_500} />
-              <Text style={[a.font_semi_bold, a.text_xl]}>
-                <Trans>Like & Repost</Trans>
-              </Text>
-            </Button>
-          )}
           <Button
             disabled={embeddingDisabled}
             testID="quoteBtn"
