@@ -9,6 +9,7 @@ import {useRequireAuth} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
+import {Heart2_Filled_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
 import {CloseQuote_Stroke2_Corner1_Rounded as QuoteIcon} from '#/components/icons/Quote'
 import {Repost_Stroke2_Corner3_Rounded as RepostIcon} from '#/components/icons/Repost'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
@@ -21,18 +22,24 @@ import {
 
 interface Props {
   isReposted: boolean
+  isLiked: boolean
   repostCount?: number
   onRepost: () => void
   onQuote: () => void
+  onLikeAndRepost: () => void
+  showLikeAndRepost?: boolean
   big?: boolean
   embeddingDisabled: boolean
 }
 
 let RepostButton = ({
   isReposted,
+  isLiked,
   repostCount,
   onRepost,
   onQuote,
+  onLikeAndRepost,
+  showLikeAndRepost,
   big,
   embeddingDisabled,
 }: Props): React.ReactNode => {
@@ -98,8 +105,11 @@ let RepostButton = ({
         <Dialog.Handle />
         <RepostButtonDialogInner
           isReposted={isReposted}
+          isLiked={isLiked}
           onRepost={onRepost}
           onQuote={onQuote}
+          onLikeAndRepost={onLikeAndRepost}
+          showLikeAndRepost={showLikeAndRepost}
           embeddingDisabled={embeddingDisabled}
         />
       </Dialog.Outer>
@@ -111,13 +121,19 @@ export {RepostButton}
 
 let RepostButtonDialogInner = ({
   isReposted,
+  isLiked,
   onRepost,
   onQuote,
+  onLikeAndRepost,
+  showLikeAndRepost,
   embeddingDisabled,
 }: {
   isReposted: boolean
+  isLiked: boolean
   onRepost: () => void
   onQuote: () => void
+  onLikeAndRepost: () => void
+  showLikeAndRepost?: boolean
   embeddingDisabled: boolean
 }): React.ReactNode => {
   const t = useTheme()
@@ -133,6 +149,13 @@ let RepostButtonDialogInner = ({
     })
   }, [control, isReposted, onRepost, playHaptic])
 
+  const onPressLikeAndRepost = useCallback(() => {
+    playHaptic()
+    control.close(() => {
+      onLikeAndRepost()
+    })
+  }, [control, onLikeAndRepost, playHaptic])
+
   const onPressQuote = useCallback(() => {
     playHaptic()
     control.close(() => {
@@ -146,6 +169,21 @@ let RepostButtonDialogInner = ({
     <Dialog.ScrollableInner label={_(msg`Repost or quote post`)}>
       <View style={a.gap_xl}>
         <View style={a.gap_xs}>
+          {!isReposted && !isLiked && showLikeAndRepost && (
+            <Button
+              testID="likeAndRepostBtn"
+              style={[a.justify_start, a.px_md, a.gap_sm]}
+              label={_(msg`Like & Repost`)}
+              onPress={onPressLikeAndRepost}
+              size="large"
+              variant="ghost"
+              color="primary">
+              <HeartIcon size="lg" fill={t.palette.primary_500} />
+              <Text style={[a.font_semi_bold, a.text_xl]}>
+                <Trans>Like & Repost</Trans>
+              </Text>
+            </Button>
+          )}
           <Button
             style={[a.justify_start, a.px_md, a.gap_sm]}
             label={

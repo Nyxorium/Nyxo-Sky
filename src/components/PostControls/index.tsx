@@ -163,16 +163,40 @@ let PostControls = ({
           reqId,
         })
         await queueRepost()
-
-        if (likeOnRepost && !post.viewer?.like) {
-          try {
-            await queueLike()
-          } catch {
-            Toast.show(l`Failed to auto-like post`, {type: 'warning'})
-          }
-        }
       } else {
         await queueUnrepost()
+      }
+    } catch (err) {
+      const e = err as Error
+      if (e?.name !== 'AbortError') {
+        throw e
+      }
+    }
+  }
+
+  const onLikeAndRepost = async () => {
+    if (isBlocked) {
+      Toast.show(l`Cannot interact with a blocked user`, {
+        type: 'warning',
+      })
+      return
+    }
+
+    try {
+      sendInteraction({
+        item: post.uri,
+        event: 'app.bsky.feed.defs#interactionRepost',
+        feedContext,
+        reqId,
+      })
+      await queueRepost()
+
+      if (!post.viewer?.like) {
+        try {
+          await queueLike()
+        } catch {
+          Toast.show(l`Failed to auto-like post`, {type: 'warning'})
+        }
       }
     } catch (err) {
       const e = err as Error
@@ -282,12 +306,15 @@ let PostControls = ({
         <View style={[a.flex_1, a.align_start]}>
           <RepostButton
             isReposted={!!post.viewer?.repost}
+            isLiked={!!post.viewer?.like}
             repostCount={
               (!hideReposts ? (post.repostCount ?? 0) : 0) +
               (!hideQuotes ? (post.quoteCount ?? 0) : 0)
             }
             onRepost={() => void onRepost()}
             onQuote={onQuote}
+            onLikeAndRepost={() => void onLikeAndRepost()}
+            showLikeAndRepost={likeOnRepost}
             big={big}
             embeddingDisabled={Boolean(post.viewer?.embeddingDisabled)}
           />
