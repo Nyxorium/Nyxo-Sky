@@ -42,6 +42,7 @@ import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
+import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
@@ -159,6 +160,11 @@ let ProfileHeaderLabeler = ({
             {(profile.website || profile.createdAt) && (
               <View style={[a.pt_sm]}>
                 <ProfileHeaderMetaRow profile={profile} />
+              </View>
+            )}
+            {profile.associated?.germ && (
+              <View style={[a.pt_md]}>
+                <GermButton germ={profile.associated.germ} profile={profile} />
               </View>
             )}
             <View style={[a.flex_row, a.gap_xs, a.align_center, a.pt_lg]}>
