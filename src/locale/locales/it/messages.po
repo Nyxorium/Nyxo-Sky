@@ -367,7 +367,7 @@ msgstr "{0} è stato rimosso dal gruppo"
 
 #. List formatting: {0}, {1}, {2}
 #. placeholder {0}: link(lang)
-#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:118
+#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:113
 msgid "{0}, "
 msgstr "{0}, "
 
@@ -420,7 +420,7 @@ msgstr "{0}/{1} {2, plural, one {membro} other {membri}}"
 
 #. Badge showing the current image position out of the total number of images in a gallery.
 #. placeholder {0}: index + 1
-#: src/components/images/Gallery/index.tsx:521
+#: src/components/images/Gallery/index.tsx:524
 msgctxt "gallery-badge-image-position-numbers"
 msgid "{0}/{imageCount}"
 msgstr "{0}/{imageCount}"
@@ -912,7 +912,7 @@ msgstr "<0>{displayName}</0><1/><2> ti ha aggiunto</2>"
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<0>Accedi</0><1> o </1><2>crea un account</2><3> </3><4>per cercare notizie, sport, politica e tutto quello che accade su Bluesky.</4>"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:276
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:265
 msgid "<0>Tap here to update your location with GPS.</0>"
 msgstr "<0>Tocca qui per aggiornare la tua posizione tramite GPS.</0>"
 
@@ -921,6 +921,7 @@ msgstr "<0>Tocca qui per aggiornare la tua posizione tramite GPS.</0>"
 msgid "<0>You</0> and<1> </1><2>{0} </2>are included in your starter pack"
 msgstr "<0>Tu</0> e<1> </1><2>{0} </2>sono inclusi nel tuo starter pack"
 
+#: src/lib/strings/handles.ts:38
 #: src/screens/Profile/Header/Handle.tsx:59
 msgid "⚠Invalid Handle"
 msgstr "⚠Nome utente non valido"
@@ -1008,7 +1009,7 @@ msgid "A selected recipient is not followed by the sender."
 msgstr "Uno dei destinatari selezionati non è seguito dal mittente."
 
 #: src/Navigation.tsx:528
-#: src/screens/Settings/AboutSettings.tsx:85
+#: src/screens/Settings/AboutSettings.tsx:92
 #: src/screens/Settings/Settings.tsx:262
 #: src/screens/Settings/Settings.tsx:265
 msgid "About"
@@ -1344,7 +1345,7 @@ msgstr "Aggiungi a starter pack"
 msgid "Add user to list"
 msgstr "Aggiungi utente alla lista"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:234
+#: src/ageAssurance/components/NoAccessScreen.tsx:296
 msgid "Add your birthdate"
 msgstr "Aggiungi la tua data di nascita"
 
@@ -1438,10 +1439,13 @@ msgctxt "toast"
 msgid "Age assurance inquiry was submitted"
 msgstr "Verifica dell’età inviata con successo"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:383
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:207
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:200
 msgid "Age assurance only takes a few minutes"
 msgstr "La verifica dell’età richiede solo pochi minuti"
+
+#: src/ageAssurance/components/NoAccessScreen.tsx:464
+msgid "Age assurance only takes a few minutes."
+msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:220
 msgid "alice@example.com"
@@ -1565,7 +1569,7 @@ msgstr "Hai effettuato l'accesso come @{0}"
 
 #: src/components/AltBadgeWithDialog.tsx:76
 #: src/components/images/AutoSizedImage.tsx:205
-#: src/components/images/Gallery/index.tsx:585
+#: src/components/images/Gallery/index.tsx:588
 #: src/components/images/ImageLayoutGridItem.tsx:135
 #: src/view/com/composer/GifAltText.tsx:100
 #: src/view/com/composer/photos/Gallery.tsx:211
@@ -1921,19 +1925,19 @@ msgstr "Sei davvero sicuro?"
 
 #. placeholder {0}: link(languages[0])
 #. placeholder {1}: link(languages[1])
-#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:105
+#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:100
 msgid "Are you searching for posts in {0} or {1}?"
 msgstr "Stai cercando post in {0} o in {1}?"
 
 #. placeholder {0}: link(languages[0])
-#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:100
+#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:95
 msgid "Are you searching for posts in {0}?"
 msgstr "Stai cercando post in {0}?"
 
 #. List formatting: {0}, {1}, or {2}
 #. placeholder {0}: head.map(lang => ( <Trans key={lang.code} comment="List formatting: {0}, {1}, {2}"> {link(lang)},{' '} </Trans> ))
 #. placeholder {1}: link(last)
-#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:115
+#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:110
 msgid "Are you searching for posts in {0}or {1}?"
 msgstr "Stai cercando post in {0}o in {1}?"
 
@@ -2097,11 +2101,19 @@ msgstr "Attività vietate o violazioni della sicurezza"
 msgid "Banned user returning"
 msgstr "Ritorno utente bloccato"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:259
-msgid "Based on your device's location, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
-msgstr "In base alla posizione del tuo dispositivo, pensiamo che tu sia in <0>{region}</0>. Questa stima potrebbe essere imprecisa se stai usando una VPN."
+#: src/ageAssurance/components/NoAccessScreen.tsx:183
+msgid "Based on your device's location, we think you're in <0>{geolocationString}</0>."
+msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:265
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:251
+msgid "Based on your device's location, we think you're in <0>{region}</0>."
+msgstr ""
+
+#: src/ageAssurance/components/NoAccessScreen.tsx:193
+msgid "Based on your network, we think you're in <0>{geolocationString}</0>. This estimate may be inaccurate if you're using a VPN."
+msgstr ""
+
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:256
 msgid "Based on your network, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
 msgstr "In base alla tua rete, pensiamo che tu sia in <0>{region}</0>. Questa stima potrebbe essere imprecisa se stai usando una VPN."
 
@@ -2446,8 +2458,8 @@ msgstr "Attività commerciale"
 msgid "Button to go back to the home timeline"
 msgstr "Pulsante per tornare alla timeline principale"
 
-#: src/screens/Settings/AboutSettings.tsx:102
-#: src/screens/Settings/AboutSettings.tsx:105
+#: src/screens/Settings/AboutSettings.tsx:109
+#: src/screens/Settings/AboutSettings.tsx:112
 msgid "Buy us a coffee"
 msgstr ""
 
@@ -2889,8 +2901,8 @@ msgstr "Cancella data"
 msgid "Clear GIF search"
 msgstr "Pulisci ricerca GIF"
 
-#: src/screens/Settings/AboutSettings.tsx:150
-#: src/screens/Settings/AboutSettings.tsx:154
+#: src/screens/Settings/AboutSettings.tsx:157
+#: src/screens/Settings/AboutSettings.tsx:161
 msgid "Clear image cache"
 msgstr "Svuota cache immagini"
 
@@ -2910,19 +2922,15 @@ msgstr "clicca qui"
 msgid "Click here to add people to this group chat"
 msgstr "Fai clic qui per aggiungere persone a questa chat di gruppo"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:129
-msgid "Click here to contact our support team"
-msgstr "Fai clic qui per contattare il nostro team di supporto"
-
 #: src/screens/Messages/components/MessagesListGroupInfoPanel.tsx:143
 msgid "Click here to create or manage an invite link for this group chat"
 msgstr "Fai clic qui per creare o gestire un link di invito per questa chat di gruppo"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:263
+#: src/ageAssurance/components/NoAccessScreen.tsx:326
 msgid "Click here to delete your account"
 msgstr "Fai clic qui per eliminare il tuo account"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:254
+#: src/ageAssurance/components/NoAccessScreen.tsx:317
 msgid "Click here to log out"
 msgstr "Fai clic qui per uscire"
 
@@ -2935,8 +2943,8 @@ msgstr "Fai cli qui per inviare nuovamente l'email"
 msgid "Click here to restart the verification process."
 msgstr "Fai clic qui per riavviare il processo di verifica."
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:109
-#: src/ageAssurance/components/NoAccessScreen.tsx:231
+#: src/ageAssurance/components/NoAccessScreen.tsx:118
+#: src/ageAssurance/components/NoAccessScreen.tsx:293
 msgid "Click here to update your birthdate"
 msgstr "Fai clic qui per aggiornare la tua data di nascita"
 
@@ -3190,13 +3198,13 @@ msgstr "Connessione al servizio..."
 msgid "Connection issue"
 msgstr "Problema di connessione"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:334
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:146
+#: src/ageAssurance/components/NoAccessScreen.tsx:403
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:127
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:31
 msgid "Contact our moderation team"
 msgstr "Contatta il nostro team di moderazione"
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:127
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:108
 msgid "Contact our support team"
 msgstr "Contatta il nostro team di supporto"
 
@@ -3343,7 +3351,7 @@ msgstr "Conversazione abbandonata"
 msgid "Conversation not found."
 msgstr "Conversazione non trovata."
 
-#: src/screens/Settings/AboutSettings.tsx:185
+#: src/screens/Settings/AboutSettings.tsx:192
 msgid "Copied build version to clipboard"
 msgstr "Versione della build copiata negli appunti"
 
@@ -3367,7 +3375,7 @@ msgstr "Copiato negli appunti"
 msgid "Copied!"
 msgstr "Copiato!"
 
-#: src/screens/Settings/AboutSettings.tsx:161
+#: src/screens/Settings/AboutSettings.tsx:168
 msgid "Copies build version to clipboard"
 msgstr "Copia la versione negli appunti"
 
@@ -3954,12 +3962,12 @@ msgstr "Scollega citazione"
 msgid "Detach quote post?"
 msgstr "Scollegare la citazione del post?"
 
-#: src/screens/Settings/AboutSettings.tsx:174
+#: src/screens/Settings/AboutSettings.tsx:181
 msgctxt "toast"
 msgid "Developer mode disabled"
 msgstr "Modalità sviluppatore disattivata"
 
-#: src/screens/Settings/AboutSettings.tsx:168
+#: src/screens/Settings/AboutSettings.tsx:175
 msgctxt "toast"
 msgid "Developer mode enabled"
 msgstr "Modalità sviluppatore attivata"
@@ -5378,7 +5386,7 @@ msgid "Filter search by language (currently: {currentLanguageLabel})"
 msgstr "Filtra la ricerca per lingua (attualmente: {currentLanguageLabel})"
 
 #. placeholder {0}: lang.name
-#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:93
+#: src/screens/Search/components/DetectedLanguagesAdmonition.tsx:88
 msgid "Filter this search by {0}"
 msgstr "Filtra questa ricerca per {0}"
 
@@ -5670,7 +5678,7 @@ msgstr "Dimensione carattere"
 msgid "Food"
 msgstr "Cibo"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:96
+#: src/ageAssurance/components/NoAccessScreen.tsx:105
 msgid "For organizational accounts, use the birthdate of the person who is responsible for the account."
 msgstr "Per gli account di organizzazioni, usare la data di nascita della persona responsabile dell'account."
 
@@ -5890,7 +5898,7 @@ msgstr "Glorificazione della violenza"
 #: src/screens/VideoFeed/components/Header.tsx:163
 #: src/screens/VideoFeed/index.tsx:1168
 #: src/screens/VideoFeed/index.tsx:1172
-#: src/view/com/auth/LoggedOut.tsx:103
+#: src/view/com/auth/LoggedOut.tsx:127
 #: src/view/com/profile/ProfileFollowers.tsx:211
 #: src/view/com/profile/ProfileFollowers.tsx:212
 #: src/view/screens/NotFound.tsx:51
@@ -6180,11 +6188,11 @@ msgstr "Ecco la tua password per app!"
 msgid "Hey there 👋"
 msgstr "Ciao 👋"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:173
+#: src/ageAssurance/components/NoAccessScreen.tsx:170
 msgid "Hey there!"
 msgstr "Ciao!"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:213
+#: src/ageAssurance/components/NoAccessScreen.tsx:275
 msgid "Hi there!"
 msgstr "Ciao!"
 
@@ -6307,6 +6315,14 @@ msgstr "Nasconde il banner promozionale per invitare amici"
 msgid "Hmm, it looks like you're signed in with an <0>App Password</0>. To set your birthdate, you'll need to sign in with your main account password, or ask whomever controls this account to do so."
 msgstr "Sembra che tu abbia effettuato l'accesso con una <0>password per app</0>. Per impostare la tua data di nascita devi accedere con la password principale del tuo account oppure chiedere di farlo a chi controlla questo account."
 
+#: src/ageAssurance/useVerificationFlow.ts:122
+msgid "Hmm, it seems we weren't able to compute your level of access. Please try again."
+msgstr ""
+
+#: src/ageAssurance/useVerificationFlow.ts:141
+msgid "Hmm, it seems your device was unable to share age information with us."
+msgstr ""
+
 #: src/view/com/posts/PostFeedErrorMessage.tsx:125
 msgid "Hmm, some kind of issue occurred when contacting the feed server. Please let the feed owner know about this issue."
 msgstr "Si è verificato un problema durante il contatto con il server del feed. Informa il proprietario del feed del problema."
@@ -6408,7 +6424,7 @@ msgstr "Se il testo alternativo è lungo, attiva l'opzione Espandi testo alterna
 msgid "If none are selected, all languages will be shown in your feeds."
 msgstr "Se non ne selezioni nessuna, nei tuoi feed verranno mostrate tutte le lingue."
 
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:121
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:102
 msgid "If you are 18 years of age or older and want to try again, click the button below and use a different verification method if one is available in your region. If you have questions or concerns, <0>our support team can help.</0>"
 msgstr "Se hai almeno 18 anni e vuoi riprovare, fai clic sul pulsante qui sotto e usa un altro metodo di verifica, se ce ne sono di disponibili nella tua regione. Se hai domande o dubbi, <0>il nostro team di supporto ti può aiutare.</0>"
 
@@ -6416,11 +6432,7 @@ msgstr "Se hai almeno 18 anni e vuoi riprovare, fai clic sul pulsante qui sotto 
 msgid "If you are not yet an adult according to the laws of your country, your parent or legal guardian must read these Terms on your behalf."
 msgstr "Se non sei ancora maggiorenne secondo le leggi della tua nazione, il tuo genitore o tutore legale deve leggere i Termini a tuo nome."
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:125
-msgid "If you believe your birthdate is incorrect, please <0>contact our support team</0>."
-msgstr "Se credi che la tua data di nascita non sia corretta <0>contatta il nostro team di supporto</0>."
-
-#: src/ageAssurance/components/NoAccessScreen.tsx:106
+#: src/ageAssurance/components/NoAccessScreen.tsx:115
 msgid "If you believe your birthdate is incorrect, you can update it by <0>clicking here</0>."
 msgstr "Se credi che la tua data di nascita non sia corretta, puoi aggiornarla <0>facendo clic qui</0>."
 
@@ -6465,7 +6477,7 @@ msgid "Image"
 msgstr "Immagine"
 
 #. placeholder {0}: index + 1
-#: src/components/images/Gallery/index.tsx:454
+#: src/components/images/Gallery/index.tsx:457
 msgid "Image {0}"
 msgstr "Immagine {0}"
 
@@ -6476,17 +6488,17 @@ msgid "Image {0} of {1}"
 msgstr "Immagine {0} di {1}"
 
 #. placeholder {0}: index + 1
-#: src/components/images/Gallery/index.tsx:439
+#: src/components/images/Gallery/index.tsx:442
 msgid "Image {0} of {imageCount}"
 msgstr "Immagine {0} di {imageCount}"
 
-#: src/screens/Settings/AboutSettings.tsx:74
+#: src/screens/Settings/AboutSettings.tsx:81
 msgid "Image cache cleared"
 msgstr "Cache delle immagini svuotata"
 
 #. Android-only toast message which includes amount of space freed using localized number formatting
 #. placeholder {0}: i18n.number( Math.abs(sizeDiffBytes / 1024 / 1024), { notation: 'compact', style: 'unit', unit: 'megabyte', }, )
-#: src/screens/Settings/AboutSettings.tsx:60
+#: src/screens/Settings/AboutSettings.tsx:67
 msgid "Image cache cleared, freed {0}"
 msgstr "Cache delle immagini svuotata, liberati {0}"
 
@@ -6556,7 +6568,7 @@ msgstr "Importa contatti per trovare i tuoi amici"
 msgid "Imported on {0}"
 msgstr "Importati il {0}"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:216
+#: src/ageAssurance/components/NoAccessScreen.tsx:278
 msgid "In order to provide an age-appropriate experience, we need to know your birthdate. This is a one-time thing, and your data will be kept private."
 msgstr "Abbiamo bisogno di conoscere la tua data di nascita per fornirti un'esperienza adeguata alla tua età. Questa operazione va fatta una volta sola e i tuoi dati rimarranno privati."
 
@@ -6803,10 +6815,6 @@ msgstr "Invitato"
 msgid "Invites, but personal"
 msgstr "Inviti, ma personali"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:394
-msgid "Is your location not accurate? <0>Tap here to update your location with GPS.</0>"
-msgstr "La tua posizione non è accurata? <0>Tocca qui per aggiornare la tua posizione tramite GPS.</0>"
-
 #: src/components/contacts/components/InviteInfo.tsx:47
 msgid "It looks like some of your contacts have not tried to find you here yet. You can personally invite them by customizing a draft message we will provide."
 msgstr "Sembra che alcuni dei tuoi contatti non abbiano ancora provato a cercarti qui. Puoi invitarli direttamente personalizzando una bozza di messaggio che ti forniremo."
@@ -6931,13 +6939,13 @@ msgstr "Lingue"
 msgid "Larger"
 msgstr "Più grande"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:377
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:201
+#: src/ageAssurance/components/NoAccessScreen.tsx:458
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:194
 msgid "Last initiated {timeAgo} ago"
 msgstr "Ultimo avvio {timeAgo} fa"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:375
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:199
+#: src/ageAssurance/components/NoAccessScreen.tsx:456
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:192
 msgid "Last initiated just now"
 msgstr "Ultimo avvio adesso"
 
@@ -8838,7 +8846,7 @@ msgstr "Apre il procedimento per creare un nuovo account Bluesky"
 msgid "Opens flow to sign in to your existing Bluesky account"
 msgstr "Apre la procedura per accedere al tuo account esistente di Bluesky"
 
-#: src/components/images/Gallery/index.tsx:455
+#: src/components/images/Gallery/index.tsx:458
 msgid "Opens full image"
 msgstr "Apre l'immagine completa"
 
@@ -9594,8 +9602,8 @@ msgstr "Impostazioni privacy e sicurezza"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:37
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:104
 #: src/Navigation.tsx:343
-#: src/screens/Settings/AboutSettings.tsx:118
-#: src/screens/Settings/AboutSettings.tsx:121
+#: src/screens/Settings/AboutSettings.tsx:125
+#: src/screens/Settings/AboutSettings.tsx:128
 #: src/view/screens/PrivacyPolicy.tsx:26
 #: src/view/shell/Drawer.tsx:775
 #: src/view/shell/Drawer.tsx:776
@@ -11100,8 +11108,8 @@ msgstr "Invia email"
 
 #: src/components/SendErrorReportDialog.tsx:60
 #: src/components/SendErrorReportDialog.tsx:64
-#: src/screens/Settings/AboutSettings.tsx:141
-#: src/screens/Settings/AboutSettings.tsx:144
+#: src/screens/Settings/AboutSettings.tsx:148
+#: src/screens/Settings/AboutSettings.tsx:151
 msgid "Send error report"
 msgstr "Invia segnalazione di errore"
 
@@ -11177,7 +11185,7 @@ msgstr "Configura il tuo account"
 msgid "Set who can reply to your post"
 msgstr "Imposta chi può rispondere al tuo post"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:223
+#: src/ageAssurance/components/NoAccessScreen.tsx:285
 msgid "Set your birthdate below and we'll get you back to posting and exploring in no time!"
 msgstr "Imposta la tua data di nascita qui sotto e potrai tornare a pubblicare ed esplorare in pochissimo tempo!"
 
@@ -11273,6 +11281,10 @@ msgstr "Sessualmente allusivo"
 msgid "Share"
 msgstr "Condividi"
 
+#: src/ageAssurance/useVerificationFlow.ts:62
+msgid "Share age data"
+msgstr ""
+
 #: src/view/com/profile/ProfileMenu.tsx:590
 msgid "Share anyway"
 msgstr "Condividi comunque"
@@ -11364,6 +11376,11 @@ msgstr "Condividi i tuoi contatti per trovare amici"
 #: src/Navigation.tsx:328
 msgid "Shared Preferences Tester"
 msgstr "Test preferenze condivise"
+
+#: src/ageAssurance/components/NoAccessScreen.tsx:433
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:169
+msgid "Sharing your age data uses information stored on your device, and will therefore only work on this device. Alternatively, <0>you can use our trusted partner, KWS</0>, to complete your verification and enable access on all platforms."
+msgstr ""
 
 #: src/components/moderation/ContentHider.tsx:324
 #: src/components/moderation/LabelPreference.tsx:144
@@ -11663,7 +11680,7 @@ msgstr "Salta l'introduzione e inizia a usare il tuo account"
 msgid "Skip to next step"
 msgstr "Vai al passo successivo"
 
-#: src/components/images/Gallery/index.tsx:438
+#: src/components/images/Gallery/index.tsx:441
 msgid "slide"
 msgstr "slide"
 
@@ -11809,8 +11826,8 @@ msgstr "Ordina risposte per"
 msgid "Sort replies to the same post by:"
 msgstr "Ordina le risposte allo stesso post per:"
 
-#: src/screens/Settings/AboutSettings.tsx:94
-#: src/screens/Settings/AboutSettings.tsx:97
+#: src/screens/Settings/AboutSettings.tsx:101
+#: src/screens/Settings/AboutSettings.tsx:104
 msgid "Source Code"
 msgstr ""
 
@@ -11914,8 +11931,8 @@ msgstr "Gli starter pack ti permettono di condividere i tuoi feed e utenti prefe
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr "Gli starter pack ti permettono di condividere utenti e feed preferiti con i tuoi amici."
 
-#: src/screens/Settings/AboutSettings.tsx:126
-#: src/screens/Settings/AboutSettings.tsx:129
+#: src/screens/Settings/AboutSettings.tsx:133
+#: src/screens/Settings/AboutSettings.tsx:136
 msgid "Status Page"
 msgstr "Pagina di stato"
 
@@ -12104,8 +12121,8 @@ msgid "System"
 msgstr "Sistema"
 
 #: src/screens/Log.tsx:49
-#: src/screens/Settings/AboutSettings.tsx:133
-#: src/screens/Settings/AboutSettings.tsx:136
+#: src/screens/Settings/AboutSettings.tsx:140
+#: src/screens/Settings/AboutSettings.tsx:143
 #: src/screens/Settings/Settings.tsx:456
 msgid "System log"
 msgstr "Registro di sistema"
@@ -12167,6 +12184,7 @@ msgstr "Tocca per informazioni"
 msgid "Tap for more information"
 msgstr "Tocca per maggiori informazioni"
 
+#: src/ageAssurance/components/NoAccessScreen.tsx:212
 #: src/screens/Signup/StepInfo/index.tsx:323
 msgid "Tap here to update your location with GPS."
 msgstr "Tocca qui per aggiornare la tua posizione tramite GPS."
@@ -12270,8 +12288,8 @@ msgstr "Termini"
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:31
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:99
 #: src/Navigation.tsx:348
-#: src/screens/Settings/AboutSettings.tsx:110
-#: src/screens/Settings/AboutSettings.tsx:113
+#: src/screens/Settings/AboutSettings.tsx:117
+#: src/screens/Settings/AboutSettings.tsx:120
 #: src/view/screens/TermsOfService.tsx:25
 #: src/view/shell/Drawer.tsx:768
 #: src/view/shell/Drawer.tsx:770
@@ -12296,8 +12314,8 @@ msgstr "Il tuo feedback è stato inviato. Grazie!"
 msgid "Thanks, you have successfully verified your email address. You can close this dialog."
 msgstr "Grazie, hai verificato con successo il tuo indirizzo email. Puoi chiudere questa finestra."
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:423
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:247
+#: src/ageAssurance/components/NoAccessScreen.tsx:232
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:239
 msgid "Thanks! You're all set."
 msgstr "Grazie! È tutto pronto."
 
@@ -13021,7 +13039,7 @@ msgstr "Per disabilitare il metodo 2FA via email, verifica il tuo accesso all'in
 msgid "To disable your email 2FA method, please verify your access to <0>{0}</0>"
 msgstr "Per disabilitare il metodo 2FA via email, verifica il tuo accesso a <0>{0}</0>"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:251
+#: src/ageAssurance/components/NoAccessScreen.tsx:314
 msgid "To log out, <0>click here</0>. Or if you’d prefer, you can <1>delete your account</1>."
 msgstr "<0>Fai clic qui</0> per uscire. Se preferisci puoi anche <1>eliminare il tuo account</1>."
 
@@ -13328,11 +13346,11 @@ msgstr "Smetti di seguire"
 msgid "Unfortunately, none of your subscribed labelers supports this report type."
 msgstr "Purtroppo, nessuna delle etichette a cui sei iscritto supporta questo tipo di segnalazione."
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:200
+#: src/ageAssurance/components/NoAccessScreen.tsx:262
 msgid "Unfortunately, the birthdate you have saved to your profile makes you too young to access Bluesky."
 msgstr "Purtroppo, la data di nascita che hai salvato nel tuo profilo indica che sei troppo giovane per accedere a Bluesky."
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:185
+#: src/ageAssurance/components/NoAccessScreen.tsx:246
 msgid "Unfortunately, your declared age indicates that you are not old enough to access Bluesky in your region."
 msgstr "Purtroppo l'età che hai dichiarato indica che non hai l'età minima necessaria per accedere a Bluesky nella tua regione."
 
@@ -13527,8 +13545,8 @@ msgstr "Aggiorna a {domain}"
 msgid "Update your email"
 msgstr "Aggiorna la tua email"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:397
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:278
+#: src/ageAssurance/components/NoAccessScreen.tsx:207
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:267
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:41
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:106
 msgid "Update your location"
@@ -13742,8 +13760,7 @@ msgstr "Verificato da:"
 msgid "Verify account"
 msgstr "Verifica account"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:360
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:184
+#: src/ageAssurance/useVerificationFlow.ts:64
 msgid "Verify again"
 msgstr "Verifica di nuovo"
 
@@ -13769,12 +13786,14 @@ msgstr "Verifica codice email"
 msgid "Verify email dialog"
 msgstr "Finestra verifica email"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:348
-#: src/ageAssurance/components/NoAccessScreen.tsx:362
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:172
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:186
+#: src/ageAssurance/useVerificationFlow.ts:65
 msgid "Verify now"
 msgstr "Verifica adesso"
+
+#: src/ageAssurance/components/NoAccessScreen.tsx:438
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:174
+msgid "Verify now using KWS"
+msgstr ""
 
 #: src/components/contacts/screens/PhoneInput.tsx:175
 #: src/components/contacts/screens/VerifyNumber.tsx:217
@@ -13815,8 +13834,8 @@ msgid "Verifying..."
 msgstr "Verifica in corso..."
 
 #. placeholder {0}: env.APP_VERSION
-#: src/screens/Settings/AboutSettings.tsx:160
-#: src/screens/Settings/AboutSettings.tsx:189
+#: src/screens/Settings/AboutSettings.tsx:167
+#: src/screens/Settings/AboutSettings.tsx:196
 msgid "Version {0}"
 msgstr "Versione {0}"
 
@@ -14277,8 +14296,12 @@ msgstr "Stiamo introducendo un nuovo livello di verifica su Bluesky -- una spunt
 msgid "We’re so excited to have you join us!"
 msgstr "Siamo felici che tu ti unisca a noi!"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:416
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:241
+#: src/ageAssurance/useVerificationFlow.ts:117
+msgid "We're sorry, but based on the data shared by your device, you are not old enough to access Bluesky."
+msgstr ""
+
+#: src/ageAssurance/components/NoAccessScreen.tsx:226
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:233
 msgid "We're sorry, but based on your device's location, you are currently located in a region that requires age assurance."
 msgstr "Ci dispiace, ma in base alla posizione del tuo dispositivo, attualmente ti trovi in una regione che richiede la verifica dell'età."
 
@@ -14521,7 +14544,7 @@ msgstr "Ieri"
 msgid "You are a trusted verifier"
 msgstr "Sei un certificatore attendibile"
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:176
+#: src/ageAssurance/components/NoAccessScreen.tsx:173
 msgid "You are accessing Bluesky from a region that legally requires us to verify your age before allowing you to access the app."
 msgstr "Stai accedendo a Bluesky da una regione che ci impone per legge di verificare la tua età prima di consentirti l'accesso all'app."
 
@@ -14546,8 +14569,8 @@ msgstr "Stai creando un account su"
 msgid "You are currently blocked from using the Go Live feature. To appeal this moderation decision, please submit the form below."
 msgstr "Al momento non puoi utilizzare la funzione In diretta. ​Per contestare questa decisione di moderazione, compila il modulo sottostante."
 
-#: src/ageAssurance/components/NoAccessScreen.tsx:330
-#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:142
+#: src/ageAssurance/components/NoAccessScreen.tsx:399
+#: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:123
 msgid "You are currently unable to access Bluesky's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
 msgstr "Al momento non puoi accedere al processo di verifica dell'età. <0>Contatta il nostro team di moderazione</0> se credi che questo sia un errore."
 
@@ -14969,6 +14992,14 @@ msgstr "Riceverai notifiche su {0}!"
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:281
 msgid "You'll stay updated with these feeds"
 msgstr "Resterai aggiornato su questi feed"
+
+#: src/ageAssurance/useVerificationFlow.ts:133
+msgid "You're all set!"
+msgstr ""
+
+#: src/ageAssurance/useVerificationFlow.ts:127
+msgid "You're all set! However, certain features may still be restricted until you're able to verify you're an adult."
+msgstr ""
 
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:205
 msgid "You’re in control"
