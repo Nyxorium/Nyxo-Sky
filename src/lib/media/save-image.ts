@@ -66,3 +66,52 @@ export function useSaveImageToMediaLibrary() {
     [permissionResponse, requestPermission, getPermission, _],
   )
 }
+
+export function useSaveImagesToMediaLibrary() {
+  const {_} = useLingui()
+  const [permissionResponse, requestPermission, getPermission] =
+    MediaLibrary.usePermissions({granularPermissions: ['photo']})
+
+  return useCallback(
+    async (uris: string[]) => {
+      const permission = permissionResponse ?? (await getPermission())
+      let granted = permission.granted
+
+      if (!granted) {
+        if (permission.canAskAgain) {
+          const askAgain = await requestPermission()
+          granted = askAgain.granted
+        }
+        if (!granted) {
+          Toast.show(
+            _(
+              msg`Images cannot be saved unless permission is granted to access your photo library.`,
+            ),
+            {type: 'error'},
+          )
+          return
+        }
+      }
+
+      let savedCount = 0
+      await Promise.all(
+        uris.map(async uri => {
+          try {
+            await saveImageToMediaLibrary({uri})
+            savedCount++
+          } catch {}
+        }),
+      )
+
+      const total = uris.length
+      if (savedCount === total) {
+        Toast.show(_(msg`Saved ${total} image${total === 1 ? '' : 's'}`))
+      } else if (savedCount > 0) {
+        Toast.show(_(msg`Saved ${savedCount} of ${total} images`))
+      } else {
+        Toast.show(_(msg`Failed to save images`), {type: 'error'})
+      }
+    },
+    [permissionResponse, requestPermission, getPermission, _],
+  )
+}
