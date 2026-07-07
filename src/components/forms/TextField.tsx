@@ -55,6 +55,10 @@ const Context = createContext<{
 })
 Context.displayName = 'TextFieldContext'
 
+export function useTextFieldContext() {
+  return useContext(Context)
+}
+
 export type RootProps = React.PropsWithChildren<
   {isInvalid?: boolean} & TextStyleProp
 >

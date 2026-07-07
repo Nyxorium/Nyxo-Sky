@@ -26,10 +26,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Disable Live Now beta',
       description: 'Hide the Live Now feature',
     },
-    [Features.NotificationsExpandedProfileCardEnable]: {
-      label: 'Expanded profile cards in notifications',
-      description: 'Show a richer profile card when viewing notifications',
-    },
     [Features.SearchV2Enable]: {
       label: 'Search v2',
       description: 'Enable the redesigned search experience',
