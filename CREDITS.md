@@ -22,3 +22,5 @@ Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/mi
   - Recently used tags concept
 - [mu.social](https://mu.social/)
   - Edited post indicator ([source](https://github.com/eurosky-social/eurosky-social-app/pull/18))
+- [atproto-pronouns](https://github.com/skydeval/atproto-pronouns/)
+  - Some pronoun placements
