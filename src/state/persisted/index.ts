@@ -9,7 +9,7 @@ import {
 } from '#/state/persisted/schema'
 import {device} from '#/storage'
 import {type PersistedApi} from './types'
-import {migrateProfileTabVisibility, normalizeData} from './util'
+import {normalizeData} from './util'
 
 export type {PersistedAccount, Schema} from '#/state/persisted/schema'
 export {defaults} from '#/state/persisted/schema'
@@ -20,13 +20,8 @@ let _state: Schema = defaults
 
 export async function init() {
   const stored = await readFromStorage()
-  // if (stored) {
-  //   _state = stored
-  // }
-
   if (stored) {
-    _state = migrateProfileTabVisibility(stored)
-    await writeToStorage(_state)
+    _state = stored
   }
 }
 init satisfies PersistedApi['init']
