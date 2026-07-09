@@ -7,10 +7,18 @@ import {
   useImpressionVisibilityPrefs,
   useSetImpressionVisibility,
 } from '#/state/preferences/impression-visibility'
+import {
+  useSetSimilarAccountsDisabled,
+  useSimilarAccountsDisabled,
+} from '#/state/preferences/similar-accounts'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
+import * as Toggle from '#/components/forms/Toggle'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
-import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
+import {
+  Person_Stroke2_Corner2_Rounded as PersonIcon,
+  PersonPlus_Stroke2_Corner2_Rounded as PersonPlusIcon,
+} from '#/components/icons/Person'
 import * as Layout from '#/components/Layout'
 import {type ImpressionConfig, ImpressionSection} from './FeedLikesSection'
 
@@ -24,6 +32,9 @@ export function ViewTailorSettingsScreen({}: Props) {
   const {t: l} = useLingui()
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
+
+  const similarAccountsDisabledPref = useSimilarAccountsDisabled()
+  const setSimilarAccountsDisabledPref = useSetSimilarAccountsDisabled()
 
   const getOwnValue = (key: ImpressionVisibilityKey) => {
     const v = prefs[key] ?? 'show'
@@ -116,6 +127,22 @@ export function ViewTailorSettingsScreen({}: Props) {
             onToggleOwn={onToggleOwn}
             onToggleOthers={onToggleOthers}
           />
+
+          <SettingsList.Divider />
+
+          <Toggle.Item
+            name="disable_similar_accounts"
+            label={l`Similar Accounts`}
+            value={!similarAccountsDisabledPref}
+            onChange={value => setSimilarAccountsDisabledPref(!value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PersonPlusIcon} />
+              <SettingsList.ItemText>
+                <Trans>Similar Accounts Box</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>
