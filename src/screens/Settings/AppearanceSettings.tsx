@@ -13,12 +13,15 @@ import {
   type CommonNavigatorParams,
   type NativeStackScreenProps,
 } from '#/lib/routes/types'
+import {useKawaiiMode, useSetKawaiiMode} from '#/state/preferences/kawaii'
 import {useSetThemePrefs, useThemePrefs} from '#/state/shell'
 import {SettingsListItem as AppIconSettingsListItem} from '#/screens/Settings/AppIconSettings/SettingsListItem'
 import {type Alf, atoms as a, native, useAlf, useTheme} from '#/alf'
 import * as SegmentedControl from '#/components/forms/SegmentedControl'
+import * as Toggle from '#/components/forms/Toggle'
 import {ColorPalette_Stroke2_Corner0_Rounded as PaletteIcon} from '#/components/icons/ColorPalette'
 import {type Props as SVGIconProps} from '#/components/icons/common'
+import {Mark as Mark} from '#/components/icons/Logo'
 import {Moon_Stroke2_Corner0_Rounded as MoonIcon} from '#/components/icons/Moon'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import {TextSize_Stroke2_Corner0_Rounded as TextSize} from '#/components/icons/TextSize'
@@ -35,6 +38,8 @@ export function AppearanceSettingsScreen({}: Props) {
 
   const {colorMode, darkTheme} = useThemePrefs()
   const {setColorMode, setDarkTheme} = useSetThemePrefs()
+  const kawaii = useKawaiiMode()
+  const setKawaii = useSetKawaiiMode()
 
   const onChangeAppearance = useCallback(
     (value: 'light' | 'system' | 'dark') => {
@@ -86,6 +91,20 @@ export function AppearanceSettingsScreen({}: Props) {
                 <Trans>App Themes</Trans>
               </SettingsList.ItemText>
             </SettingsList.LinkItem>
+
+            <Toggle.Item
+              name="use_kawaii"
+              label={_(msg`Use Kawaii`)}
+              value={kawaii}
+              onChange={value => setKawaii(value)}>
+              <SettingsList.Item>
+                <SettingsList.ItemIcon icon={Mark} />
+                <SettingsList.ItemText>
+                  <Trans>Use Kawaii logo</Trans>
+                </SettingsList.ItemText>
+                <Toggle.Platform />
+              </SettingsList.Item>
+            </Toggle.Item>
 
             <SettingsList.Divider />
             <AppearanceToggleButtonGroup
