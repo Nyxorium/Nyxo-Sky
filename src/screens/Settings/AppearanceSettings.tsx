@@ -1,5 +1,4 @@
 import {useCallback} from 'react'
-import {Pressable, View} from 'react-native'
 import Animated, {
   FadeInUp,
   FadeOutUp,
@@ -17,9 +16,7 @@ import {
 import {useSetThemePrefs, useThemePrefs} from '#/state/shell'
 import {SettingsListItem as AppIconSettingsListItem} from '#/screens/Settings/AppIconSettings/SettingsListItem'
 import {type Alf, atoms as a, native, useAlf, useTheme} from '#/alf'
-import {THEME_PRESETS, type ThemePresetName} from '#/alf/theme-presets'
 import * as SegmentedControl from '#/components/forms/SegmentedControl'
-import {CircleCheck_Stroke2_Corner0_Rounded as CheckIcon} from '#/components/icons/CircleCheck'
 import {ColorPalette_Stroke2_Corner0_Rounded as PaletteIcon} from '#/components/icons/ColorPalette'
 import {type Props as SVGIconProps} from '#/components/icons/common'
 import {Moon_Stroke2_Corner0_Rounded as MoonIcon} from '#/components/icons/Moon'
@@ -36,8 +33,8 @@ export function AppearanceSettingsScreen({}: Props) {
   const {_} = useLingui()
   const {fonts} = useAlf()
 
-  const {colorMode, darkTheme, themePreset} = useThemePrefs()
-  const {setColorMode, setDarkTheme, setThemePreset} = useSetThemePrefs()
+  const {colorMode, darkTheme} = useThemePrefs()
+  const {setColorMode, setDarkTheme} = useSetThemePrefs()
 
   const onChangeAppearance = useCallback(
     (value: 'light' | 'system' | 'dark') => {
@@ -67,13 +64,6 @@ export function AppearanceSettingsScreen({}: Props) {
     [fonts],
   )
 
-  const onChangeThemePreset = useCallback(
-    (value: ThemePresetName) => {
-      setThemePreset(value)
-    },
-    [setThemePreset],
-  )
-
   return (
     <LayoutAnimationConfig skipExiting skipEntering>
       <Layout.Screen testID="preferencesThreadsScreen">
@@ -88,18 +78,14 @@ export function AppearanceSettingsScreen({}: Props) {
         </Layout.Header.Outer>
         <Layout.Content>
           <SettingsList.Container>
-            <SettingsList.Group
-              contentContainerStyle={[a.gap_sm]}
-              iconInset={false}>
+            <SettingsList.LinkItem
+              to="/settings/appearance/app-themes"
+              label={_(msg`App Themes`)}>
               <SettingsList.ItemIcon icon={PaletteIcon} />
               <SettingsList.ItemText>
-                <Trans>App theme</Trans>
+                <Trans>App Themes</Trans>
               </SettingsList.ItemText>
-              <ThemePresetGrid
-                value={themePreset ?? 'nyxoSky'}
-                onChange={onChangeThemePreset}
-              />
-            </SettingsList.Group>
+            </SettingsList.LinkItem>
 
             <SettingsList.Divider />
             <AppearanceToggleButtonGroup
@@ -258,88 +244,4 @@ export function AppearanceToggleButtonGroup<T extends string>({
       </SettingsList.Group>
     </>
   )
-}
-
-// ---------------------------------------------------------------------------
-// Theme preset grid — 2-column coloured chips
-// ---------------------------------------------------------------------------
-function ThemePresetGrid({
-  value,
-  onChange,
-}: {
-  value: ThemePresetName
-  onChange: (v: ThemePresetName) => void
-}) {
-  const entries = Object.entries(THEME_PRESETS) as [
-    ThemePresetName,
-    (typeof THEME_PRESETS)[ThemePresetName],
-  ][]
-
-  return (
-    <View style={[a.flex_row, a.flex_wrap, a.w_full, {gap: 8}]}>
-      {entries.map(([key, preset]) => {
-        const isSelected = value === key
-        const accent = preset.themes.light.palette.primary_500
-
-        // Determine if the accent is light or dark to pick text colour.
-        // primary_500 in light themes sits around 45-55% lightness — we
-        // check if it's an hsl string and parse L, otherwise default to white.
-        const textColor = getContrastTextColor(accent)
-
-        return (
-          <Pressable
-            key={key}
-            accessibilityRole="button"
-            accessibilityHint=""
-            accessibilityLabel={preset.label}
-            accessibilityState={{selected: isSelected}}
-            onPress={() => onChange(key)}
-            style={{
-              width: '48%',
-              flexGrow: 1,
-              borderRadius: 12,
-              overflow: 'hidden',
-              borderWidth: 3,
-              borderColor: isSelected ? accent : 'transparent',
-            }}>
-            <View
-              style={{
-                backgroundColor: accent,
-                paddingVertical: 18,
-                paddingHorizontal: 14,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Text
-                style={[
-                  a.text_sm,
-                  a.font_bold,
-                  a.leading_snug,
-                  {color: textColor, flexShrink: 1},
-                ]}
-                numberOfLines={1}>
-                {preset.label}
-              </Text>
-              {isSelected && <CheckIcon size="sm" style={{color: textColor}} />}
-            </View>
-          </Pressable>
-        )
-      })}
-    </View>
-  )
-}
-
-/**
- * Returns white or near-black depending on whether the accent colour is
- * perceived as light or dark. Handles hsl(...) strings only; defaults to
- * white for anything else (hex, named colours).
- */
-function getContrastTextColor(color: string): string {
-  const match = color.match(/hsl\(\s*[\d.]+,\s*[\d.]+%,\s*([\d.]+)%/)
-  if (match) {
-    const lightness = parseFloat(match[1])
-    return lightness > 60 ? 'rgba(0,0,0,0.8)' : '#FFFFFF'
-  }
-  return '#FFFFFF'
 }
