@@ -43,7 +43,7 @@ export function ImpressionSection({
           subtitleText={subtitleText}
         />
       </SettingsList.Item>
-      <View style={[a.px_xl, a.pt_md, a.gap_sm]}>
+      <View style={[a.px_xl, a.pb_md, a.gap_sm]}>
         {impressions.map(impression => (
           <View key={impression.key}>
             <Toggle.Item
@@ -84,7 +84,6 @@ export function ImpressionSection({
             </Toggle.Item>
           </View>
         ))}
-        <SettingsList.Divider />
       </View>
     </>
   )
