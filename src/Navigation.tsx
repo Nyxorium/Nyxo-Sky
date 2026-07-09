@@ -107,6 +107,7 @@ import {ActivityPrivacySettingsScreen} from '#/screens/Settings/ActivityPrivacyS
 import {AppearanceSettingsScreen} from '#/screens/Settings/AppearanceSettings'
 import {AppIconSettingsScreen} from '#/screens/Settings/AppIconSettings'
 import {AppPasswordsScreen} from '#/screens/Settings/AppPasswords'
+import {AppThemeSettingsScreen} from '#/screens/Settings/AppThemeSettings'
 import {AutomationLabelSettingsScreen} from '#/screens/Settings/AutomationLabelSettings'
 import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaSettings'
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
@@ -457,6 +458,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => AppearanceSettingsScreen}
         options={{
           title: title(msg`Appearance`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="AppThemeSettings"
+        getComponent={() => AppThemeSettingsScreen}
+        options={{
+          title: title(msg`App Themes`),
           requireAuth: true,
         }}
       />
