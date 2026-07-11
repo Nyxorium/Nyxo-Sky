@@ -12,7 +12,6 @@ import {
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
-import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {formatCount} from '#/view/com/util/numeric/format'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
@@ -112,14 +111,6 @@ export function VideoPostCard({
           ]}
           numberOfLines={1}>
           {sanitizeHandle(post.author.handle, '@')}
-          {NON_BREAKING_SPACE}&middot;{NON_BREAKING_SPACE}
-          {post.author.pronouns
-            ? NON_BREAKING_SPACE +
-              '\u00B7' +
-              NON_BREAKING_SPACE +
-              post.author.pronouns
-            : null}
-          {/* Double check how this looks - Sunstar */}
         </Text>
       </View>
     </View>
