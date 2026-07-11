@@ -18,20 +18,8 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       description:
         'Automatically detect the language of posts as you write them',
     },
-    [Features.ImportContactsSettingsDisable]: {
-      label: 'Disable contact import (settings)',
-      description: 'Hide the import contacts option in settings',
-    },
     [Features.LiveNowBetaDisable]: {
-      label: 'Disable Live Now beta',
+      label: 'Disable Live Now',
       description: 'Hide the Live Now feature',
-    },
-    [Features.SearchV2Enable]: {
-      label: 'Search v2',
-      description: 'Enable the redesigned search experience',
-    },
-    [Features.AdvancedSearchV2Enable]: {
-      label: 'Advanced search v2',
-      description: 'Enable the redesigned advanced search experience',
     },
   }

@@ -245,7 +245,6 @@ let ProfileHeaderShell = ({
           />
         ) : isMe && !useAltLabelDisplay ? (
           <LabelsOnMe
-            type="account"
             labels={profile.labels}
             style={[
               a.px_lg,

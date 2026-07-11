@@ -33,7 +33,7 @@ msgid "\"{interestsDisplayName}\" category (active)"
 msgstr "Kategorie \"{interestsDisplayName}\" (aktivní)"
 
 #. A reply summary in chat
-#: src/components/dms/MessageItem.tsx:882
+#: src/components/dms/MessageItem.tsx:901
 msgid "(blocked message hidden)"
 msgstr "(blokovaná zpráva skryta)"
 
@@ -48,7 +48,7 @@ msgid "(contains embedded content)"
 msgstr "(obsahuje vložený obsah)"
 
 #. A reply summary in chat
-#: src/components/dms/MessageItem.tsx:896
+#: src/components/dms/MessageItem.tsx:915
 msgid "(deleted message)"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgid "(invalid chat invite link)"
 msgstr ""
 
 #. A reply summary in chat
-#: src/components/dms/MessageItem.tsx:890
+#: src/components/dms/MessageItem.tsx:909
 msgid "(message sent before you joined)"
 msgstr "(zpráva odeslána před tím, než jste se připojili)"
 
@@ -82,13 +82,8 @@ msgid "(quoted post)"
 msgstr ""
 
 #. placeholder {0}: labels.length
-#: src/components/moderation/LabelsOnMe.tsx:69
+#: src/components/moderation/LabelsOnMe.tsx:62
 msgid "{0, plural, one {# account label} other {# account labels}}"
-msgstr ""
-
-#. placeholder {0}: labels.length
-#: src/components/moderation/LabelsOnMe.tsx:75
-msgid "{0, plural, one {# content label} other {# content labels}}"
 msgstr ""
 
 #. placeholder {0}: diff.value
@@ -116,6 +111,16 @@ msgstr "{0, plural, one {Nalezen # přítel!} few {Nalezeni # přátelé!} other
 msgid "{0, plural, one {# hour} other {# hours}}"
 msgstr "{0, plural, one {# hodina} few {# hodiny} other {# hodin}}"
 
+#. placeholder {0}: labels.length
+#: src/components/moderation/PostAlerts.tsx:149
+msgid "{0, plural, one {# label applied to your post} other {# labels applied to your post}}"
+msgstr ""
+
+#. placeholder {0}: labels.length
+#: src/components/moderation/PostAlerts.tsx:156
+msgid "{0, plural, one {# label applied} other {# labels applied}}"
+msgstr ""
+
 #. placeholder {0}: likeCount ?? 0
 #: src/screens/Post/PostLikedBy.tsx:34
 msgid "{0, plural, one {# like} other {# likes}}"
@@ -137,13 +142,13 @@ msgid "{0, plural, one {# month} other {# months}}"
 msgstr "{0, plural, one {# měsíc} few {# měsíce} many {# měsíců} other {# měsíců}}"
 
 #. placeholder {0}: convo.details.unreadJoinRequestCount
-#: src/screens/Messages/components/ChatListItem.tsx:225
+#: src/screens/Messages/components/ChatListItem.tsx:224
 msgid "{0, plural, one {# new join request} other {# new join requests}}"
 msgstr "{0, plural, one {# nová žádost o připojení} few {# nové žádosti o připojení} many {# nových žádostí o připojení} other {# nových žádostí o připojení}}"
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:351
+#: src/components/dms/MessageItem.tsx:370
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr "{0, plural, one {# osoba zareagovala} few {# osoby zareagovaly} many {# osob zareagovalo} other {# osob zareagovalo}} – {1}"
 
@@ -205,7 +210,7 @@ msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, one {příspěvek} few {příspěvky} many {příspěvků} other {příspěvků}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:506
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:505
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -272,7 +277,7 @@ msgid "{0} following"
 msgstr "{0} sledujících"
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:704
+#: src/components/dms/MessageItem.tsx:723
 msgid "{0} is blocking you"
 msgstr "{0} vás blokuje"
 
@@ -330,7 +335,7 @@ msgstr "{0} z 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:346
+#: src/components/dms/MessageItem.tsx:365
 msgid "{0} reacted {1}"
 msgstr "{0} napsal reakci na {1}"
 
@@ -463,7 +468,7 @@ msgstr "{0} s"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:495
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:494
 msgid "{1}"
 msgstr ""
 
@@ -695,7 +700,7 @@ msgstr "{hours, plural, one {# hodina} few {# hodiny} many {# hodin} other {# ho
 msgid "{JOIN_REQUESTS_THRESHOLD}+ new join requests"
 msgstr "{JOIN_REQUESTS_THRESHOLD}+ nových požadavků na připojení"
 
-#: src/screens/Messages/components/ChatListItem.tsx:220
+#: src/screens/Messages/components/ChatListItem.tsx:219
 msgctxt "Displayed when there are more than 20 requests to join a group chat"
 msgid "{JOIN_REQUESTS_THRESHOLD}+ new join requests"
 msgstr "{JOIN_REQUESTS_THRESHOLD}+ nových požadavků na připojení"
@@ -784,15 +789,15 @@ msgstr "{profileName} se připojil/a k Bluesky pomocí startovacího balíčku p
 msgid "{rank}."
 msgstr "{rank}."
 
-#: src/components/dms/MessageItem.tsx:791
+#: src/components/dms/MessageItem.tsx:810
 msgid "{replierDisplayName} replied"
 msgstr "{replierDisplayName} odpověděl/a"
 
-#: src/components/dms/MessageItem.tsx:790
+#: src/components/dms/MessageItem.tsx:809
 msgid "{replierDisplayName} replied to {originalName}"
 msgstr "{replierDisplayName} odpověděl/a uživateli {originalName}"
 
-#: src/components/dms/MessageItem.tsx:788
+#: src/components/dms/MessageItem.tsx:807
 msgid "{replierDisplayName} replied to you"
 msgstr "{replierDisplayName} vám odpověděl/a"
 
@@ -825,7 +830,9 @@ msgid "{userName}'s verifications"
 msgstr "Ověření uživatele {userName}"
 
 #. Number of images beyond the first 3
+#. placeholder {0}: labels.length
 #. placeholder {0}: totalNumber - 3
+#: src/components/moderation/PostAlerts.tsx:155
 #: src/view/com/composer/ComposerReplyTo.tsx:278
 msgid "+{0}"
 msgstr "+{0}"
@@ -866,21 +873,21 @@ msgstr "<0>{0}</0> {1, plural, one {sledovaný} few {sledovaní} many {sledovan�
 #. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.likeCount)
 #. placeholder {1}: post.likeCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:531
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:530
 msgid "<0>{0}</0> {1, plural, one {like} other {likes}}"
 msgstr "<0>{0}</0> {1, plural, one {to se líbí} few {to se líbí} many {to se líbí} other {to se líbí}}"
 
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:474
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:473
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, one {repost} few {reposty} many {repostu} other {repostů}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:551
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:550
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, one {uložení} few {uložení} many {uložení} other {uložení}}"
 
@@ -907,8 +914,8 @@ msgstr "<0>{0}</0> členů"
 msgid "<0>{displayName}</0><1/><2> added you</2>"
 msgstr "<0>{displayName}</0><1/><2> vás přidal</2>"
 
-#: src/screens/Hashtag.tsx:226
-#: src/screens/Search/SearchResults.tsx:432
+#: src/screens/Hashtag.tsx:230
+#: src/screens/Search/SearchResults.tsx:381
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<0>Přihlaste se</0><1> nebo si </1><2>vytvořte účet</2><3> </3><4>a vyhledávejte zprávy, sport, politiku a vše ostatní, co se na Bluesky děje.</4>"
 
@@ -981,7 +988,7 @@ msgstr "Byl zaslán nový kód"
 msgid "A new form of verification"
 msgstr "Nový způsob ověření"
 
-#: src/components/dms/MessageItem.tsx:801
+#: src/components/dms/MessageItem.tsx:820
 msgid "A reply to a message sent before you joined"
 msgstr "Odpověď na zprávu odeslanou před tím, než jste se připojili"
 
@@ -1095,12 +1102,12 @@ msgctxt "toast"
 msgid "Account muted"
 msgstr "Účet byl ztlumen"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:107
+#: src/components/moderation/ModerationDetailsDialog.tsx:123
 #: src/lib/moderation/useModerationCauseDescription.ts:99
 msgid "Account Muted"
 msgstr "Účet byl ztlumen"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:93
+#: src/components/moderation/ModerationDetailsDialog.tsx:109
 msgid "Account Muted by List"
 msgstr "Účet byl ztlumen ze seznamu"
 
@@ -1465,9 +1472,9 @@ msgid "All friends followed!"
 msgstr "Všichni přátelé sledováni!"
 
 #: src/components/dialogs/LanguageSelectDialog.tsx:255
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:73
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:122
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:124
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:65
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:94
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:96
 msgid "All languages"
 msgstr "Všechny jazyky"
 
@@ -1723,7 +1730,7 @@ msgstr "Došlo k chybě, zkuste to prosím znovu."
 msgid "An mockup of a iPhone showing the Bluesky app open to the profile of a verified user with a blue checkmark next to their display name."
 msgstr "Maketa iPhonu zobrazující aplikaci Bluesky otevřenou na profilu ověřeného uživatele s modrou fajfkou vedle zobrazovaného jména."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:138
+#: src/components/moderation/ModerationDetailsDialog.tsx:154
 #: src/lib/moderation/useModerationCauseDescription.ts:145
 msgid "an unknown labeler"
 msgstr "neznámý labeler"
@@ -1846,15 +1853,20 @@ msgstr "Hesla aplikace"
 msgid "App Themes"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:155
-#: src/components/moderation/LabelsOnMeDialog.tsx:158
+#: src/components/moderation/LabelsOnMeDialog.tsx:169
+#: src/components/moderation/LabelsOnMeDialog.tsx:172
+#: src/components/moderation/ModerationDetailsDialog.tsx:223
 msgid "Appeal"
 msgstr "Odvolání"
 
 #. placeholder {0}: strings.name
-#: src/components/moderation/LabelsOnMeDialog.tsx:282
+#: src/components/moderation/AppealForm.tsx:93
 msgid "Appeal \"{0}\" label"
 msgstr "Odvolat \"{0}\" štítek"
+
+#: src/components/moderation/ModerationDetailsDialog.tsx:159
+msgid "Appeal label"
+msgstr ""
 
 #: src/view/com/profile/ProfileMenu.tsx:544
 #: src/view/com/profile/ProfileMenu.tsx:549
@@ -1865,7 +1877,7 @@ msgstr ""
 msgid "Appeal livestream suspension"
 msgstr "Odvolání pozastavení živých streamů"
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:272
+#: src/components/moderation/AppealForm.tsx:83
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:83
 #: src/screens/Messages/components/ChatDisabled.tsx:125
 msgctxt "toast"
@@ -1888,6 +1900,10 @@ msgstr "Odvolat se proti pozastavení"
 msgid "Appeal this decision"
 msgstr "Odvolat toto rozhodnutí"
 
+#: src/components/moderation/ModerationDetailsDialog.tsx:219
+msgid "Appeal this label"
+msgstr ""
+
 #: src/Navigation.tsx:460
 #: src/screens/Settings/AppearanceSettings.tsx:79
 #: src/screens/Settings/Settings.tsx:234
@@ -1906,12 +1922,12 @@ msgid "Apply Pull Request"
 msgstr "Použít žádost o přijetí změn"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:726
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:725
 msgid "Archived from {0}"
 msgstr "Archivováno z {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:735
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:696
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:734
 msgid "Archived post"
 msgstr "Archivovaný příspěvek"
 
@@ -2065,8 +2081,8 @@ msgstr "Dostupný"
 #: src/components/dms/InitiateChatFlow.tsx:540
 #: src/components/dms/InitiateChatFlow.tsx:758
 #: src/components/dms/InitiateChatFlow.tsx:765
-#: src/components/moderation/LabelsOnMeDialog.tsx:334
-#: src/components/moderation/LabelsOnMeDialog.tsx:335
+#: src/components/moderation/AppealForm.tsx:145
+#: src/components/moderation/AppealForm.tsx:146
 #: src/screens/Login/ChooseAccountForm.tsx:96
 #: src/screens/Login/ChooseAccountForm.tsx:100
 #: src/screens/Login/ForgotPasswordForm.tsx:119
@@ -2155,11 +2171,11 @@ msgstr "Než budete moci dostávat oznámení o příspěvcích {name}, musíte 
 msgid "Before you can message another user, you must first verify your email."
 msgstr "Než budete moci poslat zprávu jinému uživateli, musíte nejprve ověřit svůj e-mail."
 
-#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:318
+#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:319
 msgid "Begin"
 msgstr "Začít"
 
-#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:312
+#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:313
 msgid "Begin age assurance process"
 msgstr "Zahájení procesu zajištění věku"
 
@@ -2308,7 +2324,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:751
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:750
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "Bluesky nemůže potvrdit pravost požadovaného data."
 
@@ -2596,7 +2612,7 @@ msgstr "Zrušit opětovné aktivaci a odhlásit se"
 msgid "Cancel reply"
 msgstr "Zrušit odpověď"
 
-#: src/screens/Search/Shell.tsx:608
+#: src/screens/Search/Shell.tsx:595
 msgid "Cancel search"
 msgstr "Zrušit vyhledávání"
 
@@ -2974,7 +2990,7 @@ msgstr "Klikněte zde pro zobrazení pozvánky na tuto skupinovou konverzaci"
 msgid "Click to open tag menu for {0}"
 msgstr "Klepnutím otevřete menu značky pro {0}"
 
-#: src/components/dms/MessageItem.tsx:623
+#: src/components/dms/MessageItem.tsx:642
 msgid "Click to retry failed message"
 msgstr "Klikněte pro opakování neúspěšné zprávy"
 
@@ -3279,7 +3295,7 @@ msgstr "Obsah z celé sítě, o kterém si myslíme, že by se vám mohl líbit.
 msgid "Content languages"
 msgstr "Jazyky obsahu"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:86
+#: src/components/moderation/ModerationDetailsDialog.tsx:102
 #: src/lib/moderation/useModerationCauseDescription.ts:83
 msgid "Content Not Available"
 msgstr "Obsah není k dispozici"
@@ -3288,7 +3304,7 @@ msgstr "Obsah není k dispozici"
 msgid "Content promoting or depicting self-harm"
 msgstr "Obsah propagující nebo zobrazující sebepoškozování"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:54
+#: src/components/moderation/ModerationDetailsDialog.tsx:70
 #: src/components/moderation/ScreenHider.tsx:100
 #: src/lib/moderation/useGlobalLabelStrings.ts:22
 #: src/lib/moderation/useModerationCauseDescription.ts:46
@@ -3356,7 +3372,7 @@ msgstr ""
 msgid "Conversation"
 msgstr "Konverzace"
 
-#: src/screens/Messages/components/ChatListItem.tsx:322
+#: src/screens/Messages/components/ChatListItem.tsx:321
 msgid "Conversation deleted"
 msgstr "Konverzace odstraněna"
 
@@ -3382,7 +3398,7 @@ msgstr "Konverzace nenalezena."
 msgid "Copied build version to clipboard"
 msgstr "Verze sestavení zkopírována do schránky"
 
-#: src/screens/Search/Shell.tsx:523
+#: src/screens/Search/Shell.tsx:515
 msgid "Copied link to clipboard"
 msgstr "Odkaz zkopírován do schránky"
 
@@ -3670,8 +3686,8 @@ msgstr "Založit účet"
 
 #: src/components/dialogs/Signin.tsx:87
 #: src/components/dialogs/Signin.tsx:89
-#: src/screens/Hashtag.tsx:235
-#: src/screens/Search/SearchResults.tsx:438
+#: src/screens/Hashtag.tsx:236
+#: src/screens/Search/SearchResults.tsx:387
 msgid "Create an account"
 msgstr "Založit účet"
 
@@ -4286,7 +4302,7 @@ msgstr "Žádné obavy! Všechny stávající zprávy a nastavení jsou uložen�
 msgid "Done"
 msgstr "Hotovo"
 
-#: src/components/dms/MessageItem.tsx:521
+#: src/components/dms/MessageItem.tsx:540
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Dvojitým klepnutím nebo dlouhým stisknutím zprávy přidáte reakci"
 
@@ -4344,7 +4360,7 @@ msgstr "Doxxing"
 msgid "Drafts"
 msgstr "Koncepty"
 
-#: src/view/com/composer/text-input/TextInput.web.tsx:366
+#: src/view/com/composer/text-input/TextInput.web.tsx:369
 msgid "Drop to add images"
 msgstr "Přetažením přidáte obrázky"
 
@@ -4774,7 +4790,7 @@ msgstr "Při ukládání souboru došlo k chybě"
 msgid "Error receiving captcha response."
 msgstr "Chyba při přijímání odpovědi captcha."
 
-#: src/screens/Search/SearchResults.tsx:188
+#: src/screens/Search/SearchResults.tsx:175
 msgid "Error: {error}"
 msgstr "Chyba: {error}"
 
@@ -4853,7 +4869,7 @@ msgstr "Rozbalit text příspěvku"
 msgid "Expands or collapses post text"
 msgstr "Rozbalí nebo sbalí text příspěvku"
 
-#: src/lib/api/index.ts:494
+#: src/lib/api/index.ts:493
 msgid "Expected uri to resolve to a record"
 msgstr "Očekává se, že identifikátor uri bude rozpoznán jako záznam"
 
@@ -4872,8 +4888,8 @@ msgstr "Vyprší {0}"
 
 #. placeholder {0}: timeDiff(Date.now(), label.exp)
 #. placeholder {0}: timeDiff(Date.now(), modcause.label.exp)
-#: src/components/moderation/LabelsOnMeDialog.tsx:204
-#: src/components/moderation/ModerationDetailsDialog.tsx:224
+#: src/components/moderation/LabelsOnMeDialog.tsx:218
+#: src/components/moderation/ModerationDetailsDialog.tsx:294
 msgid "Expires in {0}"
 msgstr "Vyprší za {0}"
 
@@ -4893,7 +4909,7 @@ msgid "Explicit sexual images."
 msgstr "Explicitní sexuální obrázky."
 
 #: src/Navigation.tsx:823
-#: src/screens/Search/Shell.tsx:560
+#: src/screens/Search/Shell.tsx:552
 #: src/view/shell/desktop/LeftNav.tsx:677
 #: src/view/shell/Drawer.tsx:485
 msgid "Explore"
@@ -4980,7 +4996,7 @@ msgstr "Nepodařilo se změnit uživatelské jméno. Zkuste to prosím znovu."
 
 #: src/components/Lightbox/Lightbox.web.tsx:302
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:130
-#: src/screens/Search/Shell.tsx:524
+#: src/screens/Search/Shell.tsx:516
 msgid "Failed to copy link"
 msgstr "Nepodařilo se zkopírovat odkaz"
 
@@ -5225,7 +5241,7 @@ msgstr "Odeslání e-mailu se nezdařilo, zkuste to prosím znovu."
 msgid "Failed to send report"
 msgstr "Odeslání hlášení se nezdařilo"
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:266
+#: src/components/moderation/AppealForm.tsx:77
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:77
 #: src/screens/Messages/components/ChatDisabled.tsx:119
 msgid "Failed to submit appeal, please try again."
@@ -5350,7 +5366,7 @@ msgstr "Zpětná vazba byla odeslána provozovateli kanálu"
 #: src/Navigation.tsx:599
 #: src/screens/SavedFeeds.tsx:112
 #: src/screens/SavedFeeds.tsx:303
-#: src/screens/Search/SearchResults.tsx:105
+#: src/screens/Search/SearchResults.tsx:100
 #: src/screens/StarterPack/StarterPackScreen.tsx:196
 #: src/view/screens/Feeds.tsx:507
 #: src/view/screens/Profile.tsx:256
@@ -5404,11 +5420,11 @@ msgstr "Filtrovat podle médií (aktuálně: {currentLabel})"
 msgid "Filter from feeds"
 msgstr "Filtrovat z kanálů"
 
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:120
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:92
 msgid "Filter search by language"
 msgstr "Filtrovat vyhledávání podle jazyka"
 
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:79
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:70
 msgid "Filter search by language (currently: {currentLanguageLabel})"
 msgstr "Filtrovat vyhledávání podle jazyka (aktuálně: {currentLanguageLabel})"
 
@@ -5485,7 +5501,7 @@ msgstr "Najděte lidi, které budete sledovat"
 msgid "Find people you know"
 msgstr "Najděte lidi, které znáte"
 
-#: src/screens/Search/Shell.tsx:791
+#: src/screens/Search/Shell.tsx:765
 msgid "Find posts, users, and feeds on Bluesky"
 msgstr "Najděte příspěvky, uživatele a kanály na Bluesky"
 
@@ -5694,7 +5710,7 @@ msgstr "Předvolby kanálu Sledované"
 msgid "Following Feed Preferences"
 msgstr "Předvolby kanálu Sledované"
 
-#: src/components/Pills.tsx:175
+#: src/components/Pills.tsx:212
 #: src/screens/Profile/Header/Handle.tsx:34
 msgid "Follows you"
 msgstr "Sleduje vás"
@@ -5767,11 +5783,11 @@ msgstr "Osvoboďte svůj kanál"
 msgid "From"
 msgstr "Od"
 
-#: src/screens/Hashtag.tsx:125
+#: src/screens/Hashtag.tsx:123
 msgid "From {sanitizedAuthor}"
 msgstr "Od {sanitizedAuthor}"
 
-#: src/screens/Hashtag.tsx:126
+#: src/screens/Hashtag.tsx:124
 msgid "From @{sanitizedAuthor}"
 msgstr "Od @{sanitizedAuthor}"
 
@@ -6013,7 +6029,7 @@ msgstr "Přejít na další"
 msgid "Go to profile"
 msgstr "Přejít na profil"
 
-#: src/screens/Messages/components/ChatListItem.tsx:212
+#: src/screens/Messages/components/ChatListItem.tsx:211
 msgid "Go to the group chat named \"{chatName}\""
 msgstr "Přejít na skupinový chat s názvem „{chatName}“"
 
@@ -6956,17 +6972,17 @@ msgstr "Štítky"
 msgid "Labels added"
 msgstr "Štítky přidány"
 
+#: src/components/moderation/LabelsOnMeDialog.tsx:78
+msgid "Labels applied to this post"
+msgstr ""
+
 #: src/screens/Profile/Sections/Labels.tsx:194
 msgid "Labels are annotations on users and content. They can be used to hide, warn, and categorize the network."
 msgstr "Štítky jsou poznámky u uživatelů a obsahu. Lze je použít ke skrývání, varování a kategorizaci sítě."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:77
+#: src/components/moderation/LabelsOnMeDialog.tsx:76
 msgid "Labels on your account"
 msgstr "Štítky na vašem účtu"
-
-#: src/components/moderation/LabelsOnMeDialog.tsx:79
-msgid "Labels on your content"
-msgstr "Štítky na vašem obsahu"
 
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:357
 msgid "Language"
@@ -6996,9 +7012,9 @@ msgstr "Naposledy zahájeno před {timeAgo}"
 msgid "Last initiated just now"
 msgstr "Naposledy spuštěno právě teď"
 
-#: src/screens/Hashtag.tsx:99
-#: src/screens/Search/SearchResults.tsx:86
-#: src/screens/Topic.tsx:65
+#: src/screens/Hashtag.tsx:97
+#: src/screens/Search/SearchResults.tsx:82
+#: src/screens/Topic.tsx:64
 msgid "Latest"
 msgstr "Nejnovější"
 
@@ -7016,15 +7032,10 @@ msgstr "Zjistit více"
 msgid "Learn More"
 msgstr "Zjistit více"
 
-#: src/screens/Search/SearchResults.tsx:261
+#: src/screens/Search/SearchResults.tsx:242
 msgctxt "english-only-resource"
 msgid "Learn more about <0>how to use advanced search</0>."
 msgstr "Zjistěte více o tom, <0>jak používat pokročilé vyhledávání</0>."
-
-#: src/screens/Search/SearchResults.tsx:275
-msgctxt "english-only-resource"
-msgid "Learn more about <0>how to use search filters</0>."
-msgstr "Zjistěte více o tom, <0>jak používat vyhledávací filtry</0>."
 
 #: src/components/ageAssurance/AgeAssuranceDismissibleFeedBanner.tsx:66
 msgid "Learn more about age assurance"
@@ -7258,7 +7269,7 @@ msgstr "Lajky"
 msgid "Likes of your reposts"
 msgstr "Lajky vašich repostů"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:527
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:526
 msgid "Likes on this post"
 msgstr "Lajky u tohoto příspěvku"
 
@@ -7655,7 +7666,7 @@ msgstr "Napsat zprávu {0}"
 msgid "Message {displayName}"
 msgstr "Napsat uživateli {displayName}"
 
-#: src/screens/Messages/components/ChatListItem.tsx:323
+#: src/screens/Messages/components/ChatListItem.tsx:322
 msgid "Message deleted"
 msgstr "Zpráva smazána"
 
@@ -7664,7 +7675,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "Zpráva smazána"
 
-#: src/components/dms/MessageItem.tsx:617
+#: src/components/dms/MessageItem.tsx:636
 msgid "Message failed to send."
 msgstr "Zprávu se nepodařilo odeslat."
 
@@ -7695,11 +7706,11 @@ msgstr "Možnosti zprávy"
 msgid "Messages"
 msgstr "Zprávy"
 
-#: src/components/dms/MessageItem.tsx:716
+#: src/components/dms/MessageItem.tsx:735
 msgid "Messages from this person are hidden while they are blocking you."
 msgstr "Zprávy od této osoby jsou skryté, dokud vás blokuje."
 
-#: src/components/dms/MessageItem.tsx:711
+#: src/components/dms/MessageItem.tsx:730
 msgid "Messages from this person are hidden while you are blocking them."
 msgstr "Zprávy od této osoby jsou skryté, dokud ji blokujete."
 
@@ -7740,7 +7751,7 @@ msgstr "Moderace"
 msgid "Moderation and content filters"
 msgstr "Moderování a filtry obsahu"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:142
+#: src/components/moderation/ModerationDetailsDialog.tsx:175
 msgid "Moderation details"
 msgstr "Podrobnosti moderování"
 
@@ -7791,7 +7802,7 @@ msgstr "Stavy moderování"
 msgid "Moderation tools"
 msgstr "Moderační nástroje"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:56
+#: src/components/moderation/ModerationDetailsDialog.tsx:72
 #: src/lib/moderation/useModerationCauseDescription.ts:48
 msgid "Moderator has chosen to set a general warning on the content."
 msgstr "Moderátor se rozhodl nastavit obecné varování pro tento obsah."
@@ -8275,7 +8286,7 @@ msgstr "Již nesledujete {0}"
 msgid "No media yet"
 msgstr "Zatím žádná média"
 
-#: src/screens/Messages/components/ChatListItem.tsx:311
+#: src/screens/Messages/components/ChatListItem.tsx:310
 msgid "No messages yet"
 msgstr "Zatím žádné zprávy"
 
@@ -8372,15 +8383,15 @@ msgstr "Nebyly nalezeny žádné výsledky"
 msgid "No results found for \"{query}\""
 msgstr "Nebyly nalezeny žádné výsledky pro \"{query}\""
 
-#: src/screens/Search/SearchResults.tsx:220
+#: src/screens/Search/SearchResults.tsx:202
 msgid "No results found for “<0>{query}</0>” with advanced search filters applied."
 msgstr "Pro „<0>{query}</0>“ nebyly s použitými pokročilými filtry vyhledávání nalezeny žádné výsledky."
 
-#: src/screens/Search/SearchResults.tsx:232
+#: src/screens/Search/SearchResults.tsx:214
 msgid "No results found for “<0>{query}</0>”."
 msgstr "Pro „<0>{query}</0>“ nebyly nalezeny žádné výsledky."
 
-#: src/screens/Search/SearchResults.tsx:226
+#: src/screens/Search/SearchResults.tsx:208
 msgid "No results found for your query with advanced search filters applied."
 msgstr "Pro váš dotaz s použitými pokročilými filtry vyhledávání nebyly nalezeny žádné výsledky."
 
@@ -8560,9 +8571,9 @@ msgstr "OK"
 #: src/components/BotAccountAlert.tsx:52
 #: src/components/BotAccountAlert.tsx:57
 #: src/components/dms/InitiateChatFlow.tsx:733
-#: src/components/dms/MessageItem.tsx:723
+#: src/components/dms/MessageItem.tsx:742
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:757
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:756
 msgid "Okay"
 msgstr "Dobře"
 
@@ -8722,8 +8733,8 @@ msgstr "Otevřít konverzaci"
 msgid "Open chat member options for {displayName}"
 msgstr "Otevřít možnosti člena konverzace pro {displayName}"
 
-#: src/screens/Messages/components/ChatListItem.tsx:491
-#: src/screens/Messages/components/ChatListItem.tsx:495
+#: src/screens/Messages/components/ChatListItem.tsx:490
+#: src/screens/Messages/components/ChatListItem.tsx:494
 msgid "Open conversation options"
 msgstr "Otevřít možnosti konverzace"
 
@@ -9121,7 +9132,7 @@ msgid "Pause video"
 msgstr "Pozastavit video"
 
 #: src/screens/ProfileList/index.tsx:167
-#: src/screens/Search/SearchResults.tsx:99
+#: src/screens/Search/SearchResults.tsx:94
 #: src/screens/StarterPack/StarterPackScreen.tsx:195
 msgid "People"
 msgstr "Lidé"
@@ -9392,7 +9403,7 @@ msgid "Please enter your username"
 msgstr "Zadejte své uživatelské jméno"
 
 #. placeholder {0}: labeler ? sanitizeHandle(labeler.creator.handle, '@') : label.src
-#: src/components/moderation/LabelsOnMeDialog.tsx:309
+#: src/components/moderation/AppealForm.tsx:120
 msgid "Please explain why you think this label was incorrectly applied by {0}"
 msgstr "Vysvětlete prosím, proč si myslíte, že tento štítek byl nesprávně přidělen uživatelem {0}"
 
@@ -9413,7 +9424,7 @@ msgstr "Vraťte se zpět nebo aktivujte tento prvek pro návrat na začátek akt
 msgid "Please provide any additional details you feel moderators may need in order to properly assess your Age Assurance status."
 msgstr "Uveďte prosím veškeré další podrobnosti, které by moderátoři mohli potřebovat k řádnému posouzení stavu vašeho ověření věku."
 
-#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:303
+#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:304
 msgid "Please select a language"
 msgstr "Vyberte prosím jazyk"
 
@@ -9506,23 +9517,23 @@ msgctxt "toast"
 msgid "Post deleted"
 msgstr "Příspěvek smazán"
 
-#: src/lib/api/index.ts:193
+#: src/lib/api/index.ts:192
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "Příspěvek se nepodařilo nahrát. Zkontrolujte prosím připojení k internetu a zkuste to znovu."
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:136
-#: src/screens/PostThread/components/ThreadItemPost.tsx:117
-#: src/screens/PostThread/components/ThreadItemTreePost.tsx:110
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemPost.tsx:116
+#: src/screens/PostThread/components/ThreadItemTreePost.tsx:109
 #: src/screens/VideoFeed/index.tsx:547
 msgid "Post has been deleted"
 msgstr "Příspěvek byl smazán"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:111
+#: src/components/moderation/ModerationDetailsDialog.tsx:127
 #: src/lib/moderation/useModerationCauseDescription.ts:107
 msgid "Post Hidden by Muted Word"
 msgstr "Příspěvek skrytý ztlumeným slovem"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:114
+#: src/components/moderation/ModerationDetailsDialog.tsx:130
 #: src/lib/moderation/useModerationCauseDescription.ts:116
 msgid "Post Hidden by You"
 msgstr "Příspěvek skrytý vámi"
@@ -9680,7 +9691,7 @@ msgstr "Zpracovávání GIF..."
 msgid "Processing video..."
 msgstr "Zpracovávání videa..."
 
-#: src/lib/api/index.ts:63
+#: src/lib/api/index.ts:62
 msgid "Processing..."
 msgstr "Zpracovává se..."
 
@@ -9815,7 +9826,7 @@ msgstr "Citování příspěvků zakázáno"
 msgid "Quotes"
 msgstr "Citace"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:491
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:490
 msgid "Quotes of this post"
 msgstr "Citace tohoto příspěvku"
 
@@ -9858,15 +9869,10 @@ msgstr "Reaktivovat váš účet"
 msgid "Read {0, plural, one {# more reply} other {# more replies}}"
 msgstr "Přečíst {0, plural, one {# další odpověď} few {# další odpovědi} many {# dalších odpovědí} other {# dalších odpovědí}}"
 
-#: src/screens/Search/SearchResults.tsx:264
+#: src/screens/Search/SearchResults.tsx:245
 msgctxt "english-only-resource"
 msgid "Read about how to use advanced search filters"
 msgstr "Přečtěte si, jak používat pokročilé vyhledávací filtry"
-
-#: src/screens/Search/SearchResults.tsx:278
-msgctxt "english-only-resource"
-msgid "Read about how to use search filters"
-msgstr "Přečtěte si, jak používat vyhledávací filtry"
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:162
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:173
@@ -10238,15 +10244,15 @@ msgctxt "description"
 msgid "Replied to you"
 msgstr "Odpovězeno vám"
 
-#: src/components/dms/MessageItem.tsx:906
+#: src/components/dms/MessageItem.tsx:925
 msgid "Replied-to message from {senderName}, tap to scroll to it"
 msgstr "Zpráva od {senderName}, na kterou bylo odpovězeno, klepnutím se na ni přesunete"
 
-#: src/components/dms/MessageItem.tsx:904
+#: src/components/dms/MessageItem.tsx:923
 msgid "Replied-to message was sent before you joined"
 msgstr "Zpráva, na kterou bylo odpovězeno, byla odeslána před tím, než jste se připojili"
 
-#: src/components/dms/MessageItem.tsx:907
+#: src/components/dms/MessageItem.tsx:926
 msgid "Replied-to message, tap to scroll to it"
 msgstr "Zpráva, na kterou bylo odpovězeno, klepnutím na ni přejdete"
 
@@ -10283,12 +10289,12 @@ msgstr "Odpovědět"
 msgid "Reply ({0, plural, one {# reply} other {# replies}})"
 msgstr "Odpovědět ({0, plural, one {# odpověď} few {# odpovědi} many {# odpovědí} other {# odpovědí}})"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:120
+#: src/components/moderation/ModerationDetailsDialog.tsx:136
 #: src/lib/moderation/useModerationCauseDescription.ts:126
 msgid "Reply Hidden by Thread Author"
 msgstr "Odpověď skryta autorem vlákna"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:119
+#: src/components/moderation/ModerationDetailsDialog.tsx:135
 #: src/lib/moderation/useModerationCauseDescription.ts:125
 msgid "Reply Hidden by You"
 msgstr "Odpověď skrytá vámi"
@@ -10447,7 +10453,7 @@ msgstr "Repostováno vámi"
 msgid "Reposts"
 msgstr "Reposty"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:470
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:469
 msgid "Reposts of this post"
 msgstr "Reposty tohoto příspěvku"
 
@@ -10800,7 +10806,7 @@ msgstr "Posunout doleva"
 msgid "Scroll right"
 msgstr "Posunout doprava"
 
-#: src/components/dms/MessageItem.tsx:800
+#: src/components/dms/MessageItem.tsx:819
 msgid "Scroll to the message this is replying to"
 msgstr "Přejít na zprávu, na kterou je tato odpověď"
 
@@ -10813,9 +10819,9 @@ msgstr "Přejít nahoru"
 #: src/components/forms/SearchInput.tsx:53
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:218
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:224
-#: src/screens/Search/Shell.tsx:560
-#: src/screens/Search/Shell.tsx:629
-#: src/screens/Search/Shell.tsx:779
+#: src/screens/Search/Shell.tsx:552
+#: src/screens/Search/Shell.tsx:616
+#: src/screens/Search/Shell.tsx:753
 #: src/view/shell/bottom-bar/BottomBar.tsx:216
 msgid "Search"
 msgstr "Hledat"
@@ -10878,8 +10884,8 @@ msgstr "Hledat lidi"
 msgid "Search GIFs"
 msgstr "Hledat GIFy"
 
-#: src/screens/Hashtag.tsx:224
-#: src/screens/Search/SearchResults.tsx:430
+#: src/screens/Hashtag.tsx:228
+#: src/screens/Search/SearchResults.tsx:379
 msgid "Search is currently unavailable when logged out"
 msgstr "Vyhledávání je po odhlášení momentálně nedostupné"
 
@@ -11084,8 +11090,8 @@ msgid "Select how long to mute this word for."
 msgstr "Vyberte, jak dlouho má být toto slovo ztlumeno."
 
 #: src/components/AppLanguageDropdown.tsx:71
-#: src/components/LanguageSelect.tsx:37
-#: src/components/LanguageSelect.tsx:38
+#: src/components/LanguageSelect.tsx:41
+#: src/components/LanguageSelect.tsx:42
 msgid "Select language"
 msgstr "Vyberte jazyk"
 
@@ -11355,11 +11361,11 @@ msgstr "Sexuálně sugestivní"
 #: src/components/MediaPreview.tsx:237
 #: src/components/Post/Embed/ImageContextMenu.tsx:74
 #: src/components/StarterPack/QrCodeDialog.tsx:198
-#: src/screens/Hashtag.tsx:132
+#: src/screens/Hashtag.tsx:130
 #: src/screens/Messages/components/InviteLinkDialog.tsx:415
 #: src/screens/Messages/components/InviteLinkDialog.tsx:426
 #: src/screens/StarterPack/StarterPackScreen.tsx:447
-#: src/screens/Topic.tsx:90
+#: src/screens/Topic.tsx:89
 msgid "Share"
 msgstr "Sdílet"
 
@@ -11428,8 +11434,8 @@ msgstr "Sdílet QR kód"
 msgid "Share this feed"
 msgstr "Sdílet tento kanál"
 
-#: src/screens/Search/Shell.tsx:581
-#: src/screens/Search/Shell.tsx:651
+#: src/screens/Search/Shell.tsx:568
+#: src/screens/Search/Shell.tsx:638
 msgid "Share this search"
 msgstr "Sdílet toto hledání"
 
@@ -11614,7 +11620,7 @@ msgstr "Zobrazit varování a odfiltrovat z kanálů"
 msgid "Show when you’re live"
 msgstr "Zobrazit, když právě vysíláte živě"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:698
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
 msgid "Shows information about when this post was created"
 msgstr "Zobrazí informace o tom, kdy byl tento příspěvek vytvořen"
 
@@ -11631,7 +11637,7 @@ msgstr "Zobrazí obsah"
 #: src/components/dialogs/Signin.tsx:100
 #: src/components/WelcomeModal.tsx:197
 #: src/components/WelcomeModal.tsx:209
-#: src/screens/Hashtag.tsx:228
+#: src/screens/Hashtag.tsx:231
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
 #: src/screens/Login/LoginForm.tsx:274
@@ -11639,7 +11645,7 @@ msgstr "Zobrazí obsah"
 #: src/screens/Login/LoginForm.tsx:560
 #: src/screens/Messages/JoinRequest.tsx:290
 #: src/screens/Messages/JoinRequest.tsx:296
-#: src/screens/Search/SearchResults.tsx:433
+#: src/screens/Search/SearchResults.tsx:382
 #: src/view/com/auth/SplashScreen.tsx:116
 #: src/view/com/auth/SplashScreen.tsx:123
 #: src/view/com/auth/SplashScreen.web.tsx:122
@@ -11829,7 +11835,7 @@ msgid "Someone left the group"
 msgstr "Někdo opustil skupinu"
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:348
+#: src/components/dms/MessageItem.tsx:367
 msgid "Someone reacted {0}"
 msgstr "Někdo zareagoval {0}"
 
@@ -11838,7 +11844,7 @@ msgstr "Někdo zareagoval {0}"
 msgid "Someone reacted {0} to {target}"
 msgstr "Někdo reagoval {0} na {target}"
 
-#: src/components/dms/MessageItem.tsx:793
+#: src/components/dms/MessageItem.tsx:812
 msgid "Someone replied"
 msgstr "Někdo odpověděl"
 
@@ -11923,8 +11929,8 @@ msgstr "Řadit odpovědi na stejný příspěvek podle:"
 msgid "Source Code"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:183
-#: src/components/moderation/ModerationDetailsDialog.tsx:202
+#: src/components/moderation/LabelsOnMeDialog.tsx:197
+#: src/components/moderation/ModerationDetailsDialog.tsx:272
 msgid "Source: <0>{sourceName}</0>"
 msgstr "Zdroj: <0>{sourceName}</0>"
 
@@ -12056,8 +12062,8 @@ msgstr "Streamujete na Twitchi? Nastavte si na Bluesky stav živého vysílání
 
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:122
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:128
-#: src/components/moderation/LabelsOnMeDialog.tsx:343
-#: src/components/moderation/LabelsOnMeDialog.tsx:344
+#: src/components/moderation/AppealForm.tsx:154
+#: src/components/moderation/AppealForm.tsx:155
 #: src/components/SendErrorReportDialog.tsx:90
 #: src/components/SendErrorReportDialog.tsx:95
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:139
@@ -12264,7 +12270,7 @@ msgstr "Přesuňte konverzaci do soukromí."
 msgid "Tap below to allow Bluesky to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
 msgstr "Klepnutím níže povolíte aplikaci Bluesky přístup k vaší GPS poloze. Tyto údaje pak použijeme k přesnějšímu určení obsahu a funkcí dostupných ve vašem regionu."
 
-#: src/components/dms/MessageItem.tsx:662
+#: src/components/dms/MessageItem.tsx:681
 msgid "Tap for details"
 msgstr "Klepnutím zobrazíte podrobnosti"
 
@@ -12322,7 +12328,7 @@ msgstr "Klepnutím odeberete svou reakci {0}"
 msgid "Tap to request access to join this group chat"
 msgstr "Klepnutím požádejte o přístup do této skupinové konverzace"
 
-#: src/components/dms/MessageItem.tsx:627
+#: src/components/dms/MessageItem.tsx:646
 msgid "Tap to retry"
 msgstr "Klepnutím to zkuste znovu"
 
@@ -12335,7 +12341,7 @@ msgstr "Klepnutím zobrazíte reakce {0}"
 msgid "Tap to show all reactions"
 msgstr "Klepnutím zobrazíte všechny reakce"
 
-#: src/components/dms/MessageItem.tsx:374
+#: src/components/dms/MessageItem.tsx:393
 msgid "Tap to view reactions"
 msgstr "Klepnutím zobrazíte reakce"
 
@@ -12392,7 +12398,7 @@ msgstr "Podmínky služby"
 msgid "Text & tags"
 msgstr "Text a štítky"
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:307
+#: src/components/moderation/AppealForm.tsx:118
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:122
 #: src/screens/Messages/components/ChatDisabled.tsx:142
 msgid "Text input field"
@@ -12447,7 +12453,7 @@ msgstr "Po odblokování s vámi účet bude moci interagovat."
 msgid "The app will be restarted"
 msgstr "Aplikace bude restartována"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:123
+#: src/components/moderation/ModerationDetailsDialog.tsx:139
 #: src/lib/moderation/useModerationCauseDescription.ts:129
 msgid "The author of this thread has hidden this reply."
 msgstr "Autor tohoto vlákna skryl tuto odpověď."
@@ -12485,12 +12491,12 @@ msgid "The feed has been replaced with Discover."
 msgstr "Tento kanál byl nahrazen sekcí Objevovat."
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:64
+msgid "The following labels were applied to this post."
+msgstr ""
+
+#: src/components/moderation/LabelsOnMeDialog.tsx:63
 msgid "The following labels were applied to your account."
 msgstr "Na váš účet byly aplikovány následující štítky."
-
-#: src/components/moderation/LabelsOnMeDialog.tsx:65
-msgid "The following labels were applied to your content."
-msgstr "Na váš obsah byly aplikovány následující štítky."
 
 #: src/features/liveNow/components/GoLiveDialog.tsx:189
 msgid "The following services are enabled for your account: {allowedServices}"
@@ -12739,7 +12745,7 @@ msgstr "Tento účet je blokován jedním nebo více vašimi moderačními sezna
 msgid "This action can be undone at any time."
 msgstr "Tuto akci lze kdykoli vrátit zpět."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:285
+#: src/components/moderation/AppealForm.tsx:96
 msgid "This appeal will be sent to <0>{sourceName}</0>."
 msgstr "Toto odvolání bude odesláno na <0>{sourceName}</0>."
 
@@ -12766,7 +12772,7 @@ msgstr "Tato konverzace skončila"
 msgid "This chat is full"
 msgstr "Tato konverzace je plná"
 
-#: src/screens/Messages/components/ChatListItem.tsx:377
+#: src/screens/Messages/components/ChatListItem.tsx:376
 #: src/screens/Messages/components/ChatLocked.tsx:69
 msgid "This chat is locked"
 msgstr "Tato konverzace je uzamčena"
@@ -12801,7 +12807,7 @@ msgstr "Tento obsah obdržel od moderátorů obecné varování."
 msgid "This content is hosted by {0}. Do you want to enable external media?"
 msgstr "Tento obsah je hostován službou {0}. Chcete povolit externí média?"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:88
+#: src/components/moderation/ModerationDetailsDialog.tsx:104
 #: src/lib/moderation/useModerationCauseDescription.ts:85
 msgid "This content is not available because one of the users involved has blocked the other."
 msgstr "Tento obsah není dostupný, protože jeden ze zúčastněných uživatelů toho druhého zablokoval."
@@ -12902,13 +12908,18 @@ msgstr "Toto není platný odkaz"
 msgid "This label lets the world know that this account is automated. If turned on, this label appears next to the account's name on their profile and posts. It can be turned on or off at any time."
 msgstr "Tento štítek dává světu vědět, že je tento účet automatizovaný. Pokud je zapnutý, zobrazuje se vedle jména účtu na jeho profilu a u příspěvků. Lze jej kdykoli zapnout nebo vypnout."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:184
+#: src/components/moderation/ModerationDetailsDialog.tsx:254
 msgid "This label was applied by the author."
 msgstr "Tento štítek byl přidán autorem."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:170
+#: src/components/moderation/LabelsOnMeDialog.tsx:184
 msgid "This label was applied by you."
 msgstr "Tento štítek jste použili vy."
+
+#: src/components/moderation/LabelsOnMeDialog.tsx:156
+#: src/components/moderation/ModerationDetailsDialog.tsx:231
+msgid "This label was applied to the entire user account and will appear on all posts."
+msgstr ""
 
 #: src/screens/Profile/Sections/Labels.tsx:218
 msgid "This labeler hasn't declared what labels it publishes, and may not be active."
@@ -12935,17 +12946,17 @@ msgstr "Tento seznam je prázdný."
 msgid "This menu lets you apply labels such as Adult Content, Sexually Suggestive, Non-sexual Nudity, and Graphic Media on an account level. They can be turned on or off at any time."
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:336
+#: src/screens/Messages/components/ChatListItem.tsx:335
 msgid "This message is hidden"
 msgstr "Tato zpráva je skrytá"
 
-#: src/components/dms/MessageItem.tsx:660
-#: src/components/dms/MessageItem.tsx:689
+#: src/components/dms/MessageItem.tsx:679
+#: src/components/dms/MessageItem.tsx:708
 msgid "This message is hidden because this user is blocking you."
 msgstr "Tato zpráva je skrytá, protože vás tento uživatel blokuje."
 
-#: src/components/dms/MessageItem.tsx:659
-#: src/components/dms/MessageItem.tsx:685
+#: src/components/dms/MessageItem.tsx:678
+#: src/components/dms/MessageItem.tsx:704
 msgid "This message is hidden because you are blocking this user."
 msgstr "Tato zpráva je skrytá, protože tohoto uživatele blokujete."
 
@@ -12953,17 +12964,13 @@ msgstr "Tato zpráva je skrytá, protože tohoto uživatele blokujete."
 msgid "This moderation service is unavailable. See below for more details. If this issue persists, contact us."
 msgstr "Tato moderátorská služba je nedostupná. Více informací naleznete níže. Pokud problém přetrvává, kontaktujte nás."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:161
-msgid "This moderation was applied to the entire user account and will appear on all posts."
-msgstr "Tato moderace byla použita na celý uživatelský účet a zobrazí se u všech příspěvků."
-
 #: src/components/dms/MessagesListBlockedFooter.tsx:84
 msgid "This person is blocking you"
 msgstr "Tato osoba vás blokuje"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:738
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:737
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "Tento příspěvek tvrdí, že byl vytvořen <0>{0}</0>, ale Bluesky jej poprvé zaznamenala <1>{1}</1>."
 
@@ -13028,7 +13035,7 @@ msgstr "Tento uživatel nemá žádné sledující."
 msgid "This user has blocked you and cannot be messaged."
 msgstr "Tento uživatel vás zablokoval a nelze mu zaslat zprávu."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:83
+#: src/components/moderation/ModerationDetailsDialog.tsx:99
 #: src/lib/moderation/useModerationCauseDescription.ts:76
 msgid "This user has blocked you. You cannot view their content."
 msgstr "Tento uživatel vás zablokoval. Nemůžete zobrazit jeho obsah."
@@ -13042,12 +13049,12 @@ msgid "This user has requested that their content only be shown to signed-in use
 msgstr "Tento uživatel požádal, aby se jeho obsah zobrazoval pouze přihlášeným uživatelům."
 
 #. placeholder {0}: list.name
-#: src/components/moderation/ModerationDetailsDialog.tsx:63
+#: src/components/moderation/ModerationDetailsDialog.tsx:79
 msgid "This user is included in the <0>{0}</0> list which you have blocked."
 msgstr "Tento uživatel je zahrnut v seznamu <0>{0}</0>, který jste zablokovali."
 
 #. placeholder {0}: list.name
-#: src/components/moderation/ModerationDetailsDialog.tsx:95
+#: src/components/moderation/ModerationDetailsDialog.tsx:111
 msgid "This user is included in the <0>{0}</0> list which you have muted."
 msgstr "Tento uživatel je zařazen v seznamu <0>{0}</0>, který jste ztlumili."
 
@@ -13175,9 +13182,9 @@ msgstr "Bylo odesláno příliš mnoho kódů. Počkejte prosím několik minut 
 msgid "Too many contacts - you've exceeded the number of contacts you can import to find your friends"
 msgstr "Příliš mnoho kontaktů – překročili jste počet kontaktů, které můžete importovat, abyste našli své přátele"
 
-#: src/screens/Hashtag.tsx:88
-#: src/screens/Search/SearchResults.tsx:73
-#: src/screens/Topic.tsx:59
+#: src/screens/Hashtag.tsx:86
+#: src/screens/Search/SearchResults.tsx:70
+#: src/screens/Topic.tsx:58
 msgid "Top"
 msgstr "Nejlepší"
 
@@ -13248,11 +13255,11 @@ msgstr "Trolling"
 msgid "Trust emerges from relationships, communities, and shared context, so we’re also enabling <0>trusted verifiers</0>: organizations that can directly issue verification."
 msgstr "Důvěra vzniká ze vztahů, komunit a sdíleného kontextu, proto také zavádíme <0>důvěryhodné ověřovatele</0>: organizace, které mohou přímo vydávat ověření."
 
-#: src/screens/Search/SearchResults.tsx:247
+#: src/screens/Search/SearchResults.tsx:229
 msgid "Try a different search term or remove some filters."
 msgstr "Zkuste jiný vyhledávací výraz nebo odstraňte některé filtry."
 
-#: src/screens/Search/SearchResults.tsx:249
+#: src/screens/Search/SearchResults.tsx:231
 msgid "Try a different search term."
 msgstr "Zkuste jiný vyhledávací výraz."
 
@@ -13358,7 +13365,7 @@ msgstr "Nedostupné"
 msgid "Unavailable feed information"
 msgstr "Informace o kanálu nejsou k dispozici"
 
-#: src/components/dms/MessageItem.tsx:727
+#: src/components/dms/MessageItem.tsx:746
 #: src/components/dms/MessagesListBlockedFooter.tsx:97
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
 #: src/components/moderation/BlockDialog.tsx:186
@@ -13693,13 +13700,13 @@ msgstr "Nahrát z knihovny"
 msgid "Uploading GIF..."
 msgstr "Nahrávání GIF..."
 
-#: src/lib/api/index.ts:331
-#: src/lib/api/index.ts:358
+#: src/lib/api/index.ts:330
+#: src/lib/api/index.ts:357
 msgid "Uploading images..."
 msgstr "Nahrávání obrázků..."
 
-#: src/lib/api/index.ts:430
-#: src/lib/api/index.ts:454
+#: src/lib/api/index.ts:429
+#: src/lib/api/index.ts:453
 msgid "Uploading link thumbnail..."
 msgstr "Nahrávání náhledu odkazu..."
 
@@ -13760,7 +13767,7 @@ msgctxt "toast"
 msgid "User blocked"
 msgstr "Uživatel zablokován"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:75
+#: src/components/moderation/ModerationDetailsDialog.tsx:91
 #: src/lib/moderation/useModerationCauseDescription.ts:64
 msgid "User Blocked"
 msgstr "Uživatel zablokován"
@@ -13774,7 +13781,7 @@ msgstr "Uživatel zablokován \"{0}\""
 msgid "User blocked by list"
 msgstr "Uživatel zablokován seznamem"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:61
+#: src/components/moderation/ModerationDetailsDialog.tsx:77
 msgid "User Blocked by List"
 msgstr "Uživatel blokován seznamem"
 
@@ -13782,7 +13789,7 @@ msgstr "Uživatel blokován seznamem"
 msgid "User Blocking You"
 msgstr "Uživatel vás blokuje"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:81
+#: src/components/moderation/ModerationDetailsDialog.tsx:97
 msgid "User Blocks You"
 msgstr "Uživatel vás blokuje"
 
@@ -14026,7 +14033,7 @@ msgid "View {0}"
 msgstr "Zobrazit {0}"
 
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/Header/Shell.tsx:274
+#: src/screens/Profile/Header/Shell.tsx:273
 msgid "View {0}'s avatar"
 msgstr "Zobrazit profilový obrázek uživatele {0}"
 
@@ -14103,7 +14110,7 @@ msgstr "Zobrazit příchozí požadavky"
 msgid "View incoming requests to join this group chat"
 msgstr "Zobrazit příchozí žádosti o připojení k této skupinové konverzaci"
 
-#: src/components/moderation/LabelsOnMe.tsx:62
+#: src/components/moderation/LabelsOnMe.tsx:56
 msgid "View information about these labels"
 msgstr "Zobrazit informace o těchto štítcích"
 
@@ -14273,11 +14280,11 @@ msgstr "Tento seznam se nám nepodařilo najít. Pravděpodobně byl smazán."
 msgid "We couldn't find an account with that username. Please check that you've typed it correctly, or <0>set your hosting provider manually</0>."
 msgstr "Nepodařilo se nám najít účet s tímto uživatelským jménem. Zkontrolujte prosím, zda jste jej zadali správně, nebo <0>nastavte poskytovatele hostingu ručně</0>."
 
-#: src/screens/Hashtag.tsx:259
+#: src/screens/Hashtag.tsx:260
 msgid "We couldn't find any results for that tag."
 msgstr "Pro tento štítek se nám nepodařilo najít žádné výsledky."
 
-#: src/screens/Topic.tsx:167
+#: src/screens/Topic.tsx:166
 msgid "We couldn't find any results for that topic."
 msgstr "Pro toto téma se nám nepodařilo najít žádné výsledky."
 
@@ -14433,8 +14440,8 @@ msgstr "Je nám líto, ale tento seznam se nám nepodařilo načíst. Pokud prob
 msgid "We're sorry, but we weren't able to load your muted words at this time. Please try again."
 msgstr "Omlouváme se, ale momentálně se nepodařilo načíst vaše ztlumená slova. Zkuste to prosím znovu."
 
-#: src/screens/Search/SearchResults.tsx:456
-#: src/screens/Search/SearchResults.tsx:593
+#: src/screens/Search/SearchResults.tsx:405
+#: src/screens/Search/SearchResults.tsx:542
 msgid "We’re sorry, but your search could not be completed. Please try again in a few minutes."
 msgstr "Omlouváme se, ale vaše vyhledávání nemohlo být dokončeno. Zkuste to prosím znovu za pár minut."
 
@@ -14669,7 +14676,7 @@ msgid "You are accessing Bluesky from a region that legally requires us to verif
 msgstr "Přistupujete k Bluesky z regionu, který nám zákonně ukládá ověřit váš věk, než vám umožníme aplikaci používat."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:700
+#: src/components/dms/MessageItem.tsx:719
 msgid "You are blocking {0}"
 msgstr "Blokujete uživatele {0}"
 
@@ -14854,7 +14861,7 @@ msgstr "Byl jsi tu první"
 msgid "You have been previously removed from this group and can’t join it using this link."
 msgstr "Z této skupiny jste byli dříve odebráni a nemůžete se do ní pomocí tohoto odkazu připojit."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:77
+#: src/components/moderation/ModerationDetailsDialog.tsx:93
 #: src/lib/moderation/useModerationCauseDescription.ts:58
 #: src/lib/moderation/useModerationCauseDescription.ts:66
 msgid "You have blocked this user. You cannot view their content."
@@ -14878,7 +14885,7 @@ msgstr "Zadali jste neplatný kód. Měl by mít tvar XXXXX-XXXXX."
 msgid "You have hidden this post"
 msgstr "Tento příspěvek jste skryli"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:115
+#: src/components/moderation/ModerationDetailsDialog.tsx:131
 msgid "You have hidden this post."
 msgstr "Tento příspěvek jste skryli."
 
@@ -14886,7 +14893,7 @@ msgstr "Tento příspěvek jste skryli."
 msgid "You have marked this account as automated. You can remove it at any time from your account settings."
 msgstr "Tento účet jste označili jako automatizovaný. Toto označení můžete kdykoli odstranit v nastavení účtu."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:108
+#: src/components/moderation/ModerationDetailsDialog.tsx:124
 #: src/lib/moderation/useModerationCauseDescription.ts:100
 msgid "You have muted this account."
 msgstr "Tento účet jste ztlumili."
@@ -14948,7 +14955,7 @@ msgstr "Zatím jste nevytvořili žádné vlastní kanály."
 msgid "You haven't muted any words or tags yet"
 msgstr "Zatím jste neztlumili žádná slova ani štítky"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:122
+#: src/components/moderation/ModerationDetailsDialog.tsx:138
 #: src/lib/moderation/useModerationCauseDescription.ts:128
 msgid "You hid this reply."
 msgstr "Tuto odpověď jste skryli."
@@ -14966,11 +14973,12 @@ msgstr "K Bluesky jsi se připojil/a před {timeAgoString}"
 msgid "You joined Bluesky using a starter pack {timeAgoString} ago"
 msgstr "K Bluesky jste se připojil/a pomocí startovacího balíčku před {timeAgoString}"
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:84
+#: src/components/moderation/LabelsOnMeDialog.tsx:83
 msgid "You may appeal non-self labels if you feel they were placed in error."
 msgstr "Pokud se domníváte, že byly štítky přiřazeny chybně, můžete se proti štítkům, které jste si nepřidělili sami, odvolat."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:89
+#: src/components/moderation/LabelsOnMeDialog.tsx:88
+#: src/components/moderation/ModerationDetailsDialog.tsx:210
 msgid "You may appeal these labels if you feel they were placed in error."
 msgstr "Pokud se domníváte, že byly tyto štítky přiděleny omylem, můžete se proti nim odvolat."
 
@@ -15021,7 +15029,7 @@ msgid "You probably want to restart the app now."
 msgstr "Pravděpodobně budete chtít aplikaci nyní restartovat."
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:341
+#: src/components/dms/MessageItem.tsx:360
 msgid "You reacted {0}"
 msgstr "Reagovali jste {0}"
 
@@ -15035,15 +15043,15 @@ msgstr "Reagovali jste {0} na {target}"
 msgid "You recently changed your birthdate"
 msgstr "Nedávno jste změnili své datum narození"
 
-#: src/components/dms/MessageItem.tsx:786
+#: src/components/dms/MessageItem.tsx:805
 msgid "You replied"
 msgstr "Odpověděli jste"
 
-#: src/components/dms/MessageItem.tsx:785
+#: src/components/dms/MessageItem.tsx:804
 msgid "You replied to {originalName}"
 msgstr "Odpověděli jste uživateli {originalName}"
 
-#: src/components/dms/MessageItem.tsx:783
+#: src/components/dms/MessageItem.tsx:802
 msgid "You replied to yourself"
 msgstr "Odpověděli jste sami sobě"
 
@@ -15134,11 +15142,11 @@ msgstr "Jste ve frontě"
 msgid "You're signed in with an App Password. Please sign in with your main password to continue deactivating your account."
 msgstr "Jste přihlášeni pomocí App Password. Pro pokračování v deaktivaci účtu se prosím přihlaste svým hlavním heslem."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:262
+#: src/components/moderation/AppealForm.tsx:73
 msgid "You've already appealed this label and it's being reviewed by our moderation team."
 msgstr "Proti tomuto štítku jste se již odvolali a náš moderátorský tým jej posuzuje."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:112
+#: src/components/moderation/ModerationDetailsDialog.tsx:128
 #: src/lib/moderation/useModerationCauseDescription.ts:109
 msgid "You've chosen to hide a word or tag within this post."
 msgstr "Rozhodli jste se v tomto příspěvku skrýt slovo nebo štítek."

@@ -33,7 +33,7 @@ msgid "\"{interestsDisplayName}\" category (active)"
 msgstr "Категория \"{interestsDisplayName}\" (активна)"
 
 #. A reply summary in chat
-#: src/components/dms/MessageItem.tsx:882
+#: src/components/dms/MessageItem.tsx:901
 msgid "(blocked message hidden)"
 msgstr ""
 
@@ -48,7 +48,7 @@ msgid "(contains embedded content)"
 msgstr "(содержит встроенный контент)"
 
 #. A reply summary in chat
-#: src/components/dms/MessageItem.tsx:896
+#: src/components/dms/MessageItem.tsx:915
 msgid "(deleted message)"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgid "(invalid chat invite link)"
 msgstr ""
 
 #. A reply summary in chat
-#: src/components/dms/MessageItem.tsx:890
+#: src/components/dms/MessageItem.tsx:909
 msgid "(message sent before you joined)"
 msgstr ""
 
@@ -82,13 +82,8 @@ msgid "(quoted post)"
 msgstr ""
 
 #. placeholder {0}: labels.length
-#: src/components/moderation/LabelsOnMe.tsx:69
+#: src/components/moderation/LabelsOnMe.tsx:62
 msgid "{0, plural, one {# account label} other {# account labels}}"
-msgstr ""
-
-#. placeholder {0}: labels.length
-#: src/components/moderation/LabelsOnMe.tsx:75
-msgid "{0, plural, one {# content label} other {# content labels}}"
 msgstr ""
 
 #. placeholder {0}: diff.value
@@ -116,6 +111,16 @@ msgstr "{0, plural, one {# друг найден!} other {# друзья най�
 msgid "{0, plural, one {# hour} other {# hours}}"
 msgstr "{0, plural, one {# час} few {# часа} other {# часов}}"
 
+#. placeholder {0}: labels.length
+#: src/components/moderation/PostAlerts.tsx:149
+msgid "{0, plural, one {# label applied to your post} other {# labels applied to your post}}"
+msgstr ""
+
+#. placeholder {0}: labels.length
+#: src/components/moderation/PostAlerts.tsx:156
+msgid "{0, plural, one {# label applied} other {# labels applied}}"
+msgstr ""
+
 #. placeholder {0}: likeCount ?? 0
 #: src/screens/Post/PostLikedBy.tsx:34
 msgid "{0, plural, one {# like} other {# likes}}"
@@ -137,13 +142,13 @@ msgid "{0, plural, one {# month} other {# months}}"
 msgstr "{0, plural, one {# месяц} few {# месяца} other {# месяцев}}"
 
 #. placeholder {0}: convo.details.unreadJoinRequestCount
-#: src/screens/Messages/components/ChatListItem.tsx:225
+#: src/screens/Messages/components/ChatListItem.tsx:224
 msgid "{0, plural, one {# new join request} other {# new join requests}}"
 msgstr ""
 
 #. placeholder {0}: reactions.length
 #. placeholder {1}: groupedReactions.map(g => g.value).join(' ')
-#: src/components/dms/MessageItem.tsx:351
+#: src/components/dms/MessageItem.tsx:370
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
@@ -205,7 +210,7 @@ msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, one {пост} few {поста} other {постов}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:506
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:505
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -272,7 +277,7 @@ msgid "{0} following"
 msgstr "{0} подписок"
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:704
+#: src/components/dms/MessageItem.tsx:723
 msgid "{0} is blocking you"
 msgstr ""
 
@@ -330,7 +335,7 @@ msgstr "{0} из 50"
 
 #. placeholder {0}: createSanitizedDisplayName(memberSender)
 #. placeholder {1}: reaction.value
-#: src/components/dms/MessageItem.tsx:346
+#: src/components/dms/MessageItem.tsx:365
 msgid "{0} reacted {1}"
 msgstr "{0} отреагировал {1}"
 
@@ -463,7 +468,7 @@ msgstr "{0}с"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:495
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:494
 msgid "{1}"
 msgstr ""
 
@@ -695,7 +700,7 @@ msgstr "{hours, plural, one {# час} few {# часа} other {# часов}}"
 msgid "{JOIN_REQUESTS_THRESHOLD}+ new join requests"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:220
+#: src/screens/Messages/components/ChatListItem.tsx:219
 msgctxt "Displayed when there are more than 20 requests to join a group chat"
 msgid "{JOIN_REQUESTS_THRESHOLD}+ new join requests"
 msgstr ""
@@ -784,15 +789,15 @@ msgstr "{profileName} присоединился к Bluesky, используя 
 msgid "{rank}."
 msgstr "{rank}."
 
-#: src/components/dms/MessageItem.tsx:791
+#: src/components/dms/MessageItem.tsx:810
 msgid "{replierDisplayName} replied"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:790
+#: src/components/dms/MessageItem.tsx:809
 msgid "{replierDisplayName} replied to {originalName}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:788
+#: src/components/dms/MessageItem.tsx:807
 msgid "{replierDisplayName} replied to you"
 msgstr ""
 
@@ -825,7 +830,9 @@ msgid "{userName}'s verifications"
 msgstr "Верификации {userName}"
 
 #. Number of images beyond the first 3
+#. placeholder {0}: labels.length
 #. placeholder {0}: totalNumber - 3
+#: src/components/moderation/PostAlerts.tsx:155
 #: src/view/com/composer/ComposerReplyTo.tsx:278
 msgid "+{0}"
 msgstr ""
@@ -866,21 +873,21 @@ msgstr "<0>{0}</0> {1, plural, one {подписка} few {подписки} oth
 #. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.likeCount)
 #. placeholder {1}: post.likeCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:531
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:530
 msgid "<0>{0}</0> {1, plural, one {like} other {likes}}"
 msgstr "<0>{0}</0> {1, plural, one {лайк} few {лайка} other {лайков}}"
 
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:474
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:473
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, one {репост} few {репоста} other {репостов}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:551
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:550
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, one {сохранение} few {сохранения} other {сохранений}}"
 
@@ -907,8 +914,8 @@ msgstr "<0>{0}</0> участников"
 msgid "<0>{displayName}</0><1/><2> added you</2>"
 msgstr ""
 
-#: src/screens/Hashtag.tsx:226
-#: src/screens/Search/SearchResults.tsx:432
+#: src/screens/Hashtag.tsx:230
+#: src/screens/Search/SearchResults.tsx:381
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<0>Войдите в свой аккаунт</0><1> или </1><2>создайте аккаунт</2><3>, </3><4> чтобы искать новости, спорт, политику и всё остальное, что происходит на Bluesky.</4>"
 
@@ -981,7 +988,7 @@ msgstr ""
 msgid "A new form of verification"
 msgstr "Новая форма верификации"
 
-#: src/components/dms/MessageItem.tsx:801
+#: src/components/dms/MessageItem.tsx:820
 msgid "A reply to a message sent before you joined"
 msgstr ""
 
@@ -1095,12 +1102,12 @@ msgctxt "toast"
 msgid "Account muted"
 msgstr "Учётная запись игнорируется"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:107
+#: src/components/moderation/ModerationDetailsDialog.tsx:123
 #: src/lib/moderation/useModerationCauseDescription.ts:99
 msgid "Account Muted"
 msgstr "Учётная запись игнорируется"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:93
+#: src/components/moderation/ModerationDetailsDialog.tsx:109
 msgid "Account Muted by List"
 msgstr "Учётная запись игнорируется списком"
 
@@ -1465,9 +1472,9 @@ msgid "All friends followed!"
 msgstr ""
 
 #: src/components/dialogs/LanguageSelectDialog.tsx:255
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:73
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:122
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:124
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:65
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:94
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:96
 msgid "All languages"
 msgstr "Все языки"
 
@@ -1723,7 +1730,7 @@ msgstr "Возникла проблема, пожалуйста, попробу�
 msgid "An mockup of a iPhone showing the Bluesky app open to the profile of a verified user with a blue checkmark next to their display name."
 msgstr "Макет iPhone с интерфейсом Bluesky на экране, в приложении открыт профиль пользователя, рядом с его именем стоит синяя галочка."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:138
+#: src/components/moderation/ModerationDetailsDialog.tsx:154
 #: src/lib/moderation/useModerationCauseDescription.ts:145
 msgid "an unknown labeler"
 msgstr "неизвестный маркировщик"
@@ -1846,15 +1853,20 @@ msgstr "Пароли приложений"
 msgid "App Themes"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:155
-#: src/components/moderation/LabelsOnMeDialog.tsx:158
+#: src/components/moderation/LabelsOnMeDialog.tsx:169
+#: src/components/moderation/LabelsOnMeDialog.tsx:172
+#: src/components/moderation/ModerationDetailsDialog.tsx:223
 msgid "Appeal"
 msgstr "Оспорить"
 
 #. placeholder {0}: strings.name
-#: src/components/moderation/LabelsOnMeDialog.tsx:282
+#: src/components/moderation/AppealForm.tsx:93
 msgid "Appeal \"{0}\" label"
 msgstr "Оспорить метку \"{0}\""
+
+#: src/components/moderation/ModerationDetailsDialog.tsx:159
+msgid "Appeal label"
+msgstr ""
 
 #: src/view/com/profile/ProfileMenu.tsx:544
 #: src/view/com/profile/ProfileMenu.tsx:549
@@ -1865,7 +1877,7 @@ msgstr ""
 msgid "Appeal livestream suspension"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:272
+#: src/components/moderation/AppealForm.tsx:83
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:83
 #: src/screens/Messages/components/ChatDisabled.tsx:125
 msgctxt "toast"
@@ -1888,6 +1900,10 @@ msgstr "Обжаловать приостановку"
 msgid "Appeal this decision"
 msgstr "Обжаловать это решение"
 
+#: src/components/moderation/ModerationDetailsDialog.tsx:219
+msgid "Appeal this label"
+msgstr ""
+
 #: src/Navigation.tsx:460
 #: src/screens/Settings/AppearanceSettings.tsx:79
 #: src/screens/Settings/Settings.tsx:234
@@ -1906,12 +1922,12 @@ msgid "Apply Pull Request"
 msgstr "Применить запрос на слияние"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:726
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:725
 msgid "Archived from {0}"
 msgstr "Архивный пост от {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:735
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:696
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:734
 msgid "Archived post"
 msgstr "Архивный пост"
 
@@ -2065,8 +2081,8 @@ msgstr "Доступен"
 #: src/components/dms/InitiateChatFlow.tsx:540
 #: src/components/dms/InitiateChatFlow.tsx:758
 #: src/components/dms/InitiateChatFlow.tsx:765
-#: src/components/moderation/LabelsOnMeDialog.tsx:334
-#: src/components/moderation/LabelsOnMeDialog.tsx:335
+#: src/components/moderation/AppealForm.tsx:145
+#: src/components/moderation/AppealForm.tsx:146
 #: src/screens/Login/ChooseAccountForm.tsx:96
 #: src/screens/Login/ChooseAccountForm.tsx:100
 #: src/screens/Login/ForgotPasswordForm.tsx:119
@@ -2155,11 +2171,11 @@ msgstr "Перед тем, как вы будете получать уведо�
 msgid "Before you can message another user, you must first verify your email."
 msgstr "Чтобы написать другому пользователю, необходимо сначала подтвердить свою электронную почту."
 
-#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:318
+#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:319
 msgid "Begin"
 msgstr "Начать"
 
-#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:312
+#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:313
 msgid "Begin age assurance process"
 msgstr "Начать процесс проверки возраста"
 
@@ -2308,7 +2324,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:751
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:750
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "Bluesky не может подтвердить подлинность заявленной даты."
 
@@ -2596,7 +2612,7 @@ msgstr "Отменить реактивацию и выйти из систем�
 msgid "Cancel reply"
 msgstr ""
 
-#: src/screens/Search/Shell.tsx:608
+#: src/screens/Search/Shell.tsx:595
 msgid "Cancel search"
 msgstr "Отменить поиск"
 
@@ -2974,7 +2990,7 @@ msgstr ""
 msgid "Click to open tag menu for {0}"
 msgstr "Нажмите, чтобы открыть меню тегов для {0}"
 
-#: src/components/dms/MessageItem.tsx:623
+#: src/components/dms/MessageItem.tsx:642
 msgid "Click to retry failed message"
 msgstr "Нажмите, чтобы повторить неудачное сообщение"
 
@@ -3279,7 +3295,7 @@ msgstr "Содержимое сети, которое, по нашему мне�
 msgid "Content languages"
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:86
+#: src/components/moderation/ModerationDetailsDialog.tsx:102
 #: src/lib/moderation/useModerationCauseDescription.ts:83
 msgid "Content Not Available"
 msgstr "Содержимое недоступно"
@@ -3288,7 +3304,7 @@ msgstr "Содержимое недоступно"
 msgid "Content promoting or depicting self-harm"
 msgstr "Контент, пропагандирующий или изображающий членовредительство"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:54
+#: src/components/moderation/ModerationDetailsDialog.tsx:70
 #: src/components/moderation/ScreenHider.tsx:100
 #: src/lib/moderation/useGlobalLabelStrings.ts:22
 #: src/lib/moderation/useModerationCauseDescription.ts:46
@@ -3356,7 +3372,7 @@ msgstr ""
 msgid "Conversation"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:322
+#: src/screens/Messages/components/ChatListItem.tsx:321
 msgid "Conversation deleted"
 msgstr "Беседа удалена"
 
@@ -3382,7 +3398,7 @@ msgstr ""
 msgid "Copied build version to clipboard"
 msgstr "Версия сборки скопирована в буфер обмена"
 
-#: src/screens/Search/Shell.tsx:523
+#: src/screens/Search/Shell.tsx:515
 msgid "Copied link to clipboard"
 msgstr ""
 
@@ -3670,8 +3686,8 @@ msgstr "Регистрация"
 
 #: src/components/dialogs/Signin.tsx:87
 #: src/components/dialogs/Signin.tsx:89
-#: src/screens/Hashtag.tsx:235
-#: src/screens/Search/SearchResults.tsx:438
+#: src/screens/Hashtag.tsx:236
+#: src/screens/Search/SearchResults.tsx:387
 msgid "Create an account"
 msgstr "Создать учётную запись"
 
@@ -4286,7 +4302,7 @@ msgstr "Не волнуйтесь! Все существующие сообще�
 msgid "Done"
 msgstr "Готово"
 
-#: src/components/dms/MessageItem.tsx:521
+#: src/components/dms/MessageItem.tsx:540
 msgid "Double tap or long press the message to add a reaction"
 msgstr "Дважды нажмите или зажмите сообщение, чтобы добавить реакцию"
 
@@ -4344,7 +4360,7 @@ msgstr ""
 msgid "Drafts"
 msgstr ""
 
-#: src/view/com/composer/text-input/TextInput.web.tsx:366
+#: src/view/com/composer/text-input/TextInput.web.tsx:369
 msgid "Drop to add images"
 msgstr "Перетащите и отпустите, чтобы добавить изображение"
 
@@ -4774,7 +4790,7 @@ msgstr "Произошла ошибка при сохранении файла"
 msgid "Error receiving captcha response."
 msgstr "Ошибка получения ответа Captcha."
 
-#: src/screens/Search/SearchResults.tsx:188
+#: src/screens/Search/SearchResults.tsx:175
 msgid "Error: {error}"
 msgstr "Ошибка: {error}"
 
@@ -4853,7 +4869,7 @@ msgstr ""
 msgid "Expands or collapses post text"
 msgstr "Разворачивает или сворачивает текст поста"
 
-#: src/lib/api/index.ts:494
+#: src/lib/api/index.ts:493
 msgid "Expected uri to resolve to a record"
 msgstr "Ожидалось, что uri разрешиться в запись"
 
@@ -4872,8 +4888,8 @@ msgstr "Истекает {0}"
 
 #. placeholder {0}: timeDiff(Date.now(), label.exp)
 #. placeholder {0}: timeDiff(Date.now(), modcause.label.exp)
-#: src/components/moderation/LabelsOnMeDialog.tsx:204
-#: src/components/moderation/ModerationDetailsDialog.tsx:224
+#: src/components/moderation/LabelsOnMeDialog.tsx:218
+#: src/components/moderation/ModerationDetailsDialog.tsx:294
 msgid "Expires in {0}"
 msgstr "Истекает через {0}"
 
@@ -4893,7 +4909,7 @@ msgid "Explicit sexual images."
 msgstr "Откровенные сексуальные изображения."
 
 #: src/Navigation.tsx:823
-#: src/screens/Search/Shell.tsx:560
+#: src/screens/Search/Shell.tsx:552
 #: src/view/shell/desktop/LeftNav.tsx:677
 #: src/view/shell/Drawer.tsx:485
 msgid "Explore"
@@ -4980,7 +4996,7 @@ msgstr "Не удалось изменить псевдоним. Попробу�
 
 #: src/components/Lightbox/Lightbox.web.tsx:302
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:130
-#: src/screens/Search/Shell.tsx:524
+#: src/screens/Search/Shell.tsx:516
 msgid "Failed to copy link"
 msgstr ""
 
@@ -5225,7 +5241,7 @@ msgstr "Не удалось отправить письмо на электро�
 msgid "Failed to send report"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:266
+#: src/components/moderation/AppealForm.tsx:77
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:77
 #: src/screens/Messages/components/ChatDisabled.tsx:119
 msgid "Failed to submit appeal, please try again."
@@ -5350,7 +5366,7 @@ msgstr ""
 #: src/Navigation.tsx:599
 #: src/screens/SavedFeeds.tsx:112
 #: src/screens/SavedFeeds.tsx:303
-#: src/screens/Search/SearchResults.tsx:105
+#: src/screens/Search/SearchResults.tsx:100
 #: src/screens/StarterPack/StarterPackScreen.tsx:196
 #: src/view/screens/Feeds.tsx:507
 #: src/view/screens/Profile.tsx:256
@@ -5404,11 +5420,11 @@ msgstr ""
 msgid "Filter from feeds"
 msgstr "Фильтровать из лент"
 
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:120
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:92
 msgid "Filter search by language"
 msgstr "Фильтр поиска по языку"
 
-#: src/screens/Search/components/SearchLanguageDropdown.tsx:79
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:70
 msgid "Filter search by language (currently: {currentLanguageLabel})"
 msgstr "Фильтр поиска по языку (текущий: {currentLanguageLabel})"
 
@@ -5485,7 +5501,7 @@ msgstr "Найти людей, чтобы подписаться"
 msgid "Find people you know"
 msgstr ""
 
-#: src/screens/Search/Shell.tsx:791
+#: src/screens/Search/Shell.tsx:765
 msgid "Find posts, users, and feeds on Bluesky"
 msgstr "Найти посты, пользователей и ленты в Bluesky"
 
@@ -5694,7 +5710,7 @@ msgstr "Настройка ленты подписок"
 msgid "Following Feed Preferences"
 msgstr "Настройка ленты подписок"
 
-#: src/components/Pills.tsx:175
+#: src/components/Pills.tsx:212
 #: src/screens/Profile/Header/Handle.tsx:34
 msgid "Follows you"
 msgstr "Подписан на вас"
@@ -5767,11 +5783,11 @@ msgstr "Освободите свою ленту"
 msgid "From"
 msgstr "От"
 
-#: src/screens/Hashtag.tsx:125
+#: src/screens/Hashtag.tsx:123
 msgid "From {sanitizedAuthor}"
 msgstr ""
 
-#: src/screens/Hashtag.tsx:126
+#: src/screens/Hashtag.tsx:124
 msgid "From @{sanitizedAuthor}"
 msgstr "От @{sanitizedAuthor}"
 
@@ -6013,7 +6029,7 @@ msgstr "Далее"
 msgid "Go to profile"
 msgstr "В профиль"
 
-#: src/screens/Messages/components/ChatListItem.tsx:212
+#: src/screens/Messages/components/ChatListItem.tsx:211
 msgid "Go to the group chat named \"{chatName}\""
 msgstr ""
 
@@ -6956,17 +6972,17 @@ msgstr "Метки"
 msgid "Labels added"
 msgstr "Метки добавлены"
 
+#: src/components/moderation/LabelsOnMeDialog.tsx:78
+msgid "Labels applied to this post"
+msgstr ""
+
 #: src/screens/Profile/Sections/Labels.tsx:194
 msgid "Labels are annotations on users and content. They can be used to hide, warn, and categorize the network."
 msgstr "Метки являются аннотациями для пользователей и контента. Они могут использоваться для скрытия, предупреждения и категоризации сети."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:77
+#: src/components/moderation/LabelsOnMeDialog.tsx:76
 msgid "Labels on your account"
 msgstr "Метки на вашей учётной записи"
-
-#: src/components/moderation/LabelsOnMeDialog.tsx:79
-msgid "Labels on your content"
-msgstr "Метки на вашем контенте"
 
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:357
 msgid "Language"
@@ -6996,9 +7012,9 @@ msgstr "Последнее инициирование {timeAgo} назад"
 msgid "Last initiated just now"
 msgstr "Последнее инициирование только что"
 
-#: src/screens/Hashtag.tsx:99
-#: src/screens/Search/SearchResults.tsx:86
-#: src/screens/Topic.tsx:65
+#: src/screens/Hashtag.tsx:97
+#: src/screens/Search/SearchResults.tsx:82
+#: src/screens/Topic.tsx:64
 msgid "Latest"
 msgstr "Недавние"
 
@@ -7016,14 +7032,9 @@ msgstr "Узнать больше"
 msgid "Learn More"
 msgstr "Узнать больше"
 
-#: src/screens/Search/SearchResults.tsx:261
+#: src/screens/Search/SearchResults.tsx:242
 msgctxt "english-only-resource"
 msgid "Learn more about <0>how to use advanced search</0>."
-msgstr ""
-
-#: src/screens/Search/SearchResults.tsx:275
-msgctxt "english-only-resource"
-msgid "Learn more about <0>how to use search filters</0>."
 msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceDismissibleFeedBanner.tsx:66
@@ -7258,7 +7269,7 @@ msgstr "Нравится"
 msgid "Likes of your reposts"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:527
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:526
 msgid "Likes on this post"
 msgstr "Лайки этого поста"
 
@@ -7655,7 +7666,7 @@ msgstr "Сообщение {0}"
 msgid "Message {displayName}"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:323
+#: src/screens/Messages/components/ChatListItem.tsx:322
 msgid "Message deleted"
 msgstr "Сообщение удалено"
 
@@ -7664,7 +7675,7 @@ msgctxt "toast"
 msgid "Message deleted"
 msgstr "Сообщение удалено"
 
-#: src/components/dms/MessageItem.tsx:617
+#: src/components/dms/MessageItem.tsx:636
 msgid "Message failed to send."
 msgstr ""
 
@@ -7695,11 +7706,11 @@ msgstr "Параметры сообщений"
 msgid "Messages"
 msgstr "Сообщения"
 
-#: src/components/dms/MessageItem.tsx:716
+#: src/components/dms/MessageItem.tsx:735
 msgid "Messages from this person are hidden while they are blocking you."
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:711
+#: src/components/dms/MessageItem.tsx:730
 msgid "Messages from this person are hidden while you are blocking them."
 msgstr ""
 
@@ -7740,7 +7751,7 @@ msgstr "Модерация"
 msgid "Moderation and content filters"
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:142
+#: src/components/moderation/ModerationDetailsDialog.tsx:175
 msgid "Moderation details"
 msgstr "Детали модерации"
 
@@ -7791,7 +7802,7 @@ msgstr "Статус модерации"
 msgid "Moderation tools"
 msgstr "Инструменты модерации"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:56
+#: src/components/moderation/ModerationDetailsDialog.tsx:72
 #: src/lib/moderation/useModerationCauseDescription.ts:48
 msgid "Moderator has chosen to set a general warning on the content."
 msgstr "Модератор решил установить общее предупреждение на контент."
@@ -8275,7 +8286,7 @@ msgstr "Вы больше не подписаны на {0}"
 msgid "No media yet"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:311
+#: src/screens/Messages/components/ChatListItem.tsx:310
 msgid "No messages yet"
 msgstr "Сообщения пока отсутствуют"
 
@@ -8372,15 +8383,15 @@ msgstr "Нет результатов"
 msgid "No results found for \"{query}\""
 msgstr "Ничего не найдено по запросу \"{query}\""
 
-#: src/screens/Search/SearchResults.tsx:220
+#: src/screens/Search/SearchResults.tsx:202
 msgid "No results found for “<0>{query}</0>” with advanced search filters applied."
 msgstr ""
 
-#: src/screens/Search/SearchResults.tsx:232
+#: src/screens/Search/SearchResults.tsx:214
 msgid "No results found for “<0>{query}</0>”."
 msgstr ""
 
-#: src/screens/Search/SearchResults.tsx:226
+#: src/screens/Search/SearchResults.tsx:208
 msgid "No results found for your query with advanced search filters applied."
 msgstr ""
 
@@ -8560,9 +8571,9 @@ msgstr "ОК"
 #: src/components/BotAccountAlert.tsx:52
 #: src/components/BotAccountAlert.tsx:57
 #: src/components/dms/InitiateChatFlow.tsx:733
-#: src/components/dms/MessageItem.tsx:723
+#: src/components/dms/MessageItem.tsx:742
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:757
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:756
 msgid "Okay"
 msgstr "Хорошо"
 
@@ -8722,8 +8733,8 @@ msgstr ""
 msgid "Open chat member options for {displayName}"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:491
-#: src/screens/Messages/components/ChatListItem.tsx:495
+#: src/screens/Messages/components/ChatListItem.tsx:490
+#: src/screens/Messages/components/ChatListItem.tsx:494
 msgid "Open conversation options"
 msgstr "Открыть настройки беседы"
 
@@ -9121,7 +9132,7 @@ msgid "Pause video"
 msgstr "Приостановить видео"
 
 #: src/screens/ProfileList/index.tsx:167
-#: src/screens/Search/SearchResults.tsx:99
+#: src/screens/Search/SearchResults.tsx:94
 #: src/screens/StarterPack/StarterPackScreen.tsx:195
 msgid "People"
 msgstr "Люди"
@@ -9392,7 +9403,7 @@ msgid "Please enter your username"
 msgstr "Пожалуйста, введите ваш псевдоним"
 
 #. placeholder {0}: labeler ? sanitizeHandle(labeler.creator.handle, '@') : label.src
-#: src/components/moderation/LabelsOnMeDialog.tsx:309
+#: src/components/moderation/AppealForm.tsx:120
 msgid "Please explain why you think this label was incorrectly applied by {0}"
 msgstr "Пожалуйста, объясните, почему вы считаете, что эта метка была ошибочно добавлена к {0}"
 
@@ -9413,7 +9424,7 @@ msgstr ""
 msgid "Please provide any additional details you feel moderators may need in order to properly assess your Age Assurance status."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:303
+#: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:304
 msgid "Please select a language"
 msgstr ""
 
@@ -9506,23 +9517,23 @@ msgctxt "toast"
 msgid "Post deleted"
 msgstr "Пост удалён"
 
-#: src/lib/api/index.ts:193
+#: src/lib/api/index.ts:192
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "Не удалось загрузить пост. Проверьте подключение к Интернету и повторите попытку."
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:136
-#: src/screens/PostThread/components/ThreadItemPost.tsx:117
-#: src/screens/PostThread/components/ThreadItemTreePost.tsx:110
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemPost.tsx:116
+#: src/screens/PostThread/components/ThreadItemTreePost.tsx:109
 #: src/screens/VideoFeed/index.tsx:547
 msgid "Post has been deleted"
 msgstr "Пост был удалён"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:111
+#: src/components/moderation/ModerationDetailsDialog.tsx:127
 #: src/lib/moderation/useModerationCauseDescription.ts:107
 msgid "Post Hidden by Muted Word"
 msgstr "Пост скрыт из-за игнорированного слова"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:114
+#: src/components/moderation/ModerationDetailsDialog.tsx:130
 #: src/lib/moderation/useModerationCauseDescription.ts:116
 msgid "Post Hidden by You"
 msgstr "Вы скрыли этот пост"
@@ -9680,7 +9691,7 @@ msgstr ""
 msgid "Processing video..."
 msgstr "Обработка видео..."
 
-#: src/lib/api/index.ts:63
+#: src/lib/api/index.ts:62
 msgid "Processing..."
 msgstr "Обработка..."
 
@@ -9815,7 +9826,7 @@ msgstr "Цитирование постов отключено"
 msgid "Quotes"
 msgstr "Цитаты"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:491
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:490
 msgid "Quotes of this post"
 msgstr "Цитаты из этого поста"
 
@@ -9858,14 +9869,9 @@ msgstr "Реактивировать свою учётную запись"
 msgid "Read {0, plural, one {# more reply} other {# more replies}}"
 msgstr ""
 
-#: src/screens/Search/SearchResults.tsx:264
+#: src/screens/Search/SearchResults.tsx:245
 msgctxt "english-only-resource"
 msgid "Read about how to use advanced search filters"
-msgstr ""
-
-#: src/screens/Search/SearchResults.tsx:278
-msgctxt "english-only-resource"
-msgid "Read about how to use search filters"
 msgstr ""
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:162
@@ -10238,15 +10244,15 @@ msgctxt "description"
 msgid "Replied to you"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:906
+#: src/components/dms/MessageItem.tsx:925
 msgid "Replied-to message from {senderName}, tap to scroll to it"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:904
+#: src/components/dms/MessageItem.tsx:923
 msgid "Replied-to message was sent before you joined"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:907
+#: src/components/dms/MessageItem.tsx:926
 msgid "Replied-to message, tap to scroll to it"
 msgstr ""
 
@@ -10283,12 +10289,12 @@ msgstr "Ответить"
 msgid "Reply ({0, plural, one {# reply} other {# replies}})"
 msgstr "Ответить ({0, plural, one {# ответ} few {# ответа} other {# ответов}})"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:120
+#: src/components/moderation/ModerationDetailsDialog.tsx:136
 #: src/lib/moderation/useModerationCauseDescription.ts:126
 msgid "Reply Hidden by Thread Author"
 msgstr "Ответ скрыт автором ветки"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:119
+#: src/components/moderation/ModerationDetailsDialog.tsx:135
 #: src/lib/moderation/useModerationCauseDescription.ts:125
 msgid "Reply Hidden by You"
 msgstr "Ответ скрыт вами"
@@ -10447,7 +10453,7 @@ msgstr "Вы сделали репост"
 msgid "Reposts"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:470
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:469
 msgid "Reposts of this post"
 msgstr "Репосты этого поста"
 
@@ -10800,7 +10806,7 @@ msgstr ""
 msgid "Scroll right"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:800
+#: src/components/dms/MessageItem.tsx:819
 msgid "Scroll to the message this is replying to"
 msgstr ""
 
@@ -10813,9 +10819,9 @@ msgstr "Пролистать вверх"
 #: src/components/forms/SearchInput.tsx:53
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:218
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:224
-#: src/screens/Search/Shell.tsx:560
-#: src/screens/Search/Shell.tsx:629
-#: src/screens/Search/Shell.tsx:779
+#: src/screens/Search/Shell.tsx:552
+#: src/screens/Search/Shell.tsx:616
+#: src/screens/Search/Shell.tsx:753
 #: src/view/shell/bottom-bar/BottomBar.tsx:216
 msgid "Search"
 msgstr "Поиск"
@@ -10878,8 +10884,8 @@ msgstr ""
 msgid "Search GIFs"
 msgstr "Поиск GIF-файлов"
 
-#: src/screens/Hashtag.tsx:224
-#: src/screens/Search/SearchResults.tsx:430
+#: src/screens/Hashtag.tsx:228
+#: src/screens/Search/SearchResults.tsx:379
 msgid "Search is currently unavailable when logged out"
 msgstr ""
 
@@ -11084,8 +11090,8 @@ msgid "Select how long to mute this word for."
 msgstr "Выберите, на какое время игнорировать это слово."
 
 #: src/components/AppLanguageDropdown.tsx:71
-#: src/components/LanguageSelect.tsx:37
-#: src/components/LanguageSelect.tsx:38
+#: src/components/LanguageSelect.tsx:41
+#: src/components/LanguageSelect.tsx:42
 msgid "Select language"
 msgstr "Выбрать язык"
 
@@ -11355,11 +11361,11 @@ msgstr "С сексуальным подтекстом"
 #: src/components/MediaPreview.tsx:237
 #: src/components/Post/Embed/ImageContextMenu.tsx:74
 #: src/components/StarterPack/QrCodeDialog.tsx:198
-#: src/screens/Hashtag.tsx:132
+#: src/screens/Hashtag.tsx:130
 #: src/screens/Messages/components/InviteLinkDialog.tsx:415
 #: src/screens/Messages/components/InviteLinkDialog.tsx:426
 #: src/screens/StarterPack/StarterPackScreen.tsx:447
-#: src/screens/Topic.tsx:90
+#: src/screens/Topic.tsx:89
 msgid "Share"
 msgstr "Поделиться"
 
@@ -11428,8 +11434,8 @@ msgstr "Поделиться QR-кодом"
 msgid "Share this feed"
 msgstr "Поделиться этой лентой"
 
-#: src/screens/Search/Shell.tsx:581
-#: src/screens/Search/Shell.tsx:651
+#: src/screens/Search/Shell.tsx:568
+#: src/screens/Search/Shell.tsx:638
 msgid "Share this search"
 msgstr ""
 
@@ -11614,7 +11620,7 @@ msgstr "Показать предупреждения и фильтровать 
 msgid "Show when you’re live"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:698
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
 msgid "Shows information about when this post was created"
 msgstr "Показывает информацию о том, когда был создан этот пост"
 
@@ -11631,7 +11637,7 @@ msgstr "Показывает содержимое"
 #: src/components/dialogs/Signin.tsx:100
 #: src/components/WelcomeModal.tsx:197
 #: src/components/WelcomeModal.tsx:209
-#: src/screens/Hashtag.tsx:228
+#: src/screens/Hashtag.tsx:231
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
 #: src/screens/Login/LoginForm.tsx:274
@@ -11639,7 +11645,7 @@ msgstr "Показывает содержимое"
 #: src/screens/Login/LoginForm.tsx:560
 #: src/screens/Messages/JoinRequest.tsx:290
 #: src/screens/Messages/JoinRequest.tsx:296
-#: src/screens/Search/SearchResults.tsx:433
+#: src/screens/Search/SearchResults.tsx:382
 #: src/view/com/auth/SplashScreen.tsx:116
 #: src/view/com/auth/SplashScreen.tsx:123
 #: src/view/com/auth/SplashScreen.web.tsx:122
@@ -11829,7 +11835,7 @@ msgid "Someone left the group"
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:348
+#: src/components/dms/MessageItem.tsx:367
 msgid "Someone reacted {0}"
 msgstr "Кто-то отреагировал {0}"
 
@@ -11838,7 +11844,7 @@ msgstr "Кто-то отреагировал {0}"
 msgid "Someone reacted {0} to {target}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:793
+#: src/components/dms/MessageItem.tsx:812
 msgid "Someone replied"
 msgstr ""
 
@@ -11923,8 +11929,8 @@ msgstr "Выберите, как сортировать ответы к пост
 msgid "Source Code"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:183
-#: src/components/moderation/ModerationDetailsDialog.tsx:202
+#: src/components/moderation/LabelsOnMeDialog.tsx:197
+#: src/components/moderation/ModerationDetailsDialog.tsx:272
 msgid "Source: <0>{sourceName}</0>"
 msgstr "Источник: <0>{sourceName}</0>"
 
@@ -12056,8 +12062,8 @@ msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:122
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:128
-#: src/components/moderation/LabelsOnMeDialog.tsx:343
-#: src/components/moderation/LabelsOnMeDialog.tsx:344
+#: src/components/moderation/AppealForm.tsx:154
+#: src/components/moderation/AppealForm.tsx:155
 #: src/components/SendErrorReportDialog.tsx:90
 #: src/components/SendErrorReportDialog.tsx:95
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:139
@@ -12264,7 +12270,7 @@ msgstr ""
 msgid "Tap below to allow Bluesky to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:662
+#: src/components/dms/MessageItem.tsx:681
 msgid "Tap for details"
 msgstr ""
 
@@ -12322,7 +12328,7 @@ msgstr ""
 msgid "Tap to request access to join this group chat"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:627
+#: src/components/dms/MessageItem.tsx:646
 msgid "Tap to retry"
 msgstr ""
 
@@ -12335,7 +12341,7 @@ msgstr ""
 msgid "Tap to show all reactions"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:374
+#: src/components/dms/MessageItem.tsx:393
 msgid "Tap to view reactions"
 msgstr ""
 
@@ -12392,7 +12398,7 @@ msgstr "Условия использования"
 msgid "Text & tags"
 msgstr "Текст и теги"
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:307
+#: src/components/moderation/AppealForm.tsx:118
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:122
 #: src/screens/Messages/components/ChatDisabled.tsx:142
 msgid "Text input field"
@@ -12447,7 +12453,7 @@ msgstr "Учётная запись сможет взаимодействова�
 msgid "The app will be restarted"
 msgstr "Приложение будет перезапущено"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:123
+#: src/components/moderation/ModerationDetailsDialog.tsx:139
 #: src/lib/moderation/useModerationCauseDescription.ts:129
 msgid "The author of this thread has hidden this reply."
 msgstr "Автор этой ветки скрыл этот ответ."
@@ -12485,12 +12491,12 @@ msgid "The feed has been replaced with Discover."
 msgstr "Лента была заменена на Discover."
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:64
+msgid "The following labels were applied to this post."
+msgstr ""
+
+#: src/components/moderation/LabelsOnMeDialog.tsx:63
 msgid "The following labels were applied to your account."
 msgstr "Следующие метки были добавлены в вашу учётную запись."
-
-#: src/components/moderation/LabelsOnMeDialog.tsx:65
-msgid "The following labels were applied to your content."
-msgstr "Следующие метки были добавлены к вашему контенту."
 
 #: src/features/liveNow/components/GoLiveDialog.tsx:189
 msgid "The following services are enabled for your account: {allowedServices}"
@@ -12739,7 +12745,7 @@ msgstr "Эта учётная запись заблокирована в одн�
 msgid "This action can be undone at any time."
 msgstr "Это действие можно отменить в любое время."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:285
+#: src/components/moderation/AppealForm.tsx:96
 msgid "This appeal will be sent to <0>{sourceName}</0>."
 msgstr "Это обращение будет отправлено на адрес <0>{sourceName}</0>."
 
@@ -12766,7 +12772,7 @@ msgstr ""
 msgid "This chat is full"
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:377
+#: src/screens/Messages/components/ChatListItem.tsx:376
 #: src/screens/Messages/components/ChatLocked.tsx:69
 msgid "This chat is locked"
 msgstr ""
@@ -12801,7 +12807,7 @@ msgstr "Этот контент получил общее предупрежде
 msgid "This content is hosted by {0}. Do you want to enable external media?"
 msgstr "Этот контент размещён {0}. Включить внешние медиа?"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:88
+#: src/components/moderation/ModerationDetailsDialog.tsx:104
 #: src/lib/moderation/useModerationCauseDescription.ts:85
 msgid "This content is not available because one of the users involved has blocked the other."
 msgstr "Этот контент недоступен, поскольку один из вовлечённых пользователей заблокировал другого."
@@ -12902,13 +12908,18 @@ msgstr "Эта ссылка недействительна"
 msgid "This label lets the world know that this account is automated. If turned on, this label appears next to the account's name on their profile and posts. It can be turned on or off at any time."
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:184
+#: src/components/moderation/ModerationDetailsDialog.tsx:254
 msgid "This label was applied by the author."
 msgstr "Эта метка была применена автором."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:170
+#: src/components/moderation/LabelsOnMeDialog.tsx:184
 msgid "This label was applied by you."
 msgstr "Эта метка была применена вами."
+
+#: src/components/moderation/LabelsOnMeDialog.tsx:156
+#: src/components/moderation/ModerationDetailsDialog.tsx:231
+msgid "This label was applied to the entire user account and will appear on all posts."
+msgstr ""
 
 #: src/screens/Profile/Sections/Labels.tsx:218
 msgid "This labeler hasn't declared what labels it publishes, and may not be active."
@@ -12935,17 +12946,17 @@ msgstr "Этот список пуст."
 msgid "This menu lets you apply labels such as Adult Content, Sexually Suggestive, Non-sexual Nudity, and Graphic Media on an account level. They can be turned on or off at any time."
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:336
+#: src/screens/Messages/components/ChatListItem.tsx:335
 msgid "This message is hidden"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:660
-#: src/components/dms/MessageItem.tsx:689
+#: src/components/dms/MessageItem.tsx:679
+#: src/components/dms/MessageItem.tsx:708
 msgid "This message is hidden because this user is blocking you."
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:659
-#: src/components/dms/MessageItem.tsx:685
+#: src/components/dms/MessageItem.tsx:678
+#: src/components/dms/MessageItem.tsx:704
 msgid "This message is hidden because you are blocking this user."
 msgstr ""
 
@@ -12953,17 +12964,13 @@ msgstr ""
 msgid "This moderation service is unavailable. See below for more details. If this issue persists, contact us."
 msgstr "Данный сервис модерации недоступен. Просмотрите детали ниже. Если проблема не исчезнет, свяжитесь с нами."
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:161
-msgid "This moderation was applied to the entire user account and will appear on all posts."
-msgstr ""
-
 #: src/components/dms/MessagesListBlockedFooter.tsx:84
 msgid "This person is blocking you"
 msgstr ""
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:738
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:737
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "Этот пост утверждает, что был создан <0>{0}</0>, но впервые был замечен Bluesky <1>{1}</1>."
 
@@ -13028,7 +13035,7 @@ msgstr "У этого пользователя ещё нет ни одного �
 msgid "This user has blocked you and cannot be messaged."
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:83
+#: src/components/moderation/ModerationDetailsDialog.tsx:99
 #: src/lib/moderation/useModerationCauseDescription.ts:76
 msgid "This user has blocked you. You cannot view their content."
 msgstr "Этот пользователь заблокировал вас. Вы не можете видеть их посты."
@@ -13042,12 +13049,12 @@ msgid "This user has requested that their content only be shown to signed-in use
 msgstr "Этот пользователь настроил, чтобы его контент был виден только для пользователей, вошедших в систему."
 
 #. placeholder {0}: list.name
-#: src/components/moderation/ModerationDetailsDialog.tsx:63
+#: src/components/moderation/ModerationDetailsDialog.tsx:79
 msgid "This user is included in the <0>{0}</0> list which you have blocked."
 msgstr "Этот пользователь есть в списке <0>{0}</0>, который вы заблокировали."
 
 #. placeholder {0}: list.name
-#: src/components/moderation/ModerationDetailsDialog.tsx:95
+#: src/components/moderation/ModerationDetailsDialog.tsx:111
 msgid "This user is included in the <0>{0}</0> list which you have muted."
 msgstr "Этот пользователь есть в списке <0>{0}</0>, который вы добавили к игнорированию."
 
@@ -13175,9 +13182,9 @@ msgstr ""
 msgid "Too many contacts - you've exceeded the number of contacts you can import to find your friends"
 msgstr ""
 
-#: src/screens/Hashtag.tsx:88
-#: src/screens/Search/SearchResults.tsx:73
-#: src/screens/Topic.tsx:59
+#: src/screens/Hashtag.tsx:86
+#: src/screens/Search/SearchResults.tsx:70
+#: src/screens/Topic.tsx:58
 msgid "Top"
 msgstr "Лучшее"
 
@@ -13248,11 +13255,11 @@ msgstr ""
 msgid "Trust emerges from relationships, communities, and shared context, so we’re also enabling <0>trusted verifiers</0>: organizations that can directly issue verification."
 msgstr "Доверие рождается в отношениях, сообществах и общем контексте, поэтому мы также вводим <0>доверенных верификаторов</0> — организации, которые могут непосредственно вручать верификацию."
 
-#: src/screens/Search/SearchResults.tsx:247
+#: src/screens/Search/SearchResults.tsx:229
 msgid "Try a different search term or remove some filters."
 msgstr ""
 
-#: src/screens/Search/SearchResults.tsx:249
+#: src/screens/Search/SearchResults.tsx:231
 msgid "Try a different search term."
 msgstr ""
 
@@ -13358,7 +13365,7 @@ msgstr "Недоступно"
 msgid "Unavailable feed information"
 msgstr "Информация о ленте недоступна"
 
-#: src/components/dms/MessageItem.tsx:727
+#: src/components/dms/MessageItem.tsx:746
 #: src/components/dms/MessagesListBlockedFooter.tsx:97
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
 #: src/components/moderation/BlockDialog.tsx:186
@@ -13693,13 +13700,13 @@ msgstr "Загрузить из библиотеки"
 msgid "Uploading GIF..."
 msgstr ""
 
-#: src/lib/api/index.ts:331
-#: src/lib/api/index.ts:358
+#: src/lib/api/index.ts:330
+#: src/lib/api/index.ts:357
 msgid "Uploading images..."
 msgstr "Загрузка изображений..."
 
-#: src/lib/api/index.ts:430
-#: src/lib/api/index.ts:454
+#: src/lib/api/index.ts:429
+#: src/lib/api/index.ts:453
 msgid "Uploading link thumbnail..."
 msgstr "Загрузка миниатюры ссылки..."
 
@@ -13760,7 +13767,7 @@ msgctxt "toast"
 msgid "User blocked"
 msgstr "Пользователь заблокирован"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:75
+#: src/components/moderation/ModerationDetailsDialog.tsx:91
 #: src/lib/moderation/useModerationCauseDescription.ts:64
 msgid "User Blocked"
 msgstr "Пользователь заблокирован"
@@ -13774,7 +13781,7 @@ msgstr "Пользователь заблокирован \"{0}\""
 msgid "User blocked by list"
 msgstr "Пользователь заблокирован списком"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:61
+#: src/components/moderation/ModerationDetailsDialog.tsx:77
 msgid "User Blocked by List"
 msgstr "Пользователь заблокирован списком"
 
@@ -13782,7 +13789,7 @@ msgstr "Пользователь заблокирован списком"
 msgid "User Blocking You"
 msgstr "Пользователь заблокировал вас"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:81
+#: src/components/moderation/ModerationDetailsDialog.tsx:97
 msgid "User Blocks You"
 msgstr "Пользователь заблокировал вас"
 
@@ -14026,7 +14033,7 @@ msgid "View {0}"
 msgstr ""
 
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/Header/Shell.tsx:274
+#: src/screens/Profile/Header/Shell.tsx:273
 msgid "View {0}'s avatar"
 msgstr "Просмотреть аватар {0}"
 
@@ -14103,7 +14110,7 @@ msgstr ""
 msgid "View incoming requests to join this group chat"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMe.tsx:62
+#: src/components/moderation/LabelsOnMe.tsx:56
 msgid "View information about these labels"
 msgstr "Просмотреть информацию о метках"
 
@@ -14273,11 +14280,11 @@ msgstr ""
 msgid "We couldn't find an account with that username. Please check that you've typed it correctly, or <0>set your hosting provider manually</0>."
 msgstr ""
 
-#: src/screens/Hashtag.tsx:259
+#: src/screens/Hashtag.tsx:260
 msgid "We couldn't find any results for that tag."
 msgstr ""
 
-#: src/screens/Topic.tsx:167
+#: src/screens/Topic.tsx:166
 msgid "We couldn't find any results for that topic."
 msgstr "Мы не смогли найти никаких результатов по этой теме."
 
@@ -14433,8 +14440,8 @@ msgstr "Нам очень жаль, но нам не удалось найти �
 msgid "We're sorry, but we weren't able to load your muted words at this time. Please try again."
 msgstr "Нам очень жаль, мы не смогли сейчас загрузить ваши игнорируемые слова. Пожалуйста, попробуйте ещё раз."
 
-#: src/screens/Search/SearchResults.tsx:456
-#: src/screens/Search/SearchResults.tsx:593
+#: src/screens/Search/SearchResults.tsx:405
+#: src/screens/Search/SearchResults.tsx:542
 msgid "We’re sorry, but your search could not be completed. Please try again in a few minutes."
 msgstr ""
 
@@ -14669,7 +14676,7 @@ msgid "You are accessing Bluesky from a region that legally requires us to verif
 msgstr ""
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
-#: src/components/dms/MessageItem.tsx:700
+#: src/components/dms/MessageItem.tsx:719
 msgid "You are blocking {0}"
 msgstr ""
 
@@ -14854,7 +14861,7 @@ msgstr ""
 msgid "You have been previously removed from this group and can’t join it using this link."
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:77
+#: src/components/moderation/ModerationDetailsDialog.tsx:93
 #: src/lib/moderation/useModerationCauseDescription.ts:58
 #: src/lib/moderation/useModerationCauseDescription.ts:66
 msgid "You have blocked this user. You cannot view their content."
@@ -14878,7 +14885,7 @@ msgstr "Вы ввели неправильный код. Он должен вы�
 msgid "You have hidden this post"
 msgstr "Вы скрыли этот пост"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:115
+#: src/components/moderation/ModerationDetailsDialog.tsx:131
 msgid "You have hidden this post."
 msgstr "Вы скрыли этот пост."
 
@@ -14886,7 +14893,7 @@ msgstr "Вы скрыли этот пост."
 msgid "You have marked this account as automated. You can remove it at any time from your account settings."
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:108
+#: src/components/moderation/ModerationDetailsDialog.tsx:124
 #: src/lib/moderation/useModerationCauseDescription.ts:100
 msgid "You have muted this account."
 msgstr "Вы включили игнорирование этой учётной записи."
@@ -14948,7 +14955,7 @@ msgstr ""
 msgid "You haven't muted any words or tags yet"
 msgstr "У вас ещё нет игнорируемых слов или тегов"
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:122
+#: src/components/moderation/ModerationDetailsDialog.tsx:138
 #: src/lib/moderation/useModerationCauseDescription.ts:128
 msgid "You hid this reply."
 msgstr "Вы скрыли этот ответ."
@@ -14966,11 +14973,12 @@ msgstr ""
 msgid "You joined Bluesky using a starter pack {timeAgoString} ago"
 msgstr ""
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:84
+#: src/components/moderation/LabelsOnMeDialog.tsx:83
 msgid "You may appeal non-self labels if you feel they were placed in error."
 msgstr "Вы можете обжаловать несамостоятельные метки, если считаете, что они были размещены по ошибке."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:89
+#: src/components/moderation/LabelsOnMeDialog.tsx:88
+#: src/components/moderation/ModerationDetailsDialog.tsx:210
 msgid "You may appeal these labels if you feel they were placed in error."
 msgstr "Вы можете обжаловать метки, если считаете, что они были размещены ошибочно."
 
@@ -15021,7 +15029,7 @@ msgid "You probably want to restart the app now."
 msgstr ""
 
 #. placeholder {0}: reaction.value
-#: src/components/dms/MessageItem.tsx:341
+#: src/components/dms/MessageItem.tsx:360
 msgid "You reacted {0}"
 msgstr "Вы отреагировали {0}"
 
@@ -15035,15 +15043,15 @@ msgstr ""
 msgid "You recently changed your birthdate"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:786
+#: src/components/dms/MessageItem.tsx:805
 msgid "You replied"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:785
+#: src/components/dms/MessageItem.tsx:804
 msgid "You replied to {originalName}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:783
+#: src/components/dms/MessageItem.tsx:802
 msgid "You replied to yourself"
 msgstr ""
 
@@ -15134,11 +15142,11 @@ msgstr "Вы в очереди"
 msgid "You're signed in with an App Password. Please sign in with your main password to continue deactivating your account."
 msgstr "Вы вошли в систему с паролем приложения. Чтобы продолжить деактивацию учетной записи, введите свой основной пароль."
 
-#: src/components/moderation/LabelsOnMeDialog.tsx:262
+#: src/components/moderation/AppealForm.tsx:73
 msgid "You've already appealed this label and it's being reviewed by our moderation team."
 msgstr ""
 
-#: src/components/moderation/ModerationDetailsDialog.tsx:112
+#: src/components/moderation/ModerationDetailsDialog.tsx:128
 #: src/lib/moderation/useModerationCauseDescription.ts:109
 msgid "You've chosen to hide a word or tag within this post."
 msgstr "Вы выбрали скрывать слово или тег в этом посте."
