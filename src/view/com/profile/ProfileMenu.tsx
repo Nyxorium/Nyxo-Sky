@@ -116,7 +116,7 @@ let ProfileMenu = ({
   const addToStarterPacksDialogControl = useDialogControl()
   const addToListsDialogControl = useDialogControl()
   const control = useLabelsOnMeDialogControl()
-  const useAltLabelDisplay = useAltLabelDisplayProfile()
+  const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const enableShareViaDID = useEnableShareViaDID()
 
   const profileHref = useMemo(
@@ -536,7 +536,9 @@ let ProfileMenu = ({
               </Menu.Group>
             </>
           ) : null}
-          {isSelf && useAltLabelDisplay && labels.length > 0 ? (
+          {isSelf &&
+          altLabelDisplayProfile !== 'original' &&
+          labels.length > 0 ? (
             <>
               <Menu.Divider />
               <Menu.Item

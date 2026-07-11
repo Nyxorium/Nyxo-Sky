@@ -54,6 +54,7 @@ import {
   useSetSplitModerationLabelGrouping,
   useSplitModerationLabelGrouping,
 } from '#/state/preferences/split-moderation-label-grouping'
+import {AppearanceToggleButtonGroup} from '#/screens/Settings/AppearanceSettings'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
 import {Admonition} from '#/components/Admonition'
@@ -134,19 +135,17 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <SettingsList.Divider />
 
-          <Toggle.Item
-            name="alt_label_display_profile"
-            label={l`Alternate Label Display for Profiles`}
+          <AppearanceToggleButtonGroup
+            title={l`Alternate Label Display for Profiles`}
+            icon={PhoneIcon}
+            items={[
+              {label: l`Original`, name: 'original'},
+              {label: l`Alternative`, name: 'alternative'},
+              {label: l`Off`, name: 'off'},
+            ]}
             value={altLabelDisplayProfile}
-            onChange={value => setAltLabelDisplayProfile(value)}>
-            <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PhoneIcon} />
-              <SettingsList.ItemText>
-                <Trans>Alternate Label Display for Profiles</Trans>
-              </SettingsList.ItemText>
-              <Toggle.Platform />
-            </SettingsList.Item>
-          </Toggle.Item>
+            onChange={setAltLabelDisplayProfile}
+          />
 
           <Toggle.Item
             name="enable_share_via_did"

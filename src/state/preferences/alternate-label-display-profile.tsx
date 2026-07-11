@@ -24,9 +24,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   const [state, setState] = useState(persisted.get('altLabelDisplayProfile'))
 
   const setStateWrapped = useCallback(
-    (hasAltLabelDisplayProfile: persisted.Schema['altLabelDisplayProfile']) => {
-      setState(hasAltLabelDisplayProfile)
-      void persisted.write('altLabelDisplayProfile', hasAltLabelDisplayProfile)
+    (altLabelDisplayProfile: persisted.Schema['altLabelDisplayProfile']) => {
+      setState(altLabelDisplayProfile)
+      void persisted.write('altLabelDisplayProfile', altLabelDisplayProfile)
     },
     [setState],
   )
@@ -34,8 +34,8 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   useEffect(() => {
     return persisted.onUpdate(
       'altLabelDisplayProfile',
-      nextUseAltLabelDisplayProfile => {
-        setState(nextUseAltLabelDisplayProfile)
+      nextAltLabelDisplayProfile => {
+        setState(nextAltLabelDisplayProfile)
       },
     )
   }, [setStateWrapped])
