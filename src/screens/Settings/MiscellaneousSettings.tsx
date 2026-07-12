@@ -136,7 +136,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <SettingsList.Divider />
 
           <AppearanceToggleButtonGroup
-            title={l`Alternate Label Display for Profiles`}
+            title={l`Profile Label Display Style (Self)`}
             icon={PhoneIcon}
             items={[
               {label: l`Original`, name: 'original'},
