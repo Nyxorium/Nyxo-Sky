@@ -60,7 +60,7 @@ let ProfileHeaderShell = ({
   const {top: topInset} = useSafeAreaInsets()
   const playHaptic = useHaptics()
   const liveStatusControl = useDialogControl()
-  const useAltLabelDisplay = useAltLabelDisplayProfile()
+  const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const enableSquareAvatars = useEnableSquareAvatars()
 
   const aviRef = useAnimatedRef()
@@ -231,28 +231,31 @@ let ProfileHeaderShell = ({
       {children}
 
       {!isPlaceholderProfile &&
-        (isMe && useAltLabelDisplay ? (
-          <LabelsOnMeRevised
-            type="account"
-            labels={profile.labels}
-            moderation={moderation}
-            style={[
-              a.px_lg,
-              a.pt_xs,
-              a.pb_sm,
-              IS_IOS ? a.pointer_events_auto : {pointerEvents: 'box-none'},
-            ]} // Check LabelsOnMe.tsx for more info
-          />
-        ) : isMe && !useAltLabelDisplay ? (
-          <LabelsOnMe
-            labels={profile.labels}
-            style={[
-              a.px_lg,
-              a.pt_xs,
-              a.pb_sm,
-              IS_IOS ? a.pointer_events_auto : {pointerEvents: 'box-none'},
-            ]} // Check LabelsOnMe.tsx for more info
-          />
+        (isMe ? (
+          altLabelDisplayProfile === 'off' ? null : altLabelDisplayProfile ===
+            'alternative' ? (
+            <LabelsOnMeRevised
+              type="account"
+              labels={profile.labels}
+              moderation={moderation}
+              style={[
+                a.px_lg,
+                a.pt_xs,
+                a.pb_sm,
+                IS_IOS ? a.pointer_events_auto : {pointerEvents: 'box-none'},
+              ]} // Check LabelsOnMe.tsx for more info
+            />
+          ) : (
+            <LabelsOnMe
+              labels={profile.labels}
+              style={[
+                a.px_lg,
+                a.pt_xs,
+                a.pb_sm,
+                IS_IOS ? a.pointer_events_auto : {pointerEvents: 'box-none'},
+              ]} // Check LabelsOnMe.tsx for more info
+            />
+          )
         ) : (
           <ProfileHeaderAlerts
             moderation={moderation}
