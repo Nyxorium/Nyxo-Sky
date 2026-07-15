@@ -42,6 +42,7 @@ import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
+import {useActorStatus} from '#/features/liveNow'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -116,6 +117,8 @@ let ProfileHeaderLabeler = ({
     }
   }, [ax, labeler, playHaptic, likeUri, unlikeMod, likeMod, _])
 
+  const {isActive: live} = useActorStatus(profile)
+
   const disableProfileDescriptions = useDisableProfileDescriptions()
 
   return (
@@ -125,23 +128,32 @@ let ProfileHeaderLabeler = ({
       hideBackButton={hideBackButton}
       isPlaceholderProfile={isPlaceholderProfile}>
       <View
-        style={[a.px_lg, a.pt_md, a.pb_sm]}
+        style={[a.px_lg, a.pt_md, a.pb_sm, a.overflow_hidden]}
         pointerEvents={IS_IOS ? 'auto' : 'box-none'}>
         <View
-          style={[a.flex_row, a.justify_end, a.align_center, a.gap_xs, a.pb_lg]}
+          style={[
+            {paddingLeft: 90},
+            a.flex_row,
+            a.align_center,
+            a.justify_end,
+            a.gap_xs,
+            a.pb_sm,
+            a.flex_wrap,
+          ]}
           pointerEvents={IS_IOS ? 'auto' : 'box-none'}>
           <HeaderLabelerButtons
             profile={profile}
             moderationOpts={moderationOpts}
           />
         </View>
-        <View style={[a.flex_col, a.gap_2xs, a.pt_2xs, a.pb_md]}>
+        <View
+          style={[a.flex_col, a.gap_xs, a.pb_sm, live ? a.pt_sm : a.pt_2xs]}>
           <ProfileHeaderDisplayName profile={profile} moderation={moderation} />
           {IS_NATIVE && <ProfileHeaderPronouns profile={profile} />}
           <ProfileHeaderHandle profile={profile} />
         </View>
         {!isPlaceholderProfile && (
-          <>
+          <View style={a.gap_md}>
             {isSelf && <ProfileHeaderMetrics profile={profile} />}
             {descriptionRT &&
             !disableProfileDescriptions &&
@@ -158,16 +170,12 @@ let ProfileHeaderLabeler = ({
               </View>
             ) : undefined}
             {(profile.website || profile.createdAt) && (
-              <View style={[a.pt_sm]}>
-                <ProfileHeaderMetaRow profile={profile} />
-              </View>
+              <ProfileHeaderMetaRow profile={profile} />
             )}
             {profile.associated?.germ && (
-              <View style={[a.pt_md]}>
-                <GermButton germ={profile.associated.germ} profile={profile} />
-              </View>
+              <GermButton germ={profile.associated.germ} profile={profile} />
             )}
-            <View style={[a.flex_row, a.gap_xs, a.align_center, a.pt_lg]}>
+            <View style={[a.flex_row, a.gap_xs, a.align_center]}>
               <Button
                 testID="toggleLikeBtn"
                 size="small"
@@ -225,7 +233,7 @@ let ProfileHeaderLabeler = ({
                 </Link>
               )}
             </View>
-          </>
+          </View>
         )}
       </View>
     </ProfileHeaderShell>
