@@ -210,7 +210,7 @@ msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, one {帖文} other {帖文}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:505
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:503
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -271,6 +271,29 @@ msgstr "{0} 已受邀加入傾偈"
 msgid "{0} and {1} added to chat"
 msgstr "{0} 同 {1} 已受邀加入傾偈"
 
+#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post and are its only likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:127
+#: src/screens/PostThread/components/LikesStat.tsx:183
+msgid "{0} and {1} like this"
+msgstr ""
+
+#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post, and the count is the remaining number of likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {1}: formatPostStatCount(others)
+#. placeholder {2}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:188
+msgid "{0} and {others, plural, one {{1} other} other {{2} others}} like this"
+msgstr ""
+
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:129
+msgid "{0} and {othersLabel} like this"
+msgstr ""
+
 #. placeholder {0}: profile.followsCount || 0
 #: src/screens/Profile/Header/Metrics.tsx:73
 msgid "{0} following"
@@ -320,6 +343,14 @@ msgstr "{0} 離開咗"
 #: src/components/dms/getSystemMessageInfo.ts:97
 msgid "{0} left the group"
 msgstr "{0} 離開咗羣組"
+
+#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post and is its only like
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:130
+#: src/screens/PostThread/components/LikesStat.tsx:198
+msgid "{0} likes this"
+msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -381,6 +412,21 @@ msgstr "{0}、"
 #: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:49
 msgid "{0}, {1} and {memberCount, plural, one {# other} other {# others}} added to chat"
 msgstr "{0}、{1} 同{memberCount, plural, other {其他 # 人}}已受邀加入傾偈"
+
+#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post, and the count is the remaining number of likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {2}: formatPostStatCount(others)
+#. placeholder {3}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:173
+msgid "{0}, {1}, and {others, plural, one {{2} other} other {{3} others}} like this"
+msgstr ""
+
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:126
+msgid "{0}, {1}, and {othersLabel} like this"
+msgstr ""
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -468,7 +514,7 @@ msgstr "{0} 秒鐘前"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:494
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:492
 msgid "{1}"
 msgstr ""
 
@@ -776,6 +822,12 @@ msgstr "{notificationCount, plural, one {# 條未讀} other {# 條未讀}}"
 msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, other {搵到 # 個聯絡人}}"
 
+#. placeholder {0}: formatPostStatCount(others)
+#. placeholder {1}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:119
+msgid "{others, plural, one {{0} other} other {{1} others}}"
+msgstr ""
+
 #: src/components/NewskieDialog.tsx:115
 msgid "{profileName} joined Bluesky {timeAgoString} ago"
 msgstr "「{profileName}」喺 {timeAgoString}前加入咗 Bluesky"
@@ -870,26 +922,25 @@ msgstr "<0>{0}</0> {1, plural, one {個擁躉} other {個擁躉}}"
 msgid "<0>{0}</0> {1, plural, one {following} other {following}}"
 msgstr "<0>{0}</0> {1, plural, one {個跟緊} other {個跟緊}}"
 
-#. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
-#. placeholder {0}: formatPostStatCount(post.likeCount)
-#. placeholder {1}: post.likeCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:530
-msgid "<0>{0}</0> {1, plural, one {like} other {likes}}"
-msgstr "<0>{0}</0> {1, plural, other {人讚佢}}"
-
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:473
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:471
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, other {次轉發}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:550
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:527
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, other {次收藏}}"
+
+#. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
+#. placeholder {0}: formatPostStatCount(likeCount)
+#: src/screens/PostThread/components/LikesStat.tsx:87
+msgid "<0>{0}</0> {likeCount, plural, one {like} other {likes}}"
+msgstr ""
 
 #. placeholder {0}: getName(items[0])
 #. placeholder {1}: getName(items[1] /* [0] is self, skip it */)
@@ -1639,7 +1690,7 @@ msgstr "幫手砌緊你嘅新手包嗰陣發生錯誤。使唔使試多次？"
 msgid "An error occurred while hiding suggestion. {0}"
 msgstr "隱藏建議嗰陣發生錯誤。{0}"
 
-#: src/components/Post/Embed/VideoEmbed/index.tsx:149
+#: src/components/Post/Embed/VideoEmbed/index.tsx:188
 msgid "An error occurred while loading the video. Please try again later."
 msgstr "撈緊影片嗰陣發生錯誤。唔該遲啲試多次。"
 
@@ -1773,7 +1824,7 @@ msgstr ""
 msgid "Anyone"
 msgstr "任何人"
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:137
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:135
 msgid "Anyone can interact"
 msgstr "任何人都可以參與互動"
 
@@ -1921,12 +1972,12 @@ msgid "Apply Pull Request"
 msgstr "套用 Pull Request"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:725
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:702
 msgid "Archived from {0}"
 msgstr "封存於 {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:696
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:734
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:673
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:711
 msgid "Archived post"
 msgstr "封存咗嘅帖文"
 
@@ -2155,7 +2206,7 @@ msgstr "喺建立新手包之前，你必須驗證你嘅電郵先。"
 msgid "Before you can accept this chat request, you must first verify your email."
 msgstr "喺你接受呢度傾偈邀請之前，你必須驗證你嘅電郵先。"
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:59
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:56
 msgid "Before you can get notifications for {name}'s posts, you must first verify your email."
 msgstr "喺你接收 {name} 帖文通知之前，你必須驗證你嘅電郵。"
 
@@ -2323,7 +2374,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:750
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:727
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "Bluesky 無法確認貼文發布日期嘅真實性。"
 
@@ -4309,7 +4360,7 @@ msgstr "撳兩吓或撳住訊息去加入反應"
 msgid "Double tap to close the dialog"
 msgstr "撳兩吓閂咗呢個對話框"
 
-#: src/screens/VideoFeed/index.tsx:1107
+#: src/screens/VideoFeed/index.tsx:1161
 msgid "Double tap to like"
 msgstr "撳兩吓讚佢"
 
@@ -4751,7 +4802,7 @@ msgstr "輸入你嘅密碼"
 msgid "Enter your username and password"
 msgstr "輸入你嘅用戶名稱同密碼"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:156
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:163
 msgid "Enters full screen"
 msgstr "進入全螢幕"
 
@@ -4864,7 +4915,7 @@ msgstr "展開或摺疊你覆緊嘅完整帖文"
 msgid "Expand post text"
 msgstr "展開帖文文字"
 
-#: src/screens/VideoFeed/index.tsx:983
+#: src/screens/VideoFeed/index.tsx:1037
 msgid "Expands or collapses post text"
 msgstr "展開或摺疊帖文文字"
 
@@ -5555,7 +5606,7 @@ msgstr "聚焦搵嘢欄位"
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:419
-#: src/screens/VideoFeed/index.tsx:866
+#: src/screens/VideoFeed/index.tsx:920
 #: src/view/com/notifications/NotificationFeedItem.tsx:863
 #: src/view/com/notifications/NotificationFeedItem.tsx:870
 msgid "Follow"
@@ -5571,7 +5622,7 @@ msgstr "跟 {0}"
 msgid "Follow {displayName}"
 msgstr "跟隨 {displayName}"
 
-#: src/screens/VideoFeed/index.tsx:845
+#: src/screens/VideoFeed/index.tsx:899
 msgid "Follow {handle}"
 msgstr "跟 {handle}"
 
@@ -5670,7 +5721,7 @@ msgstr "你識嘅擁躉"
 #: src/components/ProfileHoverCard/index.web.tsx:504
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:415
-#: src/screens/VideoFeed/index.tsx:864
+#: src/screens/VideoFeed/index.tsx:918
 #: src/view/com/notifications/NotificationFeedItem.tsx:841
 #: src/view/com/notifications/NotificationFeedItem.tsx:858
 msgid "Following"
@@ -5695,7 +5746,7 @@ msgstr "跟緊 {0}"
 msgid "Following {displayName}"
 msgstr "跟緊 {displayName}"
 
-#: src/screens/VideoFeed/index.tsx:844
+#: src/screens/VideoFeed/index.tsx:898
 msgid "Following {handle}"
 msgstr "跟緊 {handle}"
 
@@ -5888,7 +5939,8 @@ msgstr "喺有人向你傳送訊息嗰陣收到通知。"
 msgid "Get notifications when there's activity on posts you're subscribed to."
 msgstr "喺你訂閱嘅帖文有動態更新嗰陣收到通知。"
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:95
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:90
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:91
 msgid "Get notified about new posts"
 msgstr "喺佢出新帖嗰陣收到通知"
 
@@ -5900,7 +5952,7 @@ msgstr "喺 {name} 出新帖嗰陣收到通知"
 msgid "Get notified of this account’s activity"
 msgstr "喺呢個帳號有新動態嗰陣收到通知"
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:88
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:85
 msgid "Get notified when {name} posts"
 msgstr "喺 {name} 出新帖嗰陣收到通知"
 
@@ -5943,8 +5995,8 @@ msgstr "歌頌暴力"
 #: src/screens/ProfileList/components/ErrorScreen.tsx:35
 #: src/screens/ProfileList/components/ErrorScreen.tsx:41
 #: src/screens/VideoFeed/components/Header.tsx:163
-#: src/screens/VideoFeed/index.tsx:1168
-#: src/screens/VideoFeed/index.tsx:1172
+#: src/screens/VideoFeed/index.tsx:1222
+#: src/screens/VideoFeed/index.tsx:1226
 #: src/view/com/auth/LoggedOut.tsx:127
 #: src/view/com/profile/ProfileFollowers.tsx:211
 #: src/view/com/profile/ProfileFollowers.tsx:212
@@ -5995,6 +6047,11 @@ msgstr "直播（已停用）"
 #: src/features/liveNow/components/GoLiveDialog.tsx:202
 msgid "Go live for"
 msgstr "直播持續時長"
+
+#. placeholder {0}: name.displayName
+#: src/screens/PostThread/components/LikesStat.tsx:144
+msgid "Go to {0}'s profile"
+msgstr ""
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:252
 msgid "Go to {firstAuthorName}'s profile"
@@ -6248,7 +6305,7 @@ msgstr "哈佬！"
 msgid "Hidden"
 msgstr "隱藏"
 
-#: src/screens/VideoFeed/index.tsx:643
+#: src/screens/VideoFeed/index.tsx:697
 msgid "Hidden by your moderation settings."
 msgstr "俾你嘅內容審覈設定所隱藏。"
 
@@ -6266,7 +6323,7 @@ msgstr "隱藏清單"
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
 #: src/lib/moderation/useLabelBehaviorDescription.ts:33
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:131
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:128
 msgid "Hide"
 msgstr "隱藏"
 
@@ -6336,7 +6393,7 @@ msgid "Hide trending topics"
 msgstr "隱藏時興話題"
 
 #: src/components/interstitials/Trending.tsx:131
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:129
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:126
 msgid "Hide trending topics?"
 msgstr "係咪要隱藏時興話題？"
 
@@ -6721,7 +6778,7 @@ msgstr "輸入新密碼"
 msgid "Input the code which has been emailed to you"
 msgstr "輸入電郵到你嘅驗證碼"
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:138
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:136
 msgid "Interaction limited"
 msgstr "已限制互動"
 
@@ -7268,7 +7325,7 @@ msgstr "讚好"
 msgid "Likes of your reposts"
 msgstr "讚好你轉發嘅帖文"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:526
+#: src/screens/PostThread/components/LikesStat.tsx:82
 msgid "Likes on this post"
 msgstr "呢條帖文嘅讚數"
 
@@ -7843,7 +7900,7 @@ msgstr "音樂"
 msgid "Mute"
 msgstr "靜音"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:177
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:184
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:97
 msgctxt "video"
 msgid "Mute"
@@ -8573,7 +8630,7 @@ msgstr "好嘅"
 #: src/components/dms/InitiateChatFlow.tsx:733
 #: src/components/dms/MessageItem.tsx:742
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:756
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:733
 msgid "Okay"
 msgstr "好嘅"
 
@@ -8866,7 +8923,7 @@ msgstr ""
 msgid "Opens a dialog to change the hosting provider you sign in to"
 msgstr ""
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:157
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:154
 msgid "Opens a dialog to choose who can interact with this post"
 msgstr "打開對話框畀你揀邊啲人可以同呢條帖文互動"
 
@@ -9122,7 +9179,7 @@ msgstr "已更新密碼"
 msgid "Password updated!"
 msgstr "已更新密碼！"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:161
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:168
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:395
 msgid "Pause"
 msgstr "暫停"
@@ -9268,7 +9325,7 @@ msgstr "固定咗嘅動態源"
 msgid "Pinned to your feeds"
 msgstr "固定喺你嘅動態源"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:161
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:168
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:396
 msgid "Play"
 msgstr "播放"
@@ -9282,7 +9339,7 @@ msgstr "播放 {0}"
 msgid "Play GIF"
 msgstr "播放 GIF"
 
-#: src/components/Post/Embed/VideoEmbed/index.tsx:130
+#: src/components/Post/Embed/VideoEmbed/index.tsx:169
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:347
 msgid "Play video"
 msgstr "播放影片"
@@ -9295,7 +9352,7 @@ msgstr "播放影片"
 msgid "Plays or pauses the GIF"
 msgstr "播放或暫停 GIF"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:162
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:169
 msgid "Plays or pauses the video"
 msgstr "播放或暫停影片"
 
@@ -9525,10 +9582,10 @@ msgstr "已刪除帖文"
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "帖文發布失敗。請檢查你嘅網絡連線狀態，跟住試多次。"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:136
 #: src/screens/PostThread/components/ThreadItemPost.tsx:116
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:109
-#: src/screens/VideoFeed/index.tsx:547
+#: src/screens/VideoFeed/index.tsx:551
 msgid "Post has been deleted"
 msgstr "帖文經已刪除"
 
@@ -9747,7 +9804,8 @@ msgstr "宣傳或售賣違禁物品或服務"
 msgid "Pronouns"
 msgstr ""
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:168
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:163
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:164
 msgid "Psst! You can edit who can interact with this post."
 msgstr "喂喂！話你知你可以揀邊啲人允許同呢條帖文互動。"
 
@@ -9834,7 +9892,7 @@ msgstr "已拒絕引用帖文"
 msgid "Quotes"
 msgstr "引用"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:490
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:488
 msgid "Quotes of this post"
 msgstr "引用呢條篇帖文"
 
@@ -9887,11 +9945,11 @@ msgstr "閱讀點用進階搵嘢篩選器"
 msgid "Read blog post"
 msgstr "閱讀網誌文章"
 
-#: src/screens/VideoFeed/index.tsx:984
+#: src/screens/VideoFeed/index.tsx:1038
 msgid "Read less"
 msgstr "睇少啲"
 
-#: src/screens/VideoFeed/index.tsx:984
+#: src/screens/VideoFeed/index.tsx:1038
 msgid "Read more"
 msgstr "睇多啲"
 
@@ -10461,7 +10519,7 @@ msgstr "你所轉發"
 msgid "Reposts"
 msgstr "轉發"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:469
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:467
 msgid "Reposts of this post"
 msgstr "轉發呢條帖文"
 
@@ -10648,7 +10706,7 @@ msgstr "返去首頁"
 
 #: src/screens/ProfileList/components/ErrorScreen.tsx:36
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:577
-#: src/screens/VideoFeed/index.tsx:1169
+#: src/screens/VideoFeed/index.tsx:1223
 #: src/view/screens/NotFound.tsx:54
 msgid "Returns to previous page"
 msgstr "返去上一頁"
@@ -11509,8 +11567,8 @@ msgstr "顯示替代文字"
 #: src/features/liveNow/components/LiveStatusDialog.tsx:318
 #: src/features/liveNow/components/LiveStatusDialog.tsx:322
 #: src/screens/List/ListHiddenScreen.tsx:194
-#: src/screens/VideoFeed/index.tsx:646
-#: src/screens/VideoFeed/index.tsx:652
+#: src/screens/VideoFeed/index.tsx:700
+#: src/screens/VideoFeed/index.tsx:706
 msgid "Show anyway"
 msgstr "點都要顯示"
 
@@ -11628,7 +11686,7 @@ msgstr "顯示警告兼且喺動態源度篩選"
 msgid "Show when you’re live"
 msgstr "顯示直播狀態"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:674
 msgid "Shows information about when this post was created"
 msgstr "顯示關於呢條帖文嘅建立時間資訊"
 
@@ -12446,7 +12504,7 @@ msgstr "呢個用戶名稱俾人用咗"
 msgid "That's all, folks!"
 msgstr "就噉先，咁多位！"
 
-#: src/screens/VideoFeed/index.tsx:1141
+#: src/screens/VideoFeed/index.tsx:1195
 msgid "That's everything!"
 msgstr "就係咁多喇！"
 
@@ -12613,7 +12671,7 @@ msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "攞緊通知嗰陣出咗問題，撳呢度試多次。"
 
 #: src/screens/Search/Explore.tsx:1027
-#: src/view/com/posts/PostFeed.tsx:782
+#: src/view/com/posts/PostFeed.tsx:783
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "攞緊帖文嗰陣出咗問題，撳呢度試多次。"
 
@@ -12978,7 +13036,7 @@ msgstr "呢個人封鎖咗你"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:737
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:714
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "呢條帖文話係話喺 <0>{0}</0> 發布嘅，但係最先出現喺 Bluesky 嘅時間係喺 <1>{1}</1>。"
 
@@ -13174,7 +13232,7 @@ msgstr ""
 msgid "Toggle to enable or disable adult content"
 msgstr "切換控制啓用或停用成人內容"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:179
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:186
 msgid "Toggles the sound"
 msgstr "切換聲音"
 
@@ -13238,7 +13296,7 @@ msgstr "你嘅裝置唔支援將原文翻譯成目標語言。"
 msgid "Tree view"
 msgstr "樹狀介面"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:50
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:48
 msgid "Trending"
 msgstr "時興話題"
 
@@ -13247,7 +13305,7 @@ msgstr "時興話題"
 msgid "Trending GIFs"
 msgstr "熱門 GIF"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:57
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:55
 msgid "Trending options"
 msgstr "時興選項"
 
@@ -13453,7 +13511,7 @@ msgstr "唔再跟 {0}"
 msgid "Unfollow account"
 msgstr "唔再跟佢"
 
-#: src/screens/VideoFeed/index.tsx:848
+#: src/screens/VideoFeed/index.tsx:902
 msgid "Unfollows the user"
 msgstr "唔再跟呢位用戶"
 
@@ -13504,7 +13562,7 @@ msgstr "唔再鎖定此羣組傾偈"
 msgid "Unmute"
 msgstr "唔再靜音"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:176
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:183
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:96
 msgctxt "video"
 msgid "Unmute"
@@ -13966,8 +14024,8 @@ msgstr "驗證緊……"
 msgid "Version {0}"
 msgstr "版本 {0}"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:88
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:155
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:95
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:162
 msgid "Video"
 msgstr "影片"
 
@@ -13985,7 +14043,7 @@ msgid "Video from {0}: {text}"
 msgstr "影片嚟自 {0}：{text}"
 
 #. placeholder {0}: sanitizeHandle( post.author.handle, '@', )
-#: src/screens/VideoFeed/index.tsx:1103
+#: src/screens/VideoFeed/index.tsx:1157
 msgid "Video from {0}. Tap to play or pause the video"
 msgstr "影片嚟自{0}。撳一吓去播放或暫停影片"
 
@@ -13994,11 +14052,11 @@ msgstr "影片嚟自{0}。撳一吓去播放或暫停影片"
 msgid "Video Games"
 msgstr "電子遊戲"
 
-#: src/screens/VideoFeed/index.tsx:1102
+#: src/screens/VideoFeed/index.tsx:1156
 msgid "Video is paused"
 msgstr "條片經已暫停"
 
-#: src/screens/VideoFeed/index.tsx:1102
+#: src/screens/VideoFeed/index.tsx:1156
 msgid "Video is playing"
 msgstr "條片播緊"
 
@@ -14015,7 +14073,7 @@ msgid "Video uploaded"
 msgstr "影片上載成功"
 
 #. placeholder {0}: embed.alt
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:88
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:95
 msgid "Video: {0}"
 msgstr "影片：{0}"
 
@@ -14050,7 +14108,7 @@ msgstr "睇吓 {0} 嘅頭像"
 #. placeholder {0}: profile.handle
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:463
 #: src/screens/Search/components/SearchProfileCard.tsx:37
-#: src/screens/VideoFeed/index.tsx:809
+#: src/screens/VideoFeed/index.tsx:863
 #: src/view/com/notifications/NotificationFeedItem.tsx:615
 msgid "View {0}'s profile"
 msgstr "睇吓 {0} 嘅個人檔案"
@@ -14081,8 +14139,8 @@ msgstr "睇吓網誌文章嚟了解更多資訊"
 msgid "View debug entry"
 msgstr "睇吓調試條目"
 
-#: src/screens/VideoFeed/index.tsx:674
-#: src/screens/VideoFeed/index.tsx:692
+#: src/screens/VideoFeed/index.tsx:728
+#: src/screens/VideoFeed/index.tsx:746
 msgid "View details"
 msgstr "睇吓詳細資訊"
 
@@ -14825,7 +14883,7 @@ msgstr "你最多可以揀 {MAX_GALLERY_IMAGES, plural, other {# 張圖片}}。"
 
 #: src/components/interstitials/Trending.tsx:132
 #: src/components/interstitials/TrendingVideos.tsx:138
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:130
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:127
 msgid "You can update this later from your settings."
 msgstr "你可以遲啲喺設定度改返。"
 
@@ -15199,7 +15257,7 @@ msgstr "你經已達到每日上載影片嘅上限（總計影片大細過大）
 msgid "You've reached your daily limit for video uploads (too many videos)"
 msgstr "你經已達到每日上載影片嘅上限（影片數量過多）"
 
-#: src/screens/VideoFeed/index.tsx:1150
+#: src/screens/VideoFeed/index.tsx:1204
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr "你睇晒所有嘢喇。可能係時候要唞陣先？"
 

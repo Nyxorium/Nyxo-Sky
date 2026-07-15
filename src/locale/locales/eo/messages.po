@@ -210,7 +210,7 @@ msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, one {afiŝo} other {afiŝoj}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:505
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:503
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -271,6 +271,29 @@ msgstr "{0} aligita al babilejo"
 msgid "{0} and {1} added to chat"
 msgstr "{0} kaj {1} aligitaj al babilejo"
 
+#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post and are its only likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:127
+#: src/screens/PostThread/components/LikesStat.tsx:183
+msgid "{0} and {1} like this"
+msgstr ""
+
+#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post, and the count is the remaining number of likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {1}: formatPostStatCount(others)
+#. placeholder {2}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:188
+msgid "{0} and {others, plural, one {{1} other} other {{2} others}} like this"
+msgstr ""
+
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:129
+msgid "{0} and {othersLabel} like this"
+msgstr ""
+
 #. placeholder {0}: profile.followsCount || 0
 #: src/screens/Profile/Header/Metrics.tsx:73
 msgid "{0} following"
@@ -320,6 +343,14 @@ msgstr "{0} foriris"
 #: src/components/dms/getSystemMessageInfo.ts:97
 msgid "{0} left the group"
 msgstr "{0} foriris el la grupo"
+
+#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post and is its only like
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:130
+#: src/screens/PostThread/components/LikesStat.tsx:198
+msgid "{0} likes this"
+msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -381,6 +412,21 @@ msgstr "{0}, "
 #: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:49
 msgid "{0}, {1} and {memberCount, plural, one {# other} other {# others}} added to chat"
 msgstr "{0}, {1} kaj {memberCount, plural, one {# alia} other {# aliaj}} aligitaj al babilejo"
+
+#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post, and the count is the remaining number of likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {2}: formatPostStatCount(others)
+#. placeholder {3}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:173
+msgid "{0}, {1}, and {others, plural, one {{2} other} other {{3} others}} like this"
+msgstr ""
+
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:126
+msgid "{0}, {1}, and {othersLabel} like this"
+msgstr ""
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -468,7 +514,7 @@ msgstr "{0}s"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:494
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:492
 msgid "{1}"
 msgstr ""
 
@@ -776,6 +822,12 @@ msgstr "{notificationCount, plural, one {# nelegita elemento} other {# nelegitaj
 msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, one {# kontakto trovita} other {# kontaktoj trovitaj}}"
 
+#. placeholder {0}: formatPostStatCount(others)
+#. placeholder {1}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:119
+msgid "{others, plural, one {{0} other} other {{1} others}}"
+msgstr ""
+
 #: src/components/NewskieDialog.tsx:115
 msgid "{profileName} joined Bluesky {timeAgoString} ago"
 msgstr "{profileName} aliĝis al Bluesky antaŭ {timeAgoString}"
@@ -870,26 +922,25 @@ msgstr "<0>{0}</0> {1, plural, one {sekvanto} other {sekvantoj}}"
 msgid "<0>{0}</0> {1, plural, one {following} other {following}}"
 msgstr "<0>{0}</0> {1, plural, one {sekvata} other {sekvataj}}"
 
-#. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
-#. placeholder {0}: formatPostStatCount(post.likeCount)
-#. placeholder {1}: post.likeCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:530
-msgid "<0>{0}</0> {1, plural, one {like} other {likes}}"
-msgstr "<0>{0}</0> {1, plural, one {ŝato} other {ŝatoj}}"
-
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:473
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:471
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, one {reafiŝo} other {reafiŝoj}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:550
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:527
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, one {konservo} other {konservoj}}"
+
+#. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
+#. placeholder {0}: formatPostStatCount(likeCount)
+#: src/screens/PostThread/components/LikesStat.tsx:87
+msgid "<0>{0}</0> {likeCount, plural, one {like} other {likes}}"
+msgstr ""
 
 #. placeholder {0}: getName(items[0])
 #. placeholder {1}: getName(items[1] /* [0] is self, skip it */)
@@ -1639,7 +1690,7 @@ msgstr "Eraro okazis dum generado de via startpako. Ĉu vi volas reprovi?"
 msgid "An error occurred while hiding suggestion. {0}"
 msgstr "Eraro okazis dum kaŝado de propono. {0}"
 
-#: src/components/Post/Embed/VideoEmbed/index.tsx:149
+#: src/components/Post/Embed/VideoEmbed/index.tsx:188
 msgid "An error occurred while loading the video. Please try again later."
 msgstr "Eraro okazis dum ŝargado de la videaĵo. Bonvolu reprovi poste."
 
@@ -1773,7 +1824,7 @@ msgstr ""
 msgid "Anyone"
 msgstr "Ĉiuj"
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:137
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:135
 msgid "Anyone can interact"
 msgstr "Ĉiu povas interagi"
 
@@ -1921,12 +1972,12 @@ msgid "Apply Pull Request"
 msgstr "Apliki tirpeton"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:725
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:702
 msgid "Archived from {0}"
 msgstr "Arkivigita de {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:696
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:734
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:673
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:711
 msgid "Archived post"
 msgstr "Arkivigita afiŝo"
 
@@ -2155,7 +2206,7 @@ msgstr "Antaŭ ol krei startpakon, vi devas unue konfirmi vian retpoŝtadreson."
 msgid "Before you can accept this chat request, you must first verify your email."
 msgstr "Antaŭ ol vi povos mesaĝi, vi devas unue konfirmi vian retpoŝtadreson."
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:59
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:56
 msgid "Before you can get notifications for {name}'s posts, you must first verify your email."
 msgstr "Antaŭ ol vi povos ricevi sciigojn pri afiŝoj de {name}, unue vi devas konfirmi vian retpoŝtadreson."
 
@@ -2323,7 +2374,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:750
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:727
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "Bluesky ne povas konfirmi la aŭtentecon de la donita dato."
 
@@ -4309,7 +4360,7 @@ msgstr "Duoble tuŝetu aŭ longe premu la mesaĝon por aldoni reagon"
 msgid "Double tap to close the dialog"
 msgstr "Duoble tuŝeti por fermi la dialogujon"
 
-#: src/screens/VideoFeed/index.tsx:1107
+#: src/screens/VideoFeed/index.tsx:1161
 msgid "Double tap to like"
 msgstr "Duoble tuŝeti por ŝati"
 
@@ -4751,7 +4802,7 @@ msgstr "Entajpu vian pasvorton"
 msgid "Enter your username and password"
 msgstr "Entajpu vian uzantnomon kaj pasvorton"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:156
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:163
 msgid "Enters full screen"
 msgstr "Ŝaltas plenekranon"
 
@@ -4864,7 +4915,7 @@ msgstr "Etendi aŭ maletendi la tutan afiŝon, al kiu vi respondas"
 msgid "Expand post text"
 msgstr "Etendi afiŝan tekston"
 
-#: src/screens/VideoFeed/index.tsx:983
+#: src/screens/VideoFeed/index.tsx:1037
 msgid "Expands or collapses post text"
 msgstr "Etendas aŭ maletendas la tekston de la afiŝo"
 
@@ -5555,7 +5606,7 @@ msgstr "Enfokusigi la serĉujon"
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:419
-#: src/screens/VideoFeed/index.tsx:866
+#: src/screens/VideoFeed/index.tsx:920
 #: src/view/com/notifications/NotificationFeedItem.tsx:863
 #: src/view/com/notifications/NotificationFeedItem.tsx:870
 msgid "Follow"
@@ -5571,7 +5622,7 @@ msgstr "Sekvi {0}"
 msgid "Follow {displayName}"
 msgstr "Sekvi {displayName}"
 
-#: src/screens/VideoFeed/index.tsx:845
+#: src/screens/VideoFeed/index.tsx:899
 msgid "Follow {handle}"
 msgstr "Sekvi {handle}"
 
@@ -5670,7 +5721,7 @@ msgstr "Sekvantoj, kiujn vi konas"
 #: src/components/ProfileHoverCard/index.web.tsx:504
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:415
-#: src/screens/VideoFeed/index.tsx:864
+#: src/screens/VideoFeed/index.tsx:918
 #: src/view/com/notifications/NotificationFeedItem.tsx:841
 #: src/view/com/notifications/NotificationFeedItem.tsx:858
 msgid "Following"
@@ -5695,7 +5746,7 @@ msgstr "Sekvas {0}"
 msgid "Following {displayName}"
 msgstr "Sekvas {displayName}"
 
-#: src/screens/VideoFeed/index.tsx:844
+#: src/screens/VideoFeed/index.tsx:898
 msgid "Following {handle}"
 msgstr "Sekvas {handle}"
 
@@ -5888,7 +5939,8 @@ msgstr ""
 msgid "Get notifications when there's activity on posts you're subscribed to."
 msgstr ""
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:95
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:90
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:91
 msgid "Get notified about new posts"
 msgstr "Esti sciigota pri novaj afiŝoj"
 
@@ -5900,7 +5952,7 @@ msgstr "Esti sciigota pri novaj afiŝoj de {name}"
 msgid "Get notified of this account’s activity"
 msgstr "Esti sciigata pri agado de ĉi tiu konto"
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:88
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:85
 msgid "Get notified when {name} posts"
 msgstr "Esti sciigota kiam {name} afiŝos"
 
@@ -5943,8 +5995,8 @@ msgstr "Glorigo de violento"
 #: src/screens/ProfileList/components/ErrorScreen.tsx:35
 #: src/screens/ProfileList/components/ErrorScreen.tsx:41
 #: src/screens/VideoFeed/components/Header.tsx:163
-#: src/screens/VideoFeed/index.tsx:1168
-#: src/screens/VideoFeed/index.tsx:1172
+#: src/screens/VideoFeed/index.tsx:1222
+#: src/screens/VideoFeed/index.tsx:1226
 #: src/view/com/auth/LoggedOut.tsx:127
 #: src/view/com/profile/ProfileFollowers.tsx:211
 #: src/view/com/profile/ProfileFollowers.tsx:212
@@ -5995,6 +6047,11 @@ msgstr "Tujelsendi (malŝaltita)"
 #: src/features/liveNow/components/GoLiveDialog.tsx:202
 msgid "Go live for"
 msgstr "Tujelsendi dum"
+
+#. placeholder {0}: name.displayName
+#: src/screens/PostThread/components/LikesStat.tsx:144
+msgid "Go to {0}'s profile"
+msgstr ""
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:252
 msgid "Go to {firstAuthorName}'s profile"
@@ -6248,7 +6305,7 @@ msgstr "Saluton!"
 msgid "Hidden"
 msgstr "Kaŝita"
 
-#: src/screens/VideoFeed/index.tsx:643
+#: src/screens/VideoFeed/index.tsx:697
 msgid "Hidden by your moderation settings."
 msgstr "Kaŝita laŭ viaj agordoj pri kontrolado."
 
@@ -6266,7 +6323,7 @@ msgstr "Kaŝita listo"
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
 #: src/lib/moderation/useLabelBehaviorDescription.ts:33
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:131
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:128
 msgid "Hide"
 msgstr "Kaŝi"
 
@@ -6336,7 +6393,7 @@ msgid "Hide trending topics"
 msgstr "Kaŝi furorajn temojn"
 
 #: src/components/interstitials/Trending.tsx:131
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:129
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:126
 msgid "Hide trending topics?"
 msgstr "Ĉu kaŝi furorajn temojn?"
 
@@ -6721,7 +6778,7 @@ msgstr "Entajpu novan pasvorton"
 msgid "Input the code which has been emailed to you"
 msgstr "Entajpu la kodon senditan al via retpoŝtadreso"
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:138
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:136
 msgid "Interaction limited"
 msgstr "Interago limigita"
 
@@ -7268,7 +7325,7 @@ msgstr "Ŝatoj"
 msgid "Likes of your reposts"
 msgstr "Ŝatoj de viaj reafiŝoj"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:526
+#: src/screens/PostThread/components/LikesStat.tsx:82
 msgid "Likes on this post"
 msgstr "Ŝatoj de ĉi tiu afiŝo"
 
@@ -7843,7 +7900,7 @@ msgstr "Muziko"
 msgid "Mute"
 msgstr "Silentigi"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:177
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:184
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:97
 msgctxt "video"
 msgid "Mute"
@@ -8573,7 +8630,7 @@ msgstr "Bone"
 #: src/components/dms/InitiateChatFlow.tsx:733
 #: src/components/dms/MessageItem.tsx:742
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:756
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:733
 msgid "Okay"
 msgstr "Bone"
 
@@ -8866,7 +8923,7 @@ msgstr ""
 msgid "Opens a dialog to change the hosting provider you sign in to"
 msgstr ""
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:157
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:154
 msgid "Opens a dialog to choose who can interact with this post"
 msgstr "Malfermi dialogujon por elekti, kiu povas interagi kun ĉi tiu afiŝo"
 
@@ -9122,7 +9179,7 @@ msgstr "Pasvorto ĝisdatigita"
 msgid "Password updated!"
 msgstr "Pasvorto ĝisdatigita!"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:161
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:168
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:395
 msgid "Pause"
 msgstr "Paŭzigi"
@@ -9268,7 +9325,7 @@ msgstr "Alpinglitaj fluoj"
 msgid "Pinned to your feeds"
 msgstr "Alpinglita al viaj fluoj"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:161
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:168
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:396
 msgid "Play"
 msgstr "Ludi"
@@ -9282,7 +9339,7 @@ msgstr "Ludi {0}"
 msgid "Play GIF"
 msgstr "Ludi GIF-on"
 
-#: src/components/Post/Embed/VideoEmbed/index.tsx:130
+#: src/components/Post/Embed/VideoEmbed/index.tsx:169
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:347
 msgid "Play video"
 msgstr "Ludi videaĵon"
@@ -9295,7 +9352,7 @@ msgstr "Ludi videaĵon"
 msgid "Plays or pauses the GIF"
 msgstr "Ludas aŭ paŭzigas la GIF-on"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:162
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:169
 msgid "Plays or pauses the video"
 msgstr "Ludas aŭ paŭzigas la videaĵon"
 
@@ -9525,10 +9582,10 @@ msgstr "Afiŝo forigita"
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "Malsukcesis ŝargi afiŝon. Bonvolu kontroli vian retkonekton kaj reprovi."
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:136
 #: src/screens/PostThread/components/ThreadItemPost.tsx:116
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:109
-#: src/screens/VideoFeed/index.tsx:547
+#: src/screens/VideoFeed/index.tsx:551
 msgid "Post has been deleted"
 msgstr "Afiŝo estis forigita"
 
@@ -9747,7 +9804,8 @@ msgstr ""
 msgid "Pronouns"
 msgstr ""
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:168
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:163
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:164
 msgid "Psst! You can edit who can interact with this post."
 msgstr "Psst! Vi povas redakti, kiu povas interagi kun ĉi tiu afiŝo."
 
@@ -9834,7 +9892,7 @@ msgstr "Citafiŝoj malebligitaj"
 msgid "Quotes"
 msgstr "Citaĵoj"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:490
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:488
 msgid "Quotes of this post"
 msgstr "Citaĵoj de ĉi tiu afiŝo"
 
@@ -9887,11 +9945,11 @@ msgstr ""
 msgid "Read blog post"
 msgstr "Legu blogafiŝon"
 
-#: src/screens/VideoFeed/index.tsx:984
+#: src/screens/VideoFeed/index.tsx:1038
 msgid "Read less"
 msgstr "Legi malpli"
 
-#: src/screens/VideoFeed/index.tsx:984
+#: src/screens/VideoFeed/index.tsx:1038
 msgid "Read more"
 msgstr "Legi pli"
 
@@ -10461,7 +10519,7 @@ msgstr "Reafiŝita de vi"
 msgid "Reposts"
 msgstr "Reafiŝoj"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:469
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:467
 msgid "Reposts of this post"
 msgstr "Reafiŝoj de ĉi tiu afiŝo"
 
@@ -10648,7 +10706,7 @@ msgstr "Revenas al hejmpaĝo"
 
 #: src/screens/ProfileList/components/ErrorScreen.tsx:36
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:577
-#: src/screens/VideoFeed/index.tsx:1169
+#: src/screens/VideoFeed/index.tsx:1223
 #: src/view/screens/NotFound.tsx:54
 msgid "Returns to previous page"
 msgstr "Revenas al antaŭa paĝo"
@@ -11509,8 +11567,8 @@ msgstr "Montri alternativan tekston"
 #: src/features/liveNow/components/LiveStatusDialog.tsx:318
 #: src/features/liveNow/components/LiveStatusDialog.tsx:322
 #: src/screens/List/ListHiddenScreen.tsx:194
-#: src/screens/VideoFeed/index.tsx:646
-#: src/screens/VideoFeed/index.tsx:652
+#: src/screens/VideoFeed/index.tsx:700
+#: src/screens/VideoFeed/index.tsx:706
 msgid "Show anyway"
 msgstr "Montri ĉiuokaze"
 
@@ -11628,7 +11686,7 @@ msgstr "Montri averton kaj elfiltri el fluoj"
 msgid "Show when you’re live"
 msgstr "Montri kiam vi tujelsendas"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:674
 msgid "Shows information about when this post was created"
 msgstr "Montri informojn pri kiam ĉi tiu afiŝo estis kreita"
 
@@ -12446,7 +12504,7 @@ msgstr "Tiu uzantnomo jam estas uzata"
 msgid "That's all, folks!"
 msgstr "Jen ĉio, uloj!"
 
-#: src/screens/VideoFeed/index.tsx:1141
+#: src/screens/VideoFeed/index.tsx:1195
 msgid "That's everything!"
 msgstr "Tio estas ĉio!"
 
@@ -12613,7 +12671,7 @@ msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "Estis problemo ŝargante sciigojn. Tuŝetu ĉi tie por reprovi."
 
 #: src/screens/Search/Explore.tsx:1027
-#: src/view/com/posts/PostFeed.tsx:782
+#: src/view/com/posts/PostFeed.tsx:783
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "Estis problemo ŝargante afiŝojn. Tuŝeti ĉi tie por reprovi."
 
@@ -12978,7 +13036,7 @@ msgstr "Ĉi tiu persono blokas vin"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:737
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:714
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "Ĉi tiu afiŝo asertas, ke ĝi estis kreita je <0>{0}</0>, sed ĝi estis unue vidita ĉe Bluesky je <1>{1}</1>."
 
@@ -13174,7 +13232,7 @@ msgstr ""
 msgid "Toggle to enable or disable adult content"
 msgstr "Baskuligi por ebligi aŭ malebligi poradoltan enhavon"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:179
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:186
 msgid "Toggles the sound"
 msgstr "Baskulas la sonon"
 
@@ -13238,7 +13296,7 @@ msgstr "Tradukado al la sama lingvo estas nedisponebla sur via aparato."
 msgid "Tree view"
 msgstr "Arbovido"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:50
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:48
 msgid "Trending"
 msgstr "Furoraĵoj"
 
@@ -13247,7 +13305,7 @@ msgstr "Furoraĵoj"
 msgid "Trending GIFs"
 msgstr "Furoraj GIF-oj"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:57
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:55
 msgid "Trending options"
 msgstr "Opcioj pri furoraĵoj"
 
@@ -13453,7 +13511,7 @@ msgstr "Ne sekvi {0}"
 msgid "Unfollow account"
 msgstr "Ne sekvi konton"
 
-#: src/screens/VideoFeed/index.tsx:848
+#: src/screens/VideoFeed/index.tsx:902
 msgid "Unfollows the user"
 msgstr "Ĉesas sekvi la uzanton"
 
@@ -13504,7 +13562,7 @@ msgstr "Malbloki ĉi tiun grupan babilejon"
 msgid "Unmute"
 msgstr "Malsilentigi"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:176
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:183
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:96
 msgctxt "video"
 msgid "Unmute"
@@ -13966,8 +14024,8 @@ msgstr "Konfirmado..."
 msgid "Version {0}"
 msgstr "Versio {0}"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:88
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:155
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:95
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:162
 msgid "Video"
 msgstr "Videaĵo"
 
@@ -13985,7 +14043,7 @@ msgid "Video from {0}: {text}"
 msgstr "Videaĵo de {0}: {text}"
 
 #. placeholder {0}: sanitizeHandle( post.author.handle, '@', )
-#: src/screens/VideoFeed/index.tsx:1103
+#: src/screens/VideoFeed/index.tsx:1157
 msgid "Video from {0}. Tap to play or pause the video"
 msgstr "Videaĵo de {0}. Tuŝetu por ludi aŭ paŭzigi la videaĵon"
 
@@ -13994,11 +14052,11 @@ msgstr "Videaĵo de {0}. Tuŝetu por ludi aŭ paŭzigi la videaĵon"
 msgid "Video Games"
 msgstr "Videoludoj"
 
-#: src/screens/VideoFeed/index.tsx:1102
+#: src/screens/VideoFeed/index.tsx:1156
 msgid "Video is paused"
 msgstr "Videaĵo estas paŭzigita"
 
-#: src/screens/VideoFeed/index.tsx:1102
+#: src/screens/VideoFeed/index.tsx:1156
 msgid "Video is playing"
 msgstr "Videaĵo estas ludata"
 
@@ -14015,7 +14073,7 @@ msgid "Video uploaded"
 msgstr "Videaĵo alŝutita"
 
 #. placeholder {0}: embed.alt
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:88
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:95
 msgid "Video: {0}"
 msgstr "Videaĵo: {0}"
 
@@ -14050,7 +14108,7 @@ msgstr "Vidi la profilbildon de {0}"
 #. placeholder {0}: profile.handle
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:463
 #: src/screens/Search/components/SearchProfileCard.tsx:37
-#: src/screens/VideoFeed/index.tsx:809
+#: src/screens/VideoFeed/index.tsx:863
 #: src/view/com/notifications/NotificationFeedItem.tsx:615
 msgid "View {0}'s profile"
 msgstr "Vidi la profilon de {0}"
@@ -14081,8 +14139,8 @@ msgstr "Vidi blogafiŝon por pli da detaloj"
 msgid "View debug entry"
 msgstr "Vidi protokolan eron"
 
-#: src/screens/VideoFeed/index.tsx:674
-#: src/screens/VideoFeed/index.tsx:692
+#: src/screens/VideoFeed/index.tsx:728
+#: src/screens/VideoFeed/index.tsx:746
 msgid "View details"
 msgstr "Vidi detalojn"
 
@@ -14825,7 +14883,7 @@ msgstr "Vi povas elekti {MAX_GALLERY_IMAGES, plural, one {# bildon} other {# bil
 
 #: src/components/interstitials/Trending.tsx:132
 #: src/components/interstitials/TrendingVideos.tsx:138
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:130
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:127
 msgid "You can update this later from your settings."
 msgstr "Vi povas ĝisdatigi ĉi tion poste en viaj agordoj."
 
@@ -15199,7 +15257,7 @@ msgstr "Vi atingis vian tagan limon por videaĵ-alŝutoj (tro da bajtoj)"
 msgid "You've reached your daily limit for video uploads (too many videos)"
 msgstr "Vi atingis vian tagan limon por videaĵ-alŝutoj (tro da videaĵoj)"
 
-#: src/screens/VideoFeed/index.tsx:1150
+#: src/screens/VideoFeed/index.tsx:1204
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr "Vi elĉerpis videaĵojn por spekti. Ĉu eble estas bona tempo fari paŭzon?"
 

@@ -210,7 +210,7 @@ msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, one {postagem} other {postagens}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:505
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:503
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -271,6 +271,29 @@ msgstr "{0} adicionado à conversa"
 msgid "{0} and {1} added to chat"
 msgstr "{0} e {1} adicionados à conversa"
 
+#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post and are its only likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:127
+#: src/screens/PostThread/components/LikesStat.tsx:183
+msgid "{0} and {1} like this"
+msgstr ""
+
+#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post, and the count is the remaining number of likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {1}: formatPostStatCount(others)
+#. placeholder {2}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:188
+msgid "{0} and {others, plural, one {{1} other} other {{2} others}} like this"
+msgstr ""
+
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:129
+msgid "{0} and {othersLabel} like this"
+msgstr ""
+
 #. placeholder {0}: profile.followsCount || 0
 #: src/screens/Profile/Header/Metrics.tsx:73
 msgid "{0} following"
@@ -320,6 +343,14 @@ msgstr "{0} saiu"
 #: src/components/dms/getSystemMessageInfo.ts:97
 msgid "{0} left the group"
 msgstr "{0} saiu do grupo"
+
+#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post and is its only like
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:130
+#: src/screens/PostThread/components/LikesStat.tsx:198
+msgid "{0} likes this"
+msgstr ""
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -381,6 +412,21 @@ msgstr ""
 #: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:49
 msgid "{0}, {1} and {memberCount, plural, one {# other} other {# others}} added to chat"
 msgstr "{0}, {1} e {memberCount, plural, one {mais #} other {mais #}} adicionados à conversa"
+
+#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post, and the count is the remaining number of likes
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {2}: formatPostStatCount(others)
+#. placeholder {3}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:173
+msgid "{0}, {1}, and {others, plural, one {{2} other} other {{3} others}} like this"
+msgstr ""
+
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:126
+msgid "{0}, {1}, and {othersLabel} like this"
+msgstr ""
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -468,7 +514,7 @@ msgstr "{0}s"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:494
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:492
 msgid "{1}"
 msgstr ""
 
@@ -776,6 +822,12 @@ msgstr "{notificationCount, plural, one {# item não lido} other {# itens não l
 msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, one {# contato encontrado} other {# contatos encontrados}}"
 
+#. placeholder {0}: formatPostStatCount(others)
+#. placeholder {1}: formatPostStatCount(others)
+#: src/screens/PostThread/components/LikesStat.tsx:119
+msgid "{others, plural, one {{0} other} other {{1} others}}"
+msgstr ""
+
 #: src/components/NewskieDialog.tsx:115
 msgid "{profileName} joined Bluesky {timeAgoString} ago"
 msgstr "{profileName} se juntou ao Bluesky {timeAgoString} atrás"
@@ -870,26 +922,25 @@ msgstr "<0>{0}</0> {1, plural, one {seguidor} other {seguidores}}"
 msgid "<0>{0}</0> {1, plural, one {following} other {following}}"
 msgstr "<0>{0}</0> {1, plural, one {seguindo} other {seguindo}}"
 
-#. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
-#. placeholder {0}: formatPostStatCount(post.likeCount)
-#. placeholder {1}: post.likeCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:530
-msgid "<0>{0}</0> {1, plural, one {like} other {likes}}"
-msgstr "<0>{0}</0> {1, plural, one {curtida} other {curtidas}}"
-
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:473
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:471
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, one {repostagem} other {repostagens}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:550
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:527
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, one {salvo} other {salvos}}"
+
+#. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
+#. placeholder {0}: formatPostStatCount(likeCount)
+#: src/screens/PostThread/components/LikesStat.tsx:87
+msgid "<0>{0}</0> {likeCount, plural, one {like} other {likes}}"
+msgstr ""
 
 #. placeholder {0}: getName(items[0])
 #. placeholder {1}: getName(items[1] /* [0] is self, skip it */)
@@ -1639,7 +1690,7 @@ msgstr "Ocorreu um erro ao gerar seu pacote inicial. Tentar novamente?"
 msgid "An error occurred while hiding suggestion. {0}"
 msgstr "Ocorreu um erro ao ocultar a sugestão. {0}"
 
-#: src/components/Post/Embed/VideoEmbed/index.tsx:149
+#: src/components/Post/Embed/VideoEmbed/index.tsx:188
 msgid "An error occurred while loading the video. Please try again later."
 msgstr "Ocorreu um erro ao carregar o vídeo. Tente novamente mais tarde."
 
@@ -1773,7 +1824,7 @@ msgstr ""
 msgid "Anyone"
 msgstr "Todos"
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:137
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:135
 msgid "Anyone can interact"
 msgstr "Qualquer um pode interagir"
 
@@ -1921,12 +1972,12 @@ msgid "Apply Pull Request"
 msgstr "Aplicar Pull Request"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:725
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:702
 msgid "Archived from {0}"
 msgstr "Arquivado desde {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:696
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:734
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:673
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:711
 msgid "Archived post"
 msgstr "Postagem arquivada"
 
@@ -2155,7 +2206,7 @@ msgstr "Para criar um pacote inicial, você precisa verificar seu email."
 msgid "Before you can accept this chat request, you must first verify your email."
 msgstr "Para aceitar este pedido de conversa, você deve primeiro verificar o seu email."
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:59
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:56
 msgid "Before you can get notifications for {name}'s posts, you must first verify your email."
 msgstr "Para que possa receber notificações das postagens de {name}, você deve primeiro verificar seu email."
 
@@ -2323,7 +2374,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:750
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:727
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "O Bluesky não pode confirmar que a data mostrada é legítima."
 
@@ -4309,7 +4360,7 @@ msgstr "Toque duas vezes ou pressione longamente a mensagem para adicionar uma r
 msgid "Double tap to close the dialog"
 msgstr "Toque duas vezes para fechar diálogo"
 
-#: src/screens/VideoFeed/index.tsx:1107
+#: src/screens/VideoFeed/index.tsx:1161
 msgid "Double tap to like"
 msgstr "Toque duas vezes para curtir"
 
@@ -4751,7 +4802,7 @@ msgstr "Insira sua senha"
 msgid "Enter your username and password"
 msgstr "Insira seu nome de usuário e senha"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:156
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:163
 msgid "Enters full screen"
 msgstr "Entra em tela cheia"
 
@@ -4864,7 +4915,7 @@ msgstr "Expandir ou esconder a postagem que você está respondendo"
 msgid "Expand post text"
 msgstr "Expandir texto da postagem"
 
-#: src/screens/VideoFeed/index.tsx:983
+#: src/screens/VideoFeed/index.tsx:1037
 msgid "Expands or collapses post text"
 msgstr "Expande ou esconde o texto da postagem"
 
@@ -5555,7 +5606,7 @@ msgstr "Focar o campo de busca"
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:419
-#: src/screens/VideoFeed/index.tsx:866
+#: src/screens/VideoFeed/index.tsx:920
 #: src/view/com/notifications/NotificationFeedItem.tsx:863
 #: src/view/com/notifications/NotificationFeedItem.tsx:870
 msgid "Follow"
@@ -5571,7 +5622,7 @@ msgstr "Seguir {0}"
 msgid "Follow {displayName}"
 msgstr "Seguir {displayName}"
 
-#: src/screens/VideoFeed/index.tsx:845
+#: src/screens/VideoFeed/index.tsx:899
 msgid "Follow {handle}"
 msgstr "Seguir {handle}"
 
@@ -5670,7 +5721,7 @@ msgstr "Seguidores que você conhece"
 #: src/components/ProfileHoverCard/index.web.tsx:504
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:415
-#: src/screens/VideoFeed/index.tsx:864
+#: src/screens/VideoFeed/index.tsx:918
 #: src/view/com/notifications/NotificationFeedItem.tsx:841
 #: src/view/com/notifications/NotificationFeedItem.tsx:858
 msgid "Following"
@@ -5695,7 +5746,7 @@ msgstr "Seguindo {0}"
 msgid "Following {displayName}"
 msgstr "Seguindo {displayName}"
 
-#: src/screens/VideoFeed/index.tsx:844
+#: src/screens/VideoFeed/index.tsx:898
 msgid "Following {handle}"
 msgstr "Seguindo {handle}"
 
@@ -5888,7 +5939,8 @@ msgstr ""
 msgid "Get notifications when there's activity on posts you're subscribed to."
 msgstr "Receba notificações quando houver atividade em postagens que você está acompanhando."
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:95
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:90
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:91
 msgid "Get notified about new posts"
 msgstr "Seja notificado sobre novas postagens"
 
@@ -5900,7 +5952,7 @@ msgstr "Seja notificado de novas postagens de {name}"
 msgid "Get notified of this account’s activity"
 msgstr "Seja notificado da atividade desta conta"
 
-#: src/components/activity-notifications/SubscribeProfileButton.tsx:88
+#: src/components/activity-notifications/SubscribeProfileButton.tsx:85
 msgid "Get notified when {name} posts"
 msgstr "Seja notificado quando {name} postar"
 
@@ -5943,8 +5995,8 @@ msgstr "Glorificação da violência"
 #: src/screens/ProfileList/components/ErrorScreen.tsx:35
 #: src/screens/ProfileList/components/ErrorScreen.tsx:41
 #: src/screens/VideoFeed/components/Header.tsx:163
-#: src/screens/VideoFeed/index.tsx:1168
-#: src/screens/VideoFeed/index.tsx:1172
+#: src/screens/VideoFeed/index.tsx:1222
+#: src/screens/VideoFeed/index.tsx:1226
 #: src/view/com/auth/LoggedOut.tsx:127
 #: src/view/com/profile/ProfileFollowers.tsx:211
 #: src/view/com/profile/ProfileFollowers.tsx:212
@@ -5995,6 +6047,11 @@ msgstr "Entrar ao vivo (desabilitado)"
 #: src/features/liveNow/components/GoLiveDialog.tsx:202
 msgid "Go live for"
 msgstr "Entrar ao vivo por"
+
+#. placeholder {0}: name.displayName
+#: src/screens/PostThread/components/LikesStat.tsx:144
+msgid "Go to {0}'s profile"
+msgstr ""
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:252
 msgid "Go to {firstAuthorName}'s profile"
@@ -6248,7 +6305,7 @@ msgstr "Olá!"
 msgid "Hidden"
 msgstr "Oculto"
 
-#: src/screens/VideoFeed/index.tsx:643
+#: src/screens/VideoFeed/index.tsx:697
 msgid "Hidden by your moderation settings."
 msgstr "Oculto por suas opções de moderação."
 
@@ -6266,7 +6323,7 @@ msgstr "Lista oculta"
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
 #: src/lib/moderation/useLabelBehaviorDescription.ts:33
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:131
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:128
 msgid "Hide"
 msgstr "Ocultar"
 
@@ -6336,7 +6393,7 @@ msgid "Hide trending topics"
 msgstr "Ocultar assuntos em alta"
 
 #: src/components/interstitials/Trending.tsx:131
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:129
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:126
 msgid "Hide trending topics?"
 msgstr "Ocultar assuntos em alta?"
 
@@ -6721,7 +6778,7 @@ msgstr "Insira a nova senha"
 msgid "Input the code which has been emailed to you"
 msgstr "Insira o código que você recebeu por e-mail"
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:138
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:136
 msgid "Interaction limited"
 msgstr "Interação limitada"
 
@@ -7268,7 +7325,7 @@ msgstr "Curtidas"
 msgid "Likes of your reposts"
 msgstr "Curtidas das suas repostagens"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:526
+#: src/screens/PostThread/components/LikesStat.tsx:82
 msgid "Likes on this post"
 msgstr "Curtidas nesta postagem"
 
@@ -7843,7 +7900,7 @@ msgstr "Música"
 msgid "Mute"
 msgstr "Silenciar"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:177
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:184
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:97
 msgctxt "video"
 msgid "Mute"
@@ -8573,7 +8630,7 @@ msgstr "OK"
 #: src/components/dms/InitiateChatFlow.tsx:733
 #: src/components/dms/MessageItem.tsx:742
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:756
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:733
 msgid "Okay"
 msgstr "Ok"
 
@@ -8866,7 +8923,7 @@ msgstr ""
 msgid "Opens a dialog to change the hosting provider you sign in to"
 msgstr ""
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:157
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:154
 msgid "Opens a dialog to choose who can interact with this post"
 msgstr "Abre uma janela para escolher quem pode interagir com esta postagem"
 
@@ -9122,7 +9179,7 @@ msgstr "Senha atualizada"
 msgid "Password updated!"
 msgstr "Senha atualizada!"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:161
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:168
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:395
 msgid "Pause"
 msgstr "Pausar"
@@ -9268,7 +9325,7 @@ msgstr "Feeds Fixados"
 msgid "Pinned to your feeds"
 msgstr "Fixado em seus feeds"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:161
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:168
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:396
 msgid "Play"
 msgstr "Tocar"
@@ -9282,7 +9339,7 @@ msgstr "Reproduzir {0}"
 msgid "Play GIF"
 msgstr "Reproduzir GIF"
 
-#: src/components/Post/Embed/VideoEmbed/index.tsx:130
+#: src/components/Post/Embed/VideoEmbed/index.tsx:169
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:347
 msgid "Play video"
 msgstr "Reproduzir vídeo"
@@ -9295,7 +9352,7 @@ msgstr "Reproduzir Vídeo"
 msgid "Plays or pauses the GIF"
 msgstr "Reproduz ou para o GIF"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:162
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:169
 msgid "Plays or pauses the video"
 msgstr "Reproduz ou para o vídeo"
 
@@ -9525,10 +9582,10 @@ msgstr "Postagem excluída"
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "Falha ao enviar a postagem. Por favor verifique sua conexão de internet e tente novamente."
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:136
 #: src/screens/PostThread/components/ThreadItemPost.tsx:116
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:109
-#: src/screens/VideoFeed/index.tsx:547
+#: src/screens/VideoFeed/index.tsx:551
 msgid "Post has been deleted"
 msgstr "Postagem excluída"
 
@@ -9747,7 +9804,8 @@ msgstr "Promover ou vender itens ou serviços proibidos"
 msgid "Pronouns"
 msgstr ""
 
-#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:168
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:163
+#: src/view/com/composer/threadgate/ThreadgateBtn.tsx:164
 msgid "Psst! You can edit who can interact with this post."
 msgstr "Psiu! Você pode editar quem pode interagir com esta postagem."
 
@@ -9834,7 +9892,7 @@ msgstr "Citações desabilitadas"
 msgid "Quotes"
 msgstr "Citações"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:490
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:488
 msgid "Quotes of this post"
 msgstr "Citações desta postagem"
 
@@ -9887,11 +9945,11 @@ msgstr ""
 msgid "Read blog post"
 msgstr "Ler postagem do blog (em inglês)"
 
-#: src/screens/VideoFeed/index.tsx:984
+#: src/screens/VideoFeed/index.tsx:1038
 msgid "Read less"
 msgstr "Ver menos"
 
-#: src/screens/VideoFeed/index.tsx:984
+#: src/screens/VideoFeed/index.tsx:1038
 msgid "Read more"
 msgstr "Ver mais"
 
@@ -10461,7 +10519,7 @@ msgstr "Repostado por você"
 msgid "Reposts"
 msgstr "Repostagens"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:469
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:467
 msgid "Reposts of this post"
 msgstr "Repostagens"
 
@@ -10648,7 +10706,7 @@ msgstr "Voltar para a tela inicial"
 
 #: src/screens/ProfileList/components/ErrorScreen.tsx:36
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:577
-#: src/screens/VideoFeed/index.tsx:1169
+#: src/screens/VideoFeed/index.tsx:1223
 #: src/view/screens/NotFound.tsx:54
 msgid "Returns to previous page"
 msgstr "Voltar para página anterior"
@@ -11509,8 +11567,8 @@ msgstr "Mostrar texto alternativo"
 #: src/features/liveNow/components/LiveStatusDialog.tsx:318
 #: src/features/liveNow/components/LiveStatusDialog.tsx:322
 #: src/screens/List/ListHiddenScreen.tsx:194
-#: src/screens/VideoFeed/index.tsx:646
-#: src/screens/VideoFeed/index.tsx:652
+#: src/screens/VideoFeed/index.tsx:700
+#: src/screens/VideoFeed/index.tsx:706
 msgid "Show anyway"
 msgstr "Mostrar mesmo assim"
 
@@ -11628,7 +11686,7 @@ msgstr "Mostrar aviso e filtrar dos feeds"
 msgid "Show when you’re live"
 msgstr "Mostrar quando você estiver ao vivo"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:697
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:674
 msgid "Shows information about when this post was created"
 msgstr "Mostra informações sobre quando esta postagem foi criada"
 
@@ -12446,7 +12504,7 @@ msgstr "Este nome de usuário já está em uso"
 msgid "That's all, folks!"
 msgstr "Isso é tudo, pessoal!"
 
-#: src/screens/VideoFeed/index.tsx:1141
+#: src/screens/VideoFeed/index.tsx:1195
 msgid "That's everything!"
 msgstr "Isso é tudo!"
 
@@ -12613,7 +12671,7 @@ msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "Tivemos um problema ao carregar notificações. Toque aqui para tentar de novo."
 
 #: src/screens/Search/Explore.tsx:1027
-#: src/view/com/posts/PostFeed.tsx:782
+#: src/view/com/posts/PostFeed.tsx:783
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "Tivemos um problema ao carregar as postagens. Toque aqui para tentar de novo."
 
@@ -12978,7 +13036,7 @@ msgstr "Esta pessoa está bloqueando você"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:737
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:714
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "Esta postagem alega ter sido criada em <0>{0}</0>, mas ela apareceu no Bluesky em <1>{1}</1>."
 
@@ -13174,7 +13232,7 @@ msgstr ""
 msgid "Toggle to enable or disable adult content"
 msgstr "Ligar ou desligar conteúdo adulto"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:179
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:186
 msgid "Toggles the sound"
 msgstr "Alterna o som"
 
@@ -13238,7 +13296,7 @@ msgstr "Tradução para o mesmo idioma não está disponível no seu dispositivo
 msgid "Tree view"
 msgstr "Visualização em árvore"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:50
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:48
 msgid "Trending"
 msgstr "Em alta"
 
@@ -13247,7 +13305,7 @@ msgstr "Em alta"
 msgid "Trending GIFs"
 msgstr "GIFs em alta"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:57
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:55
 msgid "Trending options"
 msgstr "Opções dos assuntos em alta"
 
@@ -13453,7 +13511,7 @@ msgstr "Deixar de seguir {0}"
 msgid "Unfollow account"
 msgstr "Parar de seguir conta"
 
-#: src/screens/VideoFeed/index.tsx:848
+#: src/screens/VideoFeed/index.tsx:902
 msgid "Unfollows the user"
 msgstr "Para de seguir o usuário"
 
@@ -13504,7 +13562,7 @@ msgstr "Destrancar esta conversa em grupo"
 msgid "Unmute"
 msgstr "Dessilenciar"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:176
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:183
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VolumeControl.tsx:96
 msgctxt "video"
 msgid "Unmute"
@@ -13966,8 +14024,8 @@ msgstr "Verificando..."
 msgid "Version {0}"
 msgstr "Versão {0}"
 
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:88
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:155
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:95
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:162
 msgid "Video"
 msgstr "Vídeo"
 
@@ -13985,7 +14043,7 @@ msgid "Video from {0}: {text}"
 msgstr "Vídeo de {0}: {text}"
 
 #. placeholder {0}: sanitizeHandle( post.author.handle, '@', )
-#: src/screens/VideoFeed/index.tsx:1103
+#: src/screens/VideoFeed/index.tsx:1157
 msgid "Video from {0}. Tap to play or pause the video"
 msgstr "Vídeo de {0}. Toque para reproduzir ou pausar o vídeo"
 
@@ -13994,11 +14052,11 @@ msgstr "Vídeo de {0}. Toque para reproduzir ou pausar o vídeo"
 msgid "Video Games"
 msgstr "Videogames"
 
-#: src/screens/VideoFeed/index.tsx:1102
+#: src/screens/VideoFeed/index.tsx:1156
 msgid "Video is paused"
 msgstr "O vídeo está pausado"
 
-#: src/screens/VideoFeed/index.tsx:1102
+#: src/screens/VideoFeed/index.tsx:1156
 msgid "Video is playing"
 msgstr "O vídeo está reproduzindo"
 
@@ -14015,7 +14073,7 @@ msgid "Video uploaded"
 msgstr "Vídeo enviado"
 
 #. placeholder {0}: embed.alt
-#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:88
+#: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:95
 msgid "Video: {0}"
 msgstr "Vídeo: {0}"
 
@@ -14050,7 +14108,7 @@ msgstr "Ver o avatar de {0}"
 #. placeholder {0}: profile.handle
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:463
 #: src/screens/Search/components/SearchProfileCard.tsx:37
-#: src/screens/VideoFeed/index.tsx:809
+#: src/screens/VideoFeed/index.tsx:863
 #: src/view/com/notifications/NotificationFeedItem.tsx:615
 msgid "View {0}'s profile"
 msgstr "Ver perfil de {0}"
@@ -14081,8 +14139,8 @@ msgstr "Veja a postagem no blog para mais detalhes"
 msgid "View debug entry"
 msgstr "Ver depuração"
 
-#: src/screens/VideoFeed/index.tsx:674
-#: src/screens/VideoFeed/index.tsx:692
+#: src/screens/VideoFeed/index.tsx:728
+#: src/screens/VideoFeed/index.tsx:746
 msgid "View details"
 msgstr "Ver detalhes"
 
@@ -14825,7 +14883,7 @@ msgstr "Você pode selecionar até {MAX_GALLERY_IMAGES, plural, other {# imagens
 
 #: src/components/interstitials/Trending.tsx:132
 #: src/components/interstitials/TrendingVideos.tsx:138
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:130
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:127
 msgid "You can update this later from your settings."
 msgstr "Você pode alterar esta opção depois nas suas configurações."
 
@@ -15199,7 +15257,7 @@ msgstr "Você atingiu seu limite diário de uploads de vídeo (muitos bytes)"
 msgid "You've reached your daily limit for video uploads (too many videos)"
 msgstr "Você atingiu seu limite diário de uploads de vídeos (muitos vídeos)"
 
-#: src/screens/VideoFeed/index.tsx:1150
+#: src/screens/VideoFeed/index.tsx:1204
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr "Você esgotou os vídeos disponíveis para assistir. Que tal descansar um pouco?"
 

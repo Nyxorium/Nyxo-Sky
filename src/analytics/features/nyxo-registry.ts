@@ -22,4 +22,12 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Disable Live Now',
       description: 'Hide the Live Now feature',
     },
+    [Features.PostThreadKnownLikersEnable]: {
+      label: 'Post Thread Known Likers',
+      description: 'Show people you follow who liked a post in the thread view',
+    },
+    [Features.PostThreadKnownLikersFetchEnable]: {
+      label: 'Post Thread Known Likers Fetch',
+      description: 'Fetch known-liker data for posts in a thread',
+    },
   }
