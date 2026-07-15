@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useLingui} from '@lingui/react/macro'
 
@@ -11,9 +11,15 @@ type Props = {
   onRequestClose: () => void
   imageCount: number
   activeIndex: number
+  statusText?: string | null
 }
 
-export function Header({onRequestClose, imageCount, activeIndex}: Props) {
+export function Header({
+  onRequestClose,
+  imageCount,
+  activeIndex,
+  statusText,
+}: Props) {
   const {t: l} = useLingui()
   const insets = useSafeAreaInsets()
 
@@ -32,7 +38,13 @@ export function Header({onRequestClose, imageCount, activeIndex}: Props) {
         {paddingTop: insets.top + 8},
       ]}>
       <View style={styles.spacer} />
-      <PagerDots count={imageCount} activeIndex={activeIndex} />
+      {statusText ? (
+        <Text style={[a.text_md, a.font_bold, {color: 'white'}]}>
+          {statusText}
+        </Text>
+      ) : (
+        <PagerDots count={imageCount} activeIndex={activeIndex} />
+      )}
       <CircleChromeButton
         icon={CloseIcon}
         label={l`Close image`}

@@ -7,7 +7,7 @@
  */
 // Original code copied and simplified from the link below as the codebase is currently not maintained:
 // https://github.com/jobtoday/react-native-image-viewing
-import {useCallback, useEffect, useMemo, useState} from 'react'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {PixelRatio, StyleSheet, useWindowDimensions, View} from 'react-native'
 import {SystemBars} from 'react-native-edge-to-edge'
 import {Gesture} from 'react-native-gesture-handler'
@@ -34,7 +34,9 @@ import Animated, {
 } from 'react-native-reanimated'
 import {Image} from 'expo-image'
 import * as ScreenOrientation from 'expo-screen-orientation'
+import {useLingui} from '@lingui/react/macro'
 
+import {useHaptics} from '#/lib/haptics'
 import {type Dimensions} from '#/lib/media/types'
 import {useTheme} from '#/alf'
 import {setSystemUITheme} from '#/alf/util/systemUI'
@@ -248,6 +250,7 @@ function ImageView({
   // Capture at mount: after a rotation remount this is the preserved
   // current index, so the pager re-opens on the same image.
   const [initialImageIndex] = useState(imageIndex)
+  const {t: l} = useLingui()
   const ax = useAnalytics()
   const isAnimated = useMemo(() => canAnimate(lightbox), [lightbox])
   const [isScaled, setIsScaled] = useState(false)
@@ -256,6 +259,11 @@ function ImageView({
   const [isAltExpanded, setIsAltExpanded] = useState(false)
   const dismissSwipeTranslateY = useSharedValue(0)
   const isFlyingAway = useSharedValue(false)
+  const [statusText, setStatusText] = useState<string | null>(null)
+  const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  )
+  const playHaptic = useHaptics()
 
   const containerStyle = useAnimatedStyle(() => {
     if (openProgress.get() < 1) {
@@ -379,6 +387,14 @@ function ImageView({
     }
   }, [t])
 
+  const handleLongPressSave = useCallback(() => {
+    playHaptic('Light')
+    setStatusText(l`Saving...`)
+    clearTimeout(statusTimeoutRef.current)
+    statusTimeoutRef.current = setTimeout(() => setStatusText(null), 2000)
+    onLongPressSave()
+  }, [onLongPressSave, l, playHaptic])
+
   return (
     <Animated.View style={[styles.container, containerStyle]}>
       <SystemBars
@@ -412,6 +428,7 @@ function ImageView({
             return next
           })
           setIsScaled(false)
+          setStatusText(null)
         }}
         onPageScrollStateChanged={e => {
           setIsDragging(e.nativeEvent.pageScrollState !== 'idle')
@@ -448,6 +465,7 @@ function ImageView({
             onRequestClose={handleRequestClose}
             imageCount={images.length}
             activeIndex={imageIndex}
+            statusText={statusText}
           />
         </Animated.View>
         <Animated.View
@@ -460,7 +478,7 @@ function ImageView({
             onToggleAltExpanded={() => setIsAltExpanded(e => !e)}
             onPressShare={() => onPressShare(images[imageIndex].uri)}
             onPressSave={() => onPressSave(images[imageIndex].uri)}
-            onLongPressSave={onLongPressSave}
+            onLongPressSave={handleLongPressSave}
           />
         </Animated.View>
       </View>
