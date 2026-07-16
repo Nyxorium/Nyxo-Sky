@@ -50,6 +50,7 @@ export const router = new Router<AllNavigatableRoutes>({
   PreferencesExternalEmbeds: '/settings/external-embeds',
   AccessibilitySettings: '/settings/accessibility',
   AppearanceSettings: '/settings/appearance',
+  BetaFeaturesSettings: '/settings/beta-features',
   AppThemeSettings: '/settings/appearance/app-themes',
   MiscellaneousSettings: '/settings/miscellaneous',
   ProfileTabVisibilitySettings: '/settings/view-tailor/tabs-visibility',

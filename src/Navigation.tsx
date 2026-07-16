@@ -109,6 +109,7 @@ import {AppIconSettingsScreen} from '#/screens/Settings/AppIconSettings'
 import {AppPasswordsScreen} from '#/screens/Settings/AppPasswords'
 import {AppThemeSettingsScreen} from '#/screens/Settings/AppThemeSettings'
 import {AutomationLabelSettingsScreen} from '#/screens/Settings/AutomationLabelSettings'
+import {BetaFeaturesSettingsScreen} from '#/screens/Settings/BetaFeaturesSettings'
 import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaSettings'
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
 import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
@@ -474,6 +475,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => AccountSettingsScreen}
         options={{
           title: title(msg`Account`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="BetaFeaturesSettings"
+        getComponent={() => BetaFeaturesSettingsScreen}
+        options={{
+          title: title(msg`Beta features`),
           requireAuth: true,
         }}
       />

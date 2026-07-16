@@ -355,11 +355,10 @@ export function HeaderLabelerButtons({
           />
         )}
 
-      {hasSession && !isMe && (!minimal || profile.viewer?.following) && (
-        <>
-          <MessageProfileButton profile={profile} />
-        </>
-      )}
+      {hasSession &&
+        !isMe &&
+        !profile.viewer?.blockedBy &&
+        !profile.viewer?.blocking && <MessageProfileButton profile={profile} />}
 
       {isMe ? (
         <>
