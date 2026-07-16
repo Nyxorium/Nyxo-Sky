@@ -1,7 +1,6 @@
 import {Provider as AltTextRequiredProvider} from './alt-text-required'
 import {Provider as AltLabelDisplayProfile} from './alternate-label-display-profile'
 import {Provider as AutoplayProvider} from './autoplay'
-import {Provider as DisableComposerPromptInFeeds} from './disable-composer-prompt-in-feeds'
 import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
 import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
 import {Provider as DisableHapticsProvider} from './disable-haptics'
@@ -75,27 +74,25 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                       <DisableFeedPromoTab>
                                         <ProfileTabVisibilityPrefs>
                                           <EnableSquareAvatars>
-                                            <DisableComposerPromptInFeeds>
-                                              <NoAppLabelersProvider>
-                                                <GateOverridesProvider>
-                                                  <ImpressionVisibilityProvider>
-                                                    <DisableProfileDescriptions>
-                                                      <SkipProfileWideContentWarning>
-                                                        <SplitModerationLabelGrouping>
-                                                          <RecentTagsProvider>
-                                                            <LikeOnRepost>
-                                                              <KawaiiProvider>
-                                                                {children}
-                                                              </KawaiiProvider>
-                                                            </LikeOnRepost>
-                                                          </RecentTagsProvider>
-                                                        </SplitModerationLabelGrouping>
-                                                      </SkipProfileWideContentWarning>
-                                                    </DisableProfileDescriptions>
-                                                  </ImpressionVisibilityProvider>
-                                                </GateOverridesProvider>
-                                              </NoAppLabelersProvider>
-                                            </DisableComposerPromptInFeeds>
+                                            <NoAppLabelersProvider>
+                                              <GateOverridesProvider>
+                                                <ImpressionVisibilityProvider>
+                                                  <DisableProfileDescriptions>
+                                                    <SkipProfileWideContentWarning>
+                                                      <SplitModerationLabelGrouping>
+                                                        <RecentTagsProvider>
+                                                          <LikeOnRepost>
+                                                            <KawaiiProvider>
+                                                              {children}
+                                                            </KawaiiProvider>
+                                                          </LikeOnRepost>
+                                                        </RecentTagsProvider>
+                                                      </SplitModerationLabelGrouping>
+                                                    </SkipProfileWideContentWarning>
+                                                  </DisableProfileDescriptions>
+                                                </ImpressionVisibilityProvider>
+                                              </GateOverridesProvider>
+                                            </NoAppLabelersProvider>
                                           </EnableSquareAvatars>
                                         </ProfileTabVisibilityPrefs>
                                       </DisableFeedPromoTab>
