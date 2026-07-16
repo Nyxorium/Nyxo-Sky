@@ -32,7 +32,7 @@ export function useAppIconSets() {
     ] satisfies AppIconSet[]
 
     /**
-     * BlueSky Defaults
+     * Bluesky Defaults
      */
 
     const bluesky = [

@@ -103,7 +103,7 @@ let ShareMenuItems = ({
     </Menu.Item>
   )
 
-  const openInBlueSkyItem = (
+  const openInBlueskyItem = (
     <Menu.Item
       testID="postDropdownOpenInBskyBtn"
       label={_(msg`Open in Bluesky`)}
@@ -123,7 +123,7 @@ let ShareMenuItems = ({
       <Menu.Outer>
         {!hideInPWI && copyLinkItem}
 
-        {!hideInPWI && openInBlueSkyItem}
+        {!hideInPWI && openInBlueskyItem}
 
         {hasSession && aa.state.access === aa.Access.Full && (
           <Menu.Item
@@ -157,7 +157,7 @@ let ShareMenuItems = ({
           <>
             {hasSession && <Menu.Divider />}
             {copyLinkItem}
-            {openInBlueSkyItem}
+            {openInBlueskyItem}
             <Menu.LabelText style={{maxWidth: 220}}>
               <Trans>Note: This post is only visible to logged-in users.</Trans>
             </Menu.LabelText>

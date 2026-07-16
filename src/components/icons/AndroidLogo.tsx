@@ -5,4 +5,4 @@ export const AndroidLogo = createSinglePathSVG({
   path: '',
 })
 
-// BlueSky Logo, Removed - Sunstar
+// Bluesky Logo, Removed - Sunstar

@@ -75,4 +75,4 @@ export const Logo = forwardRef(function LogoImpl(props: Props, ref) {
   )
 })
 
-// BlueSky Logo, Removed - Sunstar
+// Bluesky Logo, Removed - Sunstar

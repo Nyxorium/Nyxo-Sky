@@ -5,7 +5,7 @@ const YELLOW = '#FFC404'
 const SAKURA_LIKE = '#FF85C2'
 
 // pink and like values should always be matching due to
-// deprecation of the like value by BlueSky in palettes
+// deprecation of the like value by Bluesky in palettes
 // node_modules/@bsky.app/alf/src/palette.ts
 // Unless otherwise needed 🐙
 
