@@ -107,6 +107,7 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
                 a.leading_tight,
                 a.flex_shrink_0,
                 {maxWidth: '70%'}, // 50% used with pronouns below - Sunstar
+                web({direction: 'ltr', unicodeBidi: 'isolate'}),
               ]}>
               {forceLTR(
                 sanitizeDisplayName(
