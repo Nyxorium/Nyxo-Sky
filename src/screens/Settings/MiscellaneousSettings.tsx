@@ -7,10 +7,6 @@ import {
   useSetAltLabelDisplayProfile,
 } from '#/state/preferences/alternate-label-display-profile'
 import {
-  useComposerPromptDisabled,
-  useSetComposerPromptDisabled,
-} from '#/state/preferences/disable-composer-prompt-in-feeds'
-import {
   useDisableFeedPromoTab,
   useSetDisableFeedPromoTab,
 } from '#/state/preferences/disable-feed-promo-tab'
@@ -94,8 +90,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
   const enableSquareAvatars = useEnableSquareAvatars()
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
-  const disableComposerPromptInFeeds = useComposerPromptDisabled()
-  const setDisableComposerPromptInFeeds = useSetComposerPromptDisabled()
   const disableProfileDescriptions = useDisableProfileDescriptions()
   const setDisableProfileDescriptions = useSetDisableProfileDescriptions()
   const limitComposePostButton = useLimitComposePostButton()
@@ -200,20 +194,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={HashtagIcon} />
               <SettingsList.ItemText>
                 <Trans>Disable 'Feeds ✨'</Trans>
-              </SettingsList.ItemText>
-              <Toggle.Platform />
-            </SettingsList.Item>
-          </Toggle.Item>
-
-          <Toggle.Item
-            name="disable_composer_prompt_in_feeds"
-            label={l`Disable Composer Prompt`}
-            value={disableComposerPromptInFeeds}
-            onChange={value => setDisableComposerPromptInFeeds(value)}>
-            <SettingsList.Item>
-              <SettingsList.ItemIcon icon={WindowIcon} />
-              <SettingsList.ItemText>
-                <Trans>Disable Composer Prompt</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>

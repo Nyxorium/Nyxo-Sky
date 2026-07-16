@@ -30,7 +30,6 @@ import {logger} from '#/logger'
 import {usePostAuthorShadowFilter} from '#/state/cache/profile-shadow'
 import {listenPostCreated} from '#/state/events'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
-import {useComposerPromptDisabled} from '#/state/preferences/disable-composer-prompt-in-feeds'
 import {useTrendingSettings} from '#/state/preferences/trending'
 import {STALE} from '#/state/queries'
 import {
@@ -247,8 +246,6 @@ let PostFeed = ({
   const {gtMobile} = useBreakpoints()
   const {rightNavVisible} = useLayoutBreakpoints()
   const areVideoFeedsEnabled = IS_NATIVE
-
-  const disableComposerPromptInFeeds = useComposerPromptDisabled()
 
   const [hasPressedShowLessUris, setHasPressedShowLessUris] = useState(
     () => new Set<string>(),
@@ -532,18 +529,6 @@ let PostFeed = ({
                       type: 'liveEventFeedsAndTrendingBanner',
                       key: 'liveEventFeedsAndTrendingBanner-' + sliceIndex,
                     })
-                    // Show composer prompt for Discover and Following feeds
-                    if (
-                      hasSession &&
-                      !disableComposerPromptInFeeds &&
-                      (feedUriOrActorDid === DISCOVER_FEED_URI ||
-                        feed === 'following')
-                    ) {
-                      arr.push({
-                        type: 'composerPrompt',
-                        key: 'composerPrompt-' + sliceIndex,
-                      })
-                    }
                   } else if (sliceIndex === 15) {
                     if (areVideoFeedsEnabled && !trendingVideoDisabled) {
                       arr.push({
@@ -556,16 +541,6 @@ let PostFeed = ({
                       type: 'interstitialFollows',
                       key: 'interstitial-' + sliceIndex + '-' + lastFetchedAt,
                     })
-                  }
-                } else if (feedKind === 'following') {
-                  if (sliceIndex === 0) {
-                    // Show composer prompt for Following feed
-                    if (hasSession && !disableComposerPromptInFeeds) {
-                      arr.push({
-                        type: 'composerPrompt',
-                        key: 'composerPrompt-' + sliceIndex,
-                      })
-                    }
                   }
                 } else if (feedKind === 'profile') {
                   if (sliceIndex === 5) {
@@ -695,7 +670,6 @@ let PostFeed = ({
     ageAssuranceBannerState,
     isCurrentFeedAtStartupSelected,
     blockedOrMutedAuthors,
-    disableComposerPromptInFeeds,
   ])
 
   // events
