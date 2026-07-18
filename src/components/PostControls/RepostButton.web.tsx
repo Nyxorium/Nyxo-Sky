@@ -4,6 +4,7 @@ import {useLingui} from '@lingui/react'
 import {useRequireAuth, useSession} from '#/state/session'
 import {EventStopper} from '#/view/com/util/EventStopper'
 import {useTheme} from '#/alf'
+import {Heart2_Filled_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
 import {CloseQuote_Stroke2_Corner1_Rounded as Quote} from '#/components/icons/Quote'
 import {Repost_Stroke2_Corner2_Rounded as Repost} from '#/components/icons/Repost'
 import * as Menu from '#/components/Menu'
@@ -16,18 +17,24 @@ import {useFormatPostStatCount} from './util'
 
 interface Props {
   isReposted: boolean
+  isLiked: boolean
   repostCount?: number
   onRepost: () => void
   onQuote: () => void
+  onLikeAndRepost: () => void
+  showLikeAndRepost?: boolean
   big?: boolean
   embeddingDisabled: boolean
 }
 
 export const RepostButton = ({
   isReposted,
+  isLiked,
   repostCount,
   onRepost,
   onQuote,
+  onLikeAndRepost,
+  showLikeAndRepost,
   big,
   embeddingDisabled,
 }: Props) => {
@@ -61,6 +68,15 @@ export const RepostButton = ({
           }}
         </Menu.Trigger>
         <Menu.Outer style={{minWidth: 170}}>
+          {!isReposted && !isLiked && showLikeAndRepost && (
+            <Menu.Item
+              label={_(msg`Like & Repost`)}
+              testID="repostDropdownLikeAndRepostBtn"
+              onPress={onLikeAndRepost}>
+              <Menu.ItemText>{_(msg`Like & Repost`)}</Menu.ItemText>
+              <Menu.ItemIcon icon={HeartIcon} position="right" />
+            </Menu.Item>
+          )}
           <Menu.Item
             label={
               isReposted

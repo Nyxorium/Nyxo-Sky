@@ -30,3 +30,34 @@ export function useSaveImageToMediaLibrary() {
     [_],
   )
 }
+
+export function useSaveImagesToMediaLibrary() {
+  const {_} = useLingui()
+  return useCallback(
+    async (uris: string[]) => {
+      if (!IS_NATIVE) {
+        throw new Error('useSaveImagesToMediaLibrary is native only')
+      }
+
+      let savedCount = 0
+      await Promise.all(
+        uris.map(async uri => {
+          try {
+            await saveImageToMediaLibrary({uri})
+            savedCount++
+          } catch {}
+        }),
+      )
+
+      const total = uris.length
+      if (savedCount === total) {
+        Toast.show(_(msg`Saved ${total} image${total === 1 ? '' : 's'}`))
+      } else if (savedCount > 0) {
+        Toast.show(_(msg`Saved ${savedCount} of ${total} images`))
+      } else {
+        Toast.show(_(msg`Failed to save images`), {type: 'error'})
+      }
+    },
+    [_],
+  )
+}
