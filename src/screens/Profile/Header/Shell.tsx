@@ -247,6 +247,7 @@ let ProfileHeaderShell = ({
             />
           ) : (
             <LabelsOnMe
+              type="account"
               labels={profile.labels}
               style={[
                 a.px_lg,
