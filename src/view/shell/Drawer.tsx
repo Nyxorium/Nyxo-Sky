@@ -1,23 +1,12 @@
 import {type ComponentProps, type JSX, memo, useCallback} from 'react'
-import {
-  Linking,
-  Pressable,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import {Pressable, ScrollView, TouchableOpacity, View} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {msg, plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Plural, Trans} from '@lingui/react/macro'
 import {StackActions, useNavigation} from '@react-navigation/native'
 
-import {
-  FEEDBACK_FORM_URL,
-  HELP_DESK_URL,
-  PRIVACY_POLICY_URL,
-  TERMS_OF_SERVICE_URL,
-} from '#/lib/constants'
+import {PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL} from '#/lib/constants'
 import {type PressableScale} from '#/lib/custom-animations/PressableScale'
 import {useNavigationTabState} from '#/lib/hooks/useNavigationTabState'
 import {getTabState, TabState} from '#/lib/routes/helpers'
@@ -35,8 +24,8 @@ import {formatCount} from '#/view/com/util/numeric/format'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {useLogoVariant} from '#/view/icons/useLogoVariant'
 import {NavSignupCard} from '#/view/shell/NavSignupCard'
-import {atoms as a, tokens, useTheme, web} from '#/alf'
-import {Button, ButtonIcon, ButtonText} from '#/components/Button'
+import {atoms as a, useTheme, web} from '#/alf'
+import {Button} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {Divider} from '#/components/Divider'
 import {ArrowShareRight_Stroke2_Corner2_Rounded as ArrowShareRight} from '#/components/icons/ArrowShareRight'
@@ -309,14 +298,6 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
     setDrawerOpen(false)
   }, [navigation, setDrawerOpen, ax])
 
-  const onPressFeedback = useCallback(() => {
-    Linking.openURL(FEEDBACK_FORM_URL)
-  }, [])
-
-  const onPressHelp = useCallback(() => {
-    Linking.openURL(HELP_DESK_URL)
-  }, [])
-
   // rendering
   // =
 
@@ -393,69 +374,12 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
         </View>
       </ScrollView>
 
-      <DrawerFooter
-        onPressFeedback={onPressFeedback}
-        onPressHelp={onPressHelp}
-      />
       <InviteFriendsDialog control={inviteFriendsControl} />
     </View>
   )
 }
 DrawerContent = memo(DrawerContent)
 export {DrawerContent}
-
-let DrawerFooter = ({
-  onPressFeedback,
-  onPressHelp,
-}: {
-  onPressFeedback: () => void
-  onPressHelp: () => void
-}): React.ReactNode => {
-  const {_} = useLingui()
-  const insets = useSafeAreaInsets()
-  return (
-    <View
-      style={[
-        a.flex_row,
-        a.gap_sm,
-        a.flex_wrap,
-        a.pl_xl,
-        a.pt_md,
-        {
-          paddingBottom: Math.max(
-            insets.bottom + tokens.space.xs,
-            tokens.space.xl,
-          ),
-        },
-      ]}>
-      <Button
-        label={_(msg`Send feedback`)}
-        size="small"
-        variant="solid"
-        color="secondary"
-        onPress={onPressFeedback}>
-        <ButtonIcon icon={Message} position="left" />
-        <ButtonText>
-          <Trans>Feedback</Trans>
-        </ButtonText>
-      </Button>
-      <Button
-        label={_(msg`Get help`)}
-        size="small"
-        variant="outline"
-        color="secondary"
-        onPress={onPressHelp}
-        style={{
-          backgroundColor: 'transparent',
-        }}>
-        <ButtonText>
-          <Trans>Help</Trans>
-        </ButtonText>
-      </Button>
-    </View>
-  )
-}
-DrawerFooter = memo(DrawerFooter)
 
 interface MenuItemProps extends ComponentProps<typeof PressableScale> {
   icon: JSX.Element
@@ -760,21 +684,26 @@ function ExtraLinks() {
   const {_} = useLingui()
   const t = useTheme()
   const logoVariant = useLogoVariant()
+  const {hasSession} = useSession()
 
   return (
     <View style={[a.flex_col, a.gap_md, a.flex_wrap]}>
-      <InlineLinkText
-        style={[a.text_md]}
-        label={_(msg`Terms of Service`)}
-        to={TERMS_OF_SERVICE_URL}>
-        <Trans>Terms of Service</Trans>
-      </InlineLinkText>
-      <InlineLinkText
-        style={[a.text_md]}
-        to={PRIVACY_POLICY_URL}
-        label={_(msg`Privacy Policy`)}>
-        <Trans>Privacy Policy</Trans>
-      </InlineLinkText>
+      {!hasSession && (
+        <>
+          <InlineLinkText
+            style={[a.text_md]}
+            label={_(msg`Terms of Service`)}
+            to={TERMS_OF_SERVICE_URL}>
+            <Trans>Terms of Service</Trans>
+          </InlineLinkText>
+          <InlineLinkText
+            style={[a.text_md]}
+            to={PRIVACY_POLICY_URL}
+            label={_(msg`Privacy Policy`)}>
+            <Trans>Privacy Policy</Trans>
+          </InlineLinkText>
+        </>
+      )}
       {logoVariant === 'kawaii' && (
         <Text style={t.atoms.text_contrast_medium}>
           <Trans>
