@@ -688,7 +688,7 @@ function ExtraLinks() {
 
   return (
     <View style={[a.flex_col, a.gap_md, a.flex_wrap]}>
-      {hasSession && (
+      {!hasSession && (
         <>
           <InlineLinkText
             style={[a.text_md]}
