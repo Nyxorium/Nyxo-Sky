@@ -47,6 +47,7 @@ import {ContentHider} from '#/components/moderation/ContentHider'
 import {PostAlerts} from '#/components/moderation/PostAlerts'
 import {type AppModerationCause} from '#/components/Pills'
 import {Embed, PostEmbedViewContext} from '#/components/Post/Embed'
+import {PostTags} from '#/components/Post/PostTags'
 import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls, PostControlsSkeleton} from '#/components/PostControls'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
@@ -436,6 +437,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               post={item.value.post}
               isThreadAuthor={isThreadAuthor}
             />
+            <PostTags tags={record.tags} authorHandle={post.author.handle} />
             {(post.repostCount !== 0 ||
               post.likeCount !== 0 ||
               post.quoteCount !== 0 ||
