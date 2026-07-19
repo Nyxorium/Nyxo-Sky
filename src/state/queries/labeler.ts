@@ -119,11 +119,20 @@ export function useLabelerSubscriptionMutation() {
         preferences.data?.moderationPrefs?.labelers ?? []
       ).map(l => l.did)
       const invalidLabelers: string[] = []
-      if (labelerDids.length) {
-        const profiles = await agent.getProfiles({actors: labelerDids})
-        if (profiles.data) {
+      const needsCleanupCheck = subscribe && labelerDids.length >= MAX_LABELERS
+      if (needsCleanupCheck) {
+        try {
+          const CHUNK_SIZE = 25
+          const chunks: string[][] = []
+          for (let i = 0; i < labelerDids.length; i += CHUNK_SIZE) {
+            chunks.push(labelerDids.slice(i, i + CHUNK_SIZE))
+          }
+          const results = await Promise.all(
+            chunks.map(actors => agent.getProfiles({actors})),
+          )
+          const allProfiles = results.flatMap(res => res.data?.profiles ?? [])
           for (const did of labelerDids) {
-            const exists = profiles.data.profiles.find(p => p.did === did)
+            const exists = allProfiles.find(p => p.did === did)
             if (exists) {
               // profile came back but it's not a valid labeler
               if (exists.associated && !exists.associated.labeler) {
@@ -134,10 +143,18 @@ export function useLabelerSubscriptionMutation() {
               invalidLabelers.push(did)
             }
           }
+        } catch (e) {
+          invalidLabelers.length = 0
         }
       }
       if (invalidLabelers.length) {
-        await Promise.all(invalidLabelers.map(did => agent.removeLabeler(did)))
+        try {
+          await Promise.all(
+            invalidLabelers.map(did => agent.removeLabeler(did)),
+          )
+        } catch {
+          // don't let best-effort cleanup block the actual action the user asked for
+        }
       }
 
       if (subscribe) {
