@@ -5,11 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
-import {
-  FEEDBACK_FORM_URL,
-  PRIVACY_POLICY_URL,
-  TERMS_OF_SERVICE_URL,
-} from '#/lib/constants'
+import {PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL} from '#/lib/constants'
 import {useSession} from '#/state/session'
 import {useLogoVariant} from '#/view/icons/useLogoVariant'
 import {DesktopFeeds} from '#/view/shell/desktop/Feeds'
@@ -103,35 +99,30 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
         <SidebarTrendingTopics />
       )}
 
-      <Text style={[a.leading_snug, t.atoms.text_contrast_low]}>
-        {hasSession && (
-          <>
-            <InlineLinkText
-              to={FEEDBACK_FORM_URL}
-              style={[t.atoms.text_contrast_medium]}
-              label={_(msg`Feedback`)}>
-              {_(msg`Feedback`)}
-            </InlineLinkText>
-            <Text style={[t.atoms.text_contrast_low]}>{' ∙ '}</Text>
-          </>
-        )}
-        <InlineLinkText
-          to={PRIVACY_POLICY_URL}
-          style={[t.atoms.text_contrast_medium]}
-          label={_(msg`Privacy`)}>
-          {_(msg`Privacy`)}
-        </InlineLinkText>
-        <Text style={[t.atoms.text_contrast_low]}>{' ∙ '}</Text>
-        <InlineLinkText
-          to={TERMS_OF_SERVICE_URL}
-          style={[t.atoms.text_contrast_medium]}
-          label={_(msg`Terms`)}>
-          {_(msg`Terms`)}
-        </InlineLinkText>
-      </Text>
+      {!hasSession && (
+        <Text style={[a.leading_snug, t.atoms.text_contrast_low]}>
+          <InlineLinkText
+            to={PRIVACY_POLICY_URL}
+            style={[t.atoms.text_contrast_medium]}
+            label={_(msg`Privacy`)}>
+            {_(msg`Privacy`)}
+          </InlineLinkText>
+          <Text style={[t.atoms.text_contrast_low]}>{' ∙ '}</Text>
+          <InlineLinkText
+            to={TERMS_OF_SERVICE_URL}
+            style={[t.atoms.text_contrast_medium]}
+            label={_(msg`Terms`)}>
+            {_(msg`Terms`)}
+          </InlineLinkText>
+        </Text>
+      )}
 
       {logoVariant === 'kawaii' && (
-        <Text style={[t.atoms.text_contrast_medium, {marginTop: 12}]}>
+        <Text
+          style={[
+            t.atoms.text_contrast_medium,
+            !hasSession ? {marginTop: 12} : null,
+          ]}>
           <Trans>
             Logo by{' '}
             <InlineLinkText
