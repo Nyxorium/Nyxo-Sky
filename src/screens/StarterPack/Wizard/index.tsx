@@ -302,9 +302,7 @@ function WizardInner({
 
   const items = state.currentStep === 'Profiles' ? state.profiles : state.feeds
 
-  const isEditEnabled =
-    (state.currentStep === 'Profiles' && items.length > 1) ||
-    (state.currentStep === 'Feeds' && items.length > 0)
+  const isEditEnabled = items.length > 0
 
   const editDialogControl = useDialogControl()
 
@@ -345,7 +343,7 @@ function WizardInner({
         {state.currentStep === 'Details' ? (
           <StepDetails />
         ) : state.currentStep === 'Profiles' ? (
-          <StepProfiles moderationOpts={moderationOpts} />
+          <StepProfiles moderationOpts={moderationOpts} profile={profile} />
         ) : state.currentStep === 'Feeds' ? (
           <StepFeeds moderationOpts={moderationOpts} />
         ) : null}
@@ -469,7 +467,11 @@ function Footer({
         state.currentStep === 'Profiles' ? (
           <Text style={[a.text_center, textStyles]}>
             {
-              items.length < 2 ? (
+              items.length === 0 ? (
+                <Trans>
+                  Add some people to your starter pack by searching above.
+                </Trans>
+              ) : items.length === 1 ? (
                 currentAccount?.did === items[0].did ? (
                   <Trans>
                     It's just you right now! Add more people to your starter
@@ -597,7 +599,11 @@ function Footer({
           color="primary"
           size="large"
           onPress={onNext}
-          disabled={!state.canNext || state.processing}>
+          disabled={
+            !state.canNext ||
+            state.processing ||
+            (state.currentStep === 'Profiles' && items.length === 0)
+          }>
           <ButtonText>{nextBtnText}</ButtonText>
           {state.processing && <ButtonIcon icon={Loader} />}
         </Button>

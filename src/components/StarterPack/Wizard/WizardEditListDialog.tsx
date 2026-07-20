@@ -55,7 +55,10 @@ export function WizardEditListDialog({
   const getData = () => {
     if (state.currentStep === 'Feeds') return state.feeds
 
-    return [profile, ...state.profiles.filter(p => p.did !== profile.did)]
+    const isProfileIncluded = state.profiles.some(p => p.did === profile.did)
+    return isProfileIncluded
+      ? [profile, ...state.profiles.filter(p => p.did !== profile.did)]
+      : state.profiles
   }
 
   const renderItem = ({item}: ListRenderItemInfo<any>) =>

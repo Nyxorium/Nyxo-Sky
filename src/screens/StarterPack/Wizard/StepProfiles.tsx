@@ -24,8 +24,10 @@ function keyExtractor(item: bsky.profile.AnyProfileView) {
 
 export function StepProfiles({
   moderationOpts,
+  profile,
 }: {
   moderationOpts: ModerationOpts
+  profile: bsky.profile.AnyProfileView
 }) {
   const t = useTheme()
   const [state, dispatch] = useWizardState()
@@ -42,6 +44,9 @@ export function StepProfiles({
   const topFollowers = topPages?.pages
     .flatMap(p => p.actors)
     .filter(p => !p.associated?.labeler)
+  const pinnedTopFollowers = topFollowers
+    ? [profile, ...topFollowers.filter(p => p.did !== profile.did)]
+    : [profile]
 
   const {data: resultsUnfiltered, isFetching: isFetchingResults} =
     useActorAutocompleteQuery(query, true, 12)
@@ -78,7 +83,7 @@ export function StepProfiles({
         </View>
       </View>
       <List
-        data={query ? results : topFollowers}
+        data={query ? results : pinnedTopFollowers}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         renderScrollComponent={props => <KeyboardAwareScrollView {...props} />}
