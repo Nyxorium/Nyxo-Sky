@@ -31,15 +31,20 @@ import {getInviteDisplayUrl, getInviteShareUrl} from './urls'
 
 export function InviteFriendsDialogInner({
   control,
+  did,
 }: {
   control: Dialog.DialogControlProps
+  did?: string
 }) {
   const {t: l} = useLingui()
   const t = useTheme()
   const ax = useAnalytics()
   const navigation = useNavigation<NavigationProp>()
   const {currentAccount} = useSession()
-  const profileQuery = useProfileQuery({did: currentAccount?.did})
+  // const profileQuery = useProfileQuery({did: currentAccount?.did})
+  const targetDid = did ?? currentAccount?.did
+  const isSelf = !did || did === currentAccount?.did
+  const profileQuery = useProfileQuery({did: targetDid})
   const [themeKey, setThemeKey] = useInviteThemeKey()
   const captureRef = useRef<ViewShot>(null)
 
@@ -211,12 +216,19 @@ export function InviteFriendsDialogInner({
           ]}>
           <Divider style={[a.flex_1]} />
           <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-            {l({
-              message: 'Invite link',
-              context: 'profile invite',
-              comment:
-                'Link that invites someone to follow your profile, distinct from a group chat invite link',
-            })}
+            {isSelf
+              ? l({
+                  message: 'Invite link',
+                  context: 'profile invite',
+                  comment:
+                    'Link that invites someone to follow your profile, distinct from a group chat invite link',
+                })
+              : l({
+                  message: 'Profile link',
+                  context: 'profile share',
+                  comment:
+                    "Link to another user's profile, shown when sharing someone else's QR code",
+                })}
           </Text>
           <Divider style={[a.flex_1]} />
         </View>
