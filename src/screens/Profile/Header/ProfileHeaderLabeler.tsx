@@ -34,6 +34,10 @@ import {
   Heart2_Filled_Stroke2_Corner0_Rounded as HeartFilled,
   Heart2_Stroke2_Corner0_Rounded as Heart,
 } from '#/components/icons/Heart2'
+import {
+  KnownFollowers,
+  shouldShowKnownFollowers,
+} from '#/components/KnownFollowers'
 import {Link} from '#/components/Link'
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
@@ -121,6 +125,7 @@ let ProfileHeaderLabeler = ({
   const {isActive: live} = useActorStatus(profile)
 
   const disableProfileDescriptions = useDisableProfileDescriptions()
+  const isMe = currentAccount?.did === profile.did
 
   return (
     <ProfileHeaderShell
@@ -234,6 +239,16 @@ let ProfileHeaderLabeler = ({
                 </Link>
               )}
             </View>
+
+            {!isMe &&
+              shouldShowKnownFollowers(profile.viewer?.knownFollowers) && (
+                <View style={[a.flex_row, a.align_center, a.gap_sm]}>
+                  <KnownFollowers
+                    profile={profile}
+                    moderationOpts={moderationOpts}
+                  />
+                </View>
+              )}
           </View>
         )}
       </View>
