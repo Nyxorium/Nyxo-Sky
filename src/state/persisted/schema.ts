@@ -254,7 +254,7 @@ export const defaults: Schema = {
   kawaii: false,
   hasCheckedForStarterPack: false,
   subtitlesEnabled: true,
-  trendingDisabled: false,
+  trendingDisabled: true,
   trendingVideoDisabled: false,
 
   recentTags: [],
