@@ -14,7 +14,6 @@ import {Trans} from '@lingui/react/macro'
 import {STARTER_PACK_MAX_SIZE} from '#/lib/constants'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
-import {useSession} from '#/state/session'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {
   type WizardAction,
@@ -132,14 +131,10 @@ export function WizardProfileCard({
   moderationOpts: ModerationOpts
 }) {
   const ax = useAnalytics()
-  const {currentAccount} = useSession()
 
   // Determine the "main" profile for this starter pack - either targetDid or current account
-  const targetProfileDid = state.targetDid || currentAccount?.did
-  const isTarget = profile.did === targetProfileDid
-  const included = isTarget || state.profiles.some(p => p.did === profile.did)
-  const disabled =
-    isTarget || (!included && state.profiles.length >= STARTER_PACK_MAX_SIZE)
+  const included = state.profiles.some(p => p.did === profile.did)
+  const disabled = !included && state.profiles.length >= STARTER_PACK_MAX_SIZE
   const moderationUi = moderateProfile(profile, moderationOpts).ui('avatar')
   const displayName = profile.displayName
     ? sanitizeDisplayName(profile.displayName)
@@ -149,7 +144,6 @@ export function WizardProfileCard({
     if (disabled) return
 
     Keyboard.dismiss()
-    if (profile.did === targetProfileDid) return
 
     if (!included) {
       ax.metric('starterPack:addUser', {})

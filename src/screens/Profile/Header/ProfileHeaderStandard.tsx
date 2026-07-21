@@ -41,6 +41,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -233,6 +234,7 @@ export function HeaderStandardButtons({
   const {_} = useLingui()
   const ax = useAnalytics()
   const {hasSession, currentAccount} = useSession()
+  const [devModeEnabled] = useDevMode()
   const playHaptic = useHaptics()
   const requireAuth = useRequireAuth()
   const [queueFollow, queueUnfollow] = useProfileFollowMutationQueue(
@@ -325,6 +327,8 @@ export function HeaderStandardButtons({
     }
   }, [profile])
 
+  const showShareProfileButton = IS_NATIVE && (devModeEnabled || isMe)
+
   return (
     <>
       {isMe ? (
@@ -342,29 +346,7 @@ export function HeaderStandardButtons({
               <Trans>Edit Profile</Trans>
             </ButtonText>
           </Button>
-          {/* Invite friends is a native-only share sheet (the dialog is a
-              no-op on web), so gate the entry point to avoid a dead button. */}
-          {IS_NATIVE && (
-            <Button
-              testID="profileHeaderShareButton"
-              size="small"
-              color="secondary"
-              shape="round"
-              // expand the 33pt button toward a 44pt touch target, capped
-              // horizontally at half the 4pt row gap so the target cannot
-              // overlap the neighboring buttons' own targets
-              hitSlop={{top: 6, bottom: 6, left: 2, right: 2}}
-              onPress={() => {
-                playHaptic('Light')
-                ax.metric('invite:dialog:open', {logContext: 'ProfileHeader'})
-                inviteFriendsControl.open()
-              }}
-              label={_(msg`Invite friends`)}>
-              <ButtonIcon icon={ArrowShareRight} />
-            </Button>
-          )}
           <EditProfileDialog profile={profile} control={editProfileControl} />
-          {IS_NATIVE && <InviteFriendsDialog control={inviteFriendsControl} />}
         </>
       ) : profile.viewer?.blocking ? (
         profile.viewer?.blockingByList ? null : (
@@ -423,7 +405,37 @@ export function HeaderStandardButtons({
           )}
         </>
       ) : null}
+
+      {/* Invite friends is a native-only share sheet (the dialog is a
+          no-op on web), so gate the entry point to avoid a dead button. */}
+      {showShareProfileButton && (
+        <Button
+          testID="profileHeaderShareButton"
+          size="small"
+          color="secondary"
+          shape="round"
+          // expand the 33pt button toward a 44pt touch target, capped
+          // horizontally at half the 4pt row gap so the target cannot
+          // overlap the neighboring buttons' own targets
+          hitSlop={{top: 6, bottom: 6, left: 2, right: 2}}
+          onPress={() => {
+            playHaptic('Light')
+            ax.metric('invite:dialog:open', {logContext: 'ProfileHeader'})
+            inviteFriendsControl.open()
+          }}
+          label={isMe ? _(msg`Invite friends`) : _(msg`Show QR code`)}>
+          <ButtonIcon icon={ArrowShareRight} />
+        </Button>
+      )}
+
       <ProfileMenu profile={profile} />
+
+      {showShareProfileButton && (
+        <InviteFriendsDialog
+          control={inviteFriendsControl}
+          did={isMe ? undefined : profile.did}
+        />
+      )}
 
       <Prompt.Basic
         control={unblockPromptControl}

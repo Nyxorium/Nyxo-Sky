@@ -8,6 +8,7 @@ import {type DialogControlProps} from '#/components/Dialog'
 export function InviteFriendsDialog(_props: {
   control: DialogControlProps
   onClose?: () => void
+  did?: string
 }) {
   return null
 }
