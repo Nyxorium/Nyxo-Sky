@@ -154,7 +154,7 @@ let ProfileHeaderLabeler = ({
         </View>
         {!isPlaceholderProfile && (
           <View style={a.gap_md}>
-            {isSelf && <ProfileHeaderMetrics profile={profile} />}
+            <ProfileHeaderMetrics profile={profile} />
             {descriptionRT &&
             !disableProfileDescriptions &&
             !moderation.ui('profileView').blur ? (
