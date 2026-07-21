@@ -1,4 +1,11 @@
-import {useEffect, useImperativeHandle, useMemo, useRef, useState} from 'react'
+import {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import {
   type TextInput,
   type TextInputSubmitEditingEvent,
@@ -164,7 +171,13 @@ export function Composer({
       insert: tapper.insert,
       setAutocompleteAnchor: sift.refs.setAnchor,
     }),
-    [tapper.input, tapper.insert, inputScrollSharedValue, sift.refs.setAnchor],
+    [
+      tapper.input,
+      tapper.inputProps,
+      tapper.insert,
+      inputScrollSharedValue,
+      sift.refs.setAnchor,
+    ],
   )
 
   /*
@@ -207,7 +220,7 @@ export function Composer({
       offFacetCommitted()
       offAfterInsert()
     }
-  }, [tapper.on, tapper.input])
+  }, [tapper])
 
   /*
    * Styles
@@ -237,7 +250,7 @@ export function Composer({
       delete ts.lineHeight
     }
     return ts
-  }, [contentTextStyle, fonts])
+  }, [contentTextStyle, fonts, t.atoms.text])
 
   /*
    * Web keyboard handling
@@ -286,7 +299,7 @@ export function Composer({
                 ref={IS_WEB ? sift.refs.setAnchor : undefined}
                 style={
                   node.type === 'facet' && {
-                    color: t.palette.primary_500,
+                    color: t.atoms.text_link.color,
                   }
                 }>
                 {node.raw}
@@ -296,6 +309,8 @@ export function Composer({
       })}
     </Text>
   )
+
+  const handleAutocompleteDismiss = useCallback(() => setActiveFacet(null), [])
 
   return (
     <>
@@ -377,7 +392,7 @@ export function Composer({
           inverted={autocompletePlacement?.startsWith('top')}
           sift={sift}
           activeFacet={activeFacet}
-          onDismiss={() => setActiveFacet(null)}
+          onDismiss={handleAutocompleteDismiss}
         />
       )}
     </>
@@ -415,7 +430,7 @@ function AutocompleteInner({
         onDismiss()
       }
     }
-  }, [items, activeFacet])
+  }, [items, activeFacet, onDismiss])
 
   return items && items.length ? (
     <AutocompleteBase
