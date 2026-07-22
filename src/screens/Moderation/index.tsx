@@ -181,6 +181,14 @@ export function ModerationScreenInner({
       !isNonConfigurableModerationAuthority(did),
   )
 
+  const totalLabelersCount = labelers?.length ?? 0
+  const userSubscribedLabelersCount =
+    labelers?.filter(
+      l =>
+        !isAppLabeler(l.creator.did) &&
+        !isNonConfigurableModerationAuthority(l.creator.did),
+    ).length ?? 0
+
   const handleCleanup = async () => {
     try {
       await removeLabelers({dids: unavailableDids})
@@ -446,16 +454,26 @@ export function ModerationScreenInner({
         </View>
       </View>
 
-      <Text
+      <View
         style={[
-          a.text_md,
-          a.font_semi_bold,
+          a.flex_row,
+          a.align_center,
+          a.justify_between,
           a.pt_2xl,
           a.pb_md,
-          t.atoms.text_contrast_high,
         ]}>
-        <Trans>Advanced</Trans>
-      </Text>
+        <Text style={[a.text_md, a.font_semi_bold, t.atoms.text_contrast_high]}>
+          <Trans>Advanced</Trans>
+        </Text>
+        {!isLabelersLoading && !labelersError && labelers && (
+          <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+            <Trans>
+              {userSubscribedLabelersCount} subscribed · {totalLabelersCount}{' '}
+              total
+            </Trans>
+          </Text>
+        )}
+      </View>
 
       {unavailableDids.length > 0 && (
         <Admonition.Outer type="tip" style={[a.mb_md]}>
