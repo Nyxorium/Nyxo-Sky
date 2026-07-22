@@ -210,12 +210,15 @@ msgid "{0, plural, one {following} other {following}}"
 msgstr "{0, plural, other {팔로우 중}}"
 
 #. placeholder {0}: profile.postsCount || 0
+#. placeholder {0}: trend.postCount
+#: src/components/interstitials/FeedTrendingTopics.tsx:223
 #: src/screens/Profile/Header/Metrics.tsx:93
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:153
 msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, other {게시물}}"
 
 #. placeholder {0}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:503
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:502
 msgid "{0, plural, one {quote} other {quotes}}"
 msgstr ""
 
@@ -247,8 +250,15 @@ msgstr "{1} · {0}"
 msgid "{0} (Account)"
 msgstr "{0} (계정)"
 
+#. '{postCount} {posts}', e.g., '1.2K posts'
+#. '{postCount} {posts}', e.g., '1.2K posts'
+#. placeholder {0}: formatCount(i18n, trend.postCount)
 #. placeholder {0}: tags.length
+#. placeholder {1}: import {useMemo} from 'react' import {Pressable, View} from 'react-native' import {Image} from 'expo-image' import { type AppBskyUnspeccedDefs, moderateProfile, RichText as RichTextApi, } from '@atproto/api' import {plural} from '@lingui/core/macro' import {Trans, useLingui} from '@lingui/react/macro' import {useModerationOpts} from '#/state/preferences/moderation-opts' import {useTrendingSettings} from '#/state/preferences/trending' import {useGetTrendsQuery} from '#/state/queries/trending/useGetTrendsQuery' import {useTrendingConfig} from '#/state/service-config' import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder' import {formatCount} from '#/view/com/util/numeric/format' import {atoms as a, useGutters, useTheme, type ViewStyleProp} from '#/alf' import {AvatarStack} from '#/components/AvatarStack' import {Trending3_Stroke2_Corner1_Rounded as TrendingIcon} from '#/components/icons/Trending' import {Link} from '#/components/Link' import {RichText} from '#/components/RichText' import {SubtleHover} from '#/components/SubtleHover' import {Text} from '#/components/Typography' import {useAnalytics} from '#/analytics' import * as ModuleHeader from '../components/ModuleHeader' const TOPIC_COUNT = 5 const IMAGE_SIZE = 56 export function ExploreTrendingTopics() { const {enabled} = useTrendingConfig() const {trendingDisabled} = useTrendingSettings() return enabled && !trendingDisabled ? <Inner /> : null } function Inner() { const ax = useAnalytics() const {data: trending, error, isLoading, isRefetching} = useGetTrendsQuery() const noTopics = !isLoading && !error && !trending?.trends?.length const showLoading = isLoading || isRefetching if (!showLoading && (error || !trending?.trends || noTopics)) return null return ( <View style={[a.pb_md]}> <ModuleHeader.Container bottomBorder> <ModuleHeader.Icon icon={TrendingIcon} size="md" /> <ModuleHeader.TitleText> <Trans>Trending</Trans> </ModuleHeader.TitleText> </ModuleHeader.Container> {showLoading ? Array.from({length: TOPIC_COUNT}).map((__, i) => ( <TrendingTopicRowSkeleton key={i} /> )) : trending?.trends.map((trend, index) => ( <TrendRow key={trend.link} trend={trend} rank={index + 1} onPress={() => { ax.metric('trendingTopic:click', { context: 'explore', recId: trending.recId, }) }} /> ))} </View> ) } export function TrendRow({ trend, rank, children, onPress, }: ViewStyleProp & { trend: AppBskyUnspeccedDefs.TrendView rank: number children?: React.ReactNode onPress?: () => void }) { const t = useTheme() const {t: l, i18n} = useLingui() const gutters = useGutters([0, 'base']) const actors = useModerateTrendingActors(trend.actors) const description = useMemo(() => { if (!trend.description) return const rt = new RichTextApi({text: trend.description}) rt.detectFacetsWithoutResolution() return rt }, [trend.description]) let imageUrl = null // TODO Image URL goes here when available. -dsb return ( <Link testID={trend.link} label={l`Browse topic ${trend.displayName}`} to={trend.link} onPress={onPress} style={[a.border_b, t.atoms.border_contrast_low]} PressableComponent={Pressable}> {({hovered, pressed}) => ( <> <SubtleHover hover={hovered || pressed} native /> <View style={[gutters, a.w_full, a.flex_row, a.py_md, a.gap_sm]}> <Text style={[ a.text_sm, a.font_medium, t.atoms.text_contrast_low, { fontVariant: ['tabular-nums'], }, ]}> <Trans comment='The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"'> {rank}. </Trans> </Text> <View style={[a.flex_1, a.gap_2xs]}> <Text style={[a.text_sm, a.font_semi_bold, a.leading_snug]} numberOfLines={1}> {trend.displayName} </Text> {description ? ( <RichText value={description} disableLinks style={[a.text_sm, t.atoms.text_contrast_medium]} numberOfLines={2} /> ) : null} <View style={[a.mt_xs, a.flex_row, a.gap_sm, a.align_center]}> {actors.length > 0 ? ( <AvatarStack size={24} profiles={actors} /> ) : null} <Text style={[a.text_sm, t.atoms.text_contrast_medium]} numberOfLines={1}> {trend.postCount >= 1000 ? ( <Trans comment="Over 1,000 posts">1K+ posts</Trans> ) : ( <Trans comment="'{postCount} {posts}', e.g., '1.2K posts'"> {formatCount(i18n, trend.postCount)}{' '} {plural(trend.postCount, {one: 'post', other: 'posts'})} </Trans> )} </Text> </View> </View> {imageUrl ? ( <Image source={{ uri: imageUrl, }} alt={trend.topic} style={[ a.flex_0, a.rounded_md, t.atoms.bg_contrast_25, { width: IMAGE_SIZE, height: IMAGE_SIZE, }, ]} contentFit="cover" accessible={true} accessibilityIgnoresInvertColors useAppleWebpCodec /> ) : null} </View> {children} </> )} </Link> ) } // Unused atm, but leaving here so we don't lose localization. -dsb export function useCategoryDisplayName( category: AppBskyUnspeccedDefs.TrendView['category'], ) { const {t: l} = useLingui() switch (category) { case 'sports': return l`Sports` case 'politics': return l`Politics` case 'video-games': return l`Video Games` case 'pop-culture': return l`Entertainment` case 'news': return l`News` case 'other': default: return null } } export function TrendingTopicRowSkeleton() { const t = useTheme() const gutters = useGutters([0, 'base']) return ( <View style={[ gutters, a.w_full, a.py_md, a.flex_row, a.gap_sm, a.border_b, t.atoms.border_contrast_low, ]}> <View style={[{width: 20}]}> <LoadingPlaceholder width={17} height={17} style={[a.rounded_full]} /> </View> <View style={[a.flex_1, a.gap_2xs]}> <LoadingPlaceholder width={90} height={17} /> <View style={[a.flex_row, a.gap_sm, a.align_center]}> <LoadingPlaceholder width={70} height={16} /> <LoadingPlaceholder width={40} height={16} /> <LoadingPlaceholder width={60} height={16} /> </View> <View style={[a.flex_row, a.gap_sm, a.align_center]}> <LoadingPlaceholder width={50} height={16} /> <LoadingPlaceholder width={70} height={16} /> <LoadingPlaceholder width={30} height={16} /> </View> <View style={[a.flex_1, a.gap_sm]}> <View style={[a.mt_xs, a.flex_row, a.gap_sm, a.align_center]}> <LoadingPlaceholder width={24} height={24} style={[a.rounded_full]} /> <LoadingPlaceholder width={60} height={16} /> </View> </View> </View> {/* TODO Image placeholder goes here when images are available. -dsb */} </View> ) } function useModerateTrendingActors( actors: AppBskyUnspeccedDefs.TrendView['actors'], ) { const moderationOpts = useModerationOpts() return useMemo(() => { if (!moderationOpts) return [] return actors .filter(actor => { const decision = moderateProfile(actor, moderationOpts) return !decision.ui('avatar').filter && !decision.ui('avatar').blur }) .slice(0, 3) }, [actors, moderationOpts]) } 
+#. placeholder {1}: import {useMemo} from 'react' import {Pressable, View} from 'react-native' import {LinearGradient} from 'expo-linear-gradient' import {type AppBskyUnspeccedDefs, moderateProfile} from '@atproto/api' import {plural} from '@lingui/core/macro' import {Trans, useLingui} from '@lingui/react/macro' import {useModerationOpts} from '#/state/preferences/moderation-opts' import {useTrendingSettings} from '#/state/preferences/trending' import {useGetTrendsQuery} from '#/state/queries/trending/useGetTrendsQuery' import {useTrendingConfig} from '#/state/service-config' import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder' import {formatCount} from '#/view/com/util/numeric/format' import { atoms as a, useGutters, useLayoutBreakpoints, useTheme, type ViewStyleProp, } from '#/alf' import {alpha} from '#/alf/utils' import {AvatarStack} from '#/components/AvatarStack' import {Trending3_Stroke2_Corner1_Rounded as TrendingIcon} from '#/components/icons/Trending' import {Link} from '#/components/Link' import {SubtleHover} from '#/components/SubtleHover' import {Text} from '#/components/Typography' import {useAnalytics} from '#/analytics' const TOPIC_COUNT = 3 export function FeedTrendingTopicsInterstitial() { const {enabled} = useTrendingConfig() const {trendingDisabled} = useTrendingSettings() const {rightNavVisible} = useLayoutBreakpoints() return enabled && !trendingDisabled && !rightNavVisible ? <Inner /> : null } function Inner() { const t = useTheme() const {t: l} = useLingui() const gutters = useGutters([0, 'base']) const ax = useAnalytics() const { data: trending, error, isLoading, isRefetching, } = useGetTrendsQuery({limit: TOPIC_COUNT}) const noTopics = !isLoading && !error && !trending?.trends?.length const shadowColor = alpha(t.palette.primary_100, 0.5) const gradient = { values: [ [0, t.atoms.bg.backgroundColor], [0.1, t.palette.primary_25], [0.9, t.palette.primary_25], [1, t.atoms.bg.backgroundColor], ], hover_value: t.palette.white, } if (error || noTopics) { return null } return ( <View style={[ gutters, a.pt_lg, a.pb_xl, a.gap_sm, a.border_t, t.atoms.border_contrast_low, ]}> <LinearGradient colors={gradient.values.map(c => c[1]) as [string, string, ...string[]]} locations={ gradient.values.map(c => c[0]) as [number, number, ...number[]] } style={[a.absolute, a.inset_0]} /> <View style={[ a.relative, a.z_20, a.px_xs, a.flex_row, a.align_center, a.justify_between, a.gap_sm, ]}> <View style={[a.flex_row, a.align_center, a.justify_between, a.gap_xs]}> <TrendingIcon width={18} /> <Text style={[a.text_md, a.font_medium, a.leading_snug]} numberOfLines={1}> <Trans>Trending</Trans> </Text> </View> <Link label={l`See more trending topics`} to="/search"> <Text style={[ a.text_sm, a.font_medium, a.leading_snug, t.atoms.text_contrast_high, ]} numberOfLines={1}> <Trans>See more</Trans> </Text> </Link> </View> <View style={[ a.relative, a.z_10, a.border, a.rounded_xl, t.atoms.bg, { borderColor: t.palette.primary_100, boxShadow: `0 0 16px 0 ${shadowColor}`, elevation: 8, shadowColor: shadowColor, shadowOffset: {width: 0, height: 0}, shadowOpacity: 1, shadowRadius: 16, }, ]}> {isLoading || isRefetching ? Array.from({length: TOPIC_COUNT}).map((_, i) => ( <TrendingTopicRowSkeleton key={i} rank={i + 1} /> )) : trending?.trends?.map((trend, index) => ( <TrendRow key={trend.link} trend={trend} rank={index + 1} onPress={() => { ax.metric('trendingTopic:click', {context: 'interstitial'}) }} /> ))} </View> </View> ) } function TrendRow({ trend, rank, onPress, }: ViewStyleProp & { trend: AppBskyUnspeccedDefs.TrendView rank: number children?: React.ReactNode onPress?: () => void }) { const t = useTheme() const {t: l, i18n} = useLingui() const actors = useModerateTrendingActors(trend.actors) return ( <Link testID={trend.link} label={l`Browse topic ${trend.displayName}`} to={trend.link} onPress={onPress} style={[ rank < TOPIC_COUNT && a.border_b, { borderColor: t.palette.primary_100, }, ]} PressableComponent={Pressable}> {({hovered, pressed}) => ( <> <SubtleHover hover={hovered || pressed} native /> <View style={[ a.w_full, a.flex_row, a.flex_row, { gap: 6, padding: 14, paddingLeft: 16, }, ]}> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text_contrast_low, { fontVariant: ['tabular-nums'], }, ]}> <Trans comment='The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"'> {rank}. </Trans> </Text> <View style={[a.flex_1, a.gap_xs]}> <Text style={[a.text_md, a.font_medium]} numberOfLines={1}> {trend.displayName} </Text> <View style={[a.flex_row, a.gap_sm, a.align_center]}> {actors.length > 0 ? ( <AvatarStack size={24} profiles={actors} /> ) : null} <Text style={[a.text_sm, t.atoms.text_contrast_medium]} numberOfLines={1}> {trend.postCount >= 1000 ? ( <Trans comment="Over 1,000 posts">1K+ posts</Trans> ) : ( <Trans comment="'{postCount} {posts}', e.g., '1.2K posts'"> {formatCount(i18n, trend.postCount)}{' '} {plural(trend.postCount, {one: 'post', other: 'posts'})} </Trans> )} </Text> </View> </View> </View> </> )} </Link> ) } function TrendingTopicRowSkeleton({rank}: {rank: number}) { const t = useTheme() return ( <View style={[ a.w_full, a.flex_row, a.px_lg, a.py_lg, a.flex_row, rank < TOPIC_COUNT && a.border_b, t.atoms.border_contrast_low, { gap: 6, }, ]}> <LoadingPlaceholder width={17} height={17} style={[a.rounded_full]} /> <View style={[a.flex_1, a.gap_xs]}> <View style={[a.flex_row, a.gap_sm, a.align_center]}> <LoadingPlaceholder width={70} height={17} /> <LoadingPlaceholder width={40} height={17} /> <LoadingPlaceholder width={60} height={17} /> </View> <LoadingPlaceholder width={24} height={24} style={[a.rounded_full]} /> </View> </View> ) } function useModerateTrendingActors( actors: AppBskyUnspeccedDefs.TrendView['actors'], ) { const moderationOpts = useModerationOpts() return useMemo(() => { if (!moderationOpts) return [] return actors .filter(actor => { const decision = moderateProfile(actor, moderationOpts) return !decision.ui('avatar').filter && !decision.ui('avatar').blur }) .slice(0, 3) }, [actors, moderationOpts]) } 
 #. placeholder {1}: tags.length === 1 ? 'Tag' : 'Tags'
+#: src/components/interstitials/FeedTrendingTopics.tsx:221
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:151
 #: src/view/com/composer/tags/TagsBtn.tsx:57
 msgid "{0} {1}"
 msgstr ""
@@ -275,29 +285,6 @@ msgstr "{0} 님이 대화에 추가되었습니다"
 #: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:46
 msgid "{0} and {1} added to chat"
 msgstr "{0} 님과 {1} 님이 대화에 추가되었습니다"
-
-#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post and are its only likes
-#. placeholder {0}: nameLink(names[0])
-#. placeholder {0}: names[0].displayName
-#. placeholder {1}: nameLink(names[1])
-#. placeholder {1}: names[1].displayName
-#: src/screens/PostThread/components/LikesStat.tsx:135
-#: src/screens/PostThread/components/LikesStat.tsx:191
-msgid "{0} and {1} like this"
-msgstr "{0} 님과 {1} 님이 좋아합니다"
-
-#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post, and the count is the remaining number of likes
-#. placeholder {0}: nameLink(names[0])
-#. placeholder {1}: formatPostStatCount(others)
-#. placeholder {2}: formatPostStatCount(others)
-#: src/screens/PostThread/components/LikesStat.tsx:196
-msgid "{0} and {others, plural, one {{1} other} other {{2} others}} like this"
-msgstr "{0} 님 {others, plural, other {외 {2}명}}이 좋아합니다"
-
-#. placeholder {0}: names[0].displayName
-#: src/screens/PostThread/components/LikesStat.tsx:137
-msgid "{0} and {othersLabel} like this"
-msgstr "{0} 님 {othersLabel}이 좋아합니다"
 
 #. placeholder {0}: profile.followsCount || 0
 #: src/screens/Profile/Header/Metrics.tsx:73
@@ -348,14 +335,6 @@ msgstr "{0} 님이 나갔습니다"
 #: src/components/dms/getSystemMessageInfo.ts:97
 msgid "{0} left the group"
 msgstr "{0} 님이 그룹에서 나갔습니다"
-
-#. Social proof on the likes stat; the bolded name is a person the viewer follows who liked the post and is its only like
-#. placeholder {0}: nameLink(names[0])
-#. placeholder {0}: names[0].displayName
-#: src/screens/PostThread/components/LikesStat.tsx:138
-#: src/screens/PostThread/components/LikesStat.tsx:206
-msgid "{0} likes this"
-msgstr "{0} 님이 좋아합니다"
 
 #. placeholder {0}: formatTime(currentTime)
 #. placeholder {1}: formatTime(duration)
@@ -417,21 +396,6 @@ msgstr "{0}, "
 #: src/screens/Messages/ConversationSettings/AddMembersLink.tsx:49
 msgid "{0}, {1} and {memberCount, plural, one {# other} other {# others}} added to chat"
 msgstr "{0} 님, {1} 님 {memberCount, plural, other {외 #명}}이 대화에 추가되었습니다"
-
-#. Social proof on the likes stat; the bolded names are people the viewer follows who liked the post, and the count is the remaining number of likes
-#. placeholder {0}: nameLink(names[0])
-#. placeholder {1}: nameLink(names[1])
-#. placeholder {2}: formatPostStatCount(others)
-#. placeholder {3}: formatPostStatCount(others)
-#: src/screens/PostThread/components/LikesStat.tsx:181
-msgid "{0}, {1}, and {others, plural, one {{2} other} other {{3} others}} like this"
-msgstr "{0} 님, {1} 님 {others, plural, other {외 {3}명}}이 좋아합니다"
-
-#. placeholder {0}: names[0].displayName
-#. placeholder {1}: names[1].displayName
-#: src/screens/PostThread/components/LikesStat.tsx:134
-msgid "{0}, {1}, and {othersLabel} like this"
-msgstr "{0} 님, {1} 님 {othersLabel}이 좋아합니다"
 
 #. placeholder {0}: feed.displayName
 #. placeholder {1}: sanitizeHandle(feed.creatorHandle, '@')
@@ -519,7 +483,7 @@ msgstr "{0}초"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {1}: !hideQuotes ? ( <> <Text style={[ a.text_md, a.font_semi_bold, t.atoms.text, ]}> {formatPostStatCount(post.quoteCount)} </Text>{' '} <Plural value={post.quoteCount} one="quote" other="quotes" /> </> ) : ( <Text style={[a.text_md, t.atoms.text_contrast_medium]}> {post.quoteCount === 1 ? 'View quote' : 'View quotes'} </Text> )
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:492
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:491
 msgid "{1}"
 msgstr ""
 
@@ -827,12 +791,6 @@ msgstr "읽지 않은 항목 {notificationCount, plural, other {#개}}"
 msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, other {연락처 #개를}} 찾았습니다"
 
-#. placeholder {0}: formatPostStatCount(others)
-#. placeholder {1}: formatPostStatCount(others)
-#: src/screens/PostThread/components/LikesStat.tsx:127
-msgid "{others, plural, one {{0} other} other {{1} others}}"
-msgstr "{others, plural, other {외 {1}명}}"
-
 #: src/components/NewskieDialog.tsx:115
 msgid "{profileName} joined Bluesky {timeAgoString} ago"
 msgstr "{profileName} 님은 {timeAgoString} 전에 Bluesky에 가입했습니다"
@@ -842,7 +800,9 @@ msgid "{profileName} joined Bluesky using a starter pack {timeAgoString} ago"
 msgstr "{profileName} 님은 {timeAgoString} 전에 스타터 팩을 사용하여 Bluesky에 가입했습니다"
 
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:101
+#. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
+#: src/components/interstitials/FeedTrendingTopics.tsx:203
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:123
 msgid "{rank}."
 msgstr "{rank}."
 
@@ -872,11 +832,6 @@ msgstr "{requestCount, plural, other {#개 요청}}"
 msgid "{requestCount}+ requests"
 msgstr "{requestCount}+개 요청"
 
-#. trending topic time spent trending. should be as short as possible to fit in a pill
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:191
-msgid "{type}h ago"
-msgstr "{type}시간 전"
-
 #: src/components/verification/VerifierDialog.tsx:62
 msgid "{userName} is a trusted verifier"
 msgstr "{userName} 님은 신뢰할 수 있는 인증자입니다"
@@ -899,7 +854,7 @@ msgid "+{0}"
 msgstr "+{0}"
 
 #. Indicates the number of additional profiles are in the Starter Pack e.g. +12
-#: src/screens/Search/components/StarterPackCard.tsx:250
+#: src/screens/Search/components/StarterPackCard.tsx:258
 msgid "+{computedTotal}"
 msgstr "+{computedTotal}"
 
@@ -934,7 +889,7 @@ msgstr "<0>{0}</0> {1, plural, other {팔로우 중}}"
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:471
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:470
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, other {재게시}}"
 
@@ -947,7 +902,7 @@ msgstr "<0>{0}</0> {1, plural, other {저장}}"
 
 #. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(likeCount)
-#: src/screens/PostThread/components/LikesStat.tsx:90
+#: src/screens/PostThread/components/LikesStat.tsx:49
 msgid "<0>{0}</0> {likeCount, plural, one {like} other {likes}}"
 msgstr "<0>{0}</0> {likeCount, plural, other {좋아요}}"
 
@@ -975,7 +930,7 @@ msgid "<0>{displayName}</0><1/><2> added you</2>"
 msgstr "<0>{displayName}</0><1/><2> 님이 나를 추가함</2>"
 
 #: src/screens/Hashtag.tsx:230
-#: src/screens/Search/SearchResults.tsx:385
+#: src/screens/Search/SearchResults.tsx:412
 msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
 msgstr "<0>로그인</0><1>하거나 </1><2>계정을 만들고</2><3> </3><4>뉴스, 스포츠, 정치 등 Bluesky의 다양한 소식을 검색하세요.</4>"
 
@@ -992,6 +947,13 @@ msgstr "<0>나</0>와<1> </1><2>{0} </2>님이 스타터 팩에 포함됩니다"
 #: src/screens/Profile/Header/Handle.tsx:59
 msgid "⚠Invalid Handle"
 msgstr "⚠잘못된 핸들"
+
+#. Over 1,000 posts
+#. Over 1,000 posts
+#: src/components/interstitials/FeedTrendingTopics.tsx:219
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:149
+msgid "1K+ posts"
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:202
 #: src/components/dialogs/MutedWords.tsx:551
@@ -1033,8 +995,8 @@ msgstr "네트워크 오류가 발생했습니다. 인터넷 연결 상태를 �
 #: src/components/dms/dialogs/NewChatDialog.tsx:56
 #: src/components/dms/dialogs/NewChatDialog.tsx:94
 #: src/components/dms/LeaveConvoPrompt.tsx:38
-#: src/components/moderation/BlockDialog.tsx:287
-#: src/components/moderation/BlockDialog.tsx:313
+#: src/components/moderation/BlockDialog.tsx:284
+#: src/components/moderation/BlockDialog.tsx:310
 #: src/screens/Messages/JoinRequests.tsx:192
 #: src/screens/Messages/JoinRequests.tsx:225
 msgid "A network error occurred. Please check your internet connection."
@@ -1274,7 +1236,7 @@ msgstr "다른 게시물 추가하기"
 msgid "Add another post to thread"
 msgstr "스레드에 다른 게시물 추가"
 
-#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:435
+#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:439
 msgid "Add another search filter"
 msgstr "다른 검색 필터 추가하기"
 
@@ -1296,7 +1258,7 @@ msgstr "계정에 자동화 라벨 추가"
 msgid "Add emoji reaction"
 msgstr "이모티콘 반응 추가"
 
-#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:443
+#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:447
 msgid "Add filter"
 msgstr "필터 추가"
 
@@ -1711,7 +1673,7 @@ msgstr "추천을 숨기는 동안 오류가 발생했습니다. {0}"
 msgid "An error occurred while loading the video. Please try again later."
 msgstr "동영상을 불러오는 동안 오류가 발생했습니다. 나중에 다시 시도해 주세요."
 
-#: src/components/Post/Embed/VideoEmbed/index.web.tsx:253
+#: src/components/Post/Embed/VideoEmbed/index.web.tsx:308
 msgid "An error occurred while loading the video. Please try again."
 msgstr "동영상을 불러오는 동안 오류가 발생했습니다. 다시 시도해 주세요."
 
@@ -1836,8 +1798,8 @@ msgid "Any date"
 msgstr "모든 날짜"
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:457
-#: src/screens/Search/components/AdvancedSearchDialog/FollowingDropdown.tsx:22
-#: src/screens/Search/components/AdvancedSearchDialog/FollowingDropdown.tsx:25
+#: src/screens/Search/components/AdvancedSearchDialog/FromDropdown.tsx:22
+#: src/screens/Search/components/AdvancedSearchDialog/FromDropdown.tsx:26
 msgid "Anyone"
 msgstr "누구나"
 
@@ -1989,12 +1951,12 @@ msgid "Apply Pull Request"
 msgstr "풀 리퀘스트 적용"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:702
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:703
 msgid "Archived from {0}"
 msgstr "{0}에 보관됨"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:673
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:711
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:674
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:712
 msgid "Archived post"
 msgstr "보관된 게시물"
 
@@ -2106,7 +2068,7 @@ msgid "Auto ({0})"
 msgstr ""
 
 #: src/components/BotAccountAlert.tsx:32
-#: src/components/BotBadge.tsx:63
+#: src/components/BotBadge.tsx:65
 msgid "Automated account"
 msgstr "자동화된 계정"
 
@@ -2261,6 +2223,12 @@ msgstr "베타 기능"
 msgid "Beta features"
 msgstr "베타 기능"
 
+#: src/components/BetaBadge.tsx:79
+#: src/components/BetaBadge.tsx:99
+#: src/components/BetaBadge.tsx:100
+msgid "Beta features enabled"
+msgstr ""
+
 #: src/screens/Settings/BetaFeaturesSettings.tsx:144
 msgctxt "web"
 msgid "Beta features may be unstable. Some changes may require reloading the app."
@@ -2279,9 +2247,9 @@ msgstr "생년월일"
 msgid "Birthday"
 msgstr "생년월일"
 
-#: src/components/moderation/BlockDialog.tsx:186
-#: src/components/moderation/BlockDialog.tsx:192
-#: src/components/moderation/BlockDialog.tsx:211
+#: src/components/moderation/BlockDialog.tsx:187
+#: src/components/moderation/BlockDialog.tsx:193
+#: src/components/moderation/BlockDialog.tsx:213
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:201
 msgid "Block"
@@ -2401,6 +2369,7 @@ msgstr "블룸스크롤링 북스카이"
 #: src/components/dialogs/ServerInput.tsx:155
 #: src/components/moderation/ContentHider.tsx:184
 #: src/components/moderation/ContentHider.tsx:236
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:523
 msgid "Bluesky"
 msgstr "Bluesky"
 
@@ -2408,7 +2377,7 @@ msgstr "Bluesky"
 msgid "Bluesky account creation isn't supported in the browser. Visit "
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:727
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:728
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr "Bluesky는 해당 날짜의 진위를 확인할 수 없습니다."
 
@@ -2533,24 +2502,25 @@ msgstr "탐색 페이지에서 더 많은 추천 찾아보기"
 msgid "Browse other feeds"
 msgstr "다른 피드 탐색하기"
 
-#: src/components/TrendingTopics.tsx:179
+#: src/components/TrendingTopics.tsx:58
 msgid "Browse posts about {displayName}"
 msgstr "{displayName}에 관한 게시물 탐색하기"
 
-#: src/components/TrendingTopics.tsx:187
+#: src/components/TrendingTopics.tsx:66
 msgid "Browse posts tagged with {displayName}"
 msgstr "{displayName} 태그된 게시물 탐색하기"
 
-#: src/components/TrendingTopics.tsx:196
+#: src/components/TrendingTopics.tsx:75
 msgid "Browse starter pack {displayName}"
 msgstr "스타터 팩 {displayName} 탐색하기"
 
 #. placeholder {0}: trend.displayName
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:83
+#: src/components/interstitials/FeedTrendingTopics.tsx:170
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:104
 msgid "Browse topic {0}"
 msgstr "주제 {0} 탐색하기"
 
-#: src/components/TrendingTopics.tsx:233
+#: src/components/TrendingTopics.tsx:112
 msgid "Browse topic {displayName}"
 msgstr "주제 {displayName} 탐색하기"
 
@@ -2574,8 +2544,8 @@ msgstr ""
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:847
 #: src/screens/Messages/JoinRequest.tsx:177
-#: src/screens/Search/components/StarterPackCard.tsx:107
-#: src/screens/Search/Explore.tsx:971
+#: src/screens/Search/components/StarterPackCard.tsx:112
+#: src/screens/Search/Explore.tsx:960
 msgid "By {0}"
 msgstr "{0}"
 
@@ -2586,9 +2556,9 @@ msgstr "@{0}"
 
 #. The group chat creator, in the format 'By {displayName}'.
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile(joinLinkPreview.owner, moderationOpts).ui( 'displayName', ), )
-#. placeholder {0}: sanitizeHandle(info.creatorHandle, '@')
+#. placeholder {0}: info.creatorHandle === TRENDING_HANDLE ? l`Bluesky` : sanitizeHandle(info.creatorHandle, '@')
 #: src/components/intents/GroupChatJoinDialog.tsx:379
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:460
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:511
 msgid "By <0>{0}</0>"
 msgstr "<0>{0}</0>"
 
@@ -2617,7 +2587,7 @@ msgstr "계정을 만들면 <0>서비스 이용약관</0> 및 <1>개인정보 �
 msgid "By creating an account you agree to the <0>Terms of Service</0>."
 msgstr "계정을 만들면 <0>서비스 이용약관</0>에 동의하는 것입니다."
 
-#: src/screens/Search/components/StarterPackCard.tsx:106
+#: src/screens/Search/components/StarterPackCard.tsx:111
 msgid "By you"
 msgstr "내가 만듦"
 
@@ -2647,7 +2617,7 @@ msgstr "카메라 접근 권한이 필요합니다"
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:175
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:181
 #: src/components/Menu/index.tsx:373
-#: src/components/moderation/BlockDialog.tsx:202
+#: src/components/moderation/BlockDialog.tsx:204
 #: src/components/PostControls/RepostButton.tsx:248
 #: src/components/Prompt.tsx:152
 #: src/components/Prompt.tsx:154
@@ -2698,7 +2668,7 @@ msgstr "재활성화 취소 및 로그아웃"
 msgid "Cancel reply"
 msgstr "답장 취소하기"
 
-#: src/screens/Search/Shell.tsx:584
+#: src/screens/Search/Shell.tsx:592
 msgid "Cancel search"
 msgstr "검색 취소"
 
@@ -2852,8 +2822,8 @@ msgctxt "toast"
 msgid "Chat muted"
 msgstr "대화를 뮤트했습니다"
 
-#: src/components/moderation/BlockDialog.tsx:289
-#: src/components/moderation/BlockDialog.tsx:317
+#: src/components/moderation/BlockDialog.tsx:286
+#: src/components/moderation/BlockDialog.tsx:314
 msgid "Chat not found."
 msgstr "대화를 찾을 수 없습니다."
 
@@ -2863,7 +2833,7 @@ msgstr "대화를 찾을 수 없습니다."
 msgid "Chat options"
 msgstr "대화 옵션"
 
-#: src/components/moderation/BlockDialog.tsx:293
+#: src/components/moderation/BlockDialog.tsx:290
 msgid "Chat owners cannot leave a group chat."
 msgstr "대화 소유자는 그룹 대화에서 나갈 수 없습니다."
 
@@ -3161,7 +3131,7 @@ msgstr "배너 닫기"
 #: src/components/dialogs/LanguageSelectDialog.tsx:322
 #: src/components/dialogs/LanguageSelectDialog.tsx:354
 #: src/components/dialogs/NotificationSettingsDialog.tsx:102
-#: src/components/moderation/BlockDialog.tsx:199
+#: src/components/moderation/BlockDialog.tsx:201
 #: src/components/verification/VerificationsDialog.tsx:138
 #: src/components/verification/VerifierDialog.tsx:140
 #: src/features/gifPicker/components/GifPickerErrorBoundary.tsx:36
@@ -3377,10 +3347,6 @@ msgstr "콘텐츠 차단됨"
 msgid "Content filters"
 msgstr "콘텐츠 필터"
 
-#: src/screens/Search/modules/ExploreRecommendations.tsx:60
-msgid "Content from across the network we think you might like."
-msgstr "좋아할 만한 네트워크 전반의 콘텐츠를 모았습니다."
-
 #: src/screens/Settings/LanguageSettings.tsx:177
 msgid "Content languages"
 msgstr "콘텐츠 언어"
@@ -3488,7 +3454,7 @@ msgstr "대화를 찾을 수 없습니다."
 msgid "Copied build version to clipboard"
 msgstr "빌드 버전을 클립보드에 복사했습니다"
 
-#: src/screens/Search/Shell.tsx:504
+#: src/screens/Search/Shell.tsx:512
 msgid "Copied link to clipboard"
 msgstr "링크를 클립보드에 복사했습니다"
 
@@ -3660,11 +3626,11 @@ msgstr "모든 사용자를 팔로우할 수 없습니다. {0}"
 msgid "Could not leave chat"
 msgstr "대화에서 나갈 수 없습니다"
 
-#: src/components/moderation/BlockDialog.tsx:285
+#: src/components/moderation/BlockDialog.tsx:282
 msgid "Could not leave chat."
 msgstr "대화에서 나갈 수 없습니다."
 
-#: src/screens/Profile/ProfileFeed/index.tsx:73
+#: src/screens/Profile/ProfileFeed/index.tsx:72
 msgid "Could not load feed"
 msgstr "피드를 불러올 수 없습니다"
 
@@ -3682,7 +3648,7 @@ msgstr "프로필을 불러올 수 없습니다"
 msgid "Could not mute chat"
 msgstr "대화를 뮤트할 수 없습니다"
 
-#: src/components/moderation/BlockDialog.tsx:311
+#: src/components/moderation/BlockDialog.tsx:308
 msgid "Could not remove member."
 msgstr "멤버를 내보낼 수 없습니다."
 
@@ -3777,7 +3743,7 @@ msgstr "가입하기"
 #: src/components/dialogs/Signin.tsx:87
 #: src/components/dialogs/Signin.tsx:89
 #: src/screens/Hashtag.tsx:236
-#: src/screens/Search/SearchResults.tsx:391
+#: src/screens/Search/SearchResults.tsx:418
 msgid "Create an account"
 msgstr "계정 만들기"
 
@@ -3872,7 +3838,7 @@ msgstr ""
 msgid "Current beta features"
 msgstr "현재 베타 기능"
 
-#: src/components/moderation/BlockDialog.tsx:378
+#: src/components/moderation/BlockDialog.tsx:375
 msgid "Current chat"
 msgstr "현재 대화"
 
@@ -4244,16 +4210,16 @@ msgstr "Germ DM 연결 해제"
 msgid "Discourage apps from showing my account to logged-out users"
 msgstr "앱이 로그아웃한 사용자에게 내 계정을 표시하지 않도록 설정하기"
 
+#: src/screens/Search/Explore.tsx:448
+msgid "Discover feeds"
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:64
 #: src/view/com/posts/FollowingEmptyState.tsx:69
 #: src/view/com/posts/FollowingEndOfFeed.tsx:65
 #: src/view/com/posts/FollowingEndOfFeed.tsx:70
 msgid "Discover new custom feeds"
 msgstr "새로운 맞춤 피드 찾아보기"
-
-#: src/screens/Search/Explore.tsx:453
-msgid "Discover new feeds"
-msgstr "새 피드 발견하기"
 
 #: src/view/screens/Feeds.tsx:726
 msgid "Discover New Feeds"
@@ -4276,11 +4242,11 @@ msgstr "오류 무시"
 msgid "Dismiss getting started guide"
 msgstr "시작하기 가이드 닫기"
 
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:44
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:42
 msgid "Dismiss interests"
 msgstr "관심 주제 닫기"
 
-#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:82
+#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:74
 #: src/features/liveEvents/components/SidebarLiveEventFeedsBanner.tsx:64
 msgid "Dismiss live event banner"
 msgstr "라이브 이벤트 배너 닫기"
@@ -4562,8 +4528,8 @@ msgstr "이미지 편집하기"
 msgid "Edit interaction settings"
 msgstr "상호작용 설정 편집"
 
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:99
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:106
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:93
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:100
 msgid "Edit interests"
 msgstr "관심 주제 편집"
 
@@ -4857,7 +4823,7 @@ msgstr "사용자 이름 및 비밀번호 입력"
 msgid "Enters full screen"
 msgstr "전체화면으로 봅니다"
 
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:224
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:202
 msgid "Entertainment"
 msgstr "엔터테인먼트"
 
@@ -4891,7 +4857,7 @@ msgstr "파일을 저장하는 동안 오류가 발생했습니다"
 msgid "Error receiving captcha response."
 msgstr "캡차 응답을 수신하는 동안 오류가 발생했습니다."
 
-#: src/screens/Search/SearchResults.tsx:179
+#: src/screens/Search/SearchResults.tsx:206
 msgid "Error: {error}"
 msgstr "오류: {error}"
 
@@ -4903,8 +4869,8 @@ msgstr "누구나 답글을 달 수 있음"
 msgid "Everybody can reply to this post."
 msgstr "누구나 이 게시물에 답글을 달 수 있습니다."
 
-#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:168
-#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:171
+#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:170
+#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:173
 msgid "Everyone"
 msgstr "모두"
 
@@ -5010,7 +4976,7 @@ msgid "Explicit sexual images."
 msgstr "노골적인 성적 이미지."
 
 #: src/Navigation.tsx:841
-#: src/screens/Search/Shell.tsx:541
+#: src/screens/Search/Shell.tsx:549
 #: src/view/shell/desktop/LeftNav.tsx:677
 #: src/view/shell/Drawer.tsx:409
 msgid "Explore"
@@ -5097,7 +5063,7 @@ msgstr "핸들을 변경하지 못했습니다. 다시 시도해 주세요."
 
 #: src/components/Lightbox/Lightbox.web.tsx:302
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:135
-#: src/screens/Search/Shell.tsx:505
+#: src/screens/Search/Shell.tsx:513
 msgid "Failed to copy link"
 msgstr "링크를 복사하지 못했습니다"
 
@@ -5190,16 +5156,16 @@ msgstr "그룹 대화에서 나가지 못했습니다"
 msgid "Failed to load conversations"
 msgstr "대화를 불러오지 못했습니다"
 
-#: src/screens/Search/Explore.tsx:530
-#: src/screens/Search/Explore.tsx:575
-#: src/screens/Search/Explore.tsx:621
+#: src/screens/Search/Explore.tsx:526
+#: src/screens/Search/Explore.tsx:571
+#: src/screens/Search/Explore.tsx:617
 msgid "Failed to load feeds"
 msgstr "피드를 불러오지 못했습니다"
 
-#: src/screens/Search/Explore.tsx:489
-#: src/screens/Search/Explore.tsx:544
-#: src/screens/Search/Explore.tsx:589
-#: src/screens/Search/Explore.tsx:635
+#: src/screens/Search/Explore.tsx:485
+#: src/screens/Search/Explore.tsx:540
+#: src/screens/Search/Explore.tsx:585
+#: src/screens/Search/Explore.tsx:631
 msgid "Failed to load feeds preferences"
 msgstr "피드 환경설정을 불러오지 못했습니다"
 
@@ -5224,14 +5190,14 @@ msgstr "환경설정을 불러오지 못했습니다."
 msgid "Failed to load profiles"
 msgstr "프로필을 불러오지 못했습니다"
 
-#: src/screens/Search/Explore.tsx:482
-#: src/screens/Search/Explore.tsx:537
-#: src/screens/Search/Explore.tsx:582
-#: src/screens/Search/Explore.tsx:628
+#: src/screens/Search/Explore.tsx:478
+#: src/screens/Search/Explore.tsx:533
+#: src/screens/Search/Explore.tsx:578
+#: src/screens/Search/Explore.tsx:624
 msgid "Failed to load suggested feeds"
 msgstr "추천 피드를 불러오지 못했습니다"
 
-#: src/screens/Search/Explore.tsx:391
+#: src/screens/Search/Explore.tsx:386
 msgid "Failed to load suggested follows"
 msgstr "추천 팔로우를 불러오지 못했습니다"
 
@@ -5443,7 +5409,7 @@ msgstr "피드 ID"
 msgid "Feed Likes"
 msgstr ""
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:359
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:407
 msgid "Feed menu"
 msgstr "피드 메뉴"
 
@@ -5464,7 +5430,7 @@ msgstr "피드 운영자에게 피드백을 전송했습니다"
 #: src/Navigation.tsx:617
 #: src/screens/SavedFeeds.tsx:112
 #: src/screens/SavedFeeds.tsx:303
-#: src/screens/Search/SearchResults.tsx:104
+#: src/screens/Search/SearchResults.tsx:113
 #: src/screens/StarterPack/StarterPackScreen.tsx:196
 #: src/view/screens/Feeds.tsx:507
 #: src/view/screens/Profile.tsx:256
@@ -5485,10 +5451,6 @@ msgctxt "toast"
 msgid "Feeds updated!"
 msgstr "피드를 업데이트했습니다!"
 
-#: src/screens/Search/modules/ExploreRecommendations.tsx:66
-msgid "Feeds we think you might like."
-msgstr "좋아할 만한 피드를 모았습니다."
-
 #: src/screens/Settings/components/OTAInfo.tsx:61
 msgid "Fetch update"
 msgstr "업데이트 확인"
@@ -5498,11 +5460,11 @@ msgstr "업데이트 확인"
 msgid "File saved successfully!"
 msgstr "파일을 성공적으로 저장했습니다!"
 
-#: src/screens/Search/components/AdvancedSearchDialog/FollowingDropdown.tsx:48
+#: src/screens/Search/components/AdvancedSearchDialog/FromDropdown.tsx:49
 msgid "Filter by author"
 msgstr "작성자 필터"
 
-#: src/screens/Search/components/AdvancedSearchDialog/FollowingDropdown.tsx:29
+#: src/screens/Search/components/AdvancedSearchDialog/FromDropdown.tsx:30
 msgid "Filter by author (currently: {currentLabel})"
 msgstr "작성자 필터 (현재: {currentLabel})"
 
@@ -5535,7 +5497,7 @@ msgstr "{0}로 이 검색 필터링하기"
 msgid "Filter who can opt to receive notifications for your activity"
 msgstr "내 활동 알림을 받을 수 있는 사용자 필터링"
 
-#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:163
+#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:165
 msgid "Filter who you receive notifications from"
 msgstr "알림을 받을 대상 필터링"
 
@@ -5599,7 +5561,7 @@ msgstr "팔로우할 사용자 찾아보기"
 msgid "Find people you know"
 msgstr "아는 사람 찾아보기"
 
-#: src/screens/Search/Shell.tsx:753
+#: src/screens/Search/Shell.tsx:765
 msgid "Find posts, users, and feeds on Bluesky"
 msgstr "Bluesky에서 게시물, 사용자, 피드 찾기"
 
@@ -5876,7 +5838,9 @@ msgstr "그룹 대화를 나타내는 4개의 메시지 말풍선. 첫 번째 �
 msgid "Free your feed"
 msgstr "피드를 자유롭게"
 
-#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:406
+#. Filter search results by a specific post author
+#. Filter who you receive notifications from
+#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:408
 #: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:159
 msgid "From"
 msgstr "알림 대상"
@@ -6097,7 +6061,7 @@ msgid "Go live for"
 msgstr "라이브 예정 시간"
 
 #. placeholder {0}: name.displayName
-#: src/screens/PostThread/components/LikesStat.tsx:152
+#: src/screens/PostThread/components/LikesStat.tsx:151
 msgid "Go to {0}'s profile"
 msgstr "{0} 님의 프로필로 이동"
 
@@ -6357,7 +6321,7 @@ msgstr "검토 설정에 의해 숨겨졌습니다."
 msgid "Hidden list"
 msgstr "숨겨진 리스트"
 
-#: src/components/interstitials/Trending.tsx:133
+#: src/components/interstitials/Trending.tsx:143
 #: src/components/interstitials/TrendingVideos.tsx:139
 #: src/components/moderation/ContentHider.tsx:320
 #: src/components/moderation/LabelPreference.tsx:142
@@ -6367,7 +6331,7 @@ msgstr "숨겨진 리스트"
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
 #: src/lib/moderation/useLabelBehaviorDescription.ts:33
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:128
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:137
 msgid "Hide"
 msgstr "숨기기"
 
@@ -6412,7 +6376,7 @@ msgstr "모두에게서 답글 숨기기"
 msgid "Hide reply for me"
 msgstr "나에게서 답글 숨기기"
 
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:111
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:105
 msgid "Hide this card"
 msgstr "이 카드 숨기기"
 
@@ -6432,12 +6396,12 @@ msgstr "이 답글을 숨기시겠습니까?"
 msgid "Hide translation"
 msgstr "번역 숨기기"
 
-#: src/components/interstitials/Trending.tsx:115
+#: src/components/interstitials/Trending.tsx:125
 msgid "Hide trending topics"
 msgstr "인기 주제 숨기기"
 
-#: src/components/interstitials/Trending.tsx:131
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:126
+#: src/components/interstitials/Trending.tsx:141
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:135
 msgid "Hide trending topics?"
 msgstr "인기 주제를 숨기시겠습니까?"
 
@@ -6534,10 +6498,6 @@ msgstr "호스팅 제공자: {0}"
 #: src/screens/Login/LoginForm.tsx:657
 msgid "Hosting provider: Bluesky"
 msgstr "호스팅 제공자: Bluesky"
-
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:179
-msgid "Hot"
-msgstr "인기"
 
 #: src/components/contacts/components/InviteInfo.tsx:54
 msgid "How it works:"
@@ -6776,6 +6736,7 @@ msgstr "수신함 제로!"
 #. Advanced search filter
 #. Advanced search filter
 #. Advanced search filter
+#. Include search results with or without replies
 #: src/screens/Search/components/AdvancedSearchDialog/FilterBlock.tsx:47
 #: src/screens/Search/components/AdvancedSearchDialog/FilterBlock.tsx:58
 #: src/screens/Search/components/AdvancedSearchDialog/FilterBlock.tsx:75
@@ -7114,7 +7075,7 @@ msgid "Last initiated just now"
 msgstr "방금 시작함"
 
 #: src/screens/Hashtag.tsx:97
-#: src/screens/Search/SearchResults.tsx:86
+#: src/screens/Search/SearchResults.tsx:95
 #: src/screens/Topic.tsx:64
 msgid "Latest"
 msgstr "최신"
@@ -7133,7 +7094,7 @@ msgstr "자세히 알아보기 (영어)"
 msgid "Learn More"
 msgstr "자세히 알아보기"
 
-#: src/screens/Search/SearchResults.tsx:246
+#: src/screens/Search/SearchResults.tsx:273
 msgctxt "english-only-resource"
 msgid "Learn more about <0>how to use advanced search</0>."
 msgstr "<0>고급 검색 사용 방법 (영어)</0>에 대해 자세히 알아보세요."
@@ -7218,8 +7179,8 @@ msgstr "나가기"
 
 #: src/components/dms/MessagesListBlockedFooter.tsx:109
 #: src/components/dms/MessagesListBlockedFooter.tsx:116
-#: src/components/moderation/BlockDialog.tsx:384
-#: src/components/moderation/BlockDialog.tsx:391
+#: src/components/moderation/BlockDialog.tsx:381
+#: src/components/moderation/BlockDialog.tsx:388
 #: src/screens/Messages/components/ChatEnded.tsx:66
 #: src/screens/Messages/components/ChatLocked.tsx:112
 msgid "Leave chat"
@@ -7259,7 +7220,7 @@ msgstr "이 대화에서 나가면 영구적으로 잠기며 다시 참여할 �
 msgid "Leaving Us"
 msgstr ""
 
-#: src/components/moderation/BlockDialog.tsx:277
+#: src/components/moderation/BlockDialog.tsx:274
 msgid "Left group chat."
 msgstr "그룹 대화에서 나갔습니다"
 
@@ -7292,7 +7253,7 @@ msgctxt "Name of app icon variant"
 msgid "Light"
 msgstr "밝음"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:523
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:578
 msgid "Like"
 msgstr "좋아요"
 
@@ -7326,7 +7287,7 @@ msgstr ""
 msgid "Like on Repost"
 msgstr ""
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:511
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:566
 msgid "Like this feed"
 msgstr "이 피드에 좋아요 표시"
 
@@ -7352,8 +7313,26 @@ msgstr "좋아요 표시한 사용자"
 msgid "Liked by {0, plural, one {# user} other {# users}}"
 msgstr "{0, plural, other {#명}}의 사용자가 좋아요 표시함"
 
+#. Social proof below the post stats; the bolded name is a person the viewer follows who liked the post
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:137
+#: src/screens/PostThread/components/LikesStat.tsx:178
+msgid "Liked by {0}"
+msgstr ""
+
+#. Social proof below the post stats; the bolded names are people the viewer follows who liked the post
+#. placeholder {0}: nameLink(names[0])
+#. placeholder {0}: names[0].displayName
+#. placeholder {1}: nameLink(names[1])
+#. placeholder {1}: names[1].displayName
+#: src/screens/PostThread/components/LikesStat.tsx:136
+#: src/screens/PostThread/components/LikesStat.tsx:174
+msgid "Liked by {0} and {1}"
+msgstr ""
+
 #: src/components/LabelingServiceCard/index.tsx:96
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:498
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:552
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:208
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:223
 msgid "Liked by {likeCount, plural, one {# user} other {# users}}"
@@ -7372,7 +7351,7 @@ msgstr "좋아요"
 msgid "Likes of your reposts"
 msgstr "내 재게시물의 좋아요"
 
-#: src/screens/PostThread/components/LikesStat.tsx:85
+#: src/screens/PostThread/components/LikesStat.tsx:44
 msgid "Likes on this post"
 msgstr "이 게시물을 좋아요 표시합니다"
 
@@ -7499,12 +7478,12 @@ msgstr "라이브"
 msgid "Live event happening now: {0}"
 msgstr "라이브 이벤트 진행 중: {0}"
 
-#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:51
+#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:43
 #: src/features/liveEvents/components/SidebarLiveEventFeedsBanner.tsx:33
 msgid "Live event hidden"
 msgstr "라이브 이벤트를 숨겼습니다"
 
-#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:53
+#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:45
 #: src/features/liveEvents/components/SidebarLiveEventFeedsBanner.tsx:35
 msgid "Live event unhidden"
 msgstr "라이브 이벤트를 숨김 해제했습니다"
@@ -7520,12 +7499,12 @@ msgstr "라이브 기능은 베타 테스트 중입니다"
 msgid "Live link"
 msgstr "라이브 링크"
 
-#: src/screens/Search/Explore.tsx:90
+#: src/screens/Search/Explore.tsx:87
 msgid "Load more"
 msgstr "더 불러오기"
 
-#: src/screens/Search/Explore.tsx:519
-#: src/screens/Search/Explore.tsx:610
+#: src/screens/Search/Explore.tsx:515
+#: src/screens/Search/Explore.tsx:606
 msgid "Load more suggested feeds"
 msgstr "추천 피드 더 불러오기"
 
@@ -7533,7 +7512,7 @@ msgstr "추천 피드 더 불러오기"
 msgid "Load new notifications"
 msgstr "새 알림 불러오기"
 
-#: src/screens/Profile/ProfileFeed/index.tsx:206
+#: src/screens/Profile/ProfileFeed/index.tsx:208
 #: src/screens/Profile/Sections/Feed.tsx:118
 #: src/screens/ProfileList/FeedSection.tsx:113
 #: src/view/com/feeds/FeedPage.tsx:172
@@ -7701,6 +7680,10 @@ msgstr ""
 msgid "Maybe later"
 msgstr "나중에 하기"
 
+#: src/screens/Search/components/AdvancedSearchDialog/FromDropdown.tsx:24
+msgid "Me"
+msgstr ""
+
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:375
 #: src/view/screens/Profile.tsx:253
 msgid "Media"
@@ -7720,7 +7703,7 @@ msgstr "다른 기기에 저장된 미디어"
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "일부 사용자에게 불쾌감을 주거나 부적절할 수 있는 미디어."
 
-#: src/components/moderation/BlockDialog.tsx:303
+#: src/components/moderation/BlockDialog.tsx:300
 msgid "Member removed from group chat."
 msgstr "멤버를 그룹 채팅에서 내보냈습니다"
 
@@ -8122,7 +8105,6 @@ msgstr "저작권 위반, 법적 요청 또는 규제 준수 문제를 신고해
 msgid "Nevermind, create a handle for me"
 msgstr "취소하고 내 핸들 만들기"
 
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:184
 #: src/view/com/profile/ProfileMenu.tsx:417
 msgid "New"
 msgstr "신규"
@@ -8237,7 +8219,7 @@ msgstr "새 메시지"
 msgid "New password"
 msgstr "새 비밀번호"
 
-#: src/screens/Profile/ProfileFeed/index.tsx:217
+#: src/screens/Profile/ProfileFeed/index.tsx:218
 #: src/screens/ProfileList/index.tsx:237
 #: src/screens/ProfileList/index.tsx:280
 #: src/view/screens/Feeds.tsx:548
@@ -8280,7 +8262,7 @@ msgid "Newest replies first"
 msgstr "새로운 순"
 
 #: src/lib/interests.ts:67
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:226
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:204
 msgid "News"
 msgstr "뉴스"
 
@@ -8480,7 +8462,7 @@ msgid "No results"
 msgstr "결과 없음"
 
 #. placeholder {0}: interestsDisplayNames[selectedInterest]
-#: src/screens/Search/Explore.tsx:828
+#: src/screens/Search/Explore.tsx:817
 msgid "No results for \"{0}\"."
 msgstr "‘{0}’에 대한 결과가 없습니다."
 
@@ -8493,19 +8475,19 @@ msgstr "결과를 찾을 수 없습니다"
 msgid "No results found for \"{query}\""
 msgstr "‘{query}’에 대한 결과를 찾을 수 없습니다"
 
-#: src/screens/Search/SearchResults.tsx:206
+#: src/screens/Search/SearchResults.tsx:233
 msgid "No results found for “<0>{query}</0>” with advanced search filters applied."
 msgstr "고급 검색 필터가 적용된 상태에서 ‘<0>{query}</0>’에 대한 검색 결과를 찾을 수 없습니다."
 
-#: src/screens/Search/SearchResults.tsx:218
+#: src/screens/Search/SearchResults.tsx:245
 msgid "No results found for “<0>{query}</0>”."
 msgstr "‘<0>{query}</0>’에 대한 결과를 찾을 수 없습니다."
 
-#: src/screens/Search/SearchResults.tsx:212
+#: src/screens/Search/SearchResults.tsx:239
 msgid "No results found for your query with advanced search filters applied."
 msgstr "고급 검색 필터가 적용된 검색어에 대한 결과를 찾을 수 없습니다."
 
-#: src/screens/Search/Explore.tsx:832
+#: src/screens/Search/Explore.tsx:821
 msgid "No results."
 msgstr "결과가 없습니다."
 
@@ -8678,7 +8660,7 @@ msgstr "이런!"
 #. Confirm button text.
 #: src/components/contacts/screens/GetContacts.tsx:317
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:267
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:49
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:44
 #: src/screens/Settings/AppIconSettings/index.tsx:46
 #: src/screens/Settings/AppIconSettings/index.tsx:250
 msgid "OK"
@@ -8689,7 +8671,7 @@ msgstr "확인"
 #: src/components/dms/InitiateChatFlow.tsx:733
 #: src/components/dms/MessageItem.tsx:742
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:733
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:734
 msgid "Okay"
 msgstr "확인"
 
@@ -8867,12 +8849,13 @@ msgstr "서랍 메뉴 열기"
 msgid "Open emoji picker"
 msgstr "이모티콘 선택기 열기"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:196
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:218
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:232
 msgid "Open feed info screen"
 msgstr "피드 정보 화면 열기"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:299
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:304
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:344
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:349
 msgid "Open feed options menu"
 msgstr "피드 옵션 메뉴 열기"
 
@@ -8922,7 +8905,7 @@ msgstr "검토 디버그 페이지 열기"
 msgid "Open muted words and tags settings"
 msgstr "뮤트한 단어 및 태그 설정 열기"
 
-#: src/screens/Search/components/StarterPackCard.tsx:120
+#: src/screens/Search/components/StarterPackCard.tsx:128
 msgid "Open pack"
 msgstr "팩 열기"
 
@@ -9252,7 +9235,7 @@ msgid "Pause video"
 msgstr "동영상 일시 정지"
 
 #: src/screens/ProfileList/index.tsx:167
-#: src/screens/Search/SearchResults.tsx:98
+#: src/screens/Search/SearchResults.tsx:107
 #: src/screens/StarterPack/StarterPackScreen.tsx:195
 msgid "People"
 msgstr "사용자"
@@ -9275,8 +9258,9 @@ msgstr "@{0} 님이 팔로우하는 사용자"
 msgid "People following @{0}"
 msgstr "@{0} 님을 팔로우하는 사용자"
 
-#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:178
-#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:182
+#: src/screens/Search/components/AdvancedSearchDialog/FromDropdown.tsx:23
+#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:180
+#: src/screens/Settings/NotificationSettings/components/PreferenceControls.tsx:184
 msgid "People I follow"
 msgstr "내가 팔로우하는 사용자"
 
@@ -9299,7 +9283,6 @@ msgid "People I follow can request to join"
 msgstr "내가 팔로우하는 사람은 참여 요청할 수 있음"
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:510
-#: src/screens/Search/components/AdvancedSearchDialog/FollowingDropdown.tsx:23
 msgid "People you follow"
 msgstr "내가 팔로우하는 사용자"
 
@@ -9345,8 +9328,8 @@ msgid "Pictures meant for adults."
 msgstr "성인용 사진."
 
 #: src/components/FeedCard.tsx:378
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:528
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:534
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:583
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:592
 #: src/screens/SavedFeeds.tsx:559
 msgid "Pin feed"
 msgstr "피드 고정"
@@ -9356,7 +9339,7 @@ msgstr "피드 고정"
 msgid "Pin to home"
 msgstr "홈에 고정"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:343
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:391
 msgid "Pin to Home"
 msgstr "홈에 고정"
 
@@ -9370,8 +9353,8 @@ msgid "Pinned"
 msgstr "고정됨"
 
 #. placeholder {0}: info.displayName
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:163
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:177
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:170
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:184
 msgid "Pinned {0} to Home"
 msgstr "{0}(을)를 홈에 고정했습니다"
 
@@ -9583,7 +9566,7 @@ msgid "Please write your message below:"
 msgstr "아래에 메시지를 작성하세요:"
 
 #: src/lib/interests.ts:70
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:220
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:198
 msgid "Politics"
 msgstr "정치"
 
@@ -9963,7 +9946,7 @@ msgstr "게시물 인용 비활성화됨"
 msgid "Quotes"
 msgstr "인용"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:488
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:487
 msgid "Quotes of this post"
 msgstr "이 게시물의 인용"
 
@@ -10006,7 +9989,7 @@ msgstr "계정 재활성화"
 msgid "Read {0, plural, one {# more reply} other {# more replies}}"
 msgstr "{0, plural, other {답글 #개}} 더 보기"
 
-#: src/screens/Search/SearchResults.tsx:249
+#: src/screens/Search/SearchResults.tsx:276
 msgctxt "english-only-resource"
 msgid "Read about how to use advanced search filters"
 msgstr "고급 검색 필터 사용 방법에 대해 읽어보기 (영어)"
@@ -10085,7 +10068,6 @@ msgstr "최근 사용됨"
 msgid "Recently used tags"
 msgstr ""
 
-#: src/screens/Search/modules/ExploreRecommendations.tsx:55
 #: src/screens/Signup/StepSelectProvider/index.tsx:161
 msgid "Recommended"
 msgstr "추천"
@@ -10218,8 +10200,8 @@ msgstr "필터 제거하기"
 msgid "Remove from chat"
 msgstr "대화에서 내보내기"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:326
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:331
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:374
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:379
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:176
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:179
 #: src/screens/SavedFeeds.tsx:549
@@ -10258,8 +10240,8 @@ msgstr "이미지 제거"
 msgid "Remove live status"
 msgstr "라이브 상태 제거"
 
-#: src/components/moderation/BlockDialog.tsx:365
-#: src/components/moderation/BlockDialog.tsx:372
+#: src/components/moderation/BlockDialog.tsx:362
+#: src/components/moderation/BlockDialog.tsx:369
 msgid "Remove member"
 msgstr "멤버 제거"
 
@@ -10330,7 +10312,7 @@ msgstr "저장된 게시물에서 제거했습니다"
 msgid "Removed from starter pack"
 msgstr "스타터 팩에서 제거했습니다"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:125
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:132
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:77
 #: src/view/com/posts/FeedShutdownMsg.tsx:45
 msgid "Removed from your feeds"
@@ -10477,8 +10459,8 @@ msgstr "대화 신고"
 msgid "Report dialog"
 msgstr "신고 대화 상자"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:550
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:556
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:610
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:616
 msgid "Report feed"
 msgstr "피드 신고"
 
@@ -10591,7 +10573,7 @@ msgstr "내가 재게시함"
 msgid "Reposts"
 msgstr "재게시"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:467
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:466
 msgid "Reposts of this post"
 msgstr "이 게시물의 재게시물"
 
@@ -10871,8 +10853,8 @@ msgstr "QR 코드 저장"
 msgid "Save these options for next time"
 msgstr "다음에도 이 옵션 저장하기"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:326
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:332
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:374
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:380
 msgid "Save to my feeds"
 msgstr "내 피드에 저장"
 
@@ -10904,7 +10886,7 @@ msgstr "저장된 피드"
 msgid "Saved Posts"
 msgstr "저장된 게시물"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:135
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:142
 #: src/screens/ProfileList/components/Header.tsx:88
 msgid "Saved to your feeds"
 msgstr "내 피드에 저장했습니다"
@@ -10963,9 +10945,9 @@ msgstr "맨 위로 스크롤"
 #: src/components/forms/SearchInput.tsx:53
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:218
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:224
-#: src/screens/Search/Shell.tsx:541
-#: src/screens/Search/Shell.tsx:604
-#: src/screens/Search/Shell.tsx:741
+#: src/screens/Search/Shell.tsx:549
+#: src/screens/Search/Shell.tsx:612
+#: src/screens/Search/Shell.tsx:753
 #: src/view/shell/bottom-bar/BottomBar.tsx:216
 msgid "Search"
 msgstr "검색"
@@ -11011,11 +10993,11 @@ msgstr "{q}에 대한 검색 결과"
 msgid "Search for feeds that you want to suggest to others."
 msgstr "다른 사람에게 추천할 피드를 검색하세요."
 
-#: src/screens/Search/Explore.tsx:378
+#: src/screens/Search/Explore.tsx:373
 msgid "Search for more accounts"
 msgstr "더 많은 계정 검색하기"
 
-#: src/screens/Search/Explore.tsx:456
+#: src/screens/Search/Explore.tsx:452
 msgid "Search for more feeds"
 msgstr "더 많은 피드 검색하기"
 
@@ -11029,7 +11011,7 @@ msgid "Search GIFs"
 msgstr "GIF 검색하기"
 
 #: src/screens/Hashtag.tsx:228
-#: src/screens/Search/SearchResults.tsx:383
+#: src/screens/Search/SearchResults.tsx:410
 msgid "Search is currently unavailable when logged out"
 msgstr "현재 로그아웃 상태에서는 검색 기능을 사용할 수 없습니다"
 
@@ -11104,12 +11086,17 @@ msgstr "사용자의 #{tag} 게시물 보기"
 
 #: src/components/FeedInterstitials.tsx:508
 #: src/components/FeedInterstitials.tsx:566
+#: src/components/interstitials/FeedTrendingTopics.tsx:112
 msgid "See more"
 msgstr "더 보기"
 
 #: src/components/FeedInterstitials.tsx:489
 msgid "See more suggested profiles"
 msgstr "더 많은 추천 프로필 보기"
+
+#: src/components/interstitials/FeedTrendingTopics.tsx:103
+msgid "See more trending topics"
+msgstr ""
 
 #: src/view/com/profile/ProfileFollows.tsx:190
 #: src/view/com/profile/ProfileFollows.tsx:191
@@ -11577,12 +11564,12 @@ msgstr "프로필 공유"
 msgid "Share QR code"
 msgstr "QR 코드 공유"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:478
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:531
 msgid "Share this feed"
 msgstr "이 피드 공유하기"
 
-#: src/screens/Search/Shell.tsx:557
-#: src/screens/Search/Shell.tsx:626
+#: src/screens/Search/Shell.tsx:565
+#: src/screens/Search/Shell.tsx:634
 msgid "Share this search"
 msgstr "이 검색 공유하기"
 
@@ -11775,7 +11762,7 @@ msgstr "경고 표시 및 피드에서 필터링"
 msgid "Show when you’re live"
 msgstr "내가 라이브 중일 때 표시하기"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:674
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:675
 msgid "Shows information about when this post was created"
 msgstr "이 게시물이 언제 작성되었는지에 대한 정보를 표시합니다"
 
@@ -11800,7 +11787,7 @@ msgstr "콘텐츠를 표시합니다"
 #: src/screens/Login/LoginForm.tsx:560
 #: src/screens/Messages/JoinRequest.tsx:290
 #: src/screens/Messages/JoinRequest.tsx:296
-#: src/screens/Search/SearchResults.tsx:386
+#: src/screens/Search/SearchResults.tsx:413
 #: src/view/com/auth/SplashScreen.tsx:116
 #: src/view/com/auth/SplashScreen.tsx:123
 #: src/view/com/auth/SplashScreen.web.tsx:124
@@ -12061,7 +12048,7 @@ msgstr "문제가 발생했습니다. 잠시 후 다시 시도해 주세요."
 msgid "Something went wrong. Please try again."
 msgstr "문제가 발생했습니다. 다시 시도해 주세요."
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:546
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:606
 msgid "Something wrong? Let us know."
 msgstr "문제가 발생했나요? 저희에게 알려주세요."
 
@@ -12109,7 +12096,7 @@ msgid "Split moderation label grouping"
 msgstr ""
 
 #: src/lib/interests.ts:72
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:218
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:196
 msgid "Sports"
 msgstr "스포츠"
 
@@ -12179,7 +12166,11 @@ msgstr "내 스타터 팩"
 msgid "Starter pack is invalid"
 msgstr "스타터 팩이 유효하지 않음"
 
-#: src/screens/Search/Explore.tsx:665
+#: src/screens/Search/SearchResults.tsx:120
+msgid "Starter packs"
+msgstr ""
+
+#: src/screens/Search/Explore.tsx:661
 #: src/view/screens/Profile.tsx:257
 msgid "Starter Packs"
 msgstr "스타터 팩"
@@ -12318,7 +12309,7 @@ msgstr "성공적으로 인증했습니다"
 msgid "Suggested"
 msgstr "추천"
 
-#: src/screens/Search/Explore.tsx:375
+#: src/screens/Search/Explore.tsx:369
 msgid "Suggested accounts"
 msgstr "추천 계정"
 
@@ -12763,7 +12754,7 @@ msgstr "GIF를 불러오는 동안 문제가 발생했습니다. 인터넷 연�
 msgid "There was a problem with your internet connection, please try again"
 msgstr "인터넷 연결에 문제가 발생했습니다. 다시 시도해 주세요"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:181
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:188
 #: src/screens/ProfileList/components/Header.tsx:91
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:79
 #: src/screens/SavedFeeds.tsx:99
@@ -12771,7 +12762,7 @@ msgstr "인터넷 연결에 문제가 발생했습니다. 다시 시도해 주�
 msgid "There was an issue contacting the server"
 msgstr "서버에 연결하는 동안 문제가 발생했습니다"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:425
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:476
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:113
 msgid "There was an issue contacting the server, please check your internet connection and try again."
 msgstr "서버에 연결하는 동안 문제가 발생했습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요."
@@ -12780,8 +12771,8 @@ msgstr "서버에 연결하는 동안 문제가 발생했습니다. 인터넷 �
 msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "알림을 가져오는 동안 문제가 발생했습니다. 다시 시도하려면 이곳을 탭하세요."
 
-#: src/screens/Search/Explore.tsx:1027
-#: src/view/com/posts/PostFeed.tsx:757
+#: src/screens/Search/Explore.tsx:1015
+#: src/view/com/posts/PostFeed.tsx:787
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "게시물을 가져오는 동안 문제가 발생했습니다. 다시 시도하려면 이곳을 탭하세요."
 
@@ -12806,7 +12797,7 @@ msgstr "내 서비스 정보를 가져오는 동안 문제가 발생했습니다
 msgid "There was an issue removing this feed. Please check your internet connection and try again."
 msgstr "이 피드를 삭제하는 동안 문제가 발생했습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요."
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:140
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:147
 #: src/view/com/posts/FeedShutdownMsg.tsx:53
 #: src/view/com/posts/FeedShutdownMsg.tsx:74
 msgid "There was an issue updating your feeds, please check your internet connection and try again."
@@ -12885,7 +12876,7 @@ msgstr "이 설정은 팔로우 중 피드에만 적용됩니다."
 msgid "These URLs"
 msgstr "다음 URL"
 
-#: src/components/moderation/BlockDialog.tsx:356
+#: src/components/moderation/BlockDialog.tsx:353
 msgid "They own this chat"
 msgstr "내 소유가 아닌 대화"
 
@@ -13038,7 +13029,7 @@ msgid "This feed is empty! You may need to follow more users or tune your langua
 msgstr "이 피드는 비어 있습니다. 더 많은 사용자를 팔로우하거나 언어 설정을 조정해 보세요."
 
 #: src/components/StarterPack/Main/PostsList.tsx:41
-#: src/screens/Profile/ProfileFeed/index.tsx:171
+#: src/screens/Profile/ProfileFeed/index.tsx:170
 #: src/screens/ProfileList/FeedSection.tsx:78
 msgid "This feed is empty."
 msgstr "이 피드는 비어 있습니다."
@@ -13146,7 +13137,7 @@ msgstr "이 사용자는 나를 차단했습니다"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:714
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:715
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 msgstr "이 게시물은 <0>{0}</0>에 작성되었다고 주장하지만 Bluesky에서는 <1>{1}</1>에 처음 확인되었습니다."
 
@@ -13242,7 +13233,7 @@ msgstr "이 사용자는 새로 가입했습니다. 언제 가입했는지 자�
 msgid "This user isn't following anyone."
 msgstr "이 사용자는 아무도 팔로우하지 않았습니다."
 
-#: src/components/Post/Embed/VideoEmbed/index.web.tsx:249
+#: src/components/Post/Embed/VideoEmbed/index.web.tsx:304
 msgid "This video can’t be played on your device. Your browser or system may be missing the required video codecs (H.264/AAC)."
 msgstr "이 동영상은 현재 기기에서 재생할 수 없습니다. 브라우저 또는 시스템에 필요한 비디오 코덱(H.264/AAC)이 설치되어 있지 않을 수 있습니다."
 
@@ -13359,7 +13350,7 @@ msgid "Too many contacts - you've exceeded the number of contacts you can import
 msgstr "연락처가 너무 많습니다. 친구 찾기를 위해 가져올 수 있는 연락처 수를 초과했습니다"
 
 #: src/screens/Hashtag.tsx:86
-#: src/screens/Search/SearchResults.tsx:74
+#: src/screens/Search/SearchResults.tsx:83
 #: src/screens/Topic.tsx:58
 msgid "Top"
 msgstr "인기"
@@ -13406,7 +13397,9 @@ msgstr "현재 사용하는 기기에서는 같은 언어로 번역할 수 없�
 msgid "Tree view"
 msgstr "트리 뷰"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:48
+#: src/components/interstitials/FeedTrendingTopics.tsx:100
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:51
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:54
 msgid "Trending"
 msgstr "인기"
 
@@ -13415,7 +13408,7 @@ msgstr "인기"
 msgid "Trending GIFs"
 msgstr "인기 GIF"
 
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:55
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:61
 msgid "Trending options"
 msgstr "인기 옵션"
 
@@ -13431,11 +13424,11 @@ msgstr "분쟁 유발"
 msgid "Trust emerges from relationships, communities, and shared context, so we’re also enabling <0>trusted verifiers</0>: organizations that can directly issue verification."
 msgstr "신뢰는 관계, 커뮤니티, 공유된 맥락에서 비롯되므로 직접 인증을 발행할 수 있는 조직인 <0>신뢰할 수 있는 인증자</0> 또한 지원합니다."
 
-#: src/screens/Search/SearchResults.tsx:233
+#: src/screens/Search/SearchResults.tsx:260
 msgid "Try a different search term or remove some filters."
 msgstr "다른 검색어를 사용하거나 일부 필터를 제거해 보세요."
 
-#: src/screens/Search/SearchResults.tsx:235
+#: src/screens/Search/SearchResults.tsx:262
 msgid "Try a different search term."
 msgstr "다른 검색어를 사용해 보세요."
 
@@ -13544,9 +13537,9 @@ msgstr "사용할 수 없는 피드 정보"
 #: src/components/dms/MessageItem.tsx:746
 #: src/components/dms/MessagesListBlockedFooter.tsx:97
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
-#: src/components/moderation/BlockDialog.tsx:186
-#: src/components/moderation/BlockDialog.tsx:190
-#: src/components/moderation/BlockDialog.tsx:211
+#: src/components/moderation/BlockDialog.tsx:187
+#: src/components/moderation/BlockDialog.tsx:191
+#: src/components/moderation/BlockDialog.tsx:213
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:201
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:357
@@ -13586,8 +13579,8 @@ msgstr "계정을 차단 해제하시겠습니까?"
 msgid "Unblock list"
 msgstr "리스트 차단 해제"
 
-#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:58
-#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:64
+#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:50
+#: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:56
 #: src/features/liveEvents/components/SidebarLiveEventFeedsBanner.tsx:40
 #: src/features/liveEvents/components/SidebarLiveEventFeedsBanner.tsx:46
 #: src/screens/Profile/components/GermButton.tsx:186
@@ -13649,7 +13642,7 @@ msgstr "라벨이 없는 성인 콘텐츠"
 msgid "Unlabeled, abusive, or non-consensual adult content"
 msgstr "라벨이 없거나, 학대적이거나 동의받지 않은 성인 콘텐츠"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:523
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:578
 msgid "Unlike"
 msgstr "좋아요 취소"
 
@@ -13719,14 +13712,14 @@ msgid "Unpin"
 msgstr "고정 해제"
 
 #: src/components/FeedCard.tsx:369
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:528
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:534
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:583
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:590
 #: src/screens/SavedFeeds.tsx:467
 msgid "Unpin feed"
 msgstr "피드 고정 해제"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:318
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:320
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:366
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:368
 msgid "Unpin from home"
 msgstr "홈에서 고정 해제"
 
@@ -13741,7 +13734,7 @@ msgid "Unpin moderation list"
 msgstr "검토 리스트 고정 해제"
 
 #. placeholder {0}: info.displayName
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:166
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:173
 msgid "Unpinned {0} from Home"
 msgstr "{0}(을)를 홈에서 고정 해제했습니다"
 
@@ -14158,7 +14151,7 @@ msgid "Video from {0}. Tap to play or pause the video"
 msgstr "{0} 님의 동영상. 탭하여 재생 또는 일시정지합니다"
 
 #: src/lib/interests.ts:62
-#: src/screens/Search/modules/ExploreTrendingTopics.tsx:222
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:200
 msgid "Video Games"
 msgstr "비디오 게임"
 
@@ -14170,7 +14163,7 @@ msgstr "동영상 일시 정지됨"
 msgid "Video is playing"
 msgstr "동영상 재생 중"
 
-#: src/components/Post/Embed/VideoEmbed/index.web.tsx:244
+#: src/components/Post/Embed/VideoEmbed/index.web.tsx:299
 msgid "Video not found."
 msgstr "동영상을 찾을 수 없습니다."
 
@@ -14216,7 +14209,7 @@ msgstr "{0} 님의 프로필 사진 보기"
 #. placeholder {0}: authors[0].profile.displayName || authors[0].profile.handle
 #. placeholder {0}: info.creatorHandle
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:463
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:514
 #: src/screens/Search/components/SearchProfileCard.tsx:37
 #: src/screens/VideoFeed/index.tsx:880
 #: src/view/com/notifications/NotificationFeedItem.tsx:621
@@ -14290,7 +14283,7 @@ msgstr "이 그룹 대화의 참여 요청을 확인합니다"
 msgid "View information about these labels"
 msgstr "이 라벨에 대한 정보 보기"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:496
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:550
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:206
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:221
 msgid "View likes"
@@ -14354,11 +14347,11 @@ msgstr "이 그룹 대화의 초대 링크 보기"
 msgid "View the labeling service provided by @{0}"
 msgstr "{0} 님이 제공하는 라벨링 서비스 보기"
 
-#: src/components/verification/VerificationCheckButton.tsx:93
+#: src/components/verification/VerificationCheckButton.tsx:103
 msgid "View this user's verifications"
 msgstr "이 사용자의 인증 보기"
 
-#: src/screens/Profile/components/ProfileFeedHeader.tsx:491
+#: src/screens/Profile/components/ProfileFeedHeader.tsx:545
 msgid "View users who like this feed"
 msgstr "이 피드를 좋아하는 사용자 보기"
 
@@ -14387,7 +14380,7 @@ msgstr "내 검토 리스트 보기"
 msgid "View your muted accounts"
 msgstr "내가 뮤트한 계정 보기"
 
-#: src/components/verification/VerificationCheckButton.tsx:92
+#: src/components/verification/VerificationCheckButton.tsx:102
 msgid "View your verifications"
 msgstr "내 인증 보기"
 
@@ -14620,13 +14613,15 @@ msgstr "죄송하지만 이 리스트를 불러올 수 없습니다. 이 문제�
 msgid "We're sorry, but we weren't able to load your muted words at this time. Please try again."
 msgstr "죄송하지만 현재 뮤트한 단어를 불러올 수 없습니다. 다시 시도해 주세요."
 
-#: src/screens/Search/SearchResults.tsx:412
-#: src/screens/Search/SearchResults.tsx:553
+#: src/screens/Search/SearchResults.tsx:439
+#: src/screens/Search/SearchResults.tsx:580
+#: src/screens/Search/SearchResults.tsx:777
 msgid "We’re sorry, but your search could not be completed."
 msgstr "죄송합니다. 검색을 완료할 수 없습니다."
 
-#: src/screens/Search/SearchResults.tsx:411
-#: src/screens/Search/SearchResults.tsx:552
+#: src/screens/Search/SearchResults.tsx:438
+#: src/screens/Search/SearchResults.tsx:579
+#: src/screens/Search/SearchResults.tsx:776
 msgid "We’re sorry, but your search could not be completed. Please try again in a few minutes."
 msgstr "죄송하지만 검색을 완료할 수 없습니다. 몇 분 후에 다시 시도해 주세요."
 
@@ -14923,7 +14918,7 @@ msgstr "현재 인증된 상태입니다. 표시 이름을 변경하면 인증�
 msgid "You are verified. You will lose your verification status if you change your handle. <0>Learn more.</0>"
 msgstr "현재 인증된 상태입니다. 핸들을 변경하면 인증이 해제될 수 있습니다. <0>자세히 알아보기 (영어)</0>"
 
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:46
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:43
 msgid "You can adjust your interests at any time from \"Content and media\" settings."
 msgstr "‘콘텐츠 및 미디어’ 설정에서 언제든지 관심 주제를 조정할 수 있습니다."
 
@@ -15000,9 +14995,9 @@ msgstr "대화 기록은 읽을 수 있지만 새 메시지는 보낼 수 없습
 msgid "You can select up to {MAX_GALLERY_IMAGES, plural, other {# images}} in total."
 msgstr "총 {MAX_GALLERY_IMAGES, plural, other {#개}}까지 선택할 수 있습니다."
 
-#: src/components/interstitials/Trending.tsx:132
+#: src/components/interstitials/Trending.tsx:142
 #: src/components/interstitials/TrendingVideos.tsx:138
-#: src/view/shell/desktop/SidebarTrendingTopics.tsx:127
+#: src/view/shell/desktop/SidebarTrendingTopics.tsx:136
 msgid "You can update this later from your settings."
 msgstr "나중에 설정에서 변경할 수 있습니다."
 
@@ -15175,7 +15170,7 @@ msgstr "프로필은 최대 {STARTER_PACK_MAX_SIZE, plural, other {{STARTER_PACK
 msgid "You may only add up to 3 feeds"
 msgstr "피드는 최대 3개까지 추가할 수 있습니다"
 
-#: src/components/moderation/BlockDialog.tsx:321
+#: src/components/moderation/BlockDialog.tsx:318
 msgid "You must be a chat owner to remove a member."
 msgstr "멤버를 내보내려면 대화 소유자여야 합니다."
 
@@ -15200,7 +15195,7 @@ msgstr "미디어 라이브러리에 대한 접근 권한을 허용해야 합니
 msgid "You need to verify your email address before you can enable email 2FA."
 msgstr "이메일 2단계 인증을 사용하려면 이메일 주소를 인증해야 합니다."
 
-#: src/components/moderation/BlockDialog.tsx:352
+#: src/components/moderation/BlockDialog.tsx:349
 msgid "You own this chat"
 msgstr "내가 소유한 대화"
 
@@ -15360,7 +15355,7 @@ msgstr "임시 저장 수가 최대치에 도달했습니다"
 msgid "You've reached the maximum number of requests allowed. Please try again later."
 msgstr "허용된 최대 요청 수에 도달했습니다. 나중에 다시 시도해 주세요."
 
-#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:426
+#: src/screens/Search/components/AdvancedSearchDialog/index.tsx:430
 msgid "You’ve reached the maximum of {MAX_FILTERS, plural, one {# filter} other {# filters}}. Add more values to an existing filter instead of creating new ones."
 msgstr "필터의 최대 수인 {MAX_FILTERS, plural, other {#개}}에 도달했습니다. 새 필터를 만드는 대신 기존 필터에 값을 추가하세요."
 
@@ -15501,7 +15496,7 @@ msgid "Your hosting provider is detected automatically from the username you ent
 msgstr "입력한 핸들에서 호스팅 제공자가 자동으로 감지됩니다."
 
 #: src/Navigation.tsx:547
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:68
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:62
 #: src/screens/Settings/ContentAndMediaSettings.tsx:98
 #: src/screens/Settings/ContentAndMediaSettings.tsx:101
 #: src/screens/Settings/InterestsSettings.tsx:49
@@ -15513,7 +15508,7 @@ msgctxt "toast"
 msgid "Your interests have been updated!"
 msgstr "관심 주제를 업데이트했습니다!"
 
-#: src/screens/Search/modules/ExploreInterestsCard.tsx:95
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:89
 msgid "Your interests help us find what you like!"
 msgstr "관심 주제는 내가 좋아하는 것을 찾도록 도와줍니다!"
 

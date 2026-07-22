@@ -18,10 +18,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       description:
         'Automatically detect the language of posts as you write them',
     },
-    [Features.LiveNowBetaDisable]: {
-      label: 'Disable Live Now',
-      description: 'Hide the Live Now feature',
-    },
     [Features.PostThreadKnownLikersEnable]: {
       label: 'Post Thread Known Likers',
       description: 'Show people you follow who liked a post in the thread view',
@@ -29,5 +25,9 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
     [Features.PostThreadKnownLikersFetchEnable]: {
       label: 'Post Thread Known Likers Fetch',
       description: 'Fetch known-liker data for posts in a thread',
+    },
+    [Features.SearchStarterPacksV2Enable]: {
+      label: 'Search Starter Packs V2',
+      description: 'Use the updated starter packs experience in search results',
     },
   }

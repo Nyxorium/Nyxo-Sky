@@ -510,7 +510,7 @@ export type Events = {
       | 'ProgressGuide'
     location: 'Card' | 'Profile' | 'FollowAll'
     recSource?: 'Search'
-    recId?: number | string
+    recId?: string
     position: number
     suggestedDid: string
     category: string | null
@@ -523,7 +523,7 @@ export type Events = {
       | 'ProfileHeader'
       | 'Onboarding'
       | 'SeeMoreSuggestedUsers'
-    recId?: number | string
+    recId?: string
     position: number
     suggestedDid: string
     category: string | null
@@ -538,7 +538,7 @@ export type Events = {
       | 'SeeMoreSuggestedUsers'
       | 'ProgressGuide'
     recSource?: 'Search'
-    recId?: number | string
+    recId?: string
     position: number
     suggestedDid: string
     category: string | null
@@ -550,11 +550,11 @@ export type Events = {
       | 'ProfileInterstitial'
       | 'ProfileHeader'
       | 'Onboarding'
-    recId?: number | string
+    recId?: string
   }
   'suggestedUser:dismiss': {
     logContext: 'DiscoverInterstitial' | 'ProfileInterstitial' | 'ProfileHeader'
-    recId?: number | string
+    recId?: string
     position: number
     suggestedDid: string
   }
@@ -743,9 +743,7 @@ export type Events = {
   }
   'trendingTopic:click': {
     context: 'sidebar' | 'interstitial' | 'explore'
-  }
-  'recommendedTopic:click': {
-    context: 'explore'
+    recId?: string
   }
   'trendingVideos:show': {
     context: 'settings'
@@ -779,13 +777,13 @@ export type Events = {
   }
 
   'search:results:loaded': {
-    tab: 'top' | 'latest' | 'people' | 'feeds'
+    tab: 'top' | 'latest' | 'people' | 'feeds' | 'starterPacks'
     initialCount: number
   }
 
   'search:result:press': {
-    tab?: 'top' | 'latest' | 'people' | 'feeds'
-    resultType: 'post' | 'profile' | 'feed'
+    tab?: 'top' | 'latest' | 'people' | 'feeds' | 'starterPacks'
+    resultType: 'post' | 'profile' | 'feed' | 'starterPack'
     position: number
     uri: string
   }
