@@ -23,9 +23,11 @@ import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filte
 import {Freeze_Stroke2_Corner2_Rounded as FreezeIcon} from '#/components/icons/Freeze'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PencilLine_Stroke2_Corner2_Rounded as PencilIcon} from '#/components/icons/Pencil'
+import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/icons/Shield'
 import {Trash_Stroke2_Corner2_Rounded} from '#/components/icons/Trash'
 import * as Layout from '#/components/Layout'
+import {isPetAccount} from '#/components/PetBadge'
 import {ChangeHandleDialog} from './components/ChangeHandleDialog'
 import {ChangePasswordDialog} from './components/ChangePasswordDialog'
 import {DeactivateAccountDialog} from './components/DeactivateAccountDialog'
@@ -171,6 +173,17 @@ export function AccountSettingsScreen({}: Props) {
             <SettingsList.ItemText>
               <Trans>NSFW Labels</Trans>
             </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem to="/settings/pet-label" label={l`Pet label`}>
+            <SettingsList.ItemIcon icon={PetIcon} />
+            <SettingsList.ItemText>
+              <Trans>Pet label</Trans>
+            </SettingsList.ItemText>
+            {profile && (
+              <SettingsList.BadgeText>
+                {isPetAccount(profile) ? l`On` : l`Off`}
+              </SettingsList.BadgeText>
+            )}
           </SettingsList.LinkItem>
           <SettingsList.Divider />
           <SettingsList.PressableItem
