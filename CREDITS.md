@@ -24,3 +24,11 @@ Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/mi
   - Edited post indicator ([source](https://github.com/eurosky-social/eurosky-social-app/pull/18))
 - [atproto-pronouns](https://github.com/skydeval/atproto-pronouns/)
   - Some pronoun placements
+
+
+## Experimental Branch
+
+- [mu.social](https://mu.social/)
+  - Edit posts feature ([source](https://github.com/eurosky-social/eurosky-social-app/pull/18))
+- [Witchsky](https://witchsky.app)
+  - Pet labels
