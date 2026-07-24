@@ -97,6 +97,7 @@ export class EmbeddingDisabledError extends Error {
 export async function resolveLink(
   agent: AtpAgent,
   uri: string,
+  opts?: {bustCache?: boolean},
 ): Promise<ResolvedLink> {
   if (isShortLink(uri)) {
     uri = await resolveShortLink(uri)
@@ -184,7 +185,7 @@ export async function resolveLink(
       view: res.data.starterPack,
     }
   }
-  return resolveExternal(agent, uri)
+  return resolveExternal(agent, uri, opts)
 
   // Forked from useGetPost. TODO: move into RQ.
   async function getPost({uri}: {uri: string}) {
@@ -261,8 +262,9 @@ function getFileSlug(url: string | undefined): string | undefined {
 async function resolveExternal(
   agent: AtpAgent,
   uri: string,
+  opts?: {bustCache?: boolean},
 ): Promise<ResolvedExternalLink> {
-  const result = await getLinkMeta(agent, uri)
+  const result = await getLinkMeta(agent, uri, undefined, opts?.bustCache)
   return {
     type: 'external',
     uri: result.url,

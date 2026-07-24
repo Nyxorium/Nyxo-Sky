@@ -34,6 +34,7 @@ export async function getLinkMeta(
   agent: AtpAgent,
   url: string,
   timeout = 15e3,
+  bustCache = false,
 ): Promise<LinkMeta> {
   if (isBskyAppUrl(url) && !parseStarterPackUri(url)) {
     return {
@@ -82,7 +83,7 @@ export async function getLinkMeta(
     const response = await fetch(
       `${LINK_META_PROXY(agent.serviceUrl.toString() || '')}${encodeURIComponent(
         url,
-      )}`,
+      )}${bustCache ? `&_regen=${Date.now()}` : ''}`,
       {signal: controller.signal},
     )
 

@@ -114,6 +114,7 @@ import {LabelsBtn} from '#/view/com/composer/labels/LabelsBtn'
 import {Gallery} from '#/view/com/composer/photos/Gallery'
 import {OpenCameraBtn} from '#/view/com/composer/photos/OpenCameraBtn'
 import {SelectGifBtn} from '#/view/com/composer/photos/SelectGifBtn'
+import {RegenerateEmbedBtn} from '#/view/com/composer/RegenerateEmbedBtn'
 import {SuggestedLanguage} from '#/view/com/composer/select-language/SuggestedLanguage'
 import {TagsBtn} from '#/view/com/composer/tags/TagsBtn'
 // TODO: Prevent naming components that coincide with RN primitives
@@ -2105,6 +2106,8 @@ function ComposerPills({
     return null
   }
 
+  const linkEmbedUri = post.embed.link?.uri
+
   return (
     <Animated.View
       style={[a.flex_row, a.p_sm, t.atoms.bg, bottomBarAnimatedStyle]}>
@@ -2158,6 +2161,7 @@ function ComposerPills({
             })
           }}
         />
+        {linkEmbedUri ? <RegenerateEmbedBtn uri={linkEmbedUri} /> : null}
       </ScrollView>
     </Animated.View>
   )
