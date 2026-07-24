@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import {Pressable, View} from 'react-native'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {useSignupContext} from '#/screens/Signup/state'
 import {atoms as a, useTheme} from '#/alf'
@@ -48,7 +46,7 @@ const PROVIDERS: Provider[] = [
 ]
 
 export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
   const {state, dispatch} = useSignupContext()
 
@@ -223,7 +221,7 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
           <TextField.Input
             value={serviceUrl}
             onChangeText={setServiceUrl}
-            label={_(msg`e.g. bsky.social`)}
+            label={l`e.g. bsky.social`}
             autoCapitalize="none"
             keyboardType="url"
             autoCorrect={false}
@@ -236,7 +234,7 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
           variant="outline"
           color="secondary"
           size="large"
-          label={_(msg`Back`)}
+          label={l`Back`}
           onPress={onPressBack}
           style={[a.flex_1]}>
           <ButtonText>
@@ -247,7 +245,7 @@ export function StepSelectProvider({onPressBack}: {onPressBack: () => void}) {
           variant="solid"
           color="primary"
           size="large"
-          label={_(msg`Next`)}
+          label={l`Next`}
           onPress={onNext}
           style={[a.flex_1]}>
           <ButtonText>
