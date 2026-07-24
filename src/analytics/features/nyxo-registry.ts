@@ -30,4 +30,9 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Search Starter Packs V2',
       description: 'Use the updated starter packs experience in search results',
     },
+    [Features.FollowSortEnable]: {
+      label: 'Follow Sort',
+      description:
+        'Sort other users followers/following pages by Top instead of Latest',
+    },
   }
