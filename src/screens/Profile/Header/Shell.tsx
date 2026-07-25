@@ -266,6 +266,7 @@ let ProfileHeaderShell = ({
               a.pb_sm,
               IS_IOS ? a.pointer_events_auto : {pointerEvents: 'box-none'},
             ]}
+            profile={profile}
           />
         ))}
 
