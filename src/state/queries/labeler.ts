@@ -120,8 +120,7 @@ export function useLabelerSubscriptionMutation() {
         preferences.data?.moderationPrefs?.labelers ?? []
       ).map(l => l.did)
       const invalidLabelers: string[] = []
-      const needsCleanupCheck = subscribe && labelerDids.length >= MAX_LABELERS
-      if (needsCleanupCheck) {
+      if (labelerDids.length) {
         try {
           const chunks = chunkArray(labelerDids, 25)
           const results = await Promise.all(

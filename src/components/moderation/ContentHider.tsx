@@ -10,9 +10,7 @@ import {
   type ModerationCause,
   type ModerationUI,
 } from '@atproto/api'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {
   ADULT_CONTENT_LABELS,
@@ -96,7 +94,7 @@ function ContentHiderActive({
   children?: React.ReactNode
 }) {
   const t = useTheme()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const {gtMobile} = useBreakpoints()
   const [override, setOverride] = useState(false)
   const control = useModerationDetailsDialogControl()
@@ -176,14 +174,14 @@ function ContentHiderActive({
       (blur.type === 'label' && blur.source.type !== 'user')
     ) {
       if (desc.isSubjectAccount) {
-        return _(msg`${desc.name} (Account)`)
+        return l`${desc.name} (Account)`
       }
       if (
         blur.type === 'label' &&
         blur.source.type === 'labeler' &&
         blur.source.did === BSKY_LABELER_DID
       ) {
-        return `${desc.name} (${_(msg`Bluesky`)})`
+        return `${desc.name} (${l`Bluesky`})`
       }
       return desc.name
     }
@@ -213,10 +211,10 @@ function ContentHiderActive({
 
         const def = cause.labelDef || getDefinition(labelDefs, cause.label)
         if (def.identifier === 'porn') {
-          return _(msg`Adult Content`)
+          return l`Adult Content`
         }
         if (def.identifier === 'sexual') {
-          return _(msg`Sexually Suggestive`)
+          return l`Sexually Suggestive`
         }
         return getLabelStrings(i18n.locale, globalLabelStrings, def).name
       })
@@ -229,19 +227,19 @@ function ContentHiderActive({
 
     if (blur.type === 'label') {
       if (blur.source.type === 'user') {
-        return `${baseName} (${_(msg`Self`)})`
+        return `${baseName} (${l`Self`})`
       }
       if (
         blur.source.type === 'labeler' &&
         blur.source.did === BSKY_LABELER_DID
       ) {
-        return `${baseName} (${_(msg`Bluesky`)})`
+        return `${baseName} (${l`Bluesky`})`
       }
     }
 
     return baseName
   }, [
-    _,
+    l,
     modui.blurs,
     blur,
     desc.name,
@@ -249,13 +247,11 @@ function ContentHiderActive({
     labelDefs,
     i18n.locale,
     globalLabelStrings,
-    override,
   ])
 
   return (
     <View testID={testID} style={[a.overflow_hidden, style]}>
       <ModerationDetailsDialog control={control} modcause={blur} />
-
       <Button
         onPress={e => {
           e.preventDefault()
@@ -270,10 +266,10 @@ function ContentHiderActive({
         label={desc.name}
         accessibilityHint={
           modui.noOverride
-            ? _(msg`Learn more about the moderation applied to this content`)
+            ? l`Learn more about the moderation applied to this content`
             : override
-              ? _(msg`Hides the content`)
-              : _(msg`Shows the content`)
+              ? l`Hides the content`
+              : l`Shows the content`
         }>
         {state => (
           <View
@@ -327,7 +323,6 @@ function ContentHiderActive({
           </View>
         )}
       </Button>
-
       {desc.source && blur.type === 'label' && !override && (
         <Button
           onPress={e => {
@@ -335,9 +330,7 @@ function ContentHiderActive({
             e.stopPropagation()
             control.open()
           }}
-          label={_(
-            msg`Learn more about the moderation applied to this content`,
-          )}
+          label={l`Learn more about the moderation applied to this content`}
           style={[a.pt_sm]}>
           {state => (
             <Text
@@ -356,7 +349,7 @@ function ContentHiderActive({
               )}{' '}
               <Text
                 style={[
-                  {color: t.palette.primary_500},
+                  t.atoms.text_link,
                   a.text_sm,
                   state.hovered && [web({textDecoration: 'underline'})],
                 ]}>
@@ -366,7 +359,6 @@ function ContentHiderActive({
           )}
         </Button>
       )}
-
       {override && <View style={childContainerStyle}>{children}</View>}
     </View>
   )

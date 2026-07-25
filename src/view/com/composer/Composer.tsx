@@ -25,6 +25,7 @@ import {KeyboardAvoidingView} from 'react-native-keyboard-controller'
 import ProgressCircle from 'react-native-progress/Circle'
 import Animated, {
   type AnimatedRef,
+  type AnimatedStyle,
   Easing,
   FadeIn,
   FadeOut,
@@ -719,6 +720,11 @@ export const ComposePost = ({
   const [publishOnUpload, setPublishOnUpload] = useState(false)
 
   const onClose = useCallback(() => {
+    // HACKFIX: Android keyboard doesn't consistently dismiss IME
+    // TODO: investigate the root cause and fix properly -sfn
+    if (IS_ANDROID) {
+      Keyboard.dismiss()
+    }
     closeComposer()
     clearThumbnailCache(queryClient)
     revokeAllMediaUrls()
@@ -1847,7 +1853,7 @@ function ComposerTopBar({
   isEditingDraft: boolean
   canSaveDraft: boolean
   textLength: number
-  topBarAnimatedStyle: StyleProp<ViewStyle>
+  topBarAnimatedStyle: AnimatedStyle<ViewStyle>
   children?: React.ReactNode
 }) {
   const t = useTheme()
@@ -2090,7 +2096,7 @@ function ComposerPills({
   thread: ThreadDraft
   post: PostDraft
   dispatch: (action: ComposerAction) => void
-  bottomBarAnimatedStyle: StyleProp<ViewStyle>
+  bottomBarAnimatedStyle: AnimatedStyle<ViewStyle>
 }) {
   const t = useTheme()
   const media = post.embed.media

@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {StyleSheet} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
+import {ScrollForwarderView} from 'react-native-scroll-forwarder'
 import {
   type AppBskyActorDefs,
   moderateProfile,
@@ -39,6 +40,7 @@ import {useAgent, useSession} from '#/state/session'
 import {ProfileFeedgens} from '#/view/com/feeds/ProfileFeedgens'
 import {ProfileLists} from '#/view/com/lists/ProfileLists'
 import {PagerWithHeader} from '#/view/com/pager/PagerWithHeader'
+import {type PostFeedRef} from '#/view/com/posts/PostFeed'
 import {ErrorScreen} from '#/view/com/util/error/ErrorScreen'
 import {FAB} from '#/view/com/util/fab/FAB'
 import {type ListRef} from '#/view/com/util/List'
@@ -57,7 +59,6 @@ import {isAccountNsfwBlur} from '#/components/moderation/ContentHider'
 import {ScreenHider} from '#/components/moderation/ScreenHider'
 import {ProfileStarterPacks} from '#/components/StarterPack/ProfileStarterPacks'
 import {navigate} from '#/Navigation'
-import {ExpoScrollForwarderView} from '../../../modules/expo-scroll-forwarder'
 
 interface SectionRef {
   scrollToTop: () => void
@@ -191,6 +192,7 @@ function ProfileScreenLoaded({
     enabled: !!profile.associated?.labeler,
   })
   const [currentPage, setCurrentPage] = useState(0)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const {_} = useLingui()
 
   const [scrollViewTag, setScrollViewTag] = useState<number | null>(null)
@@ -370,6 +372,14 @@ function ProfileScreenLoaded({
     ],
   })
 
+  const postFeedRef = useRef<PostFeedRef>(null)
+
+  const onRefresh = async () => {
+    setIsRefreshing(true)
+    await postFeedRef.current?.refreshFeed()
+    setIsRefreshing(false)
+  }
+
   // rendering
   // =
 
@@ -379,7 +389,10 @@ function ProfileScreenLoaded({
     setMinimumHeight: (height: number) => void
   }) => {
     return (
-      <ExpoScrollForwarderView scrollViewTag={scrollViewTag}>
+      <ScrollForwarderView
+        scrollViewTag={scrollViewTag}
+        refreshing={isRefreshing}
+        onRefresh={onRefresh}>
         <ProfileHeader
           profile={profile}
           labeler={labelerInfo}
@@ -389,7 +402,7 @@ function ProfileScreenLoaded({
           isPlaceholderProfile={showPlaceholder}
           setMinimumHeight={setMinimumHeight}
         />
-      </ExpoScrollForwarderView>
+      </ScrollForwarderView>
     )
   }
 
@@ -459,6 +472,7 @@ function ProfileScreenLoaded({
                       }
                     : undefined
                 }
+                postFeedRef={postFeedRef}
               />
             )
           : null}

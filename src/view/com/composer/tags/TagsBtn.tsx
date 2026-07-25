@@ -1,8 +1,6 @@
 import {useState} from 'react'
 import {Keyboard, Pressable, TextInput, View} from 'react-native'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {useRecentTags, useRecentTagsApi} from '#/state/preferences'
 import {atoms as a, useTheme, web} from '#/alf'
@@ -36,7 +34,7 @@ export function TagsBtn({
   onChange: (tags: string[]) => void
 }) {
   const control = Dialog.useDialogControl()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const hasTags = (tags ?? []).length > 0
 
   return (
@@ -49,8 +47,8 @@ export function TagsBtn({
           Keyboard.dismiss()
           control.open()
         }}
-        label={_(msg`Add tags`)}
-        accessibilityHint={_(msg`Opens a dialog to add tags to your post`)}>
+        label={l`Add tags`}
+        accessibilityHint={l`Opens a dialog to add tags to your post`}>
         <ButtonIcon icon={hasTags ? Check : HashtagIcon} />
         <ButtonText numberOfLines={1} maxFontSizeMultiplier={2}>
           {hasTags ? (
@@ -87,13 +85,13 @@ function RecentTagChip({
   onDelete: () => void
 }) {
   const t = useTheme()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
 
   return (
     <View style={[a.flex_row, a.align_center]}>
       {/* Tag label — uses Button for consistent styling, right radius zeroed to merge with delete zone */}
       <Button
-        label={disabled ? tag : _(msg`Add tag ${tag}`)}
+        label={disabled ? tag : l`Add tag ${tag}`}
         onPress={onAdd}
         color="secondary"
         size="small"
@@ -112,7 +110,7 @@ function RecentTagChip({
       {/* Delete zone — left radius zeroed to merge with Button */}
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={_(msg`Remove ${tag} from recent tags`)}
+        accessibilityLabel={l`Remove ${tag} from recent tags`}
         accessibilityHint=""
         onPress={onDelete}
         style={({pressed, hovered}: {pressed: boolean; hovered?: boolean}) => [
@@ -156,7 +154,7 @@ function TagsDialogInner({
   tags: string[]
   onChange: (tags: string[]) => void
 }) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
   const control = Dialog.useDialogContext()
   const [input, setInput] = useState('')
@@ -227,7 +225,7 @@ function TagsDialogInner({
 
   return (
     <Dialog.ScrollableInner
-      label={_(msg`Add tags`)}
+      label={l`Add tags`}
       style={[{maxWidth: 500}, a.w_full]}>
       <View style={[a.gap_sm]}>
         <Text style={[a.text_2xl, a.font_semi_bold]}>
@@ -246,7 +244,7 @@ function TagsDialogInner({
           {localTags.map(tag => (
             <Button
               key={tag}
-              label={_(msg`Remove ${tag}`)}
+              label={l`Remove ${tag}`}
               onPress={() => removeTag(tag)}
               color="secondary"
               size="small"
@@ -279,8 +277,8 @@ function TagsDialogInner({
             onSubmitEditing={onSubmitEditing}
             placeholder={
               localTags.length >= MAX_TAGS
-                ? _(msg`Maximum tags reached`)
-                : _(msg`Type a tag and press , or enter`)
+                ? l`Maximum tags reached`
+                : l`Type a tag and press , or enter`
             }
             placeholderTextColor={t.atoms.text_contrast_low.color}
             style={[t.atoms.text, {fontSize: 16}]}
@@ -311,10 +309,8 @@ function TagsDialogInner({
         <View style={[a.mt_lg]}>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={_(msg`Recently used tags`)}
-            accessibilityHint={_(
-              msg`${recentExpanded ? 'Collapse' : 'Expand'} recently used tags`,
-            )}
+            accessibilityLabel={l`Recently used tags`}
+            accessibilityHint={l`${recentExpanded ? 'Collapse' : 'Expand'} recently used tags`}
             onPress={() => setRecentExpanded(e => !e)}
             style={[a.flex_row, a.align_center, a.gap_xs, a.mb_sm]}>
             <Text
@@ -359,7 +355,7 @@ function TagsDialogInner({
 
       <View style={[a.mt_md, web([a.flex_row, a.ml_auto])]}>
         <Btn
-          label={_(msg`Done`)}
+          label={l`Done`}
           onPress={() => control.close()}
           color="primary"
           size={IS_WEB ? 'small' : 'large'}
