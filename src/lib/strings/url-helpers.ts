@@ -125,6 +125,18 @@ export function isBskyAppUrl(url: string): boolean {
   return url.startsWith('https://bsky.app/')
 }
 
+function getRoutePathname(url: string): string | undefined {
+  try {
+    const urlp = new URL(url)
+    if (urlp.protocol !== 'http:' && urlp.protocol !== 'https:') {
+      return undefined
+    }
+    return urlp.pathname
+  } catch {
+    return undefined
+  }
+}
+
 export function isRelativeUrl(url: string): boolean {
   return /^\/[^/]/.test(url)
 }
@@ -147,65 +159,43 @@ export function isTrustedUrl(url: string): boolean {
 }
 
 export function isBskyPostUrl(url: string): boolean {
-  if (isBskyAppUrl(url)) {
-    try {
-      const urlp = new URL(url)
-      return /profile\/(?<name>[^/]+)\/post\/(?<rkey>[^/]+)/i.test(
-        urlp.pathname,
-      )
-    } catch {}
+  const pathname = getRoutePathname(url)
+  if (pathname === undefined) {
+    return false
   }
-  return false
+  return /profile\/(?<name>[^/]+)\/post\/(?<rkey>[^/]+)/i.test(pathname)
 }
 
 export function isBskyCustomFeedUrl(url: string): boolean {
-  if (isBskyAppUrl(url)) {
-    try {
-      const urlp = new URL(url)
-      return /profile\/(?<name>[^/]+)\/feed\/(?<rkey>[^/]+)/i.test(
-        urlp.pathname,
-      )
-    } catch {}
+  const pathname = getRoutePathname(url)
+  if (pathname === undefined) {
+    return false
   }
-  return false
+  return /profile\/(?<name>[^/]+)\/feed\/(?<rkey>[^/]+)/i.test(pathname)
 }
 
 export function isBskyListUrl(url: string): boolean {
-  if (isBskyAppUrl(url)) {
-    try {
-      const urlp = new URL(url)
-      return /profile\/(?<name>[^/]+)\/lists\/(?<rkey>[^/]+)/i.test(
-        urlp.pathname,
-      )
-    } catch {
-      console.error('Unexpected error in isBskyListUrl()', url)
-    }
+  const pathname = getRoutePathname(url)
+  if (pathname === undefined) {
+    return false
   }
-  return false
+  return /profile\/(?<name>[^/]+)\/lists\/(?<rkey>[^/]+)/i.test(pathname)
 }
 
 export function isBskyStartUrl(url: string): boolean {
-  if (isBskyAppUrl(url)) {
-    try {
-      const urlp = new URL(url)
-      return /start\/(?<name>[^/]+)\/(?<rkey>[^/]+)/i.test(urlp.pathname)
-    } catch {
-      console.error('Unexpected error in isBskyStartUrl()', url)
-    }
+  const pathname = getRoutePathname(url)
+  if (pathname === undefined) {
+    return false
   }
-  return false
+  return /start\/(?<name>[^/]+)\/(?<rkey>[^/]+)/i.test(pathname)
 }
 
 export function isBskyStarterPackUrl(url: string): boolean {
-  if (isBskyAppUrl(url)) {
-    try {
-      const urlp = new URL(url)
-      return /starter-pack\/(?<name>[^/]+)\/(?<rkey>[^/]+)/i.test(urlp.pathname)
-    } catch {
-      console.error('Unexpected error in isBskyStartUrl()', url)
-    }
+  const pathname = getRoutePathname(url)
+  if (pathname === undefined) {
+    return false
   }
-  return false
+  return /starter-pack\/(?<name>[^/]+)\/(?<rkey>[^/]+)/i.test(pathname)
 }
 
 // Invite codes are 7 alphanumeric characters long, supporting up to 10 here to future-proof.
@@ -239,7 +229,14 @@ export function isBskyDownloadUrl(url: string): boolean {
 }
 
 export function convertBskyAppUrlIfNeeded(url: string): string {
-  if (isBskyAppUrl(url)) {
+  if (
+    isBskyAppUrl(url) ||
+    isBskyPostUrl(url) ||
+    isBskyCustomFeedUrl(url) ||
+    isBskyListUrl(url) ||
+    isBskyStartUrl(url) ||
+    isBskyStarterPackUrl(url)
+  ) {
     try {
       const urlp = new URL(url)
 
