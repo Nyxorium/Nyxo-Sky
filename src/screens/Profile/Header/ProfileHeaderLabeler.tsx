@@ -246,7 +246,7 @@ export {ProfileHeaderLabeler}
 /**
  * Keep this in sync with the value of {@link MAX_LABELERS}
  */
-function CantSubscribePrompt({
+export function CantSubscribePrompt({
   control,
 }: {
   control: DialogOuterProps['control']
