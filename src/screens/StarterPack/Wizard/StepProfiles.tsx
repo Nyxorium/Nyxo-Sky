@@ -90,7 +90,9 @@ export function StepProfiles({
         sideBorders={false}
         style={[a.flex_1]}
         onEndReached={
-          !query && !screenReaderEnabled ? () => fetchNextPage() : undefined
+          !query && !screenReaderEnabled
+            ? () => void fetchNextPage()
+            : undefined
         }
         onEndReachedThreshold={IS_NATIVE ? 2 : 0.25}
         keyboardDismissMode="on-drag"
@@ -107,7 +109,11 @@ export function StepProfiles({
                   a.mt_lg,
                   a.leading_snug,
                 ]}>
-                <Trans>Nobody was found. Try searching for someone else.</Trans>
+                {query ? (
+                  <Trans>
+                    Nobody was found. Try searching for someone else.
+                  </Trans>
+                ) : null}
               </Text>
             )}
           </View>
