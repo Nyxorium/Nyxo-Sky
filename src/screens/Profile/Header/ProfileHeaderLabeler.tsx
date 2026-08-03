@@ -43,7 +43,6 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -284,7 +283,6 @@ export function HeaderLabelerButtons({
   const ax = useAnalytics()
   const {_} = useLingui()
   const {currentAccount, hasSession} = useSession()
-  const [devModeEnabled] = useDevMode()
   const requireAuth = useRequireAuth()
   const playHaptic = useHaptics()
   const editProfileControl = useDialogControl()
@@ -343,8 +341,6 @@ export function HeaderLabelerButtons({
         return false
     }
   }, [profile])
-
-  const showShareProfileButton = IS_NATIVE && (devModeEnabled || isMe)
 
   return (
     <>
@@ -435,7 +431,7 @@ export function HeaderLabelerButtons({
 
       {/* Invite friends is a native-only share sheet (the dialog is a
           no-op on web), so gate the entry point to avoid a dead button. */}
-      {showShareProfileButton && (
+      {IS_NATIVE && (
         <Button
           testID="profileHeaderShareButton"
           size="small"
@@ -457,7 +453,7 @@ export function HeaderLabelerButtons({
 
       <ProfileMenu profile={profile} />
 
-      {showShareProfileButton && (
+      {IS_NATIVE && (
         <InviteFriendsDialog
           control={inviteFriendsControl}
           did={isMe ? undefined : profile.did}
