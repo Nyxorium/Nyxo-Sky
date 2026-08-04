@@ -15,6 +15,7 @@ import {Plural, Trans} from '@lingui/react/macro'
 import {MAX_LABELERS} from '#/lib/constants'
 import {useHaptics} from '#/lib/haptics'
 import {isAppLabeler} from '#/lib/moderation'
+import {isBlockedOrBlocking} from '#/lib/moderation/blocked-and-muted'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
@@ -302,6 +303,8 @@ export function HeaderLabelerButtons({
 
   const isMe = currentAccount?.did === profile.did
 
+  const isBlockInvolved = isBlockedOrBlocking(profile)
+
   const onPressSubscribe = () =>
     requireAuth(async (): Promise<void> => {
       playHaptic()
@@ -342,23 +345,24 @@ export function HeaderLabelerButtons({
     }
   }, [profile])
 
+  const isCrowded =
+    hasSession && !isMe && !isBlockInvolved && subscriptionsAllowed && IS_NATIVE
+
   return (
     <>
-      {hasSession &&
-        !isMe &&
-        !profile.viewer?.blockedBy &&
-        subscriptionsAllowed && (
-          <SubscribeProfileButton
-            profile={profile}
-            moderationOpts={moderationOpts}
-            disableHint={minimal}
-          />
-        )}
+      {hasSession && !isMe && !isBlockInvolved ? (
+        <>
+          {subscriptionsAllowed && (
+            <SubscribeProfileButton
+              profile={profile}
+              moderationOpts={moderationOpts}
+              disableHint={minimal}
+            />
+          )}
 
-      {hasSession &&
-        !isMe &&
-        !profile.viewer?.blockedBy &&
-        !profile.viewer?.blocking && <MessageProfileButton profile={profile} />}
+          <MessageProfileButton profile={profile} />
+        </>
+      ) : null}
 
       {isMe ? (
         <>
@@ -420,6 +424,8 @@ export function HeaderLabelerButtons({
                 ]}>
                 {isSubscribed ? (
                   <Trans>Unsubscribe</Trans>
+                ) : isCrowded ? (
+                  <Trans>Subscribe</Trans>
                 ) : (
                   <Trans>Subscribe to Labeler</Trans>
                 )}
