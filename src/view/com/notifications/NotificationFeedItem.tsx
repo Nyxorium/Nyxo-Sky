@@ -252,7 +252,6 @@ let NotificationFeedItem = ({
           t.atoms.text,
           a.font_semi_bold,
           a.text_md,
-          a.leading_tight,
           web({direction: 'ltr', unicodeBidi: 'isolate'}),
         ]}
         to={firstAuthor.href}
@@ -262,18 +261,8 @@ let NotificationFeedItem = ({
         {forceLTR(firstAuthorName)}
         <ProfileBadges
           profile={firstAuthor.profile}
-          size="md"
-          style={[
-            a.relative,
-            {
-              // weird stuff here
-              paddingTop: platform({android: 2}),
-              marginBottom: platform({ios: -6}),
-              top: platform({web: 2}),
-              paddingLeft: 3,
-              paddingRight: 2,
-            },
-          ]}
+          size="sm"
+          style={[a.px_2xs, {transform: [{translateY: 1}]}]}
         />
       </InlineLinkText>
     </ProfileHoverCard>
@@ -317,7 +306,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -339,7 +328,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -379,7 +368,7 @@ let NotificationFeedItem = ({
       notificationContent = hasMultipleAuthors ? (
         <Trans>
           {firstAuthorLink} and{' '}
-          <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+          <Text style={[a.text_md, a.font_semi_bold]}>
             <Plural
               value={additionalAuthorsCount}
               one={`${formattedAuthorsCount} other`}
@@ -411,7 +400,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -433,7 +422,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -460,7 +449,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -483,7 +472,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -508,7 +497,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -530,7 +519,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -560,7 +549,7 @@ let NotificationFeedItem = ({
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         New posts from {firstAuthorLink} and{' '}
-        <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
+        <Text style={[a.text_md, a.font_semi_bold]}>
           <Plural
             value={additionalAuthorsCount}
             one={`${formattedAuthorsCount} other`}
@@ -664,7 +653,6 @@ let NotificationFeedItem = ({
                   {paddingTop: 6},
                   a.self_start,
                   a.text_md,
-                  a.leading_snug,
                 ]}
                 accessibilityHint=""
                 accessibilityLabel={a11yLabel}>
@@ -1176,7 +1164,7 @@ function AdditionalPostText({post}: {post?: AppBskyFeedDefs.PostView}) {
         {text?.length > 0 && (
           <Text
             emoji
-            style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}
+            style={[a.text_sm, t.atoms.text_contrast_medium]}
             numberOfLines={MAX_POST_LINES}>
             {text}
           </Text>

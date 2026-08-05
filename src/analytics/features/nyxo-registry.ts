@@ -13,6 +13,10 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
         'Show multiple images as a swipeable carousel instead of a grid',
     },
     // future gates: one line each
+    [Features.VideoAllow10MinuteEnable]: {
+      label: '10-Minute Videos',
+      description: 'Allow uploading videos up to 10 minutes long',
+    },
     [Features.ComposerLanguageDetectionEnable]: {
       label: 'Composer language detection',
       description:
@@ -34,5 +38,14 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Follow Sort',
       description:
         'Sort other users followers/following pages by Top instead of Latest',
+    },
+    [Features.VideoMultipartUploadEnable]: {
+      label: 'Video Multipart Upload',
+      description:
+        'Upload videos in multiple parts instead of a single request',
+    },
+    [Features.CanonicalPostNumberingEnable]: {
+      label: 'Canonical Post Numbering',
+      description: 'Use canonical numbering for posts',
     },
   }
