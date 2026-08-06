@@ -152,6 +152,7 @@ const schema = z.object({
   skipProfileWideContentWarning: z.boolean().optional(),
   splitModerationLabelGrouping: z.boolean().optional(),
   likeOnRepost: z.boolean().optional(),
+  labelerLimitBypass: z.boolean().optional(),
 
   // Enable X settings in Nyxo Sky
   enableShareViaDID: z.boolean().optional(),
@@ -268,6 +269,7 @@ export const defaults: Schema = {
   skipProfileWideContentWarning: true,
   splitModerationLabelGrouping: false,
   likeOnRepost: false,
+  labelerLimitBypass: false,
 
   // Enable X setting defaults in Nyxo Sky
   enableSquareAvatars: false,
