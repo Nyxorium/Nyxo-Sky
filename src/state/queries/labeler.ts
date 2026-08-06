@@ -5,6 +5,7 @@ import {z} from 'zod'
 
 import {MAX_LABELERS} from '#/lib/constants'
 import {isAppLabeler} from '#/lib/moderation'
+import {useLabelerLimitBypass} from '#/state/preferences/bypass-labeler-limit'
 import {GCTIME, STALE} from '#/state/queries'
 import {
   preferencesQueryKey,
@@ -98,6 +99,7 @@ export function useLabelerSubscriptionMutation() {
   const queryClient = useQueryClient()
   const agent = useAgent()
   const preferences = usePreferencesQuery()
+  const limitBypass = useLabelerLimitBypass()
 
   return useMutation({
     async mutationFn({did, subscribe}: {did: string; subscribe: boolean}) {
@@ -151,7 +153,7 @@ export function useLabelerSubscriptionMutation() {
         const labelerCount = labelerDids.filter(
           d => !invalidLabelers.includes(d) && !isAppLabeler(d),
         ).length
-        if (labelerCount >= MAX_LABELERS) {
+        if (labelerCount >= MAX_LABELERS && !limitBypass) {
           throw new Error('MAX_LABELERS')
         }
         await agent.addLabeler(did)
