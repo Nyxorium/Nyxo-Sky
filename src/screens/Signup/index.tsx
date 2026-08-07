@@ -22,7 +22,7 @@ import {StepCaptcha} from '#/screens/Signup/StepCaptcha'
 import {StepHandle} from '#/screens/Signup/StepHandle'
 import {StepInfo} from '#/screens/Signup/StepInfo'
 import {StepSelectProvider} from '#/screens/Signup/StepSelectProvider'
-import {atoms as a, native, useBreakpoints, useTheme} from '#/alf'
+import {atoms as a, native, useTheme} from '#/alf'
 import {AppLanguageDropdown} from '#/components/AppLanguageDropdown'
 import {Divider} from '#/components/Divider'
 import {LinearGradientBackground} from '#/components/LinearGradientBackground'
@@ -40,7 +40,6 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
     ...initialState,
     analytics: ax,
   })
-  const {gtMobile} = useBreakpoints()
   const submit = useSubmitSignup()
 
   useEffect(() => {
@@ -170,14 +169,9 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
               <LayoutAnimationConfig skipEntering>
                 <ScreenTransition
                   key={state.activeStep}
-                  direction={state.screenTransitionDirection}>
-                  <View
-                    style={[
-                      a.flex_1,
-                      a.px_xl,
-                      a.pt_2xl,
-                      !gtMobile && {paddingBottom: 100},
-                    ]}>
+                  direction={state.screenTransitionDirection}
+                  style={a.flex_1}>
+                  <View style={[a.flex_1, a.px_xl, a.pt_2xl]}>
                     <View style={[a.gap_sm, a.pb_3xl]}>
                       {state.activeStep !== SignupStep.SELECT_PROVIDER && (
                         <Text
