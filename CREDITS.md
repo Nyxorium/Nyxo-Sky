@@ -18,6 +18,7 @@ Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/mi
   - Source code link button concept
   - App Theme colour values for: Witchsky, Deer Social, Zeppelin, Kitty, Red Dwarf, Catppuccin, & Evergarden
   - Like on Repost concept
+  - Pet labels
 - [DeckBlue](https://deck.blue)
   - Recently used tags concept
 - [mu.social](https://mu.social/)

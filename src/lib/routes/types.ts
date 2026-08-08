@@ -67,6 +67,7 @@ export type CommonNavigatorParams = {
   AppThemeSettings: undefined
   AccountSettings: undefined
   AutomationLabelSettings: undefined
+  PetLabelSettings: undefined
   PrivacyAndSecuritySettings: undefined
   ActivityPrivacySettings: undefined
   ContentAndMediaSettings: undefined
