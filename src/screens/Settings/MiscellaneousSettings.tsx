@@ -7,6 +7,10 @@ import {
   useSetAltLabelDisplayProfile,
 } from '#/state/preferences/alternate-label-display-profile'
 import {
+  useLabelerLimitBypass,
+  useSetLabelerLimitBypass,
+} from '#/state/preferences/bypass-labeler-limit'
+import {
   useDisableFeedPromoTab,
   useSetDisableFeedPromoTab,
 } from '#/state/preferences/disable-feed-promo-tab'
@@ -57,9 +61,10 @@ import {Admonition} from '#/components/Admonition'
 import * as Toggle from '#/components/forms/Toggle'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
-import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
+import {Filter_Stroke2_Corner0_Rounded as FilterIcon} from '#/components/icons/Filter'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
-import {Message_Stroke2_Corner0_Rounded as Message} from '#/components/icons/Message'
+import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
+import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
 import {
   Person_Stroke2_Corner2_Rounded as PersonIcon,
   PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon,
@@ -102,6 +107,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setSplitModerationlabelGrouping = useSetSplitModerationLabelGrouping()
   const likeOnRepost = useLikeOnRepost()
   const setLikeOnRepost = useSetLikeOnRepost()
+  const labelerLimitBypass = useLabelerLimitBypass()
+  const setLabelerLimitBypass = useSetLabelerLimitBypass()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -219,7 +226,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             value={splitModerationlabelGrouping}
             onChange={value => setSplitModerationlabelGrouping(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={Filter} />
+              <SettingsList.ItemIcon icon={FilterIcon} />
               <SettingsList.ItemText>
                 <Trans>Decouple Moderation Label Grouping</Trans>
               </SettingsList.ItemText>
@@ -233,9 +240,23 @@ export function MiscellaneousSettingsScreen({}: Props) {
             value={likeOnRepost}
             onChange={value => setLikeOnRepost(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={Filter} />
+              <SettingsList.ItemIcon icon={FilterIcon} />
               <SettingsList.ItemText>
                 <Trans>Like on Repost</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_max_labeler_limit"
+            label={l`Disable max labeler limit`}
+            value={labelerLimitBypass}
+            onChange={value => setLabelerLimitBypass(value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={KeyIcon} />
+              <SettingsList.ItemText>
+                <Trans>Disable Max Labeler Limit</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -248,7 +269,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
               value={disableProfileDescriptions}
               onChange={value => setDisableProfileDescriptions(value)}>
               <SettingsList.Item>
-                <SettingsList.ItemIcon icon={Message} />
+                <SettingsList.ItemIcon icon={MessageIcon} />
                 <SettingsList.ItemText>
                   <Trans>Disable Profile Descriptions</Trans>
                 </SettingsList.ItemText>

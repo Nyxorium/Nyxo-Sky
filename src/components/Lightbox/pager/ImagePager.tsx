@@ -20,8 +20,6 @@ import Animated, {
   measure,
   type MeasuredDimensions,
   ReduceMotion,
-  runOnJS,
-  runOnUI,
   type SharedValue,
   useAnimatedReaction,
   useAnimatedRef,
@@ -32,6 +30,7 @@ import Animated, {
   withSpring,
   type WithSpringConfig,
 } from 'react-native-reanimated'
+import {scheduleOnRN, scheduleOnUI} from 'react-native-worklets'
 import {Image} from 'expo-image'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import {useLingui} from '@lingui/react/macro'
@@ -140,10 +139,10 @@ export default function ImageViewRoot({
 
   const onFullyClosed = useCallback(() => {
     setActiveLightbox(null)
-    runOnUI(() => {
+    scheduleOnUI(() => {
       'worklet'
       thumbRects.set({})
-    })()
+    })
     requestIdleCallback(() => {
       void Image.clearMemoryCache()
     })
@@ -153,7 +152,7 @@ export default function ImageViewRoot({
     () => openProgress.get() === 0,
     (isGone, wasGone) => {
       if (isGone && !wasGone) {
-        runOnJS(onFullyClosed)()
+        scheduleOnRN(onFullyClosed)
       }
     },
   )
@@ -164,10 +163,10 @@ export default function ImageViewRoot({
     () => openProgress.get() === 1,
     (isOpen, wasOpen) => {
       if (isOpen && !wasOpen) {
-        runOnJS(ScreenOrientation.unlockAsync)()
+        scheduleOnRN(ScreenOrientation.unlockAsync)
       } else if (!isOpen && wasOpen) {
         // default is PORTRAIT_UP - set via config plugin in app.config.js -sfn
-        runOnJS(ScreenOrientation.lockAsync)(PORTRAIT_UP)
+        scheduleOnRN(ScreenOrientation.lockAsync, PORTRAIT_UP)
       }
     },
   )
@@ -175,7 +174,7 @@ export default function ImageViewRoot({
   const onFlyAway = useCallback(() => {
     'worklet'
     openProgress.set(0)
-    runOnJS(onRequestClose)()
+    scheduleOnRN(onRequestClose)
   }, [onRequestClose, openProgress])
 
   return (
@@ -333,7 +332,7 @@ function ImageView({
   const handleRequestClose = useCallback(() => {
     const activeRef = images[imageIndex]?.thumbRef
     if (isAnimated && activeRef) {
-      runOnUI(() => {
+      scheduleOnUI(() => {
         'worklet'
         const rect = measure(activeRef)
         thumbRects.modify(rects => {
@@ -341,8 +340,8 @@ function ImageView({
           rects[imageIndex] = rect
           return rects
         })
-        runOnJS(onRequestClose)()
-      })()
+        scheduleOnRN(onRequestClose)
+      })
     } else {
       onRequestClose()
     }

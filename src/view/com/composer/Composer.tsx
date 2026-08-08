@@ -21,8 +21,7 @@ import {
   type ViewStyle,
 } from 'react-native'
 import {KeyboardAvoidingView} from 'react-native-keyboard-controller'
-// @ts-expect-error no type definition
-import ProgressCircle from 'react-native-progress/Circle'
+import {Circle as ProgressCircle} from 'react-native-progress'
 import Animated, {
   type AnimatedRef,
   type AnimatedStyle,
@@ -32,7 +31,6 @@ import Animated, {
   interpolateColor,
   LayoutAnimationConfig,
   LinearTransition,
-  runOnUI,
   scrollTo,
   useAnimatedRef,
   useAnimatedScrollHandler,
@@ -45,6 +43,7 @@ import Animated, {
   ZoomOut,
 } from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {scheduleOnUI} from 'react-native-worklets'
 import * as FileSystem from 'expo-file-system'
 import {type ImagePickerAsset} from 'expo-image-picker'
 import {
@@ -71,6 +70,7 @@ import {
   MAX_GRAPHEME_LENGTH,
   SUPPORTED_MIME_TYPES,
   type SupportedMimeTypes,
+  VIDEO_10_MINUTE_MAX_DURATION_MS,
   VIDEO_MAX_DURATION_MS,
 } from '#/lib/constants'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
@@ -272,6 +272,12 @@ export const ComposePost = ({
   const {currentAccount} = useSession()
   const t = useTheme()
   const ax = useAnalytics()
+  const allow10MinuteVideos = ax.features.enabled(
+    ax.features.VideoAllow10MinuteEnable,
+  )
+  const videoMaxDurationMs = allow10MinuteVideos
+    ? VIDEO_10_MINUTE_MAX_DURATION_MS
+    : VIDEO_MAX_DURATION_MS
   const agent = useAgent()
   const queryClient = useQueryClient()
   const currentDid = currentAccount!.did
@@ -442,7 +448,7 @@ export const ComposePost = ({
        * Fail early on duration so we don't spend time compressing a video the
        * server would reject anyway.
        */
-      if (asset.duration != null && asset.duration > VIDEO_MAX_DURATION_MS) {
+      if (asset.duration != null && asset.duration > videoMaxDurationMs) {
         composerDispatch({
           type: 'update_post',
           postId: postId,
@@ -450,7 +456,9 @@ export const ComposePost = ({
             type: 'embed_update_video',
             videoAction: {
               type: 'to_error',
-              error: l`Videos must be less than 3 minutes long.`,
+              error: allow10MinuteVideos
+                ? l`Videos must be 10 minutes or less.`
+                : l`Videos must be less than 3 minutes long.`,
               signal: abortController.signal,
             },
           },
@@ -477,7 +485,16 @@ export const ComposePost = ({
         telemetry,
       )
     },
-    [l, i18n, agent, currentDid, composerDispatch, ax.metric],
+    [
+      l,
+      i18n,
+      agent,
+      currentDid,
+      composerDispatch,
+      ax.metric,
+      videoMaxDurationMs,
+      allow10MinuteVideos,
+    ],
   )
 
   const onInitVideo = useNonReactiveCallback(() => {
@@ -574,7 +591,7 @@ export const ComposePost = ({
           },
         })
 
-        if (asset.duration != null && asset.duration > VIDEO_MAX_DURATION_MS) {
+        if (asset.duration != null && asset.duration > videoMaxDurationMs) {
           composerDispatch({
             type: 'update_post',
             postId,
@@ -582,7 +599,9 @@ export const ComposePost = ({
               type: 'embed_update_video',
               videoAction: {
                 type: 'to_error',
-                error: l`Videos must be less than 3 minutes long.`,
+                error: allow10MinuteVideos
+                  ? l`Videos must be 10 minutes or less.`
+                  : l`Videos must be less than 3 minutes long.`,
                 signal: abortController.signal,
               },
             },
@@ -654,7 +673,16 @@ export const ComposePost = ({
         })
       }
     },
-    [l, i18n, agent, currentDid, composerDispatch, ax.metric],
+    [
+      l,
+      i18n,
+      agent,
+      currentDid,
+      composerDispatch,
+      ax.metric,
+      videoMaxDurationMs,
+      allow10MinuteVideos,
+    ],
   )
 
   const handleSelectDraft = useCallback(
@@ -2463,7 +2491,7 @@ function useScrollTracker({
 
   const onScrollViewContentSizeChange = useCallback(
     (_width: number, height: number) => {
-      runOnUI(onScrollViewContentSizeChangeUIThread)(height)
+      scheduleOnUI(onScrollViewContentSizeChangeUIThread, height)
     },
     [onScrollViewContentSizeChangeUIThread],
   )

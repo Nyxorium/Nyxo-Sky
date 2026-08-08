@@ -33,7 +33,7 @@ import {
 import {StreamingLive_Stroke2_Corner0_Rounded as LibraryIcon} from '#/components/icons/StreamingLive'
 import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import * as Menu from '#/components/Menu'
-import {IS_ANDROID, IS_NATIVE} from '#/env'
+import {IS_NATIVE} from '#/env'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
 export function UserBanner({
@@ -56,18 +56,28 @@ export function UserBanner({
   const editImageDialogControl = useDialogControl()
   const [devModeEnabled] = useDevMode()
 
+  const isBlockCause =
+    moderation?.blurs?.some(
+      cause =>
+        cause.type === 'blocking' ||
+        cause.type === 'blocked-by' ||
+        cause.type === 'block-other',
+    ) ?? false
+
+  const shouldBlur = !!moderation?.blur && (isBlockCause || !devModeEnabled)
+
   const onOpenCamera = useCallback(async () => {
     if (!(await requestCameraAccessIfNeeded())) {
       return
     }
-    onSelectNewBanner?.(
-      await compressIfNeeded(
-        await openCamera({
-          aspect: [3, 1],
-        }),
-        IMAGE_SIZE_CONFIG_2K_1MB,
-      ),
-    )
+    const image = await openCamera({
+      aspect: [3, 1],
+    })
+    if (!image) {
+      return
+    }
+
+    onSelectNewBanner?.(await compressIfNeeded(image, IMAGE_SIZE_CONFIG_2K_1MB))
   }, [onSelectNewBanner, requestCameraAccessIfNeeded])
 
   const onOpenLibrary = useCallback(async () => {
@@ -213,20 +223,12 @@ export function UserBanner({
         aspectRatio={3}
       />
     </>
-  ) : banner &&
-    !(
-      (
-        moderation?.blur &&
-        IS_ANDROID &&
-        !devModeEnabled &&
-        false
-      ) /* android crashes with blur */
-    ) ? (
+  ) : banner ? (
     <Image
       style={[styles.bannerImage, t.atoms.bg_contrast_25]}
       contentFit="cover"
       source={{uri: banner}}
-      blurRadius={moderation?.blur ? 100 : 0}
+      blurRadius={shouldBlur ? 100 : 0}
       accessible={true}
       accessibilityIgnoresInvertColors
       useAppleWebpCodec

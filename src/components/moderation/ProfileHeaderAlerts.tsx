@@ -1,29 +1,31 @@
 import {View} from 'react-native'
 import {type StyleProp, type ViewStyle} from 'react-native'
-import {type AppBskyActorDefs, type ModerationDecision} from '@atproto/api'
+import {type ModerationDecision} from '@atproto/api'
 import {Trans} from '@lingui/react/macro'
 
 import {getModerationCauseKey, unique} from '#/lib/moderation'
-import {type Shadow} from '#/state/cache/types'
 import {atoms as a, useTheme} from '#/alf'
 import * as Pills from '#/components/Pills'
 import {Text} from '#/components/Typography'
+import type * as bsky from '#/types/bsky'
 
 export function ProfileHeaderAlerts({
   moderation,
-  style,
   profile,
+  style,
 }: {
   moderation: ModerationDecision
+  profile: bsky.profile.AnyProfileView
   style?: StyleProp<ViewStyle>
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>
 }) {
   const t = useTheme()
   const modui = moderation.ui('profileView')
+  const mutedOnlyReposts = profile.viewer?.mutedOnlyReposts
+
   const blockHide = profile.viewer?.blocking || profile.viewer?.blockedBy
   const showFollowsYou = profile.viewer?.followedBy && !blockHide
 
-  if (!modui.alert && !modui.inform && !showFollowsYou) {
+  if (!mutedOnlyReposts && !modui.alert && !modui.inform && !showFollowsYou) {
     return null
   }
 
@@ -50,6 +52,7 @@ export function ProfileHeaderAlerts({
           cause={cause}
         />
       ))}
+      {mutedOnlyReposts && <Pills.MutedOnlyReposts size="lg" />}
     </Pills.Row>
   )
 }

@@ -28,7 +28,10 @@ import {getStarterPackOgCard} from '#/lib/strings/starter-pack'
 import {logger} from '#/logger'
 import {updateProfileShadow} from '#/state/cache/profile-shadow'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
-import {getAllListMembers} from '#/state/queries/list-members'
+import {
+  getAllListMembers,
+  useAllListMembersQuery,
+} from '#/state/queries/list-members'
 import {useResolvedStarterPackShortLink} from '#/state/queries/resolve-short-link'
 import {useResolveDidQuery} from '#/state/queries/resolve-uri'
 import {useShortenLink} from '#/state/queries/shorten-link'
@@ -69,6 +72,7 @@ import {
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
 import {FeedsList} from '#/components/StarterPack/Main/FeedsList'
+import {LabelersList} from '#/components/StarterPack/Main/LabelersList'
 import {PostsList} from '#/components/StarterPack/Main/PostsList'
 import {ProfilesList} from '#/components/StarterPack/Main/ProfilesList'
 import {QrCodeDialog} from '#/components/StarterPack/QrCodeDialog'
@@ -185,7 +189,20 @@ function StarterPackScreenLoaded({
   routeParams: StarterPackScreeProps['route']['params']
   moderationOpts: ModerationOpts
 }) {
+  const {
+    data: listMembers,
+    isError: isListMembersError,
+    refetch: refetchListMembers,
+  } = useAllListMembersQuery(starterPack.list?.uri)
+
+  const allProfiles = listMembers
+    ?.filter(li => !isBlockedOrBlocking(li.subject))
+    .map(li => li.subject)
+    .reverse()
+  const labelerProfiles = allProfiles?.filter(p => p.associated?.labeler)
+
   const showPeopleTab = Boolean(starterPack.list)
+  const showLabelersTab = Boolean(labelerProfiles?.length)
   const showFeedsTab = Boolean(starterPack.feeds?.length)
   const showPostsTab = Boolean(starterPack.list)
   const {_} = useLingui()
@@ -193,6 +210,7 @@ function StarterPackScreenLoaded({
 
   const tabs = [
     ...(showPeopleTab ? [_(msg`People`)] : []),
+    ...(showLabelersTab ? [_(msg`Labelers`)] : []),
     ...(showFeedsTab ? [_(msg`Feeds`)] : []),
     ...(showPostsTab ? [_(msg`Posts`)] : []),
   ]
@@ -250,6 +268,19 @@ function StarterPackScreenLoaded({
               <ProfilesList
                 // Validated above
                 listUri={starterPack.list!.uri}
+                headerHeight={headerHeight}
+                // @ts-expect-error
+                scrollElRef={scrollElRef}
+                moderationOpts={moderationOpts}
+              />
+            )
+          : null}
+        {showLabelersTab
+          ? ({headerHeight, scrollElRef}) => (
+              <LabelersList
+                profiles={labelerProfiles}
+                isError={isListMembersError}
+                refetch={refetchListMembers}
                 headerHeight={headerHeight}
                 // @ts-expect-error
                 scrollElRef={scrollElRef}
@@ -371,7 +402,8 @@ function Header({
           li.subject.did !== currentAccount?.did &&
           !isBlockedOrBlocking(li.subject) &&
           !isMuted(li.subject) &&
-          !li.subject.viewer?.following,
+          !li.subject.viewer?.following &&
+          !li.subject.associated?.labeler,
       )
       .map(li => li.subject.did)
 

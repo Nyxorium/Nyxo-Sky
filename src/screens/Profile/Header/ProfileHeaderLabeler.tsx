@@ -15,6 +15,7 @@ import {Plural, Trans} from '@lingui/react/macro'
 import {MAX_LABELERS} from '#/lib/constants'
 import {useHaptics} from '#/lib/haptics'
 import {isAppLabeler} from '#/lib/moderation'
+import {isBlockedOrBlocking} from '#/lib/moderation/blocked-and-muted'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
@@ -47,7 +48,6 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -261,7 +261,7 @@ export {ProfileHeaderLabeler}
 /**
  * Keep this in sync with the value of {@link MAX_LABELERS}
  */
-function CantSubscribePrompt({
+export function CantSubscribePrompt({
   control,
 }: {
   control: DialogOuterProps['control']
@@ -299,7 +299,6 @@ export function HeaderLabelerButtons({
   const ax = useAnalytics()
   const {_} = useLingui()
   const {currentAccount, hasSession} = useSession()
-  const [devModeEnabled] = useDevMode()
   const requireAuth = useRequireAuth()
   const playHaptic = useHaptics()
   const editProfileControl = useDialogControl()
@@ -318,6 +317,8 @@ export function HeaderLabelerButtons({
   const inviteFriendsControl = useDialogControl()
 
   const isMe = currentAccount?.did === profile.did
+
+  const isBlockInvolved = isBlockedOrBlocking(profile)
 
   const onPressSubscribe = () =>
     requireAuth(async (): Promise<void> => {
@@ -359,25 +360,24 @@ export function HeaderLabelerButtons({
     }
   }, [profile])
 
-  const showShareProfileButton = IS_NATIVE && (devModeEnabled || isMe)
+  const isCrowded =
+    hasSession && !isMe && !isBlockInvolved && subscriptionsAllowed && IS_NATIVE
 
   return (
     <>
-      {hasSession &&
-        !isMe &&
-        !profile.viewer?.blockedBy &&
-        subscriptionsAllowed && (
-          <SubscribeProfileButton
-            profile={profile}
-            moderationOpts={moderationOpts}
-            disableHint={minimal}
-          />
-        )}
+      {hasSession && !isMe && !isBlockInvolved ? (
+        <>
+          {subscriptionsAllowed && (
+            <SubscribeProfileButton
+              profile={profile}
+              moderationOpts={moderationOpts}
+              disableHint={minimal}
+            />
+          )}
 
-      {hasSession &&
-        !isMe &&
-        !profile.viewer?.blockedBy &&
-        !profile.viewer?.blocking && <MessageProfileButton profile={profile} />}
+          <MessageProfileButton profile={profile} />
+        </>
+      ) : null}
 
       {isMe ? (
         <>
@@ -439,6 +439,8 @@ export function HeaderLabelerButtons({
                 ]}>
                 {isSubscribed ? (
                   <Trans>Unsubscribe</Trans>
+                ) : isCrowded ? (
+                  <Trans>Subscribe</Trans>
                 ) : (
                   <Trans>Subscribe to Labeler</Trans>
                 )}
@@ -450,7 +452,7 @@ export function HeaderLabelerButtons({
 
       {/* Invite friends is a native-only share sheet (the dialog is a
           no-op on web), so gate the entry point to avoid a dead button. */}
-      {showShareProfileButton && (
+      {IS_NATIVE && (
         <Button
           testID="profileHeaderShareButton"
           size="small"
@@ -472,7 +474,7 @@ export function HeaderLabelerButtons({
 
       <ProfileMenu profile={profile} />
 
-      {showShareProfileButton && (
+      {IS_NATIVE && (
         <InviteFriendsDialog
           control={inviteFriendsControl}
           did={isMe ? undefined : profile.did}

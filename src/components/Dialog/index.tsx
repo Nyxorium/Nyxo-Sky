@@ -21,11 +21,11 @@ import {
 } from 'react-native'
 import {useReanimatedKeyboardAnimation} from 'react-native-keyboard-controller'
 import Animated, {
-  runOnJS,
   type ScrollEvent,
   useAnimatedStyle,
 } from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {scheduleOnRN} from 'react-native-worklets'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
@@ -62,6 +62,7 @@ export const Input = createInput(TextInput)
 export function Outer({
   children,
   control,
+  onOpen,
   onClose,
   nativeOptions,
   testID,
@@ -97,9 +98,10 @@ export function Outer({
   const open = useCallback<DialogControlProps['open']>(() => {
     // Run any leftover callbacks that might have been queued up before calling `.open()`
     callQueuedCallbacks()
+    onOpen?.()
     setDialogIsOpen(control.id, true)
     ref.current?.present()
-  }, [setDialogIsOpen, control.id, callQueuedCallbacks])
+  }, [setDialogIsOpen, control.id, callQueuedCallbacks, onOpen])
 
   // This is the function that we call when we want to dismiss the dialog.
   const close = useCallback<DialogControlProps['close']>(cb => {
@@ -299,9 +301,9 @@ export const InnerFlatList = forwardRef<
     }
     const {contentOffset} = e
     if (contentOffset.y > 0 && !disableDrag) {
-      runOnJS(setDisableDrag)(true)
+      scheduleOnRN(setDisableDrag, true)
     } else if (contentOffset.y <= 1 && disableDrag) {
-      runOnJS(setDisableDrag)(false)
+      scheduleOnRN(setDisableDrag, false)
     }
   }
 

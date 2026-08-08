@@ -159,6 +159,7 @@ type FeedRow =
   | {
       type: 'interstitialFeedTrendingTopics'
       key: string
+      feedSliceIndex: number
     }
   | {
       type: 'interstitialTrendingVideos'
@@ -275,6 +276,15 @@ let PostFeed = ({
   const {gtMobile} = useBreakpoints()
   const {rightNavVisible} = useLayoutBreakpoints()
   const areVideoFeedsEnabled = IS_NATIVE
+
+  const trendingIndices = ax.features.getValue(
+    ax.features.TrendingDiscoverValues,
+    {
+      topics: 5,
+      accounts: 15,
+      videos: 30,
+    },
+  )
 
   const [hasPressedShowLessUris, setHasPressedShowLessUris] = useState(
     () => new Set<string>(),
@@ -559,19 +569,20 @@ let PostFeed = ({
                       type: 'liveEventFeedsAndTrendingBanner',
                       key: 'liveEventFeedsAndTrendingBanner-' + sliceIndex,
                     })
-                  } else if (sliceIndex === 1) {
+                  } else if (sliceIndex === trendingIndices.topics) {
                     arr.push({
                       type: 'interstitialFeedTrendingTopics',
                       key: 'interstitialFeedTrendingTopics-' + sliceIndex,
+                      feedSliceIndex: sliceIndex,
                     })
-                  } else if (sliceIndex === 15) {
+                  } else if (sliceIndex === trendingIndices.videos) {
                     if (areVideoFeedsEnabled && !trendingVideoDisabled) {
                       arr.push({
                         type: 'interstitialTrendingVideos',
                         key: 'interstitial-' + sliceIndex + '-' + lastFetchedAt,
                       })
                     }
-                  } else if (sliceIndex === 30) {
+                  } else if (sliceIndex === trendingIndices.accounts) {
                     arr.push({
                       type: 'interstitialFollows',
                       key: 'interstitial-' + sliceIndex + '-' + lastFetchedAt,
@@ -714,6 +725,7 @@ let PostFeed = ({
     ageAssuranceBannerState,
     isCurrentFeedAtStartupSelected,
     blockedOrMutedAuthors,
+    trendingIndices,
   ])
 
   // events
@@ -827,7 +839,9 @@ let PostFeed = ({
       } else if (row.type === 'interstitialTrending') {
         return <TrendingInterstitial />
       } else if (row.type === 'interstitialFeedTrendingTopics') {
-        return <FeedTrendingTopicsInterstitial />
+        return (
+          <FeedTrendingTopicsInterstitial feedSliceIndex={row.feedSliceIndex} />
+        )
       } else if (row.type === 'liveEventFeedsAndTrendingBanner') {
         return <DiscoverFeedLiveEventFeedsAndTrendingBanner />
       } else if (row.type === 'composerPrompt') {

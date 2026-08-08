@@ -20,9 +20,12 @@ import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
+import {useLabelerSubscriptionMutation} from '#/state/queries/labeler'
+import {usePreferencesQuery} from '#/state/queries/preferences'
 import {useProfileFollowMutationQueue} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {PreviewableUserAvatar, UserAvatar} from '#/view/com/util/UserAvatar'
+import {CantSubscribePrompt} from '#/screens/Profile/Header/ProfileHeaderLabeler'
 import {
   atoms as a,
   platform,
@@ -42,6 +45,7 @@ import {PlusLarge_Stroke2_Corner0_Rounded as Plus} from '#/components/icons/Plus
 import {Link as InternalLink, type LinkProps} from '#/components/Link'
 import * as Pills from '#/components/Pills'
 import {ProfileBadges} from '#/components/ProfileBadges'
+import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
@@ -465,7 +469,12 @@ export type FollowButtonProps = {
 export function FollowButton(props: FollowButtonProps) {
   const {currentAccount, hasSession} = useSession()
   const isMe = props.profile.did === currentAccount?.did
-  return hasSession && !isMe ? <FollowButtonInner {...props} /> : null
+  if (!hasSession || isMe) return null
+  return props.profile.associated?.labeler ? (
+    <SubscribeButtonInner {...props} />
+  ) : (
+    <FollowButtonInner {...props} />
+  )
 }
 
 export function FollowButtonInner({
@@ -601,7 +610,7 @@ export function FollowButtonPlaceholder({style}: ViewStyleProp) {
   return (
     <View
       style={[
-        a.rounded_sm,
+        a.rounded_full,
         t.atoms.bg_contrast_50,
         a.w_full,
         {
@@ -623,8 +632,9 @@ export function Labels({
   const moderation = moderateProfile(profile, moderationOpts)
   const modui = moderation.ui('profileList')
   const followedBy = profile.viewer?.followedBy
+  const mutedOnlyReposts = profile.viewer?.mutedOnlyReposts
 
-  if (!followedBy && !modui.inform && !modui.alert) {
+  if (!followedBy && !mutedOnlyReposts && !modui.inform && !modui.alert) {
     return null
   }
 
@@ -637,6 +647,104 @@ export function Labels({
       {modui.informs.map(inform => (
         <Pills.Label key={getModerationCauseKey(inform)} cause={inform} />
       ))}
+      {mutedOnlyReposts && <Pills.MutedOnlyReposts />}
     </Pills.Row>
+  )
+}
+
+function SubscribeButtonInner({
+  profile: profileUnshadowed,
+  onPress: onPressProp,
+  colorInverted,
+  withIcon = true,
+  ...rest
+}: FollowButtonProps) {
+  const {t: l} = useLingui()
+  const profile = useProfileShadow(profileUnshadowed)
+  const {data: preferences} = usePreferencesQuery()
+  const {
+    mutateAsync: toggleSubscription,
+    variables,
+    reset,
+  } = useLabelerSubscriptionMutation()
+  const isRound = Boolean(rest.shape && rest.shape === 'round')
+  const cantSubscribePrompt = Prompt.usePromptControl()
+
+  const isSubscribed =
+    variables?.subscribe ??
+    Boolean(
+      preferences?.moderationPrefs.labelers.find(pl => pl.did === profile.did),
+    )
+
+  const onPressSubscribe = async (e: GestureResponderEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const subscribe = !isSubscribed
+    try {
+      await toggleSubscription({did: profile.did, subscribe})
+      Toast.show(
+        subscribe
+          ? l`Subscribed to ${sanitizeDisplayName(profile.displayName || profile.handle)}`
+          : l`Unsubscribed from ${sanitizeDisplayName(profile.displayName || profile.handle)}`,
+      )
+      onPressProp?.(e)
+    } catch (err: unknown) {
+      reset()
+      if (err instanceof Error && err?.message === 'MAX_LABELERS') {
+        cantSubscribePrompt.open()
+        return
+      }
+      Toast.show(l`An issue occurred, please try again.`, {type: 'error'})
+    }
+  }
+
+  const subscribeLabel = l({
+    message: 'Subscribe',
+    comment: 'Subscribe to this labeler',
+  })
+  const unsubscribeLabel = l({
+    message: 'Subscribed',
+    comment: 'Currently subscribed to this labeler, click to unsubscribe',
+  })
+
+  if (!profile.viewer) return null
+  if (
+    profile.viewer.blockedBy ||
+    profile.viewer.blocking ||
+    profile.viewer.blockingByList
+  )
+    return null
+
+  return (
+    <View>
+      {isSubscribed ? (
+        <Button
+          label={l`Unsubscribe from this labeler`}
+          size="small"
+          variant="solid"
+          color="secondary"
+          {...rest}
+          onPress={(e: GestureResponderEvent) => void onPressSubscribe(e)}>
+          {withIcon && (
+            <ButtonIcon icon={Check} position={isRound ? undefined : 'left'} />
+          )}
+          {isRound ? null : <ButtonText>{unsubscribeLabel}</ButtonText>}
+        </Button>
+      ) : (
+        <Button
+          label={l`Subscribe to this labeler`}
+          size="small"
+          variant="solid"
+          color={colorInverted ? 'secondary_inverted' : 'primary'}
+          {...rest}
+          onPress={(e: GestureResponderEvent) => void onPressSubscribe(e)}>
+          {withIcon && (
+            <ButtonIcon icon={Plus} position={isRound ? undefined : 'left'} />
+          )}
+          {isRound ? null : <ButtonText>{subscribeLabel}</ButtonText>}
+        </Button>
+      )}
+      <CantSubscribePrompt control={cantSubscribePrompt} />
+    </View>
   )
 }

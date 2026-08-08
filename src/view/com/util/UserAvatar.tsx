@@ -55,7 +55,7 @@ import {MediaInsetBorder} from '#/components/MediaInsetBorder'
 import * as Menu from '#/components/Menu'
 import {ProfileHoverCard} from '#/components/ProfileHoverCard'
 import {useAnalytics} from '#/analytics'
-import {IS_ANDROID, IS_NATIVE, IS_WEB, IS_WEB_TOUCH_DEVICE} from '#/env'
+import {IS_NATIVE, IS_WEB, IS_WEB_TOUCH_DEVICE} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {LiveIndicator} from '#/features/liveNow/components/LiveIndicator'
 import {LiveStatusDialog} from '#/features/liveNow/components/LiveStatusDialog'
@@ -238,6 +238,16 @@ let UserAvatar = ({
     overrideShape ?? (type === 'user' ? prefSquareAvatars : 'square')
   const [devModeEnabled] = useDevMode()
 
+  const isBlockCause =
+    moderation?.blurs?.some(
+      cause =>
+        cause.type === 'blocking' ||
+        cause.type === 'blocked-by' ||
+        cause.type === 'block-other',
+    ) ?? false
+
+  const shouldBlur = !!moderation?.blur && (isBlockCause || !devModeEnabled)
+
   const aviStyle = useMemo(() => {
     let borderRadius
     // Make labeler icons round in labels - Sunstar
@@ -313,15 +323,7 @@ let UserAvatar = ({
     ]
   }, [size, style])
 
-  return avatar &&
-    !(
-      (
-        moderation?.blur &&
-        IS_ANDROID &&
-        !devModeEnabled &&
-        false
-      ) /* android crashes with blur */
-    ) ? (
+  return avatar ? (
     <View style={containerStyle}>
       {usePlainRNImage ? (
         <RNImage
@@ -332,7 +334,7 @@ let UserAvatar = ({
           source={{
             uri: hackModifyThumbnailPath(avatar, size < 90),
           }}
-          blurRadius={moderation?.blur ? BLUR_AMOUNT : 0}
+          blurRadius={shouldBlur ? BLUR_AMOUNT : 0}
           onLoad={onLoad}
         />
       ) : (
@@ -343,7 +345,7 @@ let UserAvatar = ({
           source={{
             uri: hackModifyThumbnailPath(avatar, size < 90),
           }}
-          blurRadius={moderation?.blur ? BLUR_AMOUNT : 0}
+          blurRadius={shouldBlur ? BLUR_AMOUNT : 0}
           onLoad={onLoad}
           useAppleWebpCodec
         />
@@ -405,14 +407,14 @@ let EditableUserAvatar = ({
       return
     }
 
-    onSelectNewAvatar(
-      await compressIfNeeded(
-        await openCamera({
-          aspect: [1, 1],
-        }),
-        IMAGE_SIZE_CONFIG_2K_1MB,
-      ),
-    )
+    const image = await openCamera({
+      aspect: [1, 1],
+    })
+    if (!image) {
+      return
+    }
+
+    onSelectNewAvatar(await compressIfNeeded(image, IMAGE_SIZE_CONFIG_2K_1MB))
   }, [onSelectNewAvatar, requestCameraAccessIfNeeded])
 
   const onOpenLibrary = useCallback(async () => {

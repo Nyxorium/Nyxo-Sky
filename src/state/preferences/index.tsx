@@ -1,6 +1,7 @@
 import {Provider as AltTextRequiredProvider} from './alt-text-required'
 import {Provider as AltLabelDisplayProfile} from './alternate-label-display-profile'
 import {Provider as AutoplayProvider} from './autoplay'
+import {Provider as LabelerLimitBypass} from './bypass-labeler-limit'
 import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
 import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
 import {Provider as DisableHapticsProvider} from './disable-haptics'
@@ -82,9 +83,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                       <SplitModerationLabelGrouping>
                                                         <RecentTagsProvider>
                                                           <LikeOnRepost>
-                                                            <KawaiiProvider>
-                                                              {children}
-                                                            </KawaiiProvider>
+                                                            <LabelerLimitBypass>
+                                                              <KawaiiProvider>
+                                                                {children}
+                                                              </KawaiiProvider>
+                                                            </LabelerLimitBypass>
                                                           </LikeOnRepost>
                                                         </RecentTagsProvider>
                                                       </SplitModerationLabelGrouping>

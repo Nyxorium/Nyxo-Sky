@@ -41,16 +41,14 @@ export function StepProfiles({
   } = useActorSearch({
     query: encodeURIComponent('*'),
   })
-  const topFollowers = topPages?.pages
-    .flatMap(p => p.actors)
-    .filter(p => !p.associated?.labeler)
+  const topFollowers = topPages?.pages.flatMap(p => p.actors)
   const pinnedTopFollowers = topFollowers
     ? [profile, ...topFollowers.filter(p => p.did !== profile.did)]
     : [profile]
 
   const {data: resultsUnfiltered, isFetching: isFetchingResults} =
     useActorAutocompleteQuery(query, true, 12)
-  const results = resultsUnfiltered?.filter(p => !p.associated?.labeler)
+  const results = resultsUnfiltered
 
   const isLoading = isLoadingTopPages || isFetchingResults
 
@@ -92,7 +90,9 @@ export function StepProfiles({
         sideBorders={false}
         style={[a.flex_1]}
         onEndReached={
-          !query && !screenReaderEnabled ? () => fetchNextPage() : undefined
+          !query && !screenReaderEnabled
+            ? () => void fetchNextPage()
+            : undefined
         }
         onEndReachedThreshold={IS_NATIVE ? 2 : 0.25}
         keyboardDismissMode="on-drag"
@@ -109,7 +109,11 @@ export function StepProfiles({
                   a.mt_lg,
                   a.leading_snug,
                 ]}>
-                <Trans>Nobody was found. Try searching for someone else.</Trans>
+                {query ? (
+                  <Trans>
+                    Nobody was found. Try searching for someone else.
+                  </Trans>
+                ) : null}
               </Text>
             )}
           </View>
