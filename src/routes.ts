@@ -63,6 +63,7 @@ export const router = new Router<AllNavigatableRoutes>({
   AccountSettings: '/settings/account',
   AutomationLabelSettings: '/settings/automation-label',
   NSFWLabelSettings: '/settings/nsfw-labels',
+  PetLabelSettings: '/settings/pet-label',
   PrivacyAndSecuritySettings: '/settings/privacy-and-security',
   ActivityPrivacySettings: '/settings/privacy-and-security/activity',
   ContentAndMediaSettings: '/settings/content-and-media',

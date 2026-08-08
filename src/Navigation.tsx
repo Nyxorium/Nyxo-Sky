@@ -120,6 +120,7 @@ import {LegacyNotificationSettingsScreen} from '#/screens/Settings/LegacyNotific
 import {NotificationSettingsScreen} from '#/screens/Settings/NotificationSettings'
 import {ActivityNotificationSettingsScreen} from '#/screens/Settings/NotificationSettings/ActivityNotificationSettings'
 import {NSFWLabelSettingsScreen} from '#/screens/Settings/NSFWLabelSettings'
+import {PetLabelSettingsScreen} from '#/screens/Settings/PetLabelSettings'
 import {PrivacyAndSecuritySettingsScreen} from '#/screens/Settings/PrivacyAndSecuritySettings'
 import {SettingsScreen} from '#/screens/Settings/Settings'
 import {ThreadPreferencesScreen} from '#/screens/Settings/ThreadPreferences'
@@ -492,6 +493,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => AutomationLabelSettingsScreen}
         options={{
           title: title(msg`Automation Label`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="PetLabelSettings"
+        getComponent={() => PetLabelSettingsScreen}
+        options={{
+          title: title(msg`Pet Label`),
           requireAuth: true,
         }}
       />

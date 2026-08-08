@@ -69,7 +69,8 @@ export function filterUserFacingLabels(
   return labels.filter(
     label =>
       !label.val.startsWith('!') &&
-      !(label.val === 'bot' && label.src === currentAccountDid),
+      !(label.val === 'bot' && label.src === currentAccountDid) &&
+      !(label.val === 'pet' && label.src === currentAccountDid),
   )
 }
 
