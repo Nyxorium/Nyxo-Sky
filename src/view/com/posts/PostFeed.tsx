@@ -63,7 +63,7 @@ import {
   AgeAssuranceDismissibleFeedBanner,
   useInternalState as useAgeAssuranceBannerState,
 } from '#/components/ageAssurance/AgeAssuranceDismissibleFeedBanner'
-import {ProgressGuide, SuggestedFollows} from '#/components/FeedInterstitials'
+import {ProgressGuide} from '#/components/FeedInterstitials'
 import {
   PostFeedVideoGridRow,
   PostFeedVideoGridRowPlaceholder,
@@ -822,8 +822,6 @@ let PostFeed = ({
             ]}
           />
         )
-      } else if (row.type === 'interstitialFollows') {
-        return <SuggestedFollows feed={feed} />
       } else if (row.type === 'interstitialProgressGuide') {
         return <ProgressGuide />
       } else if (row.type === 'ageAssuranceBanner') {

@@ -157,7 +157,6 @@ const schema = z.object({
   enableSquareAvatars: z.boolean().optional(),
 
   // Disable X settings in Nyxo Sky
-  disableSimilarAccounts: z.boolean().optional(),
   disableShareViaDms: z.boolean().optional(),
   disableProfileDescriptions: z.boolean().optional(),
 
@@ -269,7 +268,6 @@ export const defaults: Schema = {
   enableSquareAvatars: false,
 
   // Disable X setting defaults in Nyxo Sky
-  disableSimilarAccounts: false,
   disableShareViaDms: false,
   enableShareViaDID: false,
   disableProfileDescriptions: false,

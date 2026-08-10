@@ -1,4 +1,4 @@
-import {memo, useMemo, useState} from 'react'
+import {memo, useMemo} from 'react'
 import {View} from 'react-native'
 import {
   type AppBskyActorDefs,
@@ -48,7 +48,6 @@ import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderPronouns} from './Pronouns'
 import {ProfileHeaderShell} from './Shell'
-import {ProfileHeaderSuggestedFollows} from './SuggestedFollows'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -75,9 +74,6 @@ let ProfileHeaderStandard = ({
   )
   const [, queueUnblock] = useProfileBlockMutationQueue(profile)
   const unblockPromptControl = Prompt.usePromptControl()
-  const [showSuggestedFollows, setShowSuggestedFollows] = useState(false)
-  const [hasSeenAllSuggestedFollows, setHasSeenAllSuggestedFollows] =
-    useState(false)
   const isBlockedUser =
     profile.viewer?.blocking ||
     profile.viewer?.blockedBy ||
@@ -94,11 +90,6 @@ let ProfileHeaderStandard = ({
         Toast.show(_(msg`There was an issue! ${e.toString()}`), {type: 'error'})
       }
     }
-  }
-
-  const onRequestHide = () => {
-    setHasSeenAllSuggestedFollows(true)
-    setShowSuggestedFollows(false)
   }
 
   const isMe = currentAccount?.did === profile.did
@@ -132,8 +123,6 @@ let ProfileHeaderStandard = ({
               profile={profile}
               moderation={moderation}
               moderationOpts={moderationOpts}
-              onFollow={() => setShowSuggestedFollows(true)}
-              onUnfollow={() => setShowSuggestedFollows(false)}
             />
           </View>
           <View
@@ -197,12 +186,6 @@ let ProfileHeaderStandard = ({
           confirmButtonColor="negative"
         />
       </ProfileHeaderShell>
-
-      <ProfileHeaderSuggestedFollows
-        isExpanded={!hasSeenAllSuggestedFollows && showSuggestedFollows}
-        actorDid={profile.did}
-        onRequestHide={onRequestHide}
-      />
     </>
   )
 }
