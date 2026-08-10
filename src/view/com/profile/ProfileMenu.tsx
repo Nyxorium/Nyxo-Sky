@@ -26,7 +26,6 @@ import {Button, ButtonIcon} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {UserAddRemoveListsDialog} from '#/components/dialogs/lists/UserAddRemoveListsDialog'
 import {StarterPackDialog} from '#/components/dialogs/StarterPackDialog'
-import {ArrowOutOfBoxModified_Stroke2_Corner2_Rounded as ArrowOutOfBoxIcon} from '#/components/icons/ArrowOutOfBox'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
 import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/CircleX'
@@ -335,27 +334,23 @@ let ProfileMenu = ({
 
         <Menu.Outer style={{minWidth: 170}}>
           <Menu.Group>
-            <Menu.Item
-              testID="profileHeaderDropdownShareBtn"
-              label={IS_WEB ? l`Copy link to profile` : l`Share via...`}
-              onPress={() => {
-                if (showLoggedOutWarning) {
-                  loggedOutWarningPromptControl.open()
-                } else {
-                  onPressShare()
-                }
-              }}>
-              <Menu.ItemText>
-                {IS_WEB ? (
+            {IS_WEB && (
+              <Menu.Item
+                testID="profileHeaderDropdownShareBtn"
+                label={l`Copy link to profile`}
+                onPress={() => {
+                  if (showLoggedOutWarning) {
+                    loggedOutWarningPromptControl.open()
+                  } else {
+                    onPressShare()
+                  }
+                }}>
+                <Menu.ItemText>
                   <Trans>Copy link to profile</Trans>
-                ) : (
-                  <Trans>Share via...</Trans>
-                )}
-              </Menu.ItemText>
-              <Menu.ItemIcon
-                icon={IS_WEB ? ChainLinkIcon : ArrowOutOfBoxIcon}
-              />
-            </Menu.Item>
+                </Menu.ItemText>
+                <Menu.ItemIcon icon={ChainLinkIcon} />
+              </Menu.Item>
+            )}
             <Menu.Item
               testID="profileHeaderDropdownSearchBtn"
               label={l`Search posts`}
