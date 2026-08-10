@@ -116,7 +116,6 @@ import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSetting
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
 import {InterestsSettingsScreen} from '#/screens/Settings/InterestsSettings'
 import {LanguageSettingsScreen} from '#/screens/Settings/LanguageSettings'
-import {LegacyNotificationSettingsScreen} from '#/screens/Settings/LegacyNotificationSettings'
 import {NotificationSettingsScreen} from '#/screens/Settings/NotificationSettings'
 import {ActivityNotificationSettingsScreen} from '#/screens/Settings/NotificationSettings/ActivityNotificationSettings'
 import {NSFWLabelSettingsScreen} from '#/screens/Settings/NSFWLabelSettings'
@@ -614,11 +613,6 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         name="NotificationsActivityList"
         getComponent={() => NotificationsActivityListScreen}
         options={{title: title(msg`Notifications`), requireAuth: true}}
-      />
-      <Stack.Screen
-        name="LegacyNotificationSettings"
-        getComponent={() => LegacyNotificationSettingsScreen}
-        options={{title: title(msg`Notification settings`), requireAuth: true}}
       />
       <Stack.Screen
         name="Feeds"

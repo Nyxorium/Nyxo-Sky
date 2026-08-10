@@ -12,7 +12,6 @@ export const router = new Router<AllNavigatableRoutes>({
   Feeds: '/feeds',
   Notifications: '/notifications',
   NotificationsActivityList: '/notifications/activity',
-  LegacyNotificationSettings: '/notifications/settings',
   Settings: '/settings',
   Lists: '/lists',
   // moderation

@@ -87,7 +87,6 @@ export type CommonNavigatorParams = {
   MessagesSettings: undefined
   MessagesInbox: undefined
   NotificationsActivityList: {posts: string}
-  LegacyNotificationSettings: undefined
   Feeds: undefined
   Start: {name: string; rkey: string}
   StarterPack: {name: string; rkey: string; new?: boolean}
