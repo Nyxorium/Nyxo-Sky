@@ -10,7 +10,6 @@ import {useSimpleVerificationState} from '#/components/verification'
 import {VerificationCheck} from '#/components/verification/VerificationCheck'
 import {VerificationCheckButton} from '#/components/verification/VerificationCheckButton'
 import type * as bsky from '#/types/bsky'
-import {BetaBadge, BetaBadgeButton, useIsBetaBadgeVisible} from './BetaBadge'
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
@@ -30,22 +29,6 @@ const botIconSizes: Record<Size, number> = {
   xl: 23,
 } as const
 
-const betaIconSizes: Record<Size, number> = {
-  xs: 8,
-  sm: 8,
-  md: 8,
-  lg: 10,
-  xl: 12,
-} as const
-
-const betaBadgePadding: Record<Size, number> = {
-  xs: 1,
-  sm: 2,
-  md: 3,
-  lg: 4,
-  xl: 5,
-} as const
-
 export function ProfileBadges({
   profile,
   interactive = false,
@@ -62,7 +45,6 @@ export function ProfileBadges({
   const verification = useSimpleVerificationState({profile})
   const badgeVisibility = [
     verification.showBadge,
-    useIsBetaBadgeVisible(profile),
     isBotAccount(shadowed),
     isPetAccount(shadowed),
   ]
@@ -83,8 +65,6 @@ export function ProfileBadges({
 
   const verificationIconWidth = verificationIconSizes[size] * scaleMultiplier
   const botIconWidth = botIconSizes[size] * scaleMultiplier
-  const betaIconWidth = betaIconSizes[size] * scaleMultiplier
-  const betaBadgeScaledPadding = betaBadgePadding[size] * scaleMultiplier
 
   const gap = isOnTheSmallSide ? a.gap_2xs : a.gap_xs
   const padding = gap.gap / 2
@@ -109,21 +89,15 @@ export function ProfileBadges({
             width={verificationIconWidth}
             hitSlop={hitSlops[0]}
           />
-          <BetaBadgeButton
-            profile={shadowed}
-            width={betaIconWidth}
-            padding={betaBadgeScaledPadding}
-            hitSlop={hitSlops[1]}
-          />
           <BotBadgeButton
             profile={shadowed}
             width={botIconWidth}
-            hitSlop={hitSlops[2]}
+            hitSlop={hitSlops[1]}
           />
           <PetBadgeButton
             profile={shadowed}
             width={botIconWidth}
-            hitSlop={hitSlops[3]}
+            hitSlop={hitSlops[2]}
           />
         </>
       ) : (
@@ -134,11 +108,6 @@ export function ProfileBadges({
               width={verificationIconWidth}
             />
           ) : null}
-          <BetaBadge
-            profile={shadowed}
-            width={betaIconWidth}
-            padding={betaBadgeScaledPadding}
-          />
           <BotBadge profile={shadowed} width={botIconWidth} />
           <PetBadge profile={shadowed} width={botIconWidth} />
         </>
