@@ -14,13 +14,11 @@ import {type NavigationProp, useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {DISCOVER_FEED_URI, VIDEO_FEED_URIS} from '#/lib/constants'
-import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {getRootNavigation, getTabState, TabState} from '#/lib/routes/helpers'
 import {type AllNavigatorParams} from '#/lib/routes/types'
 import {listenSoftReset} from '#/state/events'
 import {FeedFeedbackProvider, useFeedFeedback} from '#/state/feed-feedback'
 import {useSetHomeBadge} from '#/state/home-badge'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {type FeedSourceInfo} from '#/state/queries/feed'
 import {
   type FeedDescriptor,
@@ -30,13 +28,10 @@ import {
 import {truncateAndInvalidate} from '#/state/queries/util'
 import {useSession} from '#/state/session'
 import {PostFeed} from '#/view/com/posts/PostFeed'
-import {FAB} from '#/view/com/util/fab/FAB'
 import {type ListMethods} from '#/view/com/util/List'
 import {LoadLatestBtn} from '#/view/com/util/load-latest/LoadLatestBtn'
 import {MainScrollProvider} from '#/view/com/util/MainScrollProvider'
-import {useTheme} from '#/alf'
 import {useHeaderOffset} from '#/components/hooks/useHeaderOffset'
-import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
 
@@ -68,7 +63,6 @@ export function FeedPage({
   const {_} = useLingui()
   const navigation = useNavigation<NavigationProp<AllNavigatorParams>>()
   const queryClient = useQueryClient()
-  const {openComposer} = useOpenComposer()
   const [isScrolledDown, setIsScrolledDown] = useState(false)
   const headerOffset = useHeaderOffset()
   const feedFeedback = useFeedFeedback(feedInfo, hasSession)
@@ -82,7 +76,6 @@ export function FeedPage({
     const _isVideoFeed = isBskyVideoFeed || feedIsVideoMode
     return IS_NATIVE && _isVideoFeed
   }, [feedInfo])
-  const t = useTheme()
 
   useEffect(() => {
     if (isPageFocused) {
@@ -121,10 +114,6 @@ export function FeedPage({
     return listenSoftReset(onSoftReset)
   }, [onSoftReset, isPageFocused])
 
-  const onPressCompose = useCallback(() => {
-    openComposer({logContext: 'Fab'})
-  }, [openComposer])
-
   const onPressLoadLatest = useCallback(() => {
     scrollToTop()
     truncateAndInvalidate(queryClient, FEED_RQKEY(feed))
@@ -138,8 +127,6 @@ export function FeedPage({
 
   const shouldPrefetch = IS_NATIVE && isPageAdjacent
   const isDiscoverFeed = feedInfo.uri === DISCOVER_FEED_URI
-
-  const limitComposePostButton = useLimitComposePostButton()
 
   return (
     <View
@@ -171,17 +158,6 @@ export function FeedPage({
           onPress={onPressLoadLatest}
           label={_(msg`Load new posts`)}
           showIndicator={hasNew}
-        />
-      )}
-
-      {hasSession && !limitComposePostButton && (
-        <FAB
-          testID="composeFAB"
-          onPress={onPressCompose}
-          icon={<EditBigIcon size="lg" fill={t.palette.white} />}
-          accessibilityRole="button"
-          accessibilityLabel={_(msg({message: `New post`, context: 'action'}))}
-          accessibilityHint=""
         />
       )}
     </View>

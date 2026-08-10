@@ -6,7 +6,6 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import debounce from 'lodash.debounce'
 
-import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {
@@ -15,7 +14,6 @@ import {
 } from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {s} from '#/lib/styles'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {
   type SavedFeedItem,
   useGetPopularFeedsQuery,
@@ -24,7 +22,6 @@ import {
 } from '#/state/queries/feed'
 import {useSession} from '#/state/session'
 import {ErrorMessage} from '#/view/com/util/error/ErrorMessage'
-import {FAB} from '#/view/com/util/fab/FAB'
 import {List, type ListMethods} from '#/view/com/util/List'
 import {FeedFeedLoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
 import {Text} from '#/view/com/util/text/Text'
@@ -37,7 +34,6 @@ import * as FeedCard from '#/components/FeedCard'
 import {SearchInput} from '#/components/forms/SearchInput'
 import {IconCircle} from '#/components/IconCircle'
 import {ChevronRight_Stroke2_Corner0_Rounded as ChevronRight} from '#/components/icons/Chevron'
-import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
 import {FilterTimeline_Stroke2_Corner0_Rounded as FilterTimeline} from '#/components/icons/FilterTimeline'
 import {ListMagnifyingGlass_Stroke2_Corner0_Rounded} from '#/components/icons/ListMagnifyingGlass'
 import {ListSparkle_Stroke2_Corner0_Rounded} from '#/components/icons/ListSparkle'
@@ -105,8 +101,6 @@ type FlatlistSlice =
 
 export function FeedsScreen(_props: Props) {
   const pal = usePalette('default')
-  const t = useTheme()
-  const {openComposer} = useOpenComposer()
   const {isMobile} = useWebMediaQueries()
   const [query, setQuery] = useState('')
   const [isPTR, setIsPTR] = useState(false)
@@ -144,9 +138,6 @@ export function FeedsScreen(_props: Props) {
     () => debounce(q => search(q), 500), // debounce for 500ms
     [search],
   )
-  const onPressCompose = useCallback(() => {
-    openComposer({logContext: 'Fab'})
-  }, [openComposer])
   const onChangeQuery = useCallback(
     (text: string) => {
       setQuery(text)
@@ -495,8 +486,6 @@ export function FeedsScreen(_props: Props) {
     ],
   )
 
-  const limitComposePostButton = useLimitComposePostButton()
-
   return (
     <Layout.Screen testID="FeedsScreen">
       <Layout.Center>
@@ -538,17 +527,6 @@ export function FeedsScreen(_props: Props) {
           sideBorders={false}
         />
       </Layout.Center>
-
-      {hasSession && !limitComposePostButton && (
-        <FAB
-          testID="composeFAB"
-          onPress={onPressCompose}
-          icon={<EditBigIcon size="lg" fill={t.palette.white} />}
-          accessibilityRole="button"
-          accessibilityLabel={_(msg`New post`)}
-          accessibilityHint=""
-        />
-      )}
     </Layout.Screen>
   )
 }

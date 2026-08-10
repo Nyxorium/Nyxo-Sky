@@ -31,10 +31,6 @@ import {
   useSetLikeOnRepost,
 } from '#/state/preferences/like-on-repost'
 import {
-  useLimitComposePostButton,
-  useSetLimitComposePostButton,
-} from '#/state/preferences/limit-compose-post-button'
-import {
   useNoAppLabelers,
   useSetNoAppLabelers,
 } from '#/state/preferences/no-app-labelers'
@@ -59,7 +55,6 @@ import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons
 import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
-import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import * as Layout from '#/components/Layout'
 import {IS_NATIVE} from '#/env'
 import {useDevMode} from '#/storage/hooks/dev-mode'
@@ -81,8 +76,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
   const disableProfileDescriptions = useDisableProfileDescriptions()
   const setDisableProfileDescriptions = useSetDisableProfileDescriptions()
-  const limitComposePostButton = useLimitComposePostButton()
-  const setLimitComposePostButton = useSetLimitComposePostButton()
   const noAppLabelers = useNoAppLabelers()
   const setNoAppLabelers = useSetNoAppLabelers()
   const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
@@ -246,22 +239,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
                 <SettingsList.ItemIcon icon={PhoneIcon} />
                 <SettingsList.ItemText>
                   <Trans>Disable 'Share Via DMs' in Share Menu</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
-
-          {IS_NATIVE && (
-            <Toggle.Item
-              name="hide_new_post_button"
-              label={l`Hide New Post button`}
-              value={limitComposePostButton}
-              onChange={value => setLimitComposePostButton(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={WindowIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Hide New Post button</Trans>
                 </SettingsList.ItemText>
                 <Toggle.Platform />
               </SettingsList.Item>

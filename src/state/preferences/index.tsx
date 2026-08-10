@@ -16,7 +16,6 @@ import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
 import {Provider as LikeOnRepost} from './like-on-repost'
-import {Provider as LimitComposePostButton} from './limit-compose-post-button'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
 import {Provider as RecentTagsProvider} from './recent-tags'
@@ -57,39 +56,37 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                   <AutoplayProvider>
                     <UsedStarterPacksProvider>
                       <SubtitlesProvider>
-                        <LimitComposePostButton>
-                          <AltLabelDisplayProfile>
-                            <DisableShareViaDms>
-                              <ToggleShareViaDID>
-                                <ProfileTabVisibilityPrefs>
-                                  <EnableSquareAvatars>
-                                    <NoAppLabelersProvider>
-                                      <GateOverridesProvider>
-                                        <ImpressionVisibilityProvider>
-                                          <DisableProfileDescriptions>
-                                            <SkipProfileWideContentWarning>
-                                              <SplitModerationLabelGrouping>
-                                                <RecentTagsProvider>
-                                                  <LikeOnRepost>
-                                                    <LabelerLimitBypass>
-                                                      <KawaiiProvider>
-                                                        {children}
-                                                      </KawaiiProvider>
-                                                    </LabelerLimitBypass>
-                                                  </LikeOnRepost>
-                                                </RecentTagsProvider>
-                                              </SplitModerationLabelGrouping>
-                                            </SkipProfileWideContentWarning>
-                                          </DisableProfileDescriptions>
-                                        </ImpressionVisibilityProvider>
-                                      </GateOverridesProvider>
-                                    </NoAppLabelersProvider>
-                                  </EnableSquareAvatars>
-                                </ProfileTabVisibilityPrefs>
-                              </ToggleShareViaDID>
-                            </DisableShareViaDms>
-                          </AltLabelDisplayProfile>
-                        </LimitComposePostButton>
+                        <AltLabelDisplayProfile>
+                          <DisableShareViaDms>
+                            <ToggleShareViaDID>
+                              <ProfileTabVisibilityPrefs>
+                                <EnableSquareAvatars>
+                                  <NoAppLabelersProvider>
+                                    <GateOverridesProvider>
+                                      <ImpressionVisibilityProvider>
+                                        <DisableProfileDescriptions>
+                                          <SkipProfileWideContentWarning>
+                                            <SplitModerationLabelGrouping>
+                                              <RecentTagsProvider>
+                                                <LikeOnRepost>
+                                                  <LabelerLimitBypass>
+                                                    <KawaiiProvider>
+                                                      {children}
+                                                    </KawaiiProvider>
+                                                  </LabelerLimitBypass>
+                                                </LikeOnRepost>
+                                              </RecentTagsProvider>
+                                            </SplitModerationLabelGrouping>
+                                          </SkipProfileWideContentWarning>
+                                        </DisableProfileDescriptions>
+                                      </ImpressionVisibilityProvider>
+                                    </GateOverridesProvider>
+                                  </NoAppLabelersProvider>
+                                </EnableSquareAvatars>
+                              </ProfileTabVisibilityPrefs>
+                            </ToggleShareViaDID>
+                          </DisableShareViaDms>
+                        </AltLabelDisplayProfile>
                       </SubtitlesProvider>
                     </UsedStarterPacksProvider>
                   </AutoplayProvider>

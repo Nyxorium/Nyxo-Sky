@@ -28,7 +28,6 @@ import {isInvalidHandle} from '#/lib/strings/handles'
 import {colors} from '#/lib/styles'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {listenSoftReset} from '#/state/events'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
 import {useSkipProfileWideContentWarning} from '#/state/preferences/skip-profile-wide-content-warning'
@@ -406,8 +405,6 @@ function ProfileScreenLoaded({
     )
   }
 
-  const limitComposePostButton = useLimitComposePostButton()
-
   return (
     <ScreenHider
       testID="profileView"
@@ -617,7 +614,7 @@ function ProfileScreenLoaded({
             )
           : null}
       </PagerWithHeader>
-      {hasSession && (isMe || !limitComposePostButton) ? (
+      {hasSession ? (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}

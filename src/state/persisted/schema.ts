@@ -143,7 +143,6 @@ const schema = z.object({
   themePreset: z.string().optional(),
 
   // Additional Settings in Nyxo Sky
-  limitComposePostButton: z.boolean().optional(),
   altLabelDisplayProfile: z.enum(['original', 'alternative', 'off']),
   noAppLabelers: z.boolean().optional(), // Credit: deer.social
   nyxoGateOverrides: z.record(z.string(), z.boolean()).optional(),
@@ -255,7 +254,6 @@ export const defaults: Schema = {
 
   // Additional setting defaults in Nyxo Sky
   themePreset: 'nyxoSky',
-  limitComposePostButton: true,
   altLabelDisplayProfile: 'original',
   noAppLabelers: false, // Credit: deer.social
   nyxoGateOverrides: {},

@@ -7,14 +7,12 @@ import {useFocusEffect, useIsFocused} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
-import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {
   type NativeStackScreenProps,
   type NotificationsTabNavigatorParams,
 } from '#/lib/routes/types'
 import {logger} from '#/logger'
 import {emitSoftReset, listenSoftReset} from '#/state/events'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {RQKEY as NOTIFS_RQKEY} from '#/state/queries/notifications/feed'
 import {useNotificationSettingsQuery} from '#/state/queries/notifications/settings'
 import {
@@ -25,13 +23,11 @@ import {truncateAndInvalidate} from '#/state/queries/util'
 import {NotificationFeed} from '#/view/com/notifications/NotificationFeed'
 import {Pager} from '#/view/com/pager/Pager'
 import {TabBar} from '#/view/com/pager/TabBar'
-import {FAB} from '#/view/com/util/fab/FAB'
 import {type ListMethods} from '#/view/com/util/List'
 import {LoadLatestBtn} from '#/view/com/util/load-latest/LoadLatestBtn'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {ButtonIcon} from '#/components/Button'
-import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
 import {SettingsGear2_Stroke2_Corner0_Rounded as SettingsIcon} from '#/components/icons/SettingsGear2'
 import * as Layout from '#/components/Layout'
 import {InlineLinkText, Link} from '#/components/Link'
@@ -49,8 +45,6 @@ type Props = NativeStackScreenProps<
 >
 export function NotificationsScreen({}: Props) {
   const {_} = useLingui()
-  const t = useTheme()
-  const {openComposer} = useOpenComposer()
   const unreadNotifs = useUnreadNotifications()
   const hasNew = !!unreadNotifs
   const {checkUnread: checkUnreadAll} = useUnreadNotificationsApi()
@@ -120,8 +114,6 @@ export function NotificationsScreen({}: Props) {
     isLoadingMentions,
   ])
 
-  const limitComposePostButton = useLimitComposePostButton()
-
   return (
     <Layout.Screen testID="notificationsScreen">
       <Layout.Header.Outer noBottomBorder sticky={false}>
@@ -160,16 +152,6 @@ export function NotificationsScreen({}: Props) {
           <View key={i}>{section.component}</View>
         ))}
       </Pager>
-      {!limitComposePostButton && (
-        <FAB
-          testID="composeFAB"
-          onPress={() => openComposer({logContext: 'Fab'})}
-          icon={<EditBigIcon size="lg" fill={t.palette.white} />}
-          accessibilityRole="button"
-          accessibilityLabel={_(msg`New post`)}
-          accessibilityHint=""
-        />
-      )}
     </Layout.Screen>
   )
 }
