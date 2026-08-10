@@ -30,7 +30,7 @@ import {
 import {useLingui} from '@lingui/react/macro'
 import {useQueryClient} from '@tanstack/react-query'
 
-import {DISCOVER_FEED_URI, KNOWN_SHUTDOWN_FEEDS} from '#/lib/constants'
+import {DISCOVER_FEED_URI} from '#/lib/constants'
 import {useBottomBarOffset} from '#/lib/hooks/useBottomBarOffset'
 import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
@@ -453,12 +453,6 @@ let PostFeed = ({
     }
 
     let arr: FeedRow[] = []
-    if (KNOWN_SHUTDOWN_FEEDS.includes(feedUriOrActorDid)) {
-      arr.push({
-        type: 'feedShutdownMsg',
-        key: 'feedShutdownMsg',
-      })
-    }
     if (isFetched) {
       if (isError && isEmpty) {
         arr.push({
