@@ -7,14 +7,9 @@ import * as bcp47Match from 'bcp-47-match'
 
 import {popularInterests, useInterestsDisplayNames} from '#/lib/interests'
 import {cleanError} from '#/lib/strings/errors'
-import {sanitizeHandle} from '#/lib/strings/handles'
 import {useLanguagePrefs} from '#/state/preferences/languages'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {RQKEY_ROOT as useActorSearchQueryKeyRoot} from '#/state/queries/actor-search'
-import {
-  type FeedPreviewItem,
-  useFeedPreviews,
-} from '#/state/queries/explore-feed-previews'
 import {useGetPopularFeedsQuery} from '#/state/queries/feed'
 import {Nux, useNux} from '#/state/queries/nuxs'
 import {usePreferencesQuery} from '#/state/queries/preferences'
@@ -27,12 +22,8 @@ import {
   useGetSuggestedUsersForExploreQuery,
 } from '#/state/queries/trending/useGetSuggestedUsersForExploreQuery'
 import {createGetTrendsQueryKey} from '#/state/queries/trending/useGetTrendsQuery'
-import {isThreadChildAt, isThreadParentAt} from '#/view/com/posts/PostFeed'
-import {PostFeedItem} from '#/view/com/posts/PostFeedItem'
-import {ViewFullThread} from '#/view/com/posts/ViewFullThread'
 import {List} from '#/view/com/util/List'
 import {FeedFeedLoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
-import {LoadMoreRetryBtn} from '#/view/com/util/LoadMoreRetryBtn'
 import {ExploreInterestsCard} from '#/screens/Search/modules/ExploreInterestsCard'
 import {ExploreTrendingVideos} from '#/screens/Search/modules/ExploreTrendingVideos'
 import {atoms as a, native, platform, useTheme} from '#/alf'
@@ -40,7 +31,6 @@ import {Admonition} from '#/components/Admonition'
 import {Button} from '#/components/Button'
 import * as FeedCard from '#/components/FeedCard'
 import {ChevronBottom_Stroke2_Corner0_Rounded as ChevronDownIcon} from '#/components/icons/Chevron'
-import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfo} from '#/components/icons/CircleInfo'
 import {
   type Props as IcoProps,
   type Props as SVGIconProps,
@@ -170,7 +160,6 @@ type ExploreScreenItems =
       message: string
       error: string
     }
-  | FeedPreviewItem
   | {
       type: 'interests-card'
       key: 'interests-card'
@@ -254,16 +243,6 @@ export function Explore({
     useGetSuggestedFeedsQuery({
       enabled: useFullExperience,
     })
-  const {
-    data: feedPreviewSlices,
-    query: {
-      isPending: isPendingFeedPreviews,
-      isFetchingNextPage: isFetchingNextPageFeedPreviews,
-      fetchNextPage: fetchNextPageFeedPreviews,
-      hasNextPage: hasNextPageFeedPreviews,
-      error: feedPreviewSlicesError,
-    },
-  } = useFeedPreviews(suggestedFeeds?.feeds ?? [], useFullExperience)
 
   const qc = useQueryClient()
   const [isPTR, setIsPTR] = useState(false)
@@ -285,28 +264,6 @@ export function Explore({
     ])
     setIsPTR(false)
   }, [qc, setIsPTR])
-
-  const onLoadMoreFeedPreviews = useCallback(async () => {
-    if (
-      isPendingFeedPreviews ||
-      isFetchingNextPageFeedPreviews ||
-      !hasNextPageFeedPreviews ||
-      feedPreviewSlicesError
-    )
-      return
-    try {
-      await fetchNextPageFeedPreviews()
-    } catch (err) {
-      ax.logger.error('Failed to load more feed previews', {message: err})
-    }
-  }, [
-    ax,
-    isPendingFeedPreviews,
-    isFetchingNextPageFeedPreviews,
-    hasNextPageFeedPreviews,
-    feedPreviewSlicesError,
-    fetchNextPageFeedPreviews,
-  ])
 
   const topBorder = useMemo(
     () =>
@@ -608,18 +565,6 @@ export function Explore({
     feeds,
   ])
 
-  const feedPreviewsModule = useMemo(() => {
-    const i: ExploreScreenItems[] = []
-    i.push(...feedPreviewSlices)
-    if (isFetchingNextPageFeedPreviews) {
-      i.push({
-        type: 'preview:loading',
-        key: 'preview-loading-more',
-      })
-    }
-    return i
-  }, [feedPreviewSlices, isFetchingNextPageFeedPreviews])
-
   const interestsNuxModule = useMemo<ExploreScreenItems[]>(() => {
     if (!showInterestsNux) return []
     return [
@@ -643,7 +588,6 @@ export function Explore({
     if (useFullExperience) {
       i.push(...suggestedFeedsModule)
       i.push(...suggestedFollowsModule)
-      i.push(...feedPreviewsModule)
     } else {
       i.push(...suggestedFollowsModule)
     }
@@ -653,16 +597,12 @@ export function Explore({
     topBorder,
     suggestedFollowsModule,
     suggestedFeedsModule,
-    feedPreviewsModule,
     interestsNuxModule,
     useFullExperience,
   ])
 
   const renderItem = useCallback(
     ({item, index}: {item: ExploreScreenItems; index: number}) => {
-      const handleOnPressRetry = () => {
-        void fetchNextPageFeedPreviews()
-      }
       switch (item.type) {
         case 'topBorder':
           return (
@@ -793,127 +733,6 @@ export function Explore({
           return <FeedFeedLoadingPlaceholder />
         }
         case 'error':
-        case 'preview:error': {
-          return (
-            <View
-              style={[
-                a.border_t,
-                a.pt_md,
-                a.px_md,
-                t.atoms.border_contrast_low,
-              ]}>
-              <View
-                style={[
-                  a.flex_row,
-                  a.gap_md,
-                  a.p_lg,
-                  a.rounded_sm,
-                  t.atoms.bg_contrast_25,
-                ]}>
-                <CircleInfo size="md" fill={t.palette.negative_400} />
-                <View style={[a.flex_1, a.gap_sm]}>
-                  <Text style={[a.font_semi_bold, a.leading_snug]}>
-                    {item.message}
-                  </Text>
-                  <Text
-                    style={[
-                      a.italic,
-                      a.leading_snug,
-                      t.atoms.text_contrast_medium,
-                    ]}>
-                    {item.error}
-                  </Text>
-                </View>
-              </View>
-            </View>
-          )
-        }
-        // feed previews
-        case 'preview:spacer': {
-          return <View style={[a.w_full, a.pt_4xl]} />
-        }
-        case 'preview:empty': {
-          return null // what should we do here?
-        }
-        case 'preview:loading': {
-          return (
-            <View style={[a.py_2xl, a.flex_1, a.align_center]}>
-              <Loader size="lg" />
-            </View>
-          )
-        }
-        case 'preview:header': {
-          return (
-            <ModuleHeader.Container style={[a.pt_xs]} bottomBorder>
-              {/* Very non-scientific way to avoid small gap on scroll */}
-              <View style={[a.absolute, a.inset_0, t.atoms.bg, {top: -2}]} />
-              <ModuleHeader.FeedLink feed={item.feed}>
-                <ModuleHeader.FeedAvatar feed={item.feed} />
-                <View style={[a.flex_1, a.gap_2xs]}>
-                  <ModuleHeader.TitleText style={[a.text_lg]}>
-                    {item.feed.displayName}
-                  </ModuleHeader.TitleText>
-                  <ModuleHeader.SubtitleText>
-                    <Trans>
-                      By {sanitizeHandle(item.feed.creator.handle, '@')}
-                    </Trans>
-                  </ModuleHeader.SubtitleText>
-                </View>
-              </ModuleHeader.FeedLink>
-              <ModuleHeader.PinButton feed={item.feed} />
-            </ModuleHeader.Container>
-          )
-        }
-        case 'preview:footer': {
-          return (
-            <View
-              style={[
-                a.border_t,
-                t.atoms.border_contrast_low,
-                a.w_full,
-                a.pt_4xl,
-              ]}
-            />
-          )
-        }
-        case 'preview:sliceItem': {
-          const slice = item.slice
-          const indexInSlice = item.indexInSlice
-          const subItem = slice.items[indexInSlice]
-          return (
-            <PostFeedItem
-              post={subItem.post}
-              record={subItem.record}
-              reason={indexInSlice === 0 ? slice.reason : undefined}
-              feedContext={slice.feedContext}
-              reqId={slice.reqId}
-              moderation={subItem.moderation}
-              parentAuthor={subItem.parentAuthor}
-              showReplyTo={item.showReplyTo}
-              isThreadParent={isThreadParentAt(slice.items, indexInSlice)}
-              isThreadChild={isThreadChildAt(slice.items, indexInSlice)}
-              isThreadLastChild={
-                isThreadChildAt(slice.items, indexInSlice) &&
-                slice.items.length === indexInSlice + 1
-              }
-              isParentBlocked={subItem.isParentBlocked}
-              isParentNotFound={subItem.isParentNotFound}
-              hideTopBorder={item.hideTopBorder}
-              rootPost={slice.items[0].post}
-            />
-          )
-        }
-        case 'preview:sliceViewFullThread': {
-          return <ViewFullThread uri={item.uri} />
-        }
-        case 'preview:loadMoreError': {
-          return (
-            <LoadMoreRetryBtn
-              label={l`There was an issue fetching posts. Tap here to try again.`}
-              onPress={handleOnPressRetry}
-            />
-          )
-        }
         case 'interests-card': {
           return <ExploreInterestsCard />
         }
@@ -925,17 +744,11 @@ export function Explore({
     [
       ax,
       t.atoms.border_contrast_low,
-      t.atoms.bg_contrast_25,
-      t.atoms.text_contrast_medium,
-      t.atoms.bg,
-      t.palette.negative_400,
       focusSearchInput,
       selectedInterest,
       moderationOpts,
       interestsDisplayNames,
       useFullExperience,
-      l,
-      fetchNextPageFeedPreviews,
     ],
   )
 
@@ -977,8 +790,6 @@ export function Explore({
         }
       } else if (item.type === 'feed') {
         module = 'suggestedFeeds'
-      } else if (item.type === 'preview:sliceItem') {
-        module = `feed:feedgen|${item.feed.uri}`
       } else {
         return
       }
@@ -989,10 +800,6 @@ export function Explore({
     },
     [ax, suggestedFollowsModule],
   )
-
-  const handleOnEndReached = () => {
-    void onLoadMoreFeedPreviews()
-  }
 
   const handleOnRefresh = () => {
     void onPTR()
@@ -1010,7 +817,6 @@ export function Explore({
       stickyHeaderIndices={native(stickyHeaderIndices)}
       viewabilityConfig={viewabilityConfig}
       onItemSeen={onItemSeen}
-      onEndReached={handleOnEndReached}
       /**
        * Default: 2
        */
