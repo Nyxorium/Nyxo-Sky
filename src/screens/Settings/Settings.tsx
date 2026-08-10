@@ -21,8 +21,12 @@ import {clearStorage} from '#/state/persisted'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useDeleteActorDeclaration} from '#/state/queries/messages/actor-declaration'
 import {useProfileQuery, useProfilesQuery} from '#/state/queries/profile'
-import {useAgent} from '#/state/session'
-import {type SessionAccount, useSession, useSessionApi} from '#/state/session'
+import {
+  type SessionAccount,
+  useAgent,
+  useSession,
+  useSessionApi,
+} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {useCloseAllActiveElements} from '#/state/util'
@@ -33,7 +37,6 @@ import {atoms as a, platform, tokens, useBreakpoints, useTheme} from '#/alf'
 import {AgeAssuranceDismissibleNotice} from '#/components/ageAssurance/AgeAssuranceDismissibleNotice'
 import {AvatarStackWithFetch} from '#/components/AvatarStack'
 import {Button, ButtonText} from '#/components/Button'
-// import {useIsFindContactsFeatureEnabledBasedOnGeolocation} from '#/components/contacts/country-allowlist'
 import {useDialogControl} from '#/components/Dialog'
 import {SwitchAccountDialog} from '#/components/dialogs/SwitchAccount'
 import {Accessibility_Stroke2_Corner2_Rounded as AccessibilityIcon} from '#/components/icons/Accessibility'
@@ -43,7 +46,6 @@ import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components
 import {ChevronTop_Stroke2_Corner0_Rounded as ChevronUpIcon} from '#/components/icons/Chevron'
 import {CodeBrackets_Stroke2_Corner2_Rounded as CodeBracketsIcon} from '#/components/icons/CodeBrackets'
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
-import {Contacts_Stroke2_Corner2_Rounded as ContactsIcon} from '#/components/icons/Contacts'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsHorizontal} from '#/components/icons/DotGrid'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/icons/EyeSlash'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
@@ -65,7 +67,6 @@ import {ProfileBadges} from '#/components/ProfileBadges'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
-import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL, IS_IOS, IS_NATIVE} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {device, useStorage} from '#/storage'
@@ -73,7 +74,6 @@ import {useActivitySubscriptionsNudged} from '#/storage/hooks/activity-subscript
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Settings'>
 export function SettingsScreen({}: Props) {
-  const ax = useAnalytics()
   const {t: l} = useLingui()
   const reducedMotion = useReducedMotion()
   const {logoutEveryAccount} = useSessionApi()
@@ -89,9 +89,6 @@ export function SettingsScreen({}: Props) {
   const {pendingDid, onPressSwitchAccount} = useAccountSwitcher()
   const [showAccounts, setShowAccounts] = useState(false)
   const [showDevOptions, setShowDevOptions] = useState(false)
-  // const findContactsEnabled =
-  //   useIsFindContactsFeatureEnabledBasedOnGeolocation()
-  const findContactsEnabled = false // Disabled for the time being - Sunstar
 
   return (
     <Layout.Screen>
@@ -220,18 +217,6 @@ export function SettingsScreen({}: Props) {
               <Trans>View Tailor</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
-          {IS_NATIVE &&
-            findContactsEnabled &&
-            !ax.features.enabled(ax.features.ImportContactsSettingsDisable) && (
-              <SettingsList.LinkItem
-                to="/settings/find-contacts"
-                label={l`Find and invite friends`}>
-                <SettingsList.ItemIcon icon={ContactsIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Find and invite friends</Trans>
-                </SettingsList.ItemText>
-              </SettingsList.LinkItem>
-            )}
           <SettingsList.LinkItem
             to="/settings/appearance"
             label={l`Appearance`}>

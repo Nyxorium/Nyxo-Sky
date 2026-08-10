@@ -10,7 +10,6 @@ import {logger} from '#/logger'
 import {useProfileFollowsQuery} from '#/state/queries/profile-follows'
 import {useResolveDidQuery} from '#/state/queries/resolve-uri'
 import {useSession} from '#/state/session'
-import {FindContactsBannerNUX} from '#/components/contacts/FindContactsBannerNUX'
 import {PeopleRemove2_Stroke1_Corner0_Rounded as PeopleRemoveIcon} from '#/components/icons/PeopleRemove2'
 import {ListFooter, ListMaybePlaceholder} from '#/components/Lists'
 import {useAnalytics} from '#/analytics'
@@ -221,7 +220,6 @@ export function ProfileFollows({name}: {name: string}) {
       onEndReached={() => void onEndReached()}
       onEndReachedThreshold={4}
       onItemSeen={onItemSeen}
-      ListHeaderComponent={<FindContactsBannerNUX />}
       ListFooterComponent={
         <ListFooter
           isFetchingNextPage={isFetchingNextPage}

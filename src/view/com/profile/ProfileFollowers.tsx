@@ -10,15 +10,9 @@ import {logger} from '#/logger'
 import {useProfileFollowersQuery} from '#/state/queries/profile-followers'
 import {useResolveDidQuery} from '#/state/queries/resolve-uri'
 import {useSession} from '#/state/session'
-import {useIsFindContactsFeatureEnabledBasedOnGeolocation} from '#/components/contacts/country-allowlist'
 import {PeopleRemove2_Stroke1_Corner0_Rounded as PeopleRemoveIcon} from '#/components/icons/PeopleRemove2'
 import {ListFooter, ListMaybePlaceholder} from '#/components/Lists'
 import {useAnalytics} from '#/analytics'
-import {IS_NATIVE} from '#/env'
-import {
-  FollowersPromoBanner,
-  useFollowersPromoDismissed,
-} from '#/features/inviteFriends'
 import {List} from '../util/List'
 import {ProfileCardWithFollowBtn} from './ProfileCard'
 
@@ -179,33 +173,8 @@ export function ProfileFollowers({name}: {name: string}) {
     [ax, followers, resolvedDid, sort, isSortEnabled],
   )
 
-  const [followersPromoDismissed, setFollowersPromoDismissed] =
-    useFollowersPromoDismissed()
-  const findContactsEnabled =
-    useIsFindContactsFeatureEnabledBasedOnGeolocation()
-  // The banner deep-links into the Find and Invite Friends settings screen, so
-  // mirror that screen's availability gates: native-only, allowed in the user's
-  // region (geolocation allowlist), and not disabled by the feature flag. This
-  // avoids promoting contact import where the settings entry itself is hidden.
-  const showFollowersPromo =
-    IS_NATIVE &&
-    isMe &&
-    findContactsEnabled &&
-    !ax.features.enabled(ax.features.ImportContactsSettingsDisable) &&
-    !followersPromoDismissed &&
-    followers.length < 1 &&
-    !isDidLoading &&
-    !isFollowersLoading &&
-    !isError
-
   return (
     <>
-      {showFollowersPromo && (
-        <FollowersPromoBanner
-          onPress={() => navigation.navigate('FindContactsSettings')}
-          onDismiss={() => setFollowersPromoDismissed(true)}
-        />
-      )}
       {followers.length < 1 ? (
         <ListMaybePlaceholder
           isLoading={isDidLoading || isFollowersLoading}

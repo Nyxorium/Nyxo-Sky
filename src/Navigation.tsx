@@ -76,7 +76,6 @@ import {BookmarksScreen} from '#/screens/Bookmarks'
 import {CustomFeedScreen} from '#/screens/CustomFeed'
 import {CustomFeedLikedByScreen} from '#/screens/CustomFeed/CustomFeedLikedBy'
 import {SharedPreferencesTesterScreen} from '#/screens/E2E/SharedPreferencesTesterScreen'
-import {FindContactsFlowScreen} from '#/screens/FindContactsFlowScreen'
 import HashtagScreen from '#/screens/Hashtag'
 import {LogScreen} from '#/screens/Log'
 import {MessagesScreen} from '#/screens/Messages/ChatList'
@@ -112,7 +111,6 @@ import {AutomationLabelSettingsScreen} from '#/screens/Settings/AutomationLabelS
 import {BetaFeaturesSettingsScreen} from '#/screens/Settings/BetaFeaturesSettings'
 import {ContentAndMediaSettingsScreen} from '#/screens/Settings/ContentAndMediaSettings'
 import {ExternalMediaPreferencesScreen} from '#/screens/Settings/ExternalMediaPreferences'
-import {FindContactsSettingsScreen} from '#/screens/Settings/FindContactsSettings'
 import {FollowingFeedPreferencesScreen} from '#/screens/Settings/FollowingFeedPreferences'
 import {InterestsSettingsScreen} from '#/screens/Settings/InterestsSettings'
 import {LanguageSettingsScreen} from '#/screens/Settings/LanguageSettings'
@@ -520,14 +518,6 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         }}
       />
       <Stack.Screen
-        name="FindContactsSettings"
-        getComponent={() => FindContactsSettingsScreen}
-        options={{
-          title: title(msg`Find Contacts`),
-          requireAuth: true,
-        }}
-      />
-      <Stack.Screen
         name="NotificationSettings"
         getComponent={() => NotificationSettingsScreen}
         options={{title: title(msg`Notification settings`), requireAuth: true}}
@@ -653,15 +643,6 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         options={{
           title: title(msg`Saved Posts`),
           requireAuth: true,
-        }}
-      />
-      <Stack.Screen
-        name="FindContactsFlow"
-        getComponent={() => FindContactsFlowScreen}
-        options={{
-          title: title(msg`Find Contacts`),
-          requireAuth: true,
-          gestureEnabled: false,
         }}
       />
     </>

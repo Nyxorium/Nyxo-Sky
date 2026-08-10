@@ -76,7 +76,6 @@ export type CommonNavigatorParams = {
   InterestsSettings: undefined
   AboutSettings: undefined
   AppIconSettings: undefined
-  FindContactsSettings: undefined
   InviteScanner: undefined
   Search: SearchParams
   Hashtag: {tag: string; author?: string}
@@ -99,7 +98,6 @@ export type CommonNavigatorParams = {
   StarterPackEdit: {rkey?: string}
   VideoFeed: VideoFeedSourceContext
   Bookmarks: undefined
-  FindContactsFlow: undefined
 
   MiscellaneousSettings: undefined
   ProfileTabVisibilitySettings: undefined
