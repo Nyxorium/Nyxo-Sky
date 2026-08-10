@@ -158,7 +158,6 @@ const schema = z.object({
 
   // Disable X settings in Nyxo Sky
   disableSimilarAccounts: z.boolean().optional(),
-  disableFollowbackBIN: z.boolean().optional(),
   disableShareViaDms: z.boolean().optional(),
   disableFeedPromoTab: z.boolean().optional(),
   disableProfileDescriptions: z.boolean().optional(),
@@ -272,7 +271,6 @@ export const defaults: Schema = {
 
   // Disable X setting defaults in Nyxo Sky
   disableSimilarAccounts: false,
-  disableFollowbackBIN: true,
   disableShareViaDms: false,
   enableShareViaDID: false,
   disableFeedPromoTab: false,
