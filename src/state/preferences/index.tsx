@@ -2,7 +2,6 @@ import {Provider as AltTextRequiredProvider} from './alt-text-required'
 import {Provider as AltLabelDisplayProfile} from './alternate-label-display-profile'
 import {Provider as AutoplayProvider} from './autoplay'
 import {Provider as LabelerLimitBypass} from './bypass-labeler-limit'
-import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
 import {Provider as DisableHapticsProvider} from './disable-haptics'
 import {Provider as DisableProfileDescriptions} from './disable-profile-descriptions'
 import {Provider as DisableShareViaDms} from './disable-share-via-dms'
@@ -68,33 +67,31 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                             <AltLabelDisplayProfile>
                               <DisableShareViaDms>
                                 <ToggleShareViaDID>
-                                  <DisableFeedPromoTab>
-                                    <ProfileTabVisibilityPrefs>
-                                      <EnableSquareAvatars>
-                                        <NoAppLabelersProvider>
-                                          <GateOverridesProvider>
-                                            <ImpressionVisibilityProvider>
-                                              <DisableProfileDescriptions>
-                                                <SkipProfileWideContentWarning>
-                                                  <SplitModerationLabelGrouping>
-                                                    <RecentTagsProvider>
-                                                      <LikeOnRepost>
-                                                        <LabelerLimitBypass>
-                                                          <KawaiiProvider>
-                                                            {children}
-                                                          </KawaiiProvider>
-                                                        </LabelerLimitBypass>
-                                                      </LikeOnRepost>
-                                                    </RecentTagsProvider>
-                                                  </SplitModerationLabelGrouping>
-                                                </SkipProfileWideContentWarning>
-                                              </DisableProfileDescriptions>
-                                            </ImpressionVisibilityProvider>
-                                          </GateOverridesProvider>
-                                        </NoAppLabelersProvider>
-                                      </EnableSquareAvatars>
-                                    </ProfileTabVisibilityPrefs>
-                                  </DisableFeedPromoTab>
+                                  <ProfileTabVisibilityPrefs>
+                                    <EnableSquareAvatars>
+                                      <NoAppLabelersProvider>
+                                        <GateOverridesProvider>
+                                          <ImpressionVisibilityProvider>
+                                            <DisableProfileDescriptions>
+                                              <SkipProfileWideContentWarning>
+                                                <SplitModerationLabelGrouping>
+                                                  <RecentTagsProvider>
+                                                    <LikeOnRepost>
+                                                      <LabelerLimitBypass>
+                                                        <KawaiiProvider>
+                                                          {children}
+                                                        </KawaiiProvider>
+                                                      </LabelerLimitBypass>
+                                                    </LikeOnRepost>
+                                                  </RecentTagsProvider>
+                                                </SplitModerationLabelGrouping>
+                                              </SkipProfileWideContentWarning>
+                                            </DisableProfileDescriptions>
+                                          </ImpressionVisibilityProvider>
+                                        </GateOverridesProvider>
+                                      </NoAppLabelersProvider>
+                                    </EnableSquareAvatars>
+                                  </ProfileTabVisibilityPrefs>
                                 </ToggleShareViaDID>
                               </DisableShareViaDms>
                             </AltLabelDisplayProfile>

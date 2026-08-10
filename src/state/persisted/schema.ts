@@ -159,7 +159,6 @@ const schema = z.object({
   // Disable X settings in Nyxo Sky
   disableSimilarAccounts: z.boolean().optional(),
   disableShareViaDms: z.boolean().optional(),
-  disableFeedPromoTab: z.boolean().optional(),
   disableProfileDescriptions: z.boolean().optional(),
 
   profileTabVisibility: z
@@ -273,7 +272,6 @@ export const defaults: Schema = {
   disableSimilarAccounts: false,
   disableShareViaDms: false,
   enableShareViaDID: false,
-  disableFeedPromoTab: false,
   disableProfileDescriptions: false,
 
   profileTabVisibility: {},

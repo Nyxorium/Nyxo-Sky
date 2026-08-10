@@ -2,7 +2,6 @@ import {useCallback, useMemo} from 'react'
 import {useNavigation} from '@react-navigation/native'
 
 import {type NavigationProp} from '#/lib/routes/types'
-import {useDisableFeedPromoTab} from '#/state/preferences/disable-feed-promo-tab'
 import {type FeedSourceInfo} from '#/state/queries/feed'
 import {useSession} from '#/state/session'
 import {type RenderTabBarFnProps} from '#/view/com/pager/Pager'
@@ -19,23 +18,22 @@ export function HomeHeader(
   const {feeds, onSelect: onSelectProp} = props
   const {hasSession} = useSession()
   const navigation = useNavigation<NavigationProp>()
-  const disableFeedPromoTab = useDisableFeedPromoTab()
 
   const hasPinnedCustom = useMemo<boolean>(() => {
     if (!hasSession) return false
     return feeds.some(tab => {
-      const isFollowing = tab.uri === 'following'
-      return !isFollowing
+      const hasFeeds = tab.uri === ''
+      return !hasFeeds
     })
   }, [feeds, hasSession])
 
   const items = useMemo(() => {
     const pinnedNames = feeds.map(f => f.displayName)
-    if (!hasPinnedCustom && !disableFeedPromoTab) {
+    if (!hasPinnedCustom) {
       return pinnedNames.concat('Feeds ✨')
     }
     return pinnedNames
-  }, [hasPinnedCustom, feeds, disableFeedPromoTab])
+  }, [hasPinnedCustom, feeds])
 
   const onPressFeedsLink = useCallback(() => {
     navigation.navigate('Feeds')

@@ -13,7 +13,6 @@ Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/mi
   - Embed implementation ([source](https://github.com/a-viv-a/deer-social/pull/38))
 - [Kittibyte's Deer Social fork](https://github.com/kittibyte/deer-social)
   - Square icons ([source](https://github.com/kittibyte/deer-social/commit/922a0c43a96dd2692c885b8ba982bdc552b2e81f))
-  - Disable 'Feeds ✨' toggle ([source](https://github.com/kittibyte/deer-social/commit/8fc4409a81b4c562c5203ee5175e3b3ec4ea891a))
 - [Witchsky](https://witchsky.app)
   - Source code link button concept
   - App Theme colour values for: Witchsky, Deer Social, Zeppelin, Kitty, Red Dwarf, Catppuccin, & Evergarden

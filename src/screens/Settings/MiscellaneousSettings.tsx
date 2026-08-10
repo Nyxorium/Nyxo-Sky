@@ -11,10 +11,6 @@ import {
   useSetLabelerLimitBypass,
 } from '#/state/preferences/bypass-labeler-limit'
 import {
-  useDisableFeedPromoTab,
-  useSetDisableFeedPromoTab,
-} from '#/state/preferences/disable-feed-promo-tab'
-import {
   useDisableProfileDescriptions,
   useSetDisableProfileDescriptions,
 } from '#/state/preferences/disable-profile-descriptions'
@@ -58,7 +54,6 @@ import * as Toggle from '#/components/forms/Toggle'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Filter_Stroke2_Corner0_Rounded as FilterIcon} from '#/components/icons/Filter'
-import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
 import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
 import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
@@ -82,8 +77,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setDisableShareViaDms = useSetDisableShareViaDms()
   const enableShareViaDID = useEnableShareViaDID()
   const setEnableShareViaDID = useSetEnableShareViaDID()
-  const disableFeedPromoTab = useDisableFeedPromoTab()
-  const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
   const enableSquareAvatars = useEnableSquareAvatars()
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
   const disableProfileDescriptions = useDisableProfileDescriptions()
@@ -168,20 +161,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
           </Toggle.Item>
 
           <SettingsList.Divider />
-
-          <Toggle.Item
-            name="disable_feed_promo_tab"
-            label={l`Disable 'Feeds ✨'`}
-            value={disableFeedPromoTab}
-            onChange={value => setDisableFeedPromoTab(value)}>
-            <SettingsList.Item>
-              <SettingsList.ItemIcon icon={HashtagIcon} />
-              <SettingsList.ItemText>
-                <Trans>Disable 'Feeds ✨'</Trans>
-              </SettingsList.ItemText>
-              <Toggle.Platform />
-            </SettingsList.Item>
-          </Toggle.Item>
 
           <Toggle.Item
             name="disable_profile_content_warning"
