@@ -41,7 +41,6 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
-import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
@@ -166,10 +165,6 @@ let ProfileHeaderStandard = ({
               ) : undefined}
 
               <ProfileHeaderMetaRow profile={profile} />
-
-              {profile.associated?.germ && (
-                <GermButton germ={profile.associated.germ} profile={profile} />
-              )}
 
               {!isMe &&
                 !isBlockedUser &&

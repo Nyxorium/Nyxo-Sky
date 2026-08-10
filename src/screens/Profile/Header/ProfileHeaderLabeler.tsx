@@ -44,7 +44,6 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
-import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
@@ -172,9 +171,6 @@ let ProfileHeaderLabeler = ({
             ) : undefined}
             {(profile.website || profile.createdAt) && (
               <ProfileHeaderMetaRow profile={profile} />
-            )}
-            {profile.associated?.germ && (
-              <GermButton germ={profile.associated.germ} profile={profile} />
             )}
             <View style={[a.flex_row, a.gap_xs, a.align_center]}>
               <Button
