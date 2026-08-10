@@ -1,10 +1,6 @@
 import {useCallback, useMemo, useRef, useState} from 'react'
 import {View, type ViewabilityConfig} from 'react-native'
-import {
-  type AppBskyActorDefs,
-  type AppBskyFeedDefs,
-  type AppBskyGraphDefs,
-} from '@atproto/api'
+import {type AppBskyActorDefs, type AppBskyFeedDefs} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useQueryClient} from '@tanstack/react-query'
 import * as bcp47Match from 'bcp-47-match'
@@ -31,20 +27,12 @@ import {
   useGetSuggestedUsersForExploreQuery,
 } from '#/state/queries/trending/useGetSuggestedUsersForExploreQuery'
 import {createGetTrendsQueryKey} from '#/state/queries/trending/useGetTrendsQuery'
-import {
-  createSuggestedStarterPacksQueryKey,
-  useSuggestedStarterPacksQuery,
-} from '#/state/queries/useSuggestedStarterPacksQuery'
 import {isThreadChildAt, isThreadParentAt} from '#/view/com/posts/PostFeed'
 import {PostFeedItem} from '#/view/com/posts/PostFeedItem'
 import {ViewFullThread} from '#/view/com/posts/ViewFullThread'
 import {List} from '#/view/com/util/List'
 import {FeedFeedLoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
 import {LoadMoreRetryBtn} from '#/view/com/util/LoadMoreRetryBtn'
-import {
-  StarterPackCard,
-  StarterPackCardSkeleton,
-} from '#/screens/Search/components/StarterPackCard'
 import {ExploreInterestsCard} from '#/screens/Search/modules/ExploreInterestsCard'
 import {ExploreTrendingVideos} from '#/screens/Search/modules/ExploreTrendingVideos'
 import {atoms as a, native, platform, useTheme} from '#/alf'
@@ -58,7 +46,6 @@ import {
   type Props as SVGIconProps,
 } from '#/components/icons/common'
 import {ListSparkle_Stroke2_Corner0_Rounded as ListSparkle} from '#/components/icons/ListSparkle'
-import {StarterPack} from '#/components/icons/StarterPack'
 import {UserCircle_Stroke2_Corner0_Rounded as Person} from '#/components/icons/UserCircle'
 import {boostInterests} from '#/components/InterestTabs'
 import {Loader} from '#/components/Loader'
@@ -183,15 +170,6 @@ type ExploreScreenItems =
       message: string
       error: string
     }
-  | {
-      type: 'starterPack'
-      key: string
-      view: AppBskyGraphDefs.StarterPackView
-    }
-  | {
-      type: 'starterPackSkeleton'
-      key: string
-    }
   | FeedPreviewItem
   | {
       type: 'interests-card'
@@ -250,13 +228,6 @@ export function Explore({
   const showInterestsNux =
     interestsNux.status === 'ready' && !interestsNux.nux?.completed
 
-  const {
-    data: suggestedSPs,
-    isLoading: isLoadingSuggestedSPs,
-    error: suggestedSPsError,
-    isRefetching: isRefetchingSuggestedSPs,
-  } = useSuggestedStarterPacksQuery({enabled: useFullExperience})
-
   const isLoadingMoreFeeds = isFetchingNextFeedsPage && !isLoadingFeeds
   const [hasPressedLoadMoreFeeds, setHasPressedLoadMoreFeeds] = useState(false)
   const onLoadMoreFeeds = useCallback(async () => {
@@ -301,9 +272,6 @@ export function Explore({
     await Promise.all([
       qc.resetQueries({
         queryKey: createGetTrendsQueryKey(),
-      }),
-      qc.resetQueries({
-        queryKey: createSuggestedStarterPacksQueryKey(),
       }),
       qc.resetQueries({
         queryKey: [getSuggestedUsersForExploreQueryKeyRoot],
@@ -640,43 +608,6 @@ export function Explore({
     feeds,
   ])
 
-  const suggestedStarterPacksModule = useMemo(() => {
-    const i: ExploreScreenItems[] = []
-    i.push({
-      type: 'header',
-      key: 'suggested-starterPacks-header',
-      title: l`Starter Packs`,
-      icon: StarterPack,
-      iconSize: 'md',
-    })
-
-    if (isLoadingSuggestedSPs || isRefetchingSuggestedSPs) {
-      Array.from({length: 3}).forEach((__, index) =>
-        i.push({
-          type: 'starterPackSkeleton',
-          key: `starterPackSkeleton-${index}`,
-        }),
-      )
-    } else if (suggestedSPsError || !suggestedSPs) {
-      // just get rid of the section
-      i.pop()
-    } else {
-      suggestedSPs.starterPacks.map(s => {
-        i.push({
-          type: 'starterPack',
-          key: s.uri,
-          view: s,
-        })
-      })
-    }
-    return i
-  }, [
-    suggestedSPs,
-    l,
-    isLoadingSuggestedSPs,
-    suggestedSPsError,
-    isRefetchingSuggestedSPs,
-  ])
   const feedPreviewsModule = useMemo(() => {
     const i: ExploreScreenItems[] = []
     i.push(...feedPreviewSlices)
@@ -712,7 +643,6 @@ export function Explore({
     if (useFullExperience) {
       i.push(...suggestedFeedsModule)
       i.push(...suggestedFollowsModule)
-      i.push(...suggestedStarterPacksModule)
       i.push(...feedPreviewsModule)
     } else {
       i.push(...suggestedFollowsModule)
@@ -722,7 +652,6 @@ export function Explore({
   }, [
     topBorder,
     suggestedFollowsModule,
-    suggestedStarterPacksModule,
     suggestedFeedsModule,
     feedPreviewsModule,
     interestsNuxModule,
@@ -826,20 +755,6 @@ export function Explore({
                   })
                 }}
               />
-            </View>
-          )
-        }
-        case 'starterPack': {
-          return (
-            <View style={[a.px_lg, a.pb_lg]}>
-              <StarterPackCard view={item.view} />
-            </View>
-          )
-        }
-        case 'starterPackSkeleton': {
-          return (
-            <View style={[a.px_lg, a.pb_lg]}>
-              <StarterPackCardSkeleton />
             </View>
           )
         }
@@ -1062,8 +977,6 @@ export function Explore({
         }
       } else if (item.type === 'feed') {
         module = 'suggestedFeeds'
-      } else if (item.type === 'starterPack') {
-        module = 'suggestedStarterPacks'
       } else if (item.type === 'preview:sliceItem') {
         module = `feed:feedgen|${item.feed.uri}`
       } else {
