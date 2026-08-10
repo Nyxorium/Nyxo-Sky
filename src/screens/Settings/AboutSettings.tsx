@@ -8,13 +8,7 @@ import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useMutation} from '@tanstack/react-query'
 
-import {
-  FUNDING_URL,
-  PRIVACY_POLICY_URL,
-  SOURCE_CODE_URL,
-  STATUS_PAGE_URL,
-  TERMS_OF_SERVICE_URL,
-} from '#/lib/constants'
+import {FUNDING_URL, SOURCE_CODE_URL} from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {purgeTemporaryImageFiles} from '#/state/gallery'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -22,9 +16,7 @@ import {Atom_Stroke2_Corner0_Rounded as AtomIcon} from '#/components/icons/Atom'
 import {BroomSparkle_Stroke2_Corner2_Rounded as BroomSparkleIcon} from '#/components/icons/BroomSparkle'
 import {Bubbles_Stroke2_Corner2_Rounded as BubblesIcon} from '#/components/icons/Bubble'
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
-import {Globe_Stroke2_Corner0_Rounded as GlobeIcon} from '#/components/icons/Globe'
 import {Heart2_Stroke2_Corner0_Rounded as Heart2Icon} from '#/components/icons/Heart2'
-import {Newspaper_Stroke2_Corner2_Rounded as NewspaperIcon} from '#/components/icons/Newspaper'
 import {Wrench_Stroke2_Corner2_Rounded as WrenchIcon} from '#/components/icons/Wrench'
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
@@ -110,30 +102,6 @@ export function AboutSettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={Heart2Icon} />
             <SettingsList.ItemText>
               <Trans>Buy us a coffee</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
-          <SettingsList.LinkItem
-            to={TERMS_OF_SERVICE_URL}
-            label={_(msg`Terms of Service`)}>
-            <SettingsList.ItemIcon icon={NewspaperIcon} />
-            <SettingsList.ItemText>
-              <Trans>Terms of Service</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
-          <SettingsList.LinkItem
-            to={PRIVACY_POLICY_URL}
-            label={_(msg`Privacy Policy`)}>
-            <SettingsList.ItemIcon icon={NewspaperIcon} />
-            <SettingsList.ItemText>
-              <Trans>Privacy Policy</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
-          <SettingsList.LinkItem
-            to={STATUS_PAGE_URL}
-            label={_(msg`Status Page`)}>
-            <SettingsList.ItemIcon icon={GlobeIcon} />
-            <SettingsList.ItemText>
-              <Trans>Status Page</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.Divider />
