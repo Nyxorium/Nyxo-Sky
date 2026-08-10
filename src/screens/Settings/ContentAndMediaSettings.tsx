@@ -16,7 +16,6 @@ import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import * as Toggle from '#/components/forms/Toggle'
 import {Bubbles_Stroke2_Corner2_Rounded as BubblesIcon} from '#/components/icons/Bubble'
 import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfo} from '#/components/icons/CircleInfo'
-import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {Home_Stroke2_Corner2_Rounded as HomeIcon} from '#/components/icons/Home'
 import {Macintosh_Stroke2_Corner2_Rounded as MacintoshIcon} from '#/components/icons/Macintosh'
 import {Play_Stroke2_Corner2_Rounded as PlayIcon} from '#/components/icons/Play'
@@ -49,14 +48,6 @@ export function ContentAndMediaSettingsScreen({}: Props) {
       </Layout.Header.Outer>
       <Layout.Content>
         <SettingsList.Container>
-          <SettingsList.LinkItem
-            to="/settings/saved-feeds"
-            label={_(msg`Manage saved feeds`)}>
-            <SettingsList.ItemIcon icon={HashtagIcon} />
-            <SettingsList.ItemText>
-              <Trans>Manage saved feeds</Trans>
-            </SettingsList.ItemText>
-          </SettingsList.LinkItem>
           <SettingsList.LinkItem
             to="/settings/threads"
             label={_(msg`Thread preferences`)}>
