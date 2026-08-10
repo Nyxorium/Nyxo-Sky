@@ -46,7 +46,6 @@ import {
   StarterPackCardSkeleton,
 } from '#/screens/Search/components/StarterPackCard'
 import {ExploreInterestsCard} from '#/screens/Search/modules/ExploreInterestsCard'
-import {ExploreTrendingTopics} from '#/screens/Search/modules/ExploreTrendingTopics'
 import {ExploreTrendingVideos} from '#/screens/Search/modules/ExploreTrendingVideos'
 import {atoms as a, native, platform, useTheme} from '#/alf'
 import {Admonition} from '#/components/Admonition'
@@ -143,10 +142,6 @@ type ExploreScreenItems =
         tab: 'user' | 'profile' | 'feed'
       }
       hideDefaultTab?: boolean
-    }
-  | {
-      type: 'trendingTopics'
-      key: string
     }
   | {
       type: 'trendingVideos'
@@ -350,14 +345,6 @@ export function Explore({
       ({
         type: 'topBorder',
         key: 'top-border',
-      }) as const,
-    [],
-  )
-  const trendingTopicsModule = useMemo(
-    () =>
-      ({
-        type: 'trendingTopics',
-        key: 'trending-topics',
       }) as const,
     [],
   )
@@ -723,7 +710,6 @@ export function Explore({
     i.push({type: 'liveEventFeedsBanner', key: 'liveEventFeedsBanner'})
 
     if (useFullExperience) {
-      i.push(trendingTopicsModule)
       i.push(...suggestedFeedsModule)
       i.push(...suggestedFollowsModule)
       i.push(...suggestedStarterPacksModule)
@@ -738,7 +724,6 @@ export function Explore({
     suggestedFollowsModule,
     suggestedStarterPacksModule,
     suggestedFeedsModule,
-    trendingTopicsModule,
     feedPreviewsModule,
     interestsNuxModule,
     useFullExperience,
@@ -792,9 +777,6 @@ export function Explore({
               />
             </View>
           )
-        }
-        case 'trendingTopics': {
-          return <ExploreTrendingTopics />
         }
         case 'trendingVideos': {
           return <ExploreTrendingVideos />
@@ -1060,7 +1042,7 @@ export function Explore({
   const onItemSeen = useCallback(
     (item: ExploreScreenItems) => {
       let module: Metrics['explore:module:seen']['module']
-      if (item.type === 'trendingTopics' || item.type === 'trendingVideos') {
+      if (item.type === 'trendingVideos') {
         module = item.type
       } else if (item.type === 'profile') {
         module = 'suggestedAccounts'

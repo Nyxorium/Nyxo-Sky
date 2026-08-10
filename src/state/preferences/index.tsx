@@ -26,7 +26,6 @@ import {Provider as SimilarAccountProvider} from './similar-accounts'
 import {Provider as SkipProfileWideContentWarning} from './skip-profile-wide-content-warning'
 import {Provider as SplitModerationLabelGrouping} from './split-moderation-label-grouping'
 import {Provider as SubtitlesProvider} from './subtitles'
-import {Provider as TrendingSettingsProvider} from './trending'
 import {Provider as UsedStarterPacksProvider} from './used-starter-packs'
 
 export {
@@ -65,47 +64,45 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                   <AutoplayProvider>
                     <UsedStarterPacksProvider>
                       <SubtitlesProvider>
-                        <TrendingSettingsProvider>
-                          <SimilarAccountProvider>
-                            <LimitComposePostButton>
-                              <AltLabelDisplayProfile>
-                                <DisableFollowbackBIN>
-                                  <DisableShareViaDms>
-                                    <ToggleShareViaDID>
-                                      <DisableFeedPromoTab>
-                                        <ProfileTabVisibilityPrefs>
-                                          <EnableSquareAvatars>
-                                            <NoAppLabelersProvider>
-                                              <GateOverridesProvider>
-                                                <ImpressionVisibilityProvider>
-                                                  <DisableProfileDescriptions>
-                                                    <SkipProfileWideContentWarning>
-                                                      <SplitModerationLabelGrouping>
-                                                        <RecentTagsProvider>
-                                                          <LikeOnRepost>
-                                                            <LabelerLimitBypass>
-                                                              <KawaiiProvider>
-                                                                {children}
-                                                              </KawaiiProvider>
-                                                            </LabelerLimitBypass>
-                                                          </LikeOnRepost>
-                                                        </RecentTagsProvider>
-                                                      </SplitModerationLabelGrouping>
-                                                    </SkipProfileWideContentWarning>
-                                                  </DisableProfileDescriptions>
-                                                </ImpressionVisibilityProvider>
-                                              </GateOverridesProvider>
-                                            </NoAppLabelersProvider>
-                                          </EnableSquareAvatars>
-                                        </ProfileTabVisibilityPrefs>
-                                      </DisableFeedPromoTab>
-                                    </ToggleShareViaDID>
-                                  </DisableShareViaDms>
-                                </DisableFollowbackBIN>
-                              </AltLabelDisplayProfile>
-                            </LimitComposePostButton>
-                          </SimilarAccountProvider>
-                        </TrendingSettingsProvider>
+                        <SimilarAccountProvider>
+                          <LimitComposePostButton>
+                            <AltLabelDisplayProfile>
+                              <DisableFollowbackBIN>
+                                <DisableShareViaDms>
+                                  <ToggleShareViaDID>
+                                    <DisableFeedPromoTab>
+                                      <ProfileTabVisibilityPrefs>
+                                        <EnableSquareAvatars>
+                                          <NoAppLabelersProvider>
+                                            <GateOverridesProvider>
+                                              <ImpressionVisibilityProvider>
+                                                <DisableProfileDescriptions>
+                                                  <SkipProfileWideContentWarning>
+                                                    <SplitModerationLabelGrouping>
+                                                      <RecentTagsProvider>
+                                                        <LikeOnRepost>
+                                                          <LabelerLimitBypass>
+                                                            <KawaiiProvider>
+                                                              {children}
+                                                            </KawaiiProvider>
+                                                          </LabelerLimitBypass>
+                                                        </LikeOnRepost>
+                                                      </RecentTagsProvider>
+                                                    </SplitModerationLabelGrouping>
+                                                  </SkipProfileWideContentWarning>
+                                                </DisableProfileDescriptions>
+                                              </ImpressionVisibilityProvider>
+                                            </GateOverridesProvider>
+                                          </NoAppLabelersProvider>
+                                        </EnableSquareAvatars>
+                                      </ProfileTabVisibilityPrefs>
+                                    </DisableFeedPromoTab>
+                                  </ToggleShareViaDID>
+                                </DisableShareViaDms>
+                              </DisableFollowbackBIN>
+                            </AltLabelDisplayProfile>
+                          </LimitComposePostButton>
+                        </SimilarAccountProvider>
                       </SubtitlesProvider>
                     </UsedStarterPacksProvider>
                   </AutoplayProvider>

@@ -1,16 +1,13 @@
-import {useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
-import {useNavigation} from '@react-navigation/native'
 
 import {PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL} from '#/lib/constants'
 import {useSession} from '#/state/session'
 import {useLogoVariant} from '#/view/icons/useLogoVariant'
 import {DesktopFeeds} from '#/view/shell/desktop/Feeds'
 import {DesktopSearch} from '#/view/shell/desktop/Search'
-import {SidebarTrendingTopics} from '#/view/shell/desktop/SidebarTrendingTopics'
 import {
   atoms as a,
   useGutters,
@@ -23,24 +20,6 @@ import {CENTER_COLUMN_OFFSET} from '#/components/Layout'
 import {InlineLinkText} from '#/components/Link'
 import {ProgressGuideList} from '#/components/ProgressGuide/List'
 import {Text} from '#/components/Typography'
-import {SidebarLiveEventFeedsBanner} from '#/features/liveEvents/components/SidebarLiveEventFeedsBanner'
-
-function useWebQueryParams() {
-  const navigation = useNavigation()
-  const [params, setParams] = useState<Record<string, string>>({})
-
-  useEffect(() => {
-    return navigation.addListener('state', e => {
-      try {
-        const {state} = e.data
-        const lastRoute = state.routes[state.routes.length - 1]
-        setParams(lastRoute.params)
-      } catch (err) {}
-    })
-  }, [navigation, setParams])
-
-  return params
-}
 
 export function DesktopRightNav({routeName}: {routeName: string}) {
   const t = useTheme()
@@ -50,10 +29,6 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
   const gutters = useGutters(['base', 0, 'base', 'wide'])
   const isSearchScreen = routeName === 'Search'
   const isMessagesRelatedScreen = routeName.startsWith('Messages')
-  const webqueryParams = useWebQueryParams()
-  const searchQuery = webqueryParams?.q
-  const showExploreScreenDuplicatedContent =
-    !isSearchScreen || (isSearchScreen && !!searchQuery)
   const {rightNavVisible, centerColumnOffset, leftNavMinimal} =
     useLayoutBreakpoints()
 
@@ -92,11 +67,6 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
           <DesktopFeeds />
           <ProgressGuideList />
         </>
-      )}
-
-      {showExploreScreenDuplicatedContent && <SidebarLiveEventFeedsBanner />}
-      {showExploreScreenDuplicatedContent && hasSession && (
-        <SidebarTrendingTopics />
       )}
 
       {!hasSession && (

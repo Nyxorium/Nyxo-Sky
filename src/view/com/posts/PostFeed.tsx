@@ -39,7 +39,6 @@ import {logger} from '#/logger'
 import {usePostAuthorShadowFilter} from '#/state/cache/profile-shadow'
 import {listenPostCreated} from '#/state/events'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
-import {useTrendingSettings} from '#/state/preferences/trending'
 import {STALE} from '#/state/queries'
 import {
   type AuthorFilter,
@@ -69,9 +68,6 @@ import {
   PostFeedVideoGridRow,
   PostFeedVideoGridRowPlaceholder,
 } from '#/components/feeds/PostFeedVideoGridRow'
-import {FeedTrendingTopicsInterstitial} from '#/components/interstitials/FeedTrendingTopics'
-import {TrendingInterstitial} from '#/components/interstitials/Trending'
-import {TrendingVideos as TrendingVideosInterstitial} from '#/components/interstitials/TrendingVideos'
 import {isStandardSiteEmbed} from '#/components/Post/Embed/StandardSiteEmbed/utils'
 import {RichText} from '#/components/RichText'
 import {useAnalytics} from '#/analytics'
@@ -415,8 +411,6 @@ let PostFeed = ({
   const showProgressInterstitial =
     (followProgressGuide || followAndLikeProgressGuide) && !rightNavVisible
 
-  const {trendingVideoDisabled} = useTrendingSettings()
-
   const ageAssuranceBannerState = useAgeAssuranceBannerState()
   const selectedFeed = useSelectedFeed()
   /**
@@ -576,7 +570,7 @@ let PostFeed = ({
                       feedSliceIndex: sliceIndex,
                     })
                   } else if (sliceIndex === trendingIndices.videos) {
-                    if (areVideoFeedsEnabled && !trendingVideoDisabled) {
+                    if (areVideoFeedsEnabled) {
                       arr.push({
                         type: 'interstitialTrendingVideos',
                         key: 'interstitial-' + sliceIndex + '-' + lastFetchedAt,
@@ -711,13 +705,11 @@ let PostFeed = ({
     isEmpty,
     lastFetchedAt,
     data,
-    feed,
     feedType,
     feedUriOrActorDid,
     feedTab,
     hasSession,
     showProgressInterstitial,
-    trendingVideoDisabled,
     gtMobile,
     isVideoFeed,
     areVideoFeedsEnabled,
@@ -836,18 +828,10 @@ let PostFeed = ({
         return <ProgressGuide />
       } else if (row.type === 'ageAssuranceBanner') {
         return <AgeAssuranceDismissibleFeedBanner />
-      } else if (row.type === 'interstitialTrending') {
-        return <TrendingInterstitial />
-      } else if (row.type === 'interstitialFeedTrendingTopics') {
-        return (
-          <FeedTrendingTopicsInterstitial feedSliceIndex={row.feedSliceIndex} />
-        )
       } else if (row.type === 'liveEventFeedsAndTrendingBanner') {
         return <DiscoverFeedLiveEventFeedsAndTrendingBanner />
       } else if (row.type === 'composerPrompt') {
         return <ComposerPrompt />
-      } else if (row.type === 'interstitialTrendingVideos') {
-        return <TrendingVideosInterstitial />
       } else if (row.type === 'fallbackMarker') {
         // HACK
         // tell the user we fell back to discover

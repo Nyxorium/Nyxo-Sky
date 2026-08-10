@@ -136,8 +136,6 @@ const schema = z.object({
   subtitlesEnabled: z.boolean().optional(),
   /** @deprecated */
   mutedThreads: z.array(z.string()),
-  trendingDisabled: z.boolean().optional(),
-  trendingVideoDisabled: z.boolean().optional(),
 
   recentTags: z.array(z.string()).optional(),
 
@@ -255,8 +253,6 @@ export const defaults: Schema = {
   kawaii: false,
   hasCheckedForStarterPack: false,
   subtitlesEnabled: true,
-  trendingDisabled: false,
-  trendingVideoDisabled: false,
 
   recentTags: [],
 
