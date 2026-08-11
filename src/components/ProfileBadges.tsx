@@ -109,20 +109,20 @@ export function ProfileBadges({
             width={verificationIconWidth}
             hitSlop={hitSlops[0]}
           />
-          <BetaBadgeButton
-            profile={shadowed}
-            width={betaIconWidth}
-            padding={betaBadgeScaledPadding}
-            hitSlop={hitSlops[1]}
-          />
           <BotBadgeButton
             profile={shadowed}
             width={botIconWidth}
-            hitSlop={hitSlops[2]}
+            hitSlop={hitSlops[1]}
           />
           <PetBadgeButton
             profile={shadowed}
             width={botIconWidth}
+            hitSlop={hitSlops[2]}
+          />
+          <BetaBadgeButton
+            profile={shadowed}
+            width={betaIconWidth}
+            padding={betaBadgeScaledPadding}
             hitSlop={hitSlops[3]}
           />
         </>
@@ -134,13 +134,13 @@ export function ProfileBadges({
               width={verificationIconWidth}
             />
           ) : null}
+          <BotBadge profile={shadowed} width={botIconWidth} />
+          <PetBadge profile={shadowed} width={botIconWidth} />
           <BetaBadge
             profile={shadowed}
             width={betaIconWidth}
             padding={betaBadgeScaledPadding}
           />
-          <BotBadge profile={shadowed} width={botIconWidth} />
-          <PetBadge profile={shadowed} width={botIconWidth} />
         </>
       )}
     </View>
