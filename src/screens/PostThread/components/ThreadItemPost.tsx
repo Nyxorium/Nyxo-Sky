@@ -46,6 +46,7 @@ import {PostHider} from '#/components/moderation/PostHider'
 import * as ReportDialogMetadataContext from '#/components/moderation/ReportDialog/ReportDialogMetadataContext'
 import {type AppModerationCause} from '#/components/Pills'
 import {Embed, PostEmbedViewContext} from '#/components/Post/Embed'
+import {PostTags} from '#/components/Post/PostTags'
 import {ShowMoreTextButton} from '#/components/Post/ShowMoreTextButton'
 import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls, PostControlsSkeleton} from '#/components/PostControls'
@@ -376,6 +377,7 @@ const ThreadItemPostInner = memo(function ThreadItemPostInner({
                   />
                 </View>
               )}
+              <PostTags post={post} />
               <PostControls
                 post={postShadow}
                 record={record}

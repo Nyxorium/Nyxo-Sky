@@ -46,6 +46,7 @@ import {type AppModerationCause} from '#/components/Pills'
 import {Embed} from '#/components/Post/Embed'
 import {PostEmbedViewContext} from '#/components/Post/Embed/types'
 import {PostRepliedTo} from '#/components/Post/PostRepliedTo'
+import {PostTags} from '#/components/Post/PostTags'
 import {ShowMoreTextButton} from '#/components/Post/ShowMoreTextButton'
 import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls} from '#/components/PostControls'
@@ -539,6 +540,7 @@ let PostContent = ({
           />
         </View>
       ) : null}
+      <PostTags post={post} />
     </ContentHider>
   )
 }
