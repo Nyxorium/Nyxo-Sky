@@ -34,6 +34,7 @@ import {PostAlerts} from '#/components/moderation/PostAlerts'
 import * as ReportDialogMetadataContext from '#/components/moderation/ReportDialog/ReportDialogMetadataContext'
 import {Embed, PostEmbedViewContext} from '#/components/Post/Embed'
 import {PostRepliedTo} from '#/components/Post/PostRepliedTo'
+import {PostTags} from '#/components/Post/PostTags'
 import {ShowMoreTextButton} from '#/components/Post/ShowMoreTextButton'
 import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls} from '#/components/PostControls'
@@ -262,6 +263,7 @@ function PostInner({
                   />
                 </View>
               ) : null}
+              <PostTags post={post} />
             </ContentHider>
             <PostControls
               post={post}

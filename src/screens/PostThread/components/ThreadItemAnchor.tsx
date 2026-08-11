@@ -53,6 +53,7 @@ import {PostAlerts} from '#/components/moderation/PostAlerts'
 import * as ReportDialogMetadataContext from '#/components/moderation/ReportDialog/ReportDialogMetadataContext'
 import {type AppModerationCause} from '#/components/Pills'
 import {Embed, PostEmbedViewContext} from '#/components/Post/Embed'
+import {PostTags} from '#/components/Post/PostTags'
 import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls, PostControlsSkeleton} from '#/components/PostControls'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
@@ -447,6 +448,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                   />
                 </View>
               )}
+              <PostTags post={post} isThreaded />
             </ContentHider>
             <ExpandedPostDetails
               post={item.value.post}
