@@ -24,7 +24,6 @@ import {Text} from '#/components/Typography'
 export const SplashScreen = ({
   onDismiss,
   onPressSignin,
-  onPressCreateAccount,
 }: {
   onDismiss?: () => void
   onPressSignin: () => void
@@ -104,20 +103,6 @@ export const SplashScreen = ({
             <View
               testID="signinOrCreateAccount"
               style={[a.w_full, a.px_xl, a.gap_md, a.pb_2xl, {maxWidth: 320}]}>
-              <Button
-                testID="createAccountButton"
-                onPress={onPressCreateAccount}
-                label={_(msg`Create new account`)}
-                accessibilityHint={_(
-                  msg`Opens flow to create a new Bluesky account`,
-                )}
-                size="large"
-                variant="solid"
-                color="primary">
-                <ButtonText>
-                  <Trans>Create account</Trans>
-                </ButtonText>
-              </Button>
               <Button
                 testID="signInButton"
                 onPress={onPressSignin}

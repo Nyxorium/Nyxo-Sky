@@ -17,7 +17,6 @@ import {useEnableMinimalShellMode} from '#/state/shell/minimal-mode'
 import {ErrorBoundary} from '#/view/com/util/ErrorBoundary'
 import {Login} from '#/screens/Login'
 import {JoinRequest} from '#/screens/Messages/JoinRequest'
-import {Signup} from '#/screens/Signup'
 import {LandingScreen} from '#/screens/StarterPack/StarterPackLandingScreen'
 import {atoms as a, native, tokens, useTheme} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
@@ -166,9 +165,6 @@ export function LoggedOut({onDismiss}: {onDismiss?: () => void}) {
               setScreenState(ScreenState.S_CreateAccount)
             }}
           />
-        ) : undefined}
-        {screenState === ScreenState.S_CreateAccount ? (
-          <Signup onPressBack={onPressBack} />
         ) : undefined}
       </ErrorBoundary>
     </View>
