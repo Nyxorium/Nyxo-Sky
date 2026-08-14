@@ -1,7 +1,7 @@
 import {forwardRef, useCallback, useEffect, useState} from 'react'
 import {
   AccessibilityInfo,
-  Image as RNImage,
+  // Image as RNImage,
   StyleSheet,
   useColorScheme,
   View,
@@ -21,13 +21,13 @@ import * as SplashScreen from 'expo-splash-screen'
 
 import {Logotype} from '#/view/icons/Logotype'
 // @ts-ignore
-import splashImagePointer from '../assets/splash/splash.png'
+// import splashImagePointer from '../assets/splash/splash.png'
 // @ts-ignore
-import darkSplashImagePointer from '../assets/splash/splash-dark.png'
-const splashImageUri = RNImage.resolveAssetSource(splashImagePointer).uri
-const darkSplashImageUri = RNImage.resolveAssetSource(
-  darkSplashImagePointer,
-).uri
+// import darkSplashImagePointer from '../assets/splash/splash-dark.png'
+// const splashImageUri = RNImage.resolveAssetSource(splashImagePointer).uri
+// const darkSplashImageUri = RNImage.resolveAssetSource(
+//   darkSplashImagePointer,
+// ).uri
 
 export const Logo = forwardRef(function LogoImpl(props: SvgProps, ref) {
   const width = 1000
@@ -174,7 +174,7 @@ export function Splash(props: React.PropsWithChildren<Props>) {
           <Image
             accessibilityIgnoresInvertColors
             onLoadEnd={onLoadEnd}
-            source={{uri: isDarkMode ? darkSplashImageUri : splashImageUri}}
+            source={undefined} // {uri: isDarkMode ? darkSplashImageUri : splashImageUri}}
             style={StyleSheet.absoluteFillObject}
           />
 

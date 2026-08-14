@@ -3,7 +3,7 @@ import {
   Alert,
   AppState,
   type AppStateStatus,
-  Image as RNImage,
+  // Image as RNImage,
 } from 'react-native'
 import {nativeBuildVersion} from 'expo-application'
 import {
@@ -453,13 +453,8 @@ export function useOTAUpdates() {
  * Splash screen for while the app is updating
  */
 export const splash = (scheme: 'light' | 'dark') => {
-  const source =
-    scheme === 'light'
-      ? require('../../../assets/splash/splash.png')
-      : require('../../../assets/splash/splash-dark.png')
-
   return {
-    image: RNImage.resolveAssetSource(source).uri,
+    image: undefined,
     imageFullScreen: true,
     imageResizeMode: 'cover',
     backgroundColor: scheme === 'light' ? '#006AFF' : '#002861',

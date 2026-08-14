@@ -335,7 +335,7 @@ module.exports = function (_config) {
             ios: {
               enableFullScreenImage_legacy: true, // iOS only
               backgroundColor: '#006AFF', // primary_500
-              image: './assets/splash/splash.png',
+              image: undefined, // './assets/splash/splash.png',
               resizeMode: 'cover',
               dark: {
                 enableFullScreenImage_legacy: true, // iOS only
