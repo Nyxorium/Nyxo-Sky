@@ -37,11 +37,7 @@ export const Logo = forwardRef(function LogoImpl(props: Props, ref) {
   if (logoVariant !== 'default') {
     return (
       <Image
-        source={
-          size > 100
-            ? require('../../../assets/kawaii.png')
-            : require('../../../assets/kawaii_smol.png')
-        }
+        source={undefined}
         accessibilityLabel="Bluesky"
         accessibilityHint=""
         accessibilityIgnoresInvertColors
