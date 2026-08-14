@@ -38,7 +38,6 @@ import {List} from '#/view/com/util/List'
 import {atoms as a, tokens, useGutters, useTheme} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
-import {ContactsHeroImage} from '#/components/contacts/components/HeroImage'
 import {useDialogControl} from '#/components/Dialog'
 import {ArrowRotateClockwise_Stroke2_Corner0_Rounded as ResyncIcon} from '#/components/icons/ArrowRotate'
 import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
@@ -125,7 +124,6 @@ function Intro() {
 
   return (
     <Layout.Content contentContainerStyle={[gutter, a.gap_lg]}>
-      <ContactsHeroImage />
       <Text style={[a.text_xl, a.font_bold]}>
         <Trans>Find people you know</Trans>
       </Text>
