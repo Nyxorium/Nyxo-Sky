@@ -1,10 +1,10 @@
 import {forwardRef} from 'react'
-import Svg, {Circle, Path} from 'react-native-svg'
+import Svg, {Path} from 'react-native-svg'
 
 import {type Props, useCommonSVGProps} from '#/components/icons/common'
 
-export const Accessibility_Stroke2_Corner2_Rounded = forwardRef<Svg, Props>(
-  function PersonStandingImpl(props, ref) {
+export const Shredder = forwardRef<Svg, Props>(
+  function ShredderImpl(props, ref) {
     const {fill, size, style, ...rest} = useCommonSVGProps(props)
     return (
       <Svg
@@ -19,10 +19,13 @@ export const Accessibility_Stroke2_Corner2_Rounded = forwardRef<Svg, Props>(
         width={size}
         height={size}
         style={[style]}>
-        <Circle cx={12} cy={5} r={1} />
-        <Path d="m9 20 3-6 3 6" />
-        <Path d="m6 8 6 2 6-2" />
-        <Path d="M12 10v4" />
+        <Path d="M4 13V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5" />
+        <Path d="M14 2v5a1 1 0 0 0 1 1h5" />
+        <Path d="M10 22v-5" />
+        <Path d="M14 19v-2" />
+        <Path d="M18 20v-3" />
+        <Path d="M2 13h20" />
+        <Path d="M6 20v-3" />
       </Svg>
     )
   },
