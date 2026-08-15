@@ -345,11 +345,15 @@ module.exports = function (_config) {
               },
             },
             android: {
-              backgroundColor: '#006AFF', // primary_500
+              backgroundColor: '#6136e2', // primary_500
+              // '#6136e2'
+              // '#006AFF' Bluesky
               image: './assets/splash/android-splash-logo-white.png',
               imageWidth: 102, // even division of 306px
               dark: {
-                backgroundColor: '#002861', // primary_900
+                backgroundColor: '#221155', // primary_900
+                // '#221155'
+                // '#002861' Bluesky
                 image: './assets/splash/android-splash-logo-white.png',
                 imageWidth: 102,
               },
@@ -377,65 +381,65 @@ module.exports = function (_config) {
              * Bluesky Logos
              */
 
-            bluesky_light: {
-              ios: './assets/app-icons/ios_icon_legacy_light.png',
-              android: './assets/app-icons/android_icon_legacy_light.png',
-              prerendered: true,
-            },
-            bluesky_dark: {
-              ios: './assets/app-icons/ios_icon_legacy_dark.png',
-              android: './assets/app-icons/android_icon_legacy_dark.png',
-              prerendered: true,
-            },
+            // bluesky_light: {
+            //   ios: './assets/app-icons/ios_icon_legacy_light.png',
+            //   android: './assets/app-icons/android_icon_legacy_light.png',
+            //   prerendered: true,
+            // },
+            // bluesky_dark: {
+            //   ios: './assets/app-icons/ios_icon_legacy_dark.png',
+            //   android: './assets/app-icons/android_icon_legacy_dark.png',
+            //   prerendered: true,
+            // },
 
             /**
              * Bluesky+ core set
              */
-            core_aurora: {
-              ios: './assets/app-icons/ios_icon_core_aurora.png',
-              android: './assets/app-icons/android_icon_core_aurora.png',
-              prerendered: true,
-            },
-            core_bonfire: {
-              ios: './assets/app-icons/ios_icon_core_bonfire.png',
-              android: './assets/app-icons/android_icon_core_bonfire.png',
-              prerendered: true,
-            },
-            core_sunrise: {
-              ios: './assets/app-icons/ios_icon_core_sunrise.png',
-              android: './assets/app-icons/android_icon_core_sunrise.png',
-              prerendered: true,
-            },
-            core_sunset: {
-              ios: './assets/app-icons/ios_icon_core_sunset.png',
-              android: './assets/app-icons/android_icon_core_sunset.png',
-              prerendered: true,
-            },
-            core_midnight: {
-              ios: './assets/app-icons/ios_icon_core_midnight.png',
-              android: './assets/app-icons/android_icon_core_midnight.png',
-              prerendered: true,
-            },
-            core_flat_blue: {
-              ios: './assets/app-icons/ios_icon_core_flat_blue.png',
-              android: './assets/app-icons/android_icon_core_flat_blue.png',
-              prerendered: true,
-            },
-            core_flat_white: {
-              ios: './assets/app-icons/ios_icon_core_flat_white.png',
-              android: './assets/app-icons/android_icon_core_flat_white.png',
-              prerendered: true,
-            },
-            core_flat_black: {
-              ios: './assets/app-icons/ios_icon_core_flat_black.png',
-              android: './assets/app-icons/android_icon_core_flat_black.png',
-              prerendered: true,
-            },
-            core_classic: {
-              ios: './assets/app-icons/ios_icon_core_classic.png',
-              android: './assets/app-icons/android_icon_core_classic.png',
-              prerendered: true,
-            },
+            // core_aurora: {
+            //   ios: './assets/app-icons/ios_icon_core_aurora.png',
+            //   android: './assets/app-icons/android_icon_core_aurora.png',
+            //   prerendered: true,
+            // },
+            // core_bonfire: {
+            //   ios: './assets/app-icons/ios_icon_core_bonfire.png',
+            //   android: './assets/app-icons/android_icon_core_bonfire.png',
+            //   prerendered: true,
+            // },
+            // core_sunrise: {
+            //   ios: './assets/app-icons/ios_icon_core_sunrise.png',
+            //   android: './assets/app-icons/android_icon_core_sunrise.png',
+            //   prerendered: true,
+            // },
+            // core_sunset: {
+            //   ios: './assets/app-icons/ios_icon_core_sunset.png',
+            //   android: './assets/app-icons/android_icon_core_sunset.png',
+            //   prerendered: true,
+            // },
+            // core_midnight: {
+            //   ios: './assets/app-icons/ios_icon_core_midnight.png',
+            //   android: './assets/app-icons/android_icon_core_midnight.png',
+            //   prerendered: true,
+            // },
+            // core_flat_blue: {
+            //   ios: './assets/app-icons/ios_icon_core_flat_blue.png',
+            //   android: './assets/app-icons/android_icon_core_flat_blue.png',
+            //   prerendered: true,
+            // },
+            // core_flat_white: {
+            //   ios: './assets/app-icons/ios_icon_core_flat_white.png',
+            //   android: './assets/app-icons/android_icon_core_flat_white.png',
+            //   prerendered: true,
+            // },
+            // core_flat_black: {
+            //   ios: './assets/app-icons/ios_icon_core_flat_black.png',
+            //   android: './assets/app-icons/android_icon_core_flat_black.png',
+            //   prerendered: true,
+            // },
+            // core_classic: {
+            //   ios: './assets/app-icons/ios_icon_core_classic.png',
+            //   android: './assets/app-icons/android_icon_core_classic.png',
+            //   prerendered: true,
+            // },
           },
         ],
         ['expo-screen-orientation', {initialOrientation: 'PORTRAIT_UP'}],

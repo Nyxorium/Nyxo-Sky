@@ -142,7 +142,7 @@ export function ThemedQrCard({
                 scale: 0.95,
                 href: avatarUri
                   ? {uri: avatarUri}
-                  : require('../../../../assets/logo.png'),
+                  : require('../../../../assets/Bluesky/logo.png'),
               }}
             />
             <View

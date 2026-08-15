@@ -10,7 +10,7 @@ import {type AppBskyActorDefs} from '@atproto/api'
 
 import {logger} from '#/logger'
 import {STALE} from '#/state/queries'
-import {Nux, useNuxs, useResetNuxs, useSaveNux} from '#/state/queries/nuxs'
+import {type Nux, useNuxs, useResetNuxs, useSaveNux} from '#/state/queries/nuxs'
 import {
   usePreferencesQuery,
   type UsePreferencesQueryResponse,
@@ -18,14 +18,6 @@ import {
 import {useProfileQuery} from '#/state/queries/profile'
 import {type SessionAccount, useSession} from '#/state/session'
 import {useOnboardingState} from '#/state/shell'
-import {
-  enabled as isGroupChatsAnnouncementEnabled,
-  GroupChatsAnnouncement,
-} from '#/components/dialogs/nuxs/GroupChatsAnnouncement'
-import {
-  enabled as isInviteFriendsAnnouncementEnabled,
-  InviteFriendsAnnouncement,
-} from '#/components/dialogs/nuxs/InviteFriendsAnnouncement'
 import {isSnoozed, snooze, unsnooze} from '#/components/dialogs/nuxs/snoozing'
 import {type EnabledCheckProps} from '#/components/dialogs/nuxs/utils'
 import {useAnalytics} from '#/analytics'
@@ -39,16 +31,7 @@ type Context = {
 const queuedNuxs: {
   id: Nux
   enabled?: (props: EnabledCheckProps) => boolean
-}[] = [
-  {
-    id: Nux.GroupChatsAnnouncement,
-    enabled: isGroupChatsAnnouncementEnabled,
-  },
-  {
-    id: Nux.InviteFriendsAnnouncement,
-    enabled: isInviteFriendsAnnouncementEnabled,
-  },
-]
+}[] = []
 
 const Context = createContext<Context>({
   activeNux: undefined,
@@ -194,13 +177,11 @@ function Inner({
   return (
     <Context.Provider value={ctx}>
       {/*For example, activeNux === Nux.NeueTypography && <NeueTypography />*/}
-      {activeNux === Nux.GroupChatsAnnouncement && <GroupChatsAnnouncement />}
       {/*
         Mounted unconditionally: it gates the announcement on `activeNux`
         internally, so it can keep the invite-friends dialog mounted across
         the announcement's dismissal during the "Try it" handoff.
       */}
-      <InviteFriendsAnnouncement />
     </Context.Provider>
   )
 }

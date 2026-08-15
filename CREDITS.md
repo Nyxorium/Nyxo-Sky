@@ -6,6 +6,10 @@ App Icon: [NASA/JPL-Caltech – PIA09412: Young Stars Emerge from Orion Head](ht
 
 Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/microsoft/fluentui-emoji/blob/main/assets/Crystal%20ball/3D/crystal_ball_3d.png)
 
+Icons in [`assets/icons/heroicons`](./assets/icons/heroicons/LICENSE): [Heroicons](https://heroicons.com/) under MIT license
+
+Icons in [`assets/icons/lucide`](./assets/icons/lucide/LICENSE): [Lucide](https://lucide.dev/) under ISC and MIT licenses
+
 ## Acknowledgements
 
 - [Deer Social](https://github.com/a-viv-a/deer-social)

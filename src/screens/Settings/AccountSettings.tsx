@@ -25,7 +25,7 @@ import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PencilLine_Stroke2_Corner2_Rounded as PencilIcon} from '#/components/icons/Pencil'
 import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/icons/Shield'
-import {Trash_Stroke2_Corner2_Rounded} from '#/components/icons/Trash'
+import {Shredder} from '#/components/icons/Shredder'
 import * as Layout from '#/components/Layout'
 import {isPetAccount} from '#/components/PetBadge'
 import {useDevMode} from '#/storage/hooks/dev-mode'
@@ -215,7 +215,7 @@ export function AccountSettingsScreen({}: Props) {
             label={l`Delete account`}
             onPress={() => deleteAccountControl.open()}
             destructive>
-            <SettingsList.ItemIcon icon={Trash_Stroke2_Corner2_Rounded} />
+            <SettingsList.ItemIcon icon={Shredder} />
             <SettingsList.ItemText>
               <Trans>Delete account</Trans>
             </SettingsList.ItemText>

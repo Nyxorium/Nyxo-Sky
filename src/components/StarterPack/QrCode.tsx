@@ -86,9 +86,9 @@ export function QrCode({
             <Trans>
               on
               <View style={[a.flex_row, a.align_center, {gap: 6}]}>
-                <Logo allowVariants={false} width={25} fill="white" />
+                <Logo allowVariants={false} width={25} fill="white" showLogo />
                 <View style={[{marginTop: 3.5}]}>
-                  <Logotype width={72} fill="white" />
+                  <Logotype width={72} fill="white" showLogo />
                 </View>
               </View>
             </Trans>
@@ -133,6 +133,7 @@ export function QrCodeInner({link}: {link: string}) {
             allowVariants={false}
             width={logoArea.width - 14}
             height={logoArea.height - 14}
+            showLogo
           />
         </View>
       )}
@@ -161,7 +162,7 @@ export function QrCodeInner({link}: {link: string}) {
         }}
         innerEyesOptions={{borderRadius: 3}}
         logo={{
-          href: require('../../../assets/logo.png'),
+          href: require('../../../assets/Bluesky/logo.png'),
           // Bluesky logo - Sunstar
           ...(IS_WEB && {
             onChange: onLogoAreaChange,
