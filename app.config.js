@@ -345,11 +345,15 @@ module.exports = function (_config) {
               },
             },
             android: {
-              backgroundColor: '#006AFF', // primary_500
+              backgroundColor: '#6136e2', // primary_500
+              // '#6136e2'
+              // '#006AFF' Bluesky
               image: './assets/splash/android-splash-logo-white.png',
               imageWidth: 102, // even division of 306px
               dark: {
-                backgroundColor: '#002861', // primary_900
+                backgroundColor: '#221155', // primary_900
+                // '#221155'
+                // '#002861' Bluesky
                 image: './assets/splash/android-splash-logo-white.png',
                 imageWidth: 102,
               },
