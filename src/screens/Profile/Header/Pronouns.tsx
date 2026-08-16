@@ -1,17 +1,17 @@
 import {createContext, useContext} from 'react'
 import {View} from 'react-native'
-import {type AppBskyActorDefs} from '@atproto/api'
 
 import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {type Shadow} from '#/state/cache/types'
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
 import {IS_IOS} from '#/env'
+import {type app} from '#/lexicons'
 
 export function ProfileHeaderPronouns({
   profile,
 }: {
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>
+  profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
 }) {
   const t = useTheme()
 
@@ -36,7 +36,7 @@ export function ProfileHeaderPronouns({
 export function ProfileHeaderPronounsInline({
   profile,
 }: {
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>
+  profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
 }) {
   const t = useTheme()
 
@@ -55,7 +55,7 @@ AlignmentContext.displayName = 'AlignmentContext'
 export function ProfileHeaderPronounsMinimal({
   profile,
 }: {
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>
+  profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
 }) {
   const t = useTheme()
   const align = useContext(AlignmentContext)

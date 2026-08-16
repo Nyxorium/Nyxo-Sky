@@ -1,9 +1,6 @@
 import {memo, useCallback} from 'react'
 import {type StyleProp, View, type ViewStyle} from 'react-native'
-import {
-  type AppBskyFeedPost,
-  type ModerationDecision,
-} from '@bsky/sdk/moderation'
+import {type ModerationDecision} from '@bsky/sdk/moderation'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {useQueryClient} from '@tanstack/react-query'
@@ -34,7 +31,7 @@ interface PostMetaOpts {
   postHref: string
   timestamp: string
   // Pass the record to show an "Edited" badge on edited posts.
-  record?: AppBskyFeedPost.Record
+  record?: app.bsky.feed.post.Main
   linkDisabled?: boolean
   showAvatar?: boolean
   avatarSize?: number

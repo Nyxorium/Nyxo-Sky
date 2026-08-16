@@ -1,5 +1,4 @@
 import {type Insets, View} from 'react-native'
-import {type ComAtprotoLabelDefs} from '@atproto/api'
 import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
@@ -7,12 +6,13 @@ import {Button} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {Pet_Filled as PetIcon} from '#/components/icons/Pet'
 import {PetAccountAlert} from '#/components/PetAccountAlert'
+import {com} from '#/lexicons'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 import type * as bsky from '#/types/bsky'
 
 export function isPetAccount(profile: {
   did: string
-  labels?: ComAtprotoLabelDefs.Label[]
+  labels?: com.atproto.label.defs.Label[]
 }): boolean {
   return (
     profile.labels?.some(l => l.val === 'pet' && l.src === profile.did) ?? false

@@ -1,5 +1,4 @@
 import {View} from 'react-native'
-import {type AppBskyActorDefs} from '@atproto/api'
 import {Trans} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
@@ -7,11 +6,12 @@ import {Calendar_Stroke2_Corner0_Rounded as Calendar} from '#/components/icons/C
 import {Globe_Stroke2_Corner0_Rounded as Globe} from '#/components/icons/Globe'
 import {InlineLinkText} from '#/components/Link'
 import {Text} from '#/components/Typography'
+import {type app} from '#/lexicons'
 
 export function ProfileHeaderMetaRow({
   profile,
 }: {
-  profile: AppBskyActorDefs.ProfileViewDetailed
+  profile: app.bsky.actor.defs.ProfileViewDetailed
 }) {
   const t = useTheme()
 
