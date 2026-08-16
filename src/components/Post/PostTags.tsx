@@ -1,15 +1,16 @@
 import {type StyleProp, View, type ViewStyle} from 'react-native'
-import {AppBskyFeedDefs, AppBskyFeedPost} from '@atproto/api'
 
 import {atoms as a, tokens, useTheme} from '#/alf'
 import {RichTextTag} from '#/components/RichTextTag'
+import {app} from '#/lexicons'
+import * as bsky from '#/types/bsky'
 
 export function PostTags({
   post,
   style,
   isThreaded,
 }: {
-  post: AppBskyFeedDefs.PostView
+  post: app.bsky.feed.defs.PostView
   style?: StyleProp<ViewStyle>
   isThreaded?: boolean
 }) {
@@ -54,8 +55,8 @@ export function PostTags({
   )
 }
 
-function getRecordTags(post: AppBskyFeedDefs.PostView): string[] {
-  if (!AppBskyFeedPost.isRecord(post.record)) return []
+function getRecordTags(post: app.bsky.feed.defs.PostView): string[] {
+  if (!bsky.isType(app.bsky.feed.post, post.record)) return []
   const tags = post.record.tags
   return Array.isArray(tags)
     ? tags.filter(

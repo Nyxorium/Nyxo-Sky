@@ -1,9 +1,5 @@
 import {type StyleProp, View, type ViewStyle} from 'react-native'
-import {
-  type AppBskyFeedDefs,
-  type ComAtprotoLabelDefs,
-  type ModerationDecision,
-} from '@atproto/api'
+import {type ModerationDecision} from '@bsky/sdk/moderation'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Plural} from '@lingui/react/macro'
@@ -27,6 +23,7 @@ import {
   useLabelsOnMeDialogControl,
 } from '#/components/moderation/LabelsOnMeDialog'
 import * as Pills from '#/components/Pills'
+import {type app, type com} from '#/lexicons'
 
 export function LabelsOnMe({
   type,
@@ -35,7 +32,7 @@ export function LabelsOnMe({
   style,
 }: {
   type: 'account' | 'content'
-  labels: ComAtprotoLabelDefs.Label[] | undefined
+  labels: com.atproto.label.defs.Label[] | undefined
   size?: ButtonSize
   style?: StyleProp<ViewStyle>
 }) {
@@ -89,7 +86,7 @@ export function LabelsOnMeRevised({
   style,
 }: {
   type: 'account' | 'content'
-  labels: ComAtprotoLabelDefs.Label[] | undefined
+  labels: com.atproto.label.defs.Label[] | undefined
   moderation: ModerationDecision
   style?: StyleProp<ViewStyle>
 }) {
@@ -122,7 +119,7 @@ export function LabelsOnMyPost({
   post,
   style,
 }: {
-  post: AppBskyFeedDefs.PostView
+  post: app.bsky.feed.defs.PostView
   style?: StyleProp<ViewStyle>
 }) {
   const {currentAccount} = useSession()
