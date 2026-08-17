@@ -35,12 +35,12 @@ module.exports = function (_config) {
 
   const USE_SENTRY = Boolean(process.env.SENTRY_AUTH_TOKEN)
 
-  const IOS_ICON_FILE =
-    PLATFORM === 'web' // web build doesn't like .icon files
-      ? './assets/app-icons/ios_icon_default_next.png'
-      : IS_TESTFLIGHT
-        ? './assets/app-icons/ios_icon_testflight.icon'
-        : './assets/app-icons/ios_icon_default.icon'
+  // const IOS_ICON_FILE =
+  //   PLATFORM === 'web' // web build doesn't like .icon files
+  //     ? './assets/app-icons/ios_icon_default_next.png'
+  //     : IS_TESTFLIGHT
+  //       ? './assets/app-icons/ios_icon_testflight.icon'
+  //       : './assets/app-icons/ios_icon_default.icon'
 
   return {
     expo: {
@@ -52,7 +52,7 @@ module.exports = function (_config) {
       runtimeVersion: {
         policy: 'appVersion',
       },
-      icon: './assets/app-icons/ios_icon_default_next.png',
+      // icon: './assets/app-icons/ios_icon_default_next.png',
       userInterfaceStyle: 'automatic',
       primaryColor: '#006AFF',
       ios: {
@@ -62,7 +62,7 @@ module.exports = function (_config) {
         config: {
           usesNonExemptEncryption: false,
         },
-        icon: IOS_ICON_FILE,
+        // icon: IOS_ICON_FILE,
         infoPlist: {
           CADisableMinimumFrameDurationOnPhone: true,
           UIBackgroundModes: ['remote-notification'],
