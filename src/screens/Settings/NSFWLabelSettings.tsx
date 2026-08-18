@@ -1,5 +1,5 @@
 import {View} from 'react-native'
-import {type $Typed, ComAtprotoLabelDefs} from '@atproto/api'
+import {type $Typed} from '@atproto/lex'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useQueryClient} from '@tanstack/react-query'
@@ -21,6 +21,7 @@ import * as Layout from '#/components/Layout'
 import {Text} from '#/components/Typography'
 import {useSimpleVerificationState} from '#/components/verification'
 import {VerificationCheck} from '#/components/verification/VerificationCheck'
+import {com} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
 const LABEL_OPTIONS = [
@@ -56,15 +57,13 @@ export function NSFWLabelSettingsScreen({}: Props) {
       {
         profile,
         updates: existing => {
-          const labels: $Typed<ComAtprotoLabelDefs.SelfLabels> = bsky.validate(
-            existing.labels,
-            ComAtprotoLabelDefs.validateSelfLabels,
-          )
-            ? existing.labels
-            : {
-                $type: 'com.atproto.label.defs#selfLabels',
-                values: [],
-              }
+          const labels: $Typed<com.atproto.label.defs.SelfLabels> =
+            bsky.matches(com.atproto.label.defs.selfLabels, existing.labels)
+              ? existing.labels
+              : {
+                  $type: 'com.atproto.label.defs#selfLabels',
+                  values: [],
+                }
 
           const hasLabel = labels.values.some(l => l.val === val)
           if (hasLabel) {
@@ -84,7 +83,7 @@ export function NSFWLabelSettingsScreen({}: Props) {
           return existing
         },
         checkCommitted: res => {
-          const exists = !!res.data.labels?.some(l => l.val === val)
+          const exists = !!res.labels?.some(l => l.val === val)
           return exists === wasAdded
         },
       },

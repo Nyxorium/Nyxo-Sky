@@ -1,4 +1,4 @@
-import {type AppBskyFeedPost} from '@atproto/api'
+import {type app} from '#/lexicons'
 
 /** Extra fields we write onto a post record on edit — not part of the lexicon. */
 export type PostEditFields = {
@@ -8,9 +8,9 @@ export type PostEditFields = {
   originalText?: string
 }
 
-export type EditedPostRecord = AppBskyFeedPost.Record & PostEditFields
+export type EditedPostRecord = app.bsky.feed.post.Main & PostEditFields
 
-export function getPostEditInfo(record: AppBskyFeedPost.Record): {
+export function getPostEditInfo(record: app.bsky.feed.post.Main): {
   isEdited: boolean
   updatedAt: string | undefined
   originalText: string | undefined

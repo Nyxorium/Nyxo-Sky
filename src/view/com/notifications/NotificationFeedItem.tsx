@@ -8,25 +8,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import {TID} from '@atproto/common-web'
+import {AtUri} from '@atproto/syntax'
 import {
-  type AppBskyActorDefs,
-  type AppBskyFeedDefs,
-  AppBskyFeedPost,
-  type AppBskyGraphDefs,
-  AppBskyGraphFollow,
-  AppBskyGraphStarterpack,
-  AtUri,
   moderateProfile,
   type ModerationDecision,
   type ModerationOpts,
-} from '@atproto/api'
-import {TID} from '@atproto/common-web'
+} from '@bsky/sdk/moderation'
 import {plural} from '@lingui/core/macro'
 import {Plural, Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
-import {DM_SERVICE_HEADERS, MAX_POST_LINES} from '#/lib/constants'
+import {MAX_POST_LINES} from '#/lib/constants'
 import {useAnimatedValue} from '#/lib/hooks/useAnimatedValue'
 import {makeProfileLink} from '#/lib/routes/links'
 import {type NavigationProp} from '#/lib/routes/types'
@@ -37,7 +31,8 @@ import {logger} from '#/logger'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type FeedNotification} from '#/state/queries/notifications/feed'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
-import {useAgent} from '#/state/session'
+import {useChatClient} from '#/state/session'
+import {useSession} from '#/state/session'
 import {FeedSourceCard} from '#/view/com/feeds/FeedSourceCard'
 import {Post} from '#/view/com/post/Post'
 import {formatCount} from '#/view/com/util/numeric/format'
@@ -54,7 +49,7 @@ import {Contacts_Filled_Corner2_Rounded as ContactsIconFilled} from '#/component
 import {Heart2_Filled_Stroke2_Corner0_Rounded as HeartIconFilled} from '#/components/icons/Heart2'
 import {PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon} from '#/components/icons/Person'
 import {Repost_Stroke2_Corner3_Rounded as RepostIcon} from '#/components/icons/Repost'
-import {StarterPack} from '#/components/icons/StarterPack'
+import {StarterPackMultiPathLarge as StarterPackIcon} from '#/components/icons/StarterPack'
 import {VerifiedCheck} from '#/components/icons/VerifiedCheck'
 import {InlineLinkText, Link} from '#/components/Link'
 import * as MediaPreview from '#/components/MediaPreview'
@@ -69,12 +64,13 @@ import {SubtleHover} from '#/components/SubtleHover'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {IS_WEB} from '#/env'
+import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
 const MAX_AUTHORS = 5
 
 interface Author {
-  profile: AppBskyActorDefs.ProfileView
+  profile: app.bsky.actor.defs.ProfileView
   href: string
   moderation: ModerationDecision
 }
@@ -187,10 +183,7 @@ let NotificationFeedItem = ({
     if (item.type !== 'follow') return false
     if (
       item.notification.author.viewer?.following &&
-      bsky.dangerousIsType<AppBskyGraphFollow.Record>(
-        item.notification.record,
-        AppBskyGraphFollow.isRecord,
-      )
+      bsky.isType(app.bsky.graph.follow, item.notification.record)
     ) {
       let followingTimestamp
       try {
@@ -430,7 +423,7 @@ let NotificationFeedItem = ({
     )
     icon = (
       <View style={{height: 30, width: 30}}>
-        <StarterPack width={30} gradient="sky" />
+        <StarterPackIcon width={30} gradient="sky" />
       </View>
     )
   } else if (item.type === 'verified') {
@@ -721,7 +714,7 @@ export {NotificationFeedItem}
 function FollowedViaStarterPack({
   starterPack,
 }: {
-  starterPack: AppBskyGraphDefs.StarterPackViewBasic
+  starterPack: app.bsky.graph.defs.StarterPackViewBasic
 }) {
   const t = useTheme()
   const link = useStarterPackLink({view: starterPack})
@@ -736,7 +729,7 @@ function FollowedViaStarterPack({
     <Text style={[native(a.pt_xs), t.atoms.text_contrast_medium]}>
       <Trans comment="When the source of a follow is a starter pack, i.e., 'via starter pack {starterPackName}'.">
         via starter pack{' '}
-        <StarterPack
+        <StarterPackIcon
           size="sm"
           gradient="sky"
           style={[native(a.mr_2xs), {transform: [{translateY: 4}]}]}
@@ -755,12 +748,9 @@ function FollowedViaStarterPack({
 }
 
 function getStarterPackName(
-  starterPack: AppBskyGraphDefs.StarterPackViewBasic,
+  starterPack: app.bsky.graph.defs.StarterPackViewBasic,
 ) {
-  return bsky.dangerousIsType<AppBskyGraphStarterpack.Record>(
-    starterPack.record,
-    AppBskyGraphStarterpack.isRecord,
-  )
+  return bsky.isType(app.bsky.graph.starterpack, starterPack.record)
     ? starterPack.record.name
     : undefined
 }
@@ -794,23 +784,21 @@ function ExpandListPressable({
   }
 }
 
-function SayHelloBtn({profile}: {profile: AppBskyActorDefs.ProfileView}) {
+function SayHelloBtn({profile}: {profile: app.bsky.actor.defs.ProfileView}) {
   const {t: l} = useLingui()
-  const agent = useAgent()
+  const client = useChatClient()
+  const {currentAccount} = useSession()
   const navigation = useNavigation<NavigationProp>()
   const [isLoading, setIsLoading] = useState(false)
 
   const onPress = async () => {
     try {
       setIsLoading(true)
-      const res = await agent.api.chat.bsky.convo.getConvoForMembers(
-        {
-          members: [profile.did, agent.session!.did],
-        },
-        {headers: DM_SERVICE_HEADERS},
-      )
+      const data = await client.call(chat.bsky.convo.getConvoForMembers, {
+        members: [profile.did, currentAccount!.did],
+      })
       navigation.navigate('MessagesConversation', {
-        conversation: res.data.convo.id,
+        conversation: data.convo.id,
       })
     } catch (e) {
       logger.error('Failed to get conversation', {safeMessage: e})
@@ -1028,15 +1016,9 @@ function ExpandedAuthorProfileCard({
   )
 }
 
-function AdditionalPostText({post}: {post?: AppBskyFeedDefs.PostView}) {
+function AdditionalPostText({post}: {post?: app.bsky.feed.defs.PostView}) {
   const t = useTheme()
-  if (
-    post &&
-    bsky.dangerousIsType<AppBskyFeedPost.Record>(
-      post?.record,
-      AppBskyFeedPost.isRecord,
-    )
-  ) {
+  if (post && bsky.isType(app.bsky.feed.post, post?.record)) {
     const text = post.record.text
 
     return (

@@ -1,6 +1,5 @@
 import {useMemo} from 'react'
 import {ScrollView, View} from 'react-native'
-import {type AppBskyFeedDefs} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
@@ -17,6 +16,7 @@ import * as ProfileCard from '#/components/ProfileCard'
 import {ProgressGuideList} from '#/components/ProgressGuide/List'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
+import {type app} from '#/lexicons'
 
 const MOBILE_CARD_WIDTH = 165
 
@@ -92,7 +92,7 @@ export function SuggestedFeeds() {
   const {gtMobile} = useBreakpoints()
 
   const feeds = useMemo(() => {
-    const items: AppBskyFeedDefs.GeneratorView[] = []
+    const items: app.bsky.feed.defs.GeneratorView[] = []
 
     if (!data) return items
 

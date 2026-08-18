@@ -1,5 +1,4 @@
 import {View} from 'react-native'
-import {type AppBskyFeedPost} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {getPostEditInfo} from '#/lib/edit-post'
@@ -8,6 +7,7 @@ import {Button} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {Pencil_Stroke2_Corner0_Rounded as PencilIcon} from '#/components/icons/Pencil'
 import {Text} from '#/components/Typography'
+import {type app} from '#/lexicons'
 
 /**
  * The "· Edited" badge next to a post's timestamp. Renders nothing unless the
@@ -19,7 +19,7 @@ export function PostEditedIndicator({
   standalone,
   compact,
 }: {
-  record: AppBskyFeedPost.Record
+  record: app.bsky.feed.post.Main
   size?: 'sm' | 'md'
   standalone?: boolean
   compact?: boolean

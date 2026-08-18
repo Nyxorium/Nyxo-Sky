@@ -48,4 +48,8 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Canonical Post Numbering',
       description: 'Use canonical numbering for posts',
     },
+    [Features.ContentVisibilitySettingsEnable]: {
+      label: 'Content Visibility Settings',
+      description: 'Enable per-content visibility settings',
+    },
   }

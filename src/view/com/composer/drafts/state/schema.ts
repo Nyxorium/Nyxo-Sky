@@ -1,8 +1,8 @@
+import {type app} from '#/lexicons'
 /**
  * Types for draft display and local media tracking.
- * Server draft types come from @atproto/api.
+ * Server draft types come from the generated `#/lexicons` modules.
  */
-import {type AppBskyDraftDefs} from '@atproto/api'
 
 /**
  * Reference to locally cached media file for display
@@ -37,6 +37,8 @@ export type DraftPostDisplay = {
   id: string
   /** Full text content */
   text: string
+  /** Dedicated Tags */
+  tags?: string[]
   /** Image references for display */
   images?: LocalMediaDisplay[]
   /** Video reference */
@@ -55,7 +57,7 @@ export type DraftSummary = {
   /** ISO timestamp of last update */
   updatedAt: string
   /** The full draft data from the server */
-  draft: AppBskyDraftDefs.Draft
+  draft: app.bsky.draft.defs.Draft
   /** All posts in the draft for full display */
   posts: DraftPostDisplay[]
   /** Metadata about the draft for display purposes */
