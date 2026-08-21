@@ -215,6 +215,14 @@ const schema = z.object({
       feedLikes: z.enum(impressionVisibilityOptions).optional(),
     })
     .optional(),
+
+  viewTailors: z
+    .object({
+      petLabels: z.boolean().optional(),
+      germButton: z.boolean().optional(),
+      followsYouPill: z.boolean().optional(),
+    })
+    .optional(),
 })
 export type Schema = z.infer<typeof schema>
 
@@ -295,8 +303,13 @@ export const defaults: Schema = {
 
   profileTabVisibility: {},
   profileTabVisibility_self: {},
-
   impressionVisibility: {},
+
+  viewTailors: {
+    petLabels: false,
+    germButton: true,
+    followsYouPill: true,
+  },
 }
 
 export function tryParse(rawData: string): Schema | undefined {

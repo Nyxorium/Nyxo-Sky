@@ -15,6 +15,7 @@ import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useLabelerSubscriptionMutation} from '#/state/queries/labeler'
 import {useLikeMutation, useUnlikeMutation} from '#/state/queries/like'
 import {usePreferencesQuery} from '#/state/queries/preferences'
@@ -76,6 +77,7 @@ let ProfileHeaderLabeler = ({
   const isSelf = currentAccount?.did === profile.did
 
   const hideLabelerLikes = useIsImpressionHidden('labelerLikes', isSelf)
+  const {tailors} = useViewTailorPrefs()
 
   const moderation = useMemo(
     () => moderateProfile(profile, moderationOpts),
@@ -169,7 +171,7 @@ let ProfileHeaderLabeler = ({
             {(profile.website || profile.createdAt) && (
               <ProfileHeaderMetaRow profile={profile} />
             )}
-            {profile.associated?.germ && (
+            {profile.associated?.germ && (isSelf || tailors.germButton) && (
               <GermButton germ={profile.associated.germ} profile={profile} />
             )}
             <View style={[a.flex_row, a.gap_xs, a.align_center]}>

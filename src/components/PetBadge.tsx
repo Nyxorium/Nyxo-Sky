@@ -1,13 +1,13 @@
 import {type Insets, View} from 'react-native'
 import {useLingui} from '@lingui/react/macro'
 
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {atoms as a, useTheme} from '#/alf'
 import {Button} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {Pet_Filled as PetIcon} from '#/components/icons/Pet'
 import {PetAccountAlert} from '#/components/PetAccountAlert'
-import {com} from '#/lexicons'
-import {useDevMode} from '#/storage/hooks/dev-mode'
+import {type com} from '#/lexicons'
 import type * as bsky from '#/types/bsky'
 
 export function isPetAccount(profile: {
@@ -29,9 +29,9 @@ export function PetBadge({
   width: number
 }) {
   const t = useTheme()
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
 
-  if (!devModeEnabled) return null
+  if (!tailors.petLabels) return null
   if (!isPetAccount(profile) && !alwaysShow) {
     return null
   }
@@ -55,9 +55,9 @@ export function PetBadgeButton({
   const t = useTheme()
   const {t: l} = useLingui()
   const control = useDialogControl()
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
 
-  if (!devModeEnabled) return null
+  if (!tailors.petLabels) return null
   if (!isPetAccount(profile)) {
     return null
   }
