@@ -2,6 +2,7 @@ import {View} from 'react-native'
 
 import {HITSLOP_20} from '#/lib/constants'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {atoms as a, useAlf, type ViewStyleProp} from '#/alf'
 import {useNativeFontScale} from '#/alf/util/dimensions'
 import {BotBadge, BotBadgeButton, isBotAccount} from '#/components/BotBadge'
@@ -9,7 +10,6 @@ import {isPetAccount, PetBadge, PetBadgeButton} from '#/components/PetBadge'
 import {useSimpleVerificationState} from '#/components/verification'
 import {VerificationCheck} from '#/components/verification/VerificationCheck'
 import {VerificationCheckButton} from '#/components/verification/VerificationCheckButton'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 import type * as bsky from '#/types/bsky'
 import {BetaBadge, BetaBadgeButton, useIsBetaBadgeVisible} from './BetaBadge'
 
@@ -59,14 +59,14 @@ export function ProfileBadges({
   size: Size
   allowFontScaling?: boolean
 }) {
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
   const shadowed = useProfileShadow(profile)
   const verification = useSimpleVerificationState({profile})
   const badgeVisibility = [
     verification.showBadge,
     useIsBetaBadgeVisible(profile),
     isBotAccount(shadowed),
-    devModeEnabled && isPetAccount(shadowed),
+    tailors.petLabels && isPetAccount(shadowed),
   ]
   const badgeCount = badgeVisibility.filter(Boolean).length
   const nativeScaleMultiplier = useNativeFontScale()

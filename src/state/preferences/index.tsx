@@ -28,6 +28,7 @@ import {Provider as SplitModerationLabelGrouping} from './split-moderation-label
 import {Provider as SubtitlesProvider} from './subtitles'
 import {Provider as TrendingSettingsProvider} from './trending'
 import {Provider as UsedStarterPacksProvider} from './used-starter-packs'
+import {Provider as ViewTailorPrefs} from './view-tailor-prefs'
 
 export {
   useRequireAltTextEnabled,
@@ -84,9 +85,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                         <RecentTagsProvider>
                                                           <LikeOnRepost>
                                                             <LabelerLimitBypass>
-                                                              <KawaiiProvider>
-                                                                {children}
-                                                              </KawaiiProvider>
+                                                              <ViewTailorPrefs>
+                                                                <KawaiiProvider>
+                                                                  {children}
+                                                                </KawaiiProvider>
+                                                              </ViewTailorPrefs>
                                                             </LabelerLimitBypass>
                                                           </LikeOnRepost>
                                                         </RecentTagsProvider>

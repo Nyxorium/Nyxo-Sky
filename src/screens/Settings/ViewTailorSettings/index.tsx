@@ -11,14 +11,21 @@ import {
   useSetSimilarAccountsDisabled,
   useSimilarAccountsDisabled,
 } from '#/state/preferences/similar-accounts'
+import {
+  useSetViewTailorPref,
+  useViewTailorPrefs,
+} from '#/state/preferences/view-tailor-prefs'
+import {GermLogo} from '#/screens/Profile/components/GermButton'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import * as Toggle from '#/components/forms/Toggle'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
+import {UserPlus} from '#/components/icons/lucide/UserPlus'
 import {
   Person_Stroke2_Corner2_Rounded as PersonIcon,
   PersonPlus_Stroke2_Corner2_Rounded as PersonPlusIcon,
 } from '#/components/icons/Person'
+import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import * as Layout from '#/components/Layout'
 import {type ImpressionConfig, ImpressionSection} from './FeedLikesSection'
 
@@ -35,6 +42,8 @@ export function ViewTailorSettingsScreen({}: Props) {
 
   const similarAccountsDisabledPref = useSimilarAccountsDisabled()
   const setSimilarAccountsDisabledPref = useSetSimilarAccountsDisabled()
+  const {tailors} = useViewTailorPrefs()
+  const setTailors = useSetViewTailorPref()
 
   const getOwnValue = (key: ImpressionVisibilityKey) => {
     const v = prefs[key] ?? 'show'
@@ -132,13 +141,55 @@ export function ViewTailorSettingsScreen({}: Props) {
 
           <Toggle.Item
             name="disable_similar_accounts"
-            label={l`Similar Accounts`}
+            label={l`Similar accounts box`}
             value={!similarAccountsDisabledPref}
             onChange={value => setSimilarAccountsDisabledPref(!value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={PersonPlusIcon} />
               <SettingsList.ItemText>
                 <Trans>Similar Accounts Box</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_pet_badge"
+            label={l`Pet labels`}
+            value={tailors.petLabels}
+            onChange={value => setTailors('petLabels', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PetIcon} />
+              <SettingsList.ItemText>
+                <Trans>Pet Labels</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_germ_button"
+            label={l`Germ button`}
+            value={tailors.germButton}
+            onChange={value => setTailors('germButton', value)}>
+            <SettingsList.Item>
+              <GermLogo size="medium" />
+              <SettingsList.ItemText>
+                <Trans>Germ Button</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_follows_you_pill"
+            label={l`Follows you pill`}
+            value={tailors.followsYouPill}
+            onChange={value => setTailors('followsYouPill', value)}>
+            <SettingsList.Item>
+              <UserPlus size="medium" />
+              <SettingsList.ItemText>
+                <Trans>'Follows you' pill</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>

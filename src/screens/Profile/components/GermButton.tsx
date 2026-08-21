@@ -97,17 +97,16 @@ export function GermButton({
   )
 }
 
-function GermLogo({size}: {size: 'small' | 'large'}) {
+export function GermLogo({size}: {size: 'small' | 'medium' | 'large'}) {
+  const px = size === 'large' ? 32 : size === 'medium' ? 24 : 16
+
   return (
     <Image
       source={require('../../../../assets/icons/community/germ_logo.webp')}
       accessibilityIgnoresInvertColors={false}
       contentFit="cover"
       useAppleWebpCodec
-      style={[
-        a.rounded_full,
-        size === 'large' ? {width: 32, height: 32} : {width: 16, height: 16},
-      ]}
+      style={[a.rounded_full, {width: px, height: px}]}
     />
   )
 }
