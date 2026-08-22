@@ -169,7 +169,7 @@ let ProfileHeaderStandard = ({
 
               <ProfileHeaderMetaRow profile={profile} />
 
-              {profile.associated?.germ && (isMe || tailors.germButton) && (
+              {profile.associated?.germ && tailors.germButton && (
                 <GermButton germ={profile.associated.germ} profile={profile} />
               )}
 

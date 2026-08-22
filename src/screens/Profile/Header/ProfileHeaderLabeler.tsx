@@ -171,7 +171,7 @@ let ProfileHeaderLabeler = ({
             {(profile.website || profile.createdAt) && (
               <ProfileHeaderMetaRow profile={profile} />
             )}
-            {profile.associated?.germ && (isSelf || tailors.germButton) && (
+            {profile.associated?.germ && tailors.germButton && (
               <GermButton germ={profile.associated.germ} profile={profile} />
             )}
             <View style={[a.flex_row, a.gap_xs, a.align_center]}>
