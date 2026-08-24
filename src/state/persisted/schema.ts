@@ -170,7 +170,6 @@ const schema = z.object({
   enableSquareAvatars: z.boolean().optional(),
 
   // Disable X settings in Nyxo Sky
-  disableSimilarAccounts: z.boolean().optional(),
   disableFollowbackBIN: z.boolean().optional(),
   disableShareViaDms: z.boolean().optional(),
   disableFeedPromoTab: z.boolean().optional(),
@@ -221,6 +220,7 @@ const schema = z.object({
       petLabels: z.boolean().optional(),
       germButton: z.boolean().optional(),
       followsYouPill: z.boolean().optional(),
+      similarAccountBox: z.boolean().optional(),
     })
     .optional(),
 })
@@ -294,7 +294,6 @@ export const defaults: Schema = {
   enableSquareAvatars: false,
 
   // Disable X setting defaults in Nyxo Sky
-  disableSimilarAccounts: false,
   disableFollowbackBIN: true,
   disableShareViaDms: false,
   enableShareViaDID: false,
@@ -309,6 +308,7 @@ export const defaults: Schema = {
     petLabels: false,
     germButton: true,
     followsYouPill: true,
+    similarAccountBox: false,
   },
 }
 

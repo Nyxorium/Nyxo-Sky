@@ -12,6 +12,7 @@ export type ViewTailorPrefs = Partial<{
   petLabels: boolean
   germButton: boolean
   followsYouPill: boolean
+  similarAccountBox: boolean
 }>
 
 type StateContext = {
