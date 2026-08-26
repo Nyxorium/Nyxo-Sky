@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native'
 
 import {type NavigationProp} from '#/lib/routes/types'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
-import {useSimilarAccountsDisabled} from '#/state/preferences/similar-accounts'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useGetPopularFeedsQuery} from '#/state/queries/feed'
 import {type FeedDescriptor} from '#/state/queries/post-feed'
 import {useSuggestedFollowsByActorWithDismiss} from '#/state/queries/suggested-follows'
@@ -209,7 +209,8 @@ export function ProfileGrid({
   const gutters = useGutters([0, 'base'])
   const followDialogControl = useDialogControl()
 
-  const disabledSimilarAccounts = useSimilarAccountsDisabled()
+  const {tailors} = useViewTailorPrefs()
+  const isTailored = !tailors.similarAccountBox
   const isLoading = isSuggestionsLoading || !moderationOpts
   const isProfileHeaderContext = viewContext === 'profileHeader'
   const isFeedContext = viewContext === 'feed'
@@ -444,7 +445,7 @@ export function ProfileGrid({
     if (
       error ||
       (!isLoading && profileCountForMinCheck < minLength) ||
-      disabledSimilarAccounts
+      isTailored
     ) {
       onRequestHide?.()
     }
@@ -454,10 +455,10 @@ export function ProfileGrid({
     onRequestHide,
     profileCountForMinCheck,
     minLength,
-    disabledSimilarAccounts,
+    isTailored,
   ])
 
-  if (disabledSimilarAccounts) {
+  if (isTailored) {
     return null
   }
 

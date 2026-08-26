@@ -8,10 +8,6 @@ import {
   useSetImpressionVisibility,
 } from '#/state/preferences/impression-visibility'
 import {
-  useSetSimilarAccountsDisabled,
-  useSimilarAccountsDisabled,
-} from '#/state/preferences/similar-accounts'
-import {
   useSetViewTailorPref,
   useViewTailorPrefs,
 } from '#/state/preferences/view-tailor-prefs'
@@ -40,8 +36,6 @@ export function ViewTailorSettingsScreen({}: Props) {
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
 
-  const similarAccountsDisabledPref = useSimilarAccountsDisabled()
-  const setSimilarAccountsDisabledPref = useSetSimilarAccountsDisabled()
   const {tailors} = useViewTailorPrefs()
   const setTailors = useSetViewTailorPref()
 
@@ -142,8 +136,8 @@ export function ViewTailorSettingsScreen({}: Props) {
           <Toggle.Item
             name="disable_similar_accounts"
             label={l`Similar accounts box`}
-            value={!similarAccountsDisabledPref}
-            onChange={value => setSimilarAccountsDisabledPref(!value)}>
+            value={tailors.similarAccountBox}
+            onChange={value => setTailors('similarAccountBox', value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={PersonPlusIcon} />
               <SettingsList.ItemText>
