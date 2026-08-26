@@ -190,7 +190,7 @@ function DialogInner({
           displayName: displayName.trimEnd(),
           description: description.trimEnd(),
           pronouns: pronouns.trimEnd(),
-          website: website.trimEnd(),
+          website: website.trimEnd() as `${string}:${string}`,
         },
         newUserAvatar,
         newUserBanner,

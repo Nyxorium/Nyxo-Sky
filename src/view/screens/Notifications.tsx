@@ -267,7 +267,7 @@ function NotificationsTab({
         ListHeaderComponent={
           filter === 'mentions' ? (
             <DisabledNotificationsWarning active={isFocusedAndActive} />
-          ) : null
+          ) : undefined
         }
       />
       {(isScrolledDown || hasNew) && (

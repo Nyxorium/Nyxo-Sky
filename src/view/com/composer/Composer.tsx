@@ -62,7 +62,6 @@ import {
   MAX_GRAPHEME_LENGTH,
   SUPPORTED_MIME_TYPES,
   type SupportedMimeTypes,
-  VIDEO_10_MINUTE_MAX_DURATION_MS,
   VIDEO_MAX_DURATION_MS,
 } from '#/lib/constants'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
@@ -271,17 +270,10 @@ export const ComposePost = ({
   const {currentAccount} = useSession()
   const t = useTheme()
   const ax = useAnalytics()
-  const allow10MinuteVideos = ax.features.enabled(
-    ax.features.VideoAllow10MinuteEnable,
-  )
-  const videoMaxDurationMs = allow10MinuteVideos
-    ? VIDEO_10_MINUTE_MAX_DURATION_MS
-    : VIDEO_MAX_DURATION_MS
   const client = useAppviewClient()
   const chatClient = useChatClient()
   const pdsClient = usePdsClient()
   const queryClient = useQueryClient()
-  const currentDid = currentAccount!.did
   /*
    * The host the video service-auth token is minted for. This is the same value
    * that seeds the session's PDS routing, so the audience always matches the host
@@ -452,7 +444,7 @@ export const ComposePost = ({
        * Fail early on duration so we don't spend time compressing a video the
        * server would reject anyway.
        */
-      if (asset.duration != null && asset.duration > videoMaxDurationMs) {
+      if (asset.duration != null && asset.duration > VIDEO_MAX_DURATION_MS) {
         composerDispatch({
           type: 'update_post',
           postId: postId,
@@ -460,9 +452,7 @@ export const ComposePost = ({
             type: 'embed_update_video',
             videoAction: {
               type: 'to_error',
-              error: allow10MinuteVideos
-                ? l`Videos must be 10 minutes or less.`
-                : l`Videos must be less than 3 minutes long.`,
+              error: l`Videos must be 10 minutes or less.`,
               signal: abortController.signal,
             },
           },
@@ -484,23 +474,12 @@ export const ComposePost = ({
         },
         pdsClient,
         currentDispatchUrl,
-        currentDid,
         abortController.signal,
         i18n,
         telemetry,
       )
     },
-    [
-      l,
-      i18n,
-      pdsClient,
-      currentDispatchUrl,
-      currentDid,
-      composerDispatch,
-      ax.metric,
-      videoMaxDurationMs,
-      allow10MinuteVideos,
-    ],
+    [l, i18n, pdsClient, currentDispatchUrl, composerDispatch, ax.metric],
   )
 
   const onInitVideo = useNonReactiveCallback(() => {
@@ -597,7 +576,7 @@ export const ComposePost = ({
           },
         })
 
-        if (asset.duration != null && asset.duration > videoMaxDurationMs) {
+        if (asset.duration != null && asset.duration > VIDEO_MAX_DURATION_MS) {
           composerDispatch({
             type: 'update_post',
             postId,
@@ -605,9 +584,7 @@ export const ComposePost = ({
               type: 'embed_update_video',
               videoAction: {
                 type: 'to_error',
-                error: allow10MinuteVideos
-                  ? l`Videos must be 10 minutes or less.`
-                  : l`Videos must be less than 3 minutes long.`,
+                error: l`Videos must be 10 minutes or less.`,
                 signal: abortController.signal,
               },
             },
@@ -668,7 +645,6 @@ export const ComposePost = ({
           },
           pdsClient,
           currentDispatchUrl,
-          currentDid,
           abortController.signal,
           i18n,
           telemetry,
@@ -680,17 +656,7 @@ export const ComposePost = ({
         })
       }
     },
-    [
-      l,
-      i18n,
-      pdsClient,
-      currentDispatchUrl,
-      currentDid,
-      composerDispatch,
-      ax.metric,
-      videoMaxDurationMs,
-      allow10MinuteVideos,
-    ],
+    [l, i18n, pdsClient, currentDispatchUrl, composerDispatch, ax.metric],
   )
 
   const handleSelectDraft = useCallback(
