@@ -222,6 +222,7 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
                         a.w_full,
                         a.py_lg,
                         a.flex_row,
+                        a.flex_wrap,
                         a.gap_md,
                         a.align_center,
                       ]}>

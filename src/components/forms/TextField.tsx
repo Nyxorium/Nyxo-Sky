@@ -109,11 +109,13 @@ export function Root({children, isInvalid = false, style}: RootProps) {
           {zIndex: 0},
           style,
         ]}
-        {...web({
-          onClick: () => inputRef.current?.focus(),
-          onMouseOver: onHoverIn,
-          onMouseOut: onHoverOut,
-        })}>
+        {...(IS_WEB
+          ? {
+              onClick: () => inputRef.current?.focus(),
+              onMouseOver: onHoverIn,
+              onMouseOut: onHoverOut,
+            }
+          : {})}>
         {children}
       </View>
     </Context.Provider>
