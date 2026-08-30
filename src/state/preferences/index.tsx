@@ -21,12 +21,12 @@ import {Provider as LimitComposePostButton} from './limit-compose-post-button'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
 import {Provider as RecentTagsProvider} from './recent-tags'
-import {Provider as SimilarAccountProvider} from './similar-accounts'
 import {Provider as SkipProfileWideContentWarning} from './skip-profile-wide-content-warning'
 import {Provider as SplitModerationLabelGrouping} from './split-moderation-label-grouping'
 import {Provider as SubtitlesProvider} from './subtitles'
 import {Provider as TrendingSettingsProvider} from './trending'
 import {Provider as UsedStarterPacksProvider} from './used-starter-packs'
+import {Provider as ViewTailorPrefs} from './view-tailor-prefs'
 
 export {
   useRequireAltTextEnabled,
@@ -42,10 +42,6 @@ export {useHiddenPosts, useHiddenPostsApi} from './hidden-posts'
 export {useLabelDefinitions} from './label-defs'
 export {useLanguagePrefs, useLanguagePrefsApi} from './languages'
 export {useRecentTags, useRecentTagsApi} from './recent-tags'
-export {
-  useSetSimilarAccountsDisabled,
-  useSimilarAccountsDisabled,
-} from './similar-accounts'
 export {
   useSetSkipProfileWideContentWarning,
   useSkipProfileWideContentWarning,
@@ -65,9 +61,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                     <UsedStarterPacksProvider>
                       <SubtitlesProvider>
                         <TrendingSettingsProvider>
-                          <SimilarAccountProvider>
-                            <LimitComposePostButton>
-                              <AltLabelDisplayProfile>
+                          <LimitComposePostButton>
+                            <AltLabelDisplayProfile>
+                              <DisableFollowbackBIN>
                                 <DisableShareViaDms>
                                   <ToggleShareViaDID>
                                     <DisableFeedPromoTab>
@@ -82,9 +78,11 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                                       <RecentTagsProvider>
                                                         <LikeOnRepost>
                                                           <LabelerLimitBypass>
-                                                            <KawaiiProvider>
-                                                              {children}
-                                                            </KawaiiProvider>
+                                                            <ViewTailorPrefs>
+                                                              <KawaiiProvider>
+                                                                {children}
+                                                              </KawaiiProvider>
+                                                            </ViewTailorPrefs>
                                                           </LabelerLimitBypass>
                                                         </LikeOnRepost>
                                                       </RecentTagsProvider>
@@ -99,9 +97,9 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                                     </DisableFeedPromoTab>
                                   </ToggleShareViaDID>
                                 </DisableShareViaDms>
-                              </AltLabelDisplayProfile>
-                            </LimitComposePostButton>
-                          </SimilarAccountProvider>
+                              </DisableFollowbackBIN>
+                            </AltLabelDisplayProfile>
+                          </LimitComposePostButton>
                         </TrendingSettingsProvider>
                       </SubtitlesProvider>
                     </UsedStarterPacksProvider>

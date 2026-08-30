@@ -1,5 +1,37 @@
-import {createSinglePathSVG} from './TEMPLATE'
+import {forwardRef} from 'react'
+import Svg, {Path} from 'react-native-svg'
 
-export const Freeze_Stroke2_Corner2_Rounded = createSinglePathSVG({
-  path: 'M8.789 2.293a1 1 0 0 1 1.414 0l1.793 1.793 1.793-1.793a1 1 0 1 1 1.414 1.414l-2.207 2.207v4.355l3.772-2.178.808-3.015a1 1 0 1 1 1.931.518l-.656 2.449 2.45.656a1 1 0 1 1-.518 1.932l-3.015-.808L13.998 12l3.77 2.177 3.015-.808a1 1 0 1 1 .517 1.932l-2.449.656.657 2.45a1 1 0 1 1-1.932.517l-.808-3.015-3.772-2.178v4.355l2.207 2.207a1 1 0 0 1-1.414 1.414l-1.793-1.793-1.793 1.793a1 1 0 0 1-1.414-1.414l2.207-2.207v-4.353l-3.77 2.176-.807 3.015a1 1 0 0 1-1.932-.518l.656-2.449-2.449-.656a1 1 0 1 1 .518-1.932l3.015.808L9.997 12l-3.77-2.177-3.015.808a1 1 0 0 1-.518-1.932l2.45-.656-.657-2.45a1 1 0 0 1 1.932-.517l.808 3.015 3.77 2.176V5.914L8.788 3.707a1 1 0 0 1 0-1.414Z',
-})
+import {type Props, useCommonSVGProps} from '#/components/icons/common'
+
+export const Freeze_Stroke2_Corner2_Rounded = forwardRef<Svg, Props>(
+  function SnowflakeImpl(props, ref) {
+    const {fill, size, style, ...rest} = useCommonSVGProps(props)
+    return (
+      <Svg
+        fill="none"
+        stroke={fill}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...rest}
+        ref={ref}
+        viewBox="0 0 24 24"
+        width={size}
+        height={size}
+        style={[style]}>
+        <Path d="m10 20-1.25-2.5L6 18" />
+        <Path d="M10 4 8.75 6.5 6 6" />
+        <Path d="m14 20 1.25-2.5L18 18" />
+        <Path d="m14 4 1.25 2.5L18 6" />
+        <Path d="m17 21-3-6h-4" />
+        <Path d="m17 3-3 6 1.5 3" />
+        <Path d="M2 12h6.5L10 9" />
+        <Path d="m20 10-1.5 2 1.5 2" />
+        <Path d="M22 12h-6.5L14 15" />
+        <Path d="m4 10 1.5 2L4 14" />
+        <Path d="m7 21 3-6-1.5-3" />
+        <Path d="m7 3 3 6h4" />
+      </Svg>
+    )
+  },
+)

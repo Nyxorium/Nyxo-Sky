@@ -1,6 +1,6 @@
 import {View} from 'react-native'
 import {type StyleProp, type ViewStyle} from 'react-native'
-import {type ModerationDecision} from '@atproto/api'
+import {type ModerationDecision} from '@bsky/sdk/moderation'
 import {Trans} from '@lingui/react/macro'
 
 import {getModerationCauseKey, unique} from '#/lib/moderation'

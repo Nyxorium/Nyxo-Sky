@@ -1,12 +1,7 @@
 import {memo, useCallback, useMemo, useState} from 'react'
 import {View} from 'react-native'
-import {
-  type AppBskyActorDefs,
-  type AppBskyLabelerDefs,
-  moderateProfile,
-  type ModerationOpts,
-  type RichText as RichTextAPI,
-} from '@atproto/api'
+import {moderateProfile, type ModerationOpts} from '@bsky/sdk/moderation'
+import {type RichText as RichTextAPI} from '@bsky/sdk/richtext'
 import {msg, plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Plural, Trans} from '@lingui/react/macro'
@@ -20,6 +15,7 @@ import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useLabelerSubscriptionMutation} from '#/state/queries/labeler'
 import {useLikeMutation, useUnlikeMutation} from '#/state/queries/like'
 import {usePreferencesQuery} from '#/state/queries/preferences'
@@ -48,6 +44,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
+import {type app} from '#/lexicons'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -58,8 +55,8 @@ import {ProfileHeaderPronouns} from './Pronouns'
 import {ProfileHeaderShell} from './Shell'
 
 interface Props {
-  profile: AppBskyActorDefs.ProfileViewDetailed
-  labeler: AppBskyLabelerDefs.LabelerViewDetailed
+  profile: app.bsky.actor.defs.ProfileViewDetailed
+  labeler: app.bsky.labeler.defs.LabelerViewDetailed
   descriptionRT: RichTextAPI | null
   moderationOpts: ModerationOpts
   hideBackButton?: boolean
@@ -74,7 +71,7 @@ let ProfileHeaderLabeler = ({
   hideBackButton = false,
   isPlaceholderProfile,
 }: Props): React.ReactNode => {
-  const profile: Shadow<AppBskyActorDefs.ProfileViewDetailed> =
+  const profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed> =
     useProfileShadow(profileUnshadowed)
   const t = useTheme()
   const ax = useAnalytics()
@@ -84,6 +81,7 @@ let ProfileHeaderLabeler = ({
   const isSelf = currentAccount?.did === profile.did
 
   const hideLabelerLikes = useIsImpressionHidden('labelerLikes', isSelf)
+  const {tailors} = useViewTailorPrefs()
 
   const moderation = useMemo(
     () => moderateProfile(profile, moderationOpts),
@@ -178,7 +176,7 @@ let ProfileHeaderLabeler = ({
             {(profile.website || profile.createdAt) && (
               <ProfileHeaderMetaRow profile={profile} />
             )}
-            {profile.associated?.germ && (
+            {profile.associated?.germ && tailors.germButton && (
               <GermButton germ={profile.associated.germ} profile={profile} />
             )}
             <View style={[a.flex_row, a.gap_xs, a.align_center]}>
@@ -290,7 +288,7 @@ export function HeaderLabelerButtons({
   moderationOpts,
   minimal = false,
 }: {
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>
+  profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
   moderationOpts: ModerationOpts
   /** disable the subscribe button */
   minimal?: boolean

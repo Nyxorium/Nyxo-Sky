@@ -6,13 +6,8 @@ import {
   type ViewStyle,
 } from 'react-native'
 import * as Clipboard from 'expo-clipboard'
-import {
-  type AppBskyFeedDefs,
-  type AppBskyFeedPost,
-  type AppBskyFeedThreadgate,
-  AtUri,
-  type RichText as RichTextAPI,
-} from '@atproto/api'
+import {AtUri} from '@atproto/syntax'
+import {type RichText as RichTextAPI} from '@bsky/sdk/richtext'
 import {plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
@@ -101,6 +96,7 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL} from '#/env'
+import {type app} from '#/lexicons'
 
 let PostMenuItems = ({
   post,
@@ -114,17 +110,17 @@ let PostMenuItems = ({
   forceGoogleTranslate,
 }: {
   testID: string
-  post: Shadow<AppBskyFeedDefs.PostView>
+  post: Shadow<app.bsky.feed.defs.PostView>
   postFeedContext: string | undefined
   postReqId: string | undefined
-  record: AppBskyFeedPost.Record
+  record: app.bsky.feed.post.Main
   richText: RichTextAPI
   style?: StyleProp<ViewStyle>
   hitSlop?: PressableProps['hitSlop']
   size?: 'lg' | 'md' | 'sm'
   timestamp: string
-  threadgateRecord?: AppBskyFeedThreadgate.Record
-  onShowLess?: (interaction: AppBskyFeedDefs.Interaction) => void
+  threadgateRecord?: app.bsky.feed.threadgate.Main
+  onShowLess?: (interaction: app.bsky.feed.defs.Interaction) => void
   logContext: 'FeedItem' | 'PostThreadItem' | 'Post' | 'ImmersiveVideo'
   forceGoogleTranslate: boolean
 }): React.ReactNode => {
@@ -445,14 +441,13 @@ let PostMenuItems = ({
           type: 'error',
         })
       }
-    } finally {
-      ax.metric('postMenu:blockAccount', {
-        uri: postUri,
-        authorDid: postAuthor.did,
-        logContext,
-        feedDescriptor: feedFeedback.feedDescriptor,
-      })
     }
+    ax.metric('postMenu:blockAccount', {
+      uri: postUri,
+      authorDid: postAuthor.did,
+      logContext,
+      feedDescriptor: feedFeedback.feedDescriptor,
+    })
   }
 
   const onMuteAuthor = async () => {
@@ -468,14 +463,13 @@ let PostMenuItems = ({
             type: 'error',
           })
         }
-      } finally {
-        ax.metric('postMenu:unmuteAccount', {
-          uri: postUri,
-          authorDid: postAuthor.did,
-          logContext,
-          feedDescriptor: feedFeedback.feedDescriptor,
-        })
       }
+      ax.metric('postMenu:unmuteAccount', {
+        uri: postUri,
+        authorDid: postAuthor.did,
+        logContext,
+        feedDescriptor: feedFeedback.feedDescriptor,
+      })
     } else {
       try {
         await queueMute()
@@ -488,19 +482,25 @@ let PostMenuItems = ({
             type: 'error',
           })
         }
-      } finally {
-        ax.metric('postMenu:muteAccount', {
-          uri: postUri,
-          authorDid: postAuthor.did,
-          logContext,
-          feedDescriptor: feedFeedback.feedDescriptor,
-        })
       }
+      ax.metric('postMenu:muteAccount', {
+        uri: postUri,
+        authorDid: postAuthor.did,
+        logContext,
+        feedDescriptor: feedFeedback.feedDescriptor,
+      })
     }
   }
 
   const onReportMisclassification = () => {
     const url = `https://docs.google.com/forms/d/e/1FAIpQLSd0QPqhNFksDQf1YyOos7r1ofCLvmrKAH1lU042TaS3GAZaWQ/viewform?entry.1756031717=${toShareUrl(
+      href,
+    )}`
+    void openLink(url)
+  }
+
+  const onLabelReply = () => {
+    const url = `https://docs.google.com/forms/d/e/1FAIpQLScWa03XbS_knVbSjnc4DENACN5A2YvBZjtjrpI1XdDbK7d3Ow/viewform?entry.1843100496=${toShareUrl(
       href,
     )}`
     void openLink(url)
@@ -630,6 +630,15 @@ let PostMenuItems = ({
               <Menu.ItemText>{l`Assign topic for algo`}</Menu.ItemText>
               <Menu.ItemIcon icon={AtomIcon} position="right" />
             </Menu.Item>
+            {isReply && (
+              <Menu.Item
+                testID="postDropdownLabelReplyBtn"
+                label={l`Label reply for algo`}
+                onPress={onLabelReply}>
+                <Menu.ItemText>{l`Label reply for algo`}</Menu.ItemText>
+                <Menu.ItemIcon icon={AtomIcon} position="right" />
+              </Menu.Item>
+            )}
           </>
         )}
 

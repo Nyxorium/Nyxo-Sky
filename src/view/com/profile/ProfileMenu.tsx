@@ -1,5 +1,4 @@
 import {memo, useCallback, useMemo} from 'react'
-import {type AppBskyActorDefs} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
@@ -26,7 +25,6 @@ import {Button, ButtonIcon} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {UserAddRemoveListsDialog} from '#/components/dialogs/lists/UserAddRemoveListsDialog'
 import {StarterPackDialog} from '#/components/dialogs/StarterPackDialog'
-import {ArrowOutOfBoxModified_Stroke2_Corner2_Rounded as ArrowOutOfBoxIcon} from '#/components/icons/ArrowOutOfBox'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
 import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/CircleX'
@@ -48,7 +46,7 @@ import {
   RepostStrike_Stroke2_Corner0_Rounded as RepostStrikeIcon,
 } from '#/components/icons/Repost'
 import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/Speaker'
-import {StarterPack as StarterPackIcon} from '#/components/icons/StarterPack'
+import {StarterPack_Stroke2_Corner0_Rounded as StarterPackIcon} from '#/components/icons/StarterPack'
 import * as Menu from '#/components/Menu'
 import {BlockDialog} from '#/components/moderation/BlockDialog'
 import {
@@ -72,12 +70,13 @@ import {GoLiveDialog} from '#/features/liveNow/components/GoLiveDialog'
 import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabledDialog'
 import {Dot} from '#/features/nuxs/components/Dot'
 import {Gradient} from '#/features/nuxs/components/Gradient'
+import {type app} from '#/lexicons'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
 let ProfileMenu = ({
   profile,
 }: {
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>
+  profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
 }): React.ReactNode => {
   const t = useTheme()
   const ax = useAnalytics()
@@ -335,27 +334,23 @@ let ProfileMenu = ({
 
         <Menu.Outer style={{minWidth: 170}}>
           <Menu.Group>
-            <Menu.Item
-              testID="profileHeaderDropdownShareBtn"
-              label={IS_WEB ? l`Copy link to profile` : l`Share via...`}
-              onPress={() => {
-                if (showLoggedOutWarning) {
-                  loggedOutWarningPromptControl.open()
-                } else {
-                  onPressShare()
-                }
-              }}>
-              <Menu.ItemText>
-                {IS_WEB ? (
+            {IS_WEB && (
+              <Menu.Item
+                testID="profileHeaderDropdownShareBtn"
+                label={l`Copy link to profile`}
+                onPress={() => {
+                  if (showLoggedOutWarning) {
+                    loggedOutWarningPromptControl.open()
+                  } else {
+                    onPressShare()
+                  }
+                }}>
+                <Menu.ItemText>
                   <Trans>Copy link to profile</Trans>
-                ) : (
-                  <Trans>Share via...</Trans>
-                )}
-              </Menu.ItemText>
-              <Menu.ItemIcon
-                icon={IS_WEB ? ChainLinkIcon : ArrowOutOfBoxIcon}
-              />
-            </Menu.Item>
+                </Menu.ItemText>
+                <Menu.ItemIcon icon={ChainLinkIcon} />
+              </Menu.Item>
+            )}
             <Menu.Item
               testID="profileHeaderDropdownSearchBtn"
               label={l`Search posts`}

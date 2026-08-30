@@ -7,13 +7,12 @@ import Animated, {
   LayoutAnimationConfig,
   LinearTransition,
 } from 'react-native-reanimated'
-import {type AppBskyFeedDefs} from '@atproto/api'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
 import {type NavigationProp} from '#/lib/routes/types'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
-import {useSimilarAccountsDisabled} from '#/state/preferences/similar-accounts'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useGetPopularFeedsQuery} from '#/state/queries/feed'
 import {type FeedDescriptor} from '#/state/queries/post-feed'
 import {useSuggestedFollowsByActorWithDismiss} from '#/state/queries/suggested-follows'
@@ -41,6 +40,7 @@ import {ProgressGuideList} from '#/components/ProgressGuide/List'
 import {Text} from '#/components/Typography'
 import {type Metrics, useAnalytics} from '#/analytics'
 import {IS_IOS} from '#/env'
+import {type app} from '#/lexicons'
 import type * as bsky from '#/types/bsky'
 import {FollowDialogWithoutGuide} from './ProgressGuide/FollowDialog'
 
@@ -209,7 +209,8 @@ export function ProfileGrid({
   const gutters = useGutters([0, 'base'])
   const followDialogControl = useDialogControl()
 
-  const disabledSimilarAccounts = useSimilarAccountsDisabled()
+  const {tailors} = useViewTailorPrefs()
+  const isTailored = !tailors.similarAccountBox
   const isLoading = isSuggestionsLoading || !moderationOpts
   const isProfileHeaderContext = viewContext === 'profileHeader'
   const isFeedContext = viewContext === 'feed'
@@ -219,7 +220,7 @@ export function ProfileGrid({
 
   // Track seen profiles
   const seenProfilesRef = useRef<Set<string>>(new Set())
-  const containerRef = useRef<View>(null)
+  const containerRef = useRef<React.ComponentRef<typeof View>>(null)
   const hasTrackedRef = useRef(false)
   const logContext: Metrics['suggestedUser:seen']['logContext'] = isFeedContext
     ? 'DiscoverInterstitial'
@@ -278,7 +279,7 @@ export function ProfileGrid({
         },
         {threshold: 0.5},
       )
-      // @ts-ignore - web only
+      // @ts-expect-error - web only
       observer.observe(node)
       return () => observer.disconnect()
     } else {
@@ -444,7 +445,7 @@ export function ProfileGrid({
     if (
       error ||
       (!isLoading && profileCountForMinCheck < minLength) ||
-      disabledSimilarAccounts
+      isTailored
     ) {
       onRequestHide?.()
     }
@@ -454,10 +455,10 @@ export function ProfileGrid({
     onRequestHide,
     profileCountForMinCheck,
     minLength,
-    disabledSimilarAccounts,
+    isTailored,
   ])
 
-  if (disabledSimilarAccounts) {
+  if (isTailored) {
     return null
   }
 
@@ -586,7 +587,7 @@ export function SuggestedFeeds() {
   const {gtMobile} = useBreakpoints()
 
   const feeds = useMemo(() => {
-    const items: AppBskyFeedDefs.GeneratorView[] = []
+    const items: app.bsky.feed.defs.GeneratorView[] = []
 
     if (!data) return items
 

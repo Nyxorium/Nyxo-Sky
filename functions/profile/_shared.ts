@@ -1,6 +1,6 @@
 // Based on https://github.com/Janpot/escape-html-template-tag/blob/master/src/index.ts
 
-import {type AppBskyActorDefs} from '@atproto/api'
+import {type app} from '#/lexicons'
 
 const ENTITIES: {[key: string]: string} = {
   '&': '&amp;',
@@ -49,7 +49,8 @@ export function html(parts: TemplateStringsArray, ...subs: Sub[]) {
 }
 
 export const renderHandleString = (
-  profile: AppBskyActorDefs.ProfileView | AppBskyActorDefs.ProfileViewDetailed,
+  profile:
+    app.bsky.actor.defs.ProfileView | app.bsky.actor.defs.ProfileViewDetailed,
 ) =>
   profile.displayName
     ? `${profile.displayName} (@${profile.handle})`

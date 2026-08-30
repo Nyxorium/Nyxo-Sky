@@ -1,17 +1,18 @@
 import {type Insets, View} from 'react-native'
-import {type ComAtprotoLabelDefs} from '@atproto/api'
 import {useLingui} from '@lingui/react/macro'
 
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {atoms as a, useTheme} from '#/alf'
 import {Button} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {Pet_Filled as PetIcon} from '#/components/icons/Pet'
 import {PetAccountAlert} from '#/components/PetAccountAlert'
+import {type com} from '#/lexicons'
 import type * as bsky from '#/types/bsky'
 
 export function isPetAccount(profile: {
   did: string
-  labels?: ComAtprotoLabelDefs.Label[]
+  labels?: com.atproto.label.defs.Label[]
 }): boolean {
   return (
     profile.labels?.some(l => l.val === 'pet' && l.src === profile.did) ?? false
@@ -28,7 +29,9 @@ export function PetBadge({
   width: number
 }) {
   const t = useTheme()
+  const {tailors} = useViewTailorPrefs()
 
+  if (!tailors.petLabels) return null
   if (!isPetAccount(profile) && !alwaysShow) {
     return null
   }
@@ -52,7 +55,9 @@ export function PetBadgeButton({
   const t = useTheme()
   const {t: l} = useLingui()
   const control = useDialogControl()
+  const {tailors} = useViewTailorPrefs()
 
+  if (!tailors.petLabels) return null
   if (!isPetAccount(profile)) {
     return null
   }

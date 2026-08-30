@@ -2,6 +2,7 @@ import {View} from 'react-native'
 
 import {HITSLOP_20} from '#/lib/constants'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {atoms as a, useAlf, type ViewStyleProp} from '#/alf'
 import {useNativeFontScale} from '#/alf/util/dimensions'
 import {BotBadge, BotBadgeButton, isBotAccount} from '#/components/BotBadge'
@@ -58,13 +59,14 @@ export function ProfileBadges({
   size: Size
   allowFontScaling?: boolean
 }) {
+  const {tailors} = useViewTailorPrefs()
   const shadowed = useProfileShadow(profile)
   const verification = useSimpleVerificationState({profile})
   const badgeVisibility = [
     verification.showBadge,
     useIsBetaBadgeVisible(profile),
     isBotAccount(shadowed),
-    isPetAccount(shadowed),
+    tailors.petLabels && isPetAccount(shadowed),
   ]
   const badgeCount = badgeVisibility.filter(Boolean).length
   const nativeScaleMultiplier = useNativeFontScale()

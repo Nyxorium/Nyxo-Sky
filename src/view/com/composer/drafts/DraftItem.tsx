@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useMemo, useState} from 'react'
-import {Pressable, View} from 'react-native'
+import {View} from 'react-native'
 import * as VideoThumbnails from 'expo-video-thumbnails'
 import {msg, plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -15,6 +15,7 @@ import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsIcon} from '#/components/icons
 import {CloseQuote_Stroke2_Corner0_Rounded as CloseQuoteIcon} from '#/components/icons/Quote'
 import {Warning_Stroke2_Corner0_Rounded as WarningIcon} from '#/components/icons/Warning'
 import * as MediaPreview from '#/components/MediaPreview'
+import {Pressable} from '#/components/Pressable'
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
 import {Text} from '#/components/Typography'
@@ -104,6 +105,18 @@ export function DraftItem({
                 disableMentionFacetValidation
               />
             )}
+
+            {post.tags && post.tags.length > 0 ? (
+              <Text
+                style={[
+                  a.text_sm,
+                  a.leading_snug,
+                  t.atoms.text_contrast_medium,
+                ]}
+                numberOfLines={2}>
+                {post.tags.map(tag => `#${tag}`).join(' ')}
+              </Text>
+            ) : null}
 
             {!mediaExistsOnOtherDevice && <DraftMediaPreview post={post} />}
 

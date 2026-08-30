@@ -10,7 +10,6 @@ import {useCallOnce} from '#/lib/once'
 import {atoms as a} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonText} from '#/components/Button'
-import {ContactsHeroImage} from '#/components/contacts/components/HeroImage'
 import {InlineLinkText} from '#/components/Link'
 import {useAnalytics} from '#/analytics'
 import {
@@ -38,7 +37,6 @@ export function StepFindContactsIntro() {
   return (
     <View style={[a.w_full, a.gap_sm]}>
       <OnboardingPosition />
-      <ContactsHeroImage />
       <OnboardingTitleText style={[a.mt_sm]}>
         <Trans>Bluesky is more fun with friends</Trans>
       </OnboardingTitleText>

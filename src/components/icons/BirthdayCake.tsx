@@ -1,5 +1,34 @@
-import {createSinglePathSVG} from './TEMPLATE'
+import {forwardRef} from 'react'
+import Svg, {Path} from 'react-native-svg'
 
-export const BirthdayCake_Stroke2_Corner2_Rounded = createSinglePathSVG({
-  path: 'm12 .757 2.122 2.122A3 3 0 0 1 13 7.829V9h4.5a3 3 0 0 1 3 3v1.646c0 .603-.18 1.177-.5 1.658V19a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-3.696a3 3 0 0 1-.5-1.658V12a3 3 0 0 1 3-3H11V7.829a3 3 0 0 1-1.121-4.95L12 .757ZM6.5 11a1 1 0 0 0-1 1v1.646a1 1 0 0 0 .629.928l.5.2a1 1 0 0 0 .742 0l1.015-.405a3 3 0 0 1 2.228 0l1.015.405a1 1 0 0 0 .742 0l1.015-.405a3 3 0 0 1 2.228 0l1.015.405a1 1 0 0 0 .742 0l.5-.2a1 1 0 0 0 .629-.928V12a1 1 0 0 0-1-1h-11ZM6 16.674V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2.326a3 3 0 0 1-2.114-.043l-1.015-.405a1 1 0 0 0-.742 0l-1.015.405a3 3 0 0 1-2.228 0l-1.015-.405a1 1 0 0 0-.742 0l-1.015.405A3 3 0 0 1 6 16.674ZM12.002 6a1 1 0 0 0 .706-1.707L12 3.586l-.707.707A1 1 0 0 0 12.002 6Z',
-})
+import {type Props, useCommonSVGProps} from '#/components/icons/common'
+
+export const BirthdayCake_Stroke2_Corner2_Rounded = forwardRef<Svg, Props>(
+  function CakeImpl(props, ref) {
+    const {fill, size, style, ...rest} = useCommonSVGProps(props)
+    return (
+      <Svg
+        fill="none"
+        stroke={fill}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...rest}
+        ref={ref}
+        viewBox="0 0 24 24"
+        width={size}
+        height={size}
+        style={[style]}>
+        <Path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8" />
+        <Path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1" />
+        <Path d="M2 21h20" />
+        <Path d="M7 8v3" />
+        <Path d="M12 8v3" />
+        <Path d="M17 8v3" />
+        <Path d="M7 4h.01" />
+        <Path d="M12 4h.01" />
+        <Path d="M17 4h.01" />
+      </Svg>
+    )
+  },
+)

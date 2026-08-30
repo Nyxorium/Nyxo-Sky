@@ -1,5 +1,5 @@
 import {useMemo} from 'react'
-import {Image as RNImage, View} from 'react-native'
+import {View} from 'react-native'
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated'
 import {Image} from 'expo-image'
 import {msg} from '@lingui/core/macro'
@@ -11,14 +11,14 @@ import {Logo} from '#/view/icons/Logo'
 import {Logotype} from '#/view/icons/Logotype'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
-// @ts-ignore
-import splashImagePointer from '../../../../assets/splash/illustration-mobile.png'
-// @ts-ignore
-import darkSplashImagePointer from '../../../../assets/splash/illustration-mobile-dark.png'
-const splashImageUri = RNImage.resolveAssetSource(splashImagePointer).uri
-const darkSplashImageUri = RNImage.resolveAssetSource(
-  darkSplashImagePointer,
-).uri
+// @ts-expect-error
+// import splashImagePointer from '../../../../assets/illustrations/illustration-mobile.png'
+// @ts-expect-error
+// import darkSplashImagePointer from '../../../../assets/illustrations/illustration-mobile-dark.png'
+// const splashImageUri = RNImage.resolveAssetSource(splashImagePointer)!.uri
+// const darkSplashImageUri = RNImage.resolveAssetSource(
+//   darkSplashImagePointer,
+// )!.uri
 
 export const SplashScreen = ({
   onPressSignin,
@@ -57,7 +57,11 @@ export const SplashScreen = ({
     <>
       <Image
         accessibilityIgnoresInvertColors
-        source={{uri: isDarkMode ? darkSplashImageUri : splashImageUri}}
+        source={
+          {
+            /* uri: isDarkMode ? darkSplashImageUri : splashImageUri */
+          }
+        }
         style={[a.absolute, a.inset_0]}
       />
 

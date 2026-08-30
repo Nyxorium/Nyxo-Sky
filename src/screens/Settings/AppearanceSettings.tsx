@@ -90,19 +90,21 @@ export function AppearanceSettingsScreen({}: Props) {
               </SettingsList.ItemText>
             </SettingsList.LinkItem>
 
-            <Toggle.Item
-              name="use_kawaii"
-              label={_(msg`Use Kawaii`)}
-              value={kawaii}
-              onChange={value => setKawaii(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={Mark} />
-                <SettingsList.ItemText>
-                  <Trans>Use Kawaii logo</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
+            {false && (
+              <Toggle.Item
+                name="use_kawaii"
+                label={_(msg`Use Kawaii`)}
+                value={kawaii}
+                onChange={value => setKawaii(value)}>
+                <SettingsList.Item>
+                  <SettingsList.ItemIcon icon={Mark} />
+                  <SettingsList.ItemText>
+                    <Trans>Use Kawaii logo</Trans>
+                  </SettingsList.ItemText>
+                  <Toggle.Platform />
+                </SettingsList.Item>
+              </Toggle.Item>
+            )}
 
             <SettingsList.Divider />
             <AppearanceToggleButtonGroup

@@ -53,7 +53,9 @@ export function FindContactsBannerNUX() {
               a.pl_lg,
             ]}>
             <Image
-              source={require('../../../assets/images/find_friends_illustration_small.webp')}
+              source={
+                undefined /* require('../../../assets/images/find_friends_illustration_small.webp') */
+              }
               accessibilityIgnoresInvertColors
               style={[
                 {height: 70, aspectRatio: 573 / 286},

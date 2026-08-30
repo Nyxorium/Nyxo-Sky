@@ -24,9 +24,8 @@ export const VerifierCheck = forwardRef<Svg, Props>(
         />
         <Path
           fill="#fff"
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M17.861 8.26a1.438 1.438 0 0 1 0 2.033l-6.571 6.571a1.437 1.437 0 0 1-2.033 0L5.97 13.58a1.438 1.438 0 0 1 2.033-2.033l2.27 2.269 5.554-5.555a1.437 1.437 0 0 1 2.033 0Z"
+          d="M15.61 10.186a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+          transform="translate(12 12) scale(1.5) translate(-12 -12)"
         />
       </Svg>
     )

@@ -64,7 +64,9 @@ export function FollowersPromoBanner({
           ]}>
           <Image
             accessibilityIgnoresInvertColors
-            source={require('../../../../assets/images/invite_friends_promo_banner.webp')}
+            source={
+              undefined /* require('../../../../assets/images/invite_friends_promo_banner.webp') */
+            }
             style={{width: 126, height: 64, marginRight: 16}}
             contentFit="contain"
           />

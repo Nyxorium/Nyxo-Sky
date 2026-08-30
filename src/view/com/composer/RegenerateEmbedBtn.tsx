@@ -6,13 +6,14 @@ import {useQueryClient} from '@tanstack/react-query'
 
 import {resolveLink} from '#/lib/api/resolve'
 import {RQKEY_LINK} from '#/state/queries/resolve-link'
-import {useAgent} from '#/state/session'
+import {useSession} from '#/state/session'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {ArrowRotateClockwise_Stroke2_Corner0_Rounded as Rotate} from '#/components/icons/ArrowRotate'
 import {Loader} from '#/components/Loader'
 
 export function RegenerateEmbedBtn({uri}: {uri: string}) {
-  const agent = useAgent()
+  return null
+  const agent = useSession()
   const queryClient = useQueryClient()
   const {_} = useLingui()
   const [isRegenerating, setIsRegenerating] = useState(false)

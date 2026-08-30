@@ -285,6 +285,7 @@ function TagsDialogInner({
             autoCapitalize="none"
             autoCorrect={false}
             submitBehavior="submit"
+            blurOnSubmit={false}
             returnKeyType="done"
           />
         </View>

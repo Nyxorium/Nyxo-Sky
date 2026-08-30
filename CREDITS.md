@@ -6,6 +6,10 @@ App Icon: [NASA/JPL-Caltech – PIA09412: Young Stars Emerge from Orion Head](ht
 
 Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/microsoft/fluentui-emoji/blob/main/assets/Crystal%20ball/3D/crystal_ball_3d.png)
 
+Icons in [`assets/icons/heroicons`](./assets/icons/heroicons/LICENSE): [Heroicons](https://heroicons.com/) under MIT license
+
+Icons in [`assets/icons/lucide`](./assets/icons/lucide/LICENSE): [Lucide](https://lucide.dev/) under ISC and MIT licenses
+
 ## Acknowledgements
 
 - [Deer Social](https://github.com/a-viv-a/deer-social)
@@ -18,6 +22,8 @@ Favicon: [Crystal ball emoji from Microsoft (MIT License)](https://github.com/mi
   - Source code link button concept
   - App Theme colour values for: Witchsky, Deer Social, Zeppelin, Kitty, Red Dwarf, Catppuccin, & Evergarden
   - Like on Repost concept
+  - Pet labels
+  - Saving tags to drafts
 - [DeckBlue](https://deck.blue)
   - Recently used tags concept
 - [mu.social](https://mu.social/)

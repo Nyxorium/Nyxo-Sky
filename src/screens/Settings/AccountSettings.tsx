@@ -2,6 +2,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useProfileQuery} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -25,7 +26,7 @@ import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PencilLine_Stroke2_Corner2_Rounded as PencilIcon} from '#/components/icons/Pencil'
 import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/icons/Shield'
-import {Trash_Stroke2_Corner2_Rounded} from '#/components/icons/Trash'
+import {Shredder} from '#/components/icons/Shredder'
 import * as Layout from '#/components/Layout'
 import {isPetAccount} from '#/components/PetBadge'
 import {ChangeHandleDialog} from './components/ChangeHandleDialog'
@@ -40,6 +41,7 @@ export function AccountSettingsScreen({}: Props) {
   const {t: l} = useLingui()
   const {currentAccount} = useSession()
   const {data: profile} = useProfileQuery({did: currentAccount?.did})
+  const {tailors} = useViewTailorPrefs()
   const emailDialogControl = useEmailDialogControl()
   const birthdayControl = useDialogControl()
   const changeHandleControl = useDialogControl()
@@ -166,6 +168,21 @@ export function AccountSettingsScreen({}: Props) {
               </SettingsList.BadgeText>
             )}
           </SettingsList.LinkItem>
+          {tailors.petLabels && (
+            <SettingsList.LinkItem
+              to="/settings/pet-label"
+              label={l`Pet label`}>
+              <SettingsList.ItemIcon icon={PetIcon} />
+              <SettingsList.ItemText>
+                <Trans>Pet label</Trans>
+              </SettingsList.ItemText>
+              {profile && (
+                <SettingsList.BadgeText>
+                  {isPetAccount(profile) ? l`On` : l`Off`}
+                </SettingsList.BadgeText>
+              )}
+            </SettingsList.LinkItem>
+          )}
           <SettingsList.LinkItem
             to="/settings/nsfw-labels"
             label={l`NSFW Labels`}>
@@ -209,7 +226,7 @@ export function AccountSettingsScreen({}: Props) {
             label={l`Delete account`}
             onPress={() => deleteAccountControl.open()}
             destructive>
-            <SettingsList.ItemIcon icon={Trash_Stroke2_Corner2_Rounded} />
+            <SettingsList.ItemIcon icon={Shredder} />
             <SettingsList.ItemText>
               <Trans>Delete account</Trans>
             </SettingsList.ItemText>

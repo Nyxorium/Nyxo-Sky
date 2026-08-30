@@ -5,11 +5,8 @@ import {
   View,
   type ViewStyle,
 } from 'react-native'
-import {
-  BSKY_LABELER_DID,
-  type ModerationCause,
-  type ModerationUI,
-} from '@atproto/api'
+import {api} from '@bsky/sdk'
+import {type ModerationCause, type ModerationUI} from '@bsky/sdk/moderation'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {
@@ -34,7 +31,7 @@ export function isAccountNsfwBlur(b: ModerationCause): boolean {
   return (
     b.type === 'label' &&
     b.source.type === 'labeler' &&
-    b.source.did === BSKY_LABELER_DID &&
+    b.source.did === api.moderation.did &&
     ['porn', 'sexual', 'nudity'].includes(b.label.val) &&
     !!b.label.uri &&
     !b.label.uri.includes('/app.bsky.')
@@ -179,7 +176,7 @@ function ContentHiderActive({
       if (
         blur.type === 'label' &&
         blur.source.type === 'labeler' &&
-        blur.source.did === BSKY_LABELER_DID
+        blur.source.did === api.moderation.did
       ) {
         return `${desc.name} (${l`Bluesky`})`
       }
@@ -210,12 +207,6 @@ function ContentHiderActive({
         }
 
         const def = cause.labelDef || getDefinition(labelDefs, cause.label)
-        if (def.identifier === 'porn') {
-          return l`Adult Content`
-        }
-        if (def.identifier === 'sexual') {
-          return l`Sexually Suggestive`
-        }
         return getLabelStrings(i18n.locale, globalLabelStrings, def).name
       })
 
@@ -231,7 +222,7 @@ function ContentHiderActive({
       }
       if (
         blur.source.type === 'labeler' &&
-        blur.source.did === BSKY_LABELER_DID
+        blur.source.did === api.moderation.did
       ) {
         return `${baseName} (${l`Bluesky`})`
       }
