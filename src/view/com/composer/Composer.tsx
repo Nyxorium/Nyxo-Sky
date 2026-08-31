@@ -111,6 +111,7 @@ import {LabelsBtn} from '#/view/com/composer/labels/LabelsBtn'
 import {Gallery} from '#/view/com/composer/photos/Gallery'
 import {OpenCameraBtn} from '#/view/com/composer/photos/OpenCameraBtn'
 import {SelectGifBtn} from '#/view/com/composer/photos/SelectGifBtn'
+import {RegenerateEmbedBtn} from '#/view/com/composer/RegenerateEmbedBtn'
 import {SuggestedLanguage} from '#/view/com/composer/select-language/SuggestedLanguage'
 import {TagsBtn} from '#/view/com/composer/tags/TagsBtn'
 // TODO: Prevent naming components that coincide with RN primitives
@@ -145,6 +146,7 @@ import {
 } from '#/env'
 import {type Gif} from '#/features/gifPicker/types'
 import {app, chat} from '#/lexicons'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 import * as bsky from '#/types/bsky'
 import {BottomSheetPortalProvider} from '../../../../modules/bottom-sheet'
 import {
@@ -2068,6 +2070,10 @@ function ComposerPills({
     media?.type === 'video'
   const hasLink = !!post.embed.link
 
+  const [devModeEnabled] = useDevMode()
+  const linkEmbedUri = post.embed.link?.uri
+  const embedRegenBtn = linkEmbedUri && devModeEnabled
+
   return (
     <Animated.View
       style={[a.flex_row, a.p_sm, t.atoms.bg, bottomBarAnimatedStyle]}>
@@ -2121,6 +2127,7 @@ function ComposerPills({
             })
           }}
         />
+        {embedRegenBtn ? <RegenerateEmbedBtn uri={linkEmbedUri} /> : null}
       </ScrollView>
     </Animated.View>
   )

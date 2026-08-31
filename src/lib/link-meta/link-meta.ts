@@ -32,6 +32,7 @@ export interface LinkMeta {
 export async function getLinkMeta(
   url: string,
   timeout = 15e3,
+  bustCache = false,
 ): Promise<LinkMeta> {
   if (isBskyAppUrl(url) && !parseStarterPackUri(url)) {
     return {
@@ -78,7 +79,7 @@ export async function getLinkMeta(
 
   try {
     const response = await fetch(
-      `${LINK_META_PROXY('')}${encodeURIComponent(url)}`,
+      `${LINK_META_PROXY('')}${encodeURIComponent(url)}${bustCache ? `&_regen=${Date.now()}` : ''}`,
       {signal: controller.signal},
     )
 
