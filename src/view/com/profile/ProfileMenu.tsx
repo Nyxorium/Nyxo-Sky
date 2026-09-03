@@ -10,7 +10,6 @@ import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
 import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
-import {Nux, useNux, useSaveNux} from '#/state/queries/nuxs'
 import {
   RQKEY as profileQueryKey,
   useProfileBlockMutationQueue,
@@ -20,7 +19,6 @@ import {
 } from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {EventStopper} from '#/view/com/util/EventStopper'
-import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {UserAddRemoveListsDialog} from '#/components/dialogs/lists/UserAddRemoveListsDialog'
@@ -68,8 +66,6 @@ import {useActorStatus, useLiveNowConfig} from '#/features/liveNow'
 import {EditLiveDialog} from '#/features/liveNow/components/EditLiveDialog'
 import {GoLiveDialog} from '#/features/liveNow/components/GoLiveDialog'
 import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabledDialog'
-import {Dot} from '#/features/nuxs/components/Dot'
-import {Gradient} from '#/features/nuxs/components/Gradient'
 import {type app} from '#/lexicons'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
@@ -78,7 +74,6 @@ let ProfileMenu = ({
 }: {
   profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
 }): React.ReactNode => {
-  const t = useTheme()
   const ax = useAnalytics()
   const {t: l} = useLingui()
   const {currentAccount, hasSession} = useSession()
@@ -94,15 +89,6 @@ let ProfileMenu = ({
   const verification = useFullVerificationState({profile})
   const {canGoLive} = useLiveNowConfig()
   const status = useActorStatus(profile)
-  const statusNudge = useNux(Nux.LiveNowBetaNudge)
-  const statusNudgeActive =
-    isSelf &&
-    canGoLive &&
-    statusNudge.status === 'ready' &&
-    !statusNudge.nux?.completed &&
-    false
-  // intentionally disabled nudge - Sunstar
-  const {mutate: saveNux} = useSaveNux()
 
   const labels = profile.labels ?? []
 
@@ -310,24 +296,20 @@ let ProfileMenu = ({
         <Menu.Trigger label={l`More options`}>
           {({props}) => {
             return (
-              <>
-                <Button
-                  {...props}
-                  testID="profileHeaderDropdownBtn"
-                  label={l`More options`}
-                  // hitSlop reaches outside parent views on iOS, so the
-                  // left inset must stay within half of the 4pt row gap or
-                  // it steals taps from the adjacent header button
-                  hitSlop={{top: 6, bottom: 6, left: 2, right: 12}}
-                  variant="solid"
-                  color="secondary"
-                  size="small"
-                  shape="round">
-                  {statusNudgeActive && <Gradient style={[a.rounded_full]} />}
-                  <ButtonIcon icon={EllipsisIcon} size="sm" />
-                </Button>
-                {statusNudgeActive && <Dot top={1} right={1} />}
-              </>
+              <Button
+                {...props}
+                testID="profileHeaderDropdownBtn"
+                label={l`More options`}
+                // hitSlop reaches outside parent views on iOS, so the
+                // left inset must stay within half of the 4pt row gap or
+                // it steals taps from the adjacent header button
+                hitSlop={{top: 6, bottom: 6, left: 2, right: 12}}
+                variant="solid"
+                color="secondary"
+                size="small"
+                shape="round">
+                <ButtonIcon icon={EllipsisIcon} size="sm" />
+              </Button>
             )
           }}
         </Menu.Trigger>
@@ -427,13 +409,7 @@ let ProfileMenu = ({
                       } else {
                         goLiveDialogControl.open()
                       }
-                      saveNux({
-                        id: Nux.LiveNowBetaNudge,
-                        data: undefined,
-                        completed: true,
-                      })
                     }}>
-                    {statusNudgeActive && <Gradient />}
                     <Menu.ItemText>
                       {status.isDisabled ? (
                         <Trans>Go live (disabled)</Trans>
@@ -443,26 +419,7 @@ let ProfileMenu = ({
                         <Trans>Go live</Trans>
                       )}
                     </Menu.ItemText>
-                    {statusNudgeActive && (
-                      <Menu.ItemText
-                        style={[
-                          a.flex_0,
-                          {
-                            color: t.palette.primary_500,
-                            right: IS_WEB ? -8 : -4,
-                          },
-                        ]}>
-                        <Trans>New</Trans>
-                      </Menu.ItemText>
-                    )}
-                    <Menu.ItemIcon
-                      icon={LiveIcon}
-                      fill={
-                        statusNudgeActive
-                          ? () => t.palette.primary_500
-                          : undefined
-                      }
-                    />
+                    <Menu.ItemIcon icon={LiveIcon} />
                   </Menu.Item>
                 )}
                 {verification.viewer.role === 'verifier' &&

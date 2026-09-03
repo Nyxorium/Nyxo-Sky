@@ -339,7 +339,17 @@ function WizardInner({
         {state.currentStep === 'Details' ? (
           <StepDetails />
         ) : state.currentStep === 'Profiles' ? (
-          <StepProfiles moderationOpts={moderationOpts} profile={profile} />
+          <StepProfiles
+            moderationOpts={moderationOpts}
+            profile={profile}
+            optedOutDids={
+              new Set(
+                currentListItems
+                  ?.filter(item => item.subjectOptedOut)
+                  .map(item => item.subject.did),
+              )
+            }
+          />
         ) : state.currentStep === 'Feeds' ? (
           <StepFeeds moderationOpts={moderationOpts} />
         ) : null}

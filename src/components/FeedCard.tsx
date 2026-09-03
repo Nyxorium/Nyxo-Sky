@@ -309,6 +309,8 @@ function SaveButtonInner({
       e.preventDefault()
       e.stopPropagation()
 
+      const pinned = pin || false
+
       try {
         if (savedFeedConfig) {
           await removeFeed(savedFeedConfig)
@@ -317,7 +319,7 @@ function SaveButtonInner({
             {
               type,
               value: uri,
-              pinned: pin || false,
+              pinned,
             },
           ])
         }

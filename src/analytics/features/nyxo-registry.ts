@@ -31,10 +31,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       description:
         'Sort other users followers/following pages by Top instead of Latest',
     },
-    [Features.CanonicalPostNumberingEnable]: {
-      label: 'Canonical Post Numbering',
-      description: 'Use canonical numbering for posts',
-    },
     [Features.ContentVisibilitySettingsEnable]: {
       label: 'Content Visibility Settings',
       description:
@@ -43,6 +39,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
     [Features.ModerationInboxEnable]: {
       label: 'Moderation Inbox',
       description:
-        'Show the moderation inbox menu item and screen under Moderation settings',
+        'Show the moderation inbox menu item and screen under Moderation settings (CURRENTLY PLACEHOLDERS)',
     },
   }

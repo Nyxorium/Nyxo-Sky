@@ -16,11 +16,9 @@ import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import * as Toggle from '#/components/forms/Toggle'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
+import {UserPlus as UserPlus_Hero} from '#/components/icons/heroicons/UserPlus'
 import {UserPlus} from '#/components/icons/lucide/UserPlus'
-import {
-  Person_Stroke2_Corner2_Rounded as PersonIcon,
-  PersonPlus_Stroke2_Corner2_Rounded as PersonPlusIcon,
-} from '#/components/icons/Person'
+import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
 import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import * as Layout from '#/components/Layout'
 import {type ImpressionConfig, ImpressionSection} from './FeedLikesSection'
@@ -139,7 +137,7 @@ export function ViewTailorSettingsScreen({}: Props) {
             value={tailors.similarAccountBox}
             onChange={value => setTailors('similarAccountBox', value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonPlusIcon} />
+              <UserPlus_Hero size="medium" />
               <SettingsList.ItemText>
                 <Trans>Similar Accounts Box</Trans>
               </SettingsList.ItemText>
