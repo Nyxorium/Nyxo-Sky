@@ -55,17 +55,13 @@ import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {UserPlus_solid} from '#/components/icons/heroicons/UserPlus'
 import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
 import * as Layout from '#/components/Layout'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
   const {t: l} = useLingui()
-
-  const [devModeEnabled] = useDevMode()
 
   const {tailors} = useViewTailorPrefs()
   const setTailors = useSetViewTailorPref()
@@ -158,14 +154,14 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <SettingsList.Divider />
 
           <Toggle.Item
-            name="disable_followback_bin"
-            label={l`Disable Followback Button in Notifications`}
+            name="hide_follow_button_in_notifications"
+            label={l`Follow button in Notifications`}
             value={tailors.notificationFollowButton}
             onChange={value => setTailors('notificationFollowButton', value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={UserPlus_solid} />
               <SettingsList.ItemText>
-                <Trans>Disable 'Follow Back' Button in Notifications</Trans>
+                <Trans>Follow button in Notifications</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -240,22 +236,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
-
-          {devModeEnabled && (
-            <Toggle.Item
-              name="hide_profile_descriptions"
-              label={l`Profile descriptions`}
-              value={tailors.profileDescriptions}
-              onChange={value => setTailors('profileDescriptions', value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={MessageIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Profile Descriptions</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
 
           <SettingsList.Divider />
 

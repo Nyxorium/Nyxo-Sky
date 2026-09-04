@@ -16,6 +16,7 @@ import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import * as Toggle from '#/components/forms/Toggle'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {UserPlus_outline} from '#/components/icons/heroicons/UserPlus'
@@ -23,6 +24,7 @@ import {UserPlus} from '#/components/icons/lucide/UserPlus'
 import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import * as Layout from '#/components/Layout'
 import {IS_NATIVE} from '#/env'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 import {type ImpressionConfig, ImpressionSection} from './FeedLikesSection'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
@@ -33,6 +35,7 @@ const FEED_IMPRESSIONS: ImpressionConfig[] = [
 
 export function ViewTailorSettingsScreen({}: Props) {
   const {t: l} = useLingui()
+  const [devModeEnabled] = useDevMode()
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
 
@@ -197,6 +200,22 @@ export function ViewTailorSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
+
+          {devModeEnabled && (
+            <Toggle.Item
+              name="hide_profile_descriptions"
+              label={l`Profile descriptions`}
+              value={tailors.profileDescriptions}
+              onChange={value => setTailors('profileDescriptions', value)}>
+              <SettingsList.Item>
+                <SettingsList.ItemIcon icon={ChatBubbleWithDots} />
+                <SettingsList.ItemText>
+                  <Trans>Profile Descriptions</Trans>
+                </SettingsList.ItemText>
+                <Toggle.Platform />
+              </SettingsList.Item>
+            </Toggle.Item>
+          )}
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>
