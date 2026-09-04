@@ -29,6 +29,7 @@ import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
+import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {ListSparkle_Stroke2_Corner0_Rounded as ListIcon} from '#/components/icons/ListSparkle'
 import {Live_Stroke2_Corner0_Rounded as LiveIcon} from '#/components/icons/Live'
 import {MagnifyingGlass_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass'
@@ -44,7 +45,6 @@ import {
   RepostStrike_Stroke2_Corner0_Rounded as RepostStrikeIcon,
 } from '#/components/icons/Repost'
 import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/Speaker'
-import {StarterPack_Stroke2_Corner0_Rounded as StarterPackIcon} from '#/components/icons/StarterPack'
 import * as Menu from '#/components/Menu'
 import {BlockDialog} from '#/components/moderation/BlockDialog'
 import {
@@ -382,7 +382,7 @@ let ProfileMenu = ({
                   <Menu.ItemText>
                     <Trans>Add to starter packs</Trans>
                   </Menu.ItemText>
-                  <Menu.ItemIcon icon={StarterPackIcon} />
+                  <Menu.ItemIcon icon={Square2StackIcon} />
                 </Menu.Item>
                 <Menu.Item
                   testID="profileHeaderDropdownListAddRemoveBtn"

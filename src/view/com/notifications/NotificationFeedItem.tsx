@@ -49,10 +49,10 @@ import {
 } from '#/components/icons/Chevron'
 import {Contacts_Filled_Corner2_Rounded as ContactsIconFilled} from '#/components/icons/Contacts'
 import {Heart2_Filled_Stroke2_Corner0_Rounded as HeartIconFilled} from '#/components/icons/Heart2'
+import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon} from '#/components/icons/Person'
 import {PlusLarge_Stroke2_Corner0_Rounded as PlusIcon} from '#/components/icons/Plus'
 import {Repost_Stroke2_Corner3_Rounded as RepostIcon} from '#/components/icons/Repost'
-import {StarterPackMultiPathLarge as StarterPackIcon} from '#/components/icons/StarterPack'
 import {VerifiedCheck} from '#/components/icons/VerifiedCheck'
 import {InlineLinkText, Link} from '#/components/Link'
 import * as MediaPreview from '#/components/MediaPreview'
@@ -428,7 +428,7 @@ let NotificationFeedItem = ({
     )
     icon = (
       <View style={{height: 30, width: 30}}>
-        <StarterPackIcon width={30} gradient="sky" />
+        <Square2StackIcon width={30} gradient="sky" />
       </View>
     )
   } else if (item.type === 'verified') {
@@ -742,7 +742,7 @@ function FollowedViaStarterPack({
     <Text style={[native(a.pt_xs), t.atoms.text_contrast_medium]}>
       <Trans comment="When the source of a follow is a starter pack, i.e., 'via starter pack {starterPackName}'.">
         via starter pack{' '}
-        <StarterPackIcon
+        <Square2StackIcon
           size="sm"
           gradient="sky"
           style={[native(a.mr_2xs), {transform: [{translateY: 4}]}]}

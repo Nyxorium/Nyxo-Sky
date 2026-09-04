@@ -10,7 +10,7 @@ This notice covers the SVG files at the top level of this directory. It does not
 |---|---|---|
 | `flags/` | @catamphetamine, MIT licensed | [`flags/README.md`](./flags/README.md) |
 | `community/` | Third-party services | [`community/README.md`](./community/README.md) |
-| `logomark.svg`, `newskie.svg`, `verifiedCheck.svg`, `verifierCheck.svg`, `starterPack.svg`, `starterPack_stroke2_corner0_rounded.svg` | Bluesky Social PBC — trademarks | [`ASSETS.md`](../../ASSETS.md#3-bluesky-trademarks-and-brand-assets) |
+| `logomark.svg`, `newskie.svg`, `verifiedCheck.svg`, `verifierCheck.svg`, `starterPack.svg` | Bluesky Social PBC — trademarks | [`ASSETS.md`](../../ASSETS.md#3-bluesky-trademarks-and-brand-assets) |
 | `custom_logo_japan.svg` | A Bluesky Japan logo contest entrant | [`ASSETS.md`](../../ASSETS.md#4-community-and-contest-artwork--credited-but-not-ours-to-license) |
 | `apple_logo.svg` | Apple Inc. | [`ASSETS.md`](../../ASSETS.md#5-third-party-trademarks) |
 | `android_logo.svg` | Google LLC | [`ASSETS.md`](../../ASSETS.md#5-third-party-trademarks) |

@@ -8,7 +8,7 @@ import {useSession} from '#/state/session'
 import {useWizardState} from '#/screens/StarterPack/Wizard/State'
 import {atoms as a, useTheme} from '#/alf'
 import * as TextField from '#/components/forms/TextField'
-import {StarterPackMultiPathLarge as StarterPackIcon} from '#/components/icons/StarterPack'
+import {Square2Stack_solid as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {ScreenTransition} from '#/components/ScreenTransition'
 import {Text} from '#/components/Typography'
 
@@ -29,7 +29,7 @@ export function StepDetails() {
     <ScreenTransition direction={state.transitionDirection} enabledWeb>
       <View style={[a.px_xl, a.gap_xl, a.mt_4xl]}>
         <View style={[a.gap_md, a.align_center, a.px_md, a.mb_md]}>
-          <StarterPackIcon width={90} gradient="sky" />
+          <Square2StackIcon width={90} gradient="sky" />
           <Text style={[a.font_semi_bold, a.text_3xl]}>
             <Trans>Invites, but personal</Trans>
           </Text>

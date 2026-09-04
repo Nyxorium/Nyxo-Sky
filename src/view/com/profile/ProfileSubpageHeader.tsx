@@ -16,7 +16,7 @@ import {TextLink} from '#/view/com/util/Link'
 import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
 import {Text} from '#/view/com/util/text/Text'
 import {UserAvatar, type UserAvatarType} from '#/view/com/util/UserAvatar'
-import {StarterPackMultiPathLarge as StarterPackIcon} from '#/components/icons/StarterPack'
+import {Square2Stack_solid as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import * as Layout from '#/components/Layout'
 import {useLightboxControls} from '#/components/Lightbox/state'
 import {type app} from '#/lexicons'
@@ -109,7 +109,7 @@ export function ProfileSubpageHeader({
             accessibilityHint=""
             style={{width: 58}}>
             {avatarType === 'starter-pack' ? (
-              <StarterPackIcon width={58} gradient="sky" />
+              <Square2StackIcon width={58} gradient="sky" />
             ) : (
               <UserAvatar type={avatarType} size={58} avatar={avatar} />
             )}

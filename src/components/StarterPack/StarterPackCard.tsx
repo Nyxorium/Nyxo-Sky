@@ -13,7 +13,7 @@ import {precacheResolvedUri} from '#/state/queries/resolve-uri'
 import {precacheStarterPack} from '#/state/queries/starter-packs'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
-import {StarterPackMultiPathLarge as StarterPackIcon} from '#/components/icons/StarterPack'
+import {Square2Stack_solid as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {
   Link as BaseLink,
   type LinkProps as BaseLinkProps,
@@ -71,7 +71,7 @@ export function Card({
   return (
     <View style={[a.w_full, a.gap_md]}>
       <View style={[a.flex_row, a.gap_sm, a.w_full]}>
-        {!noIcon ? <StarterPackIcon width={40} gradient="sky" /> : null}
+        {!noIcon ? <Square2StackIcon width={40} gradient="sky" /> : null}
         <View style={[a.flex_1]}>
           <Text
             emoji
