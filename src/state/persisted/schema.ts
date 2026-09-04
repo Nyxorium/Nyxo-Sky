@@ -156,7 +156,6 @@ const schema = z.object({
   themePreset: z.string().optional(),
 
   // Additional Settings in Nyxo Sky
-  limitComposePostButton: z.boolean().optional(),
   altLabelDisplayProfile: z.enum(['original', 'alternative', 'off']),
   noAppLabelers: z.boolean().optional(), // Credit: deer.social
   nyxoGateOverrides: z.record(z.string(), z.boolean()).optional(),
@@ -170,10 +169,7 @@ const schema = z.object({
   enableSquareAvatars: z.boolean().optional(),
 
   // Disable X settings in Nyxo Sky
-  disableFollowbackBIN: z.boolean().optional(),
-  disableShareViaDms: z.boolean().optional(),
   disableFeedPromoTab: z.boolean().optional(),
-  disableProfileDescriptions: z.boolean().optional(),
 
   profileTabVisibility: z
     .object({
@@ -221,6 +217,10 @@ const schema = z.object({
       germButton: z.boolean().optional(),
       followsYouPill: z.boolean().optional(),
       similarAccountBox: z.boolean().optional(),
+      newPostButton: z.boolean().optional(),
+      shareViaChat: z.boolean().optional(),
+      notificationFollowButton: z.boolean().optional(),
+      profileDescriptions: z.boolean().optional(),
     })
     .optional(),
 })
@@ -279,9 +279,9 @@ export const defaults: Schema = {
 
   recentTags: [],
 
-  // Additional setting defaults in Nyxo Sky
   themePreset: 'nyxoSky',
-  limitComposePostButton: true,
+
+  // Additional setting defaults in Nyxo Sky
   altLabelDisplayProfile: 'original',
   noAppLabelers: false, // Credit: deer.social
   nyxoGateOverrides: {},
@@ -294,11 +294,8 @@ export const defaults: Schema = {
   enableSquareAvatars: false,
 
   // Disable X setting defaults in Nyxo Sky
-  disableFollowbackBIN: true,
-  disableShareViaDms: false,
   enableShareViaDID: false,
   disableFeedPromoTab: false,
-  disableProfileDescriptions: false,
 
   profileTabVisibility: {},
   profileTabVisibility_self: {},
@@ -309,6 +306,10 @@ export const defaults: Schema = {
     germButton: true,
     followsYouPill: true,
     similarAccountBox: false,
+    newPostButton: true,
+    shareViaChat: true,
+    notificationFollowButton: false,
+    profileDescriptions: true,
   },
 }
 

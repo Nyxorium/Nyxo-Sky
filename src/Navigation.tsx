@@ -126,6 +126,7 @@ import {PrivacyAndSecuritySettingsScreen} from '#/screens/Settings/PrivacyAndSec
 import {SettingsScreen} from '#/screens/Settings/Settings'
 import {ThreadPreferencesScreen} from '#/screens/Settings/ThreadPreferences'
 import {ViewTailorSettingsScreen} from '#/screens/Settings/ViewTailorSettings/index'
+import {NativeTailorsSettingsScreen} from '#/screens/Settings/ViewTailorSettings/NativeExclusives'
 import {PostImpressionVisibilitySettingsScreen} from '#/screens/Settings/ViewTailorSettings/PostImpressions'
 import {ProfileImpressionVisibilitySettingsScreen} from '#/screens/Settings/ViewTailorSettings/ProfileStatistics'
 import {
@@ -451,6 +452,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ProfileImpressionVisibilitySettingsScreen}
         options={{
           title: title(msg`Profile Statistics`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="NativeTailorSettings"
+        getComponent={() => NativeTailorsSettingsScreen}
+        options={{
+          title: title(msg`Native Tailors`),
           requireAuth: true,
         }}
       />

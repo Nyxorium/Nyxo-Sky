@@ -3,10 +3,7 @@ import {Provider as AltLabelDisplayProfile} from './alternate-label-display-prof
 import {Provider as AutoplayProvider} from './autoplay'
 import {Provider as LabelerLimitBypass} from './bypass-labeler-limit'
 import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
-import {Provider as DisableFollowbackBIN} from './disable-followback-BIN'
 import {Provider as DisableHapticsProvider} from './disable-haptics'
-import {Provider as DisableProfileDescriptions} from './disable-profile-descriptions'
-import {Provider as DisableShareViaDms} from './disable-share-via-dms'
 import {Provider as ToggleShareViaDID} from './enable-share-by-DID'
 import {Provider as EnableSquareAvatars} from './enable-square-avatars'
 import {Provider as ExternalEmbedsProvider} from './external-embeds-prefs'
@@ -18,7 +15,6 @@ import {Provider as KawaiiProvider} from './kawaii'
 import {Provider as LanguagesProvider} from './languages'
 import {Provider as LargeAltBadgeProvider} from './large-alt-badge'
 import {Provider as LikeOnRepost} from './like-on-repost'
-import {Provider as LimitComposePostButton} from './limit-compose-post-button'
 import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
 import {Provider as RecentTagsProvider} from './recent-tags'
@@ -62,45 +58,37 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                     <UsedStarterPacksProvider>
                       <SubtitlesProvider>
                         <TrendingSettingsProvider>
-                          <LimitComposePostButton>
-                            <AltLabelDisplayProfile>
-                              <DisableFollowbackBIN>
-                                <DisableShareViaDms>
-                                  <ToggleShareViaDID>
-                                    <DisableFeedPromoTab>
-                                      <ProfileTabVisibilityPrefs>
-                                        <EnableSquareAvatars>
-                                          <NoAppLabelersProvider>
-                                            <GateOverridesProvider>
-                                              <ImpressionVisibilityProvider>
-                                                <DisableProfileDescriptions>
-                                                  <SkipProfileWideContentWarning>
-                                                    <SplitModerationLabelGrouping>
-                                                      <RecentTagsProvider>
-                                                        <LikeOnRepost>
-                                                          <LabelerLimitBypass>
-                                                            <ViewTailorPrefs>
-                                                              <KawaiiProvider>
-                                                                {children}
-                                                              </KawaiiProvider>
-                                                            </ViewTailorPrefs>
-                                                          </LabelerLimitBypass>
-                                                        </LikeOnRepost>
-                                                      </RecentTagsProvider>
-                                                    </SplitModerationLabelGrouping>
-                                                  </SkipProfileWideContentWarning>
-                                                </DisableProfileDescriptions>
-                                              </ImpressionVisibilityProvider>
-                                            </GateOverridesProvider>
-                                          </NoAppLabelersProvider>
-                                        </EnableSquareAvatars>
-                                      </ProfileTabVisibilityPrefs>
-                                    </DisableFeedPromoTab>
-                                  </ToggleShareViaDID>
-                                </DisableShareViaDms>
-                              </DisableFollowbackBIN>
-                            </AltLabelDisplayProfile>
-                          </LimitComposePostButton>
+                          <AltLabelDisplayProfile>
+                            <ToggleShareViaDID>
+                              <DisableFeedPromoTab>
+                                <ProfileTabVisibilityPrefs>
+                                  <EnableSquareAvatars>
+                                    <NoAppLabelersProvider>
+                                      <GateOverridesProvider>
+                                        <ImpressionVisibilityProvider>
+                                          <SkipProfileWideContentWarning>
+                                            <SplitModerationLabelGrouping>
+                                              <RecentTagsProvider>
+                                                <LikeOnRepost>
+                                                  <LabelerLimitBypass>
+                                                    <ViewTailorPrefs>
+                                                      <KawaiiProvider>
+                                                        {children}
+                                                      </KawaiiProvider>
+                                                    </ViewTailorPrefs>
+                                                  </LabelerLimitBypass>
+                                                </LikeOnRepost>
+                                              </RecentTagsProvider>
+                                            </SplitModerationLabelGrouping>
+                                          </SkipProfileWideContentWarning>
+                                        </ImpressionVisibilityProvider>
+                                      </GateOverridesProvider>
+                                    </NoAppLabelersProvider>
+                                  </EnableSquareAvatars>
+                                </ProfileTabVisibilityPrefs>
+                              </DisableFeedPromoTab>
+                            </ToggleShareViaDID>
+                          </AltLabelDisplayProfile>
                         </TrendingSettingsProvider>
                       </SubtitlesProvider>
                     </UsedStarterPacksProvider>

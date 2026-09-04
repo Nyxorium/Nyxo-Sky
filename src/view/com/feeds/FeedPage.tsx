@@ -19,7 +19,7 @@ import {type AllNavigatorParams} from '#/lib/routes/types'
 import {listenSoftReset} from '#/state/events'
 import {FeedFeedbackProvider, useFeedFeedback} from '#/state/feed-feedback'
 import {useSetHomeBadge} from '#/state/home-badge'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {type FeedSourceInfo} from '#/state/queries/feed'
 import {
   type FeedDescriptor,
@@ -139,7 +139,7 @@ export function FeedPage({
   const shouldPrefetch = IS_NATIVE && isPageAdjacent
   const isDiscoverFeed = feedInfo.uri === DISCOVER_FEED_URI
 
-  const limitComposePostButton = useLimitComposePostButton()
+  const {tailors} = useViewTailorPrefs()
 
   return (
     <View
@@ -174,7 +174,7 @@ export function FeedPage({
         />
       )}
 
-      {hasSession && !limitComposePostButton && (
+      {hasSession && tailors.newPostButton && (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}

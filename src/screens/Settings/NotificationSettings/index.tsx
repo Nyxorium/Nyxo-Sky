@@ -26,7 +26,7 @@ import {
   Heart2_Stroke2_Corner0_Rounded as HeartIcon,
   LikeRepost_Stroke2_Corner2_Rounded as LikeRepostIcon,
 } from '#/components/icons/Heart2'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {PersonPlus_Stroke2_Corner2_Rounded as PersonPlusIcon} from '#/components/icons/Person'
 import {CloseQuote_Stroke2_Corner0_Rounded as CloseQuoteIcon} from '#/components/icons/Quote'
 import {
@@ -259,7 +259,7 @@ export function NotificationSettingsScreen({}: Props) {
               label={l`Settings for notifications for new messages`}
               onPress={chatDialogControl.open}
               contentContainerStyle={[a.align_start]}>
-              <SettingsList.ItemIcon icon={MessageIcon} />
+              <SettingsList.ItemIcon icon={ChatBubbleWithDots} />
               <ItemTextWithSubtitle
                 titleText={<Trans>New messages</Trans>}
                 subtitleText={

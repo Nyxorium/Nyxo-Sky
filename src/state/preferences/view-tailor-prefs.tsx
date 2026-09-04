@@ -13,6 +13,13 @@ export type ViewTailorPrefs = Partial<{
   germButton: boolean
   followsYouPill: boolean
   similarAccountBox: boolean
+  /** Native-only */
+  newPostButton: boolean
+  /** Native-only */
+  shareViaChat: boolean
+  /** Notifications page */
+  notificationFollowButton: boolean
+  profileDescriptions: boolean
 }>
 
 type StateContext = {

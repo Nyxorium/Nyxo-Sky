@@ -15,18 +15,6 @@ import {
   useSetDisableFeedPromoTab,
 } from '#/state/preferences/disable-feed-promo-tab'
 import {
-  useDisableFollowbackBIN,
-  useSetDisableFollowbackBIN,
-} from '#/state/preferences/disable-followback-BIN'
-import {
-  useDisableProfileDescriptions,
-  useSetDisableProfileDescriptions,
-} from '#/state/preferences/disable-profile-descriptions'
-import {
-  useDisableShareViaDms,
-  useSetDisableShareViaDms,
-} from '#/state/preferences/disable-share-via-dms'
-import {
   useEnableShareViaDID,
   useSetEnableShareViaDID,
 } from '#/state/preferences/enable-share-by-DID'
@@ -39,10 +27,6 @@ import {
   useSetLikeOnRepost,
 } from '#/state/preferences/like-on-repost'
 import {
-  useLimitComposePostButton,
-  useSetLimitComposePostButton,
-} from '#/state/preferences/limit-compose-post-button'
-import {
   useNoAppLabelers,
   useSetNoAppLabelers,
 } from '#/state/preferences/no-app-labelers'
@@ -54,6 +38,10 @@ import {
   useSetSplitModerationLabelGrouping,
   useSplitModerationLabelGrouping,
 } from '#/state/preferences/split-moderation-label-grouping'
+import {
+  useSetViewTailorPref,
+  useViewTailorPrefs,
+} from '#/state/preferences/view-tailor-prefs'
 import {AppearanceToggleButtonGroup} from '#/screens/Settings/AppearanceSettings'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
@@ -63,42 +51,29 @@ import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/B
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Filter_Stroke2_Corner0_Rounded as FilterIcon} from '#/components/icons/Filter'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
+import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
+import {UserPlus_solid} from '#/components/icons/heroicons/UserPlus'
 import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
-import {
-  Person_Stroke2_Corner2_Rounded as PersonIcon,
-  PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon,
-} from '#/components/icons/Person'
-import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
-import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import * as Layout from '#/components/Layout'
-import {IS_NATIVE} from '#/env'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
   const {t: l} = useLingui()
 
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
+  const setTailors = useSetViewTailorPref()
 
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const setAltLabelDisplayProfile = useSetAltLabelDisplayProfile()
-  const disableFollowbackBIN = useDisableFollowbackBIN()
-  const setDisableFollowbackBIN = useSetDisableFollowbackBIN()
-  const disableShareViaDms = useDisableShareViaDms()
-  const setDisableShareViaDms = useSetDisableShareViaDms()
   const enableShareViaDID = useEnableShareViaDID()
   const setEnableShareViaDID = useSetEnableShareViaDID()
   const disableFeedPromoTab = useDisableFeedPromoTab()
   const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
   const enableSquareAvatars = useEnableSquareAvatars()
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
-  const disableProfileDescriptions = useDisableProfileDescriptions()
-  const setDisableProfileDescriptions = useSetDisableProfileDescriptions()
-  const limitComposePostButton = useLimitComposePostButton()
-  const setLimitComposePostButton = useSetLimitComposePostButton()
   const noAppLabelers = useNoAppLabelers()
   const setNoAppLabelers = useSetNoAppLabelers()
   const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
@@ -138,7 +113,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <AppearanceToggleButtonGroup
             title={l`Profile Label Display Style (Self)`}
-            icon={PhoneIcon}
+            icon={DevicePhoneMobile}
             items={[
               {label: l`Original`, name: 'original'},
               {label: l`Alternative`, name: 'alternative'},
@@ -168,7 +143,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             value={enableSquareAvatars}
             onChange={value => setEnableSquareAvatars(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonIcon} />
+              <SettingsList.ItemIcon icon={UserIcon} />
               <SettingsList.ItemText>
                 <Trans>Square Avatars</Trans>
               </SettingsList.ItemText>
@@ -179,14 +154,14 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <SettingsList.Divider />
 
           <Toggle.Item
-            name="disable_followback_bin"
-            label={l`Disable Followback Button in Notifications`}
-            value={disableFollowbackBIN}
-            onChange={value => setDisableFollowbackBIN(value)}>
+            name="hide_follow_button_in_notifications"
+            label={l`Follow button in Notifications`}
+            value={tailors.notificationFollowButton}
+            onChange={value => setTailors('notificationFollowButton', value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonPlusIcon} />
+              <SettingsList.ItemIcon icon={UserPlus_solid} />
               <SettingsList.ItemText>
-                <Trans>Disable 'Follow Back' Button in Notifications</Trans>
+                <Trans>Follow button in Notifications</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
@@ -212,7 +187,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             value={skipProfileWideContentWarning}
             onChange={value => setSkipProfileWideContentWarning(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonIcon} />
+              <SettingsList.ItemIcon icon={UserIcon} />
               <SettingsList.ItemText>
                 <Trans>Disable Profile Wide Content Warnings</Trans>
               </SettingsList.ItemText>
@@ -261,56 +236,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
-
-          {devModeEnabled && (
-            <Toggle.Item
-              name="disable_profile_descriptions"
-              label={l`Disable Profile Descriptions`}
-              value={disableProfileDescriptions}
-              onChange={value => setDisableProfileDescriptions(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={MessageIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Disable Profile Descriptions</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
-
-          {IS_NATIVE && <SettingsList.Divider />}
-
-          {IS_NATIVE && (
-            <Toggle.Item
-              name="disable_share-via-dms"
-              label={l`Disable 'Share Via DMs' in Share Menu`}
-              value={disableShareViaDms}
-              onChange={value => setDisableShareViaDms(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={PhoneIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Disable 'Share Via DMs' in Share Menu</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
-
-          {IS_NATIVE && (
-            <Toggle.Item
-              name="hide_new_post_button"
-              label={l`Hide New Post button`}
-              value={limitComposePostButton}
-              onChange={value => setLimitComposePostButton(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={WindowIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Hide New Post button</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
 
           <SettingsList.Divider />
 

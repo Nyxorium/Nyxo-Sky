@@ -12,7 +12,7 @@ import {useGetConvoForMembers} from '#/state/queries/messages/get-convo-for-memb
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
 import {canBeMessaged} from '#/components/dms/util'
-import {Message_Stroke2_Corner0_Rounded as Message} from '#/components/icons/Message'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {type app} from '#/lexicons'
@@ -78,7 +78,10 @@ export function MessageProfileButton({
             // Matches size of button below to avoid layout shift
             {width: 33, height: 33},
           ]}>
-          <Message style={[t.atoms.text, {opacity: 0.3}]} size="md" />
+          <ChatBubbleWithDots
+            style={[t.atoms.text, {opacity: 0.3}]}
+            size="md"
+          />
         </View>
       )
     } else {
@@ -99,7 +102,7 @@ export function MessageProfileButton({
           label={_(msg`Message ${profile.handle}`)}
           style={[a.justify_center]}
           onPress={wrappedOnPress}>
-          <ButtonIcon icon={Message} size="md" />
+          <ButtonIcon icon={ChatBubbleWithDots} size="md" />
         </Button>
       </>
     )

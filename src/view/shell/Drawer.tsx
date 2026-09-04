@@ -39,6 +39,7 @@ import {
   Hashtag_Filled_Corner0_Rounded as HashtagFilled,
   Hashtag_Stroke2_Corner0_Rounded as Hashtag,
 } from '#/components/icons/Hashtag'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
   HomeOpen_Stoke2_Corner0_Rounded as Home,
@@ -47,10 +48,7 @@ import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlass,
 } from '#/components/icons/MagnifyingGlass'
-import {
-  Message_Stroke2_Corner0_Rounded as Message,
-  Message_Stroke2_Corner0_Rounded_Filled as MessageFilled,
-} from '#/components/icons/Message'
+import {Message_Stroke2_Corner0_Rounded_Filled as MessageFilled} from '#/components/icons/Message'
 import {SettingsGear2_Stroke2_Corner0_Rounded as Settings} from '#/components/icons/SettingsGear2'
 import {
   UserCircle_Filled_Corner0_Rounded as UserCircleFilled,
@@ -458,7 +456,7 @@ let ChatMenuItem = ({
         isActive ? (
           <MessageFilled style={[t.atoms.text]} width={iconWidth} />
         ) : (
-          <Message style={[t.atoms.text]} width={iconWidth} />
+          <ChatBubbleWithDots style={[t.atoms.text]} width={iconWidth} />
         )
       }
       label={_(msg`Chat`)}

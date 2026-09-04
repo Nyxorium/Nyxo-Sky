@@ -11,8 +11,8 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useDisableShareViaDms} from '#/state/preferences/disable-share-via-dms'
 import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {precachePost} from '#/state/queries/post'
 import {useSession} from '#/state/session'
 import {atoms as a} from '#/alf'
@@ -45,7 +45,7 @@ let ShareMenuItems = ({
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
   const queryClient = useQueryClient()
-  const disableShareViaDms = useDisableShareViaDms()
+  const {tailors} = useViewTailorPrefs()
   const enableShareViaDID = useEnableShareViaDID()
 
   const postUri = post.uri
@@ -115,7 +115,7 @@ let ShareMenuItems = ({
       <Menu.Outer>
         {hasSession &&
           aa.state.access === aa.Access.Full &&
-          !disableShareViaDms && (
+          tailors.shareViaChat && (
             <Menu.Group>
               <Menu.ContainerItem>
                 <RecentChats

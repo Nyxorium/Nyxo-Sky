@@ -109,6 +109,7 @@ export type CommonNavigatorParams = {
   ViewTailorSettings: undefined
   PostImpressionVisibilitySettings: undefined
   ProfileImpressionVisibilitySettings: undefined
+  NativeTailorSettings: undefined
   NSFWLabelSettings: undefined
 }
 

@@ -38,6 +38,7 @@ import {
   Bell_Stroke2_Corner0_Rounded as Bell,
 } from '#/components/icons/Bell'
 import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
   HomeOpen_Stoke2_Corner0_Rounded as Home,
@@ -47,10 +48,7 @@ import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlass,
 } from '#/components/icons/MagnifyingGlass'
-import {
-  Message_Stroke2_Corner0_Rounded as Message,
-  Message_Stroke2_Corner0_Rounded_Filled as MessageFilled,
-} from '#/components/icons/Message'
+import {Message_Stroke2_Corner0_Rounded_Filled as MessageFilled} from '#/components/icons/Message'
 import * as Menu from '#/components/Menu'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
@@ -225,7 +223,7 @@ export function BottomBar({navigation}: BottomTabBarProps) {
                     style={[styles.ctrlIcon, t.atoms.text, styles.feedsIcon]}
                   />
                 ) : (
-                  <Message
+                  <ChatBubbleWithDots
                     width={iconWidth - 1}
                     style={[styles.ctrlIcon, t.atoms.text, styles.feedsIcon]}
                   />

@@ -9,8 +9,8 @@ import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/co
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
 import {Explosion_Stroke2_Corner0_Rounded as ExplosionIcon} from '#/components/icons/Explosion'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
-import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
 import {Pizza_Stroke2_Corner0_Rounded as PizzaIcon} from '#/components/icons/Pizza'
 import {RaisingHand4Finger_Stroke2_Corner2_Rounded as HandIcon} from '#/components/icons/RaisingHand'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/icons/Shield'
@@ -24,7 +24,7 @@ export function Settings() {
     <View style={{marginLeft: -20, marginRight: -20}}>
       <Text style={{marginLeft: 20, paddingBottom: 12}}>Settings</Text>
       <SettingsList.LinkItem to="/settings" label="Account">
-        <SettingsList.ItemIcon icon={PersonIcon} />
+        <SettingsList.ItemIcon icon={UserIcon} />
         <SettingsList.ItemText>Account</SettingsList.ItemText>
       </SettingsList.LinkItem>
       <SettingsList.LinkItem to="/settings" label="Privacy and security">

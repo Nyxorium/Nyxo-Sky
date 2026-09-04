@@ -24,10 +24,10 @@ import {isInvalidHandle} from '#/lib/strings/handles'
 import {colors} from '#/lib/styles'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {listenSoftReset} from '#/state/events'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
 import {useSkipProfileWideContentWarning} from '#/state/preferences/skip-profile-wide-content-warning'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useLabelerInfoQuery} from '#/state/queries/labeler'
 import {resetProfilePostsQueries} from '#/state/queries/post-feed'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -405,7 +405,7 @@ function ProfileScreenLoaded({
     )
   }
 
-  const limitComposePostButton = useLimitComposePostButton()
+  const {tailors} = useViewTailorPrefs()
 
   return (
     <ScreenHider
@@ -616,7 +616,7 @@ function ProfileScreenLoaded({
             )
           : null}
       </PagerWithHeader>
-      {hasSession && (isMe || !limitComposePostButton) ? (
+      {hasSession && (isMe || tailors.newPostButton) ? (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}

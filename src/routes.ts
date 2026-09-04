@@ -60,6 +60,7 @@ export const router = new Router<AllNavigatableRoutes>({
   PostImpressionVisibilitySettings: '/settings/view-tailor/post-impressions',
   ProfileImpressionVisibilitySettings:
     '/settings/view-tailor/profile-statistics',
+  NativeTailorSettings: '/settings/view-tailor/native',
   SavedFeeds: '/settings/saved-feeds',
   AccountSettings: '/settings/account',
   AutomationLabelSettings: '/settings/automation-label',
