@@ -16,13 +16,8 @@ For the assets Bluesky itself owns, we are not treating anyone's past use as bad
 
 | Where | Rights holder | Our MIT license covers it? | If you fork |
 |---|---|---|---|
-| [`assets/illustrations/`](#1-commissioned-artwork--licensed-to-bluesky-only) | Owen D. Pomery, via Brilliant Artists Ltd | No | Replace |
 | [`assets/icons/`](#2-licensed-icon-system--not-ours-to-pass-on) (top level), Central icon glyphs in `bskyembed/assets/` except the Starter Pack mark | Iconists (David & Storm GbR) | No | Source your own |
 | [Bluesky marks](#3-bluesky-trademarks-and-brand-assets) — app icons, logos, favicons | Bluesky Social PBC | No | Replace |
-| [`assets/kawaii.png`, `assets/kawaii_smol.png`](#4-community-and-contest-artwork--credited-but-not-ours-to-license) | [@sawaratsuki.bsky.social](https://bsky.app/profile/sawaratsuki.bsky.social) | No | Replace or remove |
-| [`assets/icons/custom_logo_japan.svg`](#4-community-and-contest-artwork--credited-but-not-ours-to-license) | A Bluesky Japan logo contest entrant | No | Replace or remove |
-| [`assets/icons/apple_logo.svg`](#5-third-party-trademarks) | Apple Inc. | No | Rests on your own basis |
-| [`assets/icons/android_logo.svg`](#5-third-party-trademarks) | Google LLC | No | Rests on your own basis |
 | [`assets/icons/community/`](#5-third-party-trademarks) | Leaflet, Offprint, pckt, Standard.site, Germ Network | No | Rests on your own basis |
 | [`assets/fonts/inter/`](#6-third-party-assets-you-may-redistribute), Inter files in `bskyogcard/src/assets/fonts/` | The Inter Project Authors | Separate — OFL 1.1 | **Keep, with the notice** |
 | [Noto fonts downloaded by `bskyogcard/scripts/install-fonts.ts`](#6-third-party-assets-you-may-redistribute) | Adobe, Google LLC, and The Noto Project Authors | Separate — OFL 1.1 | **Keep, with the notice** |
@@ -36,18 +31,6 @@ Assets are scoped by directory wherever possible, so that adding a file to a car
 
 ---
 
-## 1. Commissioned artwork — licensed to Bluesky only
-
-**`assets/illustrations/`**
-
-The landing-screen illustration, in light and dark variants (`assets/illustrations/illustration-mobile.png` and `assets/illustrations/illustration-mobile-dark.png`), used by `src/view/com/auth/SplashScreen.tsx`.
-
-**Rights holder: Owen D. Pomery**, represented by Brilliant Artists Ltd. Bluesky Social PBC commissioned the work and holds a usage license. Copyright remains with the artist. Our license is limited to Bluesky's own products and channels, is exclusive to us, and does not permit us to sublicense the artwork or to distribute modified versions of it.
-
-**If you are forking this repository, replace these files.** Because our license is exclusive, the artwork is not available for separate third-party licensing while that license runs. Please do not approach the artist or his agent for permission — the constraint is our agreement, not their willingness. If you have already shipped it, contact us and we will help you sort it out rather than leaving you to guess.
-
-See [`assets/illustrations/README.md`](./assets/illustrations/README.md).
-
 ## 2. Licensed icon system — not ours to pass on
 
 **`assets/icons/` (top level), and the Central icon glyphs in `bskyembed/assets/`, except `bskyembed/assets/starterPack.svg`**
@@ -56,7 +39,7 @@ See [`assets/illustrations/README.md`](./assets/illustrations/README.md).
 
 The fact that we have our own license does not mean that you cannot use these icons. It means that any right you have to use them has to come from Iconists, not us. Licenses are available from [iconists.co](https://iconists.co), and there are openly licensed alternatives if you prefer that.
 
-This section covers every file at the top level of `assets/icons/` **except** those named elsewhere in this document — specifically `assets/icons/logomark.svg`, `assets/icons/newskie.svg`, `assets/icons/verifiedCheck.svg`, `assets/icons/verifierCheck.svg`, `assets/icons/starterPack.svg`, `assets/icons/starterPack_stroke2_corner0_rounded.svg`, `assets/icons/custom_logo_japan.svg`, `assets/icons/apple_logo.svg`, and `assets/icons/android_logo.svg`. The `assets/icons/flags/` and `assets/icons/community/` subdirectories are covered by [Section 6](#6-third-party-assets-you-may-redistribute) and [Section 5](#5-third-party-trademarks) respectively.
+This section covers every file at the top level of `assets/icons/` **except** those named elsewhere in this document — specifically The `assets/icons/flags/` and `assets/icons/community/` subdirectories are covered by [Section 6](#6-third-party-assets-you-may-redistribute) and [Section 5](#5-third-party-trademarks) respectively.
 
 See [`assets/icons/README.md`](./assets/icons/README.md).
 
@@ -69,19 +52,10 @@ You may refer to Bluesky by name to describe interoperability or origin — for 
 - `assets/app-icons/` — all iOS and Android app icon variants, including the `.icon` bundles
 - `assets/favicon.png`
 - `assets/logo.png`
-- `assets/default-avatar.png`
-- `assets/icon-android-foreground.png`
-- `assets/icon-android-monochrome.png`
 - `assets/icon-android-notification.png`
 - `assets/splash/splash.png`
 - `assets/splash/splash-dark.png`
 - `assets/splash/android-splash-logo-white.png`
-- `assets/icons/logomark.svg`
-- `assets/icons/newskie.svg`
-- `assets/icons/verifiedCheck.svg`
-- `assets/icons/verifierCheck.svg`
-- `assets/icons/starterPack.svg`
-- `assets/icons/starterPack_stroke2_corner0_rounded.svg`
 - `bskyembed/assets/logo.svg`
 - `bskyembed/assets/logo_full_name.svg`
 - `bskyembed/assets/starterPack.svg`
@@ -100,22 +74,10 @@ You may refer to Bluesky by name to describe interoperability or origin — for 
 
 These files stay in this repository because the app needs them to build. **If you fork, replace them with your own** — that is the one thing this section asks of you. Shipping an app that looks like Bluesky is also a problem under the app stores' own rules on copycat apps, quite apart from trademark.
 
-## 4. Community and contest artwork — credited, but not ours to license
-
-These are third-party artworks that appear in the app with attribution. We hold no license that lets us pass rights to them on to you.
-
-- `assets/kawaii.png` and `assets/kawaii_smol.png` — **rights holder:
-  [@sawaratsuki.bsky.social](https://bsky.app/profile/sawaratsuki.bsky.social)**. Shown as an opt-in variant and credited in `src/view/shell/Drawer.tsx` and `src/view/shell/desktop/RightNav.tsx`.
-- `assets/icons/custom_logo_japan.svg` — **rights holder: the entrant who won the Bluesky Japan logo contest.**
-
-Replace or remove these if you fork. If you want to use them, contact the artist.
-
 ## 5. Third-party trademarks
 
 These marks belong to other companies. We include them to identify their services in our UI — sign-in buttons, store badges, and links to third-party applications. We are neither granting nor withholding permission, because it is not ours to give. Your use of them rests on your own nominative-use basis or on permission from the mark owner.
 
-- `assets/icons/apple_logo.svg` — **Apple Inc.**
-- `assets/icons/android_logo.svg` — **Google LLC**
 - `assets/icons/community/leaflet.svg` — **Leaflet**
 - `assets/icons/community/offprint.svg` — **Offprint**
 - `assets/icons/community/pckt.svg` and `assets/icons/community/pckt-full.svg` — **pckt**
@@ -161,7 +123,6 @@ If you are forking, replace these or ship without them. See [`assets/images/READ
 
 You have our blessing to fork this application. These steps map one-to-one to the sections above.
 
-1. **Replace `assets/illustrations/`** — commissioned artwork, licensed to Bluesky only. [Section 1](#1-commissioned-artwork--licensed-to-bluesky-only)
 2. **Source your own UI icons** — the glyph set in `assets/icons/` is licensed to us for our own use. [Section 2](#2-licensed-icon-system--not-ours-to-pass-on)
 3. **Replace the Bluesky marks** — app icons, favicons, logo files, and the inline logo paths in `src/view/icons/`. [Section 3](#3-bluesky-trademarks-and-brand-assets)
 4. **Replace or remove the community and contest artwork.** [Section 4](#4-community-and-contest-artwork--credited-but-not-ours-to-license)
