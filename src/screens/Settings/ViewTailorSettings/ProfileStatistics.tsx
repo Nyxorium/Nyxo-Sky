@@ -143,8 +143,7 @@ export function ProfileImpressionVisibilitySettingsScreen({}: Props) {
               style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
               <Trans>
                 Control which profile statistics are visible to you. These
-                settings only affect your own view — statistics are not hidden
-                from others.
+                settings only affect your view and are not hidden from others.
               </Trans>
             </Text>
           </SettingsList.Item>

@@ -13,7 +13,6 @@ import {isAppLabeler} from '#/lib/moderation'
 import {isBlockedOrBlocking} from '#/lib/moderation/blocked-and-muted'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
-import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 import {useIsImpressionHidden} from '#/state/preferences/impression-visibility'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useLabelerSubscriptionMutation} from '#/state/queries/labeler'
@@ -118,8 +117,6 @@ let ProfileHeaderLabeler = ({
 
   const {isActive: live} = useActorStatus(profile)
 
-  const disableProfileDescriptions = useDisableProfileDescriptions()
-
   return (
     <ProfileHeaderShell
       profile={profile}
@@ -155,7 +152,7 @@ let ProfileHeaderLabeler = ({
           <View style={a.gap_md}>
             {isSelf && <ProfileHeaderMetrics profile={profile} />}
             {descriptionRT &&
-            !disableProfileDescriptions &&
+            tailors.profileDescriptions &&
             !moderation.ui('profileView').blur ? (
               <View pointerEvents="auto">
                 <RichText

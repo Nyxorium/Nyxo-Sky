@@ -29,7 +29,7 @@ import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {niceDate} from '#/lib/strings/time'
 import {logger} from '#/logger'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useDisableFollowbackBIN} from '#/state/preferences/disable-followback-BIN'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {type FeedNotification} from '#/state/queries/notifications/feed'
 import {useProfileFollowMutationQueue} from '#/state/queries/profile'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
@@ -96,7 +96,7 @@ let NotificationFeedItem = ({
   const ax = useAnalytics()
   const [isAuthorsExpanded, setIsAuthorsExpanded] = useState(false)
   const [isHoveringAuthorsList, setIsHoveringAuthorsList] = useState(false)
-  const disableFollowbackBIN = useDisableFollowbackBIN()
+  const {tailors} = useViewTailorPrefs()
   const itemHref = useMemo(() => {
     switch (item.type) {
       case 'post-like':
@@ -673,8 +673,8 @@ let NotificationFeedItem = ({
             {(item.type === 'follow' &&
               !hasMultipleAuthors &&
               !isFollowBack &&
-              !disableFollowbackBIN) ||
-            (item.type === 'contact-match' && // should disableFollowbackBIN be here too? - Sunstar
+              tailors.notificationFollowButton) ||
+            (item.type === 'contact-match' &&
               !item.notification.author.viewer?.following) ? (
               <FollowBackButton profile={item.notification.author} />
             ) : null}

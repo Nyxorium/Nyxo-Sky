@@ -14,7 +14,7 @@ import {
 } from '#/lib/routes/types'
 import {logger} from '#/logger'
 import {emitSoftReset, listenSoftReset} from '#/state/events'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {RQKEY as NOTIFS_RQKEY} from '#/state/queries/notifications/feed'
 import {useNotificationSettingsQuery} from '#/state/queries/notifications/settings'
 import {
@@ -120,7 +120,7 @@ export function NotificationsScreen({}: Props) {
     isLoadingMentions,
   ])
 
-  const limitComposePostButton = useLimitComposePostButton()
+  const {tailors} = useViewTailorPrefs()
 
   return (
     <Layout.Screen testID="notificationsScreen">
@@ -160,7 +160,7 @@ export function NotificationsScreen({}: Props) {
           <View key={i}>{section.component}</View>
         ))}
       </Pager>
-      {!limitComposePostButton && (
+      {tailors.newPostButton && (
         <FAB
           testID="composeFAB"
           onPress={() => openComposer({logContext: 'Fab'})}

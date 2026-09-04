@@ -14,7 +14,7 @@ import {
 } from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {s} from '#/lib/styles'
-import {useLimitComposePostButton} from '#/state/preferences/limit-compose-post-button'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
   type SavedFeedItem,
   useGetPopularFeedsQuery,
@@ -495,7 +495,7 @@ export function FeedsScreen(_props: Props) {
     ],
   )
 
-  const limitComposePostButton = useLimitComposePostButton()
+  const {tailors} = useViewTailorPrefs()
 
   return (
     <Layout.Screen testID="FeedsScreen">
@@ -539,7 +539,7 @@ export function FeedsScreen(_props: Props) {
         />
       </Layout.Center>
 
-      {hasSession && !limitComposePostButton && (
+      {hasSession && tailors.newPostButton && (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}

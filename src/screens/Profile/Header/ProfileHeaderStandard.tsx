@@ -14,7 +14,6 @@ import {useHaptics} from '#/lib/haptics'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {logger} from '#/logger'
 import {type Shadow, useProfileShadow} from '#/state/cache/profile-shadow'
-import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
   useProfileBlockMutationQueue,
@@ -108,7 +107,6 @@ let ProfileHeaderStandard = ({
   const {isActive: live} = useActorStatus(profile)
 
   const {tailors} = useViewTailorPrefs()
-  const disableProfileDescriptions = useDisableProfileDescriptions()
 
   return (
     <>
@@ -152,7 +150,7 @@ let ProfileHeaderStandard = ({
             <View style={a.gap_md}>
               <ProfileHeaderMetrics profile={profile} />
               {descriptionRT &&
-              !disableProfileDescriptions &&
+              tailors.profileDescriptions &&
               !moderation.ui('profileView').blur ? (
                 <View pointerEvents="auto">
                   <RichText
