@@ -1,10 +1,6 @@
 import {useMemo, useState} from 'react'
-import {
-  LayoutAnimation,
-  type StyleProp,
-  View,
-  type ViewStyle,
-} from 'react-native'
+import {type StyleProp, View, type ViewStyle} from 'react-native'
+import Animated, {FadeIn, LinearTransition} from 'react-native-reanimated'
 import {api} from '@bsky/sdk'
 import {type ModerationCause, type ModerationUI} from '@bsky/sdk/moderation'
 import {Trans, useLingui} from '@lingui/react/macro'
@@ -19,7 +15,7 @@ import {getDefinition, getLabelStrings} from '#/lib/moderation/useLabelInfo'
 import {useModerationCauseDescription} from '#/lib/moderation/useModerationCauseDescription'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {useLabelDefinitions} from '#/state/preferences'
-import {atoms as a, useBreakpoints, useTheme, web} from '#/alf'
+import {atoms as a, native, useBreakpoints, useTheme, web} from '#/alf'
 import {Button} from '#/components/Button'
 import {
   ModerationDetailsDialog,
@@ -234,14 +230,16 @@ function ContentHiderActive({
   ])
 
   return (
-    <View testID={testID} style={[a.overflow_hidden, style]}>
+    <Animated.View
+      testID={testID}
+      layout={native(LinearTransition)}
+      style={[a.overflow_hidden, style]}>
       <ModerationDetailsDialog control={control} modcause={blur} />
       <Button
         onPress={e => {
           e.preventDefault()
           e.stopPropagation()
           if (!modui.noOverride) {
-            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
             setOverride(v => !v)
           } else {
             control.open()
@@ -343,7 +341,11 @@ function ContentHiderActive({
           )}
         </Button>
       )}
-      {override && <View style={childContainerStyle}>{children}</View>}
-    </View>
+      {override && (
+        <Animated.View entering={native(FadeIn)} style={childContainerStyle}>
+          {children}
+        </Animated.View>
+      )}
+    </Animated.View>
   )
 }

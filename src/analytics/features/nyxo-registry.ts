@@ -22,19 +22,10 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Post Thread Known Likers',
       description: 'Show people you follow who liked a post in the thread view',
     },
-    [Features.SearchStarterPacksV2Enable]: {
-      label: 'Search Starter Packs V2',
-      description: 'Use the updated starter packs experience in search results',
-    },
     [Features.FollowSortEnable]: {
       label: 'Follow Sort',
       description:
         'Sort other users followers/following pages by Top instead of Latest',
-    },
-    [Features.ContentVisibilitySettingsEnable]: {
-      label: 'Content Visibility Settings',
-      description:
-        'Show the algorithmic recommendation opt-out toggle in Privacy and Security settings',
     },
     [Features.ModerationInboxEnable]: {
       label: 'Moderation Inbox',
