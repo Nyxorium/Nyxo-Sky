@@ -9,6 +9,7 @@ import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useSession} from '#/state/session'
 import {useBreakpoints} from '#/alf'
 import {useDialogControl} from '#/components/Dialog'
@@ -42,6 +43,7 @@ let ShareMenuItems = ({
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
   const enableShareViaDID = useEnableShareViaDID()
+  const {tailors} = useViewTailorPrefs()
 
   const postUri = post.uri
   const postCid = post.cid
@@ -121,7 +123,7 @@ let ShareMenuItems = ({
       <Menu.Outer>
         {!hideInPWI && copyLinkItem}
 
-        {!hideInPWI && openInBlueskyItem}
+        {!hideInPWI && tailors.openInBluesky && openInBlueskyItem}
 
         {hasSession && aa.state.access === aa.Access.Full && (
           <Menu.Item

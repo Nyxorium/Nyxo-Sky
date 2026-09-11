@@ -20,6 +20,7 @@ export type ViewTailorPrefs = Partial<{
   /** Notifications page */
   notificationFollowButton: boolean
   profileDescriptions: boolean
+  openInBluesky: boolean
 }>
 
 type StateContext = {

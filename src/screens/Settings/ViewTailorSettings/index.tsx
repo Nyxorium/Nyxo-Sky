@@ -20,6 +20,7 @@ import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLef
 import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {UserPlus_outline} from '#/components/icons/heroicons/UserPlus'
+import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import {UserPlus} from '#/components/icons/lucide/UserPlus'
 import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import * as Layout from '#/components/Layout'
@@ -146,7 +147,7 @@ export function ViewTailorSettingsScreen({}: Props) {
           <SettingsList.Divider />
 
           <Toggle.Item
-            name="disable_similar_accounts"
+            name="hide_similar_accounts"
             label={l`Similar accounts box`}
             value={tailors.similarAccountBox}
             onChange={value => setTailors('similarAccountBox', value)}>
@@ -160,7 +161,7 @@ export function ViewTailorSettingsScreen({}: Props) {
           </Toggle.Item>
 
           <Toggle.Item
-            name="disable_pet_badge"
+            name="show_pet_badge"
             label={l`Pet labels`}
             value={tailors.petLabels}
             onChange={value => setTailors('petLabels', value)}>
@@ -174,7 +175,7 @@ export function ViewTailorSettingsScreen({}: Props) {
           </Toggle.Item>
 
           <Toggle.Item
-            name="disable_germ_button"
+            name="hide_germ_button"
             label={l`Germ button`}
             value={tailors.germButton}
             onChange={value => setTailors('germButton', value)}>
@@ -188,7 +189,7 @@ export function ViewTailorSettingsScreen({}: Props) {
           </Toggle.Item>
 
           <Toggle.Item
-            name="disable_follows_you_pill"
+            name="hide_follows_you_pill"
             label={l`Follows you pill`}
             value={tailors.followsYouPill}
             onChange={value => setTailors('followsYouPill', value)}>
@@ -216,6 +217,20 @@ export function ViewTailorSettingsScreen({}: Props) {
               </SettingsList.Item>
             </Toggle.Item>
           )}
+
+          <Toggle.Item
+            name="enable_open_in_bluesky_button"
+            label={l`Open in Bluesky button`}
+            value={tailors.openInBluesky}
+            onChange={value => setTailors('openInBluesky', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={BlueskyIcon} />
+              <SettingsList.ItemText>
+                <Trans>Open in Bluesky button</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

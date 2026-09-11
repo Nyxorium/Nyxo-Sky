@@ -221,6 +221,7 @@ const schema = z.object({
       shareViaChat: z.boolean().optional(),
       notificationFollowButton: z.boolean().optional(),
       profileDescriptions: z.boolean().optional(),
+      openInBluesky: z.boolean().optional(),
     })
     .optional(),
 })
@@ -310,6 +311,7 @@ export const defaults: Schema = {
     shareViaChat: true,
     notificationFollowButton: false,
     profileDescriptions: true,
+    openInBluesky: false,
   },
 }
 
