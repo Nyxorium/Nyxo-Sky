@@ -1,4 +1,5 @@
 import {memo, useCallback, useMemo} from 'react'
+import {Linking} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
@@ -10,6 +11,7 @@ import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
 import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
   RQKEY as profileQueryKey,
   useProfileBlockMutationQueue,
@@ -32,6 +34,7 @@ import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
 import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {ListSparkle_Stroke2_Corner0_Rounded as ListIcon} from '#/components/icons/ListSparkle'
 import {Live_Stroke2_Corner0_Rounded as LiveIcon} from '#/components/icons/Live'
+import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import {MagnifyingGlass_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass'
 import {Mute_Stroke2_Corner0_Rounded as MuteIcon} from '#/components/icons/Mute'
 import {PeopleRemove2_Stroke2_Corner0_Rounded as UserMinusIcon} from '#/components/icons/PeopleRemove2'
@@ -110,10 +113,15 @@ let ProfileMenu = ({
   const control = useLabelsOnMeDialogControl()
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const enableShareViaDID = useEnableShareViaDID()
+  const {tailors} = useViewTailorPrefs()
 
-  const profileHref = useMemo(
-    () =>
-      enableShareViaDID ? `/profile/${profile.did}` : makeProfileLink(profile),
+  const {profileHref, bskyUrl} = useMemo(
+    () => ({
+      profileHref: enableShareViaDID
+        ? `/profile/${profile.did}`
+        : makeProfileLink(profile),
+      bskyUrl: `https://bsky.app/profile/${profile.handle}`,
+    }),
     [enableShareViaDID, profile],
   )
 
@@ -138,6 +146,14 @@ let ProfileMenu = ({
   const onPressShare = useCallback(() => {
     void shareUrl(toShareUrl(profileHref))
   }, [profileHref])
+
+  const onPressOpenInBluesky = useCallback(() => {
+    if (IS_WEB) {
+      window.open(bskyUrl, '_blank', 'noopener')
+    } else {
+      void Linking.openURL(bskyUrl)
+    }
+  }, [bskyUrl])
 
   const onPressAddRemoveLists = useCallback(() => {
     addToListsDialogControl.open()
@@ -331,6 +347,17 @@ let ProfileMenu = ({
                   <Trans>Copy link to profile</Trans>
                 </Menu.ItemText>
                 <Menu.ItemIcon icon={ChainLinkIcon} />
+              </Menu.Item>
+            )}
+            {tailors.openInBluesky && (
+              <Menu.Item
+                testID="profileHeaderDropdownOpenInBskyBtn"
+                label={l`Open in Bluesky`}
+                onPress={onPressOpenInBluesky}>
+                <Menu.ItemText>
+                  <Trans>Open in Bluesky</Trans>
+                </Menu.ItemText>
+                <Menu.ItemIcon icon={BlueskyIcon} />
               </Menu.Item>
             )}
             <Menu.Item

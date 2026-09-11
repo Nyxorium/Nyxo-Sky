@@ -149,18 +149,20 @@ let ShareMenuItems = ({
             <Menu.ItemIcon icon={ArrowOutOfBoxIcon} position="right" />
           </Menu.Item>
 
-          <Menu.Item
-            testID="postDropdownOpenInBskyBtn"
-            label={l`Open in Bluesky`}
-            onPress={() => {
-              void Linking.openURL(bskyUrl)
-              onShareProp()
-            }}>
-            <Menu.ItemText>
-              <Trans>Open in Bluesky</Trans>
-            </Menu.ItemText>
-            <Menu.ItemIcon icon={BlueskyIcon} position="right" />
-          </Menu.Item>
+          {tailors.openInBluesky && (
+            <Menu.Item
+              testID="postDropdownOpenInBskyBtn"
+              label={l`Open in Bluesky`}
+              onPress={() => {
+                void Linking.openURL(bskyUrl)
+                onShareProp()
+              }}>
+              <Menu.ItemText>
+                <Trans>Open in Bluesky</Trans>
+              </Menu.ItemText>
+              <Menu.ItemIcon icon={BlueskyIcon} position="right" />
+            </Menu.Item>
+          )}
 
           <Menu.Item
             testID="postDropdownShareBtn"
