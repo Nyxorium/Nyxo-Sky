@@ -36,13 +36,6 @@ module.exports = function (_config) {
 
   const USE_SENTRY = Boolean(process.env.SENTRY_AUTH_TOKEN)
 
-  // const IOS_ICON_FILE =
-  //   PLATFORM === 'web' // web build doesn't like .icon files
-  //     ? './assets/app-icons/ios_icon_default_next.png'
-  //     : IS_TESTFLIGHT
-  //       ? './assets/app-icons/ios_icon_testflight.icon'
-  //       : './assets/app-icons/ios_icon_default.icon'
-
   return {
     expo: {
       version: VERSION,
@@ -53,7 +46,6 @@ module.exports = function (_config) {
       runtimeVersion: {
         policy: 'appVersion',
       },
-      // icon: './assets/app-icons/ios_icon_default_next.png',
       userInterfaceStyle: 'automatic',
       primaryColor: '#006AFF',
       ios: {
@@ -63,7 +55,6 @@ module.exports = function (_config) {
         config: {
           usesNonExemptEncryption: false,
         },
-        // icon: IOS_ICON_FILE,
         infoPlist: {
           CADisableMinimumFrameDurationOnPhone: true,
           UIBackgroundModes: ['remote-notification'],
@@ -186,12 +177,6 @@ module.exports = function (_config) {
         barStyle: 'light-content',
       },
       android: {
-        // icon: './assets/app-icons/android_icon_default_next.png',
-        // adaptiveIcon: {
-        //   foregroundImage: './assets/icon-android-foreground.png',
-        //   monochromeImage: './assets/icon-android-monochrome.png',
-        //   backgroundColor: '#006AFF',
-        // },
         icon: './assets/app-icons/nasa_PIA09412_icon.png',
         adaptiveIcon: {
           foregroundImage: './assets/app-icons/nasa_PIA09412_icon.png',
@@ -361,14 +346,10 @@ module.exports = function (_config) {
             },
             android: {
               backgroundColor: '#6136e2', // primary_500
-              // '#6136e2'
-              // '#006AFF' Bluesky
               image: './assets/splash/android-splash-logo-white.png',
               imageWidth: 102, // even division of 306px
               dark: {
                 backgroundColor: '#221155', // primary_900
-                // '#221155'
-                // '#002861' Bluesky
                 image: './assets/splash/android-splash-logo-white.png',
                 imageWidth: 102,
               },
@@ -393,7 +374,7 @@ module.exports = function (_config) {
             },
 
             /**
-             * Bluesky Logos
+             * Bluesky Logos (extra icons example)
              */
 
             // bluesky_light: {
@@ -404,55 +385,6 @@ module.exports = function (_config) {
             // bluesky_dark: {
             //   ios: './assets/app-icons/ios_icon_legacy_dark.png',
             //   android: './assets/app-icons/android_icon_legacy_dark.png',
-            //   prerendered: true,
-            // },
-
-            /**
-             * Bluesky+ core set
-             */
-            // core_aurora: {
-            //   ios: './assets/app-icons/ios_icon_core_aurora.png',
-            //   android: './assets/app-icons/android_icon_core_aurora.png',
-            //   prerendered: true,
-            // },
-            // core_bonfire: {
-            //   ios: './assets/app-icons/ios_icon_core_bonfire.png',
-            //   android: './assets/app-icons/android_icon_core_bonfire.png',
-            //   prerendered: true,
-            // },
-            // core_sunrise: {
-            //   ios: './assets/app-icons/ios_icon_core_sunrise.png',
-            //   android: './assets/app-icons/android_icon_core_sunrise.png',
-            //   prerendered: true,
-            // },
-            // core_sunset: {
-            //   ios: './assets/app-icons/ios_icon_core_sunset.png',
-            //   android: './assets/app-icons/android_icon_core_sunset.png',
-            //   prerendered: true,
-            // },
-            // core_midnight: {
-            //   ios: './assets/app-icons/ios_icon_core_midnight.png',
-            //   android: './assets/app-icons/android_icon_core_midnight.png',
-            //   prerendered: true,
-            // },
-            // core_flat_blue: {
-            //   ios: './assets/app-icons/ios_icon_core_flat_blue.png',
-            //   android: './assets/app-icons/android_icon_core_flat_blue.png',
-            //   prerendered: true,
-            // },
-            // core_flat_white: {
-            //   ios: './assets/app-icons/ios_icon_core_flat_white.png',
-            //   android: './assets/app-icons/android_icon_core_flat_white.png',
-            //   prerendered: true,
-            // },
-            // core_flat_black: {
-            //   ios: './assets/app-icons/ios_icon_core_flat_black.png',
-            //   android: './assets/app-icons/android_icon_core_flat_black.png',
-            //   prerendered: true,
-            // },
-            // core_classic: {
-            //   ios: './assets/app-icons/ios_icon_core_classic.png',
-            //   android: './assets/app-icons/android_icon_core_classic.png',
             //   prerendered: true,
             // },
           },
