@@ -6,6 +6,8 @@ import {AtUri, BskyAgent} from '@atproto/api'
 // eslint-disable-next-line import-x/no-unresolved
 import {type TestBsky, TestNetwork} from '@atproto/dev-env'
 
+import {E2E_APPVIEW_DID} from './constants.ts'
+
 export interface TestUser {
   email: string
   did: string
@@ -83,6 +85,13 @@ export async function createServer(
     },
     plc: {port: port2},
   })
+
+  if (testNet.bsky.serverDid !== E2E_APPVIEW_DID) {
+    await testNet.close()
+    throw new Error(
+      `E2E AppView DID changed from ${E2E_APPVIEW_DID} to ${testNet.bsky.serverDid}. Update E2E_APPVIEW_DID in dev-env/constants.ts.`,
+    )
+  }
 
   // DISABLED - looks like dev-env added this and now it conflicts
   // add the test mod authority
