@@ -115,6 +115,54 @@ export function Text({children}: {children: React.ReactNode}) {
   )
 }
 
+export function CompactOuter({children}: {children: React.ReactNode}) {
+  const t = useTheme()
+  const {type} = useContext(ToastConfigContext)
+  const styles = useToastStyles({type})
+
+  return (
+    <View
+      style={[
+        a.flex_row,
+        a.border,
+        t.atoms.shadow_sm,
+        {
+          alignSelf: 'center',
+          alignItems: 'center',
+          gap: 8,
+          paddingVertical: 10,
+          paddingHorizontal: 16,
+          borderRadius: 999,
+          backgroundColor: styles.backgroundColor,
+          borderColor: styles.borderColor,
+        },
+      ]}>
+      {children}
+    </View>
+  )
+}
+
+export function CompactText({children}: {children: React.ReactNode}) {
+  const {type} = useContext(ToastConfigContext)
+  const {textColor} = useToastStyles({type})
+  return (
+    <BaseText
+      selectable={false}
+      numberOfLines={1}
+      style={[
+        a.text_md,
+        a.font_medium,
+        a.leading_snug,
+        a.pointer_events_none,
+        {
+          color: textColor,
+        },
+      ]}>
+      {children}
+    </BaseText>
+  )
+}
+
 export function Action(
   props: Omit<ButtonProps, UninheritableButtonProps | 'children'> & {
     children: React.ReactNode
