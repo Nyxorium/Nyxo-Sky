@@ -6,6 +6,8 @@ import {toast as sonner, Toaster} from 'sonner-native'
 import {atoms as a} from '#/alf'
 import {DURATION} from '#/components/Toast/const'
 import {
+  CompactOuter,
+  CompactText,
   Icon as ToastIcon,
   Outer as BaseOuter,
   Text as ToastText,
@@ -14,7 +16,14 @@ import {
 import {type BaseToastOptions} from '#/components/Toast/types'
 
 export {DURATION} from '#/components/Toast/const'
-export {Action, Icon, Text, ToastConfigProvider} from '#/components/Toast/Toast'
+export {
+  Action,
+  CompactOuter,
+  CompactText,
+  Icon,
+  Text,
+  ToastConfigProvider,
+} from '#/components/Toast/Toast'
 export {type ToastType} from '#/components/Toast/types'
 
 /**
@@ -43,17 +52,24 @@ export const api = sonner
  */
 export function show(
   content: React.ReactNode,
-  {type = 'default', ...options}: BaseToastOptions = {},
+  {type = 'default', shape = 'banner', ...options}: BaseToastOptions = {},
 ) {
   const id = nanoid()
 
   if (typeof content === 'string') {
     sonner.custom(
       <ToastConfigProvider id={id} type={type}>
-        <Outer>
-          <ToastIcon />
-          <ToastText>{content}</ToastText>
-        </Outer>
+        {shape === 'compact' ? (
+          <CompactOuter>
+            <ToastIcon />
+            <CompactText>{content}</CompactText>
+          </CompactOuter>
+        ) : (
+          <Outer>
+            <ToastIcon />
+            <ToastText>{content}</ToastText>
+          </Outer>
+        )}
       </ToastConfigProvider>,
       {
         ...options,
