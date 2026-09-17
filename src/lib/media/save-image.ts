@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 
 import * as Toast from '#/components/Toast'
 import {IS_NATIVE} from '#/env'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 import {saveImageToMediaLibrary} from './manip'
 
 /**
@@ -16,6 +17,7 @@ export function useSaveImageToMediaLibrary() {
     MediaLibrary.usePermissions({
       granularPermissions: ['photo'],
     })
+  const [devModeEnabled] = useDevMode()
   return useCallback(
     async (uri: string) => {
       if (!IS_NATIVE) {
@@ -25,7 +27,9 @@ export function useSaveImageToMediaLibrary() {
       async function save() {
         try {
           await saveImageToMediaLibrary({uri})
-          Toast.show(_(msg`Image saved`), {shape: 'compact'})
+          devModeEnabled
+            ? Toast.show(_(msg`Image saved`), {shape: 'compact'})
+            : Toast.show(_(msg`Image saved`))
         } catch (e: any) {
           Toast.show(_(msg`Failed to save image: ${String(e)}`), {
             type: 'error',
@@ -70,6 +74,7 @@ export function useSaveImagesToMediaLibrary() {
   const {_} = useLingui()
   const [permissionResponse, requestPermission, getPermission] =
     MediaLibrary.usePermissions({granularPermissions: ['photo']})
+  const [devModeEnabled] = useDevMode()
 
   return useCallback(
     async (uris: string[]) => {
@@ -105,7 +110,7 @@ export function useSaveImagesToMediaLibrary() {
       const total = uris.length
       if (savedCount === total) {
         Toast.show(_(msg`Saved ${total} image${total === 1 ? '' : 's'}`), {
-          shape: 'compact',
+          shape: devModeEnabled ? 'compact' : 'banner',
         })
       } else if (savedCount > 0) {
         Toast.show(_(msg`Saved ${savedCount} of ${total} images`))
