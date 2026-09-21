@@ -56,7 +56,10 @@ import {
   Hashtag_Filled_Corner0_Rounded as HashtagFilledIcon,
   Hashtag_Stroke2_Corner0_Rounded as HashtagIcon,
 } from '#/components/icons/Hashtag'
-import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
+import {
+  ChatBubbleWithDots,
+  ChatBubbleWithDots_solid as ChatBubbleSolidIcon,
+} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilledIcon,
   HomeOpen_Stoke2_Corner0_Rounded as HomeIcon,
@@ -65,7 +68,6 @@ import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilledIcon,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlassIcon,
 } from '#/components/icons/MagnifyingGlass'
-import {Message_Stroke2_Corner0_Rounded_Filled as MessageFilledIcon} from '#/components/icons/Message'
 import {PlusLarge_Stroke2_Corner0_Rounded as PlusIcon} from '#/components/icons/Plus'
 import {
   SettingsGear2_Filled_Corner0_Rounded as SettingsFilledIcon,
@@ -702,7 +704,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             hasNew={!aa.flags.chatDisabled && numUnreadMessages.hasNew}
             icons={{
               inactive: ChatBubbleWithDots,
-              active: MessageFilledIcon,
+              active: ChatBubbleSolidIcon,
             }}
           />
           <NavItem
