@@ -19,6 +19,7 @@ import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons
 import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
+import {UserCircle as UserCircleIcon} from '#/components/icons/heroicons/UserCircle'
 import {UserPlus_outline} from '#/components/icons/heroicons/UserPlus'
 import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import {UserPlus} from '#/components/icons/lucide/UserPlus'
@@ -227,6 +228,20 @@ export function ViewTailorSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={BlueskyIcon} />
               <SettingsList.ItemText>
                 <Trans>Open in Bluesky button</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_avatar_blurs_button"
+            label={l`Avatar/Banner blur`}
+            value={tailors.avatarBlurs}
+            onChange={value => setTailors('avatarBlurs', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={UserCircleIcon} />
+              <SettingsList.ItemText>
+                <Trans>Avatar/Banner blur</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>

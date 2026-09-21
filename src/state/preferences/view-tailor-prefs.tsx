@@ -21,6 +21,8 @@ export type ViewTailorPrefs = Partial<{
   notificationFollowButton: boolean
   profileDescriptions: boolean
   openInBluesky: boolean
+  /** Avatar and Banner blurs in Warn/Hide labels */
+  avatarBlurs: boolean
 }>
 
 type StateContext = {
