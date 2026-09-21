@@ -222,6 +222,7 @@ const schema = z.object({
       notificationFollowButton: z.boolean().optional(),
       profileDescriptions: z.boolean().optional(),
       openInBluesky: z.boolean().optional(),
+      avatarBlurs: z.boolean().optional(),
     })
     .optional(),
 })
@@ -312,6 +313,7 @@ export const defaults: Schema = {
     notificationFollowButton: false,
     profileDescriptions: true,
     openInBluesky: false,
+    avatarBlurs: true,
   },
 }
 

@@ -21,6 +21,7 @@ import {
   compressImage,
   createComposerImage,
 } from '#/state/gallery'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {EditImageDialog} from '#/view/com/composer/photos/EditImageDialog'
 import {EventStopper} from '#/view/com/util/EventStopper'
 import {atoms as a, tokens, useTheme} from '#/alf'
@@ -34,7 +35,6 @@ import {StreamingLive_Stroke2_Corner0_Rounded as LibraryIcon} from '#/components
 import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import * as Menu from '#/components/Menu'
 import {IS_NATIVE} from '#/env'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 
 export function UserBanner({
   type,
@@ -54,7 +54,7 @@ export function UserBanner({
   const sheetWrapper = useSheetWrapper()
   const [rawImage, setRawImage] = useState<ComposerImage | undefined>()
   const editImageDialogControl = useDialogControl()
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
 
   const isBlockCause =
     moderation?.blurs?.some(
@@ -64,7 +64,7 @@ export function UserBanner({
         cause.type === 'block-other',
     ) ?? false
 
-  const shouldBlur = !!moderation?.blur && (isBlockCause || !devModeEnabled)
+  const shouldBlur = !!moderation?.blur && (isBlockCause || tailors.avatarBlurs)
 
   const onOpenCamera = useCallback(async () => {
     if (!(await requestCameraAccessIfNeeded())) {
