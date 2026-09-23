@@ -57,11 +57,7 @@ export const SplashScreen = ({
     <>
       <Image
         accessibilityIgnoresInvertColors
-        source={
-          {
-            /* uri: isDarkMode ? darkSplashImageUri : splashImageUri */
-          }
-        }
+        source={{/* uri: isDarkMode ? darkSplashImageUri : splashImageUri */}}
         style={[a.absolute, a.inset_0]}
       />
 
