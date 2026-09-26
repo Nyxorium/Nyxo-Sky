@@ -49,3 +49,25 @@ export function normalizeLanguageTagToTwoLetterCode(lang: string) {
   const result = parse(lang).language
   return result ?? lang
 }
+
+export function migrateOldSettings(state: Schema): Schema {
+  const alreadyMigrated = Object.keys(state.switchboard ?? {}).length > 0 // ||
+  // Object.keys(state.viewTailors ?? {}).length > 0
+
+  if (alreadyMigrated) return state
+
+  const hasOldData = [state.enableShareViaDID, state.labelerLimitBypass].some(
+    v => v === true,
+  )
+
+  if (!hasOldData) return state
+
+  return {
+    ...state,
+    switchboard: {
+      shareByDID: state.enableShareViaDID,
+      labelerLimitBypass: state.labelerLimitBypass,
+      labelGrouping: state.splitModerationLabelGrouping,
+    },
+  }
+}

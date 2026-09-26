@@ -10,7 +10,7 @@ import {Trans} from '@lingui/react/macro'
 import {useGlobalLabelStrings} from '#/lib/moderation/useGlobalLabelStrings'
 import {useLabelBehaviorDescription} from '#/lib/moderation/useLabelBehaviorDescription'
 import {getLabelStrings} from '#/lib/moderation/useLabelInfo'
-import {useSplitModerationLabelGrouping} from '#/state/preferences/split-moderation-label-grouping'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {
   usePreferencesQuery,
   usePreferencesSetContentLabelMutation,
@@ -186,7 +186,7 @@ export function LabelerLabelPreference({
   const {gtPhone} = useBreakpoints()
 
   const isGlobalLabel = !labelDefinition.definedBy
-  const splitModerationlabelGrouping = useSplitModerationLabelGrouping()
+  const {switches} = useSwitchboardPrefs()
   const {identifier} = labelDefinition
   const {data: preferences} = usePreferencesQuery()
   const {mutate, variables} = usePreferencesSetContentLabelMutation()
@@ -212,7 +212,7 @@ export function LabelerLabelPreference({
     adultOnly && !preferences?.moderationPrefs.adultContentEnabled
   // are there any reasons we cant configure this label here?
   const cantConfigure =
-    (isGlobalLabel && !splitModerationlabelGrouping) || adultDisabled
+    (isGlobalLabel && switches.labelGrouping) || adultDisabled
   const showConfig = !disabled && (gtPhone || !cantConfigure)
 
   // adjust the pref based on whether warn is available

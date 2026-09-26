@@ -10,7 +10,7 @@ import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
   RQKEY as profileQueryKey,
@@ -112,17 +112,17 @@ let ProfileMenu = ({
   const addToListsDialogControl = useDialogControl()
   const control = useLabelsOnMeDialogControl()
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
-  const enableShareViaDID = useEnableShareViaDID()
   const {tailors} = useViewTailorPrefs()
+  const {switches} = useSwitchboardPrefs()
 
   const {profileHref, bskyUrl} = useMemo(
     () => ({
-      profileHref: enableShareViaDID
+      profileHref: switches.shareByDID
         ? `/profile/${profile.did}`
         : makeProfileLink(profile),
       bskyUrl: `https://bsky.app/profile/${profile.handle}`,
     }),
-    [enableShareViaDID, profile],
+    [switches.shareByDID, profile],
   )
 
   const showLoggedOutWarning = useMemo(() => {

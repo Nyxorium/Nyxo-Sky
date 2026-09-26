@@ -1,10 +1,8 @@
 import {Provider as AltTextRequiredProvider} from './alt-text-required'
 import {Provider as AltLabelDisplayProfile} from './alternate-label-display-profile'
 import {Provider as AutoplayProvider} from './autoplay'
-import {Provider as LabelerLimitBypass} from './bypass-labeler-limit'
 import {Provider as DisableFeedPromoTab} from './disable-feed-promo-tab'
 import {Provider as DisableHapticsProvider} from './disable-haptics'
-import {Provider as ToggleShareViaDID} from './enable-share-by-DID'
 import {Provider as EnableSquareAvatars} from './enable-square-avatars'
 import {Provider as ExternalEmbedsProvider} from './external-embeds-prefs'
 import {Provider as GateOverridesProvider} from './gateOverrides'
@@ -19,8 +17,8 @@ import {Provider as NoAppLabelersProvider} from './no-app-labelers'
 import {Provider as ProfileTabVisibilityPrefs} from './profile-tab-visibility'
 import {Provider as RecentTagsProvider} from './recent-tags'
 import {Provider as SkipProfileWideContentWarning} from './skip-profile-wide-content-warning'
-import {Provider as SplitModerationLabelGrouping} from './split-moderation-label-grouping'
 import {Provider as SubtitlesProvider} from './subtitles'
+import {Provider as SwitchboardPrefs} from './switchboard-prefs'
 import {Provider as TrendingSettingsProvider} from './trending'
 import {Provider as UsedStarterPacksProvider} from './used-starter-packs'
 import {Provider as ViewTailorPrefs} from './view-tailor-prefs'
@@ -59,35 +57,31 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
                       <SubtitlesProvider>
                         <TrendingSettingsProvider>
                           <AltLabelDisplayProfile>
-                            <ToggleShareViaDID>
-                              <DisableFeedPromoTab>
-                                <ProfileTabVisibilityPrefs>
-                                  <EnableSquareAvatars>
-                                    <NoAppLabelersProvider>
-                                      <GateOverridesProvider>
-                                        <ImpressionVisibilityProvider>
-                                          <SkipProfileWideContentWarning>
-                                            <SplitModerationLabelGrouping>
-                                              <RecentTagsProvider>
-                                                <LikeOnRepost>
-                                                  <LabelerLimitBypass>
-                                                    <ViewTailorPrefs>
-                                                      <KawaiiProvider>
-                                                        {children}
-                                                      </KawaiiProvider>
-                                                    </ViewTailorPrefs>
-                                                  </LabelerLimitBypass>
-                                                </LikeOnRepost>
-                                              </RecentTagsProvider>
-                                            </SplitModerationLabelGrouping>
-                                          </SkipProfileWideContentWarning>
-                                        </ImpressionVisibilityProvider>
-                                      </GateOverridesProvider>
-                                    </NoAppLabelersProvider>
-                                  </EnableSquareAvatars>
-                                </ProfileTabVisibilityPrefs>
-                              </DisableFeedPromoTab>
-                            </ToggleShareViaDID>
+                            <DisableFeedPromoTab>
+                              <ProfileTabVisibilityPrefs>
+                                <EnableSquareAvatars>
+                                  <NoAppLabelersProvider>
+                                    <GateOverridesProvider>
+                                      <ImpressionVisibilityProvider>
+                                        <SkipProfileWideContentWarning>
+                                          <RecentTagsProvider>
+                                            <LikeOnRepost>
+                                              <ViewTailorPrefs>
+                                                <SwitchboardPrefs>
+                                                  <KawaiiProvider>
+                                                    {children}
+                                                  </KawaiiProvider>
+                                                </SwitchboardPrefs>
+                                              </ViewTailorPrefs>
+                                            </LikeOnRepost>
+                                          </RecentTagsProvider>
+                                        </SkipProfileWideContentWarning>
+                                      </ImpressionVisibilityProvider>
+                                    </GateOverridesProvider>
+                                  </NoAppLabelersProvider>
+                                </EnableSquareAvatars>
+                              </ProfileTabVisibilityPrefs>
+                            </DisableFeedPromoTab>
                           </AltLabelDisplayProfile>
                         </TrendingSettingsProvider>
                       </SubtitlesProvider>
