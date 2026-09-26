@@ -7,17 +7,9 @@ import {
   useSetAltLabelDisplayProfile,
 } from '#/state/preferences/alternate-label-display-profile'
 import {
-  useLabelerLimitBypass,
-  useSetLabelerLimitBypass,
-} from '#/state/preferences/bypass-labeler-limit'
-import {
   useDisableFeedPromoTab,
   useSetDisableFeedPromoTab,
 } from '#/state/preferences/disable-feed-promo-tab'
-import {
-  useEnableShareViaDID,
-  useSetEnableShareViaDID,
-} from '#/state/preferences/enable-share-by-DID'
 import {
   useEnableSquareAvatars,
   useSetEnableSquareAvatars,
@@ -35,9 +27,9 @@ import {
   useSkipProfileWideContentWarning,
 } from '#/state/preferences/skip-profile-wide-content-warning'
 import {
-  useSetSplitModerationLabelGrouping,
-  useSplitModerationLabelGrouping,
-} from '#/state/preferences/split-moderation-label-grouping'
+  useSetSwitchboardPref,
+  useSwitchboardPrefs,
+} from '#/state/preferences/switchboard-prefs'
 import {
   useSetViewTailorPref,
   useViewTailorPrefs,
@@ -65,11 +57,11 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
   const {tailors} = useViewTailorPrefs()
   const setTailors = useSetViewTailorPref()
+  const {switches} = useSwitchboardPrefs()
+  const setSwitches = useSetSwitchboardPref()
 
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const setAltLabelDisplayProfile = useSetAltLabelDisplayProfile()
-  const enableShareViaDID = useEnableShareViaDID()
-  const setEnableShareViaDID = useSetEnableShareViaDID()
   const disableFeedPromoTab = useDisableFeedPromoTab()
   const setDisableFeedPromoTab = useSetDisableFeedPromoTab()
   const enableSquareAvatars = useEnableSquareAvatars()
@@ -78,12 +70,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setNoAppLabelers = useSetNoAppLabelers()
   const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
   const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
-  const splitModerationlabelGrouping = useSplitModerationLabelGrouping()
-  const setSplitModerationlabelGrouping = useSetSplitModerationLabelGrouping()
   const likeOnRepost = useLikeOnRepost()
   const setLikeOnRepost = useSetLikeOnRepost()
-  const labelerLimitBypass = useLabelerLimitBypass()
-  const setLabelerLimitBypass = useSetLabelerLimitBypass()
 
   // Keep disable and enable options seperate? - Sunstar
 
@@ -126,8 +114,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <Toggle.Item
             name="enable_share_via_did"
             label={l`Share by DID`}
-            value={enableShareViaDID}
-            onChange={value => setEnableShareViaDID(value)}>
+            value={switches.shareByDID}
+            onChange={value => setSwitches('shareByDID', value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={ChainLinkIcon} />
               <SettingsList.ItemText>
@@ -198,8 +186,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <Toggle.Item
             name="split_moderation_label_grouping"
             label={l`Split moderation label grouping`}
-            value={splitModerationlabelGrouping}
-            onChange={value => setSplitModerationlabelGrouping(value)}>
+            value={!switches.labelGrouping}
+            onChange={value => setSwitches('labelGrouping', !value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={FilterIcon} />
               <SettingsList.ItemText>
@@ -226,8 +214,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <Toggle.Item
             name="disable_max_labeler_limit"
             label={l`Disable max labeler limit`}
-            value={labelerLimitBypass}
-            onChange={value => setLabelerLimitBypass(value)}>
+            value={switches.labelerLimitBypass}
+            onChange={value => setSwitches('labelerLimitBypass', value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={KeyIcon} />
               <SettingsList.ItemText>

@@ -8,7 +8,7 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useSession} from '#/state/session'
 import {useBreakpoints} from '#/alf'
@@ -42,8 +42,8 @@ let ShareMenuItems = ({
   const sendViaChatControl = useDialogControl()
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
-  const enableShareViaDID = useEnableShareViaDID()
   const {tailors} = useViewTailorPrefs()
+  const {switches} = useSwitchboardPrefs()
 
   const postUri = post.uri
   const postCid = post.cid
@@ -58,7 +58,7 @@ let ShareMenuItems = ({
     }
   }, [postUri, postAuthor])
 
-  const activeHref = enableShareViaDID ? hrefDID : href
+  const activeHref = switches.shareByDID ? hrefDID : href
 
   const hideInPWI = useMemo(() => {
     return !!postAuthor.labels?.find(
