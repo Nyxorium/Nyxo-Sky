@@ -36,6 +36,7 @@ import Animated, {
 import {scheduleOnRN, scheduleOnUI} from 'react-native-worklets'
 import {Image} from 'expo-image'
 import * as ScreenOrientation from 'expo-screen-orientation'
+import {PlatformInfo} from '@bsky.app/expo-bluesky-swiss-army'
 import {useLingui} from '@lingui/react/macro'
 
 import {useHaptics} from '#/lib/haptics'
@@ -45,7 +46,6 @@ import {setSystemUITheme} from '#/alf/util/systemUI'
 import {type Lightbox} from '#/components/Lightbox/state'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS} from '#/env'
-import {PlatformInfo} from '../../../../modules/expo-bluesky-swiss-army'
 import {Footer} from '../chrome/Footer'
 import {Header} from '../chrome/Header'
 import {
