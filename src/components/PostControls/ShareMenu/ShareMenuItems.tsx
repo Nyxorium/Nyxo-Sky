@@ -11,7 +11,7 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {precachePost} from '#/state/queries/post'
 import {useSession} from '#/state/session'
@@ -46,7 +46,7 @@ let ShareMenuItems = ({
   const aa = useAgeAssurance()
   const queryClient = useQueryClient()
   const {tailors} = useViewTailorPrefs()
-  const enableShareViaDID = useEnableShareViaDID()
+  const {switches} = useSwitchboardPrefs()
 
   const postUri = post.uri
   const postAuthor = useProfileShadow(post.author)
@@ -60,7 +60,7 @@ let ShareMenuItems = ({
     }
   }, [postUri, postAuthor])
 
-  const activeHref = enableShareViaDID ? hrefDID : href
+  const activeHref = switches.shareByDID ? hrefDID : href
 
   const hideInPWI = useMemo(() => {
     return !!postAuthor.labels?.find(
@@ -86,6 +86,7 @@ let ShareMenuItems = ({
     }
     Toast.show(l`Copied to clipboard`, {
       type: 'success',
+      shape: 'compact',
     })
     onShareProp()
   }

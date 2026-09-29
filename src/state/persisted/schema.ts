@@ -152,6 +152,11 @@ const schema = z.object({
 
   recentTags: z.array(z.string()).optional(),
 
+  // Migrating values, unused and set for removal
+  enableShareViaDID: z.boolean().optional(),
+  labelerLimitBypass: z.boolean().optional(),
+  splitModerationLabelGrouping: z.boolean().optional(),
+
   // Theme preset selector
   themePreset: z.string().optional(),
 
@@ -160,12 +165,9 @@ const schema = z.object({
   noAppLabelers: z.boolean().optional(), // Credit: deer.social
   nyxoGateOverrides: z.record(z.string(), z.boolean()).optional(),
   skipProfileWideContentWarning: z.boolean().optional(),
-  splitModerationLabelGrouping: z.boolean().optional(),
   likeOnRepost: z.boolean().optional(),
-  labelerLimitBypass: z.boolean().optional(),
 
   // Enable X settings in Nyxo Sky
-  enableShareViaDID: z.boolean().optional(),
   enableSquareAvatars: z.boolean().optional(),
 
   // Disable X settings in Nyxo Sky
@@ -223,6 +225,15 @@ const schema = z.object({
       profileDescriptions: z.boolean().optional(),
       openInBluesky: z.boolean().optional(),
       avatarBlurs: z.boolean().optional(),
+    })
+    .optional(),
+
+  switchboard: z
+    .object({
+      shareByDID: z.boolean().optional(),
+      labelerLimitBypass: z.boolean().optional(),
+      labelGrouping: z.boolean().optional(),
+      declareAppLabelers: z.boolean().optional(),
     })
     .optional(),
 })
@@ -288,15 +299,12 @@ export const defaults: Schema = {
   noAppLabelers: false, // Credit: deer.social
   nyxoGateOverrides: {},
   skipProfileWideContentWarning: true,
-  splitModerationLabelGrouping: false,
   likeOnRepost: false,
-  labelerLimitBypass: false,
 
   // Enable X setting defaults in Nyxo Sky
   enableSquareAvatars: false,
 
   // Disable X setting defaults in Nyxo Sky
-  enableShareViaDID: false,
   disableFeedPromoTab: false,
 
   profileTabVisibility: {},
@@ -314,6 +322,13 @@ export const defaults: Schema = {
     profileDescriptions: true,
     openInBluesky: false,
     avatarBlurs: true,
+  },
+
+  switchboard: {
+    shareByDID: false,
+    labelerLimitBypass: false,
+    labelGrouping: true,
+    declareAppLabelers: true,
   },
 }
 
