@@ -218,7 +218,7 @@ function ListItem({
     useListMembershipAddMutation({
       subject: profile,
       onSuccess: data => {
-        Toast.show(l`Added to list`)
+        Toast.show(l`Added to list`, {shape: 'compact'})
         onAdd?.(list.uri)
         updateListMembershipOptimistically({
           queryClient,
@@ -243,7 +243,7 @@ function ListItem({
   const {mutate: removeMembership, isPending: isPendingRemove} =
     useListMembershipRemoveMutation({
       onSuccess: () => {
-        Toast.show(l`Removed from list`)
+        Toast.show(l`Removed from list`, {shape: 'compact'})
         onRemove?.(list.uri)
         removeListMembershipOptimistically({
           queryClient,

@@ -118,7 +118,9 @@ export function MoreOptionsMenu({
       await removeSavedFeed(savedFeedConfig)
     }
 
-    Toast.show(l({message: 'List deleted', context: 'toast'}))
+    Toast.show(l({message: 'List deleted', context: 'toast'}), {
+      shape: 'compact',
+    })
     if (navigation.canGoBack()) {
       navigation.goBack()
     } else {

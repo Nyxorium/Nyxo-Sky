@@ -442,7 +442,9 @@ let PostMenuItems = ({
     if (postAuthor.viewer?.muted) {
       try {
         await queueUnmute()
-        Toast.show(l({message: 'Account unmuted', context: 'toast'}))
+        Toast.show(l({message: 'Account unmuted', context: 'toast'}), {
+          shape: 'compact',
+        })
       } catch (err) {
         const e = err as Error
         if (e?.name !== 'AbortError') {
@@ -461,7 +463,9 @@ let PostMenuItems = ({
     } else {
       try {
         await queueMute()
-        Toast.show(l({message: 'Account muted', context: 'toast'}))
+        Toast.show(l({message: 'Account muted', context: 'toast'}), {
+          shape: 'compact',
+        })
       } catch (err) {
         const e = err as Error
         if (e?.name !== 'AbortError') {

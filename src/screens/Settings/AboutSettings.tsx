@@ -183,6 +183,7 @@ export function AboutSettingsScreen({}: Props) {
                         context: 'toast',
                       }),
                     ),
+                {shape: 'compact'},
               )
             }}
             onPress={() => {

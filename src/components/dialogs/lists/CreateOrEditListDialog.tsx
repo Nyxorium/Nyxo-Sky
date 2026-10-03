@@ -254,7 +254,7 @@ function DialogInner({
           descriptionFacets: richText.facets,
           avatar: newListAvatar,
         })
-        Toast.show(updatedMessage)
+        Toast.show(updatedMessage, {shape: 'compact'})
         control.close(() => onSave?.(list.uri))
       } else {
         const {uri} = await createListMutation({
@@ -264,7 +264,7 @@ function DialogInner({
           descriptionFacets: richText.facets,
           avatar: newListAvatar,
         })
-        Toast.show(createdMessage)
+        Toast.show(createdMessage, {shape: 'compact'})
         control.close(() => onSave?.(uri))
       }
     } catch (e: any) {

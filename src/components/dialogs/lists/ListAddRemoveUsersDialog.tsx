@@ -123,7 +123,7 @@ function UserResult({
   const {mutate: listMembershipAdd, isPending: isAddingPending} =
     useListMembershipAddMutation({
       onSuccess: () => {
-        Toast.show(_(msg`Added to list`))
+        Toast.show(_(msg`Added to list`), {shape: 'compact'})
         onChange?.('add', profile)
       },
       onError: e =>
@@ -134,7 +134,7 @@ function UserResult({
   const {mutate: listMembershipRemove, isPending: isRemovingPending} =
     useListMembershipRemoveMutation({
       onSuccess: () => {
-        Toast.show(_(msg`Removed from list`))
+        Toast.show(_(msg`Removed from list`), {shape: 'compact'})
         onChange?.('remove', profile)
       },
       onError: e =>
