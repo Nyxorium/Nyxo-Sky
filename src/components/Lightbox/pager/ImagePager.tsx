@@ -10,7 +10,7 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {PixelRatio, StyleSheet, useWindowDimensions, View} from 'react-native'
 import {SystemBars} from 'react-native-edge-to-edge'
-import {Gesture} from 'react-native-gesture-handler'
+import {usePanGesture} from 'react-native-gesture-handler'
 import PagerView, {
   type PagerViewOnPageSelectedEvent,
   type PageScrollStateChangedNativeEvent,
@@ -590,19 +590,19 @@ function LightboxImage({
     }
   })
 
-  const dismissSwipePan = Gesture.Pan()
-    .enabled(isActive && !isScaled)
-    .activeOffsetY([-10, 10])
-    .failOffsetX([-10, 10])
-    .maxPointers(1)
-    .onUpdate(e => {
+  const dismissSwipePan = usePanGesture({
+    enabled: isActive && !isScaled && !isScrollViewBeingDragged,
+    activeOffsetY: [-10, 10],
+    failOffsetX: [-10, 10],
+    maxPointers: 1,
+    onUpdate: e => {
       'worklet'
       if (openProgress.get() !== 1 || isFlyingAway.get()) {
         return
       }
       dismissSwipeTranslateY.set(e.translationY)
-    })
-    .onEnd(e => {
+    },
+    onDeactivate: e => {
       'worklet'
       if (openProgress.get() !== 1 || isFlyingAway.get()) {
         return
@@ -632,7 +632,8 @@ function LightboxImage({
           }),
         )
       }
-    })
+    },
+  })
 
   return (
     <ImageItem

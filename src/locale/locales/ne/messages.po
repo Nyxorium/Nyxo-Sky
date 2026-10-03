@@ -184,8 +184,8 @@ msgstr ""
 msgid "{0, plural, one {# person} other {# people}} reacted – {1}"
 msgstr ""
 
-#. placeholder {0}: quoteCount ?? 0
-#: src/screens/Post/PostQuotes.tsx:34
+#. placeholder {0}: post.quoteCount ?? 0
+#: src/screens/Post/PostQuotes.tsx:35
 msgid "{0, plural, one {# quote} other {# quotes}}"
 msgstr ""
 
@@ -201,9 +201,9 @@ msgstr "{0, plural, one {# सेकेन्ड} other {# सेकेन्ड
 
 #. placeholder {0}: numUnreadMessages.numUnread ?? 0
 #. placeholder {0}: numUnreadNotifications ?? 0
-#: src/view/shell/bottom-bar/BottomBar.tsx:257
-#: src/view/shell/bottom-bar/BottomBar.tsx:289
-#: src/view/shell/Drawer.tsx:496
+#: src/view/shell/bottom-bar/BottomBar.tsx:255
+#: src/view/shell/bottom-bar/BottomBar.tsx:287
+#: src/view/shell/Drawer.tsx:499
 msgid "{0, plural, one {# unread item} other {# unread items}}"
 msgstr ""
 
@@ -383,7 +383,7 @@ msgstr ""
 
 #. Accessibility hint for the bottom bar chat icon when the number of unread messages exceeds the cap, with the + symbol already included – for example, 99+ unread items
 #. placeholder {0}: numUnreadMessages.numUnread
-#: src/view/shell/bottom-bar/BottomBar.tsx:252
+#: src/view/shell/bottom-bar/BottomBar.tsx:250
 msgid "{0} unread items"
 msgstr ""
 
@@ -535,7 +535,7 @@ msgstr ""
 msgid "{count, plural, one {# request} other {# requests}}"
 msgstr ""
 
-#: src/view/shell/desktop/LeftNav.tsx:485
+#: src/view/shell/desktop/LeftNav.tsx:486
 msgid "{count, plural, one {# unread item} other {# unread items}}"
 msgstr ""
 
@@ -546,6 +546,10 @@ msgstr ""
 
 #: src/components/dms/DateDivider.tsx:61
 msgid "{date} at {time}"
+msgstr ""
+
+#: src/screens/ModerationInbox/Notice.tsx:127
+msgid "{detailsLength} of {MAX_REPORT_REASON_GRAPHEME_LENGTH} characters used"
 msgstr ""
 
 #: src/lib/generate-starterpack.ts:100
@@ -843,7 +847,7 @@ msgstr ""
 msgid "{name}’s Starter Pack"
 msgstr ""
 
-#: src/view/shell/bottom-bar/BottomBarWeb.tsx:346
+#: src/view/shell/bottom-bar/BottomBarWeb.tsx:344
 msgid "{notificationCount, plural, one {# unread item} other {# unread items}}"
 msgstr ""
 
@@ -952,13 +956,13 @@ msgstr ""
 
 #. placeholder {0}: formatCount(i18n, profile?.followersCount ?? 0)
 #. placeholder {1}: profile?.followersCount || 0
-#: src/view/shell/Drawer.tsx:157
+#: src/view/shell/Drawer.tsx:160
 msgid "<0>{0}</0> {1, plural, one {follower} other {followers}}"
 msgstr "<0>{0}</0> {1, plural, one {अनुगामी} other {अनुगामीहरू}}"
 
 #. placeholder {0}: formatCount(i18n, profile?.followsCount ?? 0)
 #. placeholder {1}: profile?.followsCount || 0
-#: src/view/shell/Drawer.tsx:171
+#: src/view/shell/Drawer.tsx:174
 msgid "<0>{0}</0> {1, plural, one {following} other {following}}"
 msgstr "<0>{0}</0> {1, plural, one {पछ्याउँदै छन्} other {पछ्याउँदै छन्}}"
 
@@ -1005,7 +1009,7 @@ msgstr "<0>{0}</0> सदस्यहरू"
 msgid "<0>{displayName}</0><1/><2> added you</2>"
 msgstr ""
 
-#: src/screens/ModerationInbox/Subject.tsx:62
+#: src/screens/ModerationInbox/Notice.tsx:74
 msgid "<0>Community Guidelines: Harassment</0>"
 msgstr ""
 
@@ -1062,10 +1066,6 @@ msgstr ""
 #. If last message does not contain text, fall back to "{user} reacted to {a message}"
 #: src/components/dms/getReactionInfo.ts:58
 msgid "a message"
-msgstr ""
-
-#: src/screens/ModerationInbox/Subject.tsx:48
-msgid "A moderator reviewed your appeal and reversed the original decision. Your post has been restored and is visible again."
 msgstr ""
 
 #: src/components/contacts/screens/PhoneInput.tsx:103
@@ -1313,8 +1313,8 @@ msgstr "वैकल्पिक पाठ थप्नुहोस् (ऐच�
 
 #: src/screens/Settings/Settings.tsx:608
 #: src/screens/Settings/Settings.tsx:611
-#: src/view/shell/desktop/LeftNav.tsx:277
-#: src/view/shell/desktop/LeftNav.tsx:280
+#: src/view/shell/desktop/LeftNav.tsx:278
+#: src/view/shell/desktop/LeftNav.tsx:281
 msgid "Add another account"
 msgstr "अर्को खाता थप्नुहोस्"
 
@@ -1340,7 +1340,7 @@ msgstr "एप पासवर्ड थप्नुहोस्"
 msgid "Add App Password"
 msgstr "एप पासवर्ड थप्नुहोस्"
 
-#: src/screens/Settings/AutomationLabelSettings.tsx:170
+#: src/screens/Settings/AutomationLabelSettings.tsx:171
 msgid "Add automation label to account"
 msgstr ""
 
@@ -1453,7 +1453,7 @@ msgstr "सूचीहरूमा थप्नुहोस्"
 
 #. Accessibility label for the save button when the post has not been saved, verb form followed by number of saves and noun form
 #. placeholder {0}: bookmarkCount || 0
-#: src/components/PostControls/BookmarkButton.tsx:142
+#: src/components/PostControls/BookmarkButton.tsx:145
 msgid "Add to saved posts ({0, plural, one {# save} other {# saves}})"
 msgstr ""
 
@@ -1494,7 +1494,7 @@ msgstr ""
 msgid "Adding members to list..."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:118
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:117
 msgid "Additional details (limit 1000 characters)"
 msgstr ""
 
@@ -1545,11 +1545,11 @@ msgstr "उन्नत"
 msgid "Age Assurance"
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:74
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:73
 msgid "Age assurance inquiry failed to send, please try again."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:84
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:83
 msgctxt "toast"
 msgid "Age assurance inquiry was submitted"
 msgstr ""
@@ -1957,21 +1957,14 @@ msgstr ""
 #: src/components/moderation/LabelsOnMeDialog.tsx:169
 #: src/components/moderation/LabelsOnMeDialog.tsx:172
 #: src/components/moderation/ModerationDetailsDialog.tsx:223
+#: src/screens/ModerationInbox/Notice.tsx:166
 msgid "Appeal"
 msgstr "अपील"
 
 #. placeholder {0}: strings.name
-#: src/components/moderation/AppealForm.tsx:104
+#: src/components/moderation/AppealForm.tsx:105
 msgid "Appeal \"{0}\" label"
 msgstr "\"{0}\" लेबलको लागि अपील"
-
-#: src/screens/ModerationInbox/Subject.tsx:86
-msgid "Appeal approved, post restored"
-msgstr ""
-
-#: src/screens/ModerationInbox/Subject.tsx:47
-msgid "Appeal approved: Your post has been restored"
-msgstr ""
 
 #: src/components/moderation/ModerationDetailsDialog.tsx:159
 msgid "Appeal label"
@@ -1982,34 +1975,33 @@ msgstr ""
 msgid "Appeal labels"
 msgstr ""
 
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:92
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:91
 msgid "Appeal livestream suspension"
 msgstr ""
 
-#: src/screens/ModerationInbox/Subject.tsx:83
-msgid "Appeal submitted"
-msgstr "अपील बुझाइएको छ।"
-
-#: src/components/moderation/AppealForm.tsx:94
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:82
-#: src/screens/Messages/components/ChatDisabled.tsx:123
+#: src/components/moderation/AppealForm.tsx:95
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:81
+#: src/screens/Messages/components/ChatDisabled.tsx:122
 msgctxt "toast"
 msgid "Appeal submitted"
 msgstr "अपील बुझाइएको छ।"
 
-#: src/screens/Takendown.tsx:112
-#: src/screens/Takendown.tsx:138
+#: src/screens/Takendown.tsx:114
+#: src/screens/Takendown.tsx:140
 msgid "Appeal suspension"
 msgstr ""
 
-#: src/screens/Takendown.tsx:115
+#: src/screens/Takendown.tsx:117
 msgid "Appeal Suspension"
 msgstr ""
 
 #: src/screens/Messages/components/ChatDisabled.tsx:76
 #: src/screens/Messages/components/ChatDisabled.tsx:79
-#: src/screens/Messages/components/ChatDisabled.tsx:131
-#: src/screens/Messages/components/ChatDisabled.tsx:133
+#: src/screens/Messages/components/ChatDisabled.tsx:130
+#: src/screens/Messages/components/ChatDisabled.tsx:132
+#: src/screens/ModerationInbox/Notice.tsx:95
+#: src/screens/ModerationInbox/Notice.tsx:101
+#: src/screens/ModerationInbox/Notice.tsx:161
 msgid "Appeal this decision"
 msgstr "यो निर्णयको अपील गर्नुहोस्।"
 
@@ -2189,7 +2181,7 @@ msgid "Automation label"
 msgstr ""
 
 #: src/Navigation.tsx:528
-#: src/screens/Settings/AutomationLabelSettings.tsx:103
+#: src/screens/Settings/AutomationLabelSettings.tsx:104
 msgid "Automation Label"
 msgstr ""
 
@@ -2229,8 +2221,8 @@ msgstr ""
 #: src/components/dms/InitiateChatFlow.tsx:645
 #: src/components/dms/InitiateChatFlow.tsx:863
 #: src/components/dms/InitiateChatFlow.tsx:870
-#: src/components/moderation/AppealForm.tsx:156
 #: src/components/moderation/AppealForm.tsx:157
+#: src/components/moderation/AppealForm.tsx:158
 #: src/screens/Login/ChooseAccountForm.tsx:95
 #: src/screens/Login/ChooseAccountForm.tsx:99
 #: src/screens/Login/ForgotPasswordForm.tsx:123
@@ -2239,8 +2231,8 @@ msgstr ""
 #: src/screens/Login/LoginForm.tsx:517
 #: src/screens/Login/SetNewPasswordForm.tsx:162
 #: src/screens/Login/SetNewPasswordForm.tsx:168
-#: src/screens/Messages/components/ChatDisabled.tsx:162
-#: src/screens/Messages/components/ChatDisabled.tsx:164
+#: src/screens/Messages/components/ChatDisabled.tsx:161
+#: src/screens/Messages/components/ChatDisabled.tsx:163
 #: src/screens/Messages/components/InviteLinkDialog.tsx:274
 #: src/screens/Messages/components/InviteLinkDialog.tsx:302
 #: src/screens/Messages/Inbox.tsx:232
@@ -2446,7 +2438,7 @@ msgstr ""
 msgid "Block user and/or leave this conversation"
 msgstr ""
 
-#: src/components/Post/Embed/index.tsx:224
+#: src/components/Post/Embed/index.tsx:261
 msgid "Blocked"
 msgstr "ब्लक गरियो"
 
@@ -2479,7 +2471,7 @@ msgstr "ब्लक सार्वजनिक हुन्छ। ब्लक
 msgid "Blocking will not prevent labels from being applied on your account, but it will stop this account from replying in your threads or interacting with you."
 msgstr "ब्लकले तपाईंको खातामा लेबलहरू लागू हुनबाट रोक्दैन, तर यस खाताले तपाईंको थ्रेडहरूमा उत्तर दिन वा तपाईंसँग अन्तरक्रिया गर्न रोक्नेछ।"
 
-#: src/view/com/auth/SplashScreen.web.tsx:175
+#: src/view/com/auth/SplashScreen.web.tsx:174
 msgid "Blog"
 msgstr "ब्लग"
 
@@ -2545,16 +2537,20 @@ msgstr ""
 msgid "Bluesky is more fun with friends. Do you want to invite some of yours? <0/>"
 msgstr ""
 
+#: src/screens/ModerationInbox/Notice.tsx:44
 #: src/screens/ModerationInbox/Report.tsx:38
-#: src/screens/ModerationInbox/Subject.tsx:38
 msgid "Bluesky Moderation Service"
+msgstr ""
+
+#: src/screens/ModerationInbox/Notice.tsx:53
+msgid "Bluesky Moderation Service removed a post from Bluesky for violating our <0>Community Guidelines</0>."
 msgstr ""
 
 #: src/features/inviteFriends/InviteScannerScreen.tsx:105
 msgid "Bluesky needs camera access to scan QR codes from other profiles."
 msgstr ""
 
-#: src/screens/Takendown.tsx:211
+#: src/screens/Takendown.tsx:213
 msgid "Bluesky Social Terms of Service"
 msgstr ""
 
@@ -2647,11 +2643,11 @@ msgstr ""
 msgid "Browse topic {displayName}"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:170
+#: src/view/com/auth/SplashScreen.web.tsx:169
 msgid "Business"
 msgstr "व्यापार"
 
-#: src/screens/Bookmarks.tsx:293
+#: src/screens/Bookmarks.tsx:296
 msgid "Button to go back to the home timeline"
 msgstr ""
 
@@ -2723,8 +2719,8 @@ msgid "Camera access needed"
 msgstr ""
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:210
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:135
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:141
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:134
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:140
 #: src/components/contacts/screens/GetContacts.tsx:294
 #: src/components/contacts/screens/GetContacts.tsx:299
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:141
@@ -2754,6 +2750,7 @@ msgstr ""
 #: src/screens/Messages/ConversationSettings/prompts.tsx:132
 #: src/screens/Messages/ConversationSettings/prompts.tsx:156
 #: src/screens/Messages/ConversationSettings/prompts.tsx:180
+#: src/screens/ModerationInbox/Notice.tsx:138
 #: src/screens/Profile/Header/EditProfileDialog.tsx:234
 #: src/screens/Profile/Header/EditProfileDialog.tsx:242
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:202
@@ -2767,15 +2764,19 @@ msgstr ""
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:250
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:256
 #: src/screens/Settings/Settings.tsx:324
-#: src/screens/Takendown.tsx:100
-#: src/screens/Takendown.tsx:103
+#: src/screens/Takendown.tsx:102
+#: src/screens/Takendown.tsx:105
 #: src/view/com/composer/Composer.tsx:1842
 #: src/view/com/composer/Composer.tsx:1852
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:44
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:53
-#: src/view/shell/desktop/LeftNav.tsx:229
+#: src/view/shell/desktop/LeftNav.tsx:230
 msgid "Cancel"
 msgstr "रद्द गर्नुहोस्"
+
+#: src/screens/ModerationInbox/Notice.tsx:132
+msgid "Cancel appeal"
+msgstr ""
 
 #: src/components/PostControls/RepostButton.tsx:243
 msgid "Cancel quote post"
@@ -2909,9 +2910,9 @@ msgstr ""
 
 #: src/lib/hooks/useNotificationHandler.ts:133
 #: src/Navigation.tsx:623
-#: src/view/shell/bottom-bar/BottomBar.tsx:248
-#: src/view/shell/desktop/LeftNav.tsx:703
-#: src/view/shell/Drawer.tsx:464
+#: src/view/shell/bottom-bar/BottomBar.tsx:246
+#: src/view/shell/desktop/LeftNav.tsx:702
+#: src/view/shell/Drawer.tsx:467
 msgid "Chat"
 msgstr "कुराकानी"
 
@@ -3372,7 +3373,7 @@ msgstr "कमिक्स"
 msgid "Community Guidelines"
 msgstr "समुदायका दिशानिर्देशहरू"
 
-#: src/screens/ModerationInbox/Subject.tsx:65
+#: src/screens/ModerationInbox/Notice.tsx:77
 msgid "Community Guidelines: Harassment"
 msgstr ""
 
@@ -3386,7 +3387,7 @@ msgstr "चुनौती पूरा गर्नुहोस्"
 
 #: src/lib/hotkeys/index.tsx:66
 #: src/view/com/feeds/ComposerPrompt.tsx:161
-#: src/view/shell/desktop/LeftNav.tsx:587
+#: src/view/shell/desktop/LeftNav.tsx:588
 msgid "Compose new post"
 msgstr "नयाँ पोस्ट तयार गर्नुहोस्"
 
@@ -3469,7 +3470,7 @@ msgstr "समर्थन सम्पर्क गर्नुहोस्"
 msgid "Contact sync is not available on this device, as the app is unable to access your contacts."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:100
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:99
 msgid "Contact us"
 msgstr ""
 
@@ -3880,11 +3881,11 @@ msgstr ""
 #: src/screens/Messages/JoinRequest.tsx:318
 #: src/screens/Signup/index.tsx:136
 #: src/view/com/auth/SplashScreen.tsx:108
-#: src/view/com/auth/SplashScreen.web.tsx:117
-#: src/view/shell/bottom-bar/BottomBar.tsx:357
-#: src/view/shell/bottom-bar/BottomBar.tsx:361
-#: src/view/shell/bottom-bar/BottomBarWeb.tsx:252
-#: src/view/shell/bottom-bar/BottomBarWeb.tsx:257
+#: src/view/com/auth/SplashScreen.web.tsx:116
+#: src/view/shell/bottom-bar/BottomBar.tsx:355
+#: src/view/shell/bottom-bar/BottomBar.tsx:359
+#: src/view/shell/bottom-bar/BottomBarWeb.tsx:250
+#: src/view/shell/bottom-bar/BottomBarWeb.tsx:255
 #: src/view/shell/NavSignupCard.tsx:48
 #: src/view/shell/NavSignupCard.tsx:53
 msgid "Create account"
@@ -3934,7 +3935,7 @@ msgstr ""
 
 #: src/screens/Messages/JoinRequest.tsx:312
 #: src/view/com/auth/SplashScreen.tsx:89
-#: src/view/com/auth/SplashScreen.web.tsx:109
+#: src/view/com/auth/SplashScreen.web.tsx:108
 msgid "Create new account"
 msgstr "नयाँ खाता सिर्जना गर्नुहोस्"
 
@@ -4165,7 +4166,7 @@ msgstr "यो सूची मेटाउनुहोस्?"
 msgid "Delete this post?"
 msgstr "यो पोस्ट मेटाउनुहोस्?"
 
-#: src/components/Post/Embed/index.tsx:217
+#: src/components/Post/Embed/index.tsx:254
 msgid "Deleted"
 msgstr "मेटाइयो"
 
@@ -4511,7 +4512,7 @@ msgstr ""
 msgid "Double tap to close the dialog"
 msgstr "संवाद बन्द गर्न डबल ट्याप गर्नुहोस्"
 
-#: src/screens/VideoFeed/index.tsx:1235
+#: src/screens/VideoFeed/index.tsx:1247
 msgid "Double tap to like"
 msgstr ""
 
@@ -5078,7 +5079,7 @@ msgstr "जसमा तपाईं उत्तर दिँदै हुन�
 msgid "Expand post text"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:1111
+#: src/screens/VideoFeed/index.tsx:1123
 msgid "Expands or collapses post text"
 msgstr ""
 
@@ -5123,8 +5124,8 @@ msgstr "स्पष्ट यौन चित्रहरू।"
 
 #: src/Navigation.tsx:883
 #: src/screens/Search/Shell.tsx:549
-#: src/view/shell/desktop/LeftNav.tsx:682
-#: src/view/shell/Drawer.tsx:412
+#: src/view/shell/desktop/LeftNav.tsx:681
+#: src/view/shell/Drawer.tsx:415
 msgid "Explore"
 msgstr ""
 
@@ -5347,13 +5348,13 @@ msgid "Failed to lock group chat"
 msgstr ""
 
 #: src/screens/Messages/ChatList.tsx:636
-#: src/view/shell/bottom-bar/BottomBar.tsx:453
+#: src/view/shell/bottom-bar/BottomBar.tsx:451
 msgid "Failed to mark all chats as read"
 msgstr ""
 
 #: src/screens/Messages/ChatList.tsx:645
 #: src/screens/Messages/Inbox.tsx:303
-#: src/view/shell/bottom-bar/BottomBar.tsx:462
+#: src/view/shell/bottom-bar/BottomBar.tsx:460
 msgid "Failed to mark all requests as read"
 msgstr ""
 
@@ -5452,9 +5453,9 @@ msgstr ""
 msgid "Failed to send report"
 msgstr ""
 
-#: src/components/moderation/AppealForm.tsx:88
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:76
-#: src/screens/Messages/components/ChatDisabled.tsx:117
+#: src/components/moderation/AppealForm.tsx:89
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:75
+#: src/screens/Messages/components/ChatDisabled.tsx:116
 msgid "Failed to submit appeal, please try again."
 msgstr "अपील पठाउन असफल भयो, कृपया पुन: प्रयास गर्नुहोस्।"
 
@@ -5577,8 +5578,8 @@ msgstr ""
 #: src/screens/StarterPack/StarterPackScreen.tsx:211
 #: src/view/screens/Feeds.tsx:508
 #: src/view/screens/Profile.tsx:257
-#: src/view/shell/desktop/LeftNav.tsx:717
-#: src/view/shell/Drawer.tsx:528
+#: src/view/shell/desktop/LeftNav.tsx:716
+#: src/view/shell/Drawer.tsx:531
 msgid "Feeds"
 msgstr "फिड्स"
 
@@ -5740,7 +5741,7 @@ msgstr ""
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:404
-#: src/screens/VideoFeed/index.tsx:994
+#: src/screens/VideoFeed/index.tsx:1006
 #: src/view/com/notifications/NotificationFeedItem.tsx:895
 #: src/view/com/notifications/NotificationFeedItem.tsx:902
 msgid "Follow"
@@ -5756,7 +5757,7 @@ msgstr "{0} लाई अनुसरण गर्नुहोस्"
 msgid "Follow {displayName}"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:973
+#: src/screens/VideoFeed/index.tsx:985
 msgid "Follow {handle}"
 msgstr ""
 
@@ -5860,7 +5861,7 @@ msgstr "तपाईंले चिनेका अनुसरणकर्त�
 #: src/components/ProfileHoverCard/index.web.tsx:512
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:400
-#: src/screens/VideoFeed/index.tsx:992
+#: src/screens/VideoFeed/index.tsx:1004
 #: src/view/com/notifications/NotificationFeedItem.tsx:874
 #: src/view/com/notifications/NotificationFeedItem.tsx:890
 msgid "Following"
@@ -5886,7 +5887,7 @@ msgstr "{0} लाई अनुसरण गर्दै"
 msgid "Following {displayName}"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:972
+#: src/screens/VideoFeed/index.tsx:984
 msgid "Following {handle}"
 msgstr ""
 
@@ -5920,6 +5921,10 @@ msgstr "फन्ट आकार"
 #: src/lib/interests.ts:61
 msgid "Food"
 msgstr "खाना"
+
+#: src/screens/ModerationInbox/Notice.tsx:179
+msgid "For more information about our appeals and redress process, please see our <0>Terms of Service</0>."
+msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:109
 msgid "For organizational accounts, use the birthdate of the person who is responsible for the account."
@@ -6157,8 +6162,8 @@ msgstr ""
 #: src/screens/ProfileList/components/ErrorScreen.tsx:35
 #: src/screens/ProfileList/components/ErrorScreen.tsx:41
 #: src/screens/VideoFeed/components/Header.tsx:163
-#: src/screens/VideoFeed/index.tsx:1296
-#: src/screens/VideoFeed/index.tsx:1300
+#: src/screens/VideoFeed/index.tsx:1308
+#: src/screens/VideoFeed/index.tsx:1312
 #: src/view/com/auth/LoggedOut.tsx:127
 #: src/view/com/profile/ProfileFollowers.tsx:225
 #: src/view/com/profile/ProfileFollowers.tsx:226
@@ -6182,7 +6187,7 @@ msgstr "फर्कनुहोस्"
 msgid "Go back to previous step"
 msgstr "पिछले चरण पर जाएं"
 
-#: src/screens/Bookmarks.tsx:294
+#: src/screens/Bookmarks.tsx:297
 #: src/view/screens/NotFound.tsx:51
 #: src/view/screens/NotFound.tsx:52
 #: src/view/screens/NotFound.tsx:57
@@ -6242,8 +6247,8 @@ msgstr "अर्कोमा जानुहोस्"
 #: src/components/dms/ConvoMenu.tsx:262
 #: src/screens/Messages/components/MessagesListInfoPanel.tsx:102
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:194
-#: src/view/shell/desktop/LeftNav.tsx:337
-#: src/view/shell/desktop/LeftNav.tsx:343
+#: src/view/shell/desktop/LeftNav.tsx:338
+#: src/view/shell/desktop/LeftNav.tsx:344
 msgid "Go to profile"
 msgstr "प्रोफाइलमा जानुहोस्"
 
@@ -6259,7 +6264,7 @@ msgstr "प्रयोगकर्ताको प्रोफाइलमा �
 msgid "Go to user’s profile"
 msgstr ""
 
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:104
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:103
 msgid "Going live is currently disabled for your account"
 msgstr ""
 
@@ -6472,7 +6477,7 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:774
+#: src/screens/VideoFeed/index.tsx:786
 msgid "Hidden by your moderation settings."
 msgstr ""
 
@@ -6625,9 +6630,9 @@ msgstr "पर्खनुहोस्! हामी बिस्तारै �
 
 #: src/Navigation.tsx:878
 #: src/Navigation.tsx:899
-#: src/view/shell/bottom-bar/BottomBar.tsx:202
-#: src/view/shell/desktop/LeftNav.tsx:669
-#: src/view/shell/Drawer.tsx:438
+#: src/view/shell/bottom-bar/BottomBar.tsx:200
+#: src/view/shell/desktop/LeftNav.tsx:670
+#: src/view/shell/Drawer.tsx:441
 msgid "Home"
 msgstr "गृहपृष्ठ"
 
@@ -7013,7 +7018,7 @@ msgstr "निमन्त्रणा कोड स्वीकार गरि
 
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:449
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:429
-#: src/view/shell/Drawer.tsx:120
+#: src/view/shell/Drawer.tsx:123
 msgid "Invite friends"
 msgstr ""
 
@@ -7219,6 +7224,7 @@ msgid "Last initiated just now"
 msgstr ""
 
 #: src/screens/Hashtag.tsx:99
+#: src/screens/Post/PostQuotes.tsx:88
 #: src/screens/Search/SearchResults.tsx:90
 #: src/screens/Topic.tsx:66
 msgid "Latest"
@@ -7247,7 +7253,7 @@ msgstr ""
 msgid "Learn more about age assurance"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:168
+#: src/view/com/auth/SplashScreen.web.tsx:167
 msgid "Learn more about Bluesky"
 msgstr "ब्लूस्काईबारे थप जान्नुहोस्"
 
@@ -7602,8 +7608,8 @@ msgstr "सूची अनम्यूट गरियो"
 #: src/view/screens/Lists.tsx:60
 #: src/view/screens/Profile.tsx:251
 #: src/view/screens/Profile.tsx:259
-#: src/view/shell/desktop/LeftNav.tsx:727
-#: src/view/shell/Drawer.tsx:543
+#: src/view/shell/desktop/LeftNav.tsx:726
+#: src/view/shell/Drawer.tsx:546
 msgid "Lists"
 msgstr "सूचीहरू"
 
@@ -7663,14 +7669,15 @@ msgid "Load new notifications"
 msgstr "नयाँ सूचनाहरू लोड गर्नुहोस्।"
 
 #: src/components/NewPostsPill/index.tsx:168
+#: src/features/followingV2/home/FeedPage.tsx:175
 #: src/screens/CustomFeed/index.tsx:208
 #: src/screens/Profile/Sections/Feed.tsx:121
 #: src/screens/ProfileList/FeedSection.tsx:113
-#: src/view/com/feeds/FeedPage.tsx:173
+#: src/view/com/feeds/FeedPage.tsx:184
 msgid "Load new posts"
 msgstr "नयाँ पोस्टहरू लोड गर्नुहोस्।"
 
-#: src/view/screens/Storybook/NewPostsPill.tsx:138
+#: src/view/screens/Storybook/NewPostsPill.tsx:139
 msgid "Load new posts from the people you follow"
 msgstr ""
 
@@ -7724,7 +7731,7 @@ msgid "Logo by @sawaratsuki.bsky.social"
 msgstr ""
 
 #: src/view/shell/desktop/RightNav.tsx:126
-#: src/view/shell/Drawer.tsx:712
+#: src/view/shell/Drawer.tsx:715
 msgid "Logo by <0>@sawaratsuki.bsky.social</0>"
 msgstr "लोगो द्वारा <0>@sawaratsuki.bsky.social</0>"
 
@@ -7797,8 +7804,8 @@ msgstr ""
 
 #: src/screens/Messages/ChatList.tsx:655
 #: src/screens/Messages/ChatList.tsx:659
-#: src/view/shell/bottom-bar/BottomBar.tsx:471
-#: src/view/shell/bottom-bar/BottomBar.tsx:475
+#: src/view/shell/bottom-bar/BottomBar.tsx:469
+#: src/view/shell/bottom-bar/BottomBar.tsx:473
 msgid "Mark all chats as read"
 msgstr ""
 
@@ -7808,8 +7815,8 @@ msgstr ""
 
 #: src/screens/Messages/ChatList.tsx:663
 #: src/screens/Messages/ChatList.tsx:667
-#: src/view/shell/bottom-bar/BottomBar.tsx:479
-#: src/view/shell/bottom-bar/BottomBar.tsx:483
+#: src/view/shell/bottom-bar/BottomBar.tsx:477
+#: src/view/shell/bottom-bar/BottomBar.tsx:481
 msgid "Mark all requests as read"
 msgstr ""
 
@@ -7823,12 +7830,12 @@ msgid "Marked all as read"
 msgstr ""
 
 #: src/screens/Messages/ChatList.tsx:633
-#: src/view/shell/bottom-bar/BottomBar.tsx:450
+#: src/view/shell/bottom-bar/BottomBar.tsx:448
 msgid "Marked all chats as read"
 msgstr ""
 
 #: src/screens/Messages/ChatList.tsx:642
-#: src/view/shell/bottom-bar/BottomBar.tsx:459
+#: src/view/shell/bottom-bar/BottomBar.tsx:457
 msgid "Marked all requests as read"
 msgstr ""
 
@@ -8271,7 +8278,7 @@ msgstr ""
 msgid "Navigates to the next screen"
 msgstr "अर्को स्क्रिनमा जानुहोस्"
 
-#: src/view/shell/Drawer.tsx:91
+#: src/view/shell/Drawer.tsx:94
 msgid "Navigates to your profile"
 msgstr "तपाईंको प्रोफाइलमा जानुहोस्"
 
@@ -8403,8 +8410,9 @@ msgstr "नयाँ पासवर्ड"
 msgid "New post"
 msgstr "नयाँ पोस्ट"
 
-#: src/view/com/feeds/FeedPage.tsx:184
-#: src/view/shell/desktop/LeftNav.tsx:598
+#: src/features/followingV2/home/FeedPage.tsx:186
+#: src/view/com/feeds/FeedPage.tsx:195
+#: src/view/shell/desktop/LeftNav.tsx:599
 msgctxt "action"
 msgid "New post"
 msgstr "नयाँ पोस्ट"
@@ -8418,7 +8426,7 @@ msgstr ""
 msgid "New posts"
 msgstr ""
 
-#: src/view/screens/Storybook/NewPostsPill.tsx:137
+#: src/view/screens/Storybook/NewPostsPill.tsx:138
 msgid "New posts are ready to load from the people you follow"
 msgstr ""
 
@@ -8647,7 +8655,7 @@ msgstr ""
 msgid "No posts yet"
 msgstr ""
 
-#: src/view/com/post-thread/PostQuotes.tsx:107
+#: src/view/com/post-thread/PostQuotes.tsx:140
 msgid "No quotes yet"
 msgstr "अहिलेसम्म कुनै उद्धरण छैन।"
 
@@ -8732,7 +8740,7 @@ msgstr "कसैले पनि होइन"
 msgid "Nobody has liked this yet. Maybe you should be the first!"
 msgstr "अहिलेसम्म कसैले यो मन पराएका छैनन्। सायद तपाई पहिलो हुनु पर्छ!"
 
-#: src/view/com/post-thread/PostQuotes.tsx:109
+#: src/view/com/post-thread/PostQuotes.tsx:142
 msgid "Nobody has quoted this yet. Maybe you should be the first!"
 msgstr "अहिलेसम्म कसैले उद्धृत गरेका छैनन्। सायद तपाई पहिलो हुनु पर्छ!"
 
@@ -8803,12 +8811,12 @@ msgstr ""
 msgid "Nothing on your account is restricted right now. Strikes from violations come off your record over time."
 msgstr ""
 
-#: src/screens/Bookmarks.tsx:290
+#: src/screens/Bookmarks.tsx:293
 msgid "Nothing saved yet"
 msgstr ""
 
 #: src/Navigation.tsx:213
-#: src/screens/ModerationInbox/Subject.tsx:35
+#: src/screens/ModerationInbox/Notice.tsx:41
 msgid "Notice"
 msgstr ""
 
@@ -8833,9 +8841,9 @@ msgstr "सूचना ध्वनीहरू"
 #: src/screens/Settings/Settings.tsx:207
 #: src/screens/Settings/Settings.tsx:210
 #: src/view/screens/Notifications.tsx:131
-#: src/view/shell/bottom-bar/BottomBar.tsx:285
-#: src/view/shell/desktop/LeftNav.tsx:692
-#: src/view/shell/Drawer.tsx:491
+#: src/view/shell/bottom-bar/BottomBar.tsx:283
+#: src/view/shell/desktop/LeftNav.tsx:691
+#: src/view/shell/Drawer.tsx:494
 msgid "Notifications"
 msgstr "सूचनाहरू"
 
@@ -9261,13 +9269,13 @@ msgstr ""
 
 #: src/screens/Messages/JoinRequest.tsx:313
 #: src/view/com/auth/SplashScreen.tsx:91
-#: src/view/com/auth/SplashScreen.web.tsx:111
+#: src/view/com/auth/SplashScreen.web.tsx:110
 msgid "Opens flow to create a new Bluesky account"
 msgstr "नयाँ Bluesky खाता सिर्जना गर्न प्रवाह खोल्नुहोस्"
 
 #: src/screens/Messages/JoinRequest.tsx:299
 #: src/view/com/auth/SplashScreen.tsx:120
-#: src/view/com/auth/SplashScreen.web.tsx:125
+#: src/view/com/auth/SplashScreen.web.tsx:124
 msgid "Opens flow to sign in to your existing Bluesky account"
 msgstr "आफ्नो विद्यमान Bluesky खातामा साइन इन गर्न प्रवाह खोल्नुहोस्"
 
@@ -9305,7 +9313,7 @@ msgstr ""
 msgid "Opens the GIF picker dialog"
 msgstr ""
 
-#: src/view/shell/Drawer.tsx:122
+#: src/view/shell/Drawer.tsx:125
 msgid "Opens the invite friends sheet to share your profile"
 msgstr ""
 
@@ -9831,15 +9839,15 @@ msgid "Please enter your username"
 msgstr ""
 
 #. placeholder {0}: labeler ? sanitizeHandle(labeler.creator.handle, '@') : label.src
-#: src/components/moderation/AppealForm.tsx:131
+#: src/components/moderation/AppealForm.tsx:132
 msgid "Please explain why you think this label was incorrectly applied by {0}"
 msgstr "कृपया व्याख्या गर्नुहोस् कि तपाईंलाई किन लाग्छ यो लेबल {0} द्वारा गलत रूपमा लागू गरियो।"
 
-#: src/screens/Messages/components/ChatDisabled.tsx:141
+#: src/screens/Messages/components/ChatDisabled.tsx:140
 msgid "Please explain why you think your chats were incorrectly disabled"
 msgstr "कृपया व्याख्या गर्नुहोस् कि तपाईंलाई किन लाग्छ तपाईंको च्याटहरू गलत रूपमा निष्क्रिय गरिए।"
 
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:123
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:122
 msgid "Please explain why you think your Go Live access was incorrectly disabled."
 msgstr ""
 
@@ -9848,7 +9856,7 @@ msgstr ""
 msgid "Please go back, or activate this element to return to the start of the active content."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:104
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:103
 msgid "Please provide any additional details you feel moderators may need in order to properly assess your Age Assurance status."
 msgstr ""
 
@@ -9956,7 +9964,7 @@ msgstr ""
 msgid "Post by @{0}"
 msgstr "@{0} द्वारा पोस्ट"
 
-#: src/screens/ModerationInbox/Subject.tsx:77
+#: src/screens/ModerationInbox/Notice.tsx:109
 msgid "Post created"
 msgstr ""
 
@@ -9972,7 +9980,7 @@ msgstr "पोस्ट अपलोड गर्न असफल भयो। �
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:140
 #: src/screens/PostThread/components/ThreadItemPost.tsx:122
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:113
-#: src/screens/VideoFeed/index.tsx:565
+#: src/screens/VideoFeed/index.tsx:577
 msgid "Post has been deleted"
 msgstr ""
 
@@ -10025,8 +10033,8 @@ msgctxt "toast"
 msgid "Post pinned"
 msgstr "पोस्ट पिन गरियो"
 
+#: src/screens/ModerationInbox/Notice.tsx:109
 #: src/screens/ModerationInbox/Report.tsx:89
-#: src/screens/ModerationInbox/Subject.tsx:80
 msgid "Post removed"
 msgstr ""
 
@@ -10139,8 +10147,8 @@ msgstr ""
 #: src/screens/Settings/AboutSettings.tsx:125
 #: src/screens/Settings/AboutSettings.tsx:128
 #: src/view/screens/PrivacyPolicy.tsx:26
-#: src/view/shell/Drawer.tsx:705
-#: src/view/shell/Drawer.tsx:706
+#: src/view/shell/Drawer.tsx:708
+#: src/view/shell/Drawer.tsx:709
 msgid "Privacy Policy"
 msgstr "गोपनीयता नीति"
 
@@ -10164,10 +10172,10 @@ msgstr "प्रशोधन हुँदैछ।"
 msgid "profile"
 msgstr "प्रोफाइल"
 
-#: src/view/shell/bottom-bar/BottomBar.tsx:328
-#: src/view/shell/desktop/LeftNav.tsx:750
-#: src/view/shell/Drawer.tsx:90
-#: src/view/shell/Drawer.tsx:594
+#: src/view/shell/bottom-bar/BottomBar.tsx:326
+#: src/view/shell/desktop/LeftNav.tsx:749
+#: src/view/shell/Drawer.tsx:93
+#: src/view/shell/Drawer.tsx:597
 msgid "Profile"
 msgstr "प्रोफाइल"
 
@@ -10371,11 +10379,11 @@ msgstr ""
 msgid "Read blog post"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:1112
+#: src/screens/VideoFeed/index.tsx:1124
 msgid "Read less"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:1112
+#: src/screens/VideoFeed/index.tsx:1124
 msgid "Read more"
 msgstr ""
 
@@ -10387,11 +10395,16 @@ msgstr ""
 msgid "Read our blog post"
 msgstr ""
 
+#: src/screens/ModerationInbox/Notice.tsx:58
 #: src/screens/ModerationInbox/Report.tsx:53
 msgid "Read our Community Guidelines"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:173
+#: src/screens/ModerationInbox/Notice.tsx:184
+msgid "Read our Terms of Service"
+msgstr ""
+
+#: src/view/com/auth/SplashScreen.web.tsx:172
 msgid "Read the Bluesky blog"
 msgstr "ब्लूस्काई ब्लग पढ्नुहोस्।"
 
@@ -10405,8 +10418,10 @@ msgstr "ब्लूस्काई गोपनीयता नीति पढ
 msgid "Read the Bluesky Terms of Service"
 msgstr "ब्लूस्काई सेवा सर्तहरू पढ्नुहोस्।"
 
-#: src/screens/Takendown.tsx:156
-#: src/screens/Takendown.tsx:164
+#: src/screens/ModerationInbox/Notice.tsx:195
+#: src/screens/ModerationInbox/Notice.tsx:213
+#: src/screens/Takendown.tsx:158
+#: src/screens/Takendown.tsx:166
 msgid "Reason for appeal"
 msgstr ""
 
@@ -10486,7 +10501,7 @@ msgstr "वार्तालाप पुनः लोड गर्नुहो
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:108
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:115
-#: src/screens/Bookmarks.tsx:256
+#: src/screens/Bookmarks.tsx:259
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:178
 #: src/screens/Moderation/index.tsx:552
@@ -10594,13 +10609,13 @@ msgstr "छिटो पहुँचबाट हटाउने?"
 msgid "Remove from saved feeds"
 msgstr "सुरक्षित फिडबाट हटाउनुहोस्"
 
-#: src/screens/Bookmarks.tsx:250
+#: src/screens/Bookmarks.tsx:253
 msgid "Remove from saved posts"
 msgstr ""
 
 #. Accessibility label for the save button when the post has been saved, verb followed by number of saves and noun
 #. placeholder {0}: bookmarkCount || 0
-#: src/components/PostControls/BookmarkButton.tsx:129
+#: src/components/PostControls/BookmarkButton.tsx:132
 msgid "Remove from saved posts ({0, plural, one {# save} other {# saves}})"
 msgstr ""
 
@@ -10667,11 +10682,11 @@ msgstr ""
 msgid "Remove your verification for this account?"
 msgstr ""
 
-#: src/components/Post/Embed/index.tsx:252
+#: src/components/Post/Embed/index.tsx:289
 msgid "Removed by author"
 msgstr "लेखकद्वारा हटाइयो"
 
-#: src/components/Post/Embed/index.tsx:250
+#: src/components/Post/Embed/index.tsx:287
 msgid "Removed by you"
 msgstr "तपाईँद्वारा हटाइयो"
 
@@ -10684,8 +10699,8 @@ msgstr "सूचीबाट हटाइयो"
 msgid "Removed from saved feeds"
 msgstr "सुरक्षित फिडहरूबाट हटाइयो"
 
-#: src/components/PostControls/BookmarkButton.tsx:96
-#: src/screens/Bookmarks.tsx:209
+#: src/components/PostControls/BookmarkButton.tsx:99
+#: src/screens/Bookmarks.tsx:212
 msgid "Removed from saved posts"
 msgstr ""
 
@@ -11114,10 +11129,6 @@ msgstr ""
 msgid "Restore the {defaultChannel} deployment"
 msgstr ""
 
-#: src/screens/ModerationInbox/Subject.tsx:54
-msgid "Restored post"
-msgstr ""
-
 #: src/screens/Settings/FindContactsSettings.tsx:551
 #: src/screens/Settings/FindContactsSettings.tsx:567
 msgid "Resync contacts"
@@ -11178,7 +11189,7 @@ msgstr "गृहपृष्ठमा फर्कनुहोस्"
 
 #: src/screens/ProfileList/components/ErrorScreen.tsx:36
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:577
-#: src/screens/VideoFeed/index.tsx:1297
+#: src/screens/VideoFeed/index.tsx:1309
 #: src/view/screens/NotFound.tsx:54
 msgid "Returns to previous page"
 msgstr "अघिल्लो पृष्ठमा फर्कनुहोस्"
@@ -11191,7 +11202,7 @@ msgstr ""
 msgid "Reveal password"
 msgstr ""
 
-#: src/screens/ModerationInbox/Subject.tsx:59
+#: src/screens/ModerationInbox/Notice.tsx:71
 msgid "Rule violated:"
 msgstr ""
 
@@ -11280,8 +11291,8 @@ msgstr ""
 msgid "Save to my feeds"
 msgstr "मेरो फिडहरूमा सुरक्षित गर्नुहोस्"
 
-#: src/view/shell/desktop/LeftNav.tsx:737
-#: src/view/shell/Drawer.tsx:569
+#: src/view/shell/desktop/LeftNav.tsx:736
+#: src/view/shell/Drawer.tsx:572
 msgctxt "link to bookmarks screen"
 msgid "Saved"
 msgstr ""
@@ -11304,7 +11315,7 @@ msgstr "सुरक्षित फिडहरू"
 
 #: src/components/dialogs/nuxs/BookmarksAnnouncement.tsx:145
 #: src/Navigation.tsx:693
-#: src/screens/Bookmarks.tsx:57
+#: src/screens/Bookmarks.tsx:60
 msgid "Saved Posts"
 msgstr ""
 
@@ -11371,7 +11382,7 @@ msgstr "माथि स्क्रोल गर्नुहोस्"
 #: src/screens/Search/Shell.tsx:549
 #: src/screens/Search/Shell.tsx:612
 #: src/screens/Search/Shell.tsx:753
-#: src/view/shell/bottom-bar/BottomBar.tsx:222
+#: src/view/shell/bottom-bar/BottomBar.tsx:220
 msgid "Search"
 msgstr "खोज्नुहोस्"
 
@@ -11838,8 +11849,8 @@ msgstr "पासवर्ड रीसेटको लागि इमेल �
 
 #: src/Navigation.tsx:249
 #: src/screens/Settings/Settings.tsx:108
-#: src/view/shell/desktop/LeftNav.tsx:760
-#: src/view/shell/Drawer.tsx:607
+#: src/view/shell/desktop/LeftNav.tsx:759
+#: src/view/shell/Drawer.tsx:610
 msgid "Settings"
 msgstr "सेटिङ्स"
 
@@ -12067,13 +12078,13 @@ msgstr "विकल्पात्मक पाठ देखाउनुहो�
 #: src/features/liveNow/components/LiveStatusDialog.tsx:315
 #: src/features/liveNow/components/LiveStatusDialog.tsx:319
 #: src/screens/List/ListHiddenScreen.tsx:193
-#: src/screens/VideoFeed/index.tsx:777
-#: src/screens/VideoFeed/index.tsx:783
+#: src/screens/VideoFeed/index.tsx:789
+#: src/screens/VideoFeed/index.tsx:795
 msgid "Show anyway"
 msgstr "तथापि देखाउनुहोस्"
 
-#: src/screens/Settings/AutomationLabelSettings.tsx:185
-#: src/screens/Settings/AutomationLabelSettings.tsx:198
+#: src/screens/Settings/AutomationLabelSettings.tsx:186
+#: src/screens/Settings/AutomationLabelSettings.tsx:199
 msgid "Show automation label"
 msgstr ""
 
@@ -12226,12 +12237,12 @@ msgstr ""
 #: src/screens/Search/SearchResults.tsx:399
 #: src/view/com/auth/SplashScreen.tsx:118
 #: src/view/com/auth/SplashScreen.tsx:125
-#: src/view/com/auth/SplashScreen.web.tsx:123
-#: src/view/com/auth/SplashScreen.web.tsx:131
-#: src/view/shell/bottom-bar/BottomBar.tsx:366
-#: src/view/shell/bottom-bar/BottomBar.tsx:370
-#: src/view/shell/bottom-bar/BottomBarWeb.tsx:262
-#: src/view/shell/bottom-bar/BottomBarWeb.tsx:267
+#: src/view/com/auth/SplashScreen.web.tsx:122
+#: src/view/com/auth/SplashScreen.web.tsx:130
+#: src/view/shell/bottom-bar/BottomBar.tsx:364
+#: src/view/shell/bottom-bar/BottomBar.tsx:368
+#: src/view/shell/bottom-bar/BottomBarWeb.tsx:260
+#: src/view/shell/bottom-bar/BottomBarWeb.tsx:265
 #: src/view/shell/NavSignupCard.tsx:58
 #: src/view/shell/NavSignupCard.tsx:63
 msgid "Sign in"
@@ -12282,19 +12293,19 @@ msgstr ""
 #: src/screens/Settings/Settings.tsx:323
 #: src/screens/SignupQueued.tsx:100
 #: src/screens/SignupQueued.tsx:103
-#: src/screens/Takendown.tsx:86
-#: src/view/shell/desktop/LeftNav.tsx:228
-#: src/view/shell/desktop/LeftNav.tsx:283
-#: src/view/shell/desktop/LeftNav.tsx:286
+#: src/screens/Takendown.tsx:88
+#: src/view/shell/desktop/LeftNav.tsx:229
+#: src/view/shell/desktop/LeftNav.tsx:284
+#: src/view/shell/desktop/LeftNav.tsx:287
 msgid "Sign out"
 msgstr "साइन आउट गर्नुहोस्"
 
-#: src/screens/Takendown.tsx:89
+#: src/screens/Takendown.tsx:91
 msgid "Sign Out"
 msgstr "साइन आउट गर्नुहोस्"
 
 #: src/screens/Settings/Settings.tsx:320
-#: src/view/shell/desktop/LeftNav.tsx:225
+#: src/view/shell/desktop/LeftNav.tsx:226
 msgid "Sign out?"
 msgstr "साइन आउट गर्नुहोस्?"
 
@@ -12374,7 +12385,7 @@ msgid "So many thoughts, you should post one"
 msgstr ""
 
 #. Name for a feature flag
-#: src/analytics/features/index.ts:91
+#: src/analytics/features/index.ts:96
 msgid "Social proofing on posts"
 msgstr ""
 
@@ -12489,8 +12500,8 @@ msgstr ""
 msgid "Sorry, we're unable to load account suggestions at this time."
 msgstr ""
 
-#: src/App.tsx:139
-#: src/App.web.tsx:118
+#: src/App.tsx:143
+#: src/App.web.tsx:123
 msgid "Sorry! Your session expired. Please sign in again."
 msgstr ""
 
@@ -12535,7 +12546,7 @@ msgid "Sports"
 msgstr "खेलकुद"
 
 #. Description of a feature flag (Social proofing on posts)
-#: src/analytics/features/index.ts:97
+#: src/analytics/features/index.ts:102
 msgid "Spot posts your friends and follows have liked."
 msgstr ""
 
@@ -12646,25 +12657,27 @@ msgstr "स्टोरीबुक"
 msgid "Streaming on Twitch? Set your live status on Bluesky to add a badge to your avatar. Tapping it takes people straight to your stream."
 msgstr ""
 
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:124
-#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:130
-#: src/components/moderation/AppealForm.tsx:165
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:123
+#: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:129
 #: src/components/moderation/AppealForm.tsx:166
+#: src/components/moderation/AppealForm.tsx:167
 #: src/components/SendErrorReportDialog.tsx:90
 #: src/components/SendErrorReportDialog.tsx:95
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:137
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:138
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:139
-#: src/screens/Messages/components/ChatDisabled.tsx:173
-#: src/screens/Messages/components/ChatDisabled.tsx:175
+#: src/screens/Messages/components/ChatDisabled.tsx:172
+#: src/screens/Messages/components/ChatDisabled.tsx:174
+#: src/screens/ModerationInbox/Notice.tsx:152
 #: src/screens/Settings/components/BetaFeaturesFeedbackDialog.tsx:133
 msgid "Submit"
 msgstr "पेश गर्नुहोस्"
 
-#: src/screens/Takendown.tsx:74
+#: src/screens/ModerationInbox/Notice.tsx:146
+#: src/screens/Takendown.tsx:76
 msgid "Submit appeal"
 msgstr ""
 
-#: src/screens/Takendown.tsx:78
+#: src/screens/Takendown.tsx:80
 msgid "Submit Appeal"
 msgstr ""
 
@@ -12800,11 +12813,11 @@ msgstr ""
 #: src/screens/Settings/Settings.tsx:132
 #: src/screens/Settings/Settings.tsx:144
 #: src/screens/Settings/Settings.tsx:648
-#: src/view/shell/desktop/LeftNav.tsx:263
+#: src/view/shell/desktop/LeftNav.tsx:264
 msgid "Switch account"
 msgstr "खाता स्विच गर्नुहोस्"
 
-#: src/view/shell/desktop/LeftNav.tsx:125
+#: src/view/shell/desktop/LeftNav.tsx:126
 msgid "Switch accounts"
 msgstr ""
 
@@ -12819,7 +12832,7 @@ msgid "Switch OTA channel"
 msgstr ""
 
 #. placeholder {0}: sanitizeHandle( profile?.handle ?? account.handle, '@', )
-#: src/view/shell/desktop/LeftNav.tsx:365
+#: src/view/shell/desktop/LeftNav.tsx:366
 msgid "Switch to {0}"
 msgstr ""
 
@@ -12981,6 +12994,10 @@ msgstr "हाम्रोलाई तपाईंको बारेमा क
 msgid "Tell us a little more"
 msgstr "हाम्रोलाई थोरै बढी बताउनुहोस्"
 
+#: src/screens/ModerationInbox/Notice.tsx:172
+msgid "Tell us why you believe this decision was a mistake. We will review your appeal along with the original content. You can appeal once per moderation decision."
+msgstr ""
+
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:220
 msgid "Temporarily deactivate your account"
 msgstr ""
@@ -12997,8 +13014,8 @@ msgstr "नियमहरू"
 #: src/screens/Settings/AboutSettings.tsx:117
 #: src/screens/Settings/AboutSettings.tsx:120
 #: src/view/screens/TermsOfService.tsx:25
-#: src/view/shell/Drawer.tsx:698
-#: src/view/shell/Drawer.tsx:700
+#: src/view/shell/Drawer.tsx:701
+#: src/view/shell/Drawer.tsx:703
 msgid "Terms of Service"
 msgstr "सेवाका नियमहरू"
 
@@ -13006,9 +13023,9 @@ msgstr "सेवाका नियमहरू"
 msgid "Text & tags"
 msgstr "पाठ र टैगहरू"
 
-#: src/components/moderation/AppealForm.tsx:129
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:121
-#: src/screens/Messages/components/ChatDisabled.tsx:140
+#: src/components/moderation/AppealForm.tsx:130
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:120
+#: src/screens/Messages/components/ChatDisabled.tsx:139
 msgid "Text input field"
 msgstr "पाठ इनपुट क्षेत्र"
 
@@ -13046,11 +13063,11 @@ msgstr ""
 msgid "That username is already taken"
 msgstr ""
 
-#: src/view/com/post-thread/PostQuotes.tsx:135
+#: src/view/com/post-thread/PostQuotes.tsx:174
 msgid "That's all, folks!"
 msgstr "त्यति हो, साथीहरू!"
 
-#: src/screens/VideoFeed/index.tsx:1269
+#: src/screens/VideoFeed/index.tsx:1281
 msgid "That's everything!"
 msgstr ""
 
@@ -13185,7 +13202,7 @@ msgstr "सर्भर समस्यामा देखिनु भएको
 msgid "The Starter Pack that you are trying to view is invalid. You may delete this Starter Pack instead."
 msgstr ""
 
-#: src/components/ContextMenu/index.tsx:507
+#: src/components/ContextMenu/index.tsx:504
 msgid "The subject of the context menu"
 msgstr ""
 
@@ -13256,6 +13273,7 @@ msgstr "सर्भरलाई सम्पर्क गर्न समस्
 msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "सूचनाहरू प्राप्त गर्न समस्या आयो। पुन: प्रयास गर्न यहाँ ट्याप गर्नुहोस्।"
 
+#: src/features/followingV2/home/PostFeed.tsx:880
 #: src/screens/Search/Explore.tsx:1052
 #: src/view/com/posts/PostFeed.tsx:804
 msgid "There was an issue fetching posts. Tap here to try again."
@@ -13412,12 +13430,12 @@ msgstr ""
 msgid "This app is running a deployment of <0>{currentChannel}</0>. Restore the {defaultChannel} deployment to get back to a standard build."
 msgstr ""
 
-#: src/components/moderation/AppealForm.tsx:107
+#: src/components/moderation/AppealForm.tsx:108
 msgid "This appeal will be sent to <0>{sourceName}</0>."
 msgstr "यो अपील <0>{sourceName}</0> मा पठाइनेछ।"
 
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:113
-#: src/screens/Messages/components/ChatDisabled.tsx:136
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:112
+#: src/screens/Messages/components/ChatDisabled.tsx:135
 msgid "This appeal will be sent to Bluesky's moderation service."
 msgstr "यो अपील ब्लूस्काईको मोडरेशन सेवामा पठाइनेछ।"
 
@@ -13575,7 +13593,7 @@ msgstr ""
 msgid "This label lets the world know that the account holder is a pet. If turned on, this label appears next to the account's name on their profile and posts. It can be turned on or off at any time."
 msgstr ""
 
-#: src/screens/Settings/AutomationLabelSettings.tsx:173
+#: src/screens/Settings/AutomationLabelSettings.tsx:174
 msgid "This label lets the world know that this account is automated. If turned on, this label appears next to the account's name on their profile and posts. It can be turned on or off at any time."
 msgstr ""
 
@@ -13657,7 +13675,7 @@ msgstr ""
 msgid "This post is only visible to logged-in users."
 msgstr ""
 
-#: src/screens/Bookmarks.tsx:246
+#: src/screens/Bookmarks.tsx:249
 msgid "This post was deleted by its author"
 msgstr ""
 
@@ -13864,6 +13882,7 @@ msgid "Too many contacts - you've exceeded the number of contacts you can import
 msgstr ""
 
 #: src/screens/Hashtag.tsx:88
+#: src/screens/Post/PostQuotes.tsx:82
 #: src/screens/Search/SearchResults.tsx:78
 #: src/screens/Topic.tsx:60
 msgid "Top"
@@ -14118,7 +14137,7 @@ msgstr ""
 msgid "Undo"
 msgstr ""
 
-#: src/components/PostControls/BookmarkButton.tsx:51
+#: src/components/PostControls/BookmarkButton.tsx:54
 msgctxt "Button label to undo saving/removing a post from saved posts."
 msgid "Undo"
 msgstr ""
@@ -14162,7 +14181,7 @@ msgstr "{0} लाई अनफोलो गर्नुहोस्"
 msgid "Unfollow account"
 msgstr "खाता अनफोलो गर्नुहोस्"
 
-#: src/screens/VideoFeed/index.tsx:976
+#: src/screens/VideoFeed/index.tsx:988
 msgid "Unfollows the user"
 msgstr ""
 
@@ -14706,7 +14725,7 @@ msgid "Video from {0}: {text}"
 msgstr ""
 
 #. placeholder {0}: sanitizeHandle( post.author.handle, '@', )
-#: src/screens/VideoFeed/index.tsx:1231
+#: src/screens/VideoFeed/index.tsx:1243
 msgid "Video from {0}. Tap to play or pause the video"
 msgstr ""
 
@@ -14715,11 +14734,11 @@ msgstr ""
 msgid "Video Games"
 msgstr "भिडियो खेल"
 
-#: src/screens/VideoFeed/index.tsx:1230
+#: src/screens/VideoFeed/index.tsx:1242
 msgid "Video is paused"
 msgstr ""
 
-#: src/screens/VideoFeed/index.tsx:1230
+#: src/screens/VideoFeed/index.tsx:1242
 msgid "Video is playing"
 msgstr ""
 
@@ -14771,7 +14790,7 @@ msgstr "{0} को अवतार हेर्नुहोस्"
 #. placeholder {0}: profile.handle
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:522
 #: src/screens/Search/components/SearchProfileCard.tsx:37
-#: src/screens/VideoFeed/index.tsx:937
+#: src/screens/VideoFeed/index.tsx:949
 #: src/view/com/notifications/NotificationFeedItem.tsx:602
 msgid "View {0}'s profile"
 msgstr "{0} को प्रोफाइल हेर्नुहोस्"
@@ -14802,8 +14821,8 @@ msgstr "अधिक जानकारीको लागि ब्लगपो
 msgid "View debug entry"
 msgstr "डिबग प्रविष्टि हेर्नुहोस्"
 
-#: src/screens/VideoFeed/index.tsx:805
-#: src/screens/VideoFeed/index.tsx:823
+#: src/screens/VideoFeed/index.tsx:817
+#: src/screens/VideoFeed/index.tsx:835
 msgid "View details"
 msgstr "विवरण हेर्नुहोस्"
 
@@ -14935,8 +14954,8 @@ msgstr "तपाईंको अवरोधित खाता हेर्न
 msgid "View your default post interaction settings"
 msgstr ""
 
-#: src/view/com/home/HomeHeaderLayout.web.tsx:67
-#: src/view/com/home/HomeHeaderLayoutMobile.tsx:86
+#: src/view/com/home/HomeHeaderLayout.web.tsx:59
+#: src/view/com/home/HomeHeaderLayoutMobile.tsx:84
 msgid "View your feeds and explore more"
 msgstr "तपाईंका फिडहरू हेर्नुहोस् र अझ बढी अन्वेषण गर्नुहोस्"
 
@@ -15285,7 +15304,7 @@ msgstr ""
 msgid "what’s up"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:99
+#: src/view/com/auth/SplashScreen.web.tsx:98
 #: src/view/com/composer/Composer.tsx:1627
 #: src/view/com/feeds/ComposerPrompt.tsx:206
 msgid "What's up?"
@@ -15323,7 +15342,7 @@ msgstr "वोप्स!"
 msgid "Whoops! Trending videos failed to load."
 msgstr ""
 
-#: src/screens/Takendown.tsx:167
+#: src/screens/Takendown.tsx:169
 msgid "Why are you appealing?"
 msgstr ""
 
@@ -15474,7 +15493,7 @@ msgstr ""
 msgid "You are creating an account on"
 msgstr ""
 
-#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:107
+#: src/features/liveNow/components/GoLiveDisabledDialog.tsx:106
 msgid "You are currently blocked from using the Go Live feature. To appeal this moderation decision, please submit the form below."
 msgstr ""
 
@@ -15539,6 +15558,10 @@ msgstr ""
 
 #: src/components/contacts/screens/GetContacts.tsx:252
 msgid "You can always opt out and delete your data"
+msgstr ""
+
+#: src/screens/ModerationInbox/Notice.tsx:87
+msgid "You can appeal once per decision. A different moderator will review the appeal."
 msgstr ""
 
 #: src/lib/hooks/useNotificationHandler.ts:134
@@ -15858,7 +15881,7 @@ msgid "You will be eligible to appear in this Starter Pack again."
 msgstr ""
 
 #: src/screens/Settings/Settings.tsx:321
-#: src/view/shell/desktop/LeftNav.tsx:226
+#: src/view/shell/desktop/LeftNav.tsx:227
 msgid "You will be signed out of all your accounts."
 msgstr "तपाईंलाई तपाईंका सबै खाता हरुबाट साइन आउट गरिनेछ।"
 
@@ -15940,7 +15963,7 @@ msgstr "तपाईं पंक्तिमा हुनुहुन्छ।"
 msgid "You're signed in with an App Password. Please sign in with your main password to continue deactivating your account."
 msgstr ""
 
-#: src/components/moderation/AppealForm.tsx:84
+#: src/components/moderation/AppealForm.tsx:85
 msgid "You've already appealed this label and it's being reviewed by our moderation team."
 msgstr ""
 
@@ -15989,7 +16012,7 @@ msgstr "तपाईंले भिडियो अपलोडको लाग
 msgid "You've reached your daily limit for video uploads (too many videos)"
 msgstr "तपाईंले भिडियो अपलोडको लागि आफ्नो दैनिक सीमा पुग्नुभयो (धेरै भिडियो)"
 
-#: src/screens/VideoFeed/index.tsx:1278
+#: src/screens/VideoFeed/index.tsx:1290
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr ""
 
@@ -16006,7 +16029,7 @@ msgstr ""
 msgid "Your account has been deleted, see ya! ✌️"
 msgstr ""
 
-#: src/screens/Takendown.tsx:140
+#: src/screens/Takendown.tsx:142
 msgid "Your account has been suspended"
 msgstr ""
 
@@ -16047,7 +16070,7 @@ msgstr ""
 msgid "Your account repository, containing all public data records, can be downloaded as a \"CAR\" file. This file does not include media embeds, such as images, or your private data, which must be fetched separately."
 msgstr "तपाईंको खाता रिपोजिटोरी, जसमा सबै सार्वजनिक डेटा रेकर्डहरू समावेश छन्, \"CAR\" फाइलको रूपमा डाउनलोड गर्न सकिन्छ। यस फाइलमा मिडिया एम्बेडहरू (जस्तै चित्र) वा तपाईंको निजी डेटा समावेश छैन, जसलाई अलग गरेर ल्याउन आवश्यक छ।"
 
-#: src/screens/Takendown.tsx:208
+#: src/screens/Takendown.tsx:210
 msgid "Your account was found to be in violation of the <0>Bluesky Social Terms of Service</0>. You have been sent an email outlining the specific violation and suspension period, if applicable. You can appeal this decision if you believe it was made in error."
 msgstr ""
 
@@ -16056,7 +16079,7 @@ msgctxt "moderation-report-action"
 msgid "Your account was suspended"
 msgstr ""
 
-#: src/screens/Takendown.tsx:148
+#: src/screens/Takendown.tsx:150
 msgid "Your appeal has been submitted. If your appeal succeeds, you will receive an email."
 msgstr ""
 
@@ -16183,6 +16206,14 @@ msgstr ""
 
 #: src/screens/Signup/StepInfo/index.tsx:167
 msgid "Your password must be at least 8 characters long."
+msgstr ""
+
+#: src/screens/ModerationInbox/Notice.tsx:66
+msgid "Your post"
+msgstr ""
+
+#: src/screens/ModerationInbox/Notice.tsx:52
+msgid "Your post was removed"
 msgstr ""
 
 #: src/screens/ModerationInbox/index.tsx:194

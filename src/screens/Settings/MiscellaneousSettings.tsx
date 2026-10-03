@@ -47,7 +47,7 @@ import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {UserPlus_solid} from '#/components/icons/heroicons/UserPlus'
 import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
-import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
+import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand4Finger'
 import * as Layout from '#/components/Layout'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
@@ -72,8 +72,6 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
   const likeOnRepost = useLikeOnRepost()
   const setLikeOnRepost = useSetLikeOnRepost()
-
-  // Keep disable and enable options seperate? - Sunstar
 
   return (
     <Layout.Screen>

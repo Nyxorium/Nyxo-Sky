@@ -173,9 +173,6 @@ module.exports = function (_config) {
           ],
         },
       },
-      androidStatusBar: {
-        barStyle: 'light-content',
-      },
       android: {
         icon: './assets/app-icons/nasa_PIA09412_icon.png',
         adaptiveIcon: {
@@ -439,6 +436,17 @@ module.exports = function (_config) {
                   {
                     targetName: 'BlueskyClip',
                     bundleIdentifier: 'xyz.blueskyweb.app.AppClip',
+                    parentBundleIdentifier: 'xyz.blueskyweb.app',
+                    entitlements: {
+                      'com.apple.security.application-groups': [
+                        'group.app.bsky',
+                      ],
+                      'com.apple.developer.parent-application-identifiers': [
+                        '$(AppIdentifierPrefix)xyz.blueskyweb.app',
+                      ],
+                      'com.apple.developer.associated-domains':
+                        ASSOCIATED_DOMAINS,
+                    },
                   },
                 ],
               },

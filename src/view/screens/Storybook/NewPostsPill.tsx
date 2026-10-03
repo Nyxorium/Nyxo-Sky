@@ -1,5 +1,6 @@
 import {useState} from 'react'
-import {Image as RNImage, ScrollView, View} from 'react-native'
+import {ScrollView, View} from 'react-native'
+// Image as RNImage,
 import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, ThemeProvider, useAlf, useTheme} from '#/alf'

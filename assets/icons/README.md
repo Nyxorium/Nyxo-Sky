@@ -1,10 +1,11 @@
 **Rights holder: Iconists (David & Storm GbR).**
 
-The user-interface glyphs in this directory come from their [Central icon system](https://iconists.co/central). Bluesky Social PBC licenses them for use in our own products. **That license is for our own use, and it does not extend to you.**
+The user-interface glyphs in [`ui/`](./ui/) come from their [Central icon system](https://iconists.co/central). Bluesky Social PBC licenses them for use in our own products. **That license is for our own use, and it does not extend to you.**
 
 **These icons are not covered by the [MIT license](../../LICENSE) that applies to the rest of this repository.** The fact that we have our own license does not mean that you cannot use these icons. It means that any right you have to use them has to come from Iconists, not us. Licenses are available from [iconists.co](https://iconists.co), and there are openly licensed alternatives if you prefer that.
 
-This notice covers the SVG files at the top level of this directory. It does not cover:
+This notice covers the SVG files in `ui/`, plus any Central glyphs deliberately kept as raw
+multi-path artwork in `custom/`. It does not cover:
 
 | Not covered here | Rights holder | See |
 |---|---|---|
