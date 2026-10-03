@@ -265,7 +265,7 @@ function StarterPackItem({
     useListMembershipAddMutation({
       subject,
       onSuccess: () => {
-        Toast.show(l`Added to Starter Pack`)
+        Toast.show(l`Added to Starter Pack`, {shape: 'compact'})
       },
       onError: err => {
         if (!isNetworkError(err)) {
@@ -278,7 +278,7 @@ function StarterPackItem({
   const {mutate: removeMembership, isPending: isPendingRemove} =
     useListMembershipRemoveMutation({
       onSuccess: () => {
-        Toast.show(l`Removed from Starter Pack`)
+        Toast.show(l`Removed from Starter Pack`, {shape: 'compact'})
       },
       onError: err => {
         if (!isNetworkError(err)) {
