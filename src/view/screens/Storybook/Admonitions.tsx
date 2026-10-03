@@ -47,6 +47,9 @@ export function Admonitions() {
       <Admonition type="error">
         The quick brown fox jumps over the lazy dog.
       </Admonition>
+      <Admonition type="apology">
+        The quick brown fox jumps over the lazy dog.
+      </Admonition>
 
       <AdmonitionOuter type="error">
         <AdmonitionRow>
