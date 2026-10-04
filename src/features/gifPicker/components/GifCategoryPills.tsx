@@ -10,9 +10,9 @@ import {Clock_Stroke2_Corner0_Rounded as Clock} from '#/components/icons/Clock'
 import {type Props as SVGIconProps} from '#/components/icons/common'
 import {Heart2_Stroke2_Corner0_Rounded as Heart} from '#/components/icons/Heart2'
 import {
-  FaceFrowning as EmojiSad,
+  FaceFrown as EmojiSad,
   FaceSmile as EmojiSmile,
-} from '#/components/icons/heroicons/Faces'
+} from '#/components/icons/heroicons/Face'
 import {Shaka_Stroke2_Corner0_Rounded as Shaka} from '#/components/icons/Shaka'
 import {Trending3_Stroke2_Corner1_Rounded as Trending} from '#/components/icons/Trending'
 

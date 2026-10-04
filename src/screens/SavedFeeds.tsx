@@ -33,8 +33,8 @@ import {
   ArrowBottom_Stroke2_Corner0_Rounded as ArrowDownIcon,
   ArrowTop_Stroke2_Corner0_Rounded as ArrowUpIcon,
 } from '#/components/icons/Arrow'
-import {FilterTimeline_Stroke2_Corner0_Rounded as FilterTimeline} from '#/components/icons/FilterTimeline'
 import {FloppyDisk_Stroke2_Corner0_Rounded as SaveIcon} from '#/components/icons/FloppyDisk'
+import {ArrowDownWideNarrow as FilterTimeline} from '#/components/icons/lucide/ArrowDownWideNarrow'
 import {Pin_Filled_Corner0_Rounded as PinIcon} from '#/components/icons/Pin'
 import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import * as Layout from '#/components/Layout'

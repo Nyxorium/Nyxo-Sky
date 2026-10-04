@@ -3,10 +3,11 @@ import {type StyleProp, View, type ViewStyle} from 'react-native'
 
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
 import {Button as BaseButton, type ButtonProps} from '#/components/Button'
-import {InfomationCircle as InfoCircleIcon} from '#/components/icons/heroicons/InfomationCircle'
+import {InfomationCircle as CircleInfoIcon} from '#/components/icons/heroicons/InfomationCircle'
 import {Warning_Stroke2_Corner0_Rounded as WarningIcon} from '#/components/icons/Warning'
 import {Text as BaseText, type TextProps} from '#/components/Typography'
-import {FaceFrowning as FaceFrowningIcon} from './icons/heroicons/FaceFrown'
+import {FaceFrownThin as EmojiSadIcon} from './icons/heroicons/Face'
+import {CircleX as CircleXIcon} from './icons/lucide/CircleX'
 
 type Context = {
   type: 'info' | 'tip' | 'warning' | 'error' | 'apology'
@@ -21,11 +22,11 @@ export function Icon() {
   const t = useTheme()
   const {type} = useContext(Context)
   const Icon = {
-    info: InfoCircleIcon,
-    tip: InfoCircleIcon,
+    info: CircleInfoIcon,
+    tip: CircleInfoIcon,
     warning: WarningIcon,
-    error: InfoCircleIcon,
-    apology: FaceFrowningIcon,
+    error: CircleXIcon,
+    apology: EmojiSadIcon,
   }[type]
   const fill = {
     info: t.atoms.text_contrast_medium.color,
