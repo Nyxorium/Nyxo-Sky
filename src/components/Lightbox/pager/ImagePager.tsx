@@ -259,7 +259,7 @@ function ImageView({
   const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   )
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
 
   const containerStyle = useAnimatedStyle(() => {
     if (openProgress.get() < 1) {
@@ -384,12 +384,12 @@ function ImageView({
   }, [t])
 
   const handleLongPressSave = useCallback(() => {
-    playHaptic('Light')
+    haptics.tap()
     setStatusText(l`Saving...`)
     clearTimeout(statusTimeoutRef.current)
     statusTimeoutRef.current = setTimeout(() => setStatusText(null), 2000)
     onLongPressSave()
-  }, [onLongPressSave, l, playHaptic])
+  }, [onLongPressSave, l, haptics])
 
   return (
     <Animated.View style={[styles.container, containerStyle]}>
