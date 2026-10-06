@@ -412,6 +412,7 @@ function Header({
         type: 'error',
       })
       logger.error('Failed to follow all accounts', {safeMessage: e})
+      return
     }
 
     setIsProcessing(false)

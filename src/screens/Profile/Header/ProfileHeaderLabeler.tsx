@@ -72,7 +72,7 @@ let ProfileHeaderLabeler = ({
   const ax = useAnalytics()
   const {_} = useLingui()
   const {currentAccount, hasSession} = useSession()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
   const isSelf = currentAccount?.did === profile.did
 
   const hideLabelerLikes = useIsImpressionHidden('labelerLikes', isSelf)
@@ -93,7 +93,7 @@ let ProfileHeaderLabeler = ({
       return
     }
     try {
-      playHaptic()
+      haptics.tap()
 
       if (likeUri) {
         await unlikeMod({uri: likeUri})
@@ -113,7 +113,7 @@ let ProfileHeaderLabeler = ({
       )
       ax.logger.error(`Failed to toggle labeler like`, {message: e.message})
     }
-  }, [ax, labeler, playHaptic, likeUri, unlikeMod, likeMod, _])
+  }, [ax, labeler, haptics, likeUri, unlikeMod, likeMod, _])
 
   const {isActive: live} = useActorStatus(profile)
 
@@ -281,7 +281,7 @@ export function HeaderLabelerButtons({
   const {_} = useLingui()
   const {currentAccount, hasSession} = useSession()
   const requireAuth = useRequireAuth()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
   const editProfileControl = useDialogControl()
   const {data: preferences} = usePreferencesQuery()
   const {
@@ -303,7 +303,7 @@ export function HeaderLabelerButtons({
 
   const onPressSubscribe = () =>
     requireAuth(async (): Promise<void> => {
-      playHaptic()
+      haptics.confirm()
       const subscribe = !isSubscribed
       const subscribeMetric = subscribe
         ? 'moderation:subscribedToLabeler'
@@ -365,7 +365,7 @@ export function HeaderLabelerButtons({
             size="small"
             color="secondary"
             onPress={() => {
-              playHaptic('Light')
+              haptics.tap()
               editProfileControl.open()
             }}
             label={_(msg`Edit profile`)}
@@ -442,7 +442,7 @@ export function HeaderLabelerButtons({
           // overlap the neighboring buttons' own targets
           hitSlop={{top: 6, bottom: 6, left: 2, right: 2}}
           onPress={() => {
-            playHaptic('Light')
+            haptics.tap()
             ax.metric('invite:dialog:open', {logContext: 'ProfileHeader'})
             inviteFriendsControl.open()
           }}

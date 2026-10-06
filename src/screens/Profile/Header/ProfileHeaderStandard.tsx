@@ -234,7 +234,7 @@ export function HeaderStandardButtons({
   const {_} = useLingui()
   const ax = useAnalytics()
   const {hasSession, currentAccount} = useSession()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
   const requireAuth = useRequireAuth()
   const [queueFollow, queueUnfollow] = useProfileFollowMutationQueue(
     profile,
@@ -248,7 +248,7 @@ export function HeaderStandardButtons({
   const isMe = currentAccount?.did === profile.did
 
   const onPressFollow = () => {
-    playHaptic()
+    haptics.confirm()
     const displayNameOrHandle = profile.displayName || profile.handle
     requireAuth(async () => {
       try {
@@ -277,7 +277,7 @@ export function HeaderStandardButtons({
   }
 
   const onPressUnfollow = () => {
-    playHaptic()
+    haptics.confirm()
     const displayNameOrHandle = profile.displayName || profile.handle
     requireAuth(async () => {
       try {
@@ -341,7 +341,7 @@ export function HeaderStandardButtons({
             size="small"
             color="secondary"
             onPress={() => {
-              playHaptic('Light')
+              haptics.tap()
               editProfileControl.open()
             }}
             label={_(msg`Edit profile`)}>
@@ -422,7 +422,7 @@ export function HeaderStandardButtons({
           // overlap the neighboring buttons' own targets
           hitSlop={{top: 6, bottom: 6, left: 2, right: 2}}
           onPress={() => {
-            playHaptic('Light')
+            haptics.tap()
             ax.metric('invite:dialog:open', {logContext: 'ProfileHeader'})
             inviteFriendsControl.open()
           }}

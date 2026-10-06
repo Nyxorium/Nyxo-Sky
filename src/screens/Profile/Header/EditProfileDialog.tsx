@@ -335,7 +335,7 @@ function DialogInner({
           </TextField.LabelText>
           <TextField.Root isInvalid={displayNameTooLong}>
             <Dialog.Input
-              defaultValue={displayName}
+              value={displayName}
               onChangeText={setDisplayName}
               label={_(msg`Display name`)}
               placeholder={_(msg`e.g. Alice Lastname`)}
@@ -414,7 +414,7 @@ function DialogInner({
           </TextField.LabelText>
           <TextField.Root isInvalid={descriptionTooLong}>
             <Dialog.Input
-              defaultValue={description}
+              value={description}
               onChangeText={setDescription}
               multiline
               label={_(msg`Description`)}
