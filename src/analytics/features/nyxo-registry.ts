@@ -32,4 +32,8 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       description:
         'Show the moderation inbox menu item and screen under Moderation settings (CURRENTLY PLACEHOLDERS)',
     },
+    [Features.AtmosphereExploreEnable]: {
+      label: 'Atmosphere Explore',
+      description: 'Show the Atmosphere tab in drawer/left nav'
+    }
   }
