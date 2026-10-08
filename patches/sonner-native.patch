@@ -1,0 +1,37 @@
+diff --git a/package.json b/package.json
+index f4e7dd5b0e54a0c2a5e6b5bdc79c951f869bb0f3..12460616db517ef7784a5d08149536c3a1b6cd3c 100644
+--- a/package.json
++++ b/package.json
+@@ -2,14 +2,14 @@
+   "name": "sonner-native",
+   "version": "0.27.0",
+   "description": "An opinionated toast component for React Native. A port of @emilkowalski's sonner.",
+-  "source": "./src/index.tsx",
+-  "main": "./lib/module/index.js",
+-  "types": "./lib/typescript/src/index.d.ts",
++  "main": "./src/index.tsx",
++  "react-native": "./src/index.tsx",
++  "types": "./src/index.tsx",
+   "exports": {
+     ".": {
+-      "source": "./src/index.tsx",
+-      "types": "./lib/typescript/src/index.d.ts",
+-      "default": "./lib/module/index.js"
++      "types": "./src/index.tsx",
++      "react-native": "./src/index.tsx",
++      "default": "./src/index.tsx"
+     },
+     "./package.json": "./package.json"
+   },
+diff --git a/src/use-toast-animations.ts b/src/use-toast-animations.ts
+index 6da145f28a8c505e7e4326f0b6d604845c84015b..308946486610060d3d134b697bc8012fa549dcdc 100644
+--- a/src/use-toast-animations.ts
++++ b/src/use-toast-animations.ts
+@@ -73,7 +73,6 @@ export const useToastAnimations = ({
+   const absolutePositionStyle = useAnimatedStyle(() => {
+     const base: Record<string, unknown> = {
+       position: 'absolute',
+-      width: '100%',
+       transform: [
+         { translateY: yPosition.value },
+         { scaleX: stackScaleX.value },
