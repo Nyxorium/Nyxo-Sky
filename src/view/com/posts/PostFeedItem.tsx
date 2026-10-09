@@ -6,6 +6,7 @@ import {RichText as RichTextAPI} from '@bsky/sdk/richtext'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {type ReasonFeedSource} from '#/lib/api/feed/types'
+import {type FeedPostNumbering} from '#/lib/api/feed-manip'
 import {MAX_POST_LINES} from '#/lib/constants'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {usePalette} from '#/lib/hooks/usePalette'
@@ -27,6 +28,11 @@ import {
 import {Link} from '#/view/com/util/Link'
 import {PostMeta} from '#/view/com/util/PostMeta'
 import {PreviewableUserAvatar} from '#/view/com/util/UserAvatar'
+import {
+  POST_NUMBER_INLINE_OFFSET,
+  ThreadItemPostNumber,
+  useHasThreadItemPostNumber,
+} from '#/screens/PostThread/components/ThreadItemPostNumber'
 import {atoms as a, select, useTheme} from '#/alf'
 import {
   GalleryBleed,
@@ -39,6 +45,7 @@ import * as ReportDialogMetadataContext from '#/components/moderation/ReportDial
 import {type AppModerationCause} from '#/components/Pills'
 import {Embed} from '#/components/Post/Embed'
 import {PostEmbedViewContext} from '#/components/Post/Embed/types'
+import {KnownLikers} from '#/components/Post/KnownLikers'
 import {PostRepliedTo} from '#/components/Post/PostRepliedTo'
 import {PostTags} from '#/components/Post/PostTags'
 import {ShowMoreTextButton} from '#/components/Post/ShowMoreTextButton'
@@ -47,7 +54,7 @@ import {PostControls} from '#/components/PostControls'
 import {DiscoverDebug} from '#/components/PostControls/DiscoverDebug'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
-import {useAnalytics} from '#/analytics'
+import {Features, useAnalytics} from '#/analytics'
 import {useActorStatus} from '#/features/liveNow'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -55,6 +62,7 @@ import {PostFeedReason} from './PostFeedReason'
 
 interface FeedItemProps {
   record: app.bsky.feed.post.Main
+  postNumbering?: FeedPostNumbering
   reason:
     | app.bsky.feed.defs.ReasonRepost
     | app.bsky.feed.defs.ReasonPin
@@ -77,6 +85,7 @@ interface FeedItemProps {
 export function PostFeedItem({
   post,
   record,
+  postNumbering,
   reason,
   feedContext,
   reqId,
@@ -114,6 +123,7 @@ export function PostFeedItem({
         <FeedItemInner
           post={postShadowed}
           record={record}
+          postNumbering={postNumbering}
           reason={reason}
           feedContext={feedContext}
           reqId={reqId}
@@ -139,6 +149,7 @@ export function PostFeedItem({
 let FeedItemInner = ({
   post,
   record,
+  postNumbering,
   reason,
   feedContext,
   reqId,
@@ -430,6 +441,7 @@ let FeedItemInner = ({
             <PostContent
               moderation={moderation}
               richText={richText}
+              postNumbering={postNumbering}
               postEmbed={post.embed}
               postAuthor={post.author}
               onOpenEmbed={onOpenEmbed}
@@ -449,6 +461,11 @@ let FeedItemInner = ({
               onShowLess={onShowLess}
               viaRepost={viaRepost}
             />
+            <KnownLikers
+              post={post}
+              feature={Features.PostFeedKnownLikersEnable}
+              outerStyle={[a.py_sm]}
+            />
           </View>
 
           <DiscoverDebug feedContext={feedContext} />
@@ -461,6 +478,7 @@ FeedItemInner = memo(FeedItemInner)
 
 let PostContent = ({
   post,
+  postNumbering,
   moderation,
   richText,
   postEmbed,
@@ -475,12 +493,14 @@ let PostContent = ({
   postAuthor: app.bsky.feed.defs.PostView['author']
   onOpenEmbed: () => void
   post: app.bsky.feed.defs.PostView
+  postNumbering: FeedPostNumbering | undefined
   additionalPostAlerts?: AppModerationCause[]
   feedDescriptor?: string
 }): React.ReactNode => {
   const [limitLines, setLimitLines] = useState(
     () => countLines(richText.text) >= MAX_POST_LINES,
   )
+  const showPostNumber = useHasThreadItemPostNumber(postNumbering)
 
   const record = useMemo<app.bsky.feed.post.Main | undefined>(
     () =>
@@ -514,12 +534,26 @@ let PostContent = ({
             style={[a.flex_1, a.text_md]}
             authorHandle={postAuthor.handle}
             shouldProxyLinks={true}
+            suffixOffset={POST_NUMBER_INLINE_OFFSET}
+            suffix={
+              !limitLines && showPostNumber ? (
+                <ThreadItemPostNumber value={postNumbering} />
+              ) : undefined
+            }
           />
           {limitLines && (
-            <ShowMoreTextButton style={[a.text_md]} onPress={onPressShowMore} />
+            <View style={[a.flex_row, a.align_center, a.gap_xs]}>
+              <ShowMoreTextButton
+                style={[a.text_md]}
+                onPress={onPressShowMore}
+              />
+              <ThreadItemPostNumber inline={false} value={postNumbering} />
+            </View>
           )}
         </View>
-      ) : undefined}
+      ) : (
+        <ThreadItemPostNumber inline={false} value={postNumbering} />
+      )}
       {record && <TranslatedPost hideTranslateLink post={post} />}
       {postEmbed ? (
         <View

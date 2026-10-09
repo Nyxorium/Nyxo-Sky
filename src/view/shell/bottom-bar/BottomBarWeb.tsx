@@ -11,6 +11,7 @@ import {useMinimalShellFooterTransform} from '#/lib/hooks/useMinimalShellTransfo
 import {getCurrentRoute, isTab} from '#/lib/routes/helpers'
 import {makeProfileLink} from '#/lib/routes/links'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
+import {useHomeBadge} from '#/state/home-badge'
 import {useUnreadMessageCount} from '#/state/queries/messages/list-conversations'
 import {useUnreadNotifications} from '#/state/queries/notifications/unread'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -31,6 +32,10 @@ import {
   Bell_Stroke2_Corner0_Rounded as Bell,
 } from '#/components/icons/Bell'
 import {
+  ChatBubbleWithDots,
+  ChatBubbleWithDots_solid as ChatBubbleSolidIcon,
+} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
+import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
   HomeOpen_Stoke2_Corner0_Rounded as Home,
 } from '#/components/icons/HomeOpen'
@@ -38,13 +43,10 @@ import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlass,
 } from '#/components/icons/MagnifyingGlass'
-import {
-  Message_Stroke2_Corner0_Rounded as Message,
-  Message_Stroke2_Corner0_Rounded_Filled as MessageFilled,
-} from '#/components/icons/Message'
 import {Text} from '#/components/Typography'
 import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
+import {isFollowingV2HomeDotEnabled} from '#/features/followingV2/eligibility'
 import {styles} from './BottomBarStyles'
 
 type NavItemValue = 'home' | 'search' | 'chat' | 'notifications' | 'profile'
@@ -64,6 +66,8 @@ export function BottomBarWeb() {
 
   const unreadMessageCount = useUnreadMessageCount()
   const notificationCountStr = useUnreadNotifications()
+  const hasHomeBadge = useHomeBadge()
+  const ax = useAnalytics()
   const aa = useAgeAssurance()
   const isLabeler = profile?.associated?.labeler
 
@@ -100,7 +104,11 @@ export function BottomBarWeb() {
         onLayout={event => footerHeight.set(event.nativeEvent.layout.height)}>
         {hasSession ? (
           <>
-            <NavItem routeName="Home" href="/" navItem="home">
+            <NavItem
+              routeName="Home"
+              href="/"
+              navItem="home"
+              hasNew={hasHomeBadge && isFollowingV2HomeDotEnabled(ax)}>
               {({isActive}) => {
                 const Icon = isActive ? HomeFilled : Home
                 return (
@@ -140,7 +148,9 @@ export function BottomBarWeb() {
                     aa.flags.chatDisabled ? false : unreadMessageCount.hasNew
                   }>
                   {({isActive}) => {
-                    const Icon = isActive ? MessageFilled : Message
+                    const Icon = isActive
+                      ? ChatBubbleSolidIcon
+                      : ChatBubbleWithDots
                     return (
                       <Icon
                         aria-hidden={true}

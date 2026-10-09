@@ -1,6 +1,7 @@
 import {type Insets, View} from 'react-native'
 import {useLingui} from '@lingui/react/macro'
 
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {atoms as a, useTheme} from '#/alf'
 import {Button} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
@@ -28,7 +29,9 @@ export function PetBadge({
   width: number
 }) {
   const t = useTheme()
+  const {tailors} = useViewTailorPrefs()
 
+  if (!tailors.petLabels) return null
   if (!isPetAccount(profile) && !alwaysShow) {
     return null
   }
@@ -52,7 +55,9 @@ export function PetBadgeButton({
   const t = useTheme()
   const {t: l} = useLingui()
   const control = useDialogControl()
+  const {tailors} = useViewTailorPrefs()
 
+  if (!tailors.petLabels) return null
   if (!isPetAccount(profile)) {
     return null
   }

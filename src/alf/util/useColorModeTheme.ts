@@ -29,7 +29,7 @@ export function useThemeName(): ThemeName {
 }
 
 function getThemeName(
-  colorScheme: ColorSchemeName,
+  colorScheme: ColorSchemeName | null | undefined,
   colorMode: 'system' | 'light' | 'dark',
   darkTheme?: ThemeName,
 ) {
@@ -44,13 +44,10 @@ function getThemeName(
 }
 
 function updateDocument(theme: ThemeName, bgColor: string) {
-  // @ts-ignore web only
   if (IS_WEB && typeof window !== 'undefined') {
-    // @ts-ignore web only
     const html = window.document.documentElement
     // @ts-ignore web only
     const body = window.document.body
-    // @ts-ignore web only
     const meta = window.document.querySelector('meta[name="theme-color"]')
 
     // Remove any other color mode classes

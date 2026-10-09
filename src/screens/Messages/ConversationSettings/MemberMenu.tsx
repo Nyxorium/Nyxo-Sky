@@ -15,9 +15,9 @@ import {atoms as a, useTheme} from '#/alf'
 import {canBeMessaged, type ConvoWithDetails} from '#/components/dms/util'
 import {ArrowBoxLeft_Stroke2_Corner0_Rounded as ArrowBoxLeftIcon} from '#/components/icons/ArrowBoxLeft'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {
-  Person_Stroke2_Corner2_Rounded as PersonIcon,
   PersonCheck_Stroke2_Corner0_Rounded as PersonCheck,
   PersonX_Stroke2_Corner0_Rounded as PersonXIcon,
 } from '#/components/icons/Person'
@@ -189,7 +189,7 @@ export function MemberMenu({
               onPress={() => {
                 navigation.navigate('Profile', {name: profile.did})
               }}>
-              <Menu.ItemIcon icon={PersonIcon} />
+              <Menu.ItemIcon icon={UserIcon} />
               <Menu.ItemText>
                 <Trans>Go to profile</Trans>
               </Menu.ItemText>
@@ -198,7 +198,7 @@ export function MemberMenu({
               <Menu.Item
                 label={l`Message ${displayName}`}
                 onPress={handleMessageMember}>
-                <Menu.ItemIcon icon={MessageIcon} />
+                <Menu.ItemIcon icon={ChatBubbleWithDots} />
                 <Menu.ItemText>
                   <Trans context="action">Message</Trans>
                 </Menu.ItemText>

@@ -22,8 +22,12 @@ import {clearStorage} from '#/state/persisted'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useDeleteActorDeclaration} from '#/state/queries/messages/actor-declaration'
 import {useProfileQuery, useProfilesQuery} from '#/state/queries/profile'
-import {usePdsClient} from '#/state/session'
-import {type SessionAccount, useSession, useSessionApi} from '#/state/session'
+import {
+  type SessionAccount,
+  usePdsClient,
+  useSession,
+  useSessionApi,
+} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {useCloseAllActiveElements} from '#/state/util'
@@ -46,10 +50,10 @@ import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/i
 import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsHorizontal} from '#/components/icons/DotGrid'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/icons/EyeSlash'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
 import {
-  Person_Stroke2_Corner2_Rounded as PersonIcon,
   PersonGroup_Stroke2_Corner2_Rounded as PersonGroupIcon,
   PersonPlus_Stroke2_Corner2_Rounded as PersonPlusIcon,
   PersonX_Stroke2_Corner0_Rounded as PersonXIcon,
@@ -170,7 +174,7 @@ export function SettingsScreen({}: Props) {
           )}
           <SettingsList.Divider />
           <SettingsList.LinkItem to="/settings/account" label={l`Account`}>
-            <SettingsList.ItemIcon icon={PersonIcon} />
+            <SettingsList.ItemIcon icon={UserIcon} />
             <SettingsList.ItemText>
               <Trans>Account</Trans>
             </SettingsList.ItemText>

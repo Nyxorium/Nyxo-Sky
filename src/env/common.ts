@@ -120,7 +120,7 @@ export const GCP_PROJECT_ID: number =
  * locally running server, see `env.example` for more.
  */
 export const GEOLOCATION_DEV_URL = process.env.GEOLOCATION_DEV_URL
-export const GEOLOCATION_PROD_URL = `https://ip.bsky.app`
+export const GEOLOCATION_PROD_URL = 'https://nyxosky.pages.dev' // `https://ip.bsky.app`
 export const GEOLOCATION_URL = IS_DEV
   ? (GEOLOCATION_DEV_URL ?? GEOLOCATION_PROD_URL)
   : GEOLOCATION_PROD_URL

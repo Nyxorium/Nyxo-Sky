@@ -18,6 +18,7 @@ import {clamp} from '#/lib/numbers'
 import {getTabState, TabState} from '#/lib/routes/helpers'
 import {type SharedNavTab, TAB_TO_NAV_ITEM} from '#/lib/routes/tab-to-nav-item'
 import {emitSoftReset} from '#/state/events'
+import {useHomeBadge} from '#/state/home-badge'
 import {useUnreadMessageCount} from '#/state/queries/messages/list-conversations'
 import {useUpdateAllRead} from '#/state/queries/messages/update-all-read'
 import {useUnreadNotifications} from '#/state/queries/notifications/unread'
@@ -39,6 +40,10 @@ import {
 } from '#/components/icons/Bell'
 import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
 import {
+  ChatBubbleWithDots,
+  ChatBubbleWithDots_solid as ChatBubbleSolidIcon,
+} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
+import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
   HomeOpen_Stoke2_Corner0_Rounded as Home,
 } from '#/components/icons/HomeOpen'
@@ -47,15 +52,12 @@ import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlass,
 } from '#/components/icons/MagnifyingGlass'
-import {
-  Message_Stroke2_Corner0_Rounded as Message,
-  Message_Stroke2_Corner0_Rounded_Filled as MessageFilled,
-} from '#/components/icons/Message'
 import * as Menu from '#/components/Menu'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
+import {isFollowingV2HomeDotEnabled} from '#/features/followingV2/eligibility'
 import {useActorStatus} from '#/features/liveNow'
 import {useDemoMode} from '#/storage/hooks/demo-mode'
 import {styles} from './BottomBarStyles'
@@ -71,6 +73,7 @@ export function BottomBar({navigation}: BottomTabBarProps) {
     useNavigationTabState()
   const numUnreadNotifications = useUnreadNotifications()
   const numUnreadMessages = useUnreadMessageCount()
+  const hasHomeBadge = useHomeBadge()
   const aa = useAgeAssurance()
   const footerMinimalShellTransform = useMinimalShellFooterTransform()
   const {data: profile} = useProfileQuery({did: currentAccount?.did})
@@ -79,7 +82,7 @@ export function BottomBar({navigation}: BottomTabBarProps) {
   const dedupe = useDedupe()
   const accountSwitchControl = useDialogControl()
   const messagesMenuControl = Menu.useMenuControl()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
   const hideBorder = useHideBottomBarBorder()
   const iconWidth = 28
 
@@ -143,15 +146,15 @@ export function BottomBar({navigation}: BottomTabBarProps) {
   }, [onPressTab])
 
   const onLongPressProfile = useCallback(() => {
-    playHaptic()
+    haptics.longPress()
     accountSwitchControl.open()
-  }, [accountSwitchControl, playHaptic])
+  }, [accountSwitchControl, haptics])
 
   const onLongPressMessages = useCallback(() => {
     if (aa.flags.chatDisabled) return
-    playHaptic()
+    haptics.longPress()
     messagesMenuControl.open()
-  }, [aa.flags.chatDisabled, messagesMenuControl, playHaptic])
+  }, [aa.flags.chatDisabled, messagesMenuControl, haptics])
 
   const [demoMode] = useDemoMode()
   const {isActive: live} = useActorStatus(profile)
@@ -191,6 +194,7 @@ export function BottomBar({navigation}: BottomTabBarProps) {
                   />
                 )
               }
+              hasNew={hasHomeBadge && isFollowingV2HomeDotEnabled(ax)}
               onPress={onPressHome}
               accessibilityRole="tab"
               accessibilityLabel={l`Home`}
@@ -220,12 +224,12 @@ export function BottomBar({navigation}: BottomTabBarProps) {
               testID="bottomBarMessagesBtn"
               icon={
                 isAtMessages ? (
-                  <MessageFilled
+                  <ChatBubbleSolidIcon
                     width={iconWidth - 1}
                     style={[styles.ctrlIcon, t.atoms.text, styles.feedsIcon]}
                   />
                 ) : (
-                  <Message
+                  <ChatBubbleWithDots
                     width={iconWidth - 1}
                     style={[styles.ctrlIcon, t.atoms.text, styles.feedsIcon]}
                   />

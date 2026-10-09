@@ -19,6 +19,7 @@ export type BaseToastOptions = Pick<
   'duration' | 'dismissible' | 'promiseOptions'
 > & {
   type?: ToastType
+  shape?: 'banner' | 'compact'
 
   /**
    * These methods differ between web/native implementations

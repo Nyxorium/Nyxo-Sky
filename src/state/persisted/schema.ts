@@ -1,10 +1,10 @@
 import {isDidString} from '@atproto/lex'
+import {PlatformInfo} from '@bsky.app/expo-bluesky-swiss-army'
 import {z} from 'zod'
 
 import {deviceLanguageCodes, deviceLocales} from '#/locale/deviceLocales'
 import {findSupportedAppLanguage} from '#/locale/helpers'
 import {logger} from '#/logger'
-import {PlatformInfo} from '../../../modules/expo-bluesky-swiss-army'
 
 const externalEmbedOptions = ['show', 'hide'] as const
 const impressionVisibilityOptions = [
@@ -125,6 +125,7 @@ const schema = z.object({
       soundcloud: z.enum(externalEmbedOptions).optional(),
       flickr: z.enum(externalEmbedOptions).optional(),
       bandcamp: z.enum(externalEmbedOptions).optional(),
+      freemix: z.enum(externalEmbedOptions).optional(),
     })
     .optional(),
   invites: z.object({
@@ -150,6 +151,11 @@ const schema = z.object({
 
   recentTags: z.array(z.string()).optional(),
 
+  // Migrating values, unused and set for removal
+  enableShareViaDID: z.boolean().optional(),
+  labelerLimitBypass: z.boolean().optional(),
+  splitModerationLabelGrouping: z.boolean().optional(),
+
   // Theme preset selector
   themePreset: z.string().optional(),
 
@@ -158,17 +164,13 @@ const schema = z.object({
   noAppLabelers: z.boolean().optional(), // Credit: deer.social
   nyxoGateOverrides: z.record(z.string(), z.boolean()).optional(),
   skipProfileWideContentWarning: z.boolean().optional(),
-  splitModerationLabelGrouping: z.boolean().optional(),
   likeOnRepost: z.boolean().optional(),
-  labelerLimitBypass: z.boolean().optional(),
 
   // Enable X settings in Nyxo Sky
-  enableShareViaDID: z.boolean().optional(),
   enableSquareAvatars: z.boolean().optional(),
 
   // Disable X settings in Nyxo Sky
-  disableShareViaDms: z.boolean().optional(),
-  disableProfileDescriptions: z.boolean().optional(),
+  disableFeedPromoTab: z.boolean().optional(),
 
   profileTabVisibility: z
     .object({
@@ -207,6 +209,30 @@ const schema = z.object({
       posts: z.enum(impressionVisibilityOptions).optional(),
       labelerLikes: z.enum(impressionVisibilityOptions).optional(),
       feedLikes: z.enum(impressionVisibilityOptions).optional(),
+    })
+    .optional(),
+
+  viewTailors: z
+    .object({
+      petLabels: z.boolean().optional(),
+      germButton: z.boolean().optional(),
+      followsYouPill: z.boolean().optional(),
+      similarAccountBox: z.boolean().optional(),
+      newPostButton: z.boolean().optional(),
+      shareViaChat: z.boolean().optional(),
+      notificationFollowButton: z.boolean().optional(),
+      profileDescriptions: z.boolean().optional(),
+      openInBluesky: z.boolean().optional(),
+      avatarBlurs: z.boolean().optional(),
+    })
+    .optional(),
+
+  switchboard: z
+    .object({
+      shareByDID: z.boolean().optional(),
+      labelerLimitBypass: z.boolean().optional(),
+      labelGrouping: z.boolean().optional(),
+      declareAppLabelers: z.boolean().optional(),
     })
     .optional(),
 })
@@ -263,28 +289,45 @@ export const defaults: Schema = {
 
   recentTags: [],
 
+  themePreset: 'nyxoSky',
+
   // Additional setting defaults in Nyxo Sky
   themePreset: 'nyxoSky',
   altLabelDisplayProfile: 'original',
   noAppLabelers: false, // Credit: deer.social
   nyxoGateOverrides: {},
   skipProfileWideContentWarning: true,
-  splitModerationLabelGrouping: false,
   likeOnRepost: false,
-  labelerLimitBypass: false,
 
   // Enable X setting defaults in Nyxo Sky
   enableSquareAvatars: false,
 
   // Disable X setting defaults in Nyxo Sky
-  disableShareViaDms: false,
-  enableShareViaDID: false,
-  disableProfileDescriptions: false,
+  disableFeedPromoTab: false,
 
   profileTabVisibility: {},
   profileTabVisibility_self: {},
-
   impressionVisibility: {},
+
+  viewTailors: {
+    petLabels: false,
+    germButton: true,
+    followsYouPill: true,
+    similarAccountBox: false,
+    newPostButton: true,
+    shareViaChat: true,
+    notificationFollowButton: false,
+    profileDescriptions: true,
+    openInBluesky: false,
+    avatarBlurs: true,
+  },
+
+  switchboard: {
+    shareByDID: false,
+    labelerLimitBypass: false,
+    labelGrouping: true,
+    declareAppLabelers: true,
+  },
 }
 
 export function tryParse(rawData: string): Schema | undefined {
@@ -306,7 +349,7 @@ export function tryParse(rawData: string): Schema | undefined {
     const errors =
       parsed.error?.errors?.map(e => ({
         code: e.code,
-        // @ts-ignore exists on some types
+        // @ts-expect-error exists on some types
         expected: e?.expected,
         path: e.path?.join('.'),
       })) || []

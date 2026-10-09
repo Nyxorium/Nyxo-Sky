@@ -57,13 +57,14 @@ import {
 } from '#/components/dialogs/PostInteractionSettingsDialog'
 import {BubbleQuestion_Stroke2_Corner0_Rounded as Translate} from '#/components/icons/Bubble'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
-import {
-  EmojiSad_Stroke2_Corner0_Rounded as EmojiSad,
-  EmojiSmile_Stroke2_Corner0_Rounded as EmojiSmile,
-} from '#/components/icons/Emoji'
 import {Eye_Stroke2_Corner0_Rounded as Eye} from '#/components/icons/Eye'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlash} from '#/components/icons/EyeSlash'
 import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
+import {
+  FaceFrown as EmojiSad,
+  FaceSmile as EmojiSmile,
+} from '#/components/icons/heroicons/Face'
+import {Atom as AtomIcon} from '#/components/icons/lucide/Atom'
 import {
   Mute_Stroke2_Corner0_Rounded as Mute,
   Mute_Stroke2_Corner0_Rounded as MuteIcon,
@@ -423,21 +424,22 @@ let PostMenuItems = ({
           type: 'error',
         })
       }
-    } finally {
-      ax.metric('postMenu:blockAccount', {
-        uri: postUri,
-        authorDid: postAuthor.did,
-        logContext,
-        feedDescriptor: feedFeedback.feedDescriptor,
-      })
     }
+    ax.metric('postMenu:blockAccount', {
+      uri: postUri,
+      authorDid: postAuthor.did,
+      logContext,
+      feedDescriptor: feedFeedback.feedDescriptor,
+    })
   }
 
   const onMuteAuthor = async () => {
     if (postAuthor.viewer?.muted) {
       try {
         await queueUnmute()
-        Toast.show(l({message: 'Account unmuted', context: 'toast'}))
+        Toast.show(l({message: 'Account unmuted', context: 'toast'}), {
+          shape: 'compact',
+        })
       } catch (err) {
         const e = err as Error
         if (e?.name !== 'AbortError') {
@@ -446,18 +448,19 @@ let PostMenuItems = ({
             type: 'error',
           })
         }
-      } finally {
-        ax.metric('postMenu:unmuteAccount', {
-          uri: postUri,
-          authorDid: postAuthor.did,
-          logContext,
-          feedDescriptor: feedFeedback.feedDescriptor,
-        })
       }
+      ax.metric('postMenu:unmuteAccount', {
+        uri: postUri,
+        authorDid: postAuthor.did,
+        logContext,
+        feedDescriptor: feedFeedback.feedDescriptor,
+      })
     } else {
       try {
         await queueMute()
-        Toast.show(l({message: 'Account muted', context: 'toast'}))
+        Toast.show(l({message: 'Account muted', context: 'toast'}), {
+          shape: 'compact',
+        })
       } catch (err) {
         const e = err as Error
         if (e?.name !== 'AbortError') {
@@ -466,14 +469,13 @@ let PostMenuItems = ({
             type: 'error',
           })
         }
-      } finally {
-        ax.metric('postMenu:muteAccount', {
-          uri: postUri,
-          authorDid: postAuthor.did,
-          logContext,
-          feedDescriptor: feedFeedback.feedDescriptor,
-        })
       }
+      ax.metric('postMenu:muteAccount', {
+        uri: postUri,
+        authorDid: postAuthor.did,
+        logContext,
+        feedDescriptor: feedFeedback.feedDescriptor,
+      })
     }
   }
 

@@ -1,4 +1,5 @@
 import {memo, useCallback, useMemo} from 'react'
+import {Linking} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
@@ -9,8 +10,8 @@ import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
-import {Nux, useNux, useSaveNux} from '#/state/queries/nuxs'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
   RQKEY as profileQueryKey,
   useProfileBlockMutationQueue,
@@ -20,17 +21,18 @@ import {
 } from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {EventStopper} from '#/view/com/util/EventStopper'
-import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {UserAddRemoveListsDialog} from '#/components/dialogs/lists/UserAddRemoveListsDialog'
 import {StarterPackDialog} from '#/components/dialogs/StarterPackDialog'
+import {Mark as BlueskyIcon} from '#/components/icons/brands/Mark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
 import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/CircleX'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
+import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {ListSparkle_Stroke2_Corner0_Rounded as ListIcon} from '#/components/icons/ListSparkle'
 import {Live_Stroke2_Corner0_Rounded as LiveIcon} from '#/components/icons/Live'
 import {MagnifyingGlass_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass'
@@ -46,7 +48,6 @@ import {
   RepostStrike_Stroke2_Corner0_Rounded as RepostStrikeIcon,
 } from '#/components/icons/Repost'
 import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/Speaker'
-import {StarterPack_Stroke2_Corner0_Rounded as StarterPackIcon} from '#/components/icons/StarterPack'
 import * as Menu from '#/components/Menu'
 import {BlockDialog} from '#/components/moderation/BlockDialog'
 import {
@@ -68,8 +69,6 @@ import {useActorStatus, useLiveNowConfig} from '#/features/liveNow'
 import {EditLiveDialog} from '#/features/liveNow/components/EditLiveDialog'
 import {GoLiveDialog} from '#/features/liveNow/components/GoLiveDialog'
 import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabledDialog'
-import {Dot} from '#/features/nuxs/components/Dot'
-import {Gradient} from '#/features/nuxs/components/Gradient'
 import {type app} from '#/lexicons'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
@@ -78,7 +77,6 @@ let ProfileMenu = ({
 }: {
   profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
 }): React.ReactNode => {
-  const t = useTheme()
   const ax = useAnalytics()
   const {t: l} = useLingui()
   const {currentAccount, hasSession} = useSession()
@@ -94,15 +92,6 @@ let ProfileMenu = ({
   const verification = useFullVerificationState({profile})
   const {canGoLive} = useLiveNowConfig()
   const status = useActorStatus(profile)
-  const statusNudge = useNux(Nux.LiveNowBetaNudge)
-  const statusNudgeActive =
-    isSelf &&
-    canGoLive &&
-    statusNudge.status === 'ready' &&
-    !statusNudge.nux?.completed &&
-    false
-  // intentionally disabled nudge - Sunstar
-  const {mutate: saveNux} = useSaveNux()
 
   const labels = profile.labels ?? []
 
@@ -123,12 +112,17 @@ let ProfileMenu = ({
   const addToListsDialogControl = useDialogControl()
   const control = useLabelsOnMeDialogControl()
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
-  const enableShareViaDID = useEnableShareViaDID()
+  const {tailors} = useViewTailorPrefs()
+  const {switches} = useSwitchboardPrefs()
 
-  const profileHref = useMemo(
-    () =>
-      enableShareViaDID ? `/profile/${profile.did}` : makeProfileLink(profile),
-    [enableShareViaDID, profile],
+  const {profileHref, bskyUrl} = useMemo(
+    () => ({
+      profileHref: switches.shareByDID
+        ? `/profile/${profile.did}`
+        : makeProfileLink(profile),
+      bskyUrl: `https://bsky.app/profile/${profile.handle}`,
+    }),
+    [switches.shareByDID, profile],
   )
 
   const showLoggedOutWarning = useMemo(() => {
@@ -153,6 +147,14 @@ let ProfileMenu = ({
     void shareUrl(toShareUrl(profileHref))
   }, [profileHref])
 
+  const onPressOpenInBluesky = useCallback(() => {
+    if (IS_WEB) {
+      window.open(bskyUrl, '_blank', 'noopener')
+    } else {
+      void Linking.openURL(bskyUrl)
+    }
+  }, [bskyUrl])
+
   const onPressAddRemoveLists = useCallback(() => {
     addToListsDialogControl.open()
   }, [addToListsDialogControl])
@@ -161,7 +163,9 @@ let ProfileMenu = ({
     if (profile.viewer?.muted) {
       try {
         await queueUnmute()
-        Toast.show(l({message: 'Account unmuted', context: 'toast'}))
+        Toast.show(l({message: 'Account unmuted', context: 'toast'}), {
+          shape: 'compact',
+        })
       } catch (err) {
         const e = err as Error
         if (e?.name !== 'AbortError') {
@@ -174,7 +178,9 @@ let ProfileMenu = ({
     } else {
       try {
         await queueMute()
-        Toast.show(l({message: 'Account muted', context: 'toast'}))
+        Toast.show(l({message: 'Account muted', context: 'toast'}), {
+          shape: 'compact',
+        })
       } catch (err) {
         const e = err as Error
         if (e?.name !== 'AbortError') {
@@ -310,24 +316,20 @@ let ProfileMenu = ({
         <Menu.Trigger label={l`More options`}>
           {({props}) => {
             return (
-              <>
-                <Button
-                  {...props}
-                  testID="profileHeaderDropdownBtn"
-                  label={l`More options`}
-                  // hitSlop reaches outside parent views on iOS, so the
-                  // left inset must stay within half of the 4pt row gap or
-                  // it steals taps from the adjacent header button
-                  hitSlop={{top: 6, bottom: 6, left: 2, right: 12}}
-                  variant="solid"
-                  color="secondary"
-                  size="small"
-                  shape="round">
-                  {statusNudgeActive && <Gradient style={[a.rounded_full]} />}
-                  <ButtonIcon icon={EllipsisIcon} size="sm" />
-                </Button>
-                {statusNudgeActive && <Dot top={1} right={1} />}
-              </>
+              <Button
+                {...props}
+                testID="profileHeaderDropdownBtn"
+                label={l`More options`}
+                // hitSlop reaches outside parent views on iOS, so the
+                // left inset must stay within half of the 4pt row gap or
+                // it steals taps from the adjacent header button
+                hitSlop={{top: 6, bottom: 6, left: 2, right: 12}}
+                variant="solid"
+                color="secondary"
+                size="small"
+                shape="round">
+                <ButtonIcon icon={EllipsisIcon} size="sm" />
+              </Button>
             )
           }}
         </Menu.Trigger>
@@ -349,6 +351,17 @@ let ProfileMenu = ({
                   <Trans>Copy link to profile</Trans>
                 </Menu.ItemText>
                 <Menu.ItemIcon icon={ChainLinkIcon} />
+              </Menu.Item>
+            )}
+            {tailors.openInBluesky && (
+              <Menu.Item
+                testID="profileHeaderDropdownOpenInBskyBtn"
+                label={l`Open in Bluesky`}
+                onPress={onPressOpenInBluesky}>
+                <Menu.ItemText>
+                  <Trans>Open in Bluesky</Trans>
+                </Menu.ItemText>
+                <Menu.ItemIcon icon={BlueskyIcon} />
               </Menu.Item>
             )}
             <Menu.Item
@@ -395,12 +408,12 @@ let ProfileMenu = ({
                 )}
                 <Menu.Item
                   testID="profileHeaderDropdownStarterPackAddRemoveBtn"
-                  label={l`Add to starter packs`}
+                  label={l`Add to Starter Packs`}
                   onPress={onPressAddToStarterPacks}>
                   <Menu.ItemText>
-                    <Trans>Add to starter packs</Trans>
+                    <Trans>Add to Starter Packs</Trans>
                   </Menu.ItemText>
-                  <Menu.ItemIcon icon={StarterPackIcon} />
+                  <Menu.ItemIcon icon={Square2StackIcon} />
                 </Menu.Item>
                 <Menu.Item
                   testID="profileHeaderDropdownListAddRemoveBtn"
@@ -427,13 +440,7 @@ let ProfileMenu = ({
                       } else {
                         goLiveDialogControl.open()
                       }
-                      saveNux({
-                        id: Nux.LiveNowBetaNudge,
-                        data: undefined,
-                        completed: true,
-                      })
                     }}>
-                    {statusNudgeActive && <Gradient />}
                     <Menu.ItemText>
                       {status.isDisabled ? (
                         <Trans>Go live (disabled)</Trans>
@@ -443,26 +450,7 @@ let ProfileMenu = ({
                         <Trans>Go live</Trans>
                       )}
                     </Menu.ItemText>
-                    {statusNudgeActive && (
-                      <Menu.ItemText
-                        style={[
-                          a.flex_0,
-                          {
-                            color: t.palette.primary_500,
-                            right: IS_WEB ? -8 : -4,
-                          },
-                        ]}>
-                        <Trans>New</Trans>
-                      </Menu.ItemText>
-                    )}
-                    <Menu.ItemIcon
-                      icon={LiveIcon}
-                      fill={
-                        statusNudgeActive
-                          ? () => t.palette.primary_500
-                          : undefined
-                      }
-                    />
+                    <Menu.ItemIcon icon={LiveIcon} />
                   </Menu.Item>
                 )}
                 {verification.viewer.role === 'verifier' &&

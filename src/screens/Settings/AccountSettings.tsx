@@ -2,6 +2,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useProfileQuery} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -16,7 +17,7 @@ import {
 } from '#/components/dialogs/EmailDialog'
 import {At_Stroke2_Corner2_Rounded as AtIcon} from '#/components/icons/At'
 import {BirthdayCake_Stroke2_Corner2_Rounded as BirthdayCakeIcon} from '#/components/icons/BirthdayCake'
-import {Bot_Stroke as RobotIcon} from '#/components/icons/Bot'
+import {Bot_Stroke2_Corner0_Rounded as RobotIcon} from '#/components/icons/Bot'
 import {Car_Stroke2_Corner2_Rounded as CarIcon} from '#/components/icons/Car'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
 import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
@@ -28,7 +29,6 @@ import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/ic
 import {Shredder} from '#/components/icons/Shredder'
 import * as Layout from '#/components/Layout'
 import {isPetAccount} from '#/components/PetBadge'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 import {ChangeHandleDialog} from './components/ChangeHandleDialog'
 import {ChangePasswordDialog} from './components/ChangePasswordDialog'
 import {DeactivateAccountDialog} from './components/DeactivateAccountDialog'
@@ -41,7 +41,7 @@ export function AccountSettingsScreen({}: Props) {
   const {t: l} = useLingui()
   const {currentAccount} = useSession()
   const {data: profile} = useProfileQuery({did: currentAccount?.did})
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
   const emailDialogControl = useEmailDialogControl()
   const birthdayControl = useDialogControl()
   const changeHandleControl = useDialogControl()
@@ -168,7 +168,7 @@ export function AccountSettingsScreen({}: Props) {
               </SettingsList.BadgeText>
             )}
           </SettingsList.LinkItem>
-          {devModeEnabled && (
+          {tailors.petLabels && (
             <SettingsList.LinkItem
               to="/settings/pet-label"
               label={l`Pet label`}>

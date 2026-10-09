@@ -33,12 +33,19 @@ import {
   Bell_Filled_Corner0_Rounded as BellFilled,
   Bell_Stroke2_Corner0_Rounded as Bell,
 } from '#/components/icons/Bell'
-import {Bookmark, BookmarkFilled} from '#/components/icons/Bookmark'
+import {
+  Bookmark_Filled_Corner0_Rounded as BookmarkFilled,
+  Bookmark_Stroke2_Corner0_Rounded as Bookmark,
+} from '#/components/icons/Bookmark'
 import {BulletList_Stroke2_Corner0_Rounded as List} from '#/components/icons/BulletList'
 import {
   Hashtag_Filled_Corner0_Rounded as HashtagFilled,
   Hashtag_Stroke2_Corner0_Rounded as Hashtag,
 } from '#/components/icons/Hashtag'
+import {
+  ChatBubbleWithDots,
+  ChatBubbleWithDots_solid as ChatBubbleSolidIcon,
+} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
   HomeOpen_Stoke2_Corner0_Rounded as Home,
@@ -47,10 +54,6 @@ import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlass,
 } from '#/components/icons/MagnifyingGlass'
-import {
-  Message_Stroke2_Corner0_Rounded as Message,
-  Message_Stroke2_Corner0_Rounded_Filled as MessageFilled,
-} from '#/components/icons/Message'
 import {SettingsGear2_Stroke2_Corner0_Rounded as Settings} from '#/components/icons/SettingsGear2'
 import {
   UserCircle_Filled_Corner0_Rounded as UserCircleFilled,
@@ -456,9 +459,9 @@ let ChatMenuItem = ({
     <MenuItem
       icon={
         isActive ? (
-          <MessageFilled style={[t.atoms.text]} width={iconWidth} />
+          <ChatBubbleSolidIcon style={[t.atoms.text]} width={iconWidth} />
         ) : (
-          <Message style={[t.atoms.text]} width={iconWidth} />
+          <ChatBubbleWithDots style={[t.atoms.text]} width={iconWidth} />
         )
       }
       label={_(msg`Chat`)}

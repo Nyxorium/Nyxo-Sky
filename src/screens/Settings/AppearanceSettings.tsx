@@ -20,9 +20,9 @@ import * as SegmentedControl from '#/components/forms/SegmentedControl'
 import * as Toggle from '#/components/forms/Toggle'
 import {ColorPalette_Stroke2_Corner0_Rounded as PaletteIcon} from '#/components/icons/ColorPalette'
 import {type Props as SVGIconProps} from '#/components/icons/common'
+import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
 import {Mark as Mark} from '#/components/icons/Logo'
 import {Moon_Stroke2_Corner0_Rounded as MoonIcon} from '#/components/icons/Moon'
-import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import {TextSize_Stroke2_Corner0_Rounded as TextSize} from '#/components/icons/TextSize'
 import {TitleCase_Stroke2_Corner0_Rounded as Aa} from '#/components/icons/TitleCase'
 import * as Layout from '#/components/Layout'
@@ -109,7 +109,7 @@ export function AppearanceSettingsScreen({}: Props) {
             <SettingsList.Divider />
             <AppearanceToggleButtonGroup
               title={_(msg`Color mode`)}
-              icon={PhoneIcon}
+              icon={DevicePhoneMobile}
               items={[
                 {
                   label: _(msg`System`),

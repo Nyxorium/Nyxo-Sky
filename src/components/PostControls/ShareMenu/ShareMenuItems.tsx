@@ -11,8 +11,8 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useDisableShareViaDms} from '#/state/preferences/disable-share-via-dms'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {precachePost} from '#/state/queries/post'
 import {useSession} from '#/state/session'
 import {atoms as a} from '#/alf'
@@ -20,9 +20,9 @@ import {Admonition} from '#/components/Admonition'
 import {useDialogControl} from '#/components/Dialog'
 import {SendViaChatDialog} from '#/components/dms/dialogs/ShareViaChatDialog'
 import {ArrowOutOfBoxModified_Stroke2_Corner2_Rounded as ArrowOutOfBoxIcon} from '#/components/icons/ArrowOutOfBox'
+import {Mark as BlueskyIcon} from '#/components/icons/brands/Mark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
-import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import {PaperPlane_Stroke2_Corner0_Rounded as PaperPlaneIcon} from '#/components/icons/PaperPlane'
 import * as Menu from '#/components/Menu'
 import * as Toast from '#/components/Toast'
@@ -45,8 +45,8 @@ let ShareMenuItems = ({
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
   const queryClient = useQueryClient()
-  const disableShareViaDms = useDisableShareViaDms()
-  const enableShareViaDID = useEnableShareViaDID()
+  const {tailors} = useViewTailorPrefs()
+  const {switches} = useSwitchboardPrefs()
 
   const postUri = post.uri
   const postAuthor = useProfileShadow(post.author)
@@ -60,7 +60,7 @@ let ShareMenuItems = ({
     }
   }, [postUri, postAuthor])
 
-  const activeHref = enableShareViaDID ? hrefDID : href
+  const activeHref = switches.shareByDID ? hrefDID : href
 
   const hideInPWI = useMemo(() => {
     return !!postAuthor.labels?.find(
@@ -86,6 +86,7 @@ let ShareMenuItems = ({
     }
     Toast.show(l`Copied to clipboard`, {
       type: 'success',
+      shape: 'compact',
     })
     onShareProp()
   }
@@ -115,7 +116,7 @@ let ShareMenuItems = ({
       <Menu.Outer>
         {hasSession &&
           aa.state.access === aa.Access.Full &&
-          !disableShareViaDms && (
+          tailors.shareViaChat && (
             <Menu.Group>
               <Menu.ContainerItem>
                 <RecentChats
@@ -149,18 +150,20 @@ let ShareMenuItems = ({
             <Menu.ItemIcon icon={ArrowOutOfBoxIcon} position="right" />
           </Menu.Item>
 
-          <Menu.Item
-            testID="postDropdownOpenInBskyBtn"
-            label={l`Open in Bluesky`}
-            onPress={() => {
-              void Linking.openURL(bskyUrl)
-              onShareProp()
-            }}>
-            <Menu.ItemText>
-              <Trans>Open in Bluesky</Trans>
-            </Menu.ItemText>
-            <Menu.ItemIcon icon={BlueskyIcon} position="right" />
-          </Menu.Item>
+          {tailors.openInBluesky && (
+            <Menu.Item
+              testID="postDropdownOpenInBskyBtn"
+              label={l`Open in Bluesky`}
+              onPress={() => {
+                void Linking.openURL(bskyUrl)
+                onShareProp()
+              }}>
+              <Menu.ItemText>
+                <Trans>Open in Bluesky</Trans>
+              </Menu.ItemText>
+              <Menu.ItemIcon icon={BlueskyIcon} position="right" />
+            </Menu.Item>
+          )}
 
           <Menu.Item
             testID="postDropdownShareBtn"

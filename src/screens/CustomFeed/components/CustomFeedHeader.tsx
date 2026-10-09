@@ -96,7 +96,7 @@ export function CustomFeedHeader({
   const {hasSession, currentAccount} = useSession()
   const {gtMobile} = useBreakpoints()
   const infoControl = Dialog.useDialogControl()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
 
   const {data: preferences} = usePreferencesQuery()
 
@@ -125,7 +125,7 @@ export function CustomFeedHeader({
 
   const onToggleSaved = async () => {
     try {
-      playHaptic()
+      haptics.confirm()
 
       if (savedFeedConfig) {
         await removeFeed(savedFeedConfig)
@@ -155,7 +155,7 @@ export function CustomFeedHeader({
 
   const onTogglePinned = async () => {
     try {
-      playHaptic()
+      haptics.confirm()
 
       if (savedFeedConfig) {
         const pinned = !savedFeedConfig.pinned
@@ -221,7 +221,7 @@ export function CustomFeedHeader({
                   color="secondary"
                   variant="ghost"
                   onPress={() => {
-                    playHaptic()
+                    haptics.tap()
                     infoControl.open()
                   }}>
                   <ButtonIcon icon={EllipsisIcon} />
@@ -238,7 +238,7 @@ export function CustomFeedHeader({
                   },
                 ]}
                 onPress={() => {
-                  playHaptic()
+                  haptics.tap()
                   infoControl.open()
                 }}>
                 {({hovered, pressed}) => (
@@ -401,11 +401,13 @@ export function CustomFeedHeader({
           ) : null}
         </Layout.Header.Outer>
       </Layout.Center>
-      <Dialog.Outer control={infoControl}>
+      <Dialog.Outer
+        control={infoControl}
+        nativeOptions={{preventExpansion: true}}>
         <Dialog.Handle />
         <Dialog.ScrollableInner
           label={l`Feed menu`}
-          style={[gtMobile ? {width: 'auto', minWidth: 450} : a.w_full]}>
+          style={[a.w_full, gtMobile && web({width: 'auto', minWidth: 450})]}>
           <DialogInner
             info={info}
             likeUri={likeUri}
@@ -445,7 +447,7 @@ function DialogInner({
   const {t: l} = useLingui()
   const ax = useAnalytics()
   const {currentAccount, hasSession} = useSession()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
   const control = Dialog.useDialogContext()
   const reportDialogControl = useReportDialogControl()
   const {mutateAsync: likeFeed, isPending: isLikePending} = useLikeMutation()
@@ -459,10 +461,16 @@ function DialogInner({
   const hideFeedLikes = useIsImpressionHidden('feedLikes', isMe)
 
   const onToggleLiked = async () => {
+    /*
+     * Hoisted out of the `try`: React Compiler cannot lower a logical
+     * expression in a test position there, and the `else` below rules out
+     * splitting this into nested ifs.
+     */
+    const shouldUnlike = isLiked && likeUri
     try {
-      playHaptic()
+      haptics.tap()
 
-      if (isLiked && likeUri) {
+      if (shouldUnlike) {
         await unlikeFeed({uri: likeUri})
         setLikeUri('')
         ax.metric('feed:unlike', {feedUrl: info.uri})
@@ -483,11 +491,11 @@ function DialogInner({
   }
 
   const onPressShare = useCallback(() => {
-    playHaptic()
+    haptics.tap()
     const url = toShareUrl(info.route.href)
     void shareUrl(url)
     ax.metric('feed:share', {feedUrl: info.uri})
-  }, [ax, info, playHaptic])
+  }, [ax, info, haptics])
 
   const onPressReport = useCallback(() => {
     reportDialogControl.open()

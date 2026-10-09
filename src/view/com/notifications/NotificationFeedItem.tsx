@@ -47,9 +47,9 @@ import {
 } from '#/components/icons/Chevron'
 import {Contacts_Filled_Corner2_Rounded as ContactsIconFilled} from '#/components/icons/Contacts'
 import {Heart2_Filled_Stroke2_Corner0_Rounded as HeartIconFilled} from '#/components/icons/Heart2'
+import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {PersonPlus_Filled_Stroke2_Corner0_Rounded as PersonPlusIcon} from '#/components/icons/Person'
 import {Repost_Stroke2_Corner3_Rounded as RepostIcon} from '#/components/icons/Repost'
-import {StarterPackMultiPathLarge as StarterPackIcon} from '#/components/icons/StarterPack'
 import {VerifiedCheck} from '#/components/icons/VerifiedCheck'
 import {InlineLinkText, Link} from '#/components/Link'
 import * as MediaPreview from '#/components/MediaPreview'
@@ -335,7 +335,7 @@ let NotificationFeedItem = ({
        * see `src/state/queries/notifications/util.ts`
        */
       a11yLabel = starterPackName
-        ? l`${firstAuthorName} followed you back via starter pack ${starterPackName}`
+        ? l`${firstAuthorName} followed you back via Starter Pack ${starterPackName}`
         : l`${firstAuthorName} followed you back`
       notificationContent = <Trans>{firstAuthorLink} followed you back</Trans>
     } else {
@@ -344,8 +344,8 @@ let NotificationFeedItem = ({
           ? l`${firstAuthorName} and ${plural(additionalAuthorsCount, {
               one: `${formattedAuthorsCount} other`,
               other: `${formattedAuthorsCount} others`,
-            })} followed you via starter pack ${starterPackName}`
-          : l`${firstAuthorName} followed you via starter pack ${starterPackName}`
+            })} followed you via Starter Pack ${starterPackName}`
+          : l`${firstAuthorName} followed you via Starter Pack ${starterPackName}`
         : hasMultipleAuthors
           ? l`${firstAuthorName} and ${plural(additionalAuthorsCount, {
               one: `${formattedAuthorsCount} other`,
@@ -404,8 +404,8 @@ let NotificationFeedItem = ({
       ? l`${firstAuthorName} and ${plural(additionalAuthorsCount, {
           one: `${formattedAuthorsCount} other`,
           other: `${formattedAuthorsCount} others`,
-        })} signed up with your starter pack`
-      : l`${firstAuthorName} signed up with your starter pack`
+        })} signed up with your Starter Pack`
+      : l`${firstAuthorName} signed up with your Starter Pack`
     notificationContent = hasMultipleAuthors ? (
       <Trans>
         {firstAuthorLink} and{' '}
@@ -416,14 +416,14 @@ let NotificationFeedItem = ({
             other={`${formattedAuthorsCount} others`}
           />
         </Text>{' '}
-        signed up with your starter pack
+        signed up with your Starter Pack
       </Trans>
     ) : (
-      <Trans>{firstAuthorLink} signed up with your starter pack</Trans>
+      <Trans>{firstAuthorLink} signed up with your Starter Pack</Trans>
     )
     icon = (
       <View style={{height: 30, width: 30}}>
-        <StarterPackIcon width={30} gradient="sky" />
+        <Square2StackIcon width={30} gradient="sky" />
       </View>
     )
   } else if (item.type === 'verified') {
@@ -727,9 +727,9 @@ function FollowedViaStarterPack({
 
   return (
     <Text style={[native(a.pt_xs), t.atoms.text_contrast_medium]}>
-      <Trans comment="When the source of a follow is a starter pack, i.e., 'via starter pack {starterPackName}'.">
-        via starter pack{' '}
-        <StarterPackIcon
+      <Trans comment="When the source of a follow is a Starter Pack, i.e., 'via Starter Pack {starterPackName}'.">
+        via Starter Pack{' '}
+        <Square2StackIcon
           size="sm"
           gradient="sky"
           style={[native(a.mr_2xs), {transform: [{translateY: 4}]}]}
@@ -802,9 +802,8 @@ function SayHelloBtn({profile}: {profile: app.bsky.actor.defs.ProfileView}) {
       })
     } catch (e) {
       logger.error('Failed to get conversation', {safeMessage: e})
-    } finally {
-      setIsLoading(false)
     }
+    setIsLoading(false)
   }
 
   if (

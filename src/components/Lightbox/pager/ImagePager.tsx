@@ -10,8 +10,11 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {PixelRatio, StyleSheet, useWindowDimensions, View} from 'react-native'
 import {SystemBars} from 'react-native-edge-to-edge'
-import {Gesture} from 'react-native-gesture-handler'
-import PagerView from 'react-native-pager-view'
+import {usePanGesture} from 'react-native-gesture-handler'
+import PagerView, {
+  type PagerViewOnPageSelectedEvent,
+  type PageScrollStateChangedNativeEvent,
+} from 'react-native-pager-view'
 import Animated, {
   type AnimatableValue,
   type AnimatedRef,
@@ -33,6 +36,7 @@ import Animated, {
 import {scheduleOnRN, scheduleOnUI} from 'react-native-worklets'
 import {Image} from 'expo-image'
 import * as ScreenOrientation from 'expo-screen-orientation'
+import {PlatformInfo} from '@bsky.app/expo-bluesky-swiss-army'
 import {useLingui} from '@lingui/react/macro'
 
 import {useHaptics} from '#/lib/haptics'
@@ -42,7 +46,6 @@ import {setSystemUITheme} from '#/alf/util/systemUI'
 import {type Lightbox} from '#/components/Lightbox/state'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS} from '#/env'
-import {PlatformInfo} from '../../../../modules/expo-bluesky-swiss-army'
 import {Footer} from '../chrome/Footer'
 import {Header} from '../chrome/Header'
 import {
@@ -123,16 +126,12 @@ export default function ImageViewRoot({
 
     // https://github.com/software-mansion/react-native-reanimated/issues/6677
     rAF_FIXED(() => {
-      openProgress.set(() =>
-        isAnimated ? withClampedSpring(1, SLOW_SPRING) : 1,
-      )
+      openProgress.set(isAnimated ? withClampedSpring(1, SLOW_SPRING) : 1)
     })
     return () => {
       // https://github.com/software-mansion/react-native-reanimated/issues/6677
       rAF_FIXED(() => {
-        openProgress.set(() =>
-          isAnimated ? withClampedSpring(0, SLOW_SPRING) : 0,
-        )
+        openProgress.set(isAnimated ? withClampedSpring(0, SLOW_SPRING) : 0)
       })
     }
   }, [nextLightbox, openProgress, thumbRects])
@@ -260,7 +259,7 @@ function ImageView({
   const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   )
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
 
   const containerStyle = useAnimatedStyle(() => {
     if (openProgress.get() < 1) {
@@ -385,12 +384,12 @@ function ImageView({
   }, [t])
 
   const handleLongPressSave = useCallback(() => {
-    playHaptic('Light')
+    haptics.tap()
     setStatusText(l`Saving...`)
     clearTimeout(statusTimeoutRef.current)
     statusTimeoutRef.current = setTimeout(() => setStatusText(null), 2000)
     onLongPressSave()
-  }, [onLongPressSave, l, playHaptic])
+  }, [onLongPressSave, l, haptics])
 
   return (
     <Animated.View style={[styles.container, containerStyle]}>
@@ -408,7 +407,7 @@ function ImageView({
       <PagerView
         scrollEnabled={!isScaled}
         initialPage={initialImageIndex}
-        onPageSelected={e => {
+        onPageSelected={(e: PagerViewOnPageSelectedEvent) => {
           const next = e.nativeEvent.position
           setImageIndex(prev => {
             if (metricsContext && prev !== next) {
@@ -427,7 +426,7 @@ function ImageView({
           setIsScaled(false)
           setStatusText(null)
         }}
-        onPageScrollStateChanged={e => {
+        onPageScrollStateChanged={(e: PageScrollStateChangedNativeEvent) => {
           setIsDragging(e.nativeEvent.pageScrollState !== 'idle')
         }}
         overdrag={true}
@@ -591,19 +590,19 @@ function LightboxImage({
     }
   })
 
-  const dismissSwipePan = Gesture.Pan()
-    .enabled(isActive && !isScaled)
-    .activeOffsetY([-10, 10])
-    .failOffsetX([-10, 10])
-    .maxPointers(1)
-    .onUpdate(e => {
+  const dismissSwipePan = usePanGesture({
+    enabled: isActive && !isScaled && !isScrollViewBeingDragged,
+    activeOffsetY: [-10, 10],
+    failOffsetX: [-10, 10],
+    maxPointers: 1,
+    onUpdate: e => {
       'worklet'
       if (openProgress.get() !== 1 || isFlyingAway.get()) {
         return
       }
       dismissSwipeTranslateY.set(e.translationY)
-    })
-    .onEnd(e => {
+    },
+    onDeactivate: e => {
       'worklet'
       if (openProgress.get() !== 1 || isFlyingAway.get()) {
         return
@@ -615,27 +614,26 @@ function LightboxImage({
           // This is a bug in Reanimated, but for now we'll work around it like this.
           dismissSwipeTranslateY.set(1)
         }
-        dismissSwipeTranslateY.set(() => {
-          'worklet'
-          return withDecay({
+        dismissSwipeTranslateY.set(
+          withDecay({
             velocity: e.velocityY,
             velocityFactor: Math.max(3500 / Math.abs(e.velocityY), 1), // Speed up if it's too slow.
             deceleration: 1, // Danger! This relies on the reaction below stopping it.
             reduceMotion: ReduceMotion.Never, // If this animation doesn't run, the image gets stuck - therefore override Reduce Motion
-          })
-        })
+          }),
+        )
       } else {
-        dismissSwipeTranslateY.set(() => {
-          'worklet'
-          return withSpring(0, {
+        dismissSwipeTranslateY.set(
+          withSpring(0, {
             stiffness: 700,
             damping: 50,
             mass: 1,
             reduceMotion: ReduceMotion.Never,
-          })
-        })
+          }),
+        )
       }
-    })
+    },
+  })
 
   return (
     <ImageItem

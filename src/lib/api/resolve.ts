@@ -33,6 +33,7 @@ type ResolvedExternalLink = {
   title: string
   description: string
   thumb: ComposerImage | undefined
+  authorDid?: string
   /**
    * The AT-URI of the Atmosphere record representing this external content, if
    * it exists. Example: a site.standard.document record.
@@ -106,6 +107,7 @@ export type LinkResolvers = {
 export async function resolveLink(
   {appviewClient, chatClient}: LinkResolvers,
   uri: string,
+  opts?: {bustCache?: boolean},
 ): Promise<ResolvedLink> {
   if (isShortLink(uri)) {
     uri = await resolveShortLink(uri)
@@ -198,7 +200,7 @@ export async function resolveLink(
       view: data.starterPack,
     }
   }
-  return resolveExternal(uri)
+  return resolveExternal(uri, opts)
 
   // Forked from useGetPost. TODO: move into RQ.
   async function getPost({uri}: {uri: string}) {
@@ -272,14 +274,30 @@ function getFileSlug(url: string | undefined): string | undefined {
   return dotIndex > 0 ? filename.slice(0, dotIndex) : undefined
 }
 
-async function resolveExternal(uri: string): Promise<ResolvedExternalLink> {
-  const result = await getLinkMeta(uri)
+function getAuthorDid(author: string | undefined): string | undefined {
+  if (!author) return
+
+  try {
+    const uri = new AtUri(author)
+    if (!uri.host.startsWith('did:') || uri.collection || uri.rkey) return
+    return uri.host
+  } catch {
+    return
+  }
+}
+
+async function resolveExternal(
+  uri: string,
+  opts?: {bustCache?: boolean},
+): Promise<ResolvedExternalLink> {
+  const result = await getLinkMeta(uri, undefined, opts?.bustCache)
   return {
     type: 'external',
     uri: result.url,
     title: result.title ?? '',
     description: result.description ?? '',
     thumb: result.image ? await imageToThumb(result.image) : undefined,
+    authorDid: getAuthorDid(result.author),
     /*
      * New fields from Standard Site integration. Other fields are derived from
      * opengraph/oembed as before.

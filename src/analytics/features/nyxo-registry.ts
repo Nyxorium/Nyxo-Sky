@@ -13,10 +13,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
         'Show multiple images as a swipeable carousel instead of a grid',
     },
     // future gates: one line each
-    [Features.VideoAllow10MinuteEnable]: {
-      label: '10-Minute Videos',
-      description: 'Allow uploading videos up to 10 minutes long',
-    },
     [Features.ComposerLanguageDetectionEnable]: {
       label: 'Composer language detection',
       description:
@@ -26,30 +22,14 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Post Thread Known Likers',
       description: 'Show people you follow who liked a post in the thread view',
     },
-    [Features.PostThreadKnownLikersFetchEnable]: {
-      label: 'Post Thread Known Likers Fetch',
-      description: 'Fetch known-liker data for posts in a thread',
-    },
-    [Features.SearchStarterPacksV2Enable]: {
-      label: 'Search Starter Packs V2',
-      description: 'Use the updated starter packs experience in search results',
-    },
     [Features.FollowSortEnable]: {
       label: 'Follow Sort',
       description:
         'Sort other users followers/following pages by Top instead of Latest',
     },
-    [Features.VideoMultipartUploadEnable]: {
-      label: 'Video Multipart Upload',
+    [Features.ModerationInboxEnable]: {
+      label: 'Moderation Inbox',
       description:
-        'Upload videos in multiple parts instead of a single request',
-    },
-    [Features.CanonicalPostNumberingEnable]: {
-      label: 'Canonical Post Numbering',
-      description: 'Use canonical numbering for posts',
-    },
-    [Features.ContentVisibilitySettingsEnable]: {
-      label: 'Content Visibility Settings',
-      description: 'Enable per-content visibility settings',
+        'Show the moderation inbox menu item and screen under Moderation settings (CURRENTLY PLACEHOLDERS)',
     },
   }

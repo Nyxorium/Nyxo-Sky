@@ -1,5 +1,6 @@
 import {useCallback} from 'react'
 import {Pressable, View} from 'react-native'
+import {useBackgroundNotificationPreferences} from '@bsky.app/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
@@ -25,7 +26,7 @@ import {Bell_Stroke2_Corner0_Rounded as BellIcon} from '#/components/icons/Bell'
 import {Car_Stroke2_Corner2_Rounded as CarIcon} from '#/components/icons/Car'
 import {ChevronRight_Stroke2_Corner0_Rounded as ChevronRightIcon} from '#/components/icons/Chevron'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import * as Layout from '#/components/Layout'
 import * as Skele from '#/components/Skeleton'
 import * as Toast from '#/components/Toast'
@@ -33,7 +34,6 @@ import {Text} from '#/components/Typography'
 import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
-import {useBackgroundNotificationPreferences} from '../../../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 
 type AllowIncoming = 'all' | 'none' | 'following'
 
@@ -262,7 +262,7 @@ export function MessagesSettingsScreenInner({}: Props) {
               onPress={() => {
                 chatDialogControl.open()
               }}>
-              <MessageIcon style={[a.mr_2xs, t.atoms.text]} size="lg" />
+              <ChatBubbleWithDots style={[a.mr_2xs, t.atoms.text]} size="lg" />
               <View style={[a.flex_1, a.flex_grow]}>
                 <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
                   <Trans>New messages</Trans>

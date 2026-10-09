@@ -38,6 +38,7 @@ import {
   createComposerImage,
 } from '#/state/gallery'
 import {useEnableSquareAvatars} from '#/state/preferences/enable-square-avatars'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
 import {EditImageDialog} from '#/view/com/composer/photos/EditImageDialog'
 import {atoms as a, tokens, useTheme} from '#/alf'
@@ -59,7 +60,6 @@ import {IS_NATIVE, IS_WEB, IS_WEB_TOUCH_DEVICE} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {LiveIndicator} from '#/features/liveNow/components/LiveIndicator'
 import {LiveStatusDialog} from '#/features/liveNow/components/LiveStatusDialog'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 import type * as bsky from '#/types/bsky'
 
 export type UserAvatarType = 'user' | 'algo' | 'list' | 'labeler'
@@ -92,6 +92,7 @@ interface PreviewableUserAvatarProps extends BaseUserAvatarProps {
   profile: bsky.profile.AnyProfileView
   disableHoverCard?: boolean
   disableNavigation?: boolean
+  disableLink?: boolean
   onBeforePress?: () => void
 }
 
@@ -236,7 +237,7 @@ let UserAvatar = ({
   const prefSquareAvatars = enableSquareAvatars ? 'square' : 'circle'
   const finalShape =
     overrideShape ?? (type === 'user' ? prefSquareAvatars : 'square')
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
 
   const isBlockCause =
     moderation?.blurs?.some(
@@ -246,7 +247,7 @@ let UserAvatar = ({
         cause.type === 'block-other',
     ) ?? false
 
-  const shouldBlur = !!moderation?.blur && (isBlockCause || !devModeEnabled)
+  const shouldBlur = !!moderation?.blur && (isBlockCause || tailors.avatarBlurs)
 
   const aviStyle = useMemo(() => {
     let borderRadius
@@ -567,6 +568,7 @@ let PreviewableUserAvatar = ({
   profile,
   disableHoverCard,
   disableNavigation,
+  disableLink,
   onBeforePress,
   live,
   ...props
@@ -576,18 +578,18 @@ let PreviewableUserAvatar = ({
   const queryClient = useQueryClient()
   const status = useActorStatus(profile)
   const liveControl = useDialogControl()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
 
   const onPress = useCallback(() => {
     onBeforePress?.()
     unstableCacheProfileView(queryClient, profile)
   }, [profile, queryClient, onBeforePress])
 
-  const onOpenLiveStatus = useCallback(() => {
-    playHaptic('Light')
+  const onOpenLiveStatus = () => {
+    haptics.tap()
     ax.metric('live:card:open', {subject: profile.did, from: 'post'})
     liveControl.open()
-  }, [liveControl, playHaptic, profile.did])
+  }
 
   const avatarEl = (
     <UserAvatar
@@ -627,6 +629,8 @@ let PreviewableUserAvatar = ({
             embed={status.embed}
           />
         </>
+      ) : disableLink ? (
+        avatarEl
       ) : (
         <Link
           label={_(

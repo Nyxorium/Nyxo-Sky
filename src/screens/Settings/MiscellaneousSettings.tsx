@@ -7,22 +7,6 @@ import {
   useSetAltLabelDisplayProfile,
 } from '#/state/preferences/alternate-label-display-profile'
 import {
-  useLabelerLimitBypass,
-  useSetLabelerLimitBypass,
-} from '#/state/preferences/bypass-labeler-limit'
-import {
-  useDisableProfileDescriptions,
-  useSetDisableProfileDescriptions,
-} from '#/state/preferences/disable-profile-descriptions'
-import {
-  useDisableShareViaDms,
-  useSetDisableShareViaDms,
-} from '#/state/preferences/disable-share-via-dms'
-import {
-  useEnableShareViaDID,
-  useSetEnableShareViaDID,
-} from '#/state/preferences/enable-share-by-DID'
-import {
   useEnableSquareAvatars,
   useSetEnableSquareAvatars,
 } from '#/state/preferences/enable-square-avatars'
@@ -39,9 +23,13 @@ import {
   useSkipProfileWideContentWarning,
 } from '#/state/preferences/skip-profile-wide-content-warning'
 import {
-  useSetSplitModerationLabelGrouping,
-  useSplitModerationLabelGrouping,
-} from '#/state/preferences/split-moderation-label-grouping'
+  useSetSwitchboardPref,
+  useSwitchboardPrefs,
+} from '#/state/preferences/switchboard-prefs'
+import {
+  useSetViewTailorPref,
+  useViewTailorPrefs,
+} from '#/state/preferences/view-tailor-prefs'
 import {AppearanceToggleButtonGroup} from '#/screens/Settings/AppearanceSettings'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
@@ -50,44 +38,34 @@ import * as Toggle from '#/components/forms/Toggle'
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Filter_Stroke2_Corner0_Rounded as FilterIcon} from '#/components/icons/Filter'
+import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
+import {UserPlus_solid} from '#/components/icons/heroicons/UserPlus'
 import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
-import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
-import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
-import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand'
+import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand4Finger'
 import * as Layout from '#/components/Layout'
 import {IS_NATIVE} from '#/env'
-import {useDevMode} from '#/storage/hooks/dev-mode'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
   const {t: l} = useLingui()
 
-  const [devModeEnabled] = useDevMode()
+  const {tailors} = useViewTailorPrefs()
+  const setTailors = useSetViewTailorPref()
+  const {switches} = useSwitchboardPrefs()
+  const setSwitches = useSetSwitchboardPref()
 
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const setAltLabelDisplayProfile = useSetAltLabelDisplayProfile()
-  const disableShareViaDms = useDisableShareViaDms()
-  const setDisableShareViaDms = useSetDisableShareViaDms()
-  const enableShareViaDID = useEnableShareViaDID()
-  const setEnableShareViaDID = useSetEnableShareViaDID()
   const enableSquareAvatars = useEnableSquareAvatars()
   const setEnableSquareAvatars = useSetEnableSquareAvatars()
-  const disableProfileDescriptions = useDisableProfileDescriptions()
-  const setDisableProfileDescriptions = useSetDisableProfileDescriptions()
   const noAppLabelers = useNoAppLabelers()
   const setNoAppLabelers = useSetNoAppLabelers()
   const skipProfileWideContentWarning = useSkipProfileWideContentWarning()
   const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
-  const splitModerationlabelGrouping = useSplitModerationLabelGrouping()
-  const setSplitModerationlabelGrouping = useSetSplitModerationLabelGrouping()
   const likeOnRepost = useLikeOnRepost()
   const setLikeOnRepost = useSetLikeOnRepost()
-  const labelerLimitBypass = useLabelerLimitBypass()
-  const setLabelerLimitBypass = useSetLabelerLimitBypass()
-
-  // Keep disable and enable options seperate? - Sunstar
 
   return (
     <Layout.Screen>
@@ -115,7 +93,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
 
           <AppearanceToggleButtonGroup
             title={l`Profile Label Display Style (Self)`}
-            icon={PhoneIcon}
+            icon={DevicePhoneMobile}
             items={[
               {label: l`Original`, name: 'original'},
               {label: l`Alternative`, name: 'alternative'},
@@ -128,8 +106,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <Toggle.Item
             name="enable_share_via_did"
             label={l`Share by DID`}
-            value={enableShareViaDID}
-            onChange={value => setEnableShareViaDID(value)}>
+            value={switches.shareByDID}
+            onChange={value => setSwitches('shareByDID', value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={ChainLinkIcon} />
               <SettingsList.ItemText>
@@ -145,7 +123,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             value={enableSquareAvatars}
             onChange={value => setEnableSquareAvatars(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonIcon} />
+              <SettingsList.ItemIcon icon={UserIcon} />
               <SettingsList.ItemText>
                 <Trans>Square Avatars</Trans>
               </SettingsList.ItemText>
@@ -156,12 +134,26 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <SettingsList.Divider />
 
           <Toggle.Item
+            name="hide_follow_button_in_notifications"
+            label={l`Follow button in Notifications`}
+            value={tailors.notificationFollowButton}
+            onChange={value => setTailors('notificationFollowButton', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={UserPlus_solid} />
+              <SettingsList.ItemText>
+                <Trans>Follow button in Notifications</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
             name="disable_profile_content_warning"
             label={l`Disable Profile wide content warnings`}
             value={skipProfileWideContentWarning}
             onChange={value => setSkipProfileWideContentWarning(value)}>
             <SettingsList.Item>
-              <SettingsList.ItemIcon icon={PersonIcon} />
+              <SettingsList.ItemIcon icon={UserIcon} />
               <SettingsList.ItemText>
                 <Trans>Disable Profile Wide Content Warnings</Trans>
               </SettingsList.ItemText>
@@ -172,8 +164,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <Toggle.Item
             name="split_moderation_label_grouping"
             label={l`Split moderation label grouping`}
-            value={splitModerationlabelGrouping}
-            onChange={value => setSplitModerationlabelGrouping(value)}>
+            value={!switches.labelGrouping}
+            onChange={value => setSwitches('labelGrouping', !value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={FilterIcon} />
               <SettingsList.ItemText>
@@ -200,8 +192,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
           <Toggle.Item
             name="disable_max_labeler_limit"
             label={l`Disable max labeler limit`}
-            value={labelerLimitBypass}
-            onChange={value => setLabelerLimitBypass(value)}>
+            value={switches.labelerLimitBypass}
+            onChange={value => setSwitches('labelerLimitBypass', value)}>
             <SettingsList.Item>
               <SettingsList.ItemIcon icon={KeyIcon} />
               <SettingsList.ItemText>
@@ -211,39 +203,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.Item>
           </Toggle.Item>
 
-          {devModeEnabled && (
-            <Toggle.Item
-              name="disable_profile_descriptions"
-              label={l`Disable Profile Descriptions`}
-              value={disableProfileDescriptions}
-              onChange={value => setDisableProfileDescriptions(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={MessageIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Disable Profile Descriptions</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
-
           {IS_NATIVE && <SettingsList.Divider />}
-
-          {IS_NATIVE && (
-            <Toggle.Item
-              name="disable_share-via-dms"
-              label={l`Disable 'Share Via DMs' in Share Menu`}
-              value={disableShareViaDms}
-              onChange={value => setDisableShareViaDms(value)}>
-              <SettingsList.Item>
-                <SettingsList.ItemIcon icon={PhoneIcon} />
-                <SettingsList.ItemText>
-                  <Trans>Disable 'Share Via DMs' in Share Menu</Trans>
-                </SettingsList.ItemText>
-                <Toggle.Platform />
-              </SettingsList.Item>
-            </Toggle.Item>
-          )}
 
           <SettingsList.Divider />
 

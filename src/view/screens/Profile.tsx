@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {StyleSheet} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import {ScrollForwarderView} from 'react-native-scroll-forwarder'
+import {ScrollForwarderView} from '@bsky.app/react-native-scroll-forwarder'
 import {moderateProfile, type ModerationOpts} from '@bsky/sdk/moderation'
 import {RichText as RichTextAPI} from '@bsky/sdk/richtext'
 import {msg} from '@lingui/core/macro'
@@ -27,6 +27,7 @@ import {listenSoftReset} from '#/state/events'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useProfileTabVisibilityPrefs} from '#/state/preferences/profile-tab-visibility'
 import {useSkipProfileWideContentWarning} from '#/state/preferences/skip-profile-wide-content-warning'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useLabelerInfoQuery} from '#/state/queries/labeler'
 import {resetProfilePostsQueries} from '#/state/queries/post-feed'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -43,9 +44,9 @@ import {ProfileHeader, ProfileHeaderLoading} from '#/screens/Profile/Header'
 import {ProfileFeedSection} from '#/screens/Profile/Sections/Feed'
 import {ProfileLabelsSection} from '#/screens/Profile/Sections/Labels'
 import {atoms as a, useTheme} from '#/alf'
-import {Circle_And_Square_Stroke1_Corner0_Rounded_Filled as CircleAndSquareIcon} from '#/components/icons/CircleAndSquare'
 import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
 import {Heart2_Stroke1_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
+import {Square2Stack_thin as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
 import {Image_Stroke1_Corner0_Rounded as ImageIcon} from '#/components/icons/Image'
 import {Message_Stroke1_Corner0_Rounded_Filled as MessageIcon} from '#/components/icons/Message'
 import {VideoClip_Stroke1_Corner0_Rounded as VideoIcon} from '#/components/icons/VideoClip'
@@ -118,7 +119,9 @@ function ProfileScreenInner({route}: Props) {
   }, [queryClient, profile?.viewer?.blockedBy, resolvedDid])
 
   // Most pushes will happen here, since we will have only placeholder data
-  if (isDidPending || isProfilePending) {
+  // A disabled dependent query remains pending, so only consider the profile
+  // pending once handle resolution has produced a DID.
+  if (isDidPending || (!!resolvedDid && isProfilePending)) {
     return (
       <Layout.Content>
         <ProfileHeaderLoading />
@@ -363,7 +366,7 @@ function ProfileScreenLoaded({
   const wrappedNavToWizard = requireEmailVerification(navToWizard, {
     instructions: [
       <Trans key="nav">
-        Before creating a starter pack, you must first verify your email.
+        Before creating a Starter Pack, you must first verify your email.
       </Trans>,
     ],
   })
@@ -401,6 +404,8 @@ function ProfileScreenLoaded({
       </ScrollForwarderView>
     )
   }
+
+  const {tailors} = useViewTailorPrefs()
 
   return (
     <ScreenHider
@@ -594,7 +599,7 @@ function ProfileScreenLoaded({
                       }
                     : undefined
                 }
-                emptyStateIcon={CircleAndSquareIcon}
+                emptyStateIcon={Square2StackIcon}
               />
             )
           : null}
@@ -611,7 +616,7 @@ function ProfileScreenLoaded({
             )
           : null}
       </PagerWithHeader>
-      {hasSession ? (
+      {hasSession && (isMe || tailors.newPostButton) ? (
         <FAB
           testID="composeFAB"
           onPress={onPressCompose}
@@ -663,7 +668,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     height: '100%',
-    // @ts-ignore Web-only.
+    // @ts-expect-error Web-only.
     overflowAnchor: 'none', // Fixes jumps when switching tabs while scrolled down.
   },
   loading: {

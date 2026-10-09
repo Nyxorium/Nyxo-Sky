@@ -3,7 +3,7 @@ import {Trans} from '@lingui/react/macro'
 import type * as Dialog from '#/components/Dialog'
 import {NotificationSettingsDialog} from '#/components/dialogs/NotificationSettingsDialog'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
-import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 
 export function ChatNotificationDialogs({
   chatControl,
@@ -17,7 +17,7 @@ export function ChatNotificationDialogs({
       <NotificationSettingsDialog
         control={chatControl}
         name="chat"
-        icon={MessageIcon}
+        icon={ChatBubbleWithDots}
         titleText={<Trans>New messages</Trans>}
         subtitleText={
           <Trans>Get notifications when people send you messages.</Trans>

@@ -14,7 +14,7 @@ import {useHaptics} from '#/lib/haptics'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {logger} from '#/logger'
 import {type Shadow, useProfileShadow} from '#/state/cache/profile-shadow'
-import {useDisableProfileDescriptions} from '#/state/preferences/disable-profile-descriptions'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
   useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
@@ -96,7 +96,7 @@ let ProfileHeaderStandard = ({
 
   const {isActive: live} = useActorStatus(profile)
 
-  const disableProfileDescriptions = useDisableProfileDescriptions()
+  const {tailors} = useViewTailorPrefs()
 
   return (
     <>
@@ -138,7 +138,7 @@ let ProfileHeaderStandard = ({
             <View style={a.gap_md}>
               <ProfileHeaderMetrics profile={profile} />
               {descriptionRT &&
-              !disableProfileDescriptions &&
+              tailors.profileDescriptions &&
               !moderation.ui('profileView').blur ? (
                 <View pointerEvents="auto">
                   <RichText
@@ -149,6 +149,7 @@ let ProfileHeaderStandard = ({
                     value={descriptionRT}
                     enableTags
                     authorHandle={profile.handle}
+                    shouldProxyLinks={true}
                   />
                 </View>
               ) : undefined}
@@ -211,7 +212,7 @@ export function HeaderStandardButtons({
   const {_} = useLingui()
   const ax = useAnalytics()
   const {hasSession, currentAccount} = useSession()
-  const playHaptic = useHaptics()
+  const haptics = useHaptics()
   const requireAuth = useRequireAuth()
   const [queueFollow, queueUnfollow] = useProfileFollowMutationQueue(
     profile,
@@ -225,15 +226,18 @@ export function HeaderStandardButtons({
   const isMe = currentAccount?.did === profile.did
 
   const onPressFollow = () => {
-    playHaptic()
+    haptics.confirm()
+    const displayNameOrHandle = profile.displayName || profile.handle
     requireAuth(async () => {
       try {
         await queueFollow()
-        onFollow?.()
+        if (onFollow) {
+          onFollow()
+        }
         Toast.show(
           _(
             msg`Following ${sanitizeDisplayName(
-              profile.displayName || profile.handle,
+              displayNameOrHandle,
               moderation.ui('displayName'),
             )}`,
           ),
@@ -251,15 +255,18 @@ export function HeaderStandardButtons({
   }
 
   const onPressUnfollow = () => {
-    playHaptic()
+    haptics.confirm()
+    const displayNameOrHandle = profile.displayName || profile.handle
     requireAuth(async () => {
       try {
         await queueUnfollow()
-        onUnfollow?.()
+        if (onUnfollow) {
+          onUnfollow()
+        }
         Toast.show(
           _(
             msg`No longer following ${sanitizeDisplayName(
-              profile.displayName || profile.handle,
+              displayNameOrHandle,
               moderation.ui('displayName'),
             )}`,
           ),
@@ -312,7 +319,7 @@ export function HeaderStandardButtons({
             size="small"
             color="secondary"
             onPress={() => {
-              playHaptic('Light')
+              haptics.tap()
               editProfileControl.open()
             }}
             label={_(msg`Edit profile`)}>
@@ -393,7 +400,7 @@ export function HeaderStandardButtons({
           // overlap the neighboring buttons' own targets
           hitSlop={{top: 6, bottom: 6, left: 2, right: 2}}
           onPress={() => {
-            playHaptic('Light')
+            haptics.tap()
             ax.metric('invite:dialog:open', {logContext: 'ProfileHeader'})
             inviteFriendsControl.open()
           }}

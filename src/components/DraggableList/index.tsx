@@ -1,5 +1,5 @@
 import {useLayoutEffect, useRef} from 'react'
-import {Gesture, GestureDetector} from 'react-native-gesture-handler'
+import {GestureDetector, usePanGesture} from 'react-native-gesture-handler'
 import Animated, {
   type AnimatedRef,
   measure,
@@ -249,12 +249,13 @@ function SortableItem<T>({
   onDragEnd?: () => void
 }) {
   const t = useTheme()
-  const playHaptic = useHaptics()
+  const {dragStart: playDragStartHaptic, selection: playSelectionHaptic} =
+    useHaptics()
 
   const lastHapticSlot = useSharedValue(-1)
 
-  const gesture = Gesture.Pan()
-    .onStart(() => {
+  const gesture = usePanGesture({
+    onActivate: () => {
       'worklet'
       const s = state.get()
       const mySlot = s.slots[itemKey]
@@ -267,9 +268,9 @@ function SortableItem<T>({
       if (onDragStart) {
         scheduleOnRN(onDragStart)
       }
-      scheduleOnRN(playHaptic)
-    })
-    .onChange(e => {
+      scheduleOnRN(playDragStartHaptic)
+    },
+    onUpdate: e => {
       'worklet'
       const startSlot = state.get().dragStartSlot
       const minY = -startSlot * itemHeight
@@ -283,12 +284,12 @@ function SortableItem<T>({
         (startSlot * itemHeight + clampedY) / itemHeight,
       )
       const clampedSlot = Math.max(0, Math.min(currentSlot, itemCount - 1))
-      if (IS_IOS && clampedSlot !== lastHapticSlot.get()) {
+      if (clampedSlot !== lastHapticSlot.get()) {
         lastHapticSlot.set(clampedSlot)
-        scheduleOnRN(playHaptic, 'Light')
+        scheduleOnRN(playSelectionHaptic)
       }
-    })
-    .onEnd(() => {
+    },
+    onDeactivate: () => {
       'worklet'
       // Stop auto-scroll BEFORE the snap animation.
       isGestureActive.set(false)
@@ -338,9 +339,9 @@ function SortableItem<T>({
           }
         }),
       )
-    })
-    // Reset if the gesture is cancelled without onEnd firing.
-    .onFinalize(() => {
+    },
+    // Reset if the gesture is cancelled without onDeactivate firing.
+    onFinalize: () => {
       'worklet'
       isGestureActive.set(false)
       if (state.get().activeKey === itemKey && dragY.get() === 0) {
@@ -350,7 +351,8 @@ function SortableItem<T>({
           scheduleOnRN(onDragEnd)
         }
       }
-    })
+    },
+  })
 
   // All vertical positioning is via translateY (no `top`). This avoids
   // discrete jumps when slots change — Reanimated smoothly animates from

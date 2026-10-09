@@ -12,11 +12,11 @@ import {FUNDING_URL, SOURCE_CODE_URL} from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {purgeTemporaryImageFiles} from '#/state/gallery'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
-import {Atom_Stroke2_Corner0_Rounded as AtomIcon} from '#/components/icons/Atom'
 import {BroomSparkle_Stroke2_Corner2_Rounded as BroomSparkleIcon} from '#/components/icons/BroomSparkle'
 import {Bubbles_Stroke2_Corner2_Rounded as BubblesIcon} from '#/components/icons/Bubble'
 import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/CodeLines'
 import {Heart2_Stroke2_Corner0_Rounded as Heart2Icon} from '#/components/icons/Heart2'
+import {Atom as AtomIcon} from '#/components/icons/lucide/Atom'
 import {Wrench_Stroke2_Corner2_Rounded as WrenchIcon} from '#/components/icons/Wrench'
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
@@ -151,6 +151,7 @@ export function AboutSettingsScreen({}: Props) {
                         context: 'toast',
                       }),
                     ),
+                {shape: 'compact'},
               )
             }}
             onPress={() => {

@@ -12,7 +12,7 @@ import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {type ConvoWithDetails} from '#/components/dms/util'
-import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {ProfileBadges} from '#/components/ProfileBadges'
 import * as ProfileCard from '#/components/ProfileCard'
 import {Text} from '#/components/Typography'
@@ -97,7 +97,7 @@ export function MessagesListInfoPanel({
           onPress={() => {
             navigation.navigate('Profile', {name: profileLink})
           }}>
-          <ButtonIcon icon={PersonIcon} />
+          <ButtonIcon icon={UserIcon} />
           <ButtonText>
             <Trans>Go to profile</Trans>
           </ButtonText>

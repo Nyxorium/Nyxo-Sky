@@ -15,9 +15,14 @@ It simply outlines the things I use for my specific setup while developing Nyxo 
 (Run after adding anything with Trans — also handled automatically by the workflow file: nightly-build-translations.yml)
 
 
+# Cloudflare Pages deployment
+Build command: `export EXPO_PUBLIC_BUNDLE_IDENTIFIER=$CF_PAGES_COMMIT_SHA && pnpm intl:compile && pnpm build-web`
+Build output directory: `web-build`
+
+
 # Android Build
 `pnpm prebuild -p android` || `pnpm prebuild -p android --no-clean`
-`pnpm android` || `pnpm android --variant release`
+`pnpm android` || `pnpm android --variant release` || `pnpm android:prod`
 
 
 # APK Signing (initial gen)
@@ -30,11 +35,11 @@ rsync -av --progress \
   --exclude 'node_modules' \
   --exclude '.git' \
   --exclude 'code-signing' \
-  /Nyxo-Sky/versions/1.110.0/ /Nyxo-Sky/Nyxorium/
+  /Nyxo-Sky/workspace /Nyxo-Sky/Nyxorium/
 
 (This is because github is annoying and I don't want to learn it...)
 (Easier to have everything in the main project directory tied to the upstream, 
-than copy everything to a new directiory tied to the repo I'm pushing too when I need to)
+then copy everything to a new directiory tied to the repo I'm pushing too when I need to)
 
 
 # Deleting old files in other directory
@@ -45,3 +50,9 @@ than copy everything to a new directiory tied to the repo I'm pushing too when I
 <Trans>Value name here</Trans>
 {' - '}
 {ValueVariableHere ? "Enabled" : "Disabled"}
+
+
+# In the event of a Hermes build error
+Delete `./android`
+Delete `./node_modules`
+Run `pnpm prebuild -p android` (cleanly, no restore script)

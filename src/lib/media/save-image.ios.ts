@@ -22,7 +22,7 @@ export function useSaveImageToMediaLibrary() {
 
       try {
         await saveImageToMediaLibrary({uri})
-        Toast.show(_(msg`Image saved`))
+        Toast.show(_(msg`Image saved`), {shape: 'compact'})
       } catch (e: any) {
         Toast.show(_(msg`Failed to save image: ${String(e)}`), {type: 'error'})
       }
@@ -51,7 +51,9 @@ export function useSaveImagesToMediaLibrary() {
 
       const total = uris.length
       if (savedCount === total) {
-        Toast.show(_(msg`Saved ${total} image${total === 1 ? '' : 's'}`))
+        Toast.show(_(msg`Saved ${total} image${total === 1 ? '' : 's'}`), {
+          shape: 'compact',
+        })
       } else if (savedCount > 0) {
         Toast.show(_(msg`Saved ${savedCount} of ${total} images`))
       } else {

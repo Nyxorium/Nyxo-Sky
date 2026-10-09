@@ -164,6 +164,7 @@ export function Avatar({
   moderationOpts,
   onPress,
   disabledPreview,
+  disableLink,
   liveOverride,
   size = 40,
 }: {
@@ -171,6 +172,7 @@ export function Avatar({
   moderationOpts: ModerationOpts
   onPress?: () => void
   disabledPreview?: boolean
+  disableLink?: boolean
   liveOverride?: boolean
   size?: number
 }) {
@@ -192,6 +194,7 @@ export function Avatar({
       profile={profile}
       moderation={moderation.ui('avatar')}
       onBeforePress={onPress}
+      disableLink={disableLink}
       live={liveOverride ?? live}
     />
   )
@@ -500,16 +503,21 @@ export function FollowButtonInner({
   const onPressFollow = async (e: GestureResponderEvent) => {
     e.preventDefault()
     e.stopPropagation()
+    const displayNameOrHandle = profile.displayName || profile.handle
     try {
       await queueFollow()
       Toast.show(
         l`Following ${sanitizeDisplayName(
-          profile.displayName || profile.handle,
+          displayNameOrHandle,
           moderation.ui('displayName'),
         )}`,
       )
-      onPressProp?.(e)
-      onFollow?.()
+      if (onPressProp) {
+        onPressProp(e)
+      }
+      if (onFollow) {
+        onFollow()
+      }
     } catch (e) {
       const err = e as Error
       if (err?.name !== 'AbortError') {
@@ -523,15 +531,18 @@ export function FollowButtonInner({
   const onPressUnfollow = async (e: GestureResponderEvent) => {
     e.preventDefault()
     e.stopPropagation()
+    const displayNameOrHandle = profile.displayName || profile.handle
     try {
       await queueUnfollow()
       Toast.show(
         l`No longer following ${sanitizeDisplayName(
-          profile.displayName || profile.handle,
+          displayNameOrHandle,
           moderation.ui('displayName'),
         )}`,
       )
-      onPressProp?.(e)
+      if (onPressProp) {
+        onPressProp(e)
+      }
     } catch (e) {
       const err = e as Error
       if (err?.name !== 'AbortError') {

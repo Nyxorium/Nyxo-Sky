@@ -3,9 +3,13 @@ import {View} from 'react-native'
 import {nanoid} from 'nanoid/non-secure'
 import {toast as sonner, Toaster} from 'sonner-native'
 
+import {compactToastStore} from '#/state/compact-toast/store'
 import {atoms as a} from '#/alf'
+import {CompactToastContainer} from '#/components/CompactToastContainer'
 import {DURATION} from '#/components/Toast/const'
 import {
+  CompactOuter,
+  CompactText,
   Icon as ToastIcon,
   Outer as BaseOuter,
   Text as ToastText,
@@ -14,7 +18,14 @@ import {
 import {type BaseToastOptions} from '#/components/Toast/types'
 
 export {DURATION} from '#/components/Toast/const'
-export {Action, Icon, Text, ToastConfigProvider} from '#/components/Toast/Toast'
+export {
+  Action,
+  CompactOuter,
+  CompactText,
+  Icon,
+  Text,
+  ToastConfigProvider,
+} from '#/components/Toast/Toast'
 export {type ToastType} from '#/components/Toast/types'
 
 /**
@@ -22,7 +33,12 @@ export {type ToastType} from '#/components/Toast/types'
  * component tree.
  */
 export function ToastOutlet() {
-  return <Toaster pauseWhenPageIsHidden gap={a.gap_sm.gap} />
+  return (
+    <>
+      <Toaster pauseWhenPageIsHidden gap={a.gap_sm.gap} />
+      <CompactToastContainer />
+    </>
+  )
 }
 
 export function Outer({children}: {children: React.ReactNode}) {
@@ -43,11 +59,27 @@ export const api = sonner
  */
 export function show(
   content: React.ReactNode,
-  {type = 'default', ...options}: BaseToastOptions = {},
+  {type = 'default', shape = 'banner', ...options}: BaseToastOptions = {},
 ) {
   const id = nanoid()
 
   if (typeof content === 'string') {
+    if (shape === 'compact') {
+      compactToastStore.show({
+        id,
+        duration: options?.duration ?? DURATION,
+        node: (
+          <ToastConfigProvider id={id} type={type}>
+            <CompactOuter>
+              <ToastIcon />
+              <CompactText>{content}</CompactText>
+            </CompactOuter>
+          </ToastConfigProvider>
+        ),
+      })
+      return
+    }
+
     sonner.custom(
       <ToastConfigProvider id={id} type={type}>
         <Outer>
@@ -62,6 +94,19 @@ export function show(
       },
     )
   } else if (isValidElement(content)) {
+    if (shape === 'compact') {
+      compactToastStore.show({
+        id,
+        duration: options?.duration ?? DURATION,
+        node: (
+          <ToastConfigProvider id={id} type={type}>
+            {content}
+          </ToastConfigProvider>
+        ),
+      })
+      return
+    }
+
     sonner.custom(
       <ToastConfigProvider id={id} type={type}>
         {content}

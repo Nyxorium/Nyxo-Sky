@@ -7,11 +7,25 @@ import {
   useImpressionVisibilityPrefs,
   useSetImpressionVisibility,
 } from '#/state/preferences/impression-visibility'
+import {
+  useSetViewTailorPref,
+  useViewTailorPrefs,
+} from '#/state/preferences/view-tailor-prefs'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
+import * as Toggle from '#/components/forms/Toggle'
+import {Mark as BlueskyIcon} from '#/components/icons/brands/Mark'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
-import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
+import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
+import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
+import {User as UserIcon} from '#/components/icons/heroicons/User'
+import {UserCircle as UserCircleIcon} from '#/components/icons/heroicons/UserCircle'
+import {UserPlus_outline} from '#/components/icons/heroicons/UserPlus'
+import {UserPlus} from '#/components/icons/lucide/UserPlus'
+import {Pet_Stroke as PetIcon} from '#/components/icons/Pet'
 import * as Layout from '#/components/Layout'
+import {IS_NATIVE} from '#/env'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 import {type ImpressionConfig, ImpressionSection} from './FeedLikesSection'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
@@ -22,8 +36,12 @@ const FEED_IMPRESSIONS: ImpressionConfig[] = [
 
 export function ViewTailorSettingsScreen({}: Props) {
   const {t: l} = useLingui()
+  const [devModeEnabled] = useDevMode()
   const prefs = useImpressionVisibilityPrefs()
   const setVisibility = useSetImpressionVisibility()
+
+  const {tailors} = useViewTailorPrefs()
+  const setTailors = useSetViewTailorPref()
 
   const getOwnValue = (key: ImpressionVisibilityKey) => {
     const v = prefs[key] ?? 'show'
@@ -85,8 +103,6 @@ export function ViewTailorSettingsScreen({}: Props) {
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
 
-          <SettingsList.Divider />
-
           <SettingsList.LinkItem
             to="/settings/view-tailor/post-impressions"
             label={l`Post impressions`}>
@@ -99,11 +115,22 @@ export function ViewTailorSettingsScreen({}: Props) {
           <SettingsList.LinkItem
             to="/settings/view-tailor/profile-statistics"
             label={l`Profile statistics`}>
-            <SettingsList.ItemIcon icon={PersonIcon} />
+            <SettingsList.ItemIcon icon={UserIcon} />
             <SettingsList.ItemText>
               <Trans>Profile Statistics</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
+
+          {IS_NATIVE ? (
+            <SettingsList.LinkItem
+              to="/settings/view-tailor/native"
+              label={l`Native tailors`}>
+              <SettingsList.ItemIcon icon={DevicePhoneMobile} />
+              <SettingsList.ItemText>
+                <Trans>Native Tailors</Trans>
+              </SettingsList.ItemText>
+            </SettingsList.LinkItem>
+          ) : null}
 
           <SettingsList.Divider />
 
@@ -116,6 +143,94 @@ export function ViewTailorSettingsScreen({}: Props) {
             onToggleOwn={onToggleOwn}
             onToggleOthers={onToggleOthers}
           />
+
+          <SettingsList.Divider />
+
+          <Toggle.Item
+            name="hide_similar_accounts"
+            label={l`Similar accounts box`}
+            value={tailors.similarAccountBox}
+            onChange={value => setTailors('similarAccountBox', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={UserPlus_outline} />
+              <SettingsList.ItemText>
+                <Trans>Similar Accounts Box</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="show_pet_badge"
+            label={l`Pet labels`}
+            value={tailors.petLabels}
+            onChange={value => setTailors('petLabels', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={PetIcon} />
+              <SettingsList.ItemText>
+                <Trans>Pet Labels</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="hide_follows_you_pill"
+            label={l`Follows you pill`}
+            value={tailors.followsYouPill}
+            onChange={value => setTailors('followsYouPill', value)}>
+            <SettingsList.Item>
+              <UserPlus size="medium" />
+              <SettingsList.ItemText>
+                <Trans>'Follows you' pill</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          {devModeEnabled && (
+            <Toggle.Item
+              name="hide_profile_descriptions"
+              label={l`Profile descriptions`}
+              value={tailors.profileDescriptions}
+              onChange={value => setTailors('profileDescriptions', value)}>
+              <SettingsList.Item>
+                <SettingsList.ItemIcon icon={ChatBubbleWithDots} />
+                <SettingsList.ItemText>
+                  <Trans>Profile Descriptions</Trans>
+                </SettingsList.ItemText>
+                <Toggle.Platform />
+              </SettingsList.Item>
+            </Toggle.Item>
+          )}
+
+          <Toggle.Item
+            name="enable_open_in_bluesky_button"
+            label={l`Open in Bluesky button`}
+            value={tailors.openInBluesky}
+            onChange={value => setTailors('openInBluesky', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={BlueskyIcon} />
+              <SettingsList.ItemText>
+                <Trans>Open in Bluesky button</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="disable_avatar_blurs_button"
+            label={l`Avatar/Banner blur`}
+            value={tailors.avatarBlurs}
+            onChange={value => setTailors('avatarBlurs', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={UserCircleIcon} />
+              <SettingsList.ItemText>
+                <Trans>Avatar/Banner blur</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

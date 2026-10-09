@@ -8,16 +8,17 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {shareText, shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useEnableShareViaDID} from '#/state/preferences/enable-share-by-DID'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useSession} from '#/state/session'
 import {useBreakpoints} from '#/alf'
 import {useDialogControl} from '#/components/Dialog'
 import {EmbedDialog} from '#/components/dialogs/Embed'
 import {SendViaChatDialog} from '#/components/dms/dialogs/ShareViaChatDialog'
+import {Mark as BlueskyIcon} from '#/components/icons/brands/Mark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {CodeBrackets_Stroke2_Corner0_Rounded as CodeBracketsIcon} from '#/components/icons/CodeBrackets'
-import {Mark as BlueskyIcon} from '#/components/icons/Logo'
 import {PaperPlane_Stroke2_Corner0_Rounded as Send} from '#/components/icons/PaperPlane'
 import * as Menu from '#/components/Menu'
 import {useAgeAssurance} from '#/ageAssurance'
@@ -41,7 +42,8 @@ let ShareMenuItems = ({
   const sendViaChatControl = useDialogControl()
   const [devModeEnabled] = useDevMode()
   const aa = useAgeAssurance()
-  const enableShareViaDID = useEnableShareViaDID()
+  const {tailors} = useViewTailorPrefs()
+  const {switches} = useSwitchboardPrefs()
 
   const postUri = post.uri
   const postCid = post.cid
@@ -56,7 +58,7 @@ let ShareMenuItems = ({
     }
   }, [postUri, postAuthor])
 
-  const activeHref = enableShareViaDID ? hrefDID : href
+  const activeHref = switches.shareByDID ? hrefDID : href
 
   const hideInPWI = useMemo(() => {
     return !!postAuthor.labels?.find(
@@ -121,7 +123,7 @@ let ShareMenuItems = ({
       <Menu.Outer>
         {!hideInPWI && copyLinkItem}
 
-        {!hideInPWI && openInBlueskyItem}
+        {!hideInPWI && tailors.openInBluesky && openInBlueskyItem}
 
         {hasSession && aa.state.access === aa.Access.Full && (
           <Menu.Item

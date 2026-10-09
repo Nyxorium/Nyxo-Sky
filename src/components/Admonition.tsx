@@ -3,11 +3,11 @@ import {type StyleProp, View, type ViewStyle} from 'react-native'
 
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
 import {Button as BaseButton, type ButtonProps} from '#/components/Button'
-import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfoIcon} from '#/components/icons/CircleInfo'
-import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/CircleX'
+import {InfomationCircle as CircleInfoIcon} from '#/components/icons/heroicons/InfomationCircle'
 import {Warning_Stroke2_Corner0_Rounded as WarningIcon} from '#/components/icons/Warning'
 import {Text as BaseText, type TextProps} from '#/components/Typography'
-import {EmojiSad_Stroke2_Corner0_Rounded as EmojiSadIcon} from './icons/Emoji'
+import {FaceFrownThin as EmojiSadIcon} from './icons/heroicons/Face'
+import {CircleX as CircleXIcon} from './icons/lucide/CircleX'
 
 type Context = {
   type: 'info' | 'tip' | 'warning' | 'error' | 'apology'

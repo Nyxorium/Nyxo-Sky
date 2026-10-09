@@ -4,9 +4,7 @@ import {Image} from 'expo-image'
 import {AtUri} from '@atproto/syntax'
 import {type ModerationOpts} from '@bsky/sdk/moderation'
 import {RichText as RichTextAPI} from '@bsky/sdk/richtext'
-import {msg} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Plural, Trans} from '@lingui/react/macro'
+import {Plural, Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useQueryClient} from '@tanstack/react-query'
@@ -33,6 +31,7 @@ import {useResolveDidQuery} from '#/state/queries/resolve-uri'
 import {useShortenLink} from '#/state/queries/shorten-link'
 import {
   useDeleteStarterPackMutation,
+  useReferenceListOptOutMutation,
   useStarterPackQuery,
 } from '#/state/queries/starter-packs'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
@@ -44,6 +43,7 @@ import {
 } from '#/state/shell/progress-guide'
 import {PagerWithHeader} from '#/view/com/pager/PagerWithHeader'
 import {ProfileSubpageHeader} from '#/view/com/profile/ProfileSubpageHeader'
+import {type ListRef} from '#/view/com/util/List'
 import {bulkWriteFollows} from '#/screens/Onboarding/util'
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
@@ -98,7 +98,7 @@ export function StarterPackScreen({route}: StarterPackScreeProps) {
 }
 
 export function StarterPackScreenShort({route}: StarterPackScreenShortProps) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const {
     data: resolvedStarterPack,
     isLoading,
@@ -113,8 +113,8 @@ export function StarterPackScreenShort({route}: StarterPackScreenShortProps) {
         <ListMaybePlaceholder
           isLoading={isLoading}
           isError={isError}
-          errorMessage={_(msg`That starter pack could not be found.`)}
-          emptyMessage={_(msg`That starter pack could not be found.`)}
+          errorMessage={l`That Starter Pack could not be found.`}
+          emptyMessage={l`That Starter Pack could not be found.`}
         />
       </Layout.Screen>
     )
@@ -132,7 +132,7 @@ export function StarterPackScreenInner({
   routeParams: StarterPackScreeProps['route']['params']
 }) {
   const {name, rkey} = routeParams
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const {currentAccount} = useSession()
 
   const moderationOpts = useModerationOpts()
@@ -150,7 +150,7 @@ export function StarterPackScreenInner({
   const isValid =
     starterPack &&
     (starterPack.list || starterPack?.creator?.did === currentAccount?.did) &&
-    bsky.matches(app.bsky.graph.defs.starterPackView, starterPack) &&
+    bsky.starterPack.isTrustedView(starterPack) &&
     bsky.matches(app.bsky.graph.starterpack, starterPack.record)
 
   if (!did || !starterPack || !isValid || !moderationOpts) {
@@ -158,8 +158,8 @@ export function StarterPackScreenInner({
       <ListMaybePlaceholder
         isLoading={isLoadingDid || isLoadingStarterPack || !moderationOpts}
         isError={isErrorDid || isErrorStarterPack || !isValid}
-        errorMessage={_(msg`That starter pack could not be found.`)}
-        emptyMessage={_(msg`That starter pack could not be found.`)}
+        errorMessage={l`That Starter Pack could not be found.`}
+        emptyMessage={l`That Starter Pack could not be found.`}
       />
     )
   }
@@ -202,14 +202,14 @@ function StarterPackScreenLoaded({
   const showLabelersTab = Boolean(labelerProfiles?.length)
   const showFeedsTab = Boolean(starterPack.feeds?.length)
   const showPostsTab = Boolean(starterPack.list)
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const ax = useAnalytics()
 
   const tabs = [
-    ...(showPeopleTab ? [_(msg`People`)] : []),
-    ...(showLabelersTab ? [_(msg`Labelers`)] : []),
-    ...(showFeedsTab ? [_(msg`Feeds`)] : []),
-    ...(showPostsTab ? [_(msg`Posts`)] : []),
+    ...(showPeopleTab ? [l`People`] : []),
+    ...(showLabelersTab ? [l`Labelers`] : []),
+    ...(showFeedsTab ? [l`Feeds`] : []),
+    ...(showPostsTab ? [l`Posts`] : []),
   ]
 
   const qrCodeDialogControl = useDialogControl()
@@ -227,7 +227,7 @@ function StarterPackScreenLoaded({
 
   const onOpenShareDialog = useCallback(() => {
     const rkey = new AtUri(starterPack.uri).rkey
-    shortenLink(makeStarterPackLink(starterPack.creator.did, rkey)).then(
+    void shortenLink(makeStarterPackLink(starterPack.creator.did, rkey)).then(
       res => {
         setLink(res.url)
       },
@@ -266,8 +266,7 @@ function StarterPackScreenLoaded({
                 // Validated above
                 listUri={starterPack.list!.uri}
                 headerHeight={headerHeight}
-                // @ts-expect-error
-                scrollElRef={scrollElRef}
+                scrollElRef={scrollElRef as ListRef}
                 moderationOpts={moderationOpts}
               />
             )
@@ -288,11 +287,9 @@ function StarterPackScreenLoaded({
         {showFeedsTab
           ? ({headerHeight, scrollElRef}) => (
               <FeedsList
-                // @ts-expect-error ?
-                feeds={starterPack?.feeds}
+                feeds={starterPack.feeds!}
                 headerHeight={headerHeight}
-                // @ts-expect-error
-                scrollElRef={scrollElRef}
+                scrollElRef={scrollElRef as ListRef}
               />
             )
           : null}
@@ -302,9 +299,7 @@ function StarterPackScreenLoaded({
                 // Validated above
                 listUri={starterPack.list!.uri}
                 headerHeight={headerHeight}
-                // @ts-expect-error
-                scrollElRef={scrollElRef}
-                moderationOpts={moderationOpts}
+                scrollElRef={scrollElRef as ListRef}
               />
             )
           : null}
@@ -335,7 +330,7 @@ function Header({
   routeParams: StarterPackScreeProps['route']['params']
   onOpenShareDialog: () => void
 }) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
   const {currentAccount, hasSession} = useSession()
   const appviewClient = useAppviewClient()
@@ -385,10 +380,10 @@ function Header({
       listItems = await getAllListMembers(appviewClient, starterPack.list.uri)
     } catch (e) {
       setIsProcessing(false)
-      Toast.show(_(msg`An error occurred while trying to follow all`), {
+      Toast.show(l`An error occurred while trying to follow all`, {
         type: 'error',
       })
-      logger.error('Failed to get list members for starter pack', {
+      logger.error('Failed to get list members for Starter Pack', {
         safeMessage: e,
       })
       return
@@ -413,10 +408,11 @@ function Header({
       })
     } catch (e) {
       setIsProcessing(false)
-      Toast.show(_(msg`An error occurred while trying to follow all`), {
+      Toast.show(l`An error occurred while trying to follow all`, {
         type: 'error',
       })
       logger.error('Failed to follow all accounts', {safeMessage: e})
+      return
     }
 
     setIsProcessing(false)
@@ -427,7 +423,7 @@ function Header({
         })
       }
     })
-    Toast.show(_(msg`All accounts have been followed!`))
+    Toast.show(l`All accounts have been followed!`)
     captureAction(ProgressGuideAction.Follow, dids.length)
     ax.metric('starterPack:followAll', {
       logContext: 'StarterPackProfilesList',
@@ -462,7 +458,7 @@ function Header({
           <View style={[a.flex_row, a.gap_sm, a.align_center]}>
             {isOwn ? (
               <Button
-                label={_(msg`Share this starter pack`)}
+                label={l`Share this Starter Pack`}
                 hitSlop={HITSLOP_20}
                 variant="solid"
                 color="primary"
@@ -474,7 +470,7 @@ function Header({
               </Button>
             ) : (
               <Button
-                label={_(msg`Follow all`)}
+                label={l`Follow all`}
                 variant="solid"
                 color="primary"
                 size="small"
@@ -500,7 +496,7 @@ function Header({
           {richText ? <RichText value={richText} style={[a.text_md]} /> : null}
           {!hasSession ? (
             <Button
-              label={_(msg`Join Bluesky`)}
+              label={l`Join Bluesky`}
               onPress={() => {
                 setActiveStarterPack({
                   uri: starterPack.uri,
@@ -526,12 +522,12 @@ function Header({
                   a.text_sm,
                   t.atoms.text_contrast_medium,
                 ]}>
-                <Trans comment="Number of users (always at least 25) who have joined Bluesky using a specific starter pack">
+                <Trans comment="Number of users (always at least 25) who have joined Bluesky using a specific Starter Pack">
                   <Plural
                     value={starterPack.joinedAllTimeCount || 0}
                     other="# people have"
                   />{' '}
-                  joined Bluesky via this starter pack!
+                  joined Bluesky via this Starter Pack!
                 </Trans>
               </Text>
             </View>
@@ -552,13 +548,14 @@ function OverflowMenu({
   onOpenShareDialog: () => void
 }) {
   const t = useTheme()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const ax = useAnalytics()
   const {gtMobile} = useBreakpoints()
   const {currentAccount} = useSession()
   const reportDialogControl = useReportDialogControl()
   const deleteDialogControl = useDialogControl()
   const convertToListDialogControl = useDialogControl()
+  const optOutDialogControl = useDialogControl()
   const navigation = useNavigation<NavigationProp>()
 
   const {
@@ -577,13 +574,37 @@ function OverflowMenu({
       })
     },
     onError: e => {
-      logger.error('Failed to delete starter pack', {safeMessage: e})
+      logger.error('Failed to delete Starter Pack', {safeMessage: e})
     },
   })
 
   const isOwn = starterPack.creator.did === currentAccount?.did
+  const referenceListOptOut = starterPack.list?.viewer?.referenceListOptOut
+  const {mutate: setReferenceListOptOut, isPending: isOptOutPending} =
+    useReferenceListOptOutMutation({
+      starterPack,
+      onSuccess: action => {
+        ax.metric('starterPack:optOut', {
+          starterPack: starterPack.uri,
+          action,
+        })
+        Toast.show(
+          action === 'optOut'
+            ? l`Opted out of Starter Pack`
+            : l`Opt-out undone`,
+        )
+      },
+      onError: error => {
+        logger.error('Failed to update Starter Pack opt-out', {
+          safeMessage: error,
+        })
+        Toast.show(l`Failed to update Starter Pack opt-out`, {
+          type: 'error',
+        })
+      },
+    })
 
-  const onDeleteStarterPack = async () => {
+  const onDeleteStarterPack = () => {
     if (!starterPack.list) {
       logger.error(`Unable to delete starterpack because list is missing`)
       return
@@ -599,12 +620,12 @@ function OverflowMenu({
   return (
     <>
       <Menu.Root>
-        <Menu.Trigger label={_(msg`Repost or quote post`)}>
+        <Menu.Trigger label={l`Repost or quote post`}>
           {({props}) => (
             <Button
               {...props}
               testID="headerDropdownBtn"
-              label={_(msg`Open starter pack menu`)}
+              label={l`Open Starter Pack menu`}
               hitSlop={HITSLOP_20}
               variant="solid"
               color="secondary"
@@ -618,7 +639,7 @@ function OverflowMenu({
           {isOwn ? (
             <>
               <Menu.Item
-                label={_(msg`Edit starter pack`)}
+                label={l`Edit Starter Pack`}
                 testID="editStarterPackLinkBtn"
                 onPress={() => {
                   navigation.navigate('StarterPackEdit', {
@@ -631,7 +652,7 @@ function OverflowMenu({
                 <Menu.ItemIcon icon={Pencil} position="right" />
               </Menu.Item>
               <Menu.Item
-                label={_(msg`Delete starter pack`)}
+                label={l`Delete Starter Pack`}
                 testID="deleteStarterPackBtn"
                 onPress={() => {
                   deleteDialogControl.open()
@@ -642,7 +663,7 @@ function OverflowMenu({
                 <Menu.ItemIcon icon={Trash} position="right" />
               </Menu.Item>
               <Menu.Item
-                label={_(msg`Create a list from this starter pack`)}
+                label={l`Create a list from this Starter Pack`}
                 testID="convertToListBtn"
                 onPress={() => {
                   convertToListDialogControl.open()
@@ -658,9 +679,7 @@ function OverflowMenu({
               <Menu.Group>
                 <Menu.Item
                   label={
-                    IS_WEB
-                      ? _(msg`Copy link to starter pack`)
-                      : _(msg`Share via...`)
+                    IS_WEB ? l`Copy link to Starter Pack` : l`Share via...`
                   }
                   testID="shareStarterPackLinkBtn"
                   onPress={onOpenShareDialog}>
@@ -679,18 +698,35 @@ function OverflowMenu({
               </Menu.Group>
 
               <Menu.Item
-                label={_(msg`Report starter pack`)}
+                label={l`Report Starter Pack`}
                 onPress={() => reportDialogControl.open()}>
                 <Menu.ItemText>
-                  <Trans>Report starter pack</Trans>
+                  <Trans>Report Starter Pack</Trans>
                 </Menu.ItemText>
                 <Menu.ItemIcon icon={CircleInfo} position="right" />
               </Menu.Item>
+              {starterPack.list ? (
+                <Menu.Item
+                  label={
+                    referenceListOptOut
+                      ? l`Undo opt-out from Starter Pack`
+                      : l`Opt out of Starter Pack`
+                  }
+                  disabled={isOptOutPending}
+                  onPress={() => optOutDialogControl.open()}>
+                  <Menu.ItemText>
+                    {referenceListOptOut ? (
+                      <Trans>Undo opt-out</Trans>
+                    ) : (
+                      <Trans>Opt out of Starter Pack</Trans>
+                    )}
+                  </Menu.ItemText>
+                </Menu.Item>
+              ) : null}
             </>
           )}
         </Menu.Outer>
       </Menu.Root>
-
       {starterPack.list && (
         <ReportDialog
           control={reportDialogControl}
@@ -700,13 +736,12 @@ function OverflowMenu({
           }}
         />
       )}
-
       <Prompt.Outer control={deleteDialogControl}>
         <Prompt.TitleText>
-          <Trans>Delete starter pack?</Trans>
+          <Trans>Delete Starter Pack?</Trans>
         </Prompt.TitleText>
         <Prompt.DescriptionText>
-          <Trans>Are you sure you want to delete this starter pack?</Trans>
+          <Trans>Are you sure you want to delete this Starter Pack?</Trans>
         </Prompt.DescriptionText>
         {deleteError && (
           <View
@@ -734,7 +769,7 @@ function OverflowMenu({
             variant="solid"
             color="negative"
             size={gtMobile ? 'small' : 'large'}
-            label={_(msg`Yes, delete this starter pack`)}
+            label={l`Yes, delete this Starter Pack`}
             onPress={onDeleteStarterPack}>
             <ButtonText>
               <Trans>Delete</Trans>
@@ -744,7 +779,57 @@ function OverflowMenu({
           <Prompt.Cancel />
         </Prompt.Actions>
       </Prompt.Outer>
-
+      {starterPack.list ? (
+        <Prompt.Outer control={optOutDialogControl}>
+          <Prompt.TitleText>
+            {referenceListOptOut ? (
+              <Trans>Undo opt-out?</Trans>
+            ) : (
+              <Trans>Opt out of this Starter Pack?</Trans>
+            )}
+          </Prompt.TitleText>
+          <Prompt.DescriptionText>
+            {referenceListOptOut ? (
+              <Trans>
+                You will be eligible to appear in this Starter Pack again.
+              </Trans>
+            ) : (
+              <Trans>
+                You will no longer appear in this Starter Pack. The creator will
+                be able to see that you've opted out and remove you if they
+                wish.
+              </Trans>
+            )}
+          </Prompt.DescriptionText>
+          <Prompt.Actions>
+            <Button
+              variant="solid"
+              color={referenceListOptOut ? 'primary' : 'negative'}
+              size="large"
+              label={
+                referenceListOptOut
+                  ? l`Undo opt-out`
+                  : l`Opt out of Starter Pack`
+              }
+              disabled={isOptOutPending}
+              onPress={() => {
+                optOutDialogControl.close(() => {
+                  setReferenceListOptOut({referenceListOptOut})
+                })
+              }}>
+              <ButtonText>
+                {referenceListOptOut ? (
+                  <Trans>Undo opt-out</Trans>
+                ) : (
+                  <Trans>Opt out</Trans>
+                )}
+              </ButtonText>
+              {isOptOutPending && <ButtonIcon icon={Loader} />}
+            </Button>
+            <Prompt.Cancel />
+          </Prompt.Actions>
+        </Prompt.Outer>
+      ) : null}
       <CreateListFromStarterPackDialog
         control={convertToListDialogControl}
         starterPack={starterPack}
@@ -754,7 +839,7 @@ function OverflowMenu({
 }
 
 function InvalidStarterPack({rkey}: {rkey: string}) {
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const t = useTheme()
   const navigation = useNavigation<NavigationProp>()
   const {gtMobile} = useBreakpoints()
@@ -775,8 +860,8 @@ function InvalidStarterPack({rkey}: {rkey: string}) {
     },
     onError: e => {
       setIsProcessing(false)
-      logger.error('Failed to delete invalid starter pack', {safeMessage: e})
-      Toast.show(_(msg`Failed to delete starter pack`), {
+      logger.error('Failed to delete invalid Starter Pack', {safeMessage: e})
+      Toast.show(l`Failed to delete Starter Pack`, {
         type: 'error',
       })
     },
@@ -787,7 +872,7 @@ function InvalidStarterPack({rkey}: {rkey: string}) {
       <View style={[a.py_4xl, a.px_xl, a.align_center, a.gap_5xl]}>
         <View style={[a.w_full, a.align_center, a.gap_lg]}>
           <Text style={[a.font_semi_bold, a.text_3xl]}>
-            <Trans>Starter pack is invalid</Trans>
+            <Trans>Starter Pack is invalid</Trans>
           </Text>
           <Text
             style={[
@@ -798,8 +883,8 @@ function InvalidStarterPack({rkey}: {rkey: string}) {
               gtMobile ? {width: 450} : [a.w_full, a.px_lg],
             ]}>
             <Trans>
-              The starter pack that you are trying to view is invalid. You may
-              delete this starter pack instead.
+              The Starter Pack that you are trying to view is invalid. You may
+              delete this Starter Pack instead.
             </Trans>
           </Text>
         </View>
@@ -807,7 +892,7 @@ function InvalidStarterPack({rkey}: {rkey: string}) {
           <Button
             variant="solid"
             color="primary"
-            label={_(msg`Delete starter pack`)}
+            label={l`Delete Starter Pack`}
             size="large"
             style={[a.rounded_sm, a.overflow_hidden, {paddingVertical: 10}]}
             disabled={isProcessing}
@@ -823,7 +908,7 @@ function InvalidStarterPack({rkey}: {rkey: string}) {
           <Button
             variant="solid"
             color="secondary"
-            label={_(msg`Return to previous page`)}
+            label={l`Return to previous page`}
             size="large"
             style={[a.rounded_sm, a.overflow_hidden, {paddingVertical: 10}]}
             disabled={isProcessing}
