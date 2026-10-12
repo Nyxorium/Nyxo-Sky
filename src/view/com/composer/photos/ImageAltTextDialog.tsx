@@ -129,7 +129,7 @@ const ImageAltTextInner = ({
                 onChangeText={text => {
                   setAltText(text)
                 }}
-                value={altText}
+                defaultValue={altText} // #11642 social-app -- Sunstar
                 multiline
                 autoFocus
                 scrollEnabled={false}

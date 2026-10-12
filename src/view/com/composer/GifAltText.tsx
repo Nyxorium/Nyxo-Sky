@@ -161,7 +161,7 @@ function AltTextInner({
                   label={_(msg`Alt text`)}
                   placeholder={vendorAltText}
                   onChangeText={onChange}
-                  value={altText}
+                  defaultValue={altText} // #11642 social-app -- Sunstar
                   multiline
                   autoFocus
                   scrollEnabled={false}
