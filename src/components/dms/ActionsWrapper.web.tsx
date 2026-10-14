@@ -11,10 +11,10 @@ import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
 import {MessageContextMenu} from '#/components/dms/MessageContextMenu'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsHorizontalIcon} from '#/components/icons/DotGrid'
-import {EmojiSmile_Stroke2_Corner0_Rounded as EmojiSmileIcon} from '#/components/icons/Emoji'
 import * as Toast from '#/components/Toast'
 import {type chat} from '#/lexicons'
 import type * as bsky from '#/types/bsky'
+import {FaceSmile as EmojiSmileIcon} from '../icons/heroicons/Face'
 import {EmojiReactionPicker} from './EmojiReactionPicker'
 import {
   canReact,
