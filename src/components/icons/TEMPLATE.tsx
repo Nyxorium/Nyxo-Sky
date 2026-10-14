@@ -92,7 +92,7 @@ export function createSinglePathSVG({
   Icon.svgPaths = [path]
   Icon.svgViewBox = viewBox || '0 0 24 24'
   Icon.svgStrokeWidth = strokeWidth
-  return withNanoGlyph(Icon, {glyph, layered: false})
+  return Icon
 }
 
 /**
@@ -238,5 +238,5 @@ export function createSVG({
   )
   Icon.svgViewBox = viewBox
   Icon.svgStrokeWidth = 0
-  return withNanoGlyph(Icon, {glyph, layered: true})
+  return Icon
 }
