@@ -34,6 +34,14 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
     },
     [Features.AtmosphereExploreEnable]: {
       label: 'Atmosphere Explore',
-      description: 'Show the Atmosphere tab in drawer/left nav'
-    }
+      description: 'Show the Atmosphere tab in drawer/left nav',
+    },
+    [Features.NotificationsV2Enable]: {
+      label: 'Notifications V2',
+      description: '',
+    },
+    [Features.ProfileLinksEnable]: {
+      label: 'Profile links',
+      description: '',
+    },
   }

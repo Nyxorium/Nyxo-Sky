@@ -192,6 +192,9 @@ export function useProfileUpdateMutation() {
           if ('pinnedPost' in updates) {
             next.pinnedPost = updates.pinnedPost
           }
+          if ('links' in updates) {
+            next.links = updates.links
+          }
         }
         if (newUserAvatarPromise) {
           const res = await newUserAvatarPromise

@@ -1,8 +1,7 @@
 import {memo} from 'react'
 import {type Insets} from 'react-native'
-import {msg, plural} from '@lingui/core/macro'
-import {useLingui} from '@lingui/react'
-import {Trans} from '@lingui/react/macro'
+import {plural} from '@lingui/core/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {type Shadow} from '#/state/cache/post-shadow'
@@ -39,23 +38,59 @@ export const BookmarkButton = memo(function BookmarkButton({
   hitSlop?: Insets
 }): React.ReactNode {
   const t = useTheme()
+  const {t: l} = useLingui()
+  const requireAuth = useRequireAuth()
+  const formatPostStatCount = useFormatPostStatCount()
+  const {isBookmarked, toggleBookmark} = usePostBookmark({post, logContext})
+
+  const saves = plural(bookmarkCount || 0, {one: '# save', other: '# saves'})
+
+  return (
+    <PostControlButton
+      testID="postBookmarkBtn"
+      big={big}
+      active={isBookmarked}
+      activeColor={t.palette.primary_500}
+      label={
+        isBookmarked
+          ? l`Remove from saved posts (${saves})`
+          : l`Add to saved posts (${saves})`
+      }
+      onPress={() => requireAuth(toggleBookmark)}
+      hitSlop={hitSlop}>
+      <PostControlButtonIcon icon={isBookmarked ? BookmarkFilled : Bookmark} />
+      {typeof bookmarkCount !== 'undefined' && bookmarkCount > 0 && (
+        <PostControlButtonText testID="bookmarkCount">
+          {formatPostStatCount(bookmarkCount)}
+        </PostControlButtonText>
+      )}
+    </PostControlButton>
+  )
+})
+
+/**
+ * Saves a post to the viewer's saved posts, or removes it, with the bookmark
+ * button's metrics and toasts. Removing offers an undo.
+ */
+export function usePostBookmark({
+  post,
+  logContext,
+}: {
+  post: Shadow<app.bsky.feed.defs.PostView>
+  logContext: 'FeedItem' | 'PostThreadItem' | 'Post' | 'ImmersiveVideo'
+}) {
   const ax = useAnalytics()
-  const {_} = useLingui()
+  const {t: l} = useLingui()
   const {mutateAsync: bookmark} = useBookmarkMutation()
   const cleanError = useCleanError()
-  const requireAuth = useRequireAuth()
   const {feedDescriptor} = useFeedFeedbackContext()
-  const formatPostStatCount = useFormatPostStatCount()
 
-  const {viewer} = post
-  const isBookmarked = !!viewer?.bookmarked
+  const isBookmarked = !!post.viewer?.bookmarked
 
-  const undoLabel = _(
-    msg({
-      message: `Undo`,
-      context: `Button label to undo saving/removing a post from saved posts.`,
-    }),
-  )
+  const undoLabel = l({
+    message: `Undo`,
+    context: `Button label to undo saving/removing a post from saved posts.`,
+  })
 
   const save = async () => {
     try {
@@ -70,11 +105,13 @@ export const BookmarkButton = memo(function BookmarkButton({
         logContext,
         feedDescriptor,
       })
+      return true
     } catch (e: any) {
       const {raw, clean} = cleanError(e)
       toast.show(clean || raw || e, {
         type: 'error',
       })
+      return false
     }
   }
 
@@ -111,55 +148,17 @@ export const BookmarkButton = memo(function BookmarkButton({
     }
   }
 
-  const onHandlePress = () =>
-    requireAuth(async () => {
-      if (isBookmarked) {
-        await remove()
-      } else {
-        await save()
-      }
-    })
+  /**
+   * Resolves with `'saved'` once a save succeeds, for callers that confirm it
+   * themselves. Removing confirms with its own toast.
+   */
+  const toggleBookmark = async (): Promise<'saved' | undefined> => {
+    if (isBookmarked) {
+      await remove()
+    } else if (await save()) {
+      return 'saved'
+    }
+  }
 
-  return (
-    <PostControlButton
-      testID="postBookmarkBtn"
-      big={big}
-      active={isBookmarked}
-      activeColor={t.palette.primary_500}
-      label={
-        isBookmarked
-          ? _(
-              msg({
-                message: `Remove from saved posts (${plural(
-                  bookmarkCount || 0,
-                  {
-                    one: '# save',
-                    other: '# saves',
-                  },
-                )})`,
-                comment:
-                  'Accessibility label for the save button when the post has been saved, verb followed by number of saves and noun',
-              }),
-            )
-          : _(
-              msg({
-                message: `Add to saved posts (${plural(bookmarkCount || 0, {
-                  one: '# save',
-                  other: '# saves',
-                })})`,
-                comment:
-                  'Accessibility label for the save button when the post has not been saved, verb form followed by number of saves and noun form',
-              }),
-            )
-      }
-      onPress={onHandlePress}
-      hitSlop={hitSlop}>
-      <PostControlButtonIcon icon={isBookmarked ? BookmarkFilled : Bookmark} />
-      {typeof bookmarkCount !== 'undefined' && bookmarkCount > 0 && (
-        <PostControlButtonText testID="bookmarkCount">
-          {formatPostStatCount(bookmarkCount)}
-        </PostControlButtonText>
-      )}
-    </PostControlButton>
-  )
-})
+  return {isBookmarked, toggleBookmark}
+}
