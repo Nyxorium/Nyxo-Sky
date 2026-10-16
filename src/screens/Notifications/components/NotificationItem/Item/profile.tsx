@@ -19,6 +19,7 @@ import {type NavigationProp} from '#/lib/routes/types'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useGetConvoForMembers} from '#/state/queries/messages/get-convo-for-members'
 import {useProfileFollowMutationQueue} from '#/state/queries/profile'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
@@ -147,7 +148,9 @@ function FollowButtonInner({
     profile,
     logContext,
   )
+  const {tailors} = useViewTailorPrefs()
 
+  if (!tailors.notificationFollowButton) return null
   if (!profile.viewer) return null
   if (
     profile.viewer.blockedBy ||
