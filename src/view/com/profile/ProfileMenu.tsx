@@ -69,6 +69,10 @@ import {useActorStatus, useLiveNowConfig} from '#/features/liveNow'
 import {EditLiveDialog} from '#/features/liveNow/components/EditLiveDialog'
 import {GoLiveDialog} from '#/features/liveNow/components/GoLiveDialog'
 import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabledDialog'
+import {
+  ReportLinkDialog,
+  useReportableProfileLinks,
+} from '#/features/profileLinks'
 import {type app} from '#/lexicons'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
@@ -110,6 +114,8 @@ let ProfileMenu = ({
   const goLiveDisabledDialogControl = useDialogControl()
   const addToStarterPacksDialogControl = useDialogControl()
   const addToListsDialogControl = useDialogControl()
+  const reportLinkDialogControl = useDialogControl()
+  const reportableLinks = useReportableProfileLinks(profile)
   const control = useLabelsOnMeDialogControl()
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const {tailors} = useViewTailorPrefs()
@@ -563,6 +569,17 @@ let ProfileMenu = ({
                       </Menu.ItemText>
                       <Menu.ItemIcon icon={FlagIcon} />
                     </Menu.Item>
+                    {reportableLinks.length > 0 && (
+                      <Menu.Item
+                        testID="profileHeaderDropdownReportLinkBtn"
+                        label={l`Report a link`}
+                        onPress={() => reportLinkDialogControl.open()}>
+                        <Menu.ItemText>
+                          <Trans>Report a link</Trans>
+                        </Menu.ItemText>
+                        <Menu.ItemIcon icon={FlagIcon} />
+                      </Menu.Item>
+                    )}
                   </>
                 )}
               </Menu.Group>
@@ -636,6 +653,12 @@ let ProfileMenu = ({
           $type: 'app.bsky.actor.defs#profileViewDetailed',
         }}
       />
+      {reportableLinks.length > 0 && (
+        <ReportLinkDialog
+          control={reportLinkDialogControl}
+          links={reportableLinks}
+        />
+      )}
       <BlockDialog
         control={blockPromptControl}
         profile={profile}

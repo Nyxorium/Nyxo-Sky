@@ -202,7 +202,12 @@ function hydrateGroup(
       kind.items.flatMap(item => {
         const actor = resolveActor(item.actor, ctx)
         const post = resolvePost(item.post, ctx)
-        return actor && post ? [{actor, post}] : []
+        if (!actor || !post) return []
+        return [
+          item.parent
+            ? {actor, post, parent: resolveParent(item.parent, ctx)}
+            : {actor, post},
+        ]
       }),
     )
     if (!items) return

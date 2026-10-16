@@ -40,8 +40,9 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
+import {ProfileHeaderLinks} from '#/features/profileLinks'
 import {type app} from '#/lexicons'
-import {GermButton} from '../components/GermButton'
+import {GermButton, isGermButtonShown} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
@@ -168,9 +169,22 @@ let ProfileHeaderStandard = ({
 
               <ProfileHeaderMetaRow profile={profile} />
 
-              {profile.associated?.germ && tailors.germButton && (
-                <GermButton germ={profile.associated.germ} profile={profile} />
-              )}
+              <ProfileHeaderLinks
+                profile={profile}
+                hidden={!!moderation.ui('profileView').blur}
+                germButton={
+                  isGermButtonShown(
+                    profile.associated?.germ,
+                    profile,
+                    currentAccount?.did,
+                  ) && tailors.germButton ? (
+                    <GermButton
+                      germ={profile.associated.germ}
+                      profile={profile}
+                    />
+                  ) : undefined
+                }
+              />
 
               {!isMe &&
                 !isBlockedUser &&

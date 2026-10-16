@@ -772,6 +772,50 @@ describe('hydratePage', () => {
         }),
       ).toBeUndefined()
     })
+
+    it('resolves the parent the group names', () => {
+      const subscribed = narrow(
+        hydrateKind({
+          $type: `${NS}#subscribedPostGroup`,
+          items: [{actor: DANIELLE, post: DANIELLE_REPLY, parent: FUNGUS_POST}],
+        }),
+        'subscribedPost',
+      )
+      const [item] = subscribed.items
+      expect(item.parent?.type).toBe('post')
+      // The original view, so shadows apply to it
+      expect(item.parent?.type === 'post' && item.parent.post).toBe(
+        related(BASE, FUNGUS_POST),
+      )
+    })
+
+    it('has no parent when the group names none, whatever the post is', () => {
+      const subscribed = narrow(
+        hydrateKind({
+          $type: `${NS}#subscribedPostGroup`,
+          items: [{actor: DANIELLE, post: DANIELLE_REPLY}],
+        }),
+        'subscribedPost',
+      )
+      expect(subscribed.items[0]).not.toHaveProperty('parent')
+    })
+
+    it('marks a named parent that can’t be shown as blocked or not found', () => {
+      const subscribed = narrow(
+        hydrateKind({
+          $type: `${NS}#subscribedPostGroup`,
+          items: [
+            {actor: DANIELLE, post: DANIELLE_REPLY, parent: BLOCKED_POST},
+            {actor: DANIELLE, post: FUNGUS_POST, parent: MISSING_POST},
+          ],
+        }),
+        'subscribedPost',
+      )
+      expect(subscribed.items.map(item => item.parent)).toEqual([
+        {type: 'blocked'},
+        {type: 'notFound'},
+      ])
+    })
   })
 
   describe('parents', () => {
