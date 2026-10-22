@@ -23,6 +23,7 @@ export type ModerationInboxTab = 'reports' | 'account'
 
 export type CommonNavigatorParams = {
   NotFound: undefined
+  Atmosphere: undefined
   Lists: undefined
   Moderation: undefined
   ModerationInbox: {tab?: ModerationInboxTab}
@@ -124,6 +125,11 @@ export type BottomTabNavigatorParams = CommonNavigatorParams & {
   NotificationsTab: undefined
   MyProfileTab: undefined
   MessagesTab: undefined
+  AtmosphereTab: undefined
+  FeedsTab: undefined
+  ListsTab: undefined
+  BookmarksTab: undefined
+  SettingsTab: undefined
 }
 
 export type HomeTabNavigatorParams = CommonNavigatorParams & {
@@ -151,7 +157,6 @@ export type MessagesTabNavigatorParams = CommonNavigatorParams & {
 }
 
 export type FlatNavigatorParams = CommonNavigatorParams & {
-  Atmosphere: undefined
   Home: undefined
   Search: SearchParams
   Feeds: undefined
@@ -164,7 +169,6 @@ export type FlatNavigatorParams = CommonNavigatorParams & {
 }
 
 export type AllNavigatorParams = CommonNavigatorParams & {
-  Atmosphere: undefined
   HomeTab: undefined
   Home: undefined
   SearchTab: undefined
@@ -174,6 +178,11 @@ export type AllNavigatorParams = CommonNavigatorParams & {
   Notifications: undefined
   MyProfileTab: undefined
   MessagesTab: undefined
+  AtmosphereTab: undefined
+  FeedsTab: undefined
+  ListsTab: undefined
+  BookmarksTab: undefined
+  SettingsTab: undefined
   Messages: {
     pushToConversation?: string
     pushToNewGroupChat?: boolean

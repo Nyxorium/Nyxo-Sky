@@ -993,6 +993,11 @@ export type Events = {
     position: number
   }
 
+  'search:recent:clearAll': {
+    termCount: number
+    profileCount: number
+  }
+
   'search:autocomplete:press': {
     profileDid: string
     position: number
@@ -1680,6 +1685,28 @@ export type Events = {
     context: 'embed' | 'immersiveFeed'
     presentation: 'video' | 'gif'
     autoplay: boolean
+  }
+  /**
+   * Incremental, non-overlapping wall-clock watch time. Segments are uniquely
+   * identified by playbackSessionId + segmentIndex for downstream deduping.
+   */
+  'video:playback:duration': {
+    playbackSessionId: string
+    segmentIndex: number
+    durationMs: number
+    postUri?: string
+    postAuthorDid?: string
+    context: 'embed' | 'immersiveFeed'
+    presentation: 'video' | 'gif'
+    endReason:
+      | 'paused'
+      | 'deactivated'
+      | 'backgrounded'
+      | 'buffering'
+      | 'checkpoint'
+      | 'ended'
+      | 'error'
+      | 'unmounted'
   }
   /**
    * The user activated a third-party media player. Cross-origin players do

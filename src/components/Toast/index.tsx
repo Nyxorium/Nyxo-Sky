@@ -4,7 +4,8 @@ import {nanoid} from 'nanoid/non-secure'
 import {toast as sonner, Toaster} from 'sonner-native'
 
 import {atoms as a} from '#/alf'
-import {DURATION} from '#/components/Toast/const'
+import {space} from '#/alf/tokens'
+import {DURATION, TOAST_MAX_WIDTH} from '#/components/Toast/const'
 import {
   CompactOuter,
   CompactText,
@@ -37,7 +38,15 @@ export function ToastOutlet() {
 export function Outer({children}: {children: React.ReactNode}) {
   const {width} = useWindowDimensions()
   return (
-    <View style={[a.px_xl, {width}]}>
+    <View
+      style={[
+        a.px_xl,
+        {width},
+        {
+          maxWidth: TOAST_MAX_WIDTH + space.xl * 2,
+          alignSelf: 'center',
+        },
+      ]}>
       <BaseOuter>{children}</BaseOuter>
     </View>
   )

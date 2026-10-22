@@ -55,13 +55,20 @@ module.exports = function (_config) {
       userInterfaceStyle: 'automatic',
       primaryColor: '#006AFF',
       ios: {
-        supportsTablet: false,
+        supportsTablet: true,
         bundleIdentifier: 'xyz.blueskyweb.app',
         appleTeamId: process.env.EXPO_APPLE_TEAM_ID,
         config: {
           usesNonExemptEncryption: false,
         },
         infoPlist: {
+          UISupportedInterfaceOrientations: ['UIInterfaceOrientationPortrait'],
+          'UISupportedInterfaceOrientations~ipad': [
+            'UIInterfaceOrientationPortrait',
+            'UIInterfaceOrientationPortraitUpsideDown',
+            'UIInterfaceOrientationLandscapeLeft',
+            'UIInterfaceOrientationLandscapeRight',
+          ],
           CADisableMinimumFrameDurationOnPhone: true,
           UIBackgroundModes: ['remote-notification'],
           NSUserActivityTypes: ['INSendMessageIntent'],
@@ -318,7 +325,7 @@ module.exports = function (_config) {
               compileSdkVersion: 36,
               targetSdkVersion: 36,
               buildToolsVersion: '36.0.0',
-              buildReactNativeFromSource: IS_PRODUCTION,
+              buildReactNativeFromSource: true,
               enableMinifyInReleaseBuilds: true,
             },
           },
@@ -337,26 +344,42 @@ module.exports = function (_config) {
         './plugins/withAndroidRestore',
         './plugins/withAndroidManifestFCMIconPlugin.js',
         './plugins/withAndroidManifestIntentQueriesPlugin.js',
+        './plugins/withAndroidManifestOptionalCameraPlugin.js',
         './plugins/withAndroidStylesAccentColorPlugin.js',
         './plugins/withAndroidNoJitpackPlugin.js',
+        './plugins/withAndroidPreparedTextLayoutPlugin.js',
+        './plugins/withAndroidComposeVersion.js',
         './plugins/shareExtension/withShareExtensions.js',
         './plugins/notificationsExtension/withNotificationsExtension.js',
         [
           'expo-font',
           {
-            fonts: [
-              './assets/fonts/inter/InterVariable.woff2',
-              './assets/fonts/inter/InterVariable-Italic.woff2',
-              // Android only
-              './assets/fonts/inter/Inter-Regular.otf',
-              './assets/fonts/inter/Inter-Italic.otf',
-              './assets/fonts/inter/Inter-Medium.otf',
-              './assets/fonts/inter/Inter-MediumItalic.otf',
-              './assets/fonts/inter/Inter-SemiBold.otf',
-              './assets/fonts/inter/Inter-SemiBoldItalic.otf',
-              './assets/fonts/inter/Inter-Bold.otf',
-              './assets/fonts/inter/Inter-BoldItalic.otf',
-            ],
+            ios: {
+              /*
+               * Uncompressed TTF rather than WOFF2: iOS decompresses WOFF2
+               * fonts on every launch, which took ~200 ms of the startup
+               * critical path. These are the same Inter 4.001 fonts as the
+               * WOFF2 files used on web.
+               */
+              fonts: [
+                './assets/fonts/inter/InterVariable.ttf',
+                './assets/fonts/inter/InterVariable-Italic.ttf',
+              ],
+            },
+            android: {
+              fonts: [
+                './assets/fonts/inter/InterVariable.woff2',
+                './assets/fonts/inter/InterVariable-Italic.woff2',
+                './assets/fonts/inter/Inter-Regular.otf',
+                './assets/fonts/inter/Inter-Italic.otf',
+                './assets/fonts/inter/Inter-Medium.otf',
+                './assets/fonts/inter/Inter-MediumItalic.otf',
+                './assets/fonts/inter/Inter-SemiBold.otf',
+                './assets/fonts/inter/Inter-SemiBoldItalic.otf',
+                './assets/fonts/inter/Inter-Bold.otf',
+                './assets/fonts/inter/Inter-BoldItalic.otf',
+              ],
+            },
           },
         ],
         [
@@ -419,7 +442,7 @@ module.exports = function (_config) {
             // },
           },
         ],
-        ['expo-screen-orientation', {initialOrientation: 'PORTRAIT_UP'}],
+        ['expo-screen-orientation'],
         ['expo-location'],
         [
           'expo-contacts',
