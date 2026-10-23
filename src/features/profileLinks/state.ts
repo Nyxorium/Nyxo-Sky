@@ -18,7 +18,6 @@ import {STALE} from '#/state/queries'
 import {useProfileUpdateMutation} from '#/state/queries/profile'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient} from '#/state/session'
-import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
 import {app} from '#/lexicons'
 import {
@@ -53,13 +52,11 @@ export function useProfileViewLinks(
 }
 
 /**
- * Whether the current account can add or edit its links. Age-restricted
- * accounts, like those in Safe mode, still see links but can't add them.
+ * Whether the current account can add or edit its links.
  */
 export function useCanEditProfileLinks() {
   const enabled = useProfileLinksEnabled()
-  const aa = useAgeAssurance()
-  return enabled && !aa.flags.isAgeRestricted
+  return enabled
 }
 
 type StrongRef = {uri: l.AtUriString; cid: l.CidString}
