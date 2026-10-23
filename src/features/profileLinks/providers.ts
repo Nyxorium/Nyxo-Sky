@@ -128,7 +128,6 @@ export function normalizeProfileLinkUrl(input: string): string | null {
  */
 export const BLOCKED_DOMAINS = [
   'aceimg.in',
-  'fansly.com',
   'onlyfans.com',
   'onlylinks.cc',
   'slicedrve.in',
