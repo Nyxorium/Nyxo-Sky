@@ -95,6 +95,7 @@ export let MessageContextMenu = ({
     void Clipboard.setStringAsync(str)
     Toast.show(l`Copied to clipboard`, {
       type: 'success',
+      shape: 'compact',
     })
   }, [l, message.text, message.facets])
 

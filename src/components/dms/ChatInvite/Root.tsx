@@ -97,7 +97,10 @@ export function Root({
         disabled: false,
         onPress: () => {
           void setStringAsync(`https://bsky.app/chat/${preview.code}`)
-          Toast.show(l`Copied to clipboard`, {type: 'success'})
+          Toast.show(l`Copied to clipboard`, {
+            type: 'success',
+            shape: 'compact',
+          })
         },
       }
     } else if (convoId) {

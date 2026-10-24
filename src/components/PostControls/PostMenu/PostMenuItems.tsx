@@ -200,7 +200,9 @@ let PostMenuItems = ({
   const onDeletePost = () => {
     deletePostMutate({uri: postUri}).then(
       () => {
-        Toast.show(l({message: 'Post deleted', context: 'toast'}))
+        Toast.show(l({message: 'Post deleted', context: 'toast'}), {
+          shape: 'compact',
+        })
 
         const route = getCurrentRoute(navigation.getState())
         if (route.name === 'PostThread') {
@@ -275,6 +277,7 @@ let PostMenuItems = ({
     void Clipboard.setStringAsync(str)
     Toast.show(l`Copied to clipboard`, {
       type: 'success',
+      shape: 'compact',
     })
   }
 
