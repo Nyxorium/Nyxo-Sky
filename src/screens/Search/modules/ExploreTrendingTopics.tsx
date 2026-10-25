@@ -11,9 +11,8 @@ import {
   useTrendingSettingsApi,
 } from '#/state/preferences/trending'
 import {
-  DEFAULT_FETCH_LIMIT,
-  DEFAULT_LIMIT,
   useGetTrendsQuery,
+  useTrendingTopicsLimit,
 } from '#/state/queries/trending/useGetTrendsQuery'
 import {useTrendingConfig} from '#/state/service-config'
 import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
@@ -47,10 +46,7 @@ function Inner() {
   const ax = useAnalytics()
   const {t: l} = useLingui()
 
-  const topicCount = ax.features.getValue(
-    ax.features.TrendingExploreTopicsCountValue,
-    DEFAULT_LIMIT,
-  )
+  const topicCount = useTrendingTopicsLimit()
 
   const trendingPrompt = Prompt.usePromptControl()
   const {setTrendingDisabled} = useTrendingSettingsApi()
@@ -60,7 +56,6 @@ function Inner() {
     isLoading,
     isRefetching,
   } = useGetTrendsQuery({
-    fetchLimit: Math.min(topicCount * 2, DEFAULT_FETCH_LIMIT),
     limit: topicCount,
   })
   const noTopics = !isLoading && !error && !trending?.trends?.length

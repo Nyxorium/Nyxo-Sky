@@ -23,12 +23,16 @@ export type ViewTailorPrefs = Partial<{
   openInBluesky: boolean
   /** Avatar and Banner blurs in Warn/Hide labels */
   avatarBlurs: boolean
+  trendingTopics: number
 }>
 
 type StateContext = {
   tailors: ViewTailorPrefs
 }
-type SetContext = (tailor: keyof ViewTailorPrefs, value: boolean) => void
+type SetContext = <K extends keyof ViewTailorPrefs>(
+  tailor: K,
+  value: NonNullable<ViewTailorPrefs[K]>,
+) => void
 
 const stateContext = createContext<StateContext>({
   tailors: persisted.defaults.viewTailors ?? {},
@@ -45,7 +49,10 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   }))
 
   const setTailorsWrapped = useCallback(
-    (tailor: keyof ViewTailorPrefs, value: boolean) => {
+    <K extends keyof ViewTailorPrefs>(
+      tailor: K,
+      value: NonNullable<ViewTailorPrefs[K]>,
+    ) => {
       setTailors(prev => {
         const next = {...prev, [tailor]: value}
         void persisted.write('viewTailors', next)

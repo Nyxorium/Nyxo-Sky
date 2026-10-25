@@ -8,6 +8,8 @@ import {
 import {
   DEFAULT_LIMIT,
   useGetTrendsQuery,
+  useSidebarTrendingLimit,
+  useTrendingTopicsLimit,
 } from '#/state/queries/trending/useGetTrendsQuery'
 import {useTrendingConfig} from '#/state/service-config'
 import {atoms as a, useTheme} from '#/alf'
@@ -35,10 +37,8 @@ function Inner() {
   const {t: l} = useLingui()
   const ax = useAnalytics()
 
-  const exploreTopicCount = ax.features.getValue(
-    ax.features.TrendingExploreTopicsCountValue,
-    DEFAULT_LIMIT,
-  )
+  const exploreTopicCount = useTrendingTopicsLimit()
+  const topicCount = useSidebarTrendingLimit()
 
   const trendingPrompt = Prompt.usePromptControl()
   const {setTrendingDisabled} = useTrendingSettingsApi()
@@ -99,7 +99,7 @@ function Inner() {
 
         <View style={[a.gap_xs]}>
           {isLoading ? (
-            Array(DEFAULT_LIMIT)
+            Array(topicCount)
               .fill(0)
               .map((_n, i) => (
                 <View key={i} style={[a.flex_row, a.align_center, a.gap_sm]}>
@@ -122,7 +122,7 @@ function Inner() {
               ))
           ) : !trending?.trends ? null : (
             <>
-              {trending.trends.slice(0, DEFAULT_LIMIT).map((topic, i) => {
+              {trending.trends.map((topic, i) => {
                 const rank = i + 1
                 return (
                   <TrendingTopicLink

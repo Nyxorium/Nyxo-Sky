@@ -8,13 +8,15 @@ import {
 } from '#/lib/api/feed/utils'
 import {logger} from '#/logger'
 import {getContentLanguages} from '#/state/preferences/languages'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {STALE} from '#/state/queries'
 import {usePreferencesQuery} from '#/state/queries/preferences'
 import {useAppviewClient} from '#/state/session'
+import {useAnalytics} from '#/analytics'
 import {app} from '#/lexicons'
 
 export const DEFAULT_LIMIT = 10
-export const DEFAULT_FETCH_LIMIT = 20
+export const DEFAULT_FETCH_LIMIT = 25
 
 type QueryProps = {
   fetchLimit?: number
@@ -34,11 +36,26 @@ function dedupe<T extends {link: string}>(trends: T[]): T[] {
 export const createGetTrendsQueryKey = (fetchLimit?: number) =>
   fetchLimit === undefined ? ['trends'] : ['trends', {limit: fetchLimit}]
 
+export function useTrendingTopicsLimit() {
+  const ax = useAnalytics()
+  const {tailors} = useViewTailorPrefs()
+  const remoteCount = ax.features.getValue(
+    ax.features.TrendingExploreTopicsCountValue,
+    DEFAULT_LIMIT,
+  )
+  return tailors.trendingTopics ?? remoteCount
+}
+
+export function useSidebarTrendingLimit() {
+  return Math.min(DEFAULT_LIMIT, useTrendingTopicsLimit())
+}
+
 export function useGetTrendsQuery(props: QueryProps = {}) {
   const client = useAppviewClient()
   const {data: preferences} = usePreferencesQuery()
+  const sidebarLimit = useSidebarTrendingLimit()
   const fetchLimit = props.fetchLimit ?? DEFAULT_FETCH_LIMIT
-  const limit = props.limit ?? DEFAULT_LIMIT
+  const limit = props.limit ?? sidebarLimit
   const mutedWords = useMemo(() => {
     return preferences?.moderationPrefs?.mutedWords || []
   }, [preferences?.moderationPrefs])
