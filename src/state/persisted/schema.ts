@@ -226,6 +226,7 @@ const schema = z.object({
       profileDescriptions: z.boolean().optional(),
       openInBluesky: z.boolean().optional(),
       avatarBlurs: z.boolean().optional(),
+      trendingTopics: z.number().optional(),
     })
     .optional(),
 
@@ -323,6 +324,7 @@ export const defaults: Schema = {
     profileDescriptions: true,
     openInBluesky: false,
     avatarBlurs: true,
+    trendingTopics: 10,
   },
 
   switchboard: {

@@ -16,8 +16,14 @@ import {
   useTrendingSettings,
   useTrendingSettingsApi,
 } from '#/state/preferences/trending'
+import {
+  useSetViewTailorPref,
+  useViewTailorPrefs,
+} from '#/state/preferences/view-tailor-prefs'
 import {useTrendingConfig} from '#/state/service-config'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
+import {atoms as a} from '#/alf'
+import {StepSlider} from '#/components/forms/StepSlider'
 import * as Toggle from '#/components/forms/Toggle'
 import {Bubbles_Stroke2_Corner2_Rounded as BubblesIcon} from '#/components/icons/Bubble'
 import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfo} from '#/components/icons/CircleInfo'
@@ -47,6 +53,8 @@ export function ContentAndMediaSettingsScreen({}: Props) {
   const {trendingDisabled, trendingVideoDisabled} = useTrendingSettings()
   const {setTrendingDisabled, setTrendingVideoDisabled} =
     useTrendingSettingsApi()
+  const {tailors} = useViewTailorPrefs()
+  const setTailors = useSetViewTailorPref()
 
   return (
     <Layout.Screen>
@@ -188,6 +196,16 @@ export function ContentAndMediaSettingsScreen({}: Props) {
                   <Toggle.Platform />
                 </SettingsList.Item>
               </Toggle.Item>
+              <StepSlider
+                style={[a.px_xl, a.py_md]}
+                label={_(msg`Trending topics to show`)}
+                min={1}
+                max={25}
+                marks={[5, 10, 15, 20]}
+                disabled={trendingDisabled}
+                value={tailors.trendingTopics ?? 10}
+                onChange={value => setTailors('trendingTopics', value)}
+              />
             </>
           ) : null}
           <SettingsList.Divider />
