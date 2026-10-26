@@ -17,7 +17,6 @@ import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient} from '#/state/session'
-import {useAnalytics} from '#/analytics'
 import {app} from '#/lexicons'
 import {
   filterModeratedLinkViews,
@@ -25,15 +24,6 @@ import {
   linksFromRecords,
 } from './record'
 import {type ProfileLink} from './types'
-
-/**
- * Profile links roll out behind a GrowthBook flag. Always on in local
- * development.
- */
-export function useProfileLinksEnabled() {
-  const ax = useAnalytics()
-  return __DEV__ || ax.features.enabled(ax.features.ProfileLinksEnable)
-}
 
 /**
  * Someone's links from their profile view, minus any that labels hide for
@@ -54,8 +44,7 @@ export function useProfileViewLinks(
  * Whether the current account can add or edit its links.
  */
 export function useCanEditProfileLinks() {
-  const enabled = useProfileLinksEnabled()
-  return enabled
+  return true
 }
 
 type StrongRef = {uri: l.AtUriString; cid: l.CidString}

@@ -40,8 +40,4 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Notifications V2',
       description: '',
     },
-    [Features.ProfileLinksEnable]: {
-      label: 'Profile links',
-      description: '',
-    },
   }
