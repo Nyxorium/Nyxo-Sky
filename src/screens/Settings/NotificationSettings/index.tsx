@@ -17,7 +17,6 @@ import {atoms as a} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import * as Dialog from '#/components/Dialog'
 import {NotificationSettingsDialog} from '#/components/dialogs/NotificationSettingsDialog'
-import {At_Stroke2_Corner2_Rounded as AtIcon} from '#/components/icons/At'
 import {BellRinging_Stroke2_Corner0_Rounded as BellRingingIcon} from '#/components/icons/BellRinging'
 import {Bubble_Stroke2_Corner2_Rounded as BubbleIcon} from '#/components/icons/Bubble'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
@@ -27,6 +26,7 @@ import {
   LikeRepost_Stroke2_Corner2_Rounded as LikeRepostIcon,
 } from '#/components/icons/Heart2'
 import {ChatBubbleWithDots} from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
+import {AtSign as AtIcon} from '#/components/icons/lucide/AtSign'
 import {PersonPlus_Stroke2_Corner2_Rounded as PersonPlusIcon} from '#/components/icons/Person'
 import {CloseQuote_Stroke2_Corner0_Rounded as CloseQuoteIcon} from '#/components/icons/Quote'
 import {

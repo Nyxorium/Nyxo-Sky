@@ -38,8 +38,8 @@ import {
   ArrowLeft_Stroke2_Corner0_Rounded as ArrowLeftIcon,
   ArrowRight_Stroke2_Corner0_Rounded as ArrowRightIcon,
 } from '#/components/icons/Arrow'
-import {At_Stroke2_Corner0_Rounded as AtIcon} from '#/components/icons/At'
 import {CheckThick_Stroke2_Corner0_Rounded as CheckIcon} from '#/components/icons/Check'
+import {AtSign as AtIcon} from '#/components/icons/lucide/AtSign'
 import {SquareBehindSquare4_Stroke2_Corner0_Rounded as CopyIcon} from '#/components/icons/SquareBehindSquare4'
 import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'

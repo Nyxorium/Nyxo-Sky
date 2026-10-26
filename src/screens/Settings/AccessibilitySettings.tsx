@@ -17,8 +17,8 @@ import {
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
 import * as Toggle from '#/components/forms/Toggle'
-import {Accessibility_Stroke2_Corner2_Rounded as AccessibilityIcon} from '#/components/icons/Accessibility'
 import {Haptic_Stroke2_Corner2_Rounded as HapticIcon} from '#/components/icons/Haptic'
+import {PersonStanding as AccessibilityIcon} from '#/components/icons/lucide/PersonStanding'
 import * as Layout from '#/components/Layout'
 import {IS_NATIVE} from '#/env'
 

@@ -8,7 +8,7 @@ import * as Dialog from '#/components/Dialog'
 import {useNuxDialogContext} from '#/components/dialogs/nuxs'
 import {IPadBetaHero} from '#/components/dialogs/nuxs/IPadBetaHero'
 import {createIsEnabledCheck} from '#/components/dialogs/nuxs/utils'
-import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
+import {Beaker as BeakerIcon} from '#/components/icons/lucide/Beaker'
 import {Text} from '#/components/Typography'
 import {IS_E2E, IS_IPAD} from '#/env'
 

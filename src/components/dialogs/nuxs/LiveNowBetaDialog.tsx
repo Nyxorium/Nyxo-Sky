@@ -14,7 +14,7 @@ import {
   createIsEnabledCheck,
   isExistingUserAsOf,
 } from '#/components/dialogs/nuxs/utils'
-import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
+import {Beaker as BeakerIcon} from '#/components/icons/lucide/Beaker'
 import {Text} from '#/components/Typography'
 import {IS_E2E, IS_WEB} from '#/env'
 

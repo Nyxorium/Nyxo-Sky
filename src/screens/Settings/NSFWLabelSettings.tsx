@@ -82,8 +82,9 @@ export function NSFWLabelSettingsScreen({}: Props) {
 
           return existing
         },
-        checkCommitted: res => {
-          const exists = !!res.labels?.some(l => l.val === val)
+        checkCommitted: profile => {
+          if (!profile) return false
+          const exists = !!profile.labels?.some(l => l.val === val)
           return exists === wasAdded
         },
       },

@@ -1,6 +1,3 @@
-import {Alien_Stroke2_Corner0_Rounded as Alien} from '#/components/icons/Alien'
-import {Apple_Stroke2_Corner0_Rounded as Apple} from '#/components/icons/Apple'
-import {At_Stroke2_Corner0_Rounded as At} from '#/components/icons/At'
 import {Celebrate_Stroke2_Corner0_Rounded as Celebrate} from '#/components/icons/Celebrate'
 import {
   EmojiArc_Stroke2_Corner0_Rounded as EmojiArc,
@@ -8,13 +5,16 @@ import {
 } from '#/components/icons/Emoji'
 import {Explosion_Stroke2_Corner0_Rounded as Explosion} from '#/components/icons/Explosion'
 import {GameController_Stroke2_Corner0_Rounded as GameController} from '#/components/icons/GameController'
-import {Lab_Stroke2_Corner0_Rounded as Lab} from '#/components/icons/Lab'
 import {Leaf_Stroke2_Corner0_Rounded as Leaf} from '#/components/icons/Leaf'
+import {Apple} from '#/components/icons/lucide/Apple'
 import {Atom} from '#/components/icons/lucide/Atom'
+import {AtSign as At} from '#/components/icons/lucide/AtSign'
+import {FlaskRound as Lab} from '#/components/icons/lucide/FlaskRound'
+import {Rocket} from '#/components/icons/lucide/Rocket'
+import {Rose} from '#/components/icons/lucide/Rose'
+import {Ufo as UFO} from '#/components/icons/lucide/Ufo'
 import {MusicNote_Stroke2_Corner0_Rounded as MusicNote} from '#/components/icons/MusicNote'
-import {Rose_Stroke2_Corner0_Rounded as Rose} from '#/components/icons/Rose'
 import {Shaka_Stroke2_Corner0_Rounded as Shaka} from '#/components/icons/Shaka'
-import {UFO_Stroke2_Corner0_Rounded as UFO} from '#/components/icons/UFO'
 
 /**
  * If you want to add or remove icons from the selection, just add the name to the `emojiNames` array and
@@ -25,13 +25,13 @@ export const emojiNames = [
   'at',
   'arc',
   'heartEyes',
-  'alien',
   'apple',
   'atom',
   'celebrate',
   'gameController',
   'leaf',
   'musicNote',
+  'rocket',
   'rose',
   'shaka',
   'ufo',
@@ -57,10 +57,6 @@ export const emojiItems: Record<EmojiName, Emoji> = {
     name: 'heartEyes',
     component: EmojiHeartEyes,
   },
-  alien: {
-    name: 'alien',
-    component: Alien,
-  },
   apple: {
     name: 'apple',
     component: Apple,
@@ -84,6 +80,10 @@ export const emojiItems: Record<EmojiName, Emoji> = {
   musicNote: {
     name: 'musicNote',
     component: MusicNote,
+  },
+  rocket: {
+    name: 'rocket',
+    component: Rocket,
   },
   rose: {
     name: 'rose',

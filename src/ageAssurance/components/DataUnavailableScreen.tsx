@@ -2,7 +2,7 @@ import {useLingui} from '@lingui/react/macro'
 
 import {useSessionApi} from '#/state/session'
 import {Error} from '#/components/Error'
-import {EmojiSad_Stroke2_Corner0_Rounded as EmojiSadIcon} from '#/components/icons/Emoji'
+import {FaceFrown as EmojiSadIcon} from '#/components/icons/heroicons/Face'
 import {useOtherRequiredDataQuery} from '#/ageAssurance/data'
 import {IS_WEB} from '#/env'
 

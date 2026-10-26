@@ -43,8 +43,6 @@ import {Button, ButtonText} from '#/components/Button'
 // import {useIsFindContactsFeatureEnabledBasedOnGeolocation} from '#/components/contacts/country-allowlist'
 import {useDialogControl} from '#/components/Dialog'
 import {SwitchAccountDialog} from '#/components/dialogs/SwitchAccount'
-import {Accessibility_Stroke2_Corner2_Rounded as AccessibilityIcon} from '#/components/icons/Accessibility'
-import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {Bell_Stroke2_Corner0_Rounded as NotificationIcon} from '#/components/icons/Bell'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {ChevronTop_Stroke2_Corner0_Rounded as ChevronUpIcon} from '#/components/icons/Chevron'
@@ -56,6 +54,8 @@ import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlashIcon} from '#/components/ico
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
+import {Beaker as BeakerIcon} from '#/components/icons/lucide/Beaker'
+import {PersonStanding as AccessibilityIcon} from '#/components/icons/lucide/PersonStanding'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
 import {
   PersonGroup_Stroke2_Corner2_Rounded as PersonGroupIcon,

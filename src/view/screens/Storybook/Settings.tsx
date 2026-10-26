@@ -2,14 +2,14 @@ import {View} from 'react-native'
 
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, useTheme} from '#/alf'
-import {Alien_Stroke2_Corner0_Rounded as AlienIcon} from '#/components/icons/Alien'
-import {BirthdayCake_Stroke2_Corner2_Rounded as BirthdayCakeIcon} from '#/components/icons/BirthdayCake'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
 import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/components/icons/CircleQuestion'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
 import {Explosion_Stroke2_Corner0_Rounded as ExplosionIcon} from '#/components/icons/Explosion'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
 import {User as UserIcon} from '#/components/icons/heroicons/User'
+import {Cake as BirthdayCakeIcon} from '#/components/icons/lucide/Cake'
+import {Rocket as RocketIcon} from '#/components/icons/lucide/Rocket'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
 import {Pizza_Stroke2_Corner0_Rounded as PizzaIcon} from '#/components/icons/Pizza'
 import {RaisingHand4Finger_Stroke2_Corner2_Rounded as HandIcon} from '#/components/icons/RaisingHand'
@@ -73,7 +73,7 @@ export function Settings() {
       <SettingsList.PressableItem
         onPress={() => Toast.show('Pressable pressed')}
         label="Pressable">
-        <SettingsList.ItemIcon icon={AlienIcon} />
+        <SettingsList.ItemIcon icon={RocketIcon} />
         <SettingsList.ItemText>Pressable</SettingsList.ItemText>
       </SettingsList.PressableItem>
       <SettingsList.LinkItem
