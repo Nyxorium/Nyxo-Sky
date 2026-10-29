@@ -236,6 +236,7 @@ const schema = z.object({
       labelerLimitBypass: z.boolean().optional(),
       labelGrouping: z.boolean().optional(),
       declareAppLabelers: z.boolean().optional(),
+      urlProxy: z.boolean().optional(),
     })
     .optional(),
 })
@@ -332,6 +333,7 @@ export const defaults: Schema = {
     labelerLimitBypass: false,
     labelGrouping: true,
     declareAppLabelers: true,
+    urlProxy: true,
   },
 }
 
