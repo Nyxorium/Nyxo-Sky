@@ -12,6 +12,7 @@ export type SwitchboardPrefs = Partial<{
   shareByDID: boolean
   labelerLimitBypass: boolean
   labelGrouping: boolean
+  urlProxy: boolean
 }>
 
 type StateContext = {

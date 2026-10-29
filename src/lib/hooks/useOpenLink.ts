@@ -12,6 +12,7 @@ import {
 } from '#/lib/strings/url-helpers'
 import {logger} from '#/logger'
 import {useInAppBrowser} from '#/state/preferences/in-app-browser'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {useTheme} from '#/alf'
 import {useDialogContext} from '#/components/Dialog'
 import {useGlobalDialogsControlContext} from '#/components/dialogs/Context'
@@ -24,6 +25,7 @@ export function useOpenLink() {
   const t = useTheme()
   const dialogContext = useDialogContext()
   const {inAppBrowserConsentControl} = useGlobalDialogsControlContext()
+  const {switches} = useSwitchboardPrefs()
 
   const openLink = useCallback(
     (url: string, override?: boolean, shouldProxy?: boolean) => {
@@ -37,7 +39,7 @@ export function useOpenLink() {
           url,
         })
 
-        if (shouldProxy) {
+        if (shouldProxy && switches.urlProxy) {
           url = createProxiedUrl(url)
         }
       }
@@ -73,7 +75,14 @@ export function useOpenLink() {
       }
       void Linking.openURL(url)
     },
-    [ax, enabled, inAppBrowserConsentControl, t, dialogContext],
+    [
+      ax,
+      enabled,
+      inAppBrowserConsentControl,
+      t,
+      dialogContext,
+      switches.urlProxy,
+    ],
   )
 
   return openLink

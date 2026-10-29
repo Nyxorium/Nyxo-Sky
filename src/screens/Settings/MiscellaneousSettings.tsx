@@ -223,6 +223,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
             </SettingsList.Item>
           </Toggle.Item>
 
+          <Toggle.Item
+            name="bluesky_url_proxy"
+            label={l`Bluesky URL Proxy`}
+            value={switches.urlProxy}
+            onChange={value => setSwitches('urlProxy', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={FilterIcon} />
+              <SettingsList.ItemText>
+                <Trans>Bluesky URL Proxy</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
           <SettingsList.Divider />
 
           <SettingsList.Group contentContainerStyle={[a.gap_sm]}>

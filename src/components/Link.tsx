@@ -28,6 +28,7 @@ import {
   linkRequiresWarning,
 } from '#/lib/strings/url-helpers'
 import {useInAppBrowser} from '#/state/preferences/in-app-browser'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {atoms as a, flatten, type TextStyleProp, useTheme, web} from '#/alf'
 import {Button, type ButtonProps} from '#/components/Button'
 import {useInteractionState} from '#/components/hooks/useInteractionState'
@@ -408,13 +409,14 @@ function LinkPeek({
   const t = useTheme()
   const {t: l} = useLingui()
   const useInAppBrowserPref = useInAppBrowser()
+  const {switches} = useSwitchboardPrefs()
 
   return (
     <PeekMenu.Root>
       <PeekMenu.Trigger
         preview={{
           type: 'link',
-          url: shouldProxy ? createProxiedUrl(href) : href,
+          url: shouldProxy && switches.urlProxy ? createProxiedUrl(href) : href,
           // Only morph natively when the user has explicitly opted in. When the
           // preference is unset (undefined), defer to the JS flow so the consent
           // dialog can show.
@@ -577,9 +579,10 @@ export function SimpleInlineLinkText({
   } = useInteractionState()
   const flattenedStyle = flatten(style)
   const isExternal = isExternalUrl(to)
+  const {switches} = useSwitchboardPrefs()
 
   let href = to
-  if (shouldProxy) {
+  if (shouldProxy && switches.urlProxy) {
     href = createProxiedUrl(href)
   }
 
