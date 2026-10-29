@@ -19,7 +19,6 @@ export const DEFAULT_LIMIT = 10
 export const DEFAULT_FETCH_LIMIT = 25
 
 type QueryProps = {
-  enabled?: boolean
   fetchLimit?: number
   limit?: number
   refetchOnWindowFocus?: boolean
@@ -77,7 +76,7 @@ export function useGetTrendsQuery(props: QueryProps = {}) {
   }, [preferences?.moderationPrefs])
 
   return useQuery({
-    enabled: props.enabled !== false && !!preferences,
+    enabled: !!preferences,
     refetchOnWindowFocus: props.refetchOnWindowFocus,
     staleTime: STALE.MINUTES.THREE,
     queryKey: createGetTrendsQueryKey(fetchLimit),

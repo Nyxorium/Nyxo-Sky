@@ -17,7 +17,7 @@ import {BSKY_DOWNLOAD_URL} from '#/lib/constants'
 import {useGroupChatJoinIntent} from '#/lib/hooks/useIntentHandler'
 import {useNavigationDeduped} from '#/lib/hooks/useNavigationDeduped'
 import {useOpenLink} from '#/lib/hooks/useOpenLink'
-import {type AllNavigatorParams, type RouteParams} from '#/lib/routes/types'
+import {type FlatNavigatorParams, type RouteParams} from '#/lib/routes/types'
 import {shareUrl} from '#/lib/sharing'
 import {
   convertBskyAppUrlIfNeeded,
@@ -48,7 +48,7 @@ export {useButtonContext as useLinkContext} from '#/components/Button'
 type BaseLinkProps = {
   testID?: string
 
-  to: RNLinkProps<AllNavigatorParams> | string
+  to: RNLinkProps<FlatNavigatorParams> | string
 
   /**
    * The React Navigation `StackAction` to perform when the link is pressed.
@@ -189,7 +189,7 @@ export function useLink({
             void openLink(href)
           } else {
             const [screen, params] = router.matchPath(href) as [
-              screen: keyof AllNavigatorParams,
+              screen: keyof FlatNavigatorParams,
               params?: RouteParams,
             ]
 
@@ -198,7 +198,7 @@ export function useLink({
               const state = navigation.getState()
               // if screen is not in the current navigator, it means it's
               // most likely a tab screen. note: state can be undefined
-              if (!state?.routeNames?.includes?.(screen)) {
+              if (!state?.routeNames?.some(name => name === screen)) {
                 const parent = navigation.getParent()
                 if (
                   parent &&

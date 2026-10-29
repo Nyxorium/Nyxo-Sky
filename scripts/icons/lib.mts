@@ -26,15 +26,18 @@ const PATH_ARGUMENTS = {
   Z: 0,
 }
 
+const VENDOR_LANES = new Set(['heroicons', 'lucide'])
+
 export const SOURCE_LANES = new Set([
   'brands',
   'community',
   'custom',
   'flags',
   'ui',
+  ...VENDOR_LANES,
 ])
 
-const CODEGEN_LANES = new Set(['brands', 'community', 'ui'])
+const CODEGEN_LANES = new Set(['brands', 'community', 'ui', ...VENDOR_LANES])
 
 /**
  * Root directory of temporary SVG-only icons: `tmp/<ui|brands|community>/`.
@@ -55,15 +58,15 @@ function classifySource(relativePath) {
     if (deeper.length === 0) {
       fail(relativePath, `temporary icons must be in ${TEMPORARY_ROOT}/ui/, ${TEMPORARY_ROOT}/brands/, or ${TEMPORARY_ROOT}/community/`)
     }
-    if (!CODEGEN_LANES.has(lane)) {
+    if (!CODEGEN_LANES.has(lane) || VENDOR_LANES.has(lane)) {
       fail(relativePath, `unsupported temporary source directory ${TEMPORARY_ROOT}/${lane}; use ui, brands, or community`)
     }
     if (deeper.length !== 1) fail(relativePath, 'nested icon source directories are not supported')
-    return {filename: deeper[0], lane, temporary: true}
+    return {filename: deeper[0], lane, subdirs: [], temporary: true}
   }
   if (!SOURCE_LANES.has(root)) fail(relativePath, `unclassified source directory ${root}`)
-  if (rest.length !== 1) fail(relativePath, 'nested icon source directories are not supported')
-  return {filename: rest[0], lane: root, temporary: false}
+  if (!VENDOR_LANES.has(root) && rest.length !== 1) fail(relativePath, 'nested icon source directories are not supported')
+  return {filename: rest.at(-1), lane: root, subdirs: rest.slice(0, -1), temporary: false}
 }
 
 function fail(file, message) {
@@ -413,9 +416,9 @@ function validateUiSizeName(exportName, viewBox, file) {
 export function assignFamilies(icons) {
   const byNamespace = Map.groupBy(icons, icon => icon.namespace)
   for (const namespaceIcons of byNamespace.values()) {
-    const buckets = Map.groupBy(namespaceIcons, icon => tokensForSemanticName(semanticName(icon.exportName))[0])
+    const buckets = Map.groupBy(namespaceIcons, icon => tokensForSemanticName(semanticName(icon.groupKey ?? icon.exportName))[0])
     for (const bucket of buckets.values()) {
-      const distinct = [...new Map(bucket.map(icon => [semanticName(icon.exportName), tokensForSemanticName(semanticName(icon.exportName))])).values()]
+      const distinct = [...new Map(bucket.map(icon => [semanticName(icon.groupKey ?? icon.exportName), tokensForSemanticName(semanticName(icon.groupKey ?? icon.exportName))])).values()]
       let prefix = distinct[0]
       if (distinct.length > 1) {
         prefix = prefix.slice(0, distinct.reduce((length, tokens) => {
@@ -432,8 +435,21 @@ export function assignFamilies(icons) {
   return icons
 }
 
+function pascal(segment) {
+  return segment
+    .split('-')
+    .filter(Boolean)
+    .map(part => part[0].toUpperCase() + part.slice(1))
+    .join('')
+}
+
+function vendorExportName(subdirs, stem) {
+  const [head, ...styles] = stem.split('_').map(pascal)
+  return [head + subdirs.map(pascal).join(''), ...styles].join('_')
+}
+
 function namespaceForLane(lane) {
-  if (lane === 'brands' || lane === 'community') return lane
+  if (lane === 'brands' || lane === 'community' || VENDOR_LANES.has(lane)) return lane
   return ''
 }
 
@@ -571,7 +587,8 @@ function cleanObject(value) {
 }
 
 export async function readIconSource(sourceRoot, relativePath) {
-  const {filename, lane, temporary} = classifySource(relativePath)
+  const {filename, lane, subdirs, temporary} = classifySource(relativePath)
+  const vendor = VENDOR_LANES.has(lane)
   const source = await fs.readFile(path.join(sourceRoot, relativePath), 'utf8')
   let originalRoot
   let optimizedRoot
@@ -595,7 +612,8 @@ export async function readIconSource(sourceRoot, relativePath) {
     return {codegen: false, lane, optimized: result.data, relativePath, warnings: []}
   }
 
-  const exportName = filename.slice(0, -path.extname(filename).length)
+  const stem = filename.slice(0, -path.extname(filename).length)
+  const exportName = vendor ? vendorExportName(subdirs, stem) : stem
   if (path.extname(filename) !== '.svg') fail(relativePath, 'icon sources must use the .svg extension')
   if (!IDENTIFIER.test(exportName)) fail(relativePath, `filename must be a valid TypeScript export name; got ${exportName}`)
   if (!/^[A-Z]/.test(exportName)) fail(relativePath, 'generated icon filenames must begin with an uppercase letter')
@@ -607,10 +625,13 @@ export async function readIconSource(sourceRoot, relativePath) {
     validateUiSizeName(exportName, original.viewBox, relativePath)
   }
 
-  if (lane !== 'brands') validateOrdinarySourceSemantics(original.entries, relativePath, lane)
-  const data = lane === 'brands' ? validateFlexibleIcon(optimizedRoot, relativePath, lane) : validateOrdinaryIcon(optimizedRoot, relativePath, lane)
+  if (lane !== 'brands' && !vendor) validateOrdinarySourceSemantics(original.entries, relativePath, lane)
+  const data =
+    lane === 'brands' || vendor
+      ? validateFlexibleIcon(optimizedRoot, relativePath, lane)
+      : validateOrdinaryIcon(optimizedRoot, relativePath, lane)
   const [, , width, height] = data.viewBox.split(' ').map(Number)
-  const glyph = !temporary && (await glyphMismatch(data, width, height)) === undefined
+  const glyph = !temporary && !vendor && (await glyphMismatch(data, width, height)) === undefined
   const warnings =
     (width === 24 && height === 24) || (width === 64 && height === 64)
       ? []
@@ -753,11 +774,18 @@ export async function buildIconSet({outputRoot, scanRoot, sourceRoot}) {
   const icons = assignFamilies(sources.filter(source => source.codegen))
   const exportMap = new Map()
   const normalizedExportMap = new Map()
+  const seen = new Map()
   for (const icon of icons) {
+    const key = `${icon.namespace}:${icon.exportName}`
+    if (seen.has(key)) {
+      fail(icon.relativePath, `duplicate export ${icon.exportName} also provided by ${seen.get(key).relativePath}`)
+    }
+    seen.set(key, icon)
+    icon.modulePath = path.posix.join(icon.namespace, icon.family)
+    if (VENDOR_LANES.has(icon.lane)) continue
     if (exportMap.has(icon.exportName)) {
       fail(icon.relativePath, `duplicate export ${icon.exportName} also provided by ${exportMap.get(icon.exportName).relativePath}`)
     }
-    icon.modulePath = path.posix.join(icon.namespace, icon.family)
     exportMap.set(icon.exportName, icon)
     const normalized = normalizeExportName(icon.exportName)
     if (normalizedExportMap.has(normalized)) {
@@ -833,7 +861,11 @@ export async function buildIconSet({outputRoot, scanRoot, sourceRoot}) {
       }),
     )
   }
-  const svgOutputs = new Map(sources.map(source => [source.relativePath, source.optimized]))
+  const svgOutputs = new Map(
+    sources
+      .filter(source => !VENDOR_LANES.has(source.lane))
+      .map(source => [source.relativePath, source.optimized]),
+  )
   const warnings = sources.flatMap(source => source.warnings)
   const temporaryIcons = icons.filter(icon => icon.temporary).map(icon => icon.relativePath).sort()
   return {deprecatedImports, holdouts, icons, svgOutputs, temporaryIcons, tsOutputs, warnings}

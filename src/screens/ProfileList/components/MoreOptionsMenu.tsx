@@ -3,6 +3,7 @@ import {useLingui} from '@lingui/react/macro'
 import {Trans} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {getHomeNavigationAction} from '#/lib/routes/navigation'
 import {type NavigationProp} from '#/lib/routes/types'
 import {shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
@@ -124,7 +125,9 @@ export function MoreOptionsMenu({
     if (navigation.canGoBack()) {
       navigation.goBack()
     } else {
-      navigation.navigate('Home')
+      navigation.dispatch(
+        getHomeNavigationAction(navigation.getState(), 'navigate'),
+      )
     }
   }
 

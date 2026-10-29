@@ -74,8 +74,6 @@ module.exports = function (_config) {
           NSUserActivityTypes: ['INSendMessageIntent'],
           NSCameraUsageDescription:
             'Used for profile pictures, posts, and other kinds of content.',
-          NSMicrophoneUsageDescription:
-            'Used for posts and other kinds of content.',
           NSPhotoLibraryAddUsageDescription:
             'Used to save images to your library.',
           NSPhotoLibraryUsageDescription:
@@ -194,6 +192,7 @@ module.exports = function (_config) {
         },
         googleServicesFile: './google-services.json',
         package: 'com.nyxo.app',
+        blockedPermissions: ['android.permission.ACCESS_FINE_LOCATION'],
         intentFilters: [
           {
             action: 'VIEW',
@@ -259,6 +258,19 @@ module.exports = function (_config) {
         'expo-sharing',
         'expo-video',
         [
+          'expo-camera',
+          {
+            microphonePermission: false,
+            recordAudioAndroid: false,
+          },
+        ],
+        [
+          'expo-image-picker',
+          {
+            microphonePermission: false,
+          },
+        ],
+        [
           'expo-localization',
           {
             /*
@@ -271,6 +283,8 @@ module.exports = function (_config) {
         ],
         'expo-web-browser',
         'expo-background-task',
+        // edits expo-widgets' output, and mods run in reverse order
+        './plugins/withTrendingWidget.js',
         [
           'expo-widgets',
           {
@@ -395,6 +409,7 @@ module.exports = function (_config) {
         './plugins/withAndroidNoJitpackPlugin.js',
         './plugins/withAndroidPreparedTextLayoutPlugin.js',
         './plugins/withAndroidComposeVersion.js',
+        './plugins/withIOSWindowingControlStyle.js',
         './plugins/shareExtension/withShareExtensions.js',
         './plugins/notificationsExtension/withNotificationsExtension.js',
         [
@@ -489,7 +504,18 @@ module.exports = function (_config) {
           },
         ],
         ['expo-screen-orientation'],
-        ['expo-location'],
+        [
+          'expo-location',
+          {
+            locationWhenInUsePermission:
+              'Bluesky uses your approximate location via GPS to determine the content and features available in your region.',
+            locationAlwaysAndWhenInUsePermission: false,
+            locationAlwaysPermission: false,
+            motionUsagePermission: false,
+            locationFullAccuracyPermission: false,
+            isIosReducedAccuracyByDefault: true,
+          },
+        ],
         [
           'expo-contacts',
           {
