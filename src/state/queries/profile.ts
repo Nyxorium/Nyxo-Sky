@@ -426,7 +426,7 @@ function useProfileFollowMutation(
   })
 }
 
-function useProfileUnfollowMutation(
+export function useProfileUnfollowMutation(
   logContext: Metrics['profile:unfollow']['logContext'],
 ) {
   const ax = useAnalytics()

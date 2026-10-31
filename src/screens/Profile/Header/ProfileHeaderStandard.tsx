@@ -9,6 +9,7 @@ import {type RichText as RichTextAPI} from '@bsky/sdk/richtext'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
+import {useQueryClient} from '@tanstack/react-query'
 
 import {useHaptics} from '#/lib/haptics'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
@@ -16,8 +17,13 @@ import {logger} from '#/logger'
 import {type Shadow, useProfileShadow} from '#/state/cache/profile-shadow'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
+  RQKEY as BLOCKED_FOLLOW_URI_KEY,
+  useFollowUri,
+} from '#/state/queries/blocked-follow-uri'
+import {
   useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
+  useProfileUnfollowMutation,
 } from '#/state/queries/profile'
 import {useRequireAuth, useSession} from '#/state/session'
 import {ProfileMenu} from '#/view/com/profile/ProfileMenu'
@@ -28,6 +34,7 @@ import {DebugFieldDisplay} from '#/components/DebugFieldDisplay'
 import {useDialogControl} from '#/components/Dialog'
 import {MessageProfileButton} from '#/components/dms/MessageProfileButton'
 import {ArrowShareRight_Stroke2_Corner2_Rounded as ArrowShareRight} from '#/components/icons/ArrowShareRight'
+import {Check_Stroke2_Corner0_Rounded as CheckIcon} from '#/components/icons/Check'
 import {PlusLarge_Stroke2_Corner0_Rounded as Plus} from '#/components/icons/Plus'
 import {
   KnownFollowers,
@@ -260,6 +267,9 @@ export function HeaderStandardButtons({
   const unblockPromptControl = Prompt.usePromptControl()
 
   const isMe = currentAccount?.did === profile.did
+  const queryClient = useQueryClient()
+  const unfollowMutation = useProfileUnfollowMutation('ProfileHeader')
+  const followUri = useFollowUri(profile)
 
   const onPressFollow = () => {
     haptics.confirm()
@@ -299,6 +309,39 @@ export function HeaderStandardButtons({
         if (onUnfollow) {
           onUnfollow()
         }
+        Toast.show(
+          _(
+            msg`No longer following ${sanitizeDisplayName(
+              displayNameOrHandle,
+              moderation.ui('displayName'),
+            )}`,
+          ),
+          {type: 'default'},
+        )
+      } catch (err) {
+        const e = err as Error
+        if (e?.name !== 'AbortError') {
+          logger.error('Failed to unfollow', {message: String(e)})
+          Toast.show(_(msg`There was an issue! ${e.toString()}`), {
+            type: 'error',
+          })
+        }
+      }
+    })
+  }
+
+  const onPressUnfollowBlocked = () => {
+    if (!followUri) return
+    haptics.confirm()
+    const displayNameOrHandle = profile.displayName || profile.handle
+    requireAuth(async () => {
+      try {
+        await unfollowMutation.mutateAsync({
+          did: profile.did,
+          followUri,
+        })
+        queryClient.setQueryData(BLOCKED_FOLLOW_URI_KEY(profile.did), null)
+        onUnfollow?.()
         Toast.show(
           _(
             msg`No longer following ${sanitizeDisplayName(
@@ -417,6 +460,23 @@ export function HeaderStandardButtons({
                 ) : (
                   <Trans>Follow</Trans>
                 )}
+              </ButtonText>
+            </Button>
+          )}
+        </>
+      ) : profile.viewer?.blockedBy ? (
+        <>
+          {followUri && (
+            <Button
+              testID="unfollowBtn"
+              size="small"
+              color="secondary"
+              label={_(msg`Unfollow ${profile.handle}`)}
+              onPress={onPressUnfollowBlocked}
+              style={[a.rounded_full]}>
+              <ButtonIcon icon={CheckIcon} />
+              <ButtonText>
+                <Trans>Following</Trans>
               </ButtonText>
             </Button>
           )}
