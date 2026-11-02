@@ -13,11 +13,16 @@ import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-dis
 import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {
+  RQKEY as BLOCKED_FOLLOW_URI_KEY,
+  useFollowUri,
+} from '#/state/queries/blocked-follow-uri'
+import {
   RQKEY as profileQueryKey,
   useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
   useProfileMuteMutationQueue,
   useProfileMuteRepostsMutationQueue,
+  useProfileUnfollowMutation,
 } from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {EventStopper} from '#/view/com/util/EventStopper'
@@ -88,7 +93,8 @@ let ProfileMenu = ({
   const queryClient = useQueryClient()
   const navigation = useNavigation<NavigationProp>()
   const isSelf = currentAccount?.did === profile.did
-  const isFollowing = profile.viewer?.following
+  const followUri = useFollowUri(profile)
+  const isFollowing = !!followUri
   const isBlocked = profile.viewer?.blocking || profile.viewer?.blockedBy
   const isFollowingBlockedAccount = isFollowing && isBlocked
   const isLabelerAndNotBlocked = !!profile.associated?.labeler && !isBlocked
@@ -107,6 +113,7 @@ let ProfileMenu = ({
     profile,
     'ProfileMenu',
   )
+  const unfollowMutation = useProfileUnfollowMutation('ProfileMenu')
 
   const blockPromptControl = Prompt.usePromptControl()
   const loggedOutWarningPromptControl = Prompt.usePromptControl()
@@ -280,7 +287,12 @@ let ProfileMenu = ({
 
   const onPressUnfollowAccount = useCallback(async () => {
     try {
-      await queueUnfollow()
+      if (profile.viewer?.following) {
+        await queueUnfollow()
+      } else if (followUri) {
+        await unfollowMutation.mutateAsync({did: profile.did, followUri})
+        queryClient.setQueryData(BLOCKED_FOLLOW_URI_KEY(profile.did), null)
+      }
       Toast.show(l({message: 'Account unfollowed', context: 'toast'}))
     } catch (err) {
       const e = err as Error
@@ -291,7 +303,16 @@ let ProfileMenu = ({
         })
       }
     }
-  }, [l, ax, queueUnfollow])
+  }, [
+    l,
+    ax,
+    queueUnfollow,
+    followUri,
+    unfollowMutation,
+    queryClient,
+    profile.did,
+    profile.viewer?.following,
+  ])
 
   const onPressReportAccount = useCallback(() => {
     reportDialogControl.open()

@@ -10,6 +10,8 @@ type Did = `did:${string}:${string}`
 export const RQKEY = (did: string) => ['blocked-follow-uri', did]
 
 export function useFollowUri(profile: Shadow<bsky.profile.AnyProfileView>) {
+  // Appview strips .following during blockedBy
+  // The '!following' check is a safety net just in case - Sunstar
   const {data} = useBlockedFollowUri(
     profile.did,
     !!profile.viewer?.blockedBy && !profile.viewer?.following,
