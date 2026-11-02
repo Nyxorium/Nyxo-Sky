@@ -1,5 +1,6 @@
 import {useQuery} from '@tanstack/react-query'
 
+import {isBlockedOrBlocking} from '#/lib/moderation/blocked-and-muted'
 import {type Shadow} from '#/state/cache/types'
 import {useAppviewClient, useSession} from '#/state/session'
 import {app} from '#/lexicons'
@@ -10,16 +11,16 @@ type Did = `did:${string}:${string}`
 export const RQKEY = (did: string) => ['blocked-follow-uri', did]
 
 export function useFollowUri(profile: Shadow<bsky.profile.AnyProfileView>) {
-  // Appview strips .following during blockedBy
+  // profile.viewer?.following seems to fail during blocked states
   // The '!following' check is a safety net just in case - Sunstar
   const {data} = useBlockedFollowUri(
     profile.did,
-    !!profile.viewer?.blockedBy && !profile.viewer?.following,
+    isBlockedOrBlocking(profile) && !profile.viewer?.following,
   )
   return profile.viewer?.following ?? data ?? undefined
 }
 
-export function useBlockedFollowUri(did: Did, enabled: boolean) {
+function useBlockedFollowUri(did: Did, enabled: boolean) {
   const client = useAppviewClient()
   const {currentAccount} = useSession()
 

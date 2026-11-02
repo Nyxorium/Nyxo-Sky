@@ -30,6 +30,10 @@ import {updateProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {type ImageMeta} from '#/state/gallery'
 import {STALE} from '#/state/queries'
+import {
+  RQKEY as BLOCKED_FOLLOW_URI_KEY,
+  useFollowUri,
+} from '#/state/queries/blocked-follow-uri'
 import {resetProfilePostsQueries} from '#/state/queries/post-feed'
 import {RQKEY as PROFILE_FOLLOWS_RQKEY} from '#/state/queries/profile-follows'
 import {
@@ -277,7 +281,7 @@ export function useProfileFollowMutationQueue(
   const queryClient = useQueryClient()
   const {currentAccount} = useSession()
   const did = profile.did
-  const initialFollowingUri = profile.viewer?.following
+  const initialFollowingUri = useFollowUri(profile)
   const followMutation = useProfileFollowMutation(
     logContext,
     profile,
@@ -426,15 +430,19 @@ function useProfileFollowMutation(
   })
 }
 
-export function useProfileUnfollowMutation(
+function useProfileUnfollowMutation(
   logContext: Metrics['profile:unfollow']['logContext'],
 ) {
   const ax = useAnalytics()
   const pdsClient = usePdsClient()
+  const queryClient = useQueryClient()
   return useMutation<void, Error, {did: string; followUri: string}>({
     mutationFn: async ({followUri}) => {
       ax.metric('profile:unfollow', {logContext})
       return await pdsClient.call(deleteFollow, followUri as AtUriString)
+    },
+    onSuccess(_, {did}) {
+      queryClient.setQueriesData({queryKey: BLOCKED_FOLLOW_URI_KEY(did)}, null)
     },
   })
 }
