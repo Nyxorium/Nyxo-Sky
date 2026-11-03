@@ -23,4 +23,9 @@ export const CENTER_COLUMN_OFFSET = -105
 /**
  * How wide the center column is
  */
-export const CENTER_COLUMN_WIDTH = 600
+export const DEFAULT_CENTER_COLUMN_WIDTH = 600
+export let CENTER_COLUMN_WIDTH: number = DEFAULT_CENTER_COLUMN_WIDTH
+
+export function setCenterColumnWidth(width: number) {
+  CENTER_COLUMN_WIDTH = width
+}

@@ -4,6 +4,7 @@ import {type SharedValue} from 'react-native-reanimated'
 import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useBreakpoints, useTheme, web} from '#/alf'
+import {CENTER_COLUMN_WIDTH} from '#/components/Layout'
 import {Text} from '#/components/Typography'
 import {PressableWithHover} from '../util/PressableWithHover'
 import {DraggableScrollView} from './DraggableScrollView'
@@ -109,7 +110,11 @@ export function TabBar({
   return (
     <View
       testID={testID}
-      style={[t.atoms.bg, styles.outer]}
+      style={[
+        t.atoms.bg,
+        styles.outer,
+        gtMobile && {width: CENTER_COLUMN_WIDTH},
+      ]}
       accessibilityRole="tablist">
       <DraggableScrollView
         testID={`${testID}-selector`}
@@ -184,7 +189,6 @@ export function TabBar({
 const desktopStyles = StyleSheet.create({
   outer: {
     flexDirection: 'row',
-    width: 600,
   },
   contentContainer: {
     flexGrow: 1,

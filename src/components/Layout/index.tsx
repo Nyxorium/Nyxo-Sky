@@ -246,7 +246,7 @@ const WebCenterBorders = memo(function LayoutWebCenterBorders() {
         a.border_r,
         t.atoms.border_contrast_low,
         web({
-          width: 602,
+          width: CENTER_COLUMN_WIDTH + 2, // 602,
           left: '50%',
           transform: [
             {translateX: '-50%'},

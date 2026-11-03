@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
@@ -38,6 +39,7 @@ import {AppearanceToggleButtonGroup} from '#/screens/Settings/AppearanceSettings
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
 import {Admonition} from '#/components/Admonition'
+import {StepSlider} from '#/components/forms/StepSlider'
 import * as Toggle from '#/components/forms/Toggle'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Filter_Stroke2_Corner0_Rounded as FilterIcon} from '#/components/icons/Filter'
@@ -49,16 +51,21 @@ import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
 import {Beaker as BeakerIcon} from '#/components/icons/lucide/Beaker'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand4Finger'
 import * as Layout from '#/components/Layout'
+import {IS_WEB} from '#/env'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams>
 
 export function MiscellaneousSettingsScreen({}: Props) {
   const {t: l} = useLingui()
+  const [devModeEnabled] = useDevMode()
 
   const {tailors} = useViewTailorPrefs()
   const setTailors = useSetViewTailorPref()
   const {switches} = useSwitchboardPrefs()
   const setSwitches = useSetSwitchboardPref()
+
+  const [draftWidth, setDraftWidth] = useState(tailors.columnWidth ?? 600)
 
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const setAltLabelDisplayProfile = useSetAltLabelDisplayProfile()
@@ -236,6 +243,19 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
+
+          {IS_WEB && devModeEnabled && (
+            <StepSlider
+              style={[a.px_xl, a.py_md]}
+              label={l`Central column width`}
+              min={300}
+              max={900}
+              marks={[450, 600, 750]}
+              value={draftWidth}
+              onChange={setDraftWidth}
+              onChangeEnd={value => setTailors('columnWidth', value)}
+            />
+          )}
 
           <SettingsList.Divider />
 
