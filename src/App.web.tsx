@@ -54,6 +54,7 @@ import {useColorModeTheme} from '#/alf/util/useColorModeTheme'
 import {Provider as ContextMenuProvider} from '#/components/ContextMenu'
 import {useLandingEntry} from '#/components/hooks/useLandingEntry'
 import {Provider as IntentDialogProvider} from '#/components/intents/IntentDialogs'
+import {CenterColumnWidthSync} from '#/components/Layout/CenterColumnWidthSync'
 import {Provider as LightboxStateProvider} from '#/components/Lightbox/state'
 import {Provider as PolicyUpdateOverlayProvider} from '#/components/PolicyUpdateOverlay'
 import {Provider as PortalProvider} from '#/components/Portal'
@@ -162,7 +163,9 @@ function InnerApp() {
                                                             <IntentDialogProvider>
                                                               <TranslateOnDeviceProvider>
                                                                 <HotkeysProvider>
-                                                                  <Shell />
+                                                                  <CenterColumnWidthSync>
+                                                                    <Shell />
+                                                                  </CenterColumnWidthSync>
                                                                 </HotkeysProvider>
                                                               </TranslateOnDeviceProvider>
                                                             </IntentDialogProvider>

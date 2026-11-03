@@ -19,7 +19,7 @@ import {
   web,
 } from '#/alf'
 import {AppLanguageDropdown} from '#/components/AppLanguageDropdown'
-import {CENTER_COLUMN_OFFSET} from '#/components/Layout'
+import {CENTER_COLUMN_OFFSET, CENTER_COLUMN_WIDTH} from '#/components/Layout'
 import {InlineLinkText} from '#/components/Link'
 import {ProgressGuideList} from '#/components/ProgressGuide/List'
 import {Text} from '#/components/Typography'
@@ -74,7 +74,9 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
           left: '50%',
           transform: [
             {
-              translateX: 300 + (centerColumnOffset ? CENTER_COLUMN_OFFSET : 0),
+              translateX:
+                CENTER_COLUMN_WIDTH / 2 + // 300
+                (centerColumnOffset ? CENTER_COLUMN_OFFSET : 0),
             },
             ...a.scrollbar_offset.transform,
           ],

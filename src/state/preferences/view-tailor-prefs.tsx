@@ -24,6 +24,7 @@ export type ViewTailorPrefs = Partial<{
   /** Avatar and Banner blurs in Warn/Hide labels */
   avatarBlurs: boolean
   trendingTopics: number
+  columnWidth: number
 }>
 
 type StateContext = {

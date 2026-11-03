@@ -3,11 +3,14 @@ import {
   type LayoutChangeEvent,
   PanResponder,
   Platform,
+  Pressable,
   type StyleProp,
+  TextInput,
   View,
   type ViewStyle,
 } from 'react-native'
 import * as Haptics from 'expo-haptics'
+import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
@@ -38,7 +41,10 @@ export function StepSlider({
   style?: StyleProp<ViewStyle>
 }) {
   const t = useTheme()
+  const {t: l} = useLingui()
   const [width, setWidth] = useState(0)
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState(String(value))
 
   const steps = Math.max(max - min, 1)
   const usable = Math.max(width - THUMB, 1)
@@ -87,13 +93,71 @@ export function StepSlider({
     [],
   )
 
+  const submitDraft = () => {
+    setEditing(false)
+    const n = parseInt(draft, 10)
+    if (Number.isNaN(n)) return // net for emptrying the field
+    const next = Math.min(Math.max(n, min), max)
+    onChange(next)
+    onChangeEnd?.(next)
+  }
+
   const thumbLeft = ((value - min) / steps) * usable
+  const measured = width > 0
+
+  const digits = String(max).length
+  const boxStyle = [
+    a.rounded_sm,
+    a.align_center,
+    t.atoms.bg_contrast_50,
+    {
+      width: digits * 11 + 28,
+      paddingVertical: 4,
+      borderWidth: 1,
+      borderColor: editing ? t.palette.primary_500 : 'transparent',
+    },
+  ]
 
   return (
     <View style={[style, disabled && {opacity: 0.4}]}>
       <View style={[a.flex_row, a.justify_between, a.align_center]}>
         <Text style={[a.text_md, t.atoms.text]}>{label}</Text>
-        <Text style={[a.text_md, a.font_bold, t.atoms.text]}>{value}</Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={l`${label}: ${value}. Tap to edit`}
+          accessibilityHint=""
+          disabled={disabled || editing}
+          hitSlop={8}
+          onPress={() => {
+            setDraft(String(value))
+            setEditing(true)
+          }}
+          style={boxStyle}>
+          {editing ? (
+            <TextInput
+              accessibilityLabel={l`Text input field`}
+              accessibilityHint={l`Manually edit slider value`}
+              autoFocus
+              selectTextOnFocus
+              keyboardType="number-pad"
+              value={draft}
+              onChangeText={setDraft}
+              onBlur={submitDraft}
+              onSubmitEditing={submitDraft}
+              maxLength={digits}
+              style={[
+                a.text_md,
+                a.font_medium,
+                t.atoms.text,
+                {width: '100%', padding: 0, textAlign: 'center'},
+              ]}
+            />
+          ) : (
+            <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
+              {value}
+            </Text>
+          )}
+        </Pressable>
       </View>
 
       <View
@@ -127,31 +191,34 @@ export function StepSlider({
             t.atoms.bg_contrast_50,
           ]}
         />
-        {marks.map(m => (
+        {measured &&
+          marks.map(m => (
+            <View
+              key={m}
+              pointerEvents="none"
+              style={{
+                position: 'absolute',
+                left: THUMB / 2 + ((m - min) / steps) * usable - 1,
+                width: 2,
+                height: 10,
+                borderRadius: 1,
+                backgroundColor: t.palette.contrast_400,
+              }}
+            />
+          ))}
+        {measured && (
           <View
-            key={m}
             pointerEvents="none"
             style={{
               position: 'absolute',
-              left: THUMB / 2 + ((m - min) / steps) * usable - 1,
-              width: 2,
-              height: 10,
-              borderRadius: 1,
-              backgroundColor: t.palette.contrast_400,
+              left: thumbLeft,
+              width: THUMB,
+              height: THUMB,
+              borderRadius: THUMB / 2,
+              backgroundColor: t.palette.primary_500,
             }}
           />
-        ))}
-        <View
-          pointerEvents="none"
-          style={{
-            position: 'absolute',
-            left: thumbLeft,
-            width: THUMB,
-            height: THUMB,
-            borderRadius: THUMB / 2,
-            backgroundColor: t.palette.primary_500,
-          }}
-        />
+        )}
       </View>
     </View>
   )
