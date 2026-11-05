@@ -46,7 +46,6 @@ import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderMetrics} from './Metrics'
-import {ProfileHeaderPronouns} from './Pronouns'
 import {ProfileHeaderShell} from './Shell'
 
 interface Props {
@@ -145,8 +144,7 @@ let ProfileHeaderLabeler = ({
         <View
           style={[a.flex_col, a.gap_xs, a.pb_sm, live ? a.pt_sm : a.pt_2xs]}>
           <ProfileHeaderDisplayName profile={profile} moderation={moderation} />
-          {IS_NATIVE && <ProfileHeaderPronouns profile={profile} />}
-          <ProfileHeaderHandle profile={profile} />
+          <ProfileHeaderHandle profile={profile} moderation={moderation} />
         </View>
         {!isPlaceholderProfile && (
           <View style={a.gap_md}>

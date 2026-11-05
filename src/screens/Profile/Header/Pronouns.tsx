@@ -33,22 +33,6 @@ export function ProfileHeaderPronouns({
   )
 }
 
-export function ProfileHeaderPronounsInline({
-  profile,
-}: {
-  profile: Shadow<app.bsky.actor.defs.ProfileViewDetailed>
-}) {
-  const t = useTheme()
-
-  if (!profile.pronouns) return null
-
-  return (
-    <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_medium]}>
-      {NON_BREAKING_SPACE + '\u00B7' + NON_BREAKING_SPACE + profile.pronouns}
-    </Text>
-  )
-}
-
 const AlignmentContext = createContext<'platform' | 'left'>('platform')
 AlignmentContext.displayName = 'AlignmentContext'
 

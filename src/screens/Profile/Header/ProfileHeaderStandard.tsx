@@ -48,7 +48,6 @@ import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetaRow} from './MetaRow'
 import {ProfileHeaderMetrics} from './Metrics'
-import {ProfileHeaderPronouns} from './Pronouns'
 import {ProfileHeaderShell} from './Shell'
 import {ProfileHeaderSuggestedFollows} from './SuggestedFollows'
 
@@ -144,8 +143,7 @@ let ProfileHeaderStandard = ({
               profile={profile}
               moderation={moderation}
             />
-            {IS_NATIVE && <ProfileHeaderPronouns profile={profile} />}
-            <ProfileHeaderHandle profile={profile} />
+            <ProfileHeaderHandle profile={profile} moderation={moderation} />
           </View>
           {!isPlaceholderProfile && !isBlockedUser && (
             <View style={a.gap_md}>

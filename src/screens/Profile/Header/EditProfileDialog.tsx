@@ -4,12 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Plural, Trans} from '@lingui/react/macro'
 
-import {
-  MAX_DESCRIPTION,
-  MAX_DISPLAY_NAME,
-  MAX_PRONOUNS,
-  urls,
-} from '#/lib/constants'
+import {MAX_DESCRIPTION, MAX_DISPLAY_NAME, urls} from '#/lib/constants'
 import {useCallOnce} from '#/lib/once'
 import {cleanError} from '#/lib/strings/errors'
 import {isOverMaxGraphemeCount} from '#/lib/strings/helpers'
@@ -24,6 +19,8 @@ import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
+import {Pencil_Stroke2_Corner2_Rounded as PencilIcon} from '#/components/icons/Pencil'
+import {PlusSmall_Stroke2_Corner0_Rounded as PlusIcon} from '#/components/icons/Plus'
 import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import * as Prompt from '#/components/Prompt'
@@ -41,7 +38,15 @@ import {
   useSetOwnProfileLinksCache,
   useWriteProfileLinks,
 } from '#/features/profileLinks'
+import {
+  PILL_DASHED_BORDER,
+  PILL_LEFT,
+  PILL_RIGHT_GRIP,
+  PILL_RIGHT_TEXT,
+  PILL_VERTICAL,
+} from '#/features/profileLinks/pillSize'
 import {type app} from '#/lexicons'
+import {PronounsDialog} from './PronounsDialog'
 
 export function EditProfileDialog({
   profile,
@@ -111,7 +116,7 @@ function DialogInner({
   setDirty: (dirty: boolean) => void
   onPressCancel: () => void
 }) {
-  const {_} = useLingui()
+  const {_, i18n} = useLingui()
   const t = useTheme()
   const ax = useAnalytics()
   const control = Dialog.useDialogContext()
@@ -131,12 +136,13 @@ function DialogInner({
   const [imageError, setImageError] = useState('')
   const initialDisplayName = profile.displayName || ''
   const [displayName, setDisplayName] = useState(initialDisplayName)
-  const initialPronouns = profile.pronouns || ''
-  const [pronouns, setPronouns] = useState(initialPronouns)
   const initialWebsite = profile.website || ''
   const [website, setWebsite] = useState(initialWebsite)
   const initialDescription = profile.description || ''
   const [description, setDescription] = useState(initialDescription)
+  const initialPronouns = profile.pronouns || ''
+  const [pronouns, setPronouns] = useState(initialPronouns)
+  const pronounsControl = Dialog.useDialogControl()
   const [userBanner, setUserBanner] = useState<string | undefined | null>(
     profile.banner,
   )
@@ -242,7 +248,7 @@ function DialogInner({
         updates: {
           displayName: displayName.trimEnd(),
           description: description.trimEnd(),
-          pronouns: pronouns.trimEnd(),
+          ...(pronouns !== initialPronouns && {pronouns: pronouns.trim()}),
           website: website.trimEnd() as `${string}:${string}`,
           ...(written && {
             links: written.refs.length ? written.refs : undefined,
@@ -273,11 +279,13 @@ function DialogInner({
     displayName,
     description,
     pronouns,
+    initialPronouns,
     website,
     newUserAvatar,
     newUserBanner,
     setImageError,
     _,
+    i18n,
     editedLinks,
     linksDirty,
     storedLinks,
@@ -289,10 +297,6 @@ function DialogInner({
   const displayNameTooLong = isOverMaxGraphemeCount({
     text: displayName,
     maxCount: MAX_DISPLAY_NAME,
-  })
-  const pronounsTooLong = isOverMaxGraphemeCount({
-    text: pronouns,
-    maxCount: MAX_PRONOUNS,
   })
   const descriptionTooLong = isOverMaxGraphemeCount({
     text: description,
@@ -326,8 +330,7 @@ function DialogInner({
           !dirty ||
           isUpdatingProfile ||
           displayNameTooLong ||
-          descriptionTooLong ||
-          pronounsTooLong
+          descriptionTooLong
         }
         size="small"
         color="primary"
@@ -348,7 +351,6 @@ function DialogInner({
       isUpdatingProfile,
       displayNameTooLong,
       descriptionTooLong,
-      pronounsTooLong,
     ],
   )
 
@@ -452,29 +454,68 @@ function DialogInner({
           <TextField.LabelText>
             <Trans>Pronouns</Trans>
           </TextField.LabelText>
-          <TextField.Root isInvalid={pronounsTooLong}>
-            <Dialog.Input
-              defaultValue={pronouns}
-              onChangeText={setPronouns}
-              label={_(msg`Pronouns`)}
-              placeholder={_(msg`e.g. They/Them`)}
-              testID="editPronounsInput"
-            />
-          </TextField.Root>
-          {pronounsTooLong && (
-            <Text
-              style={[
-                a.text_sm,
-                a.mt_xs,
-                a.font_semi_bold,
-                {color: t.palette.negative_400},
-              ]}>
-              <Plural
-                value={MAX_PRONOUNS}
-                other="Max length exceeded. The maximum number of characters is #."
-              />
-            </Text>
-          )}
+          {/*
+           * A pill that opens a sheet, rather than a full field, so pronouns
+           * stay optional and out of the way. It matches the link pills.
+           */}
+          <View style={[a.flex_row]}>
+            <Button
+              testID="editProfilePronounsBtn"
+              label={
+                pronouns
+                  ? _(msg`Edit pronouns: ${pronouns}`)
+                  : _(msg`Add pronouns`)
+              }
+              size="small"
+              color="secondary"
+              // unset, it matches the dashed "Add link" pill
+              variant={pronouns ? 'solid' : 'outline'}
+              onPress={() => pronounsControl.open()}
+              style={
+                pronouns
+                  ? {
+                      paddingVertical: PILL_VERTICAL,
+                      // starts with text, ends in a pencil sized like the drag grip
+                      paddingLeft: PILL_RIGHT_TEXT,
+                      paddingRight: PILL_RIGHT_GRIP,
+                    }
+                  : {
+                      // the outline variant draws a hairline on native; this wants a full point
+                      borderStyle: 'dashed',
+                      borderWidth: PILL_DASHED_BORDER,
+                      borderColor: t.palette.contrast_600,
+                      // less the border, so it's the same size as the solid pills
+                      paddingVertical: PILL_VERTICAL - PILL_DASHED_BORDER,
+                      paddingLeft: PILL_LEFT - PILL_DASHED_BORDER,
+                      paddingRight: PILL_RIGHT_TEXT - PILL_DASHED_BORDER,
+                    }
+              }>
+              {pronouns ? (
+                <>
+                  <ButtonText emoji numberOfLines={1} style={t.atoms.text}>
+                    {pronouns}
+                  </ButtonText>
+                  {/* sized and colored like the drag grip on the link pills */}
+                  <PencilIcon
+                    width={14}
+                    style={[{marginLeft: -2}, t.atoms.text_contrast_low]}
+                  />
+                </>
+              ) : (
+                <>
+                  <ButtonIcon icon={PlusIcon} />
+                  <ButtonText style={{marginLeft: -2}}>
+                    <Trans>Add pronouns</Trans>
+                  </ButtonText>
+                </>
+              )}
+            </Button>
+          </View>
+          <PronounsDialog
+            control={pronounsControl}
+            pronouns={pronouns}
+            onSave={setPronouns}
+          />
         </View>
 
         <View>
