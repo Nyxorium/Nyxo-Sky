@@ -79,11 +79,13 @@ import {useActorStatus} from '#/features/liveNow'
 import {type app} from '#/lexicons'
 import {device, useStorage} from '#/storage'
 import {useActivitySubscriptionsNudged} from '#/storage/hooks/activity-subscriptions-nudged'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Settings'>
 export function SettingsScreen({}: Props) {
   const ax = useAnalytics()
   const {t: l} = useLingui()
+  const [devModeEnabled] = useDevMode()
   const isModerationInboxEnabled = ax.features.enabled(
     ax.features.ModerationInboxEnable,
   )
@@ -312,7 +314,7 @@ export function SettingsScreen({}: Props) {
               <Trans>Sign out</Trans>
             </SettingsList.ItemText>
           </SettingsList.PressableItem>
-          {IS_INTERNAL && (
+          {(IS_INTERNAL || devModeEnabled) && (
             <>
               <SettingsList.Divider />
               <SettingsList.PressableItem
