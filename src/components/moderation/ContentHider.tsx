@@ -156,6 +156,19 @@ function ContentHiderActive({
   //    return primary
   //  }, [modui.blurs])
 
+  const labelCauses = useMemo(() => {
+    const seen = new Set<string>()
+    return [blur, ...modui.blurs, ...modui.alerts, ...modui.informs].filter(
+      b => {
+        if (b.type !== 'label') return false
+        const key = `${b.label.src}:${b.label.val}:${b.label.uri}`
+        if (seen.has(key)) return false
+        seen.add(key)
+        return true
+      },
+    )
+  }, [blur, modui.blurs, modui.alerts, modui.informs])
+
   const desc = useModerationCauseDescription(blur)
 
   const labelName = useMemo(() => {
@@ -234,7 +247,11 @@ function ContentHiderActive({
       testID={testID}
       layout={native(LinearTransition)}
       style={[a.overflow_hidden, style]}>
-      <ModerationDetailsDialog control={control} modcause={blur} />
+      <ModerationDetailsDialog
+        control={control}
+        modcause={blur}
+        modcauses={blur.type === 'label' ? labelCauses : undefined}
+      />
       <Button
         onPress={e => {
           e.preventDefault()
