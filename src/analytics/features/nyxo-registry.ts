@@ -27,17 +27,16 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       description:
         'Sort other users followers/following pages by Top instead of Latest',
     },
-    [Features.ModerationInboxEnable]: {
-      label: 'Moderation Inbox',
-      description:
-        'Show the moderation inbox menu item and screen under Moderation settings',
-    },
     [Features.AtmosphereScreenEnable]: {
       label: 'Atmosphere Explore',
       description: 'Show the Atmosphere tab in drawer/left nav',
     },
-    [Features.NotificationsV2Enable]: {
-      label: 'Notifications V2',
+    [Features.ImageUploadsNativeCompressionEnable]: {
+      label: 'Image Uploads Native Compression Enable',
+      description: '',
+    },
+    [Features.ImageUploadsWebCompressionEnable]: {
+      label: 'Image Uploads Web Compression Enable',
       description: '',
     },
   }

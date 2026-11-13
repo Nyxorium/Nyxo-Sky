@@ -331,7 +331,9 @@ function ModerationLabelListInner({
   const t = useTheme()
   const {_} = useLingui()
 
-  const labelCauses = causes.filter((c): c is LabelCause => c.type === 'label')
+  const labelCauses = causes.filter(
+    (c): c is LabelCause => c.type === 'label',
+  )
 
   return (
     <Dialog.ScrollableInner

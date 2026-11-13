@@ -298,6 +298,7 @@ export function HeaderLabelerButtons({
   const requireAuth = useRequireAuth()
   const haptics = useHaptics()
   const editProfileControl = useDialogControl()
+  const inviteFriendsControl = useDialogControl()
   const {data: preferences} = usePreferencesQuery()
   const {
     mutateAsync: toggleSubscription,
@@ -309,8 +310,6 @@ export function HeaderLabelerButtons({
     preferences?.moderationPrefs.labelers.find(l => l.did === profile.did)
 
   const cantSubscribePrompt = Prompt.usePromptControl()
-
-  const inviteFriendsControl = useDialogControl()
 
   const isMe = currentAccount?.did === profile.did
 
