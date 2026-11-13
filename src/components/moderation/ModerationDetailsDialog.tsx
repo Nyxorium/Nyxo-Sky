@@ -25,15 +25,24 @@ export {useDialogControl as useModerationDetailsDialogControl} from '#/component
 export interface ModerationDetailsDialogProps {
   control: Dialog.DialogOuterProps['control']
   modcause?: ModerationCause | AppModerationCause
+  modcauses?: ModerationCause[]
 }
 
 export function ModerationDetailsDialog(props: ModerationDetailsDialogProps) {
+  const isList = !!props.modcauses && props.modcauses.length > 1
   return (
     <Dialog.Outer
       control={props.control}
       nativeOptions={{preventExpansion: true}}>
       <Dialog.Handle />
-      <ModerationDetailsDialogInner {...props} />
+      {isList ? (
+        <ModerationLabelListInner
+          causes={props.modcauses!}
+          control={props.control}
+        />
+      ) : (
+        <ModerationDetailsDialogInner {...props} />
+      )}
     </Dialog.Outer>
   )
 }
@@ -307,5 +316,122 @@ function ModerationDetailsDialogInner({
 
       <Dialog.Close />
     </Dialog.ScrollableInner>
+  )
+}
+
+type LabelCause = Extract<ModerationCause, {type: 'label'}>
+
+function ModerationLabelListInner({
+  causes,
+  control,
+}: {
+  causes: ModerationCause[]
+  control: Dialog.DialogOuterProps['control']
+}) {
+  const t = useTheme()
+  const {_} = useLingui()
+
+  const labelCauses = causes.filter((c): c is LabelCause => c.type === 'label')
+
+  return (
+    <Dialog.ScrollableInner
+      label={_(msg`Labels applied to this content`)}
+      style={web({maxWidth: 460})}>
+      <View style={[a.gap_md]}>
+        <Text style={[t.atoms.text, a.text_2xl, a.font_bold]}>
+          <Trans>Labels applied to this content</Trans>
+        </Text>
+        {labelCauses.map(c => (
+          <LabelCard
+            key={`${c.label.src}:${c.label.val}:${c.label.uri}`}
+            cause={c}
+            control={control}
+          />
+        ))}
+      </View>
+      {IS_NATIVE && <View style={{height: 40}} />}
+      <Dialog.Close />
+    </Dialog.ScrollableInner>
+  )
+}
+
+function LabelCard({
+  cause,
+  control,
+}: {
+  cause: LabelCause
+  control: Dialog.DialogOuterProps['control']
+}) {
+  const t = useTheme()
+  const {_} = useLingui()
+  const desc = useModerationCauseDescription(cause)
+  const timeDiff = useGetTimeAgo({future: true})
+
+  const sourceName =
+    desc.source || desc.sourceDisplayName || _(msg`an unknown labeler`)
+
+  return (
+    <View
+      style={[
+        a.border,
+        a.rounded_md,
+        a.overflow_hidden,
+        t.atoms.border_contrast_low,
+      ]}>
+      <View style={[a.p_md, a.gap_xs]}>
+        <View style={[a.flex_row, a.align_center, a.gap_sm, a.flex_wrap]}>
+          <Text emoji style={[t.atoms.text, a.text_md, a.font_bold]}>
+            {desc.name}
+          </Text>
+          {desc.isSubjectAccount && (
+            <Text style={[t.atoms.text_contrast_medium, a.text_sm]}>
+              <Trans>(Account)</Trans>
+            </Text>
+          )}
+        </View>
+        <Text
+          emoji
+          style={[t.atoms.text_contrast_medium, a.text_sm, a.leading_snug]}>
+          {desc.description}
+        </Text>
+      </View>
+      <View
+        style={[
+          a.px_md,
+          a.py_sm,
+          a.border_t,
+          t.atoms.border_contrast_low,
+          !IS_NATIVE && t.atoms.bg_contrast_25,
+        ]}>
+        {cause.source.type === 'user' ? (
+          <Text style={[t.atoms.text_contrast_medium, a.text_sm]}>
+            <Trans>This label was applied by the author.</Trans>
+          </Text>
+        ) : (
+          <View style={[a.flex_row, a.justify_between, a.gap_xl]}>
+            <Text
+              style={[a.flex_1, a.text_sm, t.atoms.text_contrast_medium]}
+              numberOfLines={1}>
+              <Trans>
+                Source:{' '}
+                <InlineLinkText
+                  label={sourceName}
+                  to={makeProfileLink({did: cause.label.src, handle: ''})}
+                  onPress={() => control.close()}>
+                  {sourceName}
+                </InlineLinkText>
+              </Trans>
+            </Text>
+            {cause.label.exp && (
+              <Text style={[a.text_sm, a.italic, t.atoms.text_contrast_medium]}>
+                <Trans>
+                  Expires in {timeDiff(Date.now(), cause.label.exp)}
+                </Trans>
+              </Text>
+            )}
+          </View>
+        )}
+      </View>
+    </View>
   )
 }
