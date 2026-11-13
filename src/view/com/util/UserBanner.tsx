@@ -31,8 +31,8 @@ import {
   Camera_Filled_Stroke2_Corner0_Rounded as CameraFilledIcon,
   Camera_Stroke2_Corner0_Rounded as CameraIcon,
 } from '#/components/icons/Camera'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {StreamingLive_Stroke2_Corner0_Rounded as LibraryIcon} from '#/components/icons/StreamingLive'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import * as Menu from '#/components/Menu'
 import {IS_NATIVE} from '#/env'
 

@@ -33,13 +33,13 @@ import {
   Heart2_Filled_Stroke2_Corner0_Rounded as HeartFilledIcon,
   Heart2_Stroke2_Corner0_Rounded as HeartIcon,
 } from '#/components/icons/Heart2'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {
   Pin_Filled_Corner0_Rounded as PinFilledIcon,
   Pin_Stroke2_Corner0_Rounded as PinIcon,
 } from '#/components/icons/Pin'
 import {PlusLarge_Stroke2_Corner0_Rounded as PlusIcon} from '#/components/icons/Plus'
 import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import * as Layout from '#/components/Layout'
 import {InlineLinkText} from '#/components/Link'
 import * as Menu from '#/components/Menu'

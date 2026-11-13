@@ -32,7 +32,7 @@ import {
 import {atoms as a, useTheme} from '#/alf'
 import {DebugFieldDisplay} from '#/components/DebugFieldDisplay'
 import {useInteractionState} from '#/components/hooks/useInteractionState'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {
   GalleryBleed,
   maybeApplyGalleryOffsetStyles,

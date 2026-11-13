@@ -34,7 +34,7 @@ import {Text} from '#/components/Typography'
 import {useActiveLiveEventFeedUris} from '#/features/liveEvents/context'
 import {type app} from '#/lexicons'
 import type * as bsky from '#/types/bsky'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from './icons/Trash'
+import {Trash as TrashIcon} from './icons/lucide/Trash'
 
 type Props = {
   view: app.bsky.feed.defs.GeneratorView

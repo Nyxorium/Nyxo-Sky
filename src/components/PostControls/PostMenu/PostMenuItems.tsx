@@ -68,6 +68,7 @@ import {
   FaceSmile as EmojiSmile,
 } from '#/components/icons/heroicons/Face'
 import {Atom as AtomIcon} from '#/components/icons/lucide/Atom'
+import {Trash} from '#/components/icons/lucide/Trash'
 import {
   Mute_Stroke2_Corner0_Rounded as Mute,
   Mute_Stroke2_Corner0_Rounded as MuteIcon,
@@ -79,7 +80,6 @@ import {
   SpeakerVolumeFull_Stroke2_Corner0_Rounded as Unmute,
   SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon,
 } from '#/components/icons/Speaker'
-import {Trash_Stroke2_Corner0_Rounded as Trash} from '#/components/icons/Trash'
 import {Warning_Stroke2_Corner0_Rounded as Warning} from '#/components/icons/Warning'
 import {Loader} from '#/components/Loader'
 import * as Menu from '#/components/Menu'

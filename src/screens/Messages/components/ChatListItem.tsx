@@ -43,7 +43,7 @@ import {Bell2Off_Filled_Corner0_Rounded as BellStrokeIcon} from '#/components/ic
 import {type Props as SVGIconProps} from '#/components/icons/common'
 import {Envelope_Open_Stroke2_Corner0_Rounded as EnvelopeOpenIcon} from '#/components/icons/EnveopeOpen'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {Link} from '#/components/Link'
 import {useMenuControl} from '#/components/Menu'
 import {PostAlerts} from '#/components/moderation/PostAlerts'

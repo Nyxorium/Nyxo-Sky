@@ -24,7 +24,7 @@ import {ArrowCornerDownRight_Stroke2_Corner2_Rounded as ReplyIcon} from '#/compo
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
 import {Language_Stroke2_Corner2_Rounded as LanguageIcon} from '#/components/icons/Language'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'

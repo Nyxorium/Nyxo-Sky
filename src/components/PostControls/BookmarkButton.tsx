@@ -13,7 +13,7 @@ import {
   Bookmark_Filled_Corner0_Rounded as BookmarkFilled,
   Bookmark_Stroke2_Corner0_Rounded as Bookmark,
 } from '#/components/icons/Bookmark'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
 import * as toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'

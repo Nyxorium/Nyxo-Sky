@@ -5,8 +5,8 @@ import {useLingui} from '@lingui/react'
 
 import {LINEAR_AVI_WIDTH, OUTER_SPACE} from '#/screens/PostThread/const'
 import {atoms as a, useTheme} from '#/alf'
+import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {PersonX_Stroke2_Corner0_Rounded as PersonXIcon} from '#/components/icons/Person'
-import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import {Text} from '#/components/Typography'
 
 export type ThreadItemPostTombstoneProps = {
