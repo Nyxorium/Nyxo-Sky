@@ -1,8 +1,37 @@
-import {createSinglePathSVG} from '#/components/icons/TEMPLATE'
+import {createSinglePathSVG, createSVG} from '#/components/icons/TEMPLATE'
 
 export const User = createSinglePathSVG({
   path: 'M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z',
   strokeWidth: 2,
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
+})
+
+export const UserCircle = createSVG({
+  elements: [
+    {
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      strokeWidth: 1.5,
+      type: 'path',
+      d: 'M17.982 18.725A7.49 7.49 0 0 0 12 15.75a7.49 7.49 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.97 8.97 0 0 1 12 21a8.97 8.97 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
+    },
+  ],
+  viewBox: '0 0 24 24',
+})
+
+export const UserCircleSolid = createSVG({
+  elements: [
+    {
+      fill: 'currentColor',
+      stroke: 'none',
+      type: 'path',
+      d: 'M18.685 19.097A9.72 9.72 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.72 9.72 0 0 0 3.065 7.097A9.72 9.72 0 0 0 12 21.75a9.72 9.72 0 0 0 6.685-2.653Zm-12.54-1.285A7.49 7.49 0 0 1 12 15a7.49 7.49 0 0 1 5.855 2.812A8.22 8.22 0 0 1 12 20.25a8.22 8.22 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z',
+      fillRule: 'evenodd',
+      clipRule: 'evenodd',
+    },
+  ],
+  viewBox: '0 0 24 24',
 })
