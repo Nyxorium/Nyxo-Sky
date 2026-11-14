@@ -17,6 +17,7 @@ import {Trash as TrashIcon} from '#/components/icons/lucide/Trash'
 import {useFormatPostStatCount} from '#/components/PostControls/util'
 import * as toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {type BookmarkEntryPoint} from '#/analytics/metrics/types'
 import {type app} from '#/lexicons'
 import {
   PostControlButton,
@@ -41,7 +42,11 @@ export const BookmarkButton = memo(function BookmarkButton({
   const {t: l} = useLingui()
   const requireAuth = useRequireAuth()
   const formatPostStatCount = useFormatPostStatCount()
-  const {isBookmarked, toggleBookmark} = usePostBookmark({post, logContext})
+  const {isBookmarked, toggleBookmark} = usePostBookmark({
+    post,
+    logContext,
+    entryPoint: 'BookmarkButton',
+  })
 
   const saves = plural(bookmarkCount || 0, {one: '# save', other: '# saves'})
 
@@ -75,9 +80,12 @@ export const BookmarkButton = memo(function BookmarkButton({
 export function usePostBookmark({
   post,
   logContext,
+  entryPoint,
 }: {
   post: Shadow<app.bsky.feed.defs.PostView>
   logContext: 'FeedItem' | 'PostThreadItem' | 'Post' | 'ImmersiveVideo'
+  /** Which control is saving, for metrics. */
+  entryPoint: BookmarkEntryPoint
 }) {
   const ax = useAnalytics()
   const {t: l} = useLingui()
@@ -103,6 +111,7 @@ export function usePostBookmark({
         uri: post.uri,
         authorDid: post.author.did,
         logContext,
+        entryPoint,
         feedDescriptor,
       })
       return true
@@ -126,6 +135,7 @@ export function usePostBookmark({
         uri: post.uri,
         authorDid: post.author.did,
         logContext,
+        entryPoint,
         feedDescriptor,
       })
 

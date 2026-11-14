@@ -31,12 +31,20 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Atmosphere Explore',
       description: 'Show the Atmosphere tab in drawer/left nav',
     },
+    [Features.ShareDestinationsEnable]: {
+      label: 'Share Destinations Enable',
+      description: '',
+    },
     [Features.ImageUploadsNativeCompressionEnable]: {
       label: 'Image Uploads Native Compression Enable',
       description: '',
     },
     [Features.ImageUploadsWebCompressionEnable]: {
       label: 'Image Uploads Web Compression Enable',
+      description: '',
+    },
+    [Features.FollowingV2Enable]: {
+      label: 'Following v2 Enable',
       description: '',
     },
   }

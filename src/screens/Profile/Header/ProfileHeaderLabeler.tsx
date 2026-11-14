@@ -168,9 +168,6 @@ let ProfileHeaderLabeler = ({
             {(profile.website || profile.createdAt) && (
               <ProfileHeaderMetaRow profile={profile} />
             )}
-            {profile.associated?.germ && tailors.germButton && (
-              <GermButton germ={profile.associated.germ} profile={profile} />
-            )}
             <ProfileHeaderLinks
               profile={profile}
               hidden={!!moderation.ui('profileView').blur}
