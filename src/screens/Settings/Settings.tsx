@@ -43,6 +43,7 @@ import {AvatarStackWithFetch} from '#/components/AvatarStack'
 import {Button, ButtonText} from '#/components/Button'
 // import {useIsFindContactsFeatureEnabledBasedOnGeolocation} from '#/components/contacts/country-allowlist'
 import {useDialogControl} from '#/components/Dialog'
+import {AppviewButton} from '#/components/dialogs/AppviewDialog'
 import {SwitchAccountDialog} from '#/components/dialogs/SwitchAccount'
 import {Bell_Stroke2_Corner0_Rounded as NotificationIcon} from '#/components/icons/Bell'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
@@ -115,7 +116,7 @@ export function SettingsScreen({}: Props) {
             <Trans>Settings</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
-        <Layout.Header.Slot />
+        <AppviewButton variant="chip" />
       </Layout.Header.Outer>
       <Layout.Content>
         <SettingsList.Container>

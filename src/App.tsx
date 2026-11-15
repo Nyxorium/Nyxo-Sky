@@ -27,6 +27,7 @@ import {
   prefetchAppConfig,
   Provider as AppConfigProvider,
 } from '#/state/appConfig'
+import {applyAppviewOverride} from '#/state/appview-override'
 import {Provider as MutedThreadsProvider} from '#/state/cache/thread-mutes'
 import {Provider as DialogStateProvider} from '#/state/dialogs'
 import {Provider as EmailVerificationProvider} from '#/state/email-verification'
@@ -90,6 +91,7 @@ import * as Geo from '#/geolocation'
 import {Splash} from '#/Splash'
 
 void identifyDevice(getDeviceId(), setupDeviceId)
+void applyAppviewOverride()
 
 void SplashScreen.preventAutoHideAsync()
 if (IS_IOS) {
