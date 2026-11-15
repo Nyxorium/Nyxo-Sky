@@ -21,12 +21,13 @@ import {atoms as a, native, useBreakpoints, useTheme} from '#/alf'
 import * as Admonition from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
+import {AppviewButton} from '#/components/dialogs/AppviewDialog'
 import {TokenField} from '#/components/dialogs/EmailDialog/components/TokenField'
 import {PasswordField} from '#/components/forms/PasswordField'
 import * as TextField from '#/components/forms/TextField'
-import {TinyChevronBottom_Stroke2_Corner0_Rounded as TinyChevronIcon} from '#/components/icons/Chevron'
 import {Envelope_Stroke2_Corner0_Rounded as EmailIcon} from '#/components/icons/Envelope'
 import {AtSign as AtIcon} from '#/components/icons/lucide/AtSign'
+import {TinyChevronBottom_Stroke2_Corner0_Rounded as TinyChevronIcon} from '#/components/icons/TinyChevronBottom'
 import {createStaticClick, InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
@@ -493,7 +494,9 @@ export const LoginForm = ({
                 <Trans>Back</Trans>
               </ButtonText>
             </Button>
-
+            <View style={[a.justify_center]}>
+              <AppviewButton variant="text" />
+            </View>
             <View style={[a.flex_shrink, a.justify_center, a.ml_auto]}>
               <HostingProviderIndicator
                 state={hostingProvider.state}
@@ -556,10 +559,13 @@ export const LoginForm = ({
       )}
 
       {!gtMobile && (
-        <HostingProviderIndicator
-          state={hostingProvider.state}
-          onPress={() => serverInputControl.open()}
-        />
+        <>
+          <AppviewButton variant="text" />
+          <HostingProviderIndicator
+            state={hostingProvider.state}
+            onPress={() => serverInputControl.open()}
+          />
+        </>
       )}
     </FormContainer>
   )

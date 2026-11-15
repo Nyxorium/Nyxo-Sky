@@ -8,6 +8,7 @@ import {type Geolocation} from '#/geolocation/types'
  * Data that's specific to the device and does not vary based account
  */
 export type Device = {
+  appviewOverrideDid?: string
   /**
    * Formerly managed by StatSig, this is the migrated stable ID for the
    * device, used with our logging and metrics tracking.

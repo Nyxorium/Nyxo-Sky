@@ -3,6 +3,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import {type CommonNavigatorParams} from '#/lib/routes/types'
+import {getActiveAppviewDid, getAppviewLabel} from '#/state/appview-override'
 import {
   useAltLabelDisplayProfile,
   useSetAltLabelDisplayProfile,
@@ -39,6 +40,8 @@ import {AppearanceToggleButtonGroup} from '#/screens/Settings/AppearanceSettings
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a} from '#/alf'
 import {Admonition} from '#/components/Admonition'
+import * as Dialog from '#/components/Dialog'
+import {AppviewDialog} from '#/components/dialogs/AppviewDialog'
 import {StepSlider} from '#/components/forms/StepSlider'
 import * as Toggle from '#/components/forms/Toggle'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
@@ -49,6 +52,7 @@ import {User as UserIcon} from '#/components/icons/heroicons/User'
 import {UserPlus_solid} from '#/components/icons/heroicons/UserPlus'
 import {Key_Stroke2_Corner2_Rounded as KeyIcon} from '#/components/icons/Key'
 import {Beaker as BeakerIcon} from '#/components/icons/lucide/Beaker'
+import {Globe as GlobeIcon} from '#/components/icons/lucide/Globe'
 import {RaisingHand4Finger_Stroke2_Corner0_Rounded as RaisingHandIcon} from '#/components/icons/RaisingHand4Finger'
 import * as Layout from '#/components/Layout'
 import {IS_WEB} from '#/env'
@@ -79,6 +83,8 @@ export function MiscellaneousSettingsScreen({}: Props) {
   const setSkipProfileWideContentWarning = useSetSkipProfileWideContentWarning()
   const likeOnRepost = useLikeOnRepost()
   const setLikeOnRepost = useSetLikeOnRepost()
+
+  const appviewControl = Dialog.useDialogControl()
 
   return (
     <Layout.Screen>
@@ -143,6 +149,17 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <Toggle.Platform />
             </SettingsList.Item>
           </Toggle.Item>
+
+          <SettingsList.Item>
+            <SettingsList.ItemIcon icon={GlobeIcon} />
+            <SettingsList.ItemText>
+              <Trans>App Server</Trans>
+            </SettingsList.ItemText>
+            <SettingsList.BadgeButton
+              label={getAppviewLabel(getActiveAppviewDid())}
+              onPress={() => appviewControl.open()}
+            />
+          </SettingsList.Item>
 
           <SettingsList.Divider />
 
@@ -281,6 +298,7 @@ export function MiscellaneousSettingsScreen({}: Props) {
           </SettingsList.Group>
         </SettingsList.Container>
       </Layout.Content>
+      <AppviewDialog control={appviewControl} />
     </Layout.Screen>
   )
 }
