@@ -24,6 +24,7 @@ Icons in [`assets/icons/lucide`](./assets/icons/lucide/LICENSE): [Lucide](https:
   - Like on Repost concept
   - Pet labels
   - Saving tags to drafts
+  - Appview switcher concept and placements
 - [DeckBlue](https://deck.blue)
   - Recently used tags concept
 - [mu.social](https://mu.social/)
