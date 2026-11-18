@@ -1,7 +1,6 @@
 import {createContext, useContext} from 'react'
 import {View} from 'react-native'
 
-import {NON_BREAKING_SPACE} from '#/lib/strings/constants'
 import {type Shadow} from '#/state/cache/types'
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
