@@ -13,7 +13,7 @@ import {scheduleOnRN} from 'react-native-worklets'
 
 import {useHaptics} from '#/lib/haptics'
 import {atoms as a, tokens, useTheme} from '#/alf'
-import {ArrowCornerDownRight_Stroke2_Corner3_Rounded as ReplyIcon} from '#/components/icons/ArrowCornerDownRight'
+import {ArrowCornerDownRight_Stroke2_Corner3_Rounded as ReplyIcon} from '#/components/icons/Arrow'
 import {MESSAGE_BUBBLE_MAX_WIDTH} from './util'
 
 // Distance the bubble must travel before releasing fires a reply.

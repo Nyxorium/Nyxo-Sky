@@ -81,7 +81,7 @@ jest.mock('#/view/com/util/EventStopper', () => ({
 jest.mock('#/components/icons/DotGrid', () => ({
   DotGrid3x1_Stroke2_Corner0_Rounded: () => null,
 }))
-jest.mock('#/components/icons/ArrowShareRight', () => ({
+jest.mock('#/components/icons/Arrow', () => ({
   ArrowShareRight_Stroke2_Corner2_Rounded: () => null,
 }))
 jest.mock('#/components/PostControls/util', () => ({

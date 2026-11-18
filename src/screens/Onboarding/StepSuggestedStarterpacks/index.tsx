@@ -14,7 +14,7 @@ import {useOnboardingInternalState} from '#/screens/Onboarding/state'
 import {atoms as a, useBreakpoints} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
-import {ArrowRotateCounterClockwise_Stroke2_Corner0_Rounded as ArrowRotateCounterClockwiseIcon} from '#/components/icons/ArrowRotate'
+import {ArrowRotateCounterClockwise_Stroke2_Corner0_Rounded as ArrowRotateCounterClockwiseIcon} from '#/components/icons/Arrow'
 import {Loader} from '#/components/Loader'
 import {StarterPackCard} from './StarterPackCard'
 

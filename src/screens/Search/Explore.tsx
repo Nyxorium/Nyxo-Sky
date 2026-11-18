@@ -49,13 +49,13 @@ import {Button} from '#/components/Button'
 import * as FeedCard from '#/components/FeedCard'
 import {FeedCardListSkeleton} from '#/components/FeedCardSkeleton'
 import {ChevronBottom_Stroke2_Corner0_Rounded as ChevronDownIcon} from '#/components/icons/Chevron'
-import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfo} from '#/components/icons/CircleInfo'
+import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfo} from '#/components/icons/Circle'
 import {
   type Props as IcoProps,
   type Props as SVGIconProps,
 } from '#/components/icons/common'
 import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
-import {ListSparkle_Stroke2_Corner0_Rounded as ListSparkle} from '#/components/icons/ListSparkle'
+import {ListSparkle_Stroke2_Corner0_Rounded as ListSparkle} from '#/components/icons/List'
 import {UserCircle_Stroke2_Corner0_Rounded as Person} from '#/components/icons/UserCircle'
 import {boostInterests} from '#/components/InterestTabs'
 import {Loader} from '#/components/Loader'

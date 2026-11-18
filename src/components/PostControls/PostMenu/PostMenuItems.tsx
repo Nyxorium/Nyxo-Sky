@@ -79,7 +79,7 @@ import {SettingsGear2_Stroke2_Corner0_Rounded as Gear} from '#/components/icons/
 import {
   SpeakerVolumeFull_Stroke2_Corner0_Rounded as Unmute,
   SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon,
-} from '#/components/icons/Speaker'
+} from '#/components/icons/SpeakerVolumeFull'
 import {Warning_Stroke2_Corner0_Rounded as Warning} from '#/components/icons/Warning'
 import {Loader} from '#/components/Loader'
 import * as Menu from '#/components/Menu'

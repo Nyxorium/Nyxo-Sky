@@ -5,7 +5,7 @@ import {Trans} from '@lingui/react/macro'
 
 import {atoms as a, useLayoutBreakpoints} from '#/alf'
 import {Button} from '#/components/Button'
-import {TimesLarge_Stroke2_Corner0_Rounded as CloseIcon} from '#/components/icons/Times'
+import {TimesLarge_Stroke2_Corner0_Rounded as CloseIcon} from '#/components/icons/TimesLarge'
 import * as Toast from '#/components/Toast'
 import {LiveEventFeedCardWide} from '#/features/liveEvents/components/LiveEventFeedCardWide'
 import {useUserPreferencedLiveEvents} from '#/features/liveEvents/context'

@@ -37,8 +37,8 @@ import {
 } from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
-  HomeOpen_Stoke2_Corner0_Rounded as Home,
-} from '#/components/icons/HomeOpen'
+  HomeOpen_Stroke2_Corner0_Rounded as Home,
+} from '#/components/icons/Home'
 import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,
   MagnifyingGlass_Stroke2_Corner0_Rounded as MagnifyingGlass,

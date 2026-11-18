@@ -25,7 +25,7 @@ import {SubscribeProfileButton} from '#/components/activity-notifications/Subscr
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {type DialogOuterProps, useDialogControl} from '#/components/Dialog'
 import {MessageProfileButton} from '#/components/dms/MessageProfileButton'
-import {ArrowShareRight_Stroke2_Corner2_Rounded as ArrowShareRight} from '#/components/icons/ArrowShareRight'
+import {ArrowShareRight_Stroke2_Corner2_Rounded as ArrowShareRight} from '#/components/icons/Arrow'
 import {
   Heart2_Filled_Stroke2_Corner0_Rounded as HeartFilled,
   Heart2_Stroke2_Corner0_Rounded as Heart,

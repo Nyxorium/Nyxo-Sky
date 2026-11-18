@@ -7,7 +7,7 @@ import {
   ChevronBottom_Stroke2_Corner0_Rounded as ChevronDownIcon,
   ChevronTopBottom_Stroke2_Corner0_Rounded as ChevronUpDownIcon,
 } from '#/components/icons/Chevron'
-import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
+import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/TimesLarge'
 import * as Menu from '#/components/Menu'
 import {AutocompleteInput} from './AutocompleteInput'
 import {ClearableInput} from './ClearableInput'

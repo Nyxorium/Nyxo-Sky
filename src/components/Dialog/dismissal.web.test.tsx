@@ -47,7 +47,7 @@ jest.mock('@radix-ui/react-dismissable-layer', () => ({
     return <>{children}</>
   },
 }))
-jest.mock('#/components/icons/Times', () => ({
+jest.mock('#/components/icons/TimesLarge', () => ({
   TimesLarge_Stroke2_Corner0_Rounded: () => null,
 }))
 jest.mock('#/components/Button', () => {

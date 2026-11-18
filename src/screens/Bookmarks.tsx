@@ -29,7 +29,7 @@ import {
   Bookmark_Filled_Corner0_Rounded as BookmarkFilled,
   BookmarkDelete_Stroke2_Corner0_Rounded_Large as BookmarkDeleteLarge,
 } from '#/components/icons/Bookmark'
-import {CircleQuestion_Stroke2_Corner2_Rounded as QuestionIcon} from '#/components/icons/CircleQuestion'
+import {CircleQuestion_Stroke2_Corner2_Rounded as QuestionIcon} from '#/components/icons/Circle'
 import * as Layout from '#/components/Layout'
 import {ListFooter} from '#/components/Lists'
 import {PostFeedSkeleton} from '#/components/PostFeedSkeleton'

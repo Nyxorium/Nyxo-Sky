@@ -17,14 +17,14 @@ import {
 } from '#/alf'
 import {Button} from '#/components/Button'
 import {Backdrop} from '#/components/Dialog'
-import {ArrowOutOfBox_Stroke2_Corner0_Rounded as ShareIcon} from '#/components/icons/ArrowOutOfBox'
+import {ArrowOutOfBox_Stroke2_Corner0_Rounded as ShareIcon} from '#/components/icons/Arrow'
 import {
   ChevronLeft_Stroke2_Corner0_Rounded as ChevronLeftIcon,
   ChevronRight_Stroke2_Corner0_Rounded as ChevronRightIcon,
 } from '#/components/icons/Chevron'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Download_Stroke2_Corner0_Rounded as DownloadIcon} from '#/components/icons/Download'
-import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
+import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/TimesLarge'
 import {CircleChromeButton} from '#/components/Lightbox/chrome/CircleChromeButton'
 import {PagerDots} from '#/components/Lightbox/chrome/PagerDots'
 import {useLightbox, useLightboxControls} from '#/components/Lightbox/state'

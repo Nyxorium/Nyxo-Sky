@@ -6,7 +6,7 @@ import {atoms as a, native, useTheme} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
 import * as TextField from '#/components/forms/TextField'
 import {MagnifyingGlass_Stroke2_Corner0_Rounded as Search} from '#/components/icons/MagnifyingGlass'
-import {TimesLarge_Stroke2_Corner0_Rounded as X} from '#/components/icons/Times'
+import {TimesLarge_Stroke2_Corner0_Rounded as X} from '#/components/icons/TimesLarge'
 
 export function GifPickerHeader({
   inputRef,

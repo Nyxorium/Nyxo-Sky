@@ -109,7 +109,7 @@ jest.mock('#/components/Button', () => {
     ButtonIcon: () => null,
   }
 })
-jest.mock('#/components/icons/ArrowOutOfBox', () => ({
+jest.mock('#/components/icons/Arrow', () => ({
   ArrowOutOfBoxModified_Stroke2_Corner2_Rounded: () => null,
 }))
 jest.mock('#/components/icons/brands/Mark', () => ({

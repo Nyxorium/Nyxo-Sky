@@ -38,15 +38,15 @@ import {
   Bell_Filled_Corner0_Rounded as BellFilled,
   Bell_Stroke2_Corner0_Rounded as Bell,
 } from '#/components/icons/Bell'
-import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
+import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/Circle'
 import {
   ChatBubbleWithDots,
   ChatBubbleWithDots_solid as ChatBubbleSolidIcon,
 } from '#/components/icons/heroicons/ChatBubbleOvalLeftEllipsis'
 import {
   HomeOpen_Filled_Corner0_Rounded as HomeFilled,
-  HomeOpen_Stoke2_Corner0_Rounded as Home,
-} from '#/components/icons/HomeOpen'
+  HomeOpen_Stroke2_Corner0_Rounded as Home,
+} from '#/components/icons/Home'
 import {Inbox_Stroke2_Corner2_Rounded as InboxIcon} from '#/components/icons/Inbox'
 import {
   MagnifyingGlass_Filled_Stroke2_Corner0_Rounded as MagnifyingGlassFilled,

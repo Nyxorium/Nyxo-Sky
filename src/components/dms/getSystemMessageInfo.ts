@@ -2,8 +2,8 @@ import {type MessageDescriptor} from '@lingui/core'
 import {msg} from '@lingui/core/macro'
 
 import {createSanitizedDisplayName} from '#/lib/moderation/create-sanitized-display-name'
-import {ArrowBoxLeft_Stroke2_Corner0_Rounded as LeaveIcon} from '#/components/icons/ArrowBoxLeft'
-import {ArrowBoxRight_Stroke2_Corner3_Rounded as JoinIcon} from '#/components/icons/ArrowBoxRight'
+import {ArrowBoxLeft_Stroke2_Corner0_Rounded as LeaveIcon} from '#/components/icons/Arrow'
+import {ArrowBoxRight_Stroke2_Corner3_Rounded as JoinIcon} from '#/components/icons/Arrow'
 import {
   ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon,
   ChainLinkBroken_Stroke2_Corner0_Rounded as ChainLinkBrokenIcon,

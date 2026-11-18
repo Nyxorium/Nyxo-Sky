@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {NativeSplashScreen} from '#/view/com/auth/NativeSplashScreen'
 import {atoms as a, ThemeProvider, tokens, useTheme} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
-import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
+import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/TimesLarge'
 import {Text} from '#/components/Typography'
 import {IS_IPAD} from '#/env'
 

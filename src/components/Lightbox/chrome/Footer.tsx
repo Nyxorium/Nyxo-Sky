@@ -8,7 +8,7 @@ import {BlurView} from 'expo-blur'
 import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, platform, useTheme} from '#/alf'
-import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components/icons/ArrowShareRight'
+import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components/icons/Arrow'
 import {Download_Stroke2_Corner0_Rounded as SaveIcon} from '#/components/icons/Download'
 import {Text} from '#/components/Typography'
 import {IS_ANDROID} from '#/env'

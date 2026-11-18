@@ -316,7 +316,7 @@ test('generates deprecated compatibility aliases and detects stale output', asyn
   )
   await fs.writeFile(
     path.join(scanRoot, 'consumer.ts'),
-    "import {unrelated} from '#/somewhere-else'\nimport {CircleCheck_Stroke2_Corner0_Rounded} from '#/components/icons/CircleCheck'\nimport {Envelope_Open_Stoke2_Corner0_Rounded} from '#/components/icons/EnvelopeOpen'\n",
+    "import {unrelated} from '#/somewhere-else'\nimport {CircleCheck_Stroke2_Corner0_Rounded} from '#/components/icons/Circle'\nimport {Envelope_Open_Stoke2_Corner0_Rounded} from '#/components/icons/EnvelopeOpen'\n",
   )
 
   const result = await buildIconSet({outputRoot, scanRoot, sourceRoot})

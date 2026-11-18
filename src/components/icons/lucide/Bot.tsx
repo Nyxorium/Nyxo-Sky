@@ -38,3 +38,36 @@ export const Bot = createSVG({
   ],
   viewBox: '0 0 24 24',
 })
+
+export const Bot_Filled = createSVG({
+  elements: [
+    {
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      strokeWidth: 2,
+      type: 'path',
+      d: 'M12 8V4H8',
+    },
+    {
+      fill: 'currentColor',
+      stroke: 'none',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      strokeWidth: 2,
+      type: 'path',
+      d: 'M6 7h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3Zm8 6v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-2 0Zm-6 0v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-2 0Z',
+    },
+    {
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      strokeWidth: 2,
+      type: 'path',
+      d: 'M2 14h2m16 0h2',
+    },
+  ],
+  viewBox: '1 1 22 22',
+})

@@ -28,13 +28,13 @@ import {UserAddRemoveListsDialog} from '#/components/dialogs/lists/UserAddRemove
 import {StarterPackDialog} from '#/components/dialogs/StarterPackDialog'
 import {Mark as BlueskyIcon} from '#/components/icons/brands/Mark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
-import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/CircleCheck'
-import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/CircleX'
+import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/Circle'
+import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/Circle'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
 import {Square2Stack as Square2StackIcon} from '#/components/icons/heroicons/Square2Stack'
-import {ListSparkle_Stroke2_Corner0_Rounded as ListIcon} from '#/components/icons/ListSparkle'
+import {ListSparkle_Stroke2_Corner0_Rounded as ListIcon} from '#/components/icons/List'
 import {Live_Stroke2_Corner0_Rounded as LiveIcon} from '#/components/icons/Live'
 import {MagnifyingGlass_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass'
 import {Mute_Stroke2_Corner0_Rounded as MuteIcon} from '#/components/icons/Mute'
@@ -48,7 +48,7 @@ import {
   Repost_Stroke2_Corner0_Rounded as RepostIcon,
   RepostStrike_Stroke2_Corner0_Rounded as RepostStrikeIcon,
 } from '#/components/icons/Repost'
-import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/Speaker'
+import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/SpeakerVolumeFull'
 import * as Menu from '#/components/Menu'
 import {BlockDialog} from '#/components/moderation/BlockDialog'
 import {

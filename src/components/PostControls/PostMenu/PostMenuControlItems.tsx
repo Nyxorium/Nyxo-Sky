@@ -11,13 +11,13 @@ import {type Shadow} from '#/state/cache/post-shadow'
 import {useFeedFeedbackContext} from '#/state/feed-feedback'
 import {usePostRepostMutationQueue} from '#/state/queries/post'
 import {useRequireAuth} from '#/state/session'
-import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components/icons/ArrowShareRight'
+import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components/icons/Arrow'
 import {
   Bookmark_Filled_Corner0_Rounded as BookmarkFilledIcon,
   Bookmark_Stroke2_Corner0_Rounded as BookmarkIcon,
 } from '#/components/icons/Bookmark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
-import {CloseQuote_Stroke2_Corner1_Rounded as QuoteIcon} from '#/components/icons/Quote'
+import {CloseQuote_Stroke2_Corner1_Rounded as QuoteIcon} from '#/components/icons/CloseQuote'
 import {Repost_Stroke2_Corner2_Rounded as RepostIcon} from '#/components/icons/Repost'
 import * as Menu from '#/components/Menu'
 import * as Toast from '#/components/Toast'

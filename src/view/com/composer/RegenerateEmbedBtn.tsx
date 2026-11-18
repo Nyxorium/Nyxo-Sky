@@ -7,7 +7,7 @@ import {resolveLink} from '#/lib/api/resolve'
 import {RQKEY_LINK} from '#/state/queries/resolve-link'
 import {useAppviewClient, useChatClient} from '#/state/session'
 import {Button, ButtonIcon} from '#/components/Button'
-import {ArrowRotateClockwise_Stroke2_Corner0_Rounded as Rotate} from '#/components/icons/ArrowRotate'
+import {ArrowRotateClockwise_Stroke2_Corner0_Rounded as Rotate} from '#/components/icons/Arrow'
 import {Loader} from '#/components/Loader'
 
 export function RegenerateEmbedBtn({uri}: {uri: string}) {
