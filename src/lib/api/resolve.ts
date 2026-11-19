@@ -108,6 +108,7 @@ export type LinkResolvers = {
 export async function resolveLink(
   {appviewClient, chatClient}: LinkResolvers,
   uri: string,
+  opts?: {bustCache?: boolean},
 ): Promise<ResolvedLink> {
   if (isShortLink(uri)) {
     uri = await resolveShortLink(uri)
@@ -200,7 +201,7 @@ export async function resolveLink(
       view: data.starterPack,
     }
   }
-  return resolveExternal(uri)
+  return resolveExternal(uri, opts)
 
   // Forked from useGetPost. TODO: move into RQ.
   async function getPost({uri}: {uri: string}) {
@@ -286,13 +287,21 @@ function getAuthorDid(author: string | undefined): string | undefined {
   }
 }
 
-async function resolveExternal(uri: string): Promise<ResolvedExternalLink> {
+async function resolveExternal(
+  uri: string,
+  opts?: {bustCache?: boolean},
+): Promise<ResolvedExternalLink> {
   let telemetry: ReturnType<typeof createLinkPreviewTelemetry> | undefined
   try {
-    const result = await getLinkMeta(uri, undefined, () => {
-      telemetry = createLinkPreviewTelemetry()
-      telemetry.startMetadata()
-    })
+    const result = await getLinkMeta(
+      uri,
+      undefined,
+      () => {
+        telemetry = createLinkPreviewTelemetry()
+        telemetry.startMetadata()
+      },
+      opts?.bustCache,
+    )
     telemetry?.finishMetadata(Boolean(result.image))
     if (result.image) {
       telemetry?.startThumbnail()
