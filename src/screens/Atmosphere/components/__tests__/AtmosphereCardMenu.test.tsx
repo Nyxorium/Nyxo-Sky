@@ -1,22 +1,36 @@
 import {fireEvent, render, screen} from '@testing-library/react-native'
 
+import {AtmosphereFeedbackProvider} from '#/screens/Atmosphere/feedback'
+import {
+  AtmosphereContentItem,
+  AtmosphereMetricsScope,
+} from '#/screens/Atmosphere/metrics/context'
 import * as Menu from '#/components/Menu'
 import {type app, place, site, social} from '#/lexicons'
 import {AtmosphereCardMenu} from '../AtmosphereCardMenu'
 
 const mockOpenLink = jest.fn()
 const mockNavigate = jest.fn()
-const mockOpenReport = jest.fn()
+const mockOpenReport = jest.fn((_value: unknown) => {})
 const mockShareUrl = jest.fn()
 const mockOpenComposer = jest.fn()
 const mockRequireAuth = jest.fn((fn: () => unknown) => fn())
 const mockOpenSendViaChat = jest.fn()
+const mockMetric = jest.fn()
+const mockMenuOpen = jest.fn()
+const mockSendFeedback = jest.fn()
+let mockFeedbackEnabled = false
+let mockMenuControl: {open: () => void} | undefined
 let mockHasSession = true
 let mockHasFullAccess = true
 let mockIsWeb = false
 
 /* Report availability relies on real CID validation, which the repo mocks. */
 jest.unmock('multiformats/cid')
+jest.mock('#/features/feedFeedback', () => ({useFeedFeedbackCore: jest.fn()}))
+jest.mock('#/analytics', () => ({
+  useAnalytics: () => ({metric: mockMetric}),
+}))
 jest.mock('@lingui/react', () => ({
   useLingui: () => ({
     _: (value: {message: string}) => value.message,
@@ -161,7 +175,22 @@ jest.mock('#/components/Menu', () => {
     </Pressable>
   )
   return {
-    Root: ({children}: {children: React.ReactNode}) => children,
+    useMenuControl: () => ({
+      id: 'menu',
+      ref: {current: null},
+      open: mockMenuOpen,
+      close() {},
+    }),
+    Root: ({
+      children,
+      control,
+    }: {
+      children: React.ReactNode
+      control: {open: () => void}
+    }) => {
+      mockMenuControl = control
+      return children
+    },
     Trigger: ({
       children,
       label,
@@ -260,7 +289,12 @@ function renderMenu(
     author: withAuthor ? author : undefined,
     children,
   } as unknown as React.ComponentProps<typeof AtmosphereCardMenu>
-  return render(<AtmosphereCardMenu {...props} />)
+  return render(
+    <AtmosphereFeedbackProvider
+      value={mockFeedbackEnabled ? mockSendFeedback : undefined}>
+      <AtmosphereCardMenu {...props} />
+    </AtmosphereFeedbackProvider>,
+  )
 }
 
 beforeEach(() => {
@@ -269,6 +303,7 @@ beforeEach(() => {
   mockHasFullAccess = true
   mockIsWeb = false
   mockDevMode = false
+  mockFeedbackEnabled = false
 })
 
 describe.each([
@@ -491,6 +526,75 @@ it('does not offer reports when the callsite allows no record types', () => {
   expect(screen.queryByLabelText('Report this article')).toBeNull()
 })
 
+describe('AtmosphereCardMenu recommendation feedback', () => {
+  beforeEach(() => {
+    mockFeedbackEnabled = true
+  })
+
+  it('renders direct native menu items independently of reporting availability', () => {
+    renderMenu('article', {}, undefined, [])
+    fireEvent.press(screen.getByRole('menuitem', {name: 'Show more like this'}))
+    fireEvent.press(screen.getByRole('menuitem', {name: 'Show less like this'}))
+    expect(mockSendFeedback.mock.calls).toEqual([
+      ['app.bsky.feed.defs#requestMore'],
+      ['app.bsky.feed.defs#requestLess'],
+    ])
+  })
+
+  it.each(['article', 'photo'] as const)(
+    'omits %s recommendation controls without an enabled item scope',
+    type => {
+      mockFeedbackEnabled = false
+      renderMenu(type)
+      expect(
+        screen.queryByRole('menuitem', {name: 'Show more like this'}),
+      ).toBeNull()
+      expect(
+        screen.queryByRole('menuitem', {name: 'Show less like this'}),
+      ).toBeNull()
+    },
+  )
+
+  it('omits recommendation controls when signed out', () => {
+    mockHasSession = false
+    renderMenu('photo')
+    expect(
+      screen.queryByRole('menuitem', {name: 'Show more like this'}),
+    ).toBeNull()
+    expect(
+      screen.queryByRole('menuitem', {name: 'Show less like this'}),
+    ).toBeNull()
+  })
+
+  it('sends existing share and clickthrough signals while actions retain the external URL', () => {
+    renderMenu('article')
+    fireEvent.press(screen.getByRole('menuitem', {name: 'Share'}))
+    fireEvent.press(screen.getByRole('menuitem', {name: 'View article'}))
+    fireEvent.press(screen.getByRole('menuitem', {name: 'View author profile'}))
+    expect(mockSendFeedback.mock.calls).toEqual([
+      ['app.bsky.feed.defs#interactionShare'],
+      ['app.bsky.feed.defs#clickthroughItem'],
+      ['app.bsky.feed.defs#clickthroughAuthor'],
+    ])
+    expect(mockShareUrl).toHaveBeenCalledWith(view.uri)
+    expect(mockOpenLink).toHaveBeenCalledWith(view.uri)
+  })
+
+  it('sends report feedback only after successful submission, with its reason', () => {
+    renderMenu('article')
+    fireEvent.press(screen.getByRole('menuitem', {name: 'Report this article'}))
+    expect(mockSendFeedback).not.toHaveBeenCalled()
+    const {onAfterSubmit} = mockOpenReport.mock.calls[0][0] as {
+      onAfterSubmit: (report: {reason: string}) => void
+    }
+    onAfterSubmit({reason: 'tools.ozone.report.defs#reasonMisleadingSpam'})
+    expect(mockSendFeedback).toHaveBeenCalledWith(
+      'app.bsky.feed.defs#interactionUnspecced',
+      {type: 'report', reason: 'tools.ozone.report.defs#reasonMisleadingSpam'},
+    )
+  })
+})
+
 describe('AtmosphereCardMenu dev mode', () => {
   const copyLabels = () =>
     screen
@@ -521,5 +625,81 @@ describe('AtmosphereCardMenu dev mode', () => {
     renderMenu('photo')
     fireEvent.press(screen.getByLabelText('Copy gallery AT URI'))
     expect(mockSetString).toHaveBeenCalledWith(galleryRef.uri)
+  })
+})
+
+describe('AtmosphereCardMenu metrics', () => {
+  const card = {
+    contentType: 'gallery',
+    contentId: view.uri,
+    position: 2,
+  } as const
+  const context = {tab: 'following', surface: 'tab', ...card}
+
+  function renderInCard() {
+    render(
+      <AtmosphereMetricsScope tab="following" surface="tab" isActive={false}>
+        <AtmosphereContentItem {...card}>
+          <AtmosphereCardMenu
+            type="photo"
+            item={items.photo as never}
+            reportableTypes={[social.grain.gallery.$type]}
+            author={author}
+          />
+        </AtmosphereContentItem>
+      </AtmosphereMetricsScope>,
+    )
+  }
+
+  it('logs opening the menu and each action picked', () => {
+    renderInCard()
+
+    mockMenuControl?.open()
+    expect(mockMenuOpen).toHaveBeenCalledTimes(1)
+    for (const label of [
+      'Share',
+      'Create post',
+      'Send via chat',
+      'View photo',
+      'View author profile',
+      'Report this gallery',
+    ]) {
+      fireEvent.press(screen.getByLabelText(label))
+    }
+
+    expect(
+      mockMetric.mock.calls.filter(
+        ([event]) => event !== 'atmosphere:profile:press',
+      ),
+    ).toEqual([
+      ['atmosphere:menu:opened', context],
+      ...[
+        'share',
+        'createPost',
+        'sendViaChat',
+        'viewExternal',
+        'viewProfile',
+      ].map(action => [
+        'atmosphere:menu:action',
+        {...context, action, reportCollection: undefined},
+      ]),
+      [
+        'atmosphere:menu:action',
+        {
+          ...context,
+          action: 'report',
+          reportCollection: social.grain.gallery.$type,
+        },
+      ],
+    ])
+  })
+
+  it('logs nothing outside an Atmosphere card', () => {
+    renderMenu('photo')
+
+    mockMenuControl?.open()
+    fireEvent.press(screen.getByLabelText('Share'))
+    expect(mockMenuOpen).toHaveBeenCalledTimes(1)
+    expect(mockMetric).not.toHaveBeenCalled()
   })
 })

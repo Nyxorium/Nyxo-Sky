@@ -48,6 +48,10 @@ import {
   useReportDialogControl,
 } from '#/components/moderation/ReportDialog'
 import {RichText} from '#/components/RichText'
+import {
+  ShareSheet,
+  useShareSheetEnabled,
+} from '#/components/ShareDialog/ShareSheet'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
@@ -96,6 +100,8 @@ export function CustomFeedHeader({
   const {hasSession, currentAccount} = useSession()
   const {gtMobile} = useBreakpoints()
   const infoControl = Dialog.useDialogControl()
+  const shareSheetControl = Dialog.useDialogControl()
+  const shareSheetEnabled = useShareSheetEnabled()
   const haptics = useHaptics()
 
   const {data: preferences} = usePreferencesQuery()
@@ -417,9 +423,28 @@ export function CustomFeedHeader({
             isTrending={isTrending}
             onTogglePinned={() => void onTogglePinned()}
             isFeedStateChangePending={isFeedStateChangePending}
+            onOpenShareSheet={
+              shareSheetEnabled ? () => shareSheetControl.open() : undefined
+            }
           />
         </Dialog.ScrollableInner>
       </Dialog.Outer>
+      {shareSheetEnabled && (
+        <ShareSheet
+          control={shareSheetControl}
+          subject={{
+            type: 'feed',
+            uri: info.uri,
+            authorDid: info.creatorDid,
+            url: toShareUrl(info.route.href),
+            title: l({
+              message: `“${info.displayName}” feed by @${info.creatorHandle} on Bluesky`,
+              comment:
+                'Prefilled subject line when sharing a feed to email or Reddit',
+            }),
+          }}
+        />
+      )}
     </>
   )
 }
@@ -433,6 +458,7 @@ function DialogInner({
   isTrending,
   onTogglePinned,
   isFeedStateChangePending,
+  onOpenShareSheet,
 }: {
   info: FeedSourceFeedInfo
   likeUri: string
@@ -442,6 +468,11 @@ function DialogInner({
   isTrending: boolean
   onTogglePinned: () => void
   isFeedStateChangePending: boolean
+  /**
+   * Opens the share sheet, once this dialog has closed. Unset where the sheet
+   * is off, to share with the system share sheet instead.
+   */
+  onOpenShareSheet?: () => void
 }) {
   const t = useTheme()
   const {t: l} = useLingui()
@@ -492,10 +523,14 @@ function DialogInner({
 
   const onPressShare = useCallback(() => {
     haptics.tap()
+    ax.metric('feed:share', {feedUrl: info.uri})
+    if (onOpenShareSheet) {
+      control.close(onOpenShareSheet)
+      return
+    }
     const url = toShareUrl(info.route.href)
     void shareUrl(url)
-    ax.metric('feed:share', {feedUrl: info.uri})
-  }, [ax, info, haptics])
+  }, [ax, info, haptics, control, onOpenShareSheet])
 
   const onPressReport = useCallback(() => {
     reportDialogControl.open()
