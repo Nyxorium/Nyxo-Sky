@@ -3,6 +3,7 @@ import {Client} from '@atproto/lex'
 import {type ModerationOpts} from '@bsky/sdk/moderation'
 
 import {useHiddenPosts, useLabelDefinitions} from '#/state/preferences'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {DEFAULT_LOGGED_OUT_LABEL_PREFERENCES} from '#/state/queries/preferences/const'
 import {useSession} from '#/state/session'
 import {usePreferencesQuery} from '../queries/preferences'
@@ -38,6 +39,8 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
   const prefs = usePreferencesQuery()
   const {labelDefs} = useLabelDefinitions()
   const hiddenPosts = useHiddenPosts() // TODO move this into pds-stored prefs
+  const {switches} = useSwitchboardPrefs()
+  const labelGrouping = !!switches.labelGrouping
 
   const userDid = currentAccount?.did
   const moderationPrefs = prefs.data?.moderationPrefs
@@ -45,12 +48,23 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     if (!moderationPrefs) {
       return undefined
     }
+    const labelers = labelGrouping
+      ? moderationPrefs.labelers.map(l => ({
+          ...l,
+          labels: Object.fromEntries(
+            Object.entries(l.labels).filter(
+              ([label]) => !(label in moderationPrefs.labels),
+            ),
+          ),
+        }))
+      : moderationPrefs.labelers
+
     return {
       userDid,
       prefs: {
         ...moderationPrefs,
-        labelers: moderationPrefs.labelers.length
-          ? moderationPrefs.labelers
+        labelers: labelers.length
+          ? labelers
           : Client.appLabelers.map(did => ({
               did,
               labels: DEFAULT_LOGGED_OUT_LABEL_PREFERENCES,
@@ -64,7 +78,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
       },
       labelDefs,
     }
-  }, [userDid, labelDefs, moderationPrefs, hiddenPosts])
+  }, [userDid, labelDefs, moderationPrefs, hiddenPosts, labelGrouping])
 
   return (
     <moderationOptsContext.Provider value={value}>

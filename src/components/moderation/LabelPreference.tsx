@@ -125,9 +125,10 @@ export function GlobalLabelPreference({
 
   const {identifier} = labelDefinition
   const {data: preferences} = usePreferencesQuery()
-  const {mutate, variables} = usePreferencesSetContentLabelMutation()
+  const {mutate, variables, isPending} = usePreferencesSetContentLabelMutation()
   const savedPref = preferences?.moderationPrefs.labels[identifier]
-  const pref = variables?.visibility ?? savedPref ?? 'warn'
+  const pref =
+    (isPending ? variables?.visibility : undefined) ?? savedPref ?? 'warn'
 
   const allLabelStrings = useGlobalLabelStrings()
   const labelStrings =
@@ -189,14 +190,17 @@ export function LabelerLabelPreference({
   const {switches} = useSwitchboardPrefs()
   const {identifier} = labelDefinition
   const {data: preferences} = usePreferencesQuery()
-  const {mutate, variables} = usePreferencesSetContentLabelMutation()
-  const savedPref =
-    labelerDid && !isGlobalLabel
-      ? preferences?.moderationPrefs.labelers.find(l => l.did === labelerDid)
-          ?.labels[identifier]
-      : preferences?.moderationPrefs.labels[identifier]
+  const {mutate, variables, isPending} = usePreferencesSetContentLabelMutation()
+  const decoupled = !switches.labelGrouping
+  const usePerLabeler = !!labelerDid && (!isGlobalLabel || decoupled)
+  const labelerEntry = usePerLabeler
+    ? preferences?.moderationPrefs.labelers.find(l => l.did === labelerDid)
+        ?.labels[identifier]
+    : undefined
+  const globalEntry = preferences?.moderationPrefs.labels[identifier]
+  const savedPref = labelerEntry ?? globalEntry
   const pref =
-    variables?.visibility ??
+    (isPending ? variables?.visibility : undefined) ??
     savedPref ??
     labelDefinition.defaultSetting ??
     'warn'
