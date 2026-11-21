@@ -37,6 +37,7 @@ import {
   GalleryBleed,
   maybeApplyGalleryOffsetStyles,
 } from '#/components/images/Gallery'
+import {LabelsOnMyPost} from '#/components/moderation/LabelsOnMe'
 import {PostAlerts} from '#/components/moderation/PostAlerts'
 import {PostHider} from '#/components/moderation/PostHider'
 import * as ReportDialogMetadataContext from '#/components/moderation/ReportDialog/ReportDialogMetadataContext'
@@ -317,6 +318,7 @@ const ThreadItemPostInner = memo(function ThreadItemPostInner({
                   }),
                 ]}
               />
+              <LabelsOnMyPost post={post} />
               <PostAlerts
                 post={post}
                 modui={moderation.ui('contentList')}
