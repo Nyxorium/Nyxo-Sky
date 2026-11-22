@@ -7,6 +7,10 @@ export type GateRegistryEntry = {
 
 export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
   {
+    [Features.PostViewCountsEnable]: {
+      label: 'Post View Counts Enable',
+      description: '',
+    },
     [Features.PostGalleryEmbedEnable]: {
       label: 'Image carousel',
       description:
