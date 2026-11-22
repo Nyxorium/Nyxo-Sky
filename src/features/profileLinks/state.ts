@@ -40,13 +40,6 @@ export function useProfileViewLinks(
   )
 }
 
-/**
- * Whether the current account can add or edit its links.
- */
-export function useCanEditProfileLinks() {
-  return true
-}
-
 type StrongRef = {uri: l.AtUriString; cid: l.CidString}
 
 const ownProfileLinksQueryKeyRoot = 'ownProfileLinks'

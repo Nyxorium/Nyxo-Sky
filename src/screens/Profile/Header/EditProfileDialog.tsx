@@ -33,7 +33,6 @@ import {
   type ProfileLink,
   ProfileLinksEditor,
   sameProfileLinks,
-  useCanEditProfileLinks,
   useOwnProfileLinksQuery,
   useSetOwnProfileLinksCache,
   useWriteProfileLinks,
@@ -164,10 +163,7 @@ function DialogInner({
     ImageMeta | undefined | null
   >()
 
-  const linksEnabled = useCanEditProfileLinks()
-  const {data: storedLinks} = useOwnProfileLinksQuery(profile.did, {
-    enabled: linksEnabled,
-  })
+  const {data: storedLinks} = useOwnProfileLinksQuery(profile.did, {})
   const writeProfileLinks = useWriteProfileLinks()
   const setOwnProfileLinksCache = useSetOwnProfileLinksCache()
   /*
@@ -179,13 +175,13 @@ function DialogInner({
   const linksLoaded = !!storedLinks
 
   useEffect(() => {
-    if (!linksEnabled || !storedLinks) return
+    if (!storedLinks) return
     ax.metric('profile:links:editorOpen', {
       linkCount: storedLinks.length,
     })
     // Once, when the links first load.
     // oxlint-disable-next-line react-hooks/exhaustive-deps
-  }, [linksEnabled, linksLoaded])
+  }, [linksLoaded])
   const [isDraggingLinks, setIsDraggingLinks] = useState(false)
   // on Android the sheet turns its own drag off while scrolled, so put that back after
   const sheetDragWasDisabled = useRef(false)
@@ -558,7 +554,7 @@ function DialogInner({
             onSave={setPronouns}
           />
         </View>
-        {linksEnabled && links && (
+        {links && (
           <ProfileLinksEditor
             did={profile.did}
             links={links}
