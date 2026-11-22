@@ -46,6 +46,7 @@ import {
   PILL_VERTICAL,
 } from '#/features/profileLinks/pillSize'
 import {type app} from '#/lexicons'
+import {useDevMode} from '#/storage/hooks/dev-mode'
 import {PronounsDialog} from './PronounsDialog'
 
 export function EditProfileDialog({
@@ -119,6 +120,7 @@ function DialogInner({
   const {_, i18n} = useLingui()
   const t = useTheme()
   const ax = useAnalytics()
+  const [devModeEnabled] = useDevMode()
   const control = Dialog.useDialogContext()
   // the dialog's contents mount on every open, so this fires once per open
   useCallOnce(() => {
@@ -556,22 +558,6 @@ function DialogInner({
             onSave={setPronouns}
           />
         </View>
-
-        <View>
-          <TextField.LabelText>
-            <Trans>Website</Trans>
-          </TextField.LabelText>
-          <TextField.Root>
-            <Dialog.Input
-              defaultValue={website}
-              onChangeText={setWebsite}
-              label={_(msg`Website`)}
-              placeholder={_(msg`e.g. https://bsky.app`)}
-              testID="editWebsiteInput"
-            />
-          </TextField.Root>
-        </View>
-
         {linksEnabled && links && (
           <ProfileLinksEditor
             did={profile.did}
@@ -588,6 +574,22 @@ function DialogInner({
             }}
           />
         )}
+        {devModeEnabled || profile.website ? (
+          <View>
+            <TextField.LabelText>
+              <Trans>Website (deprecated)</Trans>
+            </TextField.LabelText>
+            <TextField.Root>
+              <Dialog.Input
+                defaultValue={website}
+                onChangeText={setWebsite}
+                label={_(msg`Website (deprecated)`)}
+                placeholder={_(msg`e.g. https://bsky.app`)}
+                testID="editWebsiteInput"
+              />
+            </TextField.Root>
+          </View>
+        ) : null}
       </View>
     </Dialog.ScrollableInner>
   )
