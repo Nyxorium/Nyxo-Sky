@@ -59,6 +59,7 @@ interface PostOpts {
    * PDS, never the appview.
    */
   pdsClient: Client
+  includeViaField?: boolean
 }
 
 export async function post(queryClient: QueryClient, opts: PostOpts) {
@@ -83,6 +84,7 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
   const did = opts.pdsClient.assertDid
   const writes: com.atproto.repo.applyWrites.$InputBody['writes'] = []
   const uris: string[] = []
+  const via = 'Nyxo Sky'
 
   let now = new Date()
   let tid: TID | undefined
@@ -133,6 +135,9 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
       langs,
       labels,
       tags,
+    }
+    if (opts.includeViaField) {
+      ;(record as app.bsky.feed.post.Main & {via?: string}).via = via
     }
     writes.push({
       $type: 'com.atproto.repo.applyWrites#create',
