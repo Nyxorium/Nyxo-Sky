@@ -1,16 +1,14 @@
 import {memo, useCallback, useMemo} from 'react'
-import {Linking} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
-import {makeProfileLink} from '#/lib/routes/links'
+import {makeProfileLink, useProfileLinks} from '#/lib/routes/links'
 import {type NavigationProp} from '#/lib/routes/types'
 import {shareUrl, simpleShareText} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {useAltLabelDisplayProfile} from '#/state/preferences/alternate-label-display-profile'
-import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useFollowUri} from '#/state/queries/blocked-follow-uri'
 import {
@@ -28,8 +26,10 @@ import {UserAddRemoveListsDialog} from '#/components/dialogs/lists/UserAddRemove
 import {StarterPackDialog} from '#/components/dialogs/StarterPackDialog'
 import {Mark as BlueskyIcon} from '#/components/icons/brands/Mark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
-import {CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon} from '#/components/icons/Circle'
-import {CircleX_Stroke2_Corner0_Rounded as CircleXIcon} from '#/components/icons/Circle'
+import {
+  CircleCheck_Stroke2_Corner0_Rounded as CircleCheckIcon,
+  CircleX_Stroke2_Corner0_Rounded as CircleXIcon,
+} from '#/components/icons/Circle'
 import {Clipboard_Stroke2_Corner2_Rounded as ClipboardIcon} from '#/components/icons/Clipboard'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
@@ -126,17 +126,11 @@ let ProfileMenu = ({
   const control = useLabelsOnMeDialogControl()
   const altLabelDisplayProfile = useAltLabelDisplayProfile()
   const {tailors} = useViewTailorPrefs()
-  const {switches} = useSwitchboardPrefs()
 
-  const {profileHref, bskyUrl} = useMemo(
-    () => ({
-      profileHref: switches.shareByDID
-        ? `/profile/${profile.did}`
-        : makeProfileLink(profile),
-      bskyUrl: `https://bsky.app/profile/${profile.handle}`,
-    }),
-    [switches.shareByDID, profile],
-  )
+  const {profileHref, onPressOpenInBluesky} = useProfileLinks({
+    handle: profile.handle,
+    DID: profile.did,
+  })
 
   const showLoggedOutWarning = useMemo(() => {
     return (
@@ -159,14 +153,6 @@ let ProfileMenu = ({
   const onPressShare = useCallback(() => {
     void shareUrl(toShareUrl(profileHref))
   }, [profileHref])
-
-  const onPressOpenInBluesky = useCallback(() => {
-    if (IS_WEB) {
-      window.open(bskyUrl, '_blank', 'noopener')
-    } else {
-      void Linking.openURL(bskyUrl)
-    }
-  }, [bskyUrl])
 
   const onPressAddRemoveLists = useCallback(() => {
     addToListsDialogControl.open()
@@ -369,7 +355,7 @@ let ProfileMenu = ({
                 <Menu.ItemIcon icon={ChainLinkIcon} />
               </Menu.Item>
             )}
-            {tailors.openInBluesky && (
+            {tailors.openInBluesky && IS_WEB && (
               <Menu.Item
                 testID="profileHeaderDropdownOpenInBskyBtn"
                 label={l`Open in Bluesky`}
