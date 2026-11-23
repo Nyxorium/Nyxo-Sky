@@ -9,16 +9,19 @@ import {
 import {useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {useProfileLinks} from '#/lib/routes/links'
 import {type NavigationProp} from '#/lib/routes/types'
 import {shareUrl as nativeShareUrl} from '#/lib/sharing'
 import {logger} from '#/logger'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useProfileQuery} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
-import {Button, ButtonText} from '#/components/Button'
+import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {Divider} from '#/components/Divider'
 import {Error as ErrorMessage} from '#/components/Error'
+import {Mark as MarkIcon} from '#/components/icons/brands/Mark'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
@@ -44,12 +47,12 @@ export function InviteFriendsDialogInner({
   const ax = useAnalytics()
   const navigation = useNavigation<NavigationProp>()
   const {currentAccount} = useSession()
-  // const profileQuery = useProfileQuery({did: currentAccount?.did})
   const targetDid = did ?? currentAccount?.did
   const isSelf = !did || did === currentAccount?.did
   const profileQuery = useProfileQuery({did: targetDid})
   const [themeKey, setThemeKey] = useInviteThemeKey()
   const captureRef = useRef<ViewShotRef>(null)
+  const {tailors} = useViewTailorPrefs()
 
   const theme = getInviteTheme(themeKey)
   const variant = t.name === 'light' ? theme.light : theme.dark
@@ -63,6 +66,11 @@ export function InviteFriendsDialogInner({
 
   const canonicalShareUrl = isHandleValid ? getInviteShareUrl(handle) : ''
   const displayUrl = isHandleValid ? getInviteDisplayUrl(handle) : ''
+
+  const {onPressOpenInBluesky} = useProfileLinks({
+    handle: profileQuery.data?.handle,
+    DID: profileQuery.data?.did,
+  })
 
   const onShare = async () => {
     if (!canonicalShareUrl) {
@@ -158,7 +166,22 @@ export function InviteFriendsDialogInner({
               style={[a.rounded_full]}>
               <ButtonText style={[a.text_md]}>{l`Done`}</ButtonText>
             </Button>
-          )}>
+          )}
+          renderRight={
+            tailors.openInBluesky
+              ? () => (
+                  <Button
+                    label={l`Open in Bluesky`}
+                    onPress={onPressOpenInBluesky}
+                    size="small"
+                    color="primary"
+                    variant="ghost"
+                    shape="round">
+                    <ButtonIcon icon={MarkIcon} size="lg" />
+                  </Button>
+                )
+              : undefined
+          }>
           <Dialog.HeaderText>{l`Share Profile`}</Dialog.HeaderText>
         </Dialog.Header>
       }>

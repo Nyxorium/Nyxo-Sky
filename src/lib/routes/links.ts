@@ -1,6 +1,10 @@
+import {useCallback, useMemo} from 'react'
+import {Linking} from 'react-native'
 import {AtUri} from '@atproto/syntax'
 
 import {isInvalidHandle} from '#/lib/strings/handles'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
+import {IS_WEB} from '#/env'
 import {type app} from '#/lexicons'
 
 export function makeProfileLink(
@@ -56,4 +60,32 @@ export function makeStarterPackLink(
     const uriRkey = new AtUri(starterPackOrName.uri).rkey
     return `https://bsky.app/start/${starterPackOrName.creator.handle}/${uriRkey}`
   }
+}
+
+export function useProfileLinks({
+  handle,
+  DID,
+}: {
+  handle?: string
+  DID?: string
+}) {
+  const {switches} = useSwitchboardPrefs()
+  const identifier = switches.shareByDID ? (DID ?? handle) : (handle ?? DID)
+  const {profileHref, bskyURL} = useMemo(
+    () => ({
+      profileHref: `/profile/${identifier}`,
+      bskyURL: `https://bsky.app/profile/${identifier}`,
+    }),
+    [identifier],
+  )
+  const onPressOpenInBluesky = useCallback(() => {
+    if (!bskyURL) return
+    if (IS_WEB) {
+      window.open(bskyURL, '_blank', 'noopener')
+    } else {
+      void Linking.openURL(bskyURL)
+    }
+  }, [bskyURL])
+
+  return {profileHref, bskyURL, onPressOpenInBluesky}
 }
