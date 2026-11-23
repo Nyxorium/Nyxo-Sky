@@ -141,7 +141,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
       }
       const unreadCount = countUnread(notifications)
       const unreadCountStr =
-            // Previously 30 & 30+ - Sunstar
+        // Previously 30 & 30+ - Sunstar
         unreadCount >= 99 ? '99+' : unreadCount === 0 ? '' : String(unreadCount)
       unreadCountRef.current = unreadCount
 

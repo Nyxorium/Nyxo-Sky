@@ -76,7 +76,7 @@ export function ProfileHeaderHandle({
                 // forceLTR handled by CSS above on web
                 IS_NATIVE,
               )}
-      </Text>
+        </Text>
         {showPronouns && (
           // the handle truncates first so pronouns stay whole on the same line
           <Text
