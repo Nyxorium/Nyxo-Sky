@@ -87,6 +87,7 @@ import {
   useLanguagePrefs,
   useLanguagePrefsApi,
 } from '#/state/preferences/languages'
+import {useSwitchboardPrefs} from '#/state/preferences/switchboard-prefs'
 import {usePreferencesQuery} from '#/state/queries/preferences'
 import {useProfileQuery} from '#/state/queries/profile'
 import {resolveLinkQueryOptions} from '#/state/queries/resolve-link'
@@ -301,6 +302,8 @@ export const ComposePost = ({
   const [isPublishing, setIsPublishing] = useState(false)
   const [publishingStage, setPublishingStage] = useState('')
   const [error, setError] = useState('')
+  const {switches} = useSwitchboardPrefs()
+  const includeViaField = switches.includeViaField
 
   /**
    * Track when a draft was created so we can measure draft age in metrics.
@@ -1071,6 +1074,7 @@ export const ComposePost = ({
           appviewClient: client,
           chatClient,
           pdsClient,
+          includeViaField,
         })
       ).uris[0]
 

@@ -238,6 +238,7 @@ const schema = z.object({
       labelGrouping: z.boolean().optional(),
       declareAppLabelers: z.boolean().optional(),
       urlProxy: z.boolean().optional(),
+      includeViaField: z.boolean().optional(),
     })
     .optional(),
 })
@@ -336,6 +337,7 @@ export const defaults: Schema = {
     labelGrouping: true,
     declareAppLabelers: true,
     urlProxy: true,
+    includeViaField: true,
   },
 }
 

@@ -13,6 +13,7 @@ export type SwitchboardPrefs = Partial<{
   labelerLimitBypass: boolean
   labelGrouping: boolean
   urlProxy: boolean
+  includeViaField: boolean
 }>
 
 type StateContext = {

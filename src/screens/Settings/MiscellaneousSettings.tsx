@@ -45,6 +45,7 @@ import {AppviewDialog} from '#/components/dialogs/AppviewDialog'
 import {StepSlider} from '#/components/forms/StepSlider'
 import * as Toggle from '#/components/forms/Toggle'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
+import {CodeLines_Stroke2_Corner2_Rounded as CodeLinesIcon} from '#/components/icons/Code'
 import {Filter_Stroke2_Corner0_Rounded as FilterIcon} from '#/components/icons/Filter'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
 import {DevicePhoneMobile} from '#/components/icons/heroicons/DevicePhoneMobile'
@@ -256,6 +257,20 @@ export function MiscellaneousSettingsScreen({}: Props) {
               <SettingsList.ItemIcon icon={FilterIcon} />
               <SettingsList.ItemText>
                 <Trans>Bluesky URL Proxy</Trans>
+              </SettingsList.ItemText>
+              <Toggle.Platform />
+            </SettingsList.Item>
+          </Toggle.Item>
+
+          <Toggle.Item
+            name="include_via_field"
+            label={l`Include via field in post records`}
+            value={switches.includeViaField}
+            onChange={value => setSwitches('includeViaField', value)}>
+            <SettingsList.Item>
+              <SettingsList.ItemIcon icon={CodeLinesIcon} />
+              <SettingsList.ItemText>
+                <Trans>Include via Field In Post Records</Trans>
               </SettingsList.ItemText>
               <Toggle.Platform />
             </SettingsList.Item>
