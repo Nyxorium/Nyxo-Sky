@@ -13,6 +13,7 @@ import {useProfileLinks} from '#/lib/routes/links'
 import {type NavigationProp} from '#/lib/routes/types'
 import {shareUrl as nativeShareUrl} from '#/lib/sharing'
 import {logger} from '#/logger'
+import {useViewTailorPrefs} from '#/state/preferences/view-tailor-prefs'
 import {useProfileQuery} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
@@ -51,6 +52,7 @@ export function InviteFriendsDialogInner({
   const profileQuery = useProfileQuery({did: targetDid})
   const [themeKey, setThemeKey] = useInviteThemeKey()
   const captureRef = useRef<ViewShotRef>(null)
+  const {tailors} = useViewTailorPrefs()
 
   const theme = getInviteTheme(themeKey)
   const variant = t.name === 'light' ? theme.light : theme.dark
@@ -165,17 +167,21 @@ export function InviteFriendsDialogInner({
               <ButtonText style={[a.text_md]}>{l`Done`}</ButtonText>
             </Button>
           )}
-          renderRight={() => (
-            <Button
-              label={l`Open in Bluesky`}
-              onPress={onPressOpenInBluesky}
-              size="small"
-              color="primary"
-              variant="ghost"
-              shape="round">
-              <ButtonIcon icon={MarkIcon} size="lg" />
-            </Button>
-          )}>
+          renderRight={
+            tailors.openInBluesky
+              ? () => (
+                  <Button
+                    label={l`Open in Bluesky`}
+                    onPress={onPressOpenInBluesky}
+                    size="small"
+                    color="primary"
+                    variant="ghost"
+                    shape="round">
+                    <ButtonIcon icon={MarkIcon} size="lg" />
+                  </Button>
+                )
+              : undefined
+          }>
           <Dialog.HeaderText>{l`Share Profile`}</Dialog.HeaderText>
         </Dialog.Header>
       }>
