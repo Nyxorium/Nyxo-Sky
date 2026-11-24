@@ -191,7 +191,6 @@ export function useProfileUpdateMutation() {
         } else {
           next.displayName = updates.displayName || undefined
           next.description = updates.description || undefined
-          next.pronouns = updates.pronouns || undefined
           next.website = updates.website || undefined
           if ('pinnedPost' in updates) {
             next.pinnedPost = updates.pinnedPost
@@ -261,7 +260,6 @@ export function useProfileUpdateMutation() {
             return (
               fresh.displayName === updates.displayName &&
               fresh.description === updates.description &&
-              fresh.pronouns === updates.pronouns &&
               fresh.website === updates.website
             )
           }),
