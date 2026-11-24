@@ -61,7 +61,7 @@ import * as Skele from '#/components/Skeleton'
 import {Text} from '#/components/Typography'
 import {WhoCanReply} from '#/components/WhoCanReply'
 import {Features, useAnalytics} from '#/analytics'
-import {IS_NATIVE, IS_WEB} from '#/env'
+import {IS_WEB} from '#/env'
 import {useFeedItemFeedback} from '#/features/feedFeedback'
 import {useActorStatus} from '#/features/liveNow'
 import {app} from '#/lexicons'
@@ -576,18 +576,13 @@ function truncateVia(via: string): string {
 }
 
 function ViaIndicator({post}: {post: app.bsky.feed.defs.PostView}) {
-  const t = useTheme()
   const via = parseVia(
     (post.record as app.bsky.feed.post.Main & {via?: unknown}).via,
   )
 
   if (!via) return null
 
-  return (
-    <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-      {truncateVia(via)}
-    </Text>
-  )
+  return <>{` ${truncateVia(via)}`}</>
 }
 
 function ExpandedPostDetails({
@@ -681,12 +676,10 @@ function ExpandedPostDetails({
               {maxWidth: '100%'},
             ]}>
             {niceDate(i18n, post.indexedAt, 'dot separated')}
+            <ViaIndicator post={post} />
           </Text>
-          {IS_WEB && <ViaIndicator post={post} />}
         </View>
         {wrapCount && !wrapReply ? [reply, viewCount] : [viewCount, reply]}
-        {IS_NATIVE && devModeEnabled && <ViaIndicator post={post} />}
-        {/* Behind dev mode until the layout can be improved on mobile - Sunstar */}
         {record && (devModeEnabled || IS_WEB) && (
           <PostEditedIndicator record={record} standalone compact />
         )}
