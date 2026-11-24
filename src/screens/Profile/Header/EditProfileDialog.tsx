@@ -274,7 +274,9 @@ function DialogInner({
         await written.deleteRemoved()
       }
       control.close(() => onUpdate?.())
-      Toast.show(_(msg({message: 'Profile updated', context: 'toast'})))
+      Toast.show(_(msg({message: 'Profile updated', context: 'toast'})), {
+        shape: 'compact',
+      })
     } catch (e) {
       logger.error('Failed to update user profile', {message: String(e)})
       // left set on success, so Save stays off while the dialog closes
