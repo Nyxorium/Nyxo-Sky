@@ -92,6 +92,12 @@ type BaseLinkProps = {
   shouldProxy?: boolean
 
   /**
+   * On native, try handing the link off to an installed app before falling back
+   * to the browser flow.
+   */
+  preferNativeApp?: boolean
+
+  /**
    * iOS only. Wraps the link in a peek menu: long-pressing previews the live
    * page in an in-app browser (morphing into it on tap when the in-app browser
    * preference is on), with a share action in the menu. No-op elsewhere.
@@ -118,6 +124,7 @@ export function useLink({
   shareOnLongPress,
   overridePresentation,
   shouldProxy,
+  preferNativeApp,
 }: BaseLinkProps & {
   displayText: string
   overridePresentation?: boolean
@@ -142,7 +149,7 @@ export function useLink({
 
   const isExternal = isExternalUrl(href)
   const {linkWarningDialogControl} = useGlobalDialogsControlContext()
-  const openLink = useOpenLink()
+  const openLink = useOpenLink({preferNativeApp})
   const groupChatJoinIntent = useGroupChatJoinIntent()
 
   const onPress = useCallback(
@@ -329,6 +336,7 @@ export function Link({
   download,
   shouldProxy,
   overridePresentation,
+  preferNativeApp,
   peek,
   rel,
   ...rest
@@ -341,6 +349,7 @@ export function Link({
     onLongPress: outerOnLongPress,
     shouldProxy: shouldProxy,
     overridePresentation,
+    preferNativeApp,
   })
 
   // Peek is iOS-only and only makes sense for external web links.
@@ -470,6 +479,7 @@ export function InlineLinkText({
   disableUnderline,
   overridePresentation,
   shouldProxy,
+  preferNativeApp,
   ...rest
 }: InlineLinkProps) {
   const t = useTheme()
@@ -484,6 +494,7 @@ export function InlineLinkText({
     shareOnLongPress,
     overridePresentation,
     shouldProxy: shouldProxy,
+    preferNativeApp,
   })
   const {
     state: interacted,
@@ -573,6 +584,7 @@ export function SimpleInlineLinkText({
   | 'overridePresentation'
   | 'onLongPress'
   | 'shareOnLongPress'
+  | 'preferNativeApp'
 > & {
   to: string
 }) {

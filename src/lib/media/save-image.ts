@@ -1,18 +1,18 @@
 import {useCallback} from 'react'
-import * as MediaLibrary from 'expo-media-library/legacy'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
 import * as Toast from '#/components/Toast'
 import {IS_NATIVE} from '#/env'
 import {saveImageToMediaLibrary} from './manip'
+import {usePermissions} from './media-library'
 
 /**
  * Same as `saveImageToMediaLibrary`, but also handles permissions and toasts
  */
 export function useSaveImageToMediaLibrary() {
   const {_} = useLingui()
-  const [, requestPermission, getPermission] = MediaLibrary.usePermissions({
+  const [, requestPermission, getPermission] = usePermissions({
     granularPermissions: ['photo'],
     /*
      * Don't query the permission on mount. Every image embed in the feed
@@ -79,12 +79,14 @@ export function useSaveImageToMediaLibrary() {
 
 export function useSaveImagesToMediaLibrary() {
   const {_} = useLingui()
-  const [permissionResponse, requestPermission, getPermission] =
-    MediaLibrary.usePermissions({granularPermissions: ['photo']})
+  const [, requestPermission, getPermission] = usePermissions({
+    granularPermissions: ['photo'],
+    get: false,
+  })
 
   return useCallback(
     async (uris: string[]) => {
-      const permission = permissionResponse ?? (await getPermission())
+      const permission = await getPermission()
       let granted = permission.granted
 
       if (!granted) {
@@ -124,6 +126,6 @@ export function useSaveImagesToMediaLibrary() {
         Toast.show(_(msg`Failed to save images`), {type: 'error'})
       }
     },
-    [permissionResponse, requestPermission, getPermission, _],
+    [requestPermission, getPermission, _],
   )
 }

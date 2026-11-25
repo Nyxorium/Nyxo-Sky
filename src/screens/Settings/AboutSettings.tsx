@@ -1,6 +1,6 @@
 import {Platform} from 'react-native'
 import {setStringAsync} from 'expo-clipboard'
-import * as FileSystem from 'expo-file-system/legacy'
+import {Paths} from 'expo-file-system'
 import {Image} from 'expo-image'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -15,6 +15,7 @@ import {
   STATUS_PAGE_URL,
   TERMS_OF_SERVICE_URL,
 } from '#/lib/constants'
+import {purgeCompressedVideos} from '#/lib/media/video/cleanup'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {purgeTemporaryImageFiles} from '#/state/gallery'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -48,15 +49,15 @@ export function AboutSettingsScreen({}: Props) {
   const {mutate: onClearImageCache, isPending: isClearingImageCache} =
     useMutation({
       mutationFn: async () => {
-        const freeSpaceBefore = await FileSystem.getFreeDiskStorageAsync()
-        await Promise.all([
-          // expo-image's disk cache
-          Image.clearDiskCache(),
-          // full-resolution media-upload leftovers (picker/manipulator copies);
-          // the only in-app way for iOS users to reclaim this space
-          purgeTemporaryImageFiles(),
-        ])
-        const freeSpaceAfter = await FileSystem.getFreeDiskStorageAsync()
+        const freeSpaceBefore = Paths.availableDiskSpace
+        // full-resolution media-upload leftovers (picker/manipulator copies);
+        // the only in-app way for iOS users to reclaim this space
+        purgeTemporaryImageFiles()
+        // compressed videos from earlier uploads, same reason
+        purgeCompressedVideos()
+        // expo-image's disk cache
+        await Image.clearDiskCache()
+        const freeSpaceAfter = Paths.availableDiskSpace
         const spaceDiff = freeSpaceBefore - freeSpaceAfter
         return spaceDiff * -1
       },

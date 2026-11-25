@@ -11,6 +11,10 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
       label: 'Post View Counts Enable',
       description: '',
     },
+    [Features.WebListVirtualizationEnable]: {
+      label: 'Web List Virtualization Enable',
+      description: '',
+    },
     [Features.PostGalleryEmbedEnable]: {
       label: 'Image carousel',
       description:
@@ -37,14 +41,6 @@ export const NYXO_GATE_REGISTRY: Partial<Record<Features, GateRegistryEntry>> =
     },
     [Features.ShareDestinationsEnable]: {
       label: 'Share Destinations Enable',
-      description: '',
-    },
-    [Features.ImageUploadsNativeCompressionEnable]: {
-      label: 'Image Uploads Native Compression Enable',
-      description: '',
-    },
-    [Features.ImageUploadsWebCompressionEnable]: {
-      label: 'Image Uploads Web Compression Enable',
       description: '',
     },
     [Features.FollowingV2Enable]: {
