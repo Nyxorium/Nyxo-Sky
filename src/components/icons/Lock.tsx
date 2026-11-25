@@ -1,7 +1,4 @@
-import {forwardRef} from 'react'
-import Svg, {Circle, Path, Rect} from 'react-native-svg'
-
-import {type Props, useCommonSVGProps} from '#/components/icons/common'
+import {LockKeyhole} from './lucide/LockKeyhole'
 import {createSinglePathSVG} from './TEMPLATE'
 import {Unlock_Stroke2_Corner2_Rounded as CanonicalUnlock_Stroke2_Corner2_Rounded} from './Unlock'
 
@@ -11,29 +8,7 @@ export const Lock_Stroke2_Corner0_Rounded = createSinglePathSVG({
   glyph: 'Lock_Stroke2_Corner0_Rounded',
 })
 
-export const Lock_Stroke2_Corner2_Rounded = forwardRef<Svg, Props>(
-  function LockKeyholeImpl(props, ref) {
-    const {fill, size, style, ...rest} = useCommonSVGProps(props)
-    return (
-      <Svg
-        fill="none"
-        stroke={fill}
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        {...rest}
-        ref={ref}
-        viewBox="0 0 24 24"
-        width={size}
-        height={size}
-        style={[style]}>
-        <Circle cx={12} cy={16} r={1} />
-        <Rect x={3} y={10} width={18} height={12} rx={2} />
-        <Path d="M7 10V7a5 5 0 0 1 10 0v3" />
-      </Svg>
-    )
-  },
-)
+export const Lock_Stroke2_Corner2_Rounded = LockKeyhole
 
 /** @deprecated Import Unlock_Stroke2_Corner2_Rounded from `#/components/icons/Unlock` instead. */
 export const Unlock_Stroke2_Corner2_Rounded =
