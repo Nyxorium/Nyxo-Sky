@@ -29,6 +29,7 @@ import {RichText} from '@bsky/sdk/richtext'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {mergeRefs} from '#/lib/merge-refs'
 import {ScrollProvider} from '#/lib/ScrollContext'
+import {detectFacetsWithMarkdown} from '#/lib/strings/markdown-links'
 import {shortenLinks, stripInvalidMentions} from '#/lib/strings/rich-text-manip'
 import {
   convertBskyAppUrlIfNeeded,
@@ -632,7 +633,7 @@ export function MessagesList({
         replyTo = {messageId: reply.id}
       }
 
-      await rt.detectFacets(appviewClient)
+      rt = await detectFacetsWithMarkdown(rt, appviewClient)
 
       rt = shortenLinks(rt)
       rt = stripInvalidMentions(rt)

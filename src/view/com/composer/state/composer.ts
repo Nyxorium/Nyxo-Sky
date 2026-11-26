@@ -6,8 +6,8 @@ import {nanoid} from 'nanoid/non-secure'
 
 import {type VideoTelemetry} from '#/lib/media/video/telemetry'
 import {type SelfLabel} from '#/lib/moderation'
+import {getFinalGraphemeLength} from '#/lib/strings/markdown-links'
 import {insertMentionAt} from '#/lib/strings/mention-manip'
-import {shortenLinks} from '#/lib/strings/rich-text-manip'
 import {
   isBskyPostUrl,
   postUriToRelativePath,
@@ -769,5 +769,5 @@ export function createComposerState({
 }
 
 function getShortenedLength(rt: RichText) {
-  return shortenLinks(rt).graphemeLength
+  return getFinalGraphemeLength(rt)
 }

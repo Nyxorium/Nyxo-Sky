@@ -13,6 +13,10 @@ import {type LinkResolvers} from '#/lib/api/resolve'
 import {withCreator} from '#/lib/at-card'
 import {IMAGE_SIZE_CONFIG_POSTS} from '#/lib/constants'
 import {isNetworkError} from '#/lib/strings/errors'
+import {
+  extractMarkdownLinks,
+  mergeMarkdownLinkFacets,
+} from '#/lib/strings/markdown-links'
 import {shortenLinks, stripInvalidMentions} from '#/lib/strings/rich-text-manip'
 import {logger} from '#/logger'
 import {compressImage} from '#/state/gallery'
@@ -216,8 +220,13 @@ async function resolveRT(appviewClient: Client, richtext: RichText) {
     .replace(/^(\s*\n)+/, '')
     // Trim any trailing whitespace.
     .trimEnd()
-  let rt = new RichText({text: trimmedText}, {cleanNewlines: true})
+  const cleaned = new RichText({text: trimmedText}, {cleanNewlines: true})
+  const {text, links} = extractMarkdownLinks(cleaned.text)
+  let rt = text !== cleaned.text ? new RichText({text}) : cleaned
   await rt.detectFacets(appviewClient)
+  if (links.length) {
+    rt.facets = mergeMarkdownLinkFacets(rt.facets, links)
+  }
 
   rt = shortenLinks(rt)
   rt = stripInvalidMentions(rt)
