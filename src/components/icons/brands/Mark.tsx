@@ -14,5 +14,5 @@ export const Mark = createSVG({
     },
   ],
   viewBox: '0 0 24 24',
-  glyph: 'Mark',
+  glyph: undefined, // 'Mark',
 })

@@ -6,8 +6,8 @@ import {
 import Svg, {Circle, Path, Rect} from 'react-native-svg'
 
 import {type Props, useCommonSVGProps} from '#/components/icons/common'
-// import {type NanoGlyphName} from '#/components/icons/glyphMaps'
-// import {withNanoGlyph} from '#/components/icons/nano'
+import {type NanoGlyphName} from '#/components/icons/glyphMaps'
+import {withNanoGlyph} from '#/components/icons/nano'
 
 export type IconWithSvgMeta = ForwardRefExoticComponent<
   Props & RefAttributes<Svg>
@@ -49,7 +49,7 @@ export function createSinglePathSVG({
   strokeWidth = 0,
   strokeLinecap = 'butt',
   strokeLinejoin = 'miter',
-  // glyph,
+  glyph,
 }: {
   path: string
   viewBox?: string
@@ -60,7 +60,7 @@ export function createSinglePathSVG({
    * The icon's glyph in the icon fonts, set by codegen when the glyph renders
    * the same as this SVG. See `withNanoGlyph`.
    */
-  // glyph?: NanoGlyphName
+  glyph?: NanoGlyphName
 }) {
   const Icon = forwardRef<Svg, Props>(function LogoImpl(props, ref) {
     const {
@@ -182,12 +182,12 @@ type GeneratedSVGElement = {
 export function createSVG({
   elements,
   viewBox,
-  // glyph,
+  glyph,
 }: {
   elements: GeneratedSVGElement[]
   viewBox: string
   /** See `createSinglePathSVG`. */
-  // glyph?: NanoGlyphName
+  glyph?: NanoGlyphName
 }) {
   const Icon = forwardRef<Svg, Props>(function LogoImpl(props, ref) {
     const {

@@ -1,8 +1,8 @@
 import {type PermissionResponse, PermissionStatus} from 'expo'
-import type {
-  Album as NativeAlbum,
-  Asset as NativeAsset,
-  GranularPermission,
+import {
+  type Album as NativeAlbum,
+  type Asset as NativeAsset,
+  type GranularPermission,
 } from 'expo-media-library'
 
 const noPermissionResponse: PermissionResponse = {
