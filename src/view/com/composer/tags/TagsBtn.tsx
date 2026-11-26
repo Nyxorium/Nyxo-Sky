@@ -13,14 +13,14 @@ import {
 } from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {Check_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
-import {TinyChevronBottom_Stroke2_Corner0_Rounded as TinyChevronIcon} from '#/components/icons/Chevron'
 import {Hashtag_Stroke2_Corner0_Rounded as HashtagIcon} from '#/components/icons/Hashtag'
+import {TinyChevronBottom_Stroke2_Corner0_Rounded as TinyChevronIcon} from '#/components/icons/TinyChevronBottom'
 import {Text} from '#/components/Typography'
 import {IS_WEB} from '#/env'
 
 const MAX_TAGS = 8
 const MAX_TAG_LENGTH = 64
-const MAX_RECENT_SHOWN = 10
+const MAX_RECENT_SHOWN = 20
 
 function cleanTag(raw: string): string {
   return raw.replace(/^#+/, '').trim().replace(/\s+/g, '')
