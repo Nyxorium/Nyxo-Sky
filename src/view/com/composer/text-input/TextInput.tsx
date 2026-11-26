@@ -18,6 +18,7 @@ import {useLingui} from '@lingui/react/macro'
 import {IMAGE_SIZE_CONFIG_POSTS} from '#/lib/constants'
 import {downloadAndResize} from '#/lib/media/manip'
 import {isUriImage} from '#/lib/media/util'
+import {findMarkdownSpans} from '#/lib/strings/markdown-links'
 import {getMentionAt, insertMentionAt} from '#/lib/strings/mention-manip'
 import {useTheme} from '#/lib/ThemeContext'
 import {
@@ -186,23 +187,46 @@ export function TextInput({
   }, [t, fonts])
 
   const textDecorated = useMemo(() => {
-    return Array.from(richtext.segments()).map((segment, i) => {
-      return (
-        <RNText
-          key={i}
-          style={[
-            inputTextStyle,
-            {
-              color: segment.facet
-                ? t.atoms.text_link.color
-                : t.atoms.text.color,
-              marginTop: -1,
-            },
-          ]}>
-          {segment.text}
-        </RNText>
-      )
-    })
+    const spans = findMarkdownSpans(richtext.text)
+    const linkColor = t.atoms.text_link.color
+    const textColor = t.atoms.text.color
+    const dimColor = t.atoms.text_contrast_low.color
+
+    const pieces: React.ReactNode[] = []
+    let offset = 0
+    let key = 0
+    for (const segment of richtext.segments()) {
+      const segStart = offset
+      const segEnd = segStart + segment.text.length
+      offset = segEnd
+
+      // Cut the segment wherever a markdown span starts or ends inside it.
+      const cuts = new Set([segStart, segEnd])
+      for (const s of spans) {
+        if (s.start > segStart && s.start < segEnd) cuts.add(s.start)
+        if (s.end > segStart && s.end < segEnd) cuts.add(s.end)
+      }
+      const points = [...cuts].sort((x, y) => x - y)
+
+      for (let i = 0; i < points.length - 1; i++) {
+        const from = points[i]
+        const to = points[i + 1]
+        const span = spans.find(s => from >= s.start && to <= s.end)
+        const color = span
+          ? span.kind === 'link'
+            ? linkColor
+            : dimColor
+          : segment.facet
+            ? linkColor
+            : textColor
+        pieces.push(
+          <RNText key={key++} style={[inputTextStyle, {color, marginTop: -1}]}>
+            {segment.text.slice(from - segStart, to - segStart)}
+          </RNText>,
+        )
+      }
+    }
+    return pieces
   }, [t, richtext, inputTextStyle])
 
   return (

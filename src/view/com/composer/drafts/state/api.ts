@@ -10,7 +10,7 @@ import {type LinkResolvers, resolveLink} from '#/lib/api/resolve'
 import {getDeviceName} from '#/lib/deviceName'
 import {getImageDim} from '#/lib/media/manip'
 import {mimeToExt} from '#/lib/media/video/util'
-import {shortenLinks} from '#/lib/strings/rich-text-manip'
+import {getFinalGraphemeLength} from '#/lib/strings/markdown-links'
 import {type ComposerImage} from '#/state/gallery'
 import {threadgateAllowUISettingToAllowRecordValue} from '#/state/queries/threadgate/util'
 import {
@@ -655,7 +655,7 @@ export async function draftToComposerPosts(
       return {
         id: `draft-post-${index}`,
         richtext,
-        shortenedGraphemeLength: shortenLinks(richtext).graphemeLength,
+        shortenedGraphemeLength: getFinalGraphemeLength(richtext),
         labels,
         tags,
         embed,

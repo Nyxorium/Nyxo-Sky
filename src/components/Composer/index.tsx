@@ -24,6 +24,7 @@ import {
 } from '@bsky.app/tapper'
 
 import {mergeRefs} from '#/lib/merge-refs'
+import {findMarkdownSpans} from '#/lib/strings/markdown-links'
 import {
   atoms as a,
   type TextStyleProp,
@@ -293,27 +294,61 @@ export function Composer({
     sift.updatePosition()
   }
 
+  /*
+   * Markdown link spans (`[label](url)`, escape backslashes) are layered over
+   * tapper's nodes. Offsets are checked against the node text first, so if the
+   * two ever disagree we fall back to plain tapper rendering.
+   */
+  const nodeStrings = tapper.state.nodes.map(n =>
+    n.type === 'text' ? n.value : n.raw,
+  )
+  const markdownSpans =
+    nodeStrings.join('') === tapper.state.text
+      ? findMarkdownSpans(tapper.state.text)
+      : []
+
+  let nodeOffset = 0
   const textContent = (
     <Text style={[textStyle, web({whiteSpace: 'pre-wrap'})]}>
       {tapper.state.nodes.map((node, i) => {
-        switch (node.type) {
-          case 'text':
-            return <Span key={i}>{node.value}</Span>
-          case 'trigger':
-          case 'facet':
-            return (
-              <Span
-                key={i}
-                ref={IS_WEB ? sift.refs.setAnchor : undefined}
-                style={
-                  node.type === 'facet' && {
-                    color: t.atoms.text_link.color,
-                  }
-                }>
-                {node.raw}
-              </Span>
-            )
+        const raw = nodeStrings[i]
+        const start = nodeOffset
+        const end = start + raw.length
+        nodeOffset = end
+
+        const baseStyle =
+          node.type === 'facet' ? {color: t.atoms.text_link.color} : undefined
+        const anchorRef =
+          IS_WEB && node.type !== 'text' ? sift.refs.setAnchor : undefined
+
+        // Cut this node wherever a markdown span starts or ends inside it.
+        const cuts = new Set([start, end])
+        for (const s of markdownSpans) {
+          if (s.start > start && s.start < end) cuts.add(s.start)
+          if (s.end > start && s.end < end) cuts.add(s.end)
         }
+        const points = [...cuts].sort((x, y) => x - y)
+
+        const pieces = []
+        for (let p = 0; p < points.length - 1; p++) {
+          const from = points[p]
+          const to = points[p + 1]
+          const span = markdownSpans.find(s => from >= s.start && to <= s.end)
+          const style = span
+            ? {
+                color:
+                  span.kind === 'link'
+                    ? t.atoms.text_link.color
+                    : t.atoms.text_contrast_low.color,
+              }
+            : baseStyle
+          pieces.push(
+            <Span key={`${i}-${p}`} ref={anchorRef} style={style}>
+              {raw.slice(from - start, to - start)}
+            </Span>,
+          )
+        }
+        return pieces
       })}
     </Text>
   )

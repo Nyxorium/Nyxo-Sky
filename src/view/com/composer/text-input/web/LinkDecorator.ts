@@ -20,6 +20,7 @@ import {type Node as ProsemirrorNode} from '@tiptap/pm/model'
 import {Plugin, PluginKey} from '@tiptap/pm/state'
 import {Decoration, DecorationSet} from '@tiptap/pm/view'
 
+import {findMarkdownSpans} from '#/lib/strings/markdown-links'
 import {isValidDomain} from '#/lib/strings/url-helpers'
 
 export const LinkDecorator = Mark.create({
@@ -49,6 +50,15 @@ function getDecorations(doc: ProsemirrorNode) {
           }),
         )
       })
+
+      // markdown links and escape backslashes
+      for (const span of findMarkdownSpans(textContent)) {
+        decorations.push(
+          Decoration.inline(pos + span.start, pos + span.end, {
+            class: span.kind === 'link' ? 'autolink' : 'md-escape',
+          }),
+        )
+      }
     }
   })
 
