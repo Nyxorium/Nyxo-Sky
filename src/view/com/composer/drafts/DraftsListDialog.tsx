@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo} from 'react'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {Keyboard, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
@@ -18,6 +18,10 @@ import {IS_NATIVE} from '#/env'
 import {DraftItem} from './DraftItem'
 import {useDeleteDraftMutation, useDraftsQuery} from './state/queries'
 import {type DraftSummary} from './state/schema'
+
+/* Suspected count for how many drafts a user can save */
+/* Based on when DraftLimitReached error occurs -- Sunstar */
+const MAX_DRAFTS = 500
 
 export function DraftsListDialog({
   control,
@@ -45,6 +49,28 @@ export function DraftsListDialog({
   } = useDraftsQuery()
   const {mutate: deleteDraft} = useDeleteDraftMutation()
 
+  const [isLoadingAll, setIsLoadingAll] = useState(false)
+  const cancelLoadAll = useRef(false)
+  useEffect(() => {
+    return () => {
+      cancelLoadAll.current = true
+    }
+  }, [])
+  const loadAll = useCallback(async () => {
+    cancelLoadAll.current = false
+    setIsLoadingAll(true)
+    try {
+      let more = hasNextPage
+      while (more && !cancelLoadAll.current) {
+        const res = await fetchNextPage()
+        if (res.isError) break
+        more = res.hasNextPage
+      }
+    } finally {
+      setIsLoadingAll(false)
+    }
+  }, [hasNextPage, fetchNextPage])
+
   const listBackgroundColor = select(t.name, {
     light: t.palette.contrast_50,
     dark: t.palette.contrast_0,
@@ -59,6 +85,7 @@ export function DraftsListDialog({
   // Fire draft:listOpen metric when dialog opens and data is loaded
   const draftCount = drafts.length
   const isDataReady = !isLoading && data !== undefined
+  const countLabel = hasNextPage ? `${draftCount}+` : `${draftCount}`
   const onDraftListOpen = useCallOnce()
   useEffect(() => {
     if (isDataReady) {
@@ -137,9 +164,38 @@ export function DraftsListDialog({
   const header = useMemo(
     () => (
       <>
-        <Dialog.Header renderLeft={backButton}>
+        <Dialog.Header
+          renderLeft={backButton}
+          renderRight={
+            hasNextPage && !isError
+              ? () => (
+                  <Button
+                    label={l`Load all drafts`}
+                    onPress={() => void loadAll()}
+                    disabled={isLoadingAll}
+                    size="small"
+                    color="primary"
+                    variant="ghost">
+                    <ButtonText style={[a.text_md]}>
+                      {isLoadingAll ? (
+                        <Trans>Loading...</Trans>
+                      ) : (
+                        <Trans>Load All</Trans>
+                      )}
+                    </ButtonText>
+                    {isLoadingAll && <ButtonIcon icon={Loader} />}
+                  </Button>
+                )
+              : undefined
+          }>
           <Dialog.HeaderText>
-            <Trans>Drafts</Trans>
+            {isDataReady ? (
+              <Trans>
+                Drafts ({countLabel}/{MAX_DRAFTS})
+              </Trans>
+            ) : (
+              <Trans>Drafts</Trans>
+            )}
           </Dialog.HeaderText>
         </Dialog.Header>
         {isRefetchError && drafts.length > 0 && (
@@ -163,16 +219,21 @@ export function DraftsListDialog({
       isRefetching,
       refetch,
       drafts.length,
+      isDataReady,
+      countLabel,
+      hasNextPage,
+      isLoadingAll,
+      loadAll,
       gtPhone,
       listBackgroundColor,
     ],
   )
 
   const onEndReached = useCallback(() => {
-    if (hasNextPage && !isFetching && !isError) {
+    if (hasNextPage && !isFetching && !isError && !isLoadingAll) {
       void fetchNextPage()
     }
-  }, [hasNextPage, isFetching, isError, fetchNextPage])
+  }, [hasNextPage, isFetching, isError, fetchNextPage, isLoadingAll])
 
   const emptyComponent = useMemo(() => {
     if (isLoading || isRefetching) {
